@@ -206,7 +206,7 @@ namespace Polsolcom.Forms
 				return;
 			}
 
-			//valida que alguna opcion de agrupacion se haya seleccionado
+			//valida que alguna opcion de agrupacion este seleccionado
 			bEncontrado = false;
 			foreach ( Control cntrl in grpGender.Controls )
 			{

@@ -43,9 +43,5 @@ namespace Polsolcom.Clases
         }
     }
 
-	public static class AppSetings
-	{
-		Configuration 
-
-	}
+	
 }
