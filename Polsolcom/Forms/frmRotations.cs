@@ -31,5 +31,10 @@ namespace Polsolcom.Forms
         {
             //comentario
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //coemtario 2 nuevo 
+        }
     }
 }

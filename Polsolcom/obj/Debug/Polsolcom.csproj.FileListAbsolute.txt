@@ -55,3 +55,5 @@ E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
