@@ -32,7 +32,7 @@ namespace Polsolcom.Forms
 
 		private void frmGrafico_Load( object sender, EventArgs e )
 		{
-
+			//funcion que carga los datos
 
 	
 
