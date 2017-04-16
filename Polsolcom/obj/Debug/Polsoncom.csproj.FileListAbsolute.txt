@@ -1,0 +1,11 @@
+E:\NOTBACKEDUP\Temp\Proyectos\Polsoncom\Polsoncom\bin\Debug\Polsoncom.exe.config
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\bin\Debug\Polsoncom.exe.config
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\bin\Debug\Polsoncom.exe
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\bin\Debug\Polsoncom.pdb
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\obj\Debug\Polsoncom.csprojResolveAssemblyReference.cache
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\obj\Debug\Polsoncom.Properties.Resources.resources
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\obj\Debug\Polsoncom.csproj.GenerateResource.Cache
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\obj\Debug\Polsoncom.exe
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\obj\Debug\Polsoncom.pdb
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\obj\Debug\Polsoncom.Form1.resources
+E:\NOTBACKEDUP\Temp\Proyectos\Polsolcom\Polsoncom\bin\Debug\Polsolcom.exe.config
