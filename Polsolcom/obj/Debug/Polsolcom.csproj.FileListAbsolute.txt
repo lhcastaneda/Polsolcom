@@ -51,3 +51,7 @@ E:\NOTBACKEDUP\Repositorio\NewRepo\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.c
 E:\NOTBACKEDUP\Repositorio\NewRepo\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
 E:\NOTBACKEDUP\Repositorio\NewRepo\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 E:\NOTBACKEDUP\Repositorio\NewRepo\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
