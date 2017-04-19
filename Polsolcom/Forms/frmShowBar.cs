@@ -1,18 +1,11 @@
 using Polsolcom.Clases;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Polsolcom.Forms
 {
-    public partial class frmShowBar : Form
+	public partial class frmShowBar : Form
     {
         public TreeNode selectedNode = new TreeNode();
 		//indica si la accion es una insercion o actualizacion

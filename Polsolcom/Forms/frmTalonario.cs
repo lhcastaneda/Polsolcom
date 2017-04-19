@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Polsolcom.Clases;
 using Microsoft.VisualBasic;
-using System.Globalization;
 
 namespace Polsolcom.Forms
 {
-    public partial class frmTalonario : Form
+	public partial class frmTalonario : Form
     {
 		//define variable para sentencias SQL
         string vSQL = "";

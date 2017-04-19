@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Polsolcom.Clases
+﻿namespace Polsolcom.Clases
 {
-    //clase que contiene los datos del centro operativo
-    public static class Operativo
+	//clase que contiene los datos del centro operativo
+	public static class Operativo
     {
         public static string descripcion {get;set;}
         public static string id_oper {get;set;}
