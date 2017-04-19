@@ -1,13 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Data;
-using System.Data.Sql;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Polsolcom.Clases
 {
-    public static class Conexion
+	public static class Conexion
     {
         public static string connetionString {get;set;}
         public static string strServer {get;set;}

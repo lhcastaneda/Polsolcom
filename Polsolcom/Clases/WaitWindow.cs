@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Threading.Tasks;
-using System.Text;
-using System.Linq;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Sql;
 using System.Collections.Generic;
 using Polsolcom.Forms;
-using Microsoft.VisualBasic;
 
 namespace Polsolcom.Clases
 {

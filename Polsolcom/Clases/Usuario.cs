@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Polsolcom.Clases
+﻿namespace Polsolcom.Clases
 {
-    //clase que contiene los datos del usuario que ingresa a la aplicacion 
-    public static class Usuario
+	//clase que contiene los datos del usuario que ingresa a la aplicacion 
+	public static class Usuario
     {
         public static string id_us {get;set;}
         public static string usuario {get;set;}

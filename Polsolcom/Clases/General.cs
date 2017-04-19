@@ -1,17 +1,14 @@
 ﻿using Microsoft.VisualBasic;
 using Polsolcom.Forms;
 using System;
-using System.Data;
-using System.Data.Sql;
 using System.Data.SqlClient;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Polsolcom.Clases
 {
-    public class Item
+	public class Item
     {
         public string Name { get; set; }
         public int Value { get; set; }
@@ -46,7 +43,20 @@ namespace Polsolcom.Clases
 
     }
 
-    public class ItemMenus
+	public class Grafico
+	{
+		public static string sSQL { get; set; }
+		public static string NombreSerie { get; set; }
+		public static string LeyendaSerie { get; set; }
+		public static string TituloChart { get; set; }
+		public static string TipoChart { get; set; }
+		public static string TituloX { get; set; }
+		public static string TituloY { get; set; }
+		public static string LeyendaX { get; set; }
+		public static string LeyendaY { get; set; }
+	}
+
+	public class ItemMenus
     {
         public string Bar_Number { get; set; }
         public string Bar_Popup { get; set; }

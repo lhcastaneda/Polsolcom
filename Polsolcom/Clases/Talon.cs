@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polsolcom.Clases
 {
-    //clase que tiene los datos del talonario
-    public static class Talon
+	//clase que tiene los datos del talonario
+	public static class Talon
     {
         public static string usuario {get;set;}
         public static DateTime fecha {get;set;}
