@@ -262,15 +262,14 @@ namespace Polsolcom.Clases
             string vSQL = "";
 
             cmb.Items.Clear();
-
-            vSQL = "SELECT Id_Tipo,Descripcion ";
-            vSQL = vSQL + "FROM TablaTipo ";
-            vSQL = vSQL + "WHERE Id_Tabla IN ";
-            vSQL = vSQL + "(SELECT Id_Tipo ";
-            vSQL = vSQL + " FROM TablaTipo ";
-            vSQL = vSQL + " WHERE LTRIM(RTRIM(Descripcion)) = 'DOC_VENTA' ";
-            vSQL = vSQL + " AND LTRIM(RTRIM(Id_Tabla)) = '0') ";
-            vSQL = vSQL + "ORDER BY 2 ";
+            vSQL = "SELECT Id_Tipo,Descripcion " +
+					"FROM TablaTipo " +
+					"WHERE Id_Tabla IN " +
+					"(SELECT Id_Tipo " +
+					" FROM TablaTipo " +
+					" WHERE LTRIM(RTRIM(Descripcion)) = 'DOC_VENTA' " +
+					" AND LTRIM(RTRIM(Id_Tabla)) = '0') " +
+					"ORDER BY 2 ";
             Conexion.CMD.CommandText = vSQL;
             using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
             {
@@ -289,9 +288,9 @@ namespace Polsolcom.Clases
             string sUsuario = "";
             string vSQL = "";
 
-            vSQL = "SELECT nombres + ' ' + ape_paterno + ' ' + ape_materno AS persona ";
-            vSQL = vSQL + "FROM personal ";
-            vSQL = vSQL + "WHERE Id_Personal = '" + id_usuario + "' ";
+            vSQL = "SELECT nombres + ' ' + ape_paterno + ' ' + ape_materno AS persona " +
+					"FROM personal " +
+					"WHERE Id_Personal = '" + id_usuario + "' ";
             using ( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
             {
                 using ( SqlDataReader drUsuario = cmd.ExecuteReader() )
@@ -347,14 +346,14 @@ namespace Polsolcom.Clases
             string vSQL = "";
             lstTipoUsuario.Clear();
 
-            vSQL = "SELECT Id_Tipo,Descripcion ";
-            vSQL = vSQL + " FROM TablaTipo ";
-            vSQL = vSQL + " WHERE Id_Tabla IN ";
-            vSQL = vSQL + " (SELECT Id_Tipo ";
-            vSQL = vSQL + "  FROM TablaTipo ";
-            vSQL = vSQL + "  WHERE LTRIM(RTRIM(Descripcion)) = 'TIPO_USUARIO' ";
-            vSQL = vSQL + "  AND LTRIM(RTRIM(Id_Tabla)) = '0') ";
-            vSQL = vSQL + " ORDER BY 1 ";
+            vSQL = "SELECT Id_Tipo,Descripcion " +
+					" FROM TablaTipo " +
+					" WHERE Id_Tabla IN " +
+					" (SELECT Id_Tipo " +
+					"  FROM TablaTipo " +
+					"  WHERE LTRIM(RTRIM(Descripcion)) = 'TIPO_USUARIO' " +
+					"  AND LTRIM(RTRIM(Id_Tabla)) = '0') " +
+					" ORDER BY 1 ";
             Conexion.CMD.CommandText = vSQL;
             using ( SqlDataReader dr = Conexion.CMD.ExecuteReader() )
             {
@@ -376,11 +375,11 @@ namespace Polsolcom.Clases
             string sUsuario = "";
             string vSQL = "";
 
-            vSQL = "SELECT Key_Pass AS Usuario  ";
-            vSQL = vSQL + "FROM sysaccusers ";
-            vSQL = vSQL + "WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable + "' ";
-            vSQL = vSQL + "OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable + "' ";
-            using ( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+			vSQL = "SELECT Key_Pass AS Usuario  " +
+					"FROM sysaccusers " +
+					"WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable + "' " +
+					"OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable + "' ";
+			using ( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
             {
                 using ( SqlDataReader drUsuario = cmd.ExecuteReader() )
                 {
