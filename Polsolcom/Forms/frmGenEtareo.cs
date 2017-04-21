@@ -229,7 +229,6 @@ namespace Polsolcom.Forms
 			}
 				
 			//define el tipo de grafico a usar
-			SeriesChartType tipoChart = new SeriesChartType();
 			if ( optColumnas.Checked == true )
 				Grafico.TipoChart = "Column";
 			else if ( optBarras.Checked == true )
