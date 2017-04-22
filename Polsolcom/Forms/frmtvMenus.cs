@@ -227,7 +227,7 @@ namespace Polsolcom.Forms
             }
         }
 
-        private string DevuelveOrdenNodo (string BPopup, string BNumber)
+        private string DevuelveOrdenNodo(string BPopup, string BNumber)
         {
 			//devuelve la posicion en el menu de una opcion
             string sOrder = "";
