@@ -103,6 +103,7 @@
     <Compile Include="Clases\Especialidad.cs" />
     <Compile Include="Clases\General.cs" />
     <Compile Include="Clases\Operativo.cs" />
+    <Compile Include="Clases\Personal.cs" />
     <Compile Include="Clases\Talon.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\WaitWindow.cs" />

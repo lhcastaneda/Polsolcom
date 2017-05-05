@@ -306,6 +306,22 @@ namespace Polsolcom.Clases
             return sUsuario;
         }
 
+        public static List<string> TraerNombresPersonal()
+        {
+            List<string> lista = new List<string>();
+            string vSQL;
+            vSQL = "SELECT Ape_Paterno + ' ' + Ape_Materno + ', ' + Nombres AS nombre ";
+            vSQL = vSQL + "FROM  Personal";
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            SqlDataReader drUsuarios = cmd.ExecuteReader();
+            while (drUsuarios.Read())
+            {
+                lista.Add(drUsuarios.GetValue(0).ToString());
+            }
+            lista.Sort();
+            return lista;
+        }
+
         public static void ReseteaSesion()
         {
             //Limpia Usuario
