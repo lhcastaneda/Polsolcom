@@ -26,5 +26,42 @@ namespace Polsolcom.Forms
         {
 
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void pnlDatos_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            EnabledPanelControls();
+        }
+
+        private void EnabledPanelControls()
+        {
+            foreach (Control item in pnlDatos.Controls)
+            {
+                item.Enabled = true;
+            }
+        }
+        
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            EnabledPanelControls();
+        }
+
+        private void picFoto_Click(object sender, EventArgs e)
+        {
+
+        }
     }
+
 }
+

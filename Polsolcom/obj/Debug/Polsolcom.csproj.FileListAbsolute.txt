@@ -94,6 +94,25 @@ E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Properties.Re
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.GenerateResource.Cache
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmGenEtareo.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmAdmTablas.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmGrafico.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmOperativo.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmPersonal.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmRotations.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmShowBar.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmChangeClave.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmLogin.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmMain.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmTalonario.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmTPCam.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmTvAccesos.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmtvMenus.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmWait.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Properties.Resources.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.GenerateResource.Cache
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.pdb
@@ -116,23 +135,5 @@ D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Cr
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\stdole.dll
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Dapper.xml
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmGenEtareo.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmAdmTablas.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmGrafico.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmOperativo.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmPersonal.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmRotations.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmShowBar.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmChangeClave.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmLogin.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmMain.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmTalonario.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmTPCam.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmTvAccesos.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmtvMenus.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmWait.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Properties.Resources.resources
-D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.GenerateResource.Cache
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb

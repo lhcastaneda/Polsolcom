@@ -204,13 +204,8 @@ namespace Polsolcom.Forms
 				txtDirec.Text = cOper.Direccion;
 				txtJefe.Text = ""; //esta variable no se encuentra en la BD
 				txtObservacion.Text = cOper.Obs;
-
-
-	
-
 			}
-
-
 		}
-	}
+
+    }
 }
