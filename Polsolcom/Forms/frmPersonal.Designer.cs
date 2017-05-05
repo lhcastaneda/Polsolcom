@@ -153,6 +153,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(196, 20);
             this.txtBuscar.TabIndex = 5;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // lstPersonal
             // 
@@ -162,6 +163,7 @@
             this.lstPersonal.ScrollAlwaysVisible = true;
             this.lstPersonal.Size = new System.Drawing.Size(196, 329);
             this.lstPersonal.TabIndex = 4;
+            this.lstPersonal.SelectedIndexChanged += new System.EventHandler(this.lstPersonal_SelectedIndexChanged);
             // 
             // cmbEstado
             // 
@@ -177,6 +179,7 @@
             this.txtDoc.Name = "txtDoc";
             this.txtDoc.Size = new System.Drawing.Size(69, 20);
             this.txtDoc.TabIndex = 2;
+            this.txtDoc.TextChanged += new System.EventHandler(this.txtDoc_TextChanged);
             // 
             // label2
             // 
@@ -955,7 +958,7 @@
             // 
             this.btnGrabar.Enabled = false;
             this.btnGrabar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrabar.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnGrabar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnGrabar.Location = new System.Drawing.Point(389, 412);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(108, 47);
@@ -966,6 +969,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Enabled = false;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancelar.Location = new System.Drawing.Point(503, 412);
@@ -1046,6 +1050,7 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 11;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // pictureBox6
             // 

@@ -8,7 +8,7 @@ namespace Polsolcom.Clases
 {
     public class Personal
     {
-        public string Id { get; set; }
+        public string Id_Personal { get; set; }
         public string Nombre { get; set; }
         public string Ape_Paterno { get; set; }
         public string Ape_Materno { get; set; }
