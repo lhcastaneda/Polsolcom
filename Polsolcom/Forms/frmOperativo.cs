@@ -26,9 +26,9 @@ namespace Polsolcom.Forms
         }
 
         private void frmOperativo_Load(object sender, EventArgs e)
-        {
-			//setea la fecha del dia para cada DatePicker
-			dtpInicio.Value = DateTime.Now;
+        {          
+            //setea la fecha del dia para cada DatePicker
+            dtpInicio.Value = DateTime.Now;
 			dtpCese.Value = DateTime.Now;
 
 			//limpia el combo cmbModOper
@@ -83,13 +83,15 @@ namespace Polsolcom.Forms
 			lstOperativos.DataSource = LlenaCombosListados(vSQL);
 			//guarda la descripcion, id_oper en el combo lstOperativos
 			lstOperativos.DisplayMember = "descripcion";
-			lstOperativos.ValueMember = "id_oper";
+			//lstOperativos.ValueMember = "id_oper";
 			//deja la lista desmarcada para que el usuario seleccione
-			lstOperativos.SelectedIndex = -1;
+			lstOperativos.SelectedIndex = 0;
 
-		}
+            //llama al metodo doble clic del lstOperativos
+            lstOperativos_DoubleClick(sender, e);
+        }
 
-		private void frmOperativo_KeyDown( object sender, KeyEventArgs e )
+        private void frmOperativo_KeyDown( object sender, KeyEventArgs e )
 		{
 			//cierra el formulario cuando se presiona la tecla ESC
 			//este codigo se debe colocar en el metodo "KeyDown" de
@@ -195,18 +197,15 @@ namespace Polsolcom.Forms
 				//el metodo QueryFirst trae solo 1 registro
 				cOper = db.QueryFirst<Oper>(vSQL);
 
-				//llena los textos con los datos del query
-				txtId.Text = cOper.Id_Oper;
+                //llena los textos con los datos del query
+                txtId.Text = cOper.Id_Oper;
 				txtDescrip.Text = cOper.Descripcion;
 				txtTel.Text = cOper.Telefono;
 				txtDirec.Text = cOper.Direccion;
 				txtJefe.Text = ""; //esta variable no se encuentra en la BD
 				txtObservacion.Text = cOper.Obs;
-	
-
 			}
-
-
 		}
-	}
+
+    }
 }

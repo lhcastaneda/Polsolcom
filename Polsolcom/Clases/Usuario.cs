@@ -10,6 +10,5 @@
         public static string descripcion {get;set;}
         public static string id_area {get;set;}
         public static string cargo {get;set;}
-
     }
 }
