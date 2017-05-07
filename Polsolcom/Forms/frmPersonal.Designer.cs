@@ -271,7 +271,6 @@
             this.pnlDatos.Name = "pnlDatos";
             this.pnlDatos.Size = new System.Drawing.Size(773, 381);
             this.pnlDatos.TabIndex = 1;
-            this.pnlDatos.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDatos_Paint);
             // 
             // label31
             // 
@@ -717,6 +716,7 @@
             this.cmbProvincia.Size = new System.Drawing.Size(181, 21);
             this.cmbProvincia.TabIndex = 22;
             this.cmbProvincia.Tag = "UserData";
+            this.cmbProvincia.SelectedIndexChanged += new System.EventHandler(this.cmbProvincia_SelectedIndexChanged);
             // 
             // cmbDepartamento
             // 
@@ -727,6 +727,7 @@
             this.cmbDepartamento.Size = new System.Drawing.Size(177, 21);
             this.cmbDepartamento.TabIndex = 21;
             this.cmbDepartamento.Tag = "UserData";
+            this.cmbDepartamento.SelectedIndexChanged += new System.EventHandler(this.cmbDepartamento_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -940,7 +941,6 @@
             this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Nombres";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // btnNuevo
             // 
@@ -1003,6 +1003,7 @@
             this.btnOtrosDatos.Text = "&Otros\r\nDatos";
             this.btnOtrosDatos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOtrosDatos.UseVisualStyleBackColor = true;
+            this.btnOtrosDatos.Click += new System.EventHandler(this.btnOtrosDatos_Click);
             // 
             // btnImprimir
             // 
