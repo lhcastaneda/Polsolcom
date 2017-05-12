@@ -307,6 +307,73 @@ namespace Polsolcom.Clases
             return sUsuario;
         }
 
+        public static List<Personal> TraerPersonal()
+        {
+            List<Personal> lista = new List<Personal>();
+            string vSQL;
+            vSQL = "SELECT *";
+            vSQL = vSQL + "FROM  Personal";
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            SqlDataReader drUsuarios = cmd.ExecuteReader();
+            while (drUsuarios.Read())
+            {
+                Personal oPersonal = new Personal()
+                {
+                    Id_Personal = drUsuarios.GetValue(0).ToString(),
+                    Nombre = drUsuarios.GetValue(1).ToString(),
+                    Ape_Paterno = drUsuarios.GetValue(2).ToString(),
+                    Ape_Materno = drUsuarios.GetValue(3).ToString(),
+                    DNI = drUsuarios.GetValue(4).ToString(),
+                    RUC = drUsuarios.GetValue(5).ToString(),
+                    Sexo = drUsuarios.GetValue(6).ToString(),
+                    //Fecha_Nac = drUsuarios.GetValue(7).ToString(),
+                    TNCol = drUsuarios.GetValue(8).ToString(),
+                    RNE = drUsuarios.GetValue(9).ToString(),
+                    Direccion = drUsuarios.GetValue(10).ToString(),
+                    Id_Distrito = drUsuarios.GetValue(11).ToString(),
+                    Telefono = drUsuarios.GetValue(12).ToString(),
+                    Celular = drUsuarios.GetValue(13).ToString(),
+                    Mod_Cont = drUsuarios.GetValue(14).ToString(),
+                    Est_Civ = drUsuarios.GetValue(15).ToString(),
+                    Id_GInst = drUsuarios.GetValue(16).ToString(),
+                    Id_Profesion = drUsuarios.GetValue(17).ToString(),
+                    Id_Area = drUsuarios.GetValue(18).ToString(),
+                    Id_Cargo = drUsuarios.GetValue(19).ToString(),
+                    //Fec_Ing = drUsuarios.GetValue(20).ToString(),
+                    //Fec_Ces = drUsuarios.GetValue(21).ToString(),
+                    Email = drUsuarios.GetValue(22).ToString(),
+                    Observacion = drUsuarios.GetValue(23).ToString(),
+                    Dscto = drUsuarios.GetValue(24).ToString(),
+                    Estado = drUsuarios.GetValue(25).ToString(),
+                    Proyeccion = drUsuarios.GetValue(26).ToString(),
+                    Capacitacion = drUsuarios.GetValue(27).ToString(),
+                    Centro_Capac = drUsuarios.GetValue(28).ToString(),
+                    Otras_Capac = drUsuarios.GetValue(29).ToString(),
+                    Salud = drUsuarios.GetValue(30).ToString(),
+                    Grp_Sang = drUsuarios.GetValue(31).ToString(),
+                    //Ult_Eva_Med = drUsuarios.GetValue(32).ToString(),
+                    Ult_Diagnostico = drUsuarios.GetValue(33).ToString(),
+                    Afi_Dep = drUsuarios.GetValue(34).ToString(),
+                    Instr_Musical = drUsuarios.GetValue(35).ToString(),
+                    Canta = drUsuarios.GetValue(36).ToString(),
+                    Tipo_Musica = drUsuarios.GetValue(37).ToString(),
+                    Hobby = drUsuarios.GetValue(38).ToString(),
+                    Us_Ins = drUsuarios.GetValue(39).ToString(),
+                    //Fec_Ins = drUsuarios.GetValue(40).ToString(),
+                    Us_Mod = drUsuarios.GetValue(41).ToString()
+                    //Fec_Mod = drUsuarios.GetValue(42).ToString(),
+                };
+                lista.Add(oPersonal);
+            }
+            return lista;
+        }
+
+        public static bool UpdatePersonal()
+        {
+
+            return true;
+        }
+
         public static void ReseteaSesion()
         {
             //Limpia Usuario
@@ -393,6 +460,63 @@ namespace Polsolcom.Clases
                 }
             }
             return sUsuario;
+        }
+
+        public static List<Lugar>TraerLugares()
+        {
+            List<Lugar> ListaLugares = new List<Lugar>();
+            var vSQL = "SELECT * " +
+                    "FROM ubigeo2005 ";
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            SqlDataReader drLugares = cmd.ExecuteReader();
+            while (drLugares.Read())
+            {
+                Lugar lugar = new Lugar()
+                {
+                    Id = Convert.ToInt32(drLugares.GetValue(0).ToString()),
+                    Departamento = drLugares.GetValue(1).ToString(),
+                    Provincia = drLugares.GetValue(2).ToString(),
+                    Distrito = drLugares.GetValue(3).ToString()
+                };
+                ListaLugares.Add(lugar);
+            }
+            return ListaLugares;
+        }
+
+        public static List<Institucion> TraerInstitucion()
+        {
+            List<Institucion> lista = new List<Institucion>();
+            string vSQL;
+            vSQL = "SELECT *";
+            vSQL = vSQL + "FROM  Institucion";
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            SqlDataReader drInstitucion = cmd.ExecuteReader();
+            while (drInstitucion.Read())
+            {
+                Institucion oInstitucion = new Institucion()
+                {
+                    Id = Convert.ToInt16(drInstitucion.GetValue(1).ToString()),
+                    Nom_Raz_Soc = drInstitucion.GetValue(2).ToString(),
+                    RUC = drInstitucion.GetValue(3).ToString(),
+                    Direccion = drInstitucion.GetValue(4).ToString(),
+                    Id_Distrito = drInstitucion.GetValue(5).ToString(),
+                    Telefono = drInstitucion.GetValue(6).ToString(),
+                    Celular = drInstitucion.GetValue(7).ToString(),
+                    Id_Represent = drInstitucion.GetValue(8).ToString(),
+                    Representante = drInstitucion.GetValue(9).ToString(),
+                    Id_Cargo = drInstitucion.GetValue(10).ToString(),
+                    Mod_Trans = drInstitucion.GetValue(11).ToString(),
+                    Email = drInstitucion.GetValue(12).ToString(),
+                    Observacion = drInstitucion.GetValue(13).ToString(),
+                    Estado = drInstitucion.GetValue(14).ToString(),
+                    //Fec_Ing = drInstitucion.GetValue(15).ToString(),
+                    Us_Ing = drInstitucion.GetValue(16).ToString(),
+                    //Fec_Mod = drInstitucion.GetValue(17).ToString(),
+                    Us_Mod = drInstitucion.GetValue(18).ToString()
+                };
+                lista.Add(oInstitucion);
+            }
+            return lista;
         }
     }
 }
