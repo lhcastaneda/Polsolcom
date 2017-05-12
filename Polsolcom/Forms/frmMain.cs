@@ -52,7 +52,7 @@ namespace Polsolcom.Forms
 				       " ON C.Id_Consultorio = B.Id_Esp " +
 				       " INNER JOIN Institucion I " +
 				       " ON B.Id_Emp = I.TInst + I.Id_Inst " +
-				       " WHERE LTRIM(RTRIM(Id_Bus)) = '" + Usuario.id_us + "' ";
+				       " WHERE LEFT(LTRIM(RTRIM(Id_Bus)),3) = '" + Usuario.id_us + "' ";
                 Conexion.CMD.CommandText = vSQL;
                 using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
                 {

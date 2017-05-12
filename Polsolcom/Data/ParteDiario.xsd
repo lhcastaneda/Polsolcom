@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ParteDiario" targetNamespace="http://tempuri.org/ParteDiario.xsd" xmlns:mstns="http://tempuri.org/ParteDiario.xsd" xmlns="http://tempuri.org/ParteDiario.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ParteDiario" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ParteDiario" msprop:Generator_UserDSName="ParteDiario">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ParteDiario" msprop:Generator_TableClassName="ParteDiarioDataTable" msprop:Generator_TableVarName="tableParteDiario" msprop:Generator_TablePropName="_ParteDiario" msprop:Generator_RowDeletingName="ParteDiarioRowDeleting" msprop:Generator_RowChangingName="ParteDiarioRowChanging" msprop:Generator_RowEvHandlerName="ParteDiarioRowChangeEventHandler" msprop:Generator_RowDeletedName="ParteDiarioRowDeleted" msprop:Generator_UserTableName="ParteDiario" msprop:Generator_RowChangedName="ParteDiarioRowChanged" msprop:Generator_RowEvArgName="ParteDiarioRowChangeEvent" msprop:Generator_RowClassName="ParteDiarioRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Especialidad" msprop:Generator_ColumnVarNameInTable="columnEspecialidad" msprop:Generator_ColumnPropNameInRow="Especialidad" msprop:Generator_ColumnPropNameInTable="EspecialidadColumn" msprop:Generator_UserColumnName="Especialidad" type="xs:string" minOccurs="0" />
+              <xs:element name="Bus" msprop:Generator_ColumnVarNameInTable="columnBus" msprop:Generator_ColumnPropNameInRow="Bus" msprop:Generator_ColumnPropNameInTable="BusColumn" msprop:Generator_UserColumnName="Bus" type="xs:string" minOccurs="0" />
+              <xs:element name="Ticket" msprop:Generator_ColumnVarNameInTable="columnTicket" msprop:Generator_ColumnPropNameInRow="Ticket" msprop:Generator_ColumnPropNameInTable="TicketColumn" msprop:Generator_UserColumnName="Ticket" type="xs:string" minOccurs="0" />
+              <xs:element name="Completo" msprop:Generator_ColumnVarNameInTable="columnCompleto" msprop:Generator_ColumnPropNameInRow="Completo" msprop:Generator_ColumnPropNameInTable="CompletoColumn" msprop:Generator_UserColumnName="Completo" type="xs:string" minOccurs="0" />
+              <xs:element name="Edad" msprop:Generator_ColumnVarNameInTable="columnEdad" msprop:Generator_ColumnPropNameInRow="Edad" msprop:Generator_ColumnPropNameInTable="EdadColumn" msprop:Generator_UserColumnName="Edad" type="xs:string" minOccurs="0" />
+              <xs:element name="Sexo" msprop:Generator_ColumnVarNameInTable="columnSexo" msprop:Generator_ColumnPropNameInRow="Sexo" msprop:Generator_ColumnPropNameInTable="SexoColumn" msprop:Generator_UserColumnName="Sexo" type="xs:string" minOccurs="0" />
+              <xs:element name="NroHistoria" msprop:Generator_ColumnVarNameInTable="columnNroHistoria" msprop:Generator_ColumnPropNameInRow="NroHistoria" msprop:Generator_ColumnPropNameInTable="NroHistoriaColumn" msprop:Generator_UserColumnName="NroHistoria" type="xs:string" minOccurs="0" />
+              <xs:element name="FechaAtencion" msprop:Generator_ColumnVarNameInTable="columnFechaAtencion" msprop:Generator_ColumnPropNameInRow="FechaAtencion" msprop:Generator_ColumnPropNameInTable="FechaAtencionColumn" msprop:Generator_UserColumnName="FechaAtencion" type="xs:string" minOccurs="0" />
+              <xs:element name="Turno" msprop:Generator_ColumnVarNameInTable="columnTurno" msprop:Generator_ColumnPropNameInRow="Turno" msprop:Generator_ColumnPropNameInTable="TurnoColumn" msprop:Generator_UserColumnName="Turno" type="xs:string" minOccurs="0" />
+              <xs:element name="CMP" msprop:Generator_ColumnVarNameInTable="columnCMP" msprop:Generator_ColumnPropNameInRow="CMP" msprop:Generator_ColumnPropNameInTable="CMPColumn" msprop:Generator_UserColumnName="CMP" type="xs:string" minOccurs="0" />
+              <xs:element name="PRDG" msprop:Generator_ColumnVarNameInTable="columnPRDG" msprop:Generator_ColumnPropNameInRow="PRDG" msprop:Generator_ColumnPropNameInTable="PRDGColumn" msprop:Generator_UserColumnName="PRDG" type="xs:string" minOccurs="0" />
+              <xs:element name="PRCN" msprop:Generator_ColumnVarNameInTable="columnPRCN" msprop:Generator_ColumnPropNameInRow="PRCN" msprop:Generator_ColumnPropNameInTable="PRCNColumn" msprop:Generator_UserColumnName="PRCN" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
