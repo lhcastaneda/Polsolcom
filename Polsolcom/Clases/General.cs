@@ -306,7 +306,7 @@ namespace Polsolcom.Clases
             return sUsuario;
         }
 
-        public static List<Personal> TraerNombresPersonal()
+        public static List<Personal> TraerPersonal()
         {
             List<Personal> lista = new List<Personal>();
             string vSQL;
@@ -365,6 +365,12 @@ namespace Polsolcom.Clases
                 lista.Add(oPersonal);
             }
             return lista;
+        }
+
+        public static bool UpdatePersonal()
+        {
+
+            return true;
         }
 
         public static void ReseteaSesion()
@@ -453,6 +459,63 @@ namespace Polsolcom.Clases
                 }
             }
             return sUsuario;
+        }
+
+        public static List<Lugar>TraerLugares()
+        {
+            List<Lugar> ListaLugares = new List<Lugar>();
+            var vSQL = "SELECT * " +
+                    "FROM ubigeo2005 ";
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            SqlDataReader drLugares = cmd.ExecuteReader();
+            while (drLugares.Read())
+            {
+                Lugar lugar = new Lugar()
+                {
+                    Id = Convert.ToInt32(drLugares.GetValue(0).ToString()),
+                    Departamento = drLugares.GetValue(1).ToString(),
+                    Provincia = drLugares.GetValue(2).ToString(),
+                    Distrito = drLugares.GetValue(3).ToString()
+                };
+                ListaLugares.Add(lugar);
+            }
+            return ListaLugares;
+        }
+
+        public static List<Institucion> TraerInstitucion()
+        {
+            List<Institucion> lista = new List<Institucion>();
+            string vSQL;
+            vSQL = "SELECT *";
+            vSQL = vSQL + "FROM  Institucion";
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            SqlDataReader drInstitucion = cmd.ExecuteReader();
+            while (drInstitucion.Read())
+            {
+                Institucion oInstitucion = new Institucion()
+                {
+                    Id = Convert.ToInt16(drInstitucion.GetValue(1).ToString()),
+                    Nom_Raz_Soc = drInstitucion.GetValue(2).ToString(),
+                    RUC = drInstitucion.GetValue(3).ToString(),
+                    Direccion = drInstitucion.GetValue(4).ToString(),
+                    Id_Distrito = drInstitucion.GetValue(5).ToString(),
+                    Telefono = drInstitucion.GetValue(6).ToString(),
+                    Celular = drInstitucion.GetValue(7).ToString(),
+                    Id_Represent = drInstitucion.GetValue(8).ToString(),
+                    Representante = drInstitucion.GetValue(9).ToString(),
+                    Id_Cargo = drInstitucion.GetValue(10).ToString(),
+                    Mod_Trans = drInstitucion.GetValue(11).ToString(),
+                    Email = drInstitucion.GetValue(12).ToString(),
+                    Observacion = drInstitucion.GetValue(13).ToString(),
+                    Estado = drInstitucion.GetValue(14).ToString(),
+                    //Fec_Ing = drInstitucion.GetValue(15).ToString(),
+                    Us_Ing = drInstitucion.GetValue(16).ToString(),
+                    //Fec_Mod = drInstitucion.GetValue(17).ToString(),
+                    Us_Mod = drInstitucion.GetValue(18).ToString()
+                };
+                lista.Add(oInstitucion);
+            }
+            return lista;
         }
     }
 }

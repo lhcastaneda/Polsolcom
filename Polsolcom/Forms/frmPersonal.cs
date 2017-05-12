@@ -14,15 +14,19 @@ namespace Polsolcom.Forms
 {
     public partial class frmPersonal : Form
     {
+        //TODO: IMPLEMENTAR GUARDAR Y EDITAR
+
         public string vSQL;
 
         List<string> ListaNombres;
         List<Personal> ListaPersonal;
+        List<Lugar> ListaLugares;
 
         public frmPersonal()
         {
             ListaNombres = new List<string>();
-            ListaPersonal = General.TraerNombresPersonal();
+            ListaPersonal = General.TraerPersonal();
+            ListaLugares = General.TraerLugares();
             InitializeComponent();
             foreach (var item in ListaPersonal)
             {
@@ -32,12 +36,7 @@ namespace Polsolcom.Forms
             ListaNombres.Sort();
             lstPersonal.DataSource = ListaNombres;
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -54,13 +53,9 @@ namespace Polsolcom.Forms
             DisabledPanelControls();
         }
 
-        private void pnlDatos_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            LlenarDepartamentos();
             EnabledPanelControls();
         }
 
@@ -92,7 +87,7 @@ namespace Polsolcom.Forms
 
         private void picFoto_Click(object sender, EventArgs e)
         {
-
+            //TO DO: Método, subir imagen
         }
 
         private void lstPersonal_SelectedIndexChanged(object sender, EventArgs e)
@@ -101,9 +96,14 @@ namespace Polsolcom.Forms
             Personal personal = ListaPersonal.Find(x => $"{x.Ape_Paterno} {x.Ape_Materno}, {x.Nombre}".Equals(item));
             if (personal != null)
             {
-                //TODO: Completar los demas cuadradillos
+                //TO DO: Completar los demas cuadradillos
                 txtDirecc.Text = personal.Direccion;
                 txtDni.Text = personal.DNI;
+                txtApMaterno.Text = personal.Ape_Materno;
+                txtApPaterno.Text = personal.Ape_Paterno;
+                txtCel.Text = personal.Celular;
+                txtDirecc.Text = personal.Direccion;
+                txtEmail.Text = personal.Email;
             }
         }
 
@@ -154,6 +154,57 @@ namespace Polsolcom.Forms
         private void pictureBox5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOtrosDatos_Click(object sender, EventArgs e)
+        {
+            frmPersonalDet form = new frmPersonalDet();
+            form.Show();
+        }
+
+        private void cmbDepartamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbProvincia.Items.Clear();
+            string provincia_aux = ListaLugares.First().Provincia;
+            cmbProvincia.Items.Add(provincia_aux);
+            string departamento = cmbDepartamento.Items[cmbDepartamento.SelectedIndex].ToString();
+            foreach (var item in ListaLugares)
+            {
+                if (item.Departamento == departamento)
+                {
+                    if (item.Provincia != provincia_aux)
+                    {
+                        provincia_aux = item.Provincia;
+                        cmbProvincia.Items.Add(provincia_aux);
+                    }
+                }
+                    
+            }
+        }
+
+        private void cmbProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbDistrito.Items.Clear();
+            string provincia = cmbProvincia.Items[cmbProvincia.SelectedIndex].ToString();
+            foreach (var item in ListaLugares)
+            {
+                if (item.Provincia == provincia)
+                    cmbDistrito.Items.Add(item.Distrito);
+            }
+        }
+
+        private void LlenarDepartamentos()
+        {
+            string departamento_aux = ListaLugares.First().Departamento;
+            cmbDepartamento.Items.Add(departamento_aux);
+            foreach (var item in ListaLugares)
+            {
+                if (item.Departamento != departamento_aux)
+                {
+                    departamento_aux = item.Departamento;
+                    cmbDepartamento.Items.Add(departamento_aux);
+                }
+            }
         }
     }
 

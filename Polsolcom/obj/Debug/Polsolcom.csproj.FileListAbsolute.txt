@@ -137,3 +137,5 @@ D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\st
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Dapper.xml
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmPersonalDet.resources
+D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmInstitucion.resources
