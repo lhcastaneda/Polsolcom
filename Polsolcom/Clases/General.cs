@@ -42,7 +42,8 @@ namespace Polsolcom.Clases
         }
 
     }
-
+	
+	//clase que guarda los parametros generales a mostrar en un grafico
 	public class Grafico
 	{
 		public static string sSQL { get; set; }

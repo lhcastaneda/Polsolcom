@@ -51,6 +51,8 @@ E:\NOTBACKEDUP\Repositorio\NewRepo\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.c
 E:\NOTBACKEDUP\Repositorio\NewRepo\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
 E:\NOTBACKEDUP\Repositorio\NewRepo\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 E:\NOTBACKEDUP\Repositorio\NewRepo\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+<<<<<<< HEAD
+=======
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.pdb
@@ -113,6 +115,7 @@ D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Po
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmWait.resources
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Properties.Resources.resources
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.GenerateResource.Cache
+>>>>>>> origin/master
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe
 D:\Clinica Polsolcom\Fuente Migrado\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.pdb

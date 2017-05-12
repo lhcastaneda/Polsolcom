@@ -77,15 +77,19 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Dapper">
       <HintPath>..\packages\Dapper.1.50.2\lib\net45\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -110,6 +114,22 @@
     <Compile Include="Clases\Talon.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\WaitWindow.cs" />
+    <Compile Include="Data\Consolidado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Consolidado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ParteDiario.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCRViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCRViewer.Designer.cs">
+      <DependentUpon>frmCRViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmGenEtareo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +142,13 @@
     <Compile Include="Forms\frmGrafico.Designer.cs">
       <DependentUpon>frmGrafico.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="Forms\frmParteDiario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmParteDiario.designer.cs">
+      <DependentUpon>frmParteDiario.cs</DependentUpon>
+=======
     <Compile Include="Forms\frmInstitucion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +160,7 @@
     </Compile>
     <Compile Include="Forms\frmPersonalDet.Designer.cs">
       <DependentUpon>frmPersonalDet.cs</DependentUpon>
+>>>>>>> origin/master
     </Compile>
     <Compile Include="Forms\frmRotations.cs">
       <SubType>Form</SubType>
@@ -221,13 +249,22 @@
     <Compile Include="Forms\Program.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reportes\rptGrafico.cs">
+    <Compile Include="Reportes\rptconpardia.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptGrafico.rpt</DependentUpon>
+      <DependentUpon>rptconpardia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\rptpardia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptpardia.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Forms\frmCRViewer.resx">
+      <DependentUpon>frmCRViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmGenEtareo.resx">
       <DependentUpon>frmGenEtareo.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -245,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmOperativo.resx">
       <DependentUpon>frmOperativo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmParteDiario.resx">
+      <DependentUpon>frmParteDiario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPersonal.resx">
       <DependentUpon>frmPersonal.cs</DependentUpon>
@@ -297,10 +337,36 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reportes\rptGrafico.rpt">
+    <EmbeddedResource Include="Reportes\rptconpardia.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptGrafico.cs</LastGenOutput>
+      <LastGenOutput>rptconpardia.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptpardia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptpardia.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Data\Consolidado.xsc">
+      <DependentUpon>Consolidado.xsd</DependentUpon>
+    </None>
+    <None Include="Data\Consolidado.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Consolidado.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\Consolidado.xss">
+      <DependentUpon>Consolidado.xsd</DependentUpon>
+    </None>
+    <None Include="Data\ParteDiario.xsc">
+      <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </None>
+    <None Include="Data\ParteDiario.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ParteDiario.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\ParteDiario.xss">
+      <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </None>
     <None Include="Polsolcom_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -340,7 +406,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Properties\DataSources\" />
     <Folder Include="Resources\" />
   </ItemGroup>
