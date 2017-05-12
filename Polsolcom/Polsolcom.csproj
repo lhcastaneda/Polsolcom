@@ -104,25 +104,44 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Data.cs" />
-    <Compile Include="Clases\Especialidad.cs" />
-    <Compile Include="Clases\General.cs" />
-    <Compile Include="Clases\Institucion.cs" />
-    <Compile Include="Clases\Lugar.cs" />
-    <Compile Include="Clases\Operativo.cs" />
-    <Compile Include="Clases\Personal.cs" />
-    <Compile Include="Clases\Talon.cs" />
-    <Compile Include="Clases\Usuario.cs" />
-    <Compile Include="Clases\WaitWindow.cs" />
-    <Compile Include="Data\Consolidado.Designer.cs">
+    <Compile Include="Dominio\Modelos\Consultorio.cs" />
+    <Compile Include="Dominio\Modelos\Especialidad.cs" />
+    <Compile Include="Dominio\Helpers\General.cs" />
+    <Compile Include="Dominio\Modelos\Institucion.cs" />
+    <Compile Include="Dominio\Modelos\Lugar.cs" />
+    <Compile Include="Dominio\Modelos\Operativo.cs" />
+    <Compile Include="Dominio\Modelos\Personal.cs" />
+    <Compile Include="Dominio\Modelos\Producto.cs" />
+    <Compile Include="Dominio\Modelos\Talon.cs" />
+    <Compile Include="Dominio\Modelos\Usuario.cs" />
+    <Compile Include="Dominio\Helpers\WaitWindow.cs" />
+    <Compile Include="Dominio\Data\Consolidado.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Data\ParteDiario.Designer.cs">
+    <Compile Include="Dominio\Data\ParteDiario.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAdmCounterfoilA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAdmCounterfoilA.Designer.cs">
+      <DependentUpon>frmAdmCounterfoilA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmCie10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmCie10.Designer.cs">
+      <DependentUpon>frmCie10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmConsRotations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmConsRotations.Designer.cs">
+      <DependentUpon>frmConsRotations.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmCRViewer.cs">
       <SubType>Form</SubType>
@@ -130,11 +149,53 @@
     <Compile Include="Forms\frmCRViewer.Designer.cs">
       <DependentUpon>frmCRViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmGenEtareo.cs">
+    <Compile Include="Forms\Herramientas\frmCrypto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmGenEtareo.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmCrypto.Designer.cs">
+      <DependentUpon>frmCrypto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDentalHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDentalHistory.Designer.cs">
+      <DependentUpon>frmDentalHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDiseases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDiseases.Designer.cs">
+      <DependentUpon>frmDiseases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmExecute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmExecute.Designer.cs">
+      <DependentUpon>frmExecute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmExport.Designer.cs">
+      <DependentUpon>frmExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Estadisticas\frmGenEtareo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Estadisticas\frmGenEtareo.Designer.cs">
       <DependentUpon>frmGenEtareo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmGenParSalSpecialist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmGenParSalSpecialist.Designer.cs">
+      <DependentUpon>frmGenParSalSpecialist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmGenPaySalSpecialist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmGenPaySalSpecialist.Designer.cs">
+      <DependentUpon>frmGenPaySalSpecialist.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmGrafico.cs">
       <SubType>Form</SubType>
@@ -142,29 +203,155 @@
     <Compile Include="Forms\frmGrafico.Designer.cs">
       <DependentUpon>frmGrafico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmhorario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmhorario.Designer.cs">
+      <DependentUpon>frmhorario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMantImpFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMantImpFicha.Designer.cs">
+      <DependentUpon>frmMantImpFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmMntVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmMntVentas.Designer.cs">
+      <DependentUpon>frmMntVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmModulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmModulos.Designer.cs">
+      <DependentUpon>frmModulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmNewBus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNewBus.Designer.cs">
+      <DependentUpon>frmNewBus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmNewDiagnostico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNewDiagnostico.Designer.cs">
+      <DependentUpon>frmNewDiagnostico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmNewTratamiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNewTratamiento.Designer.cs">
+      <DependentUpon>frmNewTratamiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmParPgEsp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmParPgEsp.Designer.cs">
+      <DependentUpon>frmParPgEsp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmParteDiario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmParteDiario.designer.cs">
       <DependentUpon>frmParteDiario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmInstitucion.cs">
+    <Compile Include="Forms\Mantenimiento\frmInstitucion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmInstitucion.Designer.cs">
+    <Compile Include="Forms\Mantenimiento\frmInstitucion.Designer.cs">
       <DependentUpon>frmInstitucion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmPersonalDet.cs">
+    <Compile Include="Forms\Mantenimiento\frmPerPago.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmPersonalDet.Designer.cs">
+    <Compile Include="Forms\Mantenimiento\frmPerPago.Designer.cs">
+      <DependentUpon>frmPerPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmPersonalDet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmPersonalDet.Designer.cs">
       <DependentUpon>frmPersonalDet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmPizarra.cs">
+    <Compile Include="Forms\Herramientas\frmPizarra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmPizarra.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmPizarra.Designer.cs">
       <DependentUpon>frmPizarra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPlantillas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPlantillas.Designer.cs">
+      <DependentUpon>frmPlantillas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPrintHorarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPrintHorarios.Designer.cs">
+      <DependentUpon>frmPrintHorarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProdDigitador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmProdDigitador.Designer.cs">
+      <DependentUpon>frmProdDigitador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProdMed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmProdMed.Designer.cs">
+      <DependentUpon>frmProdMed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmProduccion.Designer.cs">
+      <DependentUpon>frmProduccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProduccionMedicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmProduccionMedicos.Designer.cs">
+      <DependentUpon>frmProduccionMedicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmProductos.Designer.cs">
+      <DependentUpon>frmProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProgTrans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmProgTrans.Designer.cs">
+      <DependentUpon>frmProgTrans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRegistroUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRegistroUsuarios.Designer.cs">
+      <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRepProdTer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRepProdTer.Designer.cs">
+      <DependentUpon>frmRepProdTer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmResperEsp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmResperesp.Designer.cs">
+      <DependentUpon>frmResperEsp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmResperTer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmResperTer.Designer.cs">
+      <DependentUpon>frmResperTer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmRotations.cs">
       <SubType>Form</SubType>
@@ -184,41 +371,77 @@
     <Compile Include="Forms\frmAdmTablas.Designer.cs">
       <DependentUpon>frmAdmTablas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmChangeClave.cs">
+    <Compile Include="Forms\Herramientas\frmChangeClave.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmChangeClave.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmChangeClave.Designer.cs">
       <DependentUpon>frmChangeClave.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmLogin.cs">
+    <Compile Include="Forms\Principal\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmLogin.Designer.cs">
+    <Compile Include="Forms\Principal\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmMain.cs">
+    <Compile Include="Forms\Principal\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmMain.Designer.cs">
+    <Compile Include="Forms\Principal\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmOperativo.cs">
+    <Compile Include="Forms\Herramientas\frmOperativo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmOperativo.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmOperativo.Designer.cs">
       <DependentUpon>frmOperativo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmPersonal.cs">
+    <Compile Include="Forms\Mantenimiento\frmPersonal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmPersonal.Designer.cs">
+    <Compile Include="Forms\Mantenimiento\frmPersonal.Designer.cs">
       <DependentUpon>frmPersonal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmSpecialists.cs">
+    <Compile Include="Forms\Consultas\frmSpecialAnnulment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmSpecialists.Designer.cs">
-      <DependentUpon>frmSpecialists.cs</DependentUpon>
+    <Compile Include="Forms\Consultas\frmSpecialAnnulment.Designer.cs">
+      <DependentUpon>frmSpecialAnnulment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmEspecialistas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmEspecialistas.Designer.cs">
+      <DependentUpon>frmEspecialistas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmConsultorios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmConsultorios.Designer.cs">
+      <DependentUpon>frmConsultorios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSpecialtyTurn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSpecialtyTurn.Designer.cs">
+      <DependentUpon>frmSpecialtyTurn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Estadisticas\frmStatGenGroupEtareo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Estadisticas\frmStatGenGroupEtareo.Designer.cs">
+      <DependentUpon>frmStatGenGroupEtareo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Estadisticas\frmStatPatients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Estadisticas\frmStatPatients.Designer.cs">
+      <DependentUpon>frmStatPatients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Estadisticas\frmStatSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Estadisticas\frmStatSales.Designer.cs">
+      <DependentUpon>frmStatSales.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmTalonario.cs">
       <SubType>Form</SubType>
@@ -226,10 +449,16 @@
     <Compile Include="Forms\frmTalonario.Designer.cs">
       <DependentUpon>frmTalonario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmTPCam.cs">
+    <Compile Include="Forms\Consultas\frmTarProducts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmTPCam.Designer.cs">
+    <Compile Include="Forms\Consultas\frmTarProducts.Designer.cs">
+      <DependentUpon>frmTarProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Principal\frmTPCam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Principal\frmTPCam.Designer.cs">
       <DependentUpon>frmTPCam.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmTvAccesos.cs">
@@ -238,41 +467,62 @@
     <Compile Include="Forms\frmTvAccesos.Designer.cs">
       <DependentUpon>frmTvAccesos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmtvMenus.cs">
+    <Compile Include="Forms\Herramientas\frmtvMenus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmtvMenus.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmtvMenus.Designer.cs">
       <DependentUpon>frmtvMenus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmWait.cs">
+    <Compile Include="Forms\Principal\frmWait.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmWait.designer.cs">
+    <Compile Include="Forms\Principal\frmWait.designer.cs">
       <DependentUpon>frmWait.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Program.cs" />
-    <Compile Include="Clases\Conexion.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Dominio\Connection\Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reportes\rptconpardia.cs">
+    <Compile Include="Dominio\Reportes\rptconpardia.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptconpardia.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reportes\rptpardia.cs">
+    <Compile Include="Dominio\Reportes\rptpardia.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptpardia.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Forms\frmAdmCounterfoilA.resx">
+      <DependentUpon>frmAdmCounterfoilA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmCie10.resx">
+      <DependentUpon>frmCie10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmConsRotations.resx">
+      <DependentUpon>frmConsRotations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCRViewer.resx">
       <DependentUpon>frmCRViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmGenEtareo.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmCrypto.resx">
+      <DependentUpon>frmCrypto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDentalHistory.resx">
+      <DependentUpon>frmDentalHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDiseases.resx">
+      <DependentUpon>frmDiseases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmExecute.resx">
+      <DependentUpon>frmExecute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmExport.resx">
+      <DependentUpon>frmExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Estadisticas\frmGenEtareo.resx">
       <DependentUpon>frmGenEtareo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -280,27 +530,96 @@
       <DependentUpon>frmAdmTablas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmGenParSalSpecialist.resx">
+      <DependentUpon>frmGenParSalSpecialist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmGenPaySalSpecialist.resx">
+      <DependentUpon>frmGenPaySalSpecialist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmGrafico.resx">
       <DependentUpon>frmGrafico.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmInstitucion.resx">
+    <EmbeddedResource Include="Forms\frmhorario.resx">
+      <DependentUpon>frmhorario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmInstitucion.resx">
       <DependentUpon>frmInstitucion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmOperativo.resx">
+    <EmbeddedResource Include="Forms\frmMantImpFicha.resx">
+      <DependentUpon>frmMantImpFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmMntVentas.resx">
+      <DependentUpon>frmMntVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmModulos.resx">
+      <DependentUpon>frmModulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNewBus.resx">
+      <DependentUpon>frmNewBus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNewDiagnostico.resx">
+      <DependentUpon>frmNewDiagnostico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNewTratamiento.resx">
+      <DependentUpon>frmNewTratamiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Herramientas\frmOperativo.resx">
       <DependentUpon>frmOperativo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmParPgEsp.resx">
+      <DependentUpon>frmParPgEsp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParteDiario.resx">
       <DependentUpon>frmParteDiario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmPersonal.resx">
+    <EmbeddedResource Include="Forms\Mantenimiento\frmPerPago.resx">
+      <DependentUpon>frmPerPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmPersonal.resx">
       <DependentUpon>frmPersonal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmPersonalDet.resx">
+    <EmbeddedResource Include="Forms\Mantenimiento\frmPersonalDet.resx">
       <DependentUpon>frmPersonalDet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmPizarra.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmPizarra.resx">
       <DependentUpon>frmPizarra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPlantillas.resx">
+      <DependentUpon>frmPlantillas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPrintHorarios.resx">
+      <DependentUpon>frmPrintHorarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProdDigitador.resx">
+      <DependentUpon>frmProdDigitador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProdMed.resx">
+      <DependentUpon>frmProdMed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmProduccion.resx">
+      <DependentUpon>frmProduccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProduccionMedicos.resx">
+      <DependentUpon>frmProduccionMedicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmProductos.resx">
+      <DependentUpon>frmProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProgTrans.resx">
+      <DependentUpon>frmProgTrans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRegistroUsuarios.resx">
+      <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRepProdTer.resx">
+      <DependentUpon>frmRepProdTer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmResperEsp.resx">
+      <DependentUpon>frmResperEsp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmResperTer.resx">
+      <DependentUpon>frmResperTer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRotations.resx">
       <DependentUpon>frmRotations.cs</DependentUpon>
@@ -308,41 +627,56 @@
     <EmbeddedResource Include="Forms\frmShowBar.resx">
       <DependentUpon>frmShowBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmChangeClave.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmChangeClave.resx">
       <DependentUpon>frmChangeClave.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmLogin.resx">
+    <EmbeddedResource Include="Forms\Principal\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmMain.resx">
+    <EmbeddedResource Include="Forms\Principal\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmSpecialists.resx">
-      <DependentUpon>frmSpecialists.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Consultas\frmSpecialAnnulment.resx">
+      <DependentUpon>frmSpecialAnnulment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmEspecialistas.resx">
+      <DependentUpon>frmEspecialistas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmConsultorios.resx">
+      <DependentUpon>frmConsultorios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSpecialtyTurn.resx">
+      <DependentUpon>frmSpecialtyTurn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Estadisticas\frmStatGenGroupEtareo.resx">
+      <DependentUpon>frmStatGenGroupEtareo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Estadisticas\frmStatPatients.resx">
+      <DependentUpon>frmStatPatients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Estadisticas\frmStatSales.resx">
+      <DependentUpon>frmStatSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTalonario.resx">
       <DependentUpon>frmTalonario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmTPCam.resx">
+    <EmbeddedResource Include="Forms\Consultas\frmTarProducts.resx">
+      <DependentUpon>frmTarProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Principal\frmTPCam.resx">
       <DependentUpon>frmTPCam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTvAccesos.resx">
       <DependentUpon>frmTvAccesos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmtvMenus.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmtvMenus.resx">
       <DependentUpon>frmtvMenus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmWait.resx">
+    <EmbeddedResource Include="Forms\Principal\frmWait.resx">
       <DependentUpon>frmWait.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="obj\Debug\Polsolcom.Form1.resources" />
-    <EmbeddedResource Include="obj\Debug\Polsolcom.Forms.frmInstitucion.resources" />
-    <EmbeddedResource Include="obj\Debug\Polsolcom.Forms.frmOperativo.resources" />
-    <EmbeddedResource Include="obj\Debug\Polsolcom.Forms.frmPersonalDet.resources" />
-    <EmbeddedResource Include="obj\Debug\Polsoncom.Form1.resources" />
-    <EmbeddedResource Include="obj\Debug\Polsoncom.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -353,48 +687,36 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reportes\rptconpardia.rpt">
+    <EmbeddedResource Include="Dominio\Reportes\rptconpardia.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptconpardia.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptpardia.rpt">
+    <EmbeddedResource Include="Dominio\Reportes\rptpardia.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptpardia.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="bin\Debug\Polsolcom.exe.config" />
-    <None Include="bin\Debug\Polsolcom.vshost.exe.config" />
-    <None Include="bin\Debug\Polsolcom.vshost.exe.manifest" />
-    <None Include="bin\Debug\Polsoncom.exe.config" />
-    <None Include="bin\Debug\Polsoncom.vshost.exe.config" />
-    <None Include="Data\Consolidado.xsc">
+    <None Include="Dominio\Data\Consolidado.xsc">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </None>
-    <None Include="Data\Consolidado.xsd">
+    <None Include="Dominio\Data\Consolidado.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>Consolidado.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Data\Consolidado.xss">
+    <None Include="Dominio\Data\Consolidado.xss">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </None>
-    <None Include="Data\ParteDiario.xsc">
+    <None Include="Dominio\Data\ParteDiario.xsc">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </None>
-    <None Include="Data\ParteDiario.xsd">
+    <None Include="Dominio\Data\ParteDiario.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ParteDiario.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\ParteDiario.xss">
+    <None Include="Dominio\Data\ParteDiario.xss">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </None>
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\Polsolcom.csproj.GenerateResource.Cache" />
-    <None Include="obj\Debug\Polsolcom.csproj.ResolveComReference.cache" />
-    <None Include="obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\Debug\Polsoncom.csproj.GenerateResource.Cache" />
-    <None Include="obj\Debug\Polsoncom.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="Polsolcom_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
@@ -414,11 +736,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\Polsolcom.exe" />
-    <Content Include="bin\Debug\Polsolcom.pdb" />
-    <Content Include="bin\Debug\Polsolcom.vshost.exe" />
-    <Content Include="bin\Debug\Polsoncom.exe" />
-    <Content Include="bin\Debug\Polsoncom.pdb" />
     <Content Include="Imagenes\04-Save-icon.png" />
     <Content Include="Imagenes\106-Reply-512.png" />
     <Content Include="Imagenes\17-Paste-icon.png" />
@@ -504,19 +821,6 @@
     <Content Include="Imagenes\up.png" />
     <Content Include="Imagenes\US-dollar-icon.png" />
     <Content Include="Imagenes\web-layout-icon.png" />
-    <Content Include="obj\Debug\Polsolcom.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\Polsolcom.exe" />
-    <Content Include="obj\Debug\Polsolcom.pdb" />
-    <Content Include="obj\Debug\Polsoncom.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\Polsoncom.exe" />
-    <Content Include="obj\Debug\Polsoncom.pdb" />
-    <Content Include="obj\Debug\TempPE\Clases.dsGrafico.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Data.Consolidado.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Data.ParteDiario.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Reportes.rptconpardia.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Reportes.rptGraf.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Reportes.rptpardia.cs.dll" />
     <Content Include="Resources\login.png" />
     <Content Include="tentec.windows.igridlib.igrid.v5.0.dll" />
     <None Include="Imagenes\login.png" />
@@ -539,7 +843,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Release\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>

@@ -7,8 +7,10 @@ using System.Linq;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 using Dapper;
-using Polsolcom.Clases;
-using Polsolcom.Data;
+using Polsolcom.Dominio.Data;
+using Polsolcom.Dominio.Modelos;
+using Polsolcom.Dominio.Helpers;
+using Polsolcom.Dominio.Connection;
 
 namespace Polsolcom.Forms
 {
@@ -498,7 +500,7 @@ namespace Polsolcom.Forms
 			}
 			
 			//genera reporte y carga los datos
-			object result = Polsolcom.Clases.WaitWindow.Show(this.WorkerMethod, "Generando el reporte...");
+			object result = WaitWindow.Show(this.WorkerMethod, "Generando el reporte...");
 			if ( result == null )
 			{
 				MessageBox.Show("No se pudo procesar el reporte.");

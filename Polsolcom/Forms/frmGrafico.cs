@@ -2,9 +2,9 @@
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using Polsolcom.Clases;
 using System.Configuration;
 using System.Drawing;
+using Polsolcom.Dominio.Helpers;
 
 namespace Polsolcom.Forms
 {
