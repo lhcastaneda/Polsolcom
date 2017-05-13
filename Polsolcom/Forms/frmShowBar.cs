@@ -1,4 +1,6 @@
-using Polsolcom.Clases;
+using Polsolcom.Dominio.Connection;
+using Polsolcom.Dominio.Helpers;
+using Polsolcom.Dominio.Modelos;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using Polsolcom.Clases;
 using Microsoft.VisualBasic;
+using Polsolcom.Dominio.Modelos;
+using Polsolcom.Dominio.Helpers;
+using Polsolcom.Dominio.Connection;
 
 namespace Polsolcom.Forms
 {
