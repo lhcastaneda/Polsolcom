@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Polsolcom.Dominio.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace Polsolcom.Forms
         public frmEspecialistas()
         {
             InitializeComponent();
+            lstBusMed.DataSource = General.TraerEspecialistas();
         }
     }
 }

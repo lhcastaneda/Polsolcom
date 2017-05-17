@@ -576,5 +576,28 @@ namespace Polsolcom.Dominio.Helpers
             }
             return ProductosList;
         }
+        
+        public static List<Especialista> TraerEspecialistas()
+        {
+            List<Especialista> ListaEspecialistas = new List<Especialista>();
+            var vSQL = "Select P.Ape_Paterno+' '+P.Ape_Materno+', '+P.Nombres Especialista,B.Bus,C.Descripcion,B.Id_Esp,MB.Id_Bus," + 
+                        "MB.CMP,MB.Estado,MB.Obs,MB.Us_Ing,MB.Fec_Ing,MB.Us_Mod,MB.Fec_Mod,MB.Id_Bus+MB.CMP Idmb " +
+                        "From MedBus MB Inner Join Personal P On MB.CMP=P.Id_Personal Inner Join Buses B On MB.Id_Bus=B.Id_Bus " +
+                        "Inner Join Consultorios C On B.Id_Esp=C.Id_Consultorio Order By 1,2";
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            SqlDataReader drEspecialistas = cmd.ExecuteReader();
+            while (drEspecialistas.Read())
+            {
+                Especialista oEspecialista = new Especialista()
+                {
+                    FullName = drEspecialistas.GetString(0),
+                    Consultorio = drEspecialistas.GetString(1),
+                    Descripcion = drEspecialistas.GetString(2),
+                    Especialidad = drEspecialistas.GetString(3)
+                };
+                ListaEspecialistas.Add(oEspecialista);
+            }
+            return ListaEspecialistas;
+        }
     }
 }
