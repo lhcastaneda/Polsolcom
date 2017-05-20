@@ -590,19 +590,10 @@ namespace Polsolcom.Dominio.Helpers
             {
                 Especialista oEspecialista = new Especialista()
                 {
-                    Id_Esp = Convert.ToString(drEspecialistas["Id_Esp"]),
-                    FullName = Convert.ToString(drEspecialistas["Especialista"]),
-                    Consultorio = Convert.ToString(drEspecialistas["Descripcion"]),
-                    Bus = Convert.ToString(drEspecialistas["Bus"]),
-                    Id_Bus = Convert.ToString(drEspecialistas["Id_Bus"]),
-                    CMP = Convert.ToString(drEspecialistas["CMP"]),
-                    Estado = Convert.ToInt32(drEspecialistas["Estado"]),
-                    Obs = Convert.ToString(drEspecialistas["Obs"]),
-                    Us_Ing = Convert.ToString(drEspecialistas["Us_Ing"]),
-                    //Fec_Ing = Convert.ToDateTime(drEspecialistas["Especialista"]),
-                    Us_Mod = Convert.ToString(drEspecialistas["Especialista"]),
-                    //Fec_Mod = Convert.ToDateTime(drEspecialistas["Especialista"]),
-                    Idmb = Convert.ToString(drEspecialistas["Especialista"])
+                    FullName = drEspecialistas.GetString(0),
+                    Consultorio = drEspecialistas.GetString(1),
+                    Descripcion = drEspecialistas.GetString(2),
+                    Especialidad = drEspecialistas.GetString(3)
                 };
                 ListaEspecialistas.Add(oEspecialista);
             }
