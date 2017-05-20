@@ -8,15 +8,28 @@ namespace Polsolcom.Dominio.Modelos
 {
     public class Especialista
     {
-        public string Id { get; set; }
+        public string Id_Esp { get; set; }
         public string FullName { get; set; }
-        public virtual string Consultorio { get; set; }
-        public string TipoDeColegiaturas { get; set; }
-        public string NroDeColegiatura { get; set; }
-        public string RNE { get; set; }
-        public bool Estado { get; set; }
-        public string Especialidad { get; set; }
-        public string Descripcion { get; set; }
+        public string Consultorio { get; set; }
+        public string Bus { get; set; }
+        public string Id_Bus { get; set; }
+        public string CMP { get; set; }
+        public int Estado { get; set; }
+        public string Obs { get; set; }
+        public string Us_Ing { get; set; }
+        public DateTime Fec_Ing { get; set; }
+        public string Us_Mod { get; set; }
+        public DateTime Fec_Mod { get; set; }
+        public string Idmb { get; set; }
+
+        private bool _valorEstado;
+
+        public bool ValorEstado
+        {
+            get { return _valorEstado; }
+            set { _valorEstado = (Estado == 1) ? true : false; }
+        }
+
     }
         
 }
