@@ -160,10 +160,12 @@
 			// 
 			this.txtFecha.Enabled = false;
 			this.txtFecha.Location = new System.Drawing.Point(235, 23);
+			this.txtFecha.Mask = "00/00/0000";
 			this.txtFecha.Name = "txtFecha";
 			this.txtFecha.Size = new System.Drawing.Size(112, 20);
 			this.txtFecha.TabIndex = 1;
 			this.txtFecha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.txtFecha.ValidatingType = typeof(System.DateTime);
 			this.txtFecha.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.txtFecha_TypeValidationCompleted);
 			this.txtFecha.Enter += new System.EventHandler(this.txtFecha_Enter);
 			this.txtFecha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFecha_KeyDown);

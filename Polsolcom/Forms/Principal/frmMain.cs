@@ -127,14 +127,10 @@ namespace Polsolcom.Forms
 
             if ( clickedItem.Name == "exitapp" )
             {
-                if ( MessageBox.Show("Desea Salir del Sistema...?", "Ventana Principal", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes )
-                    Application.Exit();
-                else
-                {
-                    this.DialogResult = DialogResult.Cancel;
-                    return;
-                }
-            }
+				CloseReason c = new CloseReason();
+				FormClosingEventArgs a = new FormClosingEventArgs(c, false);
+				frmMain_FormClosing( sender, a );
+			}
             else if ( clickedItem.Name == "closesession" )
             {
                 if ( MessageBox.Show("Desea Cerrar la Sesion...?", "Ventana Principal", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes )
@@ -268,6 +264,22 @@ namespace Polsolcom.Forms
             //crea los submenus para cada item del menu principal
             CreaSubMenus();
         }
-    }
+
+		private void tmrMDI_Tick( object sender, EventArgs e )
+		{
+			toolStripStatusF1.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+		}
+
+		private void frmMain_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			if( MessageBox.Show( "Desea Salir del Sistema...?", "Ventana Principal", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == DialogResult.Yes )
+				Application.Exit();
+			else
+			{
+				this.DialogResult = DialogResult.Cancel;
+				return;
+			}
+		}
+	}
 
 }
