@@ -132,6 +132,12 @@
     <Compile Include="Forms\frmAdmCounterfoilA.Designer.cs">
       <DependentUpon>frmAdmCounterfoilA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Herramientas\frmBuscar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Herramientas\frmBuscar.Designer.cs">
+      <DependentUpon>frmBuscar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Mantenimiento\frmCie10.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,10 +150,10 @@
     <Compile Include="Forms\Consultas\frmConsRotations.Designer.cs">
       <DependentUpon>frmConsRotations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmCRViewer.cs">
+    <Compile Include="Forms\Herramientas\frmCRViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmCRViewer.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmCRViewer.Designer.cs">
       <DependentUpon>frmCRViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Herramientas\frmCrypto.cs">
@@ -198,10 +204,10 @@
     <Compile Include="Forms\frmGenPaySalSpecialist.Designer.cs">
       <DependentUpon>frmGenPaySalSpecialist.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmGrafico.cs">
+    <Compile Include="Forms\Herramientas\frmGrafico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmGrafico.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmGrafico.Designer.cs">
       <DependentUpon>frmGrafico.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmhorario.cs">
@@ -252,10 +258,10 @@
     <Compile Include="Forms\frmParPgEsp.Designer.cs">
       <DependentUpon>frmParPgEsp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmParteDiario.cs">
+    <Compile Include="Forms\Consultas\frmParteDiario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmParteDiario.designer.cs">
+    <Compile Include="Forms\Consultas\frmParteDiario.designer.cs">
       <DependentUpon>frmParteDiario.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmInstitucion.cs">
@@ -360,10 +366,10 @@
     <Compile Include="Forms\frmRotations.designer.cs">
       <DependentUpon>frmRotations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmShowBar.cs">
+    <Compile Include="Forms\Herramientas\frmShowBar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmShowBar.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmShowBar.Designer.cs">
       <DependentUpon>frmShowBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmAdmTablas.cs">
@@ -444,10 +450,10 @@
     <Compile Include="Forms\Estadisticas\frmStatSales.Designer.cs">
       <DependentUpon>frmStatSales.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmTalonario.cs">
+    <Compile Include="Forms\Herramientas\frmTalonario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmTalonario.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmTalonario.Designer.cs">
       <DependentUpon>frmTalonario.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Consultas\frmTarProducts.cs">
@@ -480,6 +486,12 @@
     <Compile Include="Forms\Principal\frmWait.designer.cs">
       <DependentUpon>frmWait.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Procesos\frmSHClinica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmSHClinica.Designer.cs">
+      <DependentUpon>frmSHClinica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Program.cs" />
     <Compile Include="Dominio\Connection\Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -499,13 +511,16 @@
     <EmbeddedResource Include="Forms\frmAdmCounterfoilA.resx">
       <DependentUpon>frmAdmCounterfoilA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Herramientas\frmBuscar.resx">
+      <DependentUpon>frmBuscar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmCie10.resx">
       <DependentUpon>frmCie10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmConsRotations.resx">
       <DependentUpon>frmConsRotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmCRViewer.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmCRViewer.resx">
       <DependentUpon>frmCRViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Herramientas\frmCrypto.resx">
@@ -537,7 +552,7 @@
     <EmbeddedResource Include="Forms\frmGenPaySalSpecialist.resx">
       <DependentUpon>frmGenPaySalSpecialist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmGrafico.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmGrafico.resx">
       <DependentUpon>frmGrafico.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -571,7 +586,7 @@
     <EmbeddedResource Include="Forms\frmParPgEsp.resx">
       <DependentUpon>frmParPgEsp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmParteDiario.resx">
+    <EmbeddedResource Include="Forms\Consultas\frmParteDiario.resx">
       <DependentUpon>frmParteDiario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmPerPago.resx">
@@ -625,7 +640,7 @@
     <EmbeddedResource Include="Forms\frmRotations.resx">
       <DependentUpon>frmRotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmShowBar.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmShowBar.resx">
       <DependentUpon>frmShowBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Herramientas\frmChangeClave.resx">
@@ -660,7 +675,7 @@
     <EmbeddedResource Include="Forms\Estadisticas\frmStatSales.resx">
       <DependentUpon>frmStatSales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmTalonario.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmTalonario.resx">
       <DependentUpon>frmTalonario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmTarProducts.resx">
@@ -677,6 +692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Principal\frmWait.resx">
       <DependentUpon>frmWait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmSHClinica.resx">
+      <DependentUpon>frmSHClinica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
