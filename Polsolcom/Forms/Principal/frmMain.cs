@@ -180,7 +180,7 @@ namespace Polsolcom.Forms
             //llena menu principal
             if ( Usuario.id_us == "SYSAD" )
             {
-                vSQL = "SELECT * " +
+                vSQL = "SELECT *, 'SYSAD' AS Mnu_Us " +
                        " FROM PadMenu  " +
                        " WHERE Pad_Name In ('PAD001','PAD005') " +
 				       " ORDER BY Pad_Order ";

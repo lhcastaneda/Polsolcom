@@ -167,14 +167,14 @@ namespace Polsolcom.Dominio.Helpers
             {
                 while (dr.Read())
                 {
-                    Usuario.id_us = dr.GetValue(0).ToString();
-                    Usuario.usuario = dr.GetValue(1).ToString();
-                    Usuario.clave = dr.GetValue(2).ToString();
-                    Usuario.tipo = dr.GetValue(3).ToString();
-                    Usuario.descripcion = dr.GetValue(4).ToString();
-                    Usuario.id_area = dr.GetValue(5).ToString();
-                    Usuario.cargo = dr.GetValue(6).ToString();
-                }
+					Usuario.id_us = dr.GetValue(0).ToString().Trim();
+                    Usuario.usuario = dr.GetValue(1).ToString().Trim();
+					Usuario.clave = dr.GetValue(2).ToString().Trim();
+					Usuario.tipo = cryptgr(dr.GetValue(3).ToString().Trim(), false, 2);
+					Usuario.descripcion = dr.GetValue(4).ToString().Trim();
+					Usuario.id_area = dr.GetValue(5).ToString().Trim();
+					Usuario.cargo = dr.GetValue(6).ToString().Trim();
+				}
                 dr.Close();
             }
         }
