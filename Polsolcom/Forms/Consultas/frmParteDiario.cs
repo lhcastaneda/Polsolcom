@@ -11,6 +11,7 @@ using Polsolcom.Dominio.Data;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
+using System.Diagnostics;
 
 namespace Polsolcom.Forms
 {
@@ -318,6 +319,9 @@ namespace Polsolcom.Forms
 
 		private void btnVistaPrevia_Click( object sender, EventArgs e )
 		{
+			try
+			{
+
 			//ingresa fecha del reporte, no debe ser mayor que la fecha actual
 			if ( Convert.ToDateTime(txtFecha.Text) > DateTime.Today )
 			{
@@ -335,17 +339,20 @@ namespace Polsolcom.Forms
 			}
 			else if ( cmbOpciones.SelectedIndex == 0 )
 			{//Parte de Atención Diaria
-				vSQL = "Select C.Descripcion Especialidad,B.Bus,Serie + '-' + Nro_Ticket Ticket, " +
-						"P.Ape_Paterno + ' ' + P.Ape_Materno + ' ' + P.Nombre Completo, " +
-						"P.Edad,IIF(P.Sexo = 'M', 'MASCULINO', 'FEMENINO') Sexo, " +
-						"CB.Nro_Historia,CB.Fecha_Atencion,(SELECT Descripcion FROM TablaTipo T1 " +
-						"WHERE T1.Id_Tipo = CB.turno AND EXISTS (SELECT 1  FROM TablaTipo T2 " +
+				vSQL = "Select C.Descripcion AS Especialidad, B.Bus, Serie + '-' + Nro_Ticket AS Ticket, " +
+						"P.Ape_Paterno + ' ' + P.Ape_Materno + ' ' + P.Nombre AS Completo, " +
+						"P.Edad, CASE WHEN P.Sexo = 'M' THEN 'MASCULINO' ELSE 'FEMENINO' END AS Sexo, " +
+						"CB.Nro_Historia,CB.Fecha_Atencion, (SELECT DISTINCT Descripcion FROM TablaTipo T1 " +
+						"WHERE T1.Id_Tipo = CB.turno " +
+						"AND EXISTS (" +
+						" SELECT 1 " +
+						" FROM TablaTipo T2 " + 
 						" WHERE T1.Id_Tabla = T2.Id_Tipo " +
 						" AND LTRIM(RTRIM(T2.Descripcion)) = 'TURNOS' " +
-						" AND LTRIM(RTRIM(T2.Id_Tabla)) = '0')) Turno, " +
-						"M.Ape_Paterno + ' ' + M.Ape_Materno + ' ' + M.Nombres CMP,DC.Cie10 prdg, " +
-						"LTrim(RTrim(DC.Procedimiento)) prcn " +
-						"From Cab_Cie10 CB Inner Join Tickets T " +
+						" AND LTRIM(RTRIM(T2.Id_Tabla)) = '0')) AS Turno, " +
+						" M.Ape_Paterno + ' ' + M.Ape_Materno + ' ' + M.Nombres AS CMP,DC.Cie10 AS prdg, " +
+						" LTrim(RTrim(DC.Procedimiento)) AS prcn " +
+						"FROM Cab_Cie10 CB Inner Join Tickets T " +
 						"On CB.Nro_Historia = T.Nro_Historia " +
 						"Inner Join Pacientes P " +
 						"On T.Id_Paciente = P.Id_Paciente " +
@@ -416,7 +423,7 @@ namespace Polsolcom.Forms
 						" Inner Join" +
 						" (Select Ape_Paterno,Ape_Materno,Nombres,Id_Personal" +
 						"  From Personal" +
-						"  Union All Select Descripcion,'','',Id_Tipo" +
+						"  Union All Select Descripcion,'','', Id_Tipo " +
 						"  From TablaTipo" +
 						"  Where Id_Tabla In" +
 						"  (Select Id_Tipo" +
@@ -427,10 +434,12 @@ namespace Polsolcom.Forms
 						" Where CONVERT(VARCHAR,fecha_atencion, 103) = '" + txtFecha.Text + "' " +
 						" And Left(CB.Nro_Historia,3) = '" + Operativo.id_oper + "'";
 			}
-			
+
 			//si la especialidad esta en 'ECOGRAFIA', 'RAYOS X', 'MAMOGRAFIA' entonces D.Pagado <> ''
-			if ( cmbOpciones.SelectedIndex > 0 && CuentaEspecialidad(Operativo.id_oper, txtFecha.Text) != 0 )
-			vSQL = vSQL + "And D.Pagado <> '' ";
+			int iCantE = CuentaEspecialidad(Operativo.id_oper, txtFecha.Text);
+
+			if ( cmbOpciones.SelectedIndex > 0 && iCantE > 0 )
+			vSQL = vSQL + "And NOT D.Pagado = '' ";
 			
 			//selecciona especialidad cmbEspecialidad
 			if ( cmbEspecialidad.SelectedIndex == -1 )
@@ -500,7 +509,7 @@ namespace Polsolcom.Forms
 			}
 			
 			//genera reporte y carga los datos
-			object result = WaitWindow.Show(this.WorkerMethod, "Generando el reporte...");
+			object result = WaitWindow.Show(WorkerMethod, "Generando el reporte...");
 			if ( result == null )
 			{
 				MessageBox.Show("No se pudo procesar el reporte.");
@@ -510,8 +519,19 @@ namespace Polsolcom.Forms
 			//llama al formulario que muestra el reporte
 			frmCRViewer frg = new frmCRViewer(rpt);
 			frg.ShowDialog();
-			
+
 		}
+			catch( Exception ex )
+			{
+				var st = new StackTrace(ex, true);
+		var frame = st.GetFrame(0);
+		var line = frame.GetFileLineNumber();
+		var col = frame.GetFileColumnNumber();
+		MessageBox.Show(ex.Message + (char)13 + "Linea: " + line + " Columna: " + col);
+			}
+
+
+}
 
 		private void WorkerMethod( object sender, WaitWindowEventArgs e )
 		{
@@ -522,9 +542,9 @@ namespace Polsolcom.Forms
 
 			//define el reporte dependiendo del tipo de seleccion
 			if ( iOpcionSeleccionada == 0 )
-				path = path + "/Reportes/rptpardia.rpt";
+				path = path + "/Dominio/Reportes/rptpardia.rpt";
 			else if ( iOpcionSeleccionada > 0 )
-				path = path + "/Reportes/rptconpardia.rpt";
+				path = path + "/Dominio/Reportes/rptconpardia.rpt";
 
 			//carga el reporte
 			rpt.Load(path);
@@ -702,7 +722,7 @@ namespace Polsolcom.Forms
 		private int CuentaEspecialidad (string sOper, string sFecha)
 		{
 			int iCant = 0;
-			string vSQL = "SELECT IIF(COUNT(*) > 0, 1, 0) indicador " +
+			string vSQL = "SELECT COUNT(*) indicador " +
 							"FROM Consultorios C INNER JOIN Buses B " +
 							"ON C.Id_Consultorio = B.Id_Esp " +
 							"INNER JOIN Institucion I " +
@@ -734,7 +754,18 @@ namespace Polsolcom.Forms
 					return iCant;
 				}
 			}
-			return iCant;
+
+			if( iCant == 0 )
+				return 0;
+			else
+				return 1;
+
+		}
+
+		private void btnCerrar_Click( object sender, EventArgs e )
+		{
+			DialogResult = DialogResult.Cancel;
+			Close();
 		}
 	}
 }
