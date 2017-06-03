@@ -429,7 +429,7 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ConsolidadoRow AddConsolidadoRow(string Especialidad, string Consultorio, string Turno, string Especialista, string Producto, string Cantidad, string Precio, string Total) {
+            public ConsolidadoRow AddConsolidadoRow(string Especialidad, string Consultorio, string Turno, string Especialista, string Producto, short Cantidad, double Precio, double Total) {
                 ConsolidadoRow rowConsolidadoRow = ((ConsolidadoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Especialidad,
@@ -485,11 +485,11 @@ namespace Polsolcom.Dominio.Data {
                 base.Columns.Add(this.columnEspecialista);
                 this.columnProducto = new global::System.Data.DataColumn("Producto", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProducto);
-                this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidad);
-                this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrecio);
-                this.columnTotal = new global::System.Data.DataColumn("Total", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnTotal = new global::System.Data.DataColumn("Total", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_Consolidado");
                 this.ExtendedProperties.Add("Generator_UserTableName", "Consolidado");
@@ -715,10 +715,10 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Cantidad {
+            public short Cantidad {
                 get {
                     try {
-                        return ((string)(this[this.tableConsolidado.CantidadColumn]));
+                        return ((short)(this[this.tableConsolidado.CantidadColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Cantidad\' in table \'Consolidado\' is DBNull.", e);
@@ -731,10 +731,10 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Precio {
+            public double Precio {
                 get {
                     try {
-                        return ((string)(this[this.tableConsolidado.PrecioColumn]));
+                        return ((double)(this[this.tableConsolidado.PrecioColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Precio\' in table \'Consolidado\' is DBNull.", e);
@@ -747,10 +747,10 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Total {
+            public double Total {
                 get {
                     try {
-                        return ((string)(this[this.tableConsolidado.TotalColumn]));
+                        return ((double)(this[this.tableConsolidado.TotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Total\' in table \'Consolidado\' is DBNull.", e);

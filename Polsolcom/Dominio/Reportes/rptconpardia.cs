@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Polsolcom.Dominio.Reportes {
+namespace Polsolcom.Reportes {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace Polsolcom.Dominio.Reportes {
         
         public override string FullResourceName {
             get {
-                return "Polsolcom.Dominio.Reportes.rptconpardia.rpt";
+                return "Polsolcom.Reportes.rptconpardia.rpt";
             }
             set {
                 // Do nothing

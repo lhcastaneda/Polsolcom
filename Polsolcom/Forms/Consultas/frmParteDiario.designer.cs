@@ -42,6 +42,7 @@
 			this.txtFecha = new System.Windows.Forms.MaskedTextBox();
 			this.cmbConsultorio = new System.Windows.Forms.ComboBox();
 			this.cmbEspecialista = new System.Windows.Forms.ComboBox();
+			this.btnCerrar = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnVistaPrevia
@@ -50,7 +51,7 @@
 			this.btnVistaPrevia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnVistaPrevia.Image = ((System.Drawing.Image)(resources.GetObject("btnVistaPrevia.Image")));
 			this.btnVistaPrevia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnVistaPrevia.Location = new System.Drawing.Point(126, 248);
+			this.btnVistaPrevia.Location = new System.Drawing.Point(167, 248);
 			this.btnVistaPrevia.Name = "btnVistaPrevia";
 			this.btnVistaPrevia.Size = new System.Drawing.Size(110, 29);
 			this.btnVistaPrevia.TabIndex = 6;
@@ -196,12 +197,27 @@
 			this.cmbEspecialista.SelectedIndexChanged += new System.EventHandler(this.cmbEspecialista_SelectedIndexChanged);
 			this.cmbEspecialista.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbEspecialista_KeyDown);
 			// 
+			// btnCerrar
+			// 
+			this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
+			this.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnCerrar.Location = new System.Drawing.Point(282, 248);
+			this.btnCerrar.Name = "btnCerrar";
+			this.btnCerrar.Size = new System.Drawing.Size(69, 29);
+			this.btnCerrar.TabIndex = 7;
+			this.btnCerrar.Text = "&Cerrar";
+			this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnCerrar.UseVisualStyleBackColor = true;
+			this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+			// 
 			// frmParteDiario
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(355, 281);
 			this.ControlBox = false;
+			this.Controls.Add(this.btnCerrar);
 			this.Controls.Add(this.cmbEspecialista);
 			this.Controls.Add(this.cmbConsultorio);
 			this.Controls.Add(this.txtFecha);
@@ -239,5 +255,6 @@
 		private System.Windows.Forms.ComboBox cmbEspecialidad;
 		private System.Windows.Forms.ComboBox cmbConsultorio;
 		private System.Windows.Forms.ComboBox cmbEspecialista;
+		private System.Windows.Forms.Button btnCerrar;
 	}
 }

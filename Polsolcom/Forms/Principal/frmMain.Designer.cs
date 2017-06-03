@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
 			this.menuMDI = new System.Windows.Forms.MenuStrip();
 			this.statusMDI = new System.Windows.Forms.StatusStrip();
+			this.pn1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.pn2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.pn3 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.pn4 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -40,8 +40,6 @@
 			this.pn7 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.pn8 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusF1 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.tmrMDI = new System.Windows.Forms.Timer(this.components);
-			this.pn1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusMDI.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -75,57 +73,51 @@
 			this.statusMDI.Size = new System.Drawing.Size(974, 22);
 			this.statusMDI.TabIndex = 6;
 			// 
-			// pn2
-			// 
-			this.pn2.Name = "pn2";
-			this.pn2.Size = new System.Drawing.Size(0, 4);
-			// 
-			// pn3
-			// 
-			this.pn3.Name = "pn3";
-			this.pn3.Size = new System.Drawing.Size(0, 4);
-			// 
-			// pn4
-			// 
-			this.pn4.Name = "pn4";
-			this.pn4.Size = new System.Drawing.Size(0, 4);
-			// 
-			// pn5
-			// 
-			this.pn5.Name = "pn5";
-			this.pn5.Size = new System.Drawing.Size(0, 4);
-			// 
-			// pn6
-			// 
-			this.pn6.Name = "pn6";
-			this.pn6.Size = new System.Drawing.Size(0, 4);
-			// 
-			// pn7
-			// 
-			this.pn7.Name = "pn7";
-			this.pn7.Size = new System.Drawing.Size(0, 4);
-			// 
-			// pn8
-			// 
-			this.pn8.Name = "pn8";
-			this.pn8.Size = new System.Drawing.Size(0, 4);
-			// 
-			// toolStripStatusF1
-			// 
-			this.toolStripStatusF1.Name = "toolStripStatusF1";
-			this.toolStripStatusF1.Size = new System.Drawing.Size(0, 4);
-			// 
-			// tmrMDI
-			// 
-			this.tmrMDI.Enabled = true;
-			this.tmrMDI.Interval = 300;
-			this.tmrMDI.Tick += new System.EventHandler(this.tmrMDI_Tick);
-			// 
 			// pn1
 			// 
 			this.pn1.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
 			this.pn1.Name = "pn1";
 			this.pn1.Size = new System.Drawing.Size(4, 4);
+			// 
+			// pn2
+			// 
+			this.pn2.Name = "pn2";
+			this.pn2.Size = new System.Drawing.Size(0, 0);
+			// 
+			// pn3
+			// 
+			this.pn3.Name = "pn3";
+			this.pn3.Size = new System.Drawing.Size(0, 0);
+			// 
+			// pn4
+			// 
+			this.pn4.Name = "pn4";
+			this.pn4.Size = new System.Drawing.Size(0, 0);
+			// 
+			// pn5
+			// 
+			this.pn5.Name = "pn5";
+			this.pn5.Size = new System.Drawing.Size(0, 0);
+			// 
+			// pn6
+			// 
+			this.pn6.Name = "pn6";
+			this.pn6.Size = new System.Drawing.Size(0, 0);
+			// 
+			// pn7
+			// 
+			this.pn7.Name = "pn7";
+			this.pn7.Size = new System.Drawing.Size(0, 0);
+			// 
+			// pn8
+			// 
+			this.pn8.Name = "pn8";
+			this.pn8.Size = new System.Drawing.Size(0, 0);
+			// 
+			// toolStripStatusF1
+			// 
+			this.toolStripStatusF1.Name = "toolStripStatusF1";
+			this.toolStripStatusF1.Size = new System.Drawing.Size(0, 0);
 			// 
 			// frmMain
 			// 
@@ -165,7 +157,6 @@
         private System.Windows.Forms.ToolStripStatusLabel pn7;
 		private System.Windows.Forms.ToolStripStatusLabel pn8;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusF1;
-		private System.Windows.Forms.Timer tmrMDI;
 		private System.Windows.Forms.ToolStripStatusLabel pn1;
 	}
 }
