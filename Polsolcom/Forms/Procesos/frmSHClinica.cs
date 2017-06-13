@@ -1,21 +1,19 @@
 ﻿using Dapper;
 using Polsolcom.Forms.Herramientas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Polsolcom.Dominio.Modelos;
+using Polsolcom.Dominio.Helpers;
 
 namespace Polsolcom.Forms.Procesos
 {
 	public partial class frmSHClinica : Form
 	{
+		bool bTieneDocVenta = false;
+
 		public frmSHClinica()
 		{
 			InitializeComponent();
@@ -23,6 +21,10 @@ namespace Polsolcom.Forms.Procesos
 
 		private void frmSHClinica_Load( object sender, EventArgs e )
 		{
+			bTieneDocVenta = TieneDocVenta(Usuario.id_us,"");
+			LUbigeo();
+
+
 
 		}
 
