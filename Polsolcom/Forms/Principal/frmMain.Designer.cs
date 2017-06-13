@@ -28,18 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
 			this.menuMDI = new System.Windows.Forms.MenuStrip();
 			this.statusMDI = new System.Windows.Forms.StatusStrip();
-			this.pn1 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pn2 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pn3 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pn4 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pn5 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pn6 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pn7 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pn8 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusF1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusF2 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusF3 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusF4 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusF5 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.tmrLmn = new System.Windows.Forms.Timer(this.components);
 			this.statusMDI.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -53,71 +51,78 @@
 			// 
 			// statusMDI
 			// 
-			this.statusMDI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.statusMDI.AutoSize = false;
-			this.statusMDI.Dock = System.Windows.Forms.DockStyle.None;
 			this.statusMDI.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pn1,
-            this.pn2,
-            this.pn3,
-            this.pn4,
-            this.pn5,
-            this.pn6,
-            this.pn7,
-            this.pn8,
-            this.toolStripStatusF1});
-			this.statusMDI.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStripStatusF1,
+            this.toolStripStatusF2,
+            this.toolStripStatusF3,
+            this.toolStripStatusF4,
+            this.toolStripStatusF5});
 			this.statusMDI.Location = new System.Drawing.Point(0, 437);
 			this.statusMDI.Name = "statusMDI";
-			this.statusMDI.Size = new System.Drawing.Size(974, 22);
+			this.statusMDI.Size = new System.Drawing.Size(979, 22);
 			this.statusMDI.TabIndex = 6;
-			// 
-			// pn1
-			// 
-			this.pn1.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
-			this.pn1.Name = "pn1";
-			this.pn1.Size = new System.Drawing.Size(4, 4);
-			// 
-			// pn2
-			// 
-			this.pn2.Name = "pn2";
-			this.pn2.Size = new System.Drawing.Size(0, 0);
-			// 
-			// pn3
-			// 
-			this.pn3.Name = "pn3";
-			this.pn3.Size = new System.Drawing.Size(0, 0);
-			// 
-			// pn4
-			// 
-			this.pn4.Name = "pn4";
-			this.pn4.Size = new System.Drawing.Size(0, 0);
-			// 
-			// pn5
-			// 
-			this.pn5.Name = "pn5";
-			this.pn5.Size = new System.Drawing.Size(0, 0);
-			// 
-			// pn6
-			// 
-			this.pn6.Name = "pn6";
-			this.pn6.Size = new System.Drawing.Size(0, 0);
-			// 
-			// pn7
-			// 
-			this.pn7.Name = "pn7";
-			this.pn7.Size = new System.Drawing.Size(0, 0);
-			// 
-			// pn8
-			// 
-			this.pn8.Name = "pn8";
-			this.pn8.Size = new System.Drawing.Size(0, 0);
 			// 
 			// toolStripStatusF1
 			// 
+			this.toolStripStatusF1.BackColor = System.Drawing.Color.Transparent;
+			this.toolStripStatusF1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusF1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripStatusF1.Name = "toolStripStatusF1";
-			this.toolStripStatusF1.Size = new System.Drawing.Size(0, 0);
+			this.toolStripStatusF1.Size = new System.Drawing.Size(186, 17);
+			this.toolStripStatusF1.Spring = true;
+			// 
+			// toolStripStatusF2
+			// 
+			this.toolStripStatusF2.BackColor = System.Drawing.Color.Transparent;
+			this.toolStripStatusF2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusF2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.toolStripStatusF2.Name = "toolStripStatusF2";
+			this.toolStripStatusF2.Size = new System.Drawing.Size(186, 17);
+			this.toolStripStatusF2.Spring = true;
+			// 
+			// toolStripStatusF3
+			// 
+			this.toolStripStatusF3.BackColor = System.Drawing.Color.Transparent;
+			this.toolStripStatusF3.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusF3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.toolStripStatusF3.Name = "toolStripStatusF3";
+			this.toolStripStatusF3.Size = new System.Drawing.Size(186, 17);
+			this.toolStripStatusF3.Spring = true;
+			// 
+			// toolStripStatusF4
+			// 
+			this.toolStripStatusF4.BackColor = System.Drawing.Color.Transparent;
+			this.toolStripStatusF4.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusF4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.toolStripStatusF4.Name = "toolStripStatusF4";
+			this.toolStripStatusF4.Size = new System.Drawing.Size(186, 17);
+			this.toolStripStatusF4.Spring = true;
+			// 
+			// toolStripStatusF5
+			// 
+			this.toolStripStatusF5.BackColor = System.Drawing.Color.Transparent;
+			this.toolStripStatusF5.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+			this.toolStripStatusF5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.toolStripStatusF5.Name = "toolStripStatusF5";
+			this.toolStripStatusF5.Size = new System.Drawing.Size(186, 17);
+			this.toolStripStatusF5.Spring = true;
+			// 
+			// tmrLmn
+			// 
+			this.tmrLmn.Enabled = true;
+			this.tmrLmn.Interval = 1200;
+			this.tmrLmn.Tick += new System.EventHandler(this.tmrLmn_Tick);
 			// 
 			// frmMain
 			// 
@@ -149,15 +154,12 @@
 
         private System.Windows.Forms.MenuStrip menuMDI;
         private System.Windows.Forms.StatusStrip statusMDI;
-        private System.Windows.Forms.ToolStripStatusLabel pn2;
-        private System.Windows.Forms.ToolStripStatusLabel pn3;
-        private System.Windows.Forms.ToolStripStatusLabel pn4;
-        private System.Windows.Forms.ToolStripStatusLabel pn5;
-        private System.Windows.Forms.ToolStripStatusLabel pn6;
-        private System.Windows.Forms.ToolStripStatusLabel pn7;
-		private System.Windows.Forms.ToolStripStatusLabel pn8;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusF1;
-		private System.Windows.Forms.ToolStripStatusLabel pn1;
+		private System.Windows.Forms.Timer tmrLmn;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusF2;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusF3;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusF4;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusF5;
 	}
 }
 

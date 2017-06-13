@@ -6,6 +6,10 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Connection;
+using System.Data;
+using System.Configuration;
+using Dapper;
+using System.Linq;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -79,6 +83,7 @@ namespace Polsolcom.Dominio.Helpers
     public static class General
     {
         public static ToolTip ttMensaje = new ToolTip();
+		public static Label lblLabel = new Label();
         public static List<TipoUsuario> lstTipoUsuario = new List<TipoUsuario>();
 
         #region Cryptography
@@ -178,6 +183,7 @@ namespace Polsolcom.Dominio.Helpers
                 dr.Close();
             }
         }
+
         public static bool ValidaPass(string sPassword)
         {
             string c1 = sPassword.ToString();
@@ -203,6 +209,7 @@ namespace Polsolcom.Dominio.Helpers
             else
                 return true;
         }
+
         public static string DevuelveUsuario(string id_usuario)
         {
             string sUsuario = "";
@@ -225,6 +232,108 @@ namespace Polsolcom.Dominio.Helpers
             }
             return sUsuario;
         }
+
+		public static string Frase ( string PT )
+		{
+			string sValor = "";
+			string vSQL = "";
+			int iCant = 0;
+			
+			if( PT.Trim() == "D")
+			{
+				vSQL = "SELECT COUNT(*) AS C FROM Frases WHERE Tipo = 'D'";
+				using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+				{
+					try
+					{
+						if( db.State == ConnectionState.Closed )
+							db.Open();
+
+						iCant = db.ExecuteScalar<int>(vSQL);
+					}
+					catch( Exception ex )
+					{
+						MessageBox.Show(ex.Message);
+					}
+				}
+
+				if (iCant == 0)
+				{
+					vSQL = "UPDATE Frases SET Tipo = 'D' WHERE Tipo = 'X'";
+					using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+					{
+						int vRes = db.Execute(vSQL);
+					}
+				}
+			}
+
+			vSQL = "SELECT TOP 1 frase FROM Frases WHERE Tipo = '" + PT.Trim() + "'";
+			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+			{
+				try
+				{
+					if( db.State == ConnectionState.Closed )
+						db.Open();
+
+					sValor = db.ExecuteScalar<string>(vSQL);
+					sValor = sValor.Trim();
+				}
+				catch( Exception ex )
+				{
+					MessageBox.Show(ex.Message);
+				}
+			}
+
+			if( PT.Trim() == "D" )
+			{
+				vSQL = "UPDATE Frases SET Tipo = 'X' WHERE Frase LIKE '" + @sValor + "'";
+				using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+				{	
+					try
+					{
+						if( db.State == ConnectionState.Closed )
+							db.Open();
+
+						int vRes = db.Execute(vSQL);
+					}
+					catch( Exception ex )
+					{
+						MessageBox.Show(ex.Message);
+					}
+				}
+			}
+			return sValor;
+		}
+
+		public static bool TieneDocVenta(string idUsuario, string DVenta)
+		{
+			bool bExisteDoc = false;
+			string vSQL = "SELECT T.DVenta,T.Serie,S.Autoriz " +
+						  "FROM Talon T INNER JOIN Serie S " +
+						  "ON T.Id_Oper = S.Id_Oper " +
+						  "AND T.DVenta = S.Id_TDoc " +
+						  "AND T.Serie = S.Serie " +
+						  "WHERE CONVERT(VARCHAR(10),Fecha,103) = ( SELECT CONVERT(VARCHAR(10), GETDATE(), 103) FROM dual) " +
+						  "AND Usuario = '" + idUsuario.Trim() + "' " +
+						  "AND NCon <> '' " +
+						  DVenta.Trim() == "" ? "AND TDef = '' " : "AND DVenta = '" + DVenta.Trim() + "'";
+			using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+			{
+				using( SqlDataReader dr = cmd.ExecuteReader() )
+				{
+					if( dr.HasRows )
+					{
+						while( dr.Read() )
+							bExisteDoc = true;
+					}
+					dr.Close();
+				}
+			}
+
+			MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+			return bExisteDoc;
+		}
+
         public static void ReseteaSesion()
         {
             //Limpia Usuario
@@ -259,6 +368,7 @@ namespace Polsolcom.Dominio.Helpers
             frmLogin.bBlanco = false;
 
         }
+
         public static void CargaTipoUsuario()
         {
             string vSQL = "";
@@ -287,12 +397,13 @@ namespace Polsolcom.Dominio.Helpers
             }
 
         }
+
         public static string TradUser(string sVariable)
         {
             string sUsuario = "";
             string vSQL = "";
 
-            vSQL = "SELECT Key_Pass AS Usuario  " +
+            vSQL = "SELECT Key_Pass AS Usuario " +
                     "FROM sysaccusers " +
                     "WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable + "' " +
                     "OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable + "' ";
@@ -489,8 +600,8 @@ namespace Polsolcom.Dominio.Helpers
         {
             List<Institucion> lista = new List<Institucion>();
             string vSQL;
-            vSQL = "SELECT *";
-            vSQL = vSQL + "FROM  Institucion";
+            vSQL = "SELECT * ";
+            vSQL = vSQL + "FROM Institucion";
             SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
             SqlDataReader drInstitucion = cmd.ExecuteReader();
             while (drInstitucion.Read())
@@ -524,7 +635,7 @@ namespace Polsolcom.Dominio.Helpers
         public static List<Consultorio> TraerConsultorios()
         {
             List<Consultorio> ConsultorioList = new List<Consultorio>();
-            var vSQL = "SELECT *";
+            var vSQL = "SELECT * ";
             vSQL = vSQL + "FROM  Consultorios";
             SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
             SqlDataReader drConsultorios = cmd.ExecuteReader();
@@ -599,5 +710,52 @@ namespace Polsolcom.Dominio.Helpers
             }
             return ListaEspecialistas;
         }
-    }
+
+		public static void LUbigeo( string sValor, string sTipo, ComboBox cmb )
+		{
+			string vSQL = "";
+			List<TipoUsuario> cOper = new List<TipoUsuario>();
+
+			if( sTipo.Trim().ToUpper() == "DEPARTAMENTO" )
+			{
+				vSQL = "SELECT DISTINCT departamento AS descripcion,LEFT(id_old,2) AS id_tipo " + 
+						"FROM Ubigeo2005 ubigeo " + 
+						"WHERE LEFT(ubigeo, 2) <= '26' " + 
+						"ORDER BY 1";
+			}
+			else if( sTipo.Trim().ToUpper() == "PROVINCIA" )
+			{
+				vSQL = "SELECT DISTINCT provincia AS descripcion,LEFT(id_old,4) AS id_tipo " + 
+						"FROM Ubigeo2005 " + 
+						"WHERE LEFT(ubigeo,2) <= '26' " + 
+						"AND LEFT(id_old,2) LIKE '%" + sValor.Trim().ToUpper() + "' " + 
+						"ORDER BY 1 ";
+			}
+			else if( sTipo.Trim().ToUpper() == "DISTRITO" )
+			{
+				vSQL = "SELECT DISTINCT distrito AS descripcion,LEFT(id_old,6) AS id_tipo " + 
+						"FROM Ubigeo2005 " + 
+						"WHERE LEFT(ubigeo,2) <= '26' " +
+						"AND LEFT(id_old,4) LIKE '%" + sValor.Trim().ToUpper().Substring(0,6) + "' " +
+						"ORDER BY 1 ";
+			}
+
+			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+			{
+				try
+				{
+					if( db.State == ConnectionState.Closed )
+						db.Open();
+
+					cmb.DataSource = db.Query<TipoUsuario>(vSQL).ToList();
+					
+				}
+				catch( Exception ex )
+				{
+					MessageBox.Show(ex.Message);
+					cmb.DataSource = cOper;
+				}
+			}
+		}
+	}
 }
