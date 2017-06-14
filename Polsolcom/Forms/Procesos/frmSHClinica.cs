@@ -21,10 +21,14 @@ namespace Polsolcom.Forms.Procesos
 
 		private void frmSHClinica_Load( object sender, EventArgs e )
 		{
-			bTieneDocVenta = TieneDocVenta(Usuario.id_us,"");
-			LUbigeo();
+			bTieneDocVenta = General.TieneDocVenta(Usuario.id_us,"");
+			if( bTieneDocVenta == true )
+				General.LlenarRegistroVenta(Usuario.id_us,"");
 
-
+			General.LUbigeo("","DEPARTAMENTO",cmbDepartamento);
+			General.LUbigeo("", "PROVINCIA", cmbProvincia);
+			General.LUbigeo("", "DISTRITO", cmbDistrito);
+			
 
 		}
 

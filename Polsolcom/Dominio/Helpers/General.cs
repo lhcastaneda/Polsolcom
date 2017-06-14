@@ -47,7 +47,13 @@ namespace Polsolcom.Dominio.Helpers
         }
 
     }
-	
+
+	public class Ubigeo
+	{
+		public string IdUbigeo { get; set; }
+		public string Descripcion { get; set; }
+	}
+
 	//clase que guarda los parametros generales a mostrar en un grafico
 	public class Grafico
 	{
@@ -184,7 +190,50 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        public static bool ValidaPass(string sPassword)
+		public static void LlenarRegistroVenta( string idUsuario, string DVenta )
+		{
+			string vSQL = "SELECT S.id_oper AS Oper,T.Usuario,T.DVenta,T.Serie,S.Autoriz " +
+						  "FROM Talon T INNER JOIN Serie S " +
+						  "ON T.Id_Oper = S.Id_Oper " +
+						  "AND T.DVenta = S.Id_TDoc " +
+						  "AND T.Serie = S.Serie " +
+						  "WHERE CONVERT(VARCHAR(10),Fecha,103) = ( SELECT CONVERT(VARCHAR(10), GETDATE(), 103) FROM dual) " +
+						  "AND Usuario = '" + idUsuario.Trim() + "' " +
+						  "AND NCon <> '' ";
+			if( DVenta.Trim() == "" )
+				vSQL = vSQL + "AND TDef = '' ";
+			else
+				vSQL = vSQL + "AND DVenta = '" + DVenta.Trim() + "'";
+
+			using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+			{
+				using( SqlDataReader dr = cmd.ExecuteReader() )
+				{
+					if( dr.HasRows )
+					{
+						while( dr.Read() )
+						{
+							RangoVenta.Oper = dr.GetValue(0).ToString();
+							RangoVenta.Usuario = dr.GetValue(1).ToString();
+							RangoVenta.DVenta = dr.GetValue(2).ToString();
+							RangoVenta.Serie = dr.GetValue(3).ToString();
+							RangoVenta.Autoriz = dr.GetValue(4).ToString();
+						}
+					}
+					else
+					{
+						RangoVenta.Oper = "";
+						RangoVenta.Usuario = "";
+						RangoVenta.DVenta = "";
+						RangoVenta.Serie = "";
+						RangoVenta.Autoriz = "";
+					}
+					dr.Close();
+				}
+			}
+		}
+
+		public static bool ValidaPass(string sPassword)
         {
             string c1 = sPassword.ToString();
             int x = 0;
@@ -315,8 +364,12 @@ namespace Polsolcom.Dominio.Helpers
 						  "AND T.Serie = S.Serie " +
 						  "WHERE CONVERT(VARCHAR(10),Fecha,103) = ( SELECT CONVERT(VARCHAR(10), GETDATE(), 103) FROM dual) " +
 						  "AND Usuario = '" + idUsuario.Trim() + "' " +
-						  "AND NCon <> '' " +
-						  DVenta.Trim() == "" ? "AND TDef = '' " : "AND DVenta = '" + DVenta.Trim() + "'";
+						  "AND NCon <> '' ";
+			if( DVenta.Trim() == "" )
+				vSQL = vSQL + "AND TDef = '' ";
+			else
+				vSQL = vSQL + "AND DVenta = '" + DVenta.Trim() + "'";
+
 			using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
 			{
 				using( SqlDataReader dr = cmd.ExecuteReader() )
@@ -330,7 +383,9 @@ namespace Polsolcom.Dominio.Helpers
 				}
 			}
 
-			MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+			if( bExisteDoc == false )
+				MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+
 			return bExisteDoc;
 		}
 
@@ -578,8 +633,7 @@ namespace Polsolcom.Dominio.Helpers
         public static List<Lugar>TraerLugares()
         {
             List<Lugar> ListaLugares = new List<Lugar>();
-            var vSQL = "SELECT * " +
-                    "FROM ubigeo2005 ";
+            var vSQL = "SELECT * FROM ubigeo2005 ";
             SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
             SqlDataReader drLugares = cmd.ExecuteReader();
             while (drLugares.Read())
@@ -663,7 +717,7 @@ namespace Polsolcom.Dominio.Helpers
         {
             List<Producto> ProductosList = new List<Producto>();
             bool statebool = false;
-            var vSQL = "SELECT *";
+            var vSQL = "SELECT * ";
             vSQL = vSQL + "FROM  Productos";
             SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
             SqlDataReader drProductos = cmd.ExecuteReader();
@@ -714,18 +768,21 @@ namespace Polsolcom.Dominio.Helpers
 		public static void LUbigeo( string sValor, string sTipo, ComboBox cmb )
 		{
 			string vSQL = "";
-			List<TipoUsuario> cOper = new List<TipoUsuario>();
+			List<Ubigeo> cOper = new List<Ubigeo>();
+
+			cmb.DataSource = null;
+			cmb.Items.Clear();
 
 			if( sTipo.Trim().ToUpper() == "DEPARTAMENTO" )
 			{
-				vSQL = "SELECT DISTINCT departamento AS descripcion,LEFT(id_old,2) AS id_tipo " + 
+				vSQL = "SELECT DISTINCT departamento AS Descripcion,LEFT(id_old,2) AS IdUbigeo " + 
 						"FROM Ubigeo2005 ubigeo " + 
 						"WHERE LEFT(ubigeo, 2) <= '26' " + 
 						"ORDER BY 1";
 			}
 			else if( sTipo.Trim().ToUpper() == "PROVINCIA" )
 			{
-				vSQL = "SELECT DISTINCT provincia AS descripcion,LEFT(id_old,4) AS id_tipo " + 
+				vSQL = "SELECT DISTINCT provincia AS Descripcion,LEFT(id_old,4) AS IdUbigeo " + 
 						"FROM Ubigeo2005 " + 
 						"WHERE LEFT(ubigeo,2) <= '26' " + 
 						"AND LEFT(id_old,2) LIKE '%" + sValor.Trim().ToUpper() + "' " + 
@@ -733,10 +790,11 @@ namespace Polsolcom.Dominio.Helpers
 			}
 			else if( sTipo.Trim().ToUpper() == "DISTRITO" )
 			{
-				vSQL = "SELECT DISTINCT distrito AS descripcion,LEFT(id_old,6) AS id_tipo " + 
+				vSQL = "SELECT DISTINCT distrito AS descripcion,MAX(LEFT(id_old,6)) AS IdUbigeo " + 
 						"FROM Ubigeo2005 " + 
 						"WHERE LEFT(ubigeo,2) <= '26' " +
-						"AND LEFT(id_old,4) LIKE '%" + sValor.Trim().ToUpper().Substring(0,6) + "' " +
+						"AND LEFT(id_old,4) LIKE '%" + sValor.Trim().ToUpper() + "' " +
+						"GROUP BY distrito " +
 						"ORDER BY 1 ";
 			}
 
@@ -747,8 +805,8 @@ namespace Polsolcom.Dominio.Helpers
 					if( db.State == ConnectionState.Closed )
 						db.Open();
 
-					cmb.DataSource = db.Query<TipoUsuario>(vSQL).ToList();
-					
+					cmb.DataSource = db.Query<Ubigeo>(vSQL).ToList();
+					cmb.DisplayMember = "Descripcion";
 				}
 				catch( Exception ex )
 				{
@@ -756,6 +814,7 @@ namespace Polsolcom.Dominio.Helpers
 					cmb.DataSource = cOper;
 				}
 			}
+			cmb.SelectedIndex = -1;
 		}
 	}
 }

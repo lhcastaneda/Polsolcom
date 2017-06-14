@@ -113,6 +113,7 @@
     <Compile Include="Dominio\Modelos\Operativo.cs" />
     <Compile Include="Dominio\Modelos\Personal.cs" />
     <Compile Include="Dominio\Modelos\Producto.cs" />
+    <Compile Include="Dominio\Modelos\RangoVenta.cs" />
     <Compile Include="Dominio\Modelos\Talon.cs" />
     <Compile Include="Dominio\Modelos\Usuario.cs" />
     <Compile Include="Dominio\Helpers\WaitWindow.cs" />
