@@ -179,7 +179,7 @@ namespace Polsolcom.Dominio.Helpers
                 while (dr.Read())
                 {
 					Usuario.id_us = dr.GetValue(0).ToString().Trim();
-                    Usuario.usuario = dr.GetValue(1).ToString().Trim();
+					Usuario.usuario = General.cryptgr(dr.GetValue(1).ToString().Trim(), false, 1);
 					Usuario.clave = dr.GetValue(2).ToString().Trim();
 					Usuario.tipo = cryptgr(dr.GetValue(3).ToString().Trim(), false, 2);
 					Usuario.descripcion = dr.GetValue(4).ToString().Trim();
@@ -301,9 +301,7 @@ namespace Polsolcom.Dominio.Helpers
 						iCant = db.ExecuteScalar<int>(vSQL);
 					}
 					catch( Exception ex )
-					{
-						MessageBox.Show(ex.Message);
-					}
+					{ MessageBox.Show(ex.Message); }
 				}
 
 				if (iCant == 0)
@@ -406,12 +404,12 @@ namespace Polsolcom.Dominio.Helpers
             Talon.nfinal = "";
             Talon.id_oper = "";
             Talon.serie = "";
-            Talon.dventa = '\0';
-            Talon.ncon = "";
-            Talon.tdef = '\0';
+            Talon.dventa = "";
+			Talon.ncon = "";
+            Talon.tdef = "";
 
-            //Limpia Especialidad
-            Especialidad.esp = "";
+			//Limpia Especialidad
+			Especialidad.esp = "";
             Especialidad.nrz = "";
             Especialidad.con = "";
             Especialidad.tcn = "";
@@ -512,9 +510,9 @@ namespace Polsolcom.Dominio.Helpers
                     Talon.nfinal = dr.GetValue(3).ToString();
                     Talon.id_oper = dr.GetValue(4).ToString();
                     Talon.serie = dr.GetValue(5).ToString();
-                    Talon.dventa = Convert.ToChar(dr.GetValue(6).ToString());
+                    Talon.dventa = dr.GetValue(6).ToString();
                     Talon.ncon = dr.GetValue(7).ToString();
-                    Talon.tdef = Convert.ToChar(dr.GetValue(8).ToString());
+                    Talon.tdef = dr.GetValue(8).ToString();
                 }
                 dr.Close();
             }
@@ -815,6 +813,115 @@ namespace Polsolcom.Dominio.Helpers
 				}
 			}
 			cmb.SelectedIndex = -1;
+		}
+
+		public static void LlenaComboBox( ComboBox cmb, string sTIPO, string vSQL = "" )
+		{
+			string sQuery = "";
+			switch( sTIPO )
+			{
+				case "MEDICO":
+					sQuery = "SELECT Ape_Paterno+' '+Ape_Materno+','+Nombres AS Descripcion,Id_Personal AS IdUbigeo " +
+							"FROM Personal " +
+							"WHERE TNCol <> '' " +
+							"UNION SELECT Descripcion,Id_Tipo " +
+							"FROM TablaTipo " +
+							"WHERE Id_Tabla IN " +
+							"(SELECT Id_Tipo " +
+							" FROM TablaTipo " +
+							" WHERE Descripcion = 'VAR_EXTRAS' " +
+							" AND Id_Tabla = '0') " +
+							"ORDER BY 1";
+					break;
+				case "INSTITUCION":
+					sQuery = "SELECT Nom_Raz_Soc AS Descripcion,TInst+Id_Inst AS IdUbigeo " +
+						 	 "FROM Institucion " +
+							 "WHERE Estado = '1' " +
+							 "AND TInst IN('T', 'M') " +
+							 "ORDER BY 1";
+					break;
+				case "FORMA_PAGO":
+					sQuery = "SELECT Descripcion, Id_Tipo AS IdUbigeo " +
+							 "FROM TablaTipo " +
+							 "WHERE Id_Tabla In " +
+							 "(SELECT Id_Tipo " +
+							 " FROM TablaTipo " +
+							 " WHERE LTrim(RTrim(Descripcion)) = 'FORMA_PAGO' " +
+							 " AND LTrim(RTrim(Id_Tabla)) = '0') " +
+							 "ORDER BY 1";
+					break;
+				case "DOC_VENTA":
+					sQuery = "SELECT Descripcion, Id_Tipo AS IdUbigeo " + 
+							 "FROM TablaTipo " + 
+							 "WHERE Id_Tabla In " + 
+							 "(SELECT Id_Tipo " + 
+							 " FROM TablaTipo " + 
+							 " WHERE LTRIM(RTRIM(Descripcion)) = 'DOC_VENTA' " + 
+							 " AND LTRIM(RTRIM(Id_Tabla)) = '0') " + 
+							 "ORDER BY 1";
+					break;
+				case "IGV":
+					sQuery = "SELECT Descripcion, Id_Tipo AS IdUbigeo " + 
+							 "FROM TablaTipo " + 
+							 "WHERE Id_Tabla In " + 
+							 "(SELECT Id_Tipo " + 
+							 " FROM TablaTipo " + 
+							 " WHERE LTRIM(RTRIM(Descripcion)) Like '%IGV%' " + 
+							 " And LTRIM(RTRIM(Id_Tabla)) = '0') " + 
+							 " And Val_Abr = '1' " + 
+							 "ORDER BY 1";
+					break;
+				case "D":
+					sQuery = "";
+					break;
+				case "SQL":
+					sQuery = vSQL;
+					break;
+			}
+
+			List<Ubigeo> cOper = new List<Ubigeo>();
+			cmb.DataSource = null;
+			cmb.Items.Clear();
+						
+			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+			{
+				try
+				{
+					if( db.State == ConnectionState.Closed )
+						db.Open();
+
+					cmb.DataSource = db.Query<Ubigeo>(sQuery).ToList();
+					cmb.DisplayMember = "Descripcion";
+				}
+				catch( Exception ex )
+				{
+					MessageBox.Show(ex.Message);
+					cmb.DataSource = cOper;
+				}
+			}
+
+			if( cmb.Items.Count == 0 )
+				cmb.Enabled = false;
+			else
+				cmb.SelectedIndex = -1;
+		}
+
+		public static string FechaServidor()
+		{
+			string sFec = "";
+			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+			{
+				try
+				{
+					if( db.State == ConnectionState.Closed )
+						db.Open();
+
+					sFec = db.ExecuteScalar<string>("SELECT CONVERT(VARCHAR(10),GETDATE(),103) FROM dual");
+				}
+				catch( Exception ex )
+				{ MessageBox.Show(ex.Message); }
+			}
+			return sFec;
 		}
 	}
 }

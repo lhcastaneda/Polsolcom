@@ -54,17 +54,21 @@ namespace Polsolcom.Forms
                 vSQL = vSQL + " On O.Id_Emp=I.TInst+I.Id_Inst INNER JOIN Ubigeo2005 U ";
                 vSQL = vSQL + " On I.Id_Distrito=U.Id_Old ";
                 vSQL = vSQL + " ORDER BY 2";
-                Conexion.CMD.CommandText = vSQL;
-                using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                {//declarandolo de esta manera el datareader se puede usar nuevamente mas adelante
-                    if ( drLectura.HasRows )
-                        General.LlenaOperativo(drLectura);
-                    else
-                    {
-                        MessageBox.Show("No se tiene datos del operativo." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                        Application.Exit();
-                    }
-                }
+				using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+				{
+					using( SqlDataReader dr = cmd.ExecuteReader() )
+					{//declarandolo de esta manera el datareader se puede usar nuevamente mas adelante
+						if( dr.HasRows )
+							General.LlenaOperativo(dr);
+						else
+						{
+							MessageBox.Show("No se tiene datos del operativo." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+							Application.Exit();
+						}
+						dr.Close();
+					}
+				}
+				
                 txtOperativo.Text = Operativo.descripcion;
 
                 //consulta que trae los datos del usuario, tipo de usuario y nombre
@@ -76,29 +80,31 @@ namespace Polsolcom.Forms
                 vSQL = vSQL + "WHERE LTRIM(RTRIM(descripcion)) = 'ESTADO_REGISTRO')) E ";
                 vSQL = vSQL + "On S.State=E.Id_Tipo ";
                 vSQL = vSQL + "WHERE LTRIM(RTRIM(E.Descripcion))='ACTIVADO' ";
-                Conexion.CMD.CommandText = vSQL;
-                using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                {
-                    if ( drLectura.HasRows )
-                    {
-                        //carga usuarios combo
-                        while ( drLectura.Read() )
-                        {
-                            var vValue = drLectura.GetValue(0);
-                            string vR = General.cryptgr(vValue.ToString(), false, 1);
-                            cmbUsuario.Items.Add(vR + " - " + drLectura.GetValue(2).ToString());
-                        }
-                        cmbUsuario.SelectedIndex = -1;
-                        cmbUsuario.Focus();
-                        drLectura.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show( "La BD no tiene usuarios." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1 );
-                        Application.Exit();
-                    }
-                }
-            }
+				using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+				{
+					using( SqlDataReader dr = cmd.ExecuteReader() )
+					{
+						if( dr.HasRows )
+						{
+							//carga usuarios combo
+							while( dr.Read() )
+							{
+								var vValue = dr.GetValue(0);
+								string vR = General.cryptgr(vValue.ToString(), false, 1);
+								cmbUsuario.Items.Add(vR + " - " + dr.GetValue(2).ToString());
+							}
+							cmbUsuario.SelectedIndex = -1;
+							cmbUsuario.Focus();
+							dr.Close();
+						}
+						else
+						{
+							MessageBox.Show("La BD no tiene usuarios." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+							Application.Exit();
+						}
+					}
+				}
+			}
             catch ( Exception ex )
             {
                 MessageBox.Show(ex.Message);
@@ -151,21 +157,24 @@ namespace Polsolcom.Forms
                 vSQL = vSQL + " AND LTrim(RTrim(Id_Tabla)) = '0')) C  ";
                 vSQL = vSQL + " ON P.Id_Cargo = C.Id_Tipo ";
                 vSQL = vSQL + " WHERE Key_Pass = '" + @vKey_Pass + "' ";
-                Conexion.CMD.CommandText = vSQL;
-                using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                {
-                    if ( drLectura.HasRows )
-                        General.LlenaUsuario(drLectura);
-                    else
-                    {
-                        MessageBox.Show("No se tiene datos del usuario." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                        Application.Exit();
-                    }
-                }
-
+				using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+				{
+					using( SqlDataReader dr = cmd.ExecuteReader() )
+					{
+						if( dr.HasRows )
+							General.LlenaUsuario(dr);
+						else
+						{
+							MessageBox.Show("No se tiene datos del usuario." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+							Application.Exit();
+						}
+						dr.Close();
+					}
+				}
+				
                 if ( txtClave.Text.Trim() == General.cryptgr(General.cryptgr(Usuario.clave, false, 2), false, 1) )
                 {
-                    MessageBox.Show("Bienvenido(a) " + Usuario.descripcion + " - " + General.cryptgr(Usuario.usuario, false, 1), "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Bienvenido(a) " + Usuario.descripcion + " - " + Usuario.usuario, "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
 
                     if ( txtClave.Text.Trim().Length < 8)
                     {
@@ -188,29 +197,31 @@ Regresa:
                         vSQL = "SELECT COUNT(*) ";
                         vSQL = vSQL + " FROM cambio ";
                         vSQL = vSQL + " WHERE CONVERT(varchar, fecha, 103) BETWEEN CONVERT(varchar, GETDATE(), 103) AND CONVERT(varchar, GETDATE()+1, 103) ";
-                        Conexion.CMD.CommandText = vSQL;
-                        using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                        {
-                            string vRes = "";
-                            if ( drLectura.HasRows )
-                            {
-                                while ( drLectura.Read() )
-                                    vRes = drLectura.GetValue(0).ToString();
-                            }
-                            drLectura.Close();
+						using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+						{
+							using( SqlDataReader dr = cmd.ExecuteReader() )
+							{
+								string vRes = "";
+								if( dr.HasRows )
+								{
+									while( dr.Read() )
+										vRes = dr.GetValue(0).ToString();
+								}
+								dr.Close();
 
-                            if ( vRes == "0" )
-                                if ( MessageBox.Show("Desea Ingresar tipo de Cambio ... ?", "Tipo de Cambio", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes )
-                                {
-                                    frmTPCam fr = new frmTPCam();
-                                    fr.ShowDialog();
-                                }
-                        }
+								if( vRes == "0" )
+									if( MessageBox.Show("Desea Ingresar tipo de Cambio ... ?", "Tipo de Cambio", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes )
+									{
+										frmTPCam fr = new frmTPCam();
+										fr.ShowDialog();
+									}
+							}
+						}
                     }
                     
                     //consulta que trae los datos de las series que son las autorizaciones
                     //para cada una de las ticketeras de pago
-                    vSQL = "SELECT Serie FROM ";
+                    vSQL = "SELECT TOP 1 Serie FROM ";
                     vSQL = vSQL + " (SELECT Serie ";
                     vSQL = vSQL + "  FROM Serie ";
                     vSQL = vSQL + "  WHERE Fec_Ins IN ";
@@ -227,16 +238,18 @@ Regresa:
                     vSQL = vSQL + "   WHERE Digitador = '" + Usuario.id_us + "')) X ";
                     vSQL = vSQL + " GROUP BY Serie ";
                     vSQL = vSQL + " ORDER BY Count(Serie) DESC ";
-                    Conexion.CMD.CommandText = vSQL;
-                    using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                    {
-                        if ( drLectura.HasRows )
-                        {
-                            while ( drLectura.Read() )
-                                sSerie = drLectura.GetValue(0).ToString();
-                        }
-                        drLectura.Close();
-                    }
+					using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+					{
+						using( SqlDataReader dr = cmd.ExecuteReader() )
+						{
+							if( dr.HasRows )
+							{
+								while( dr.Read() )
+									sSerie = dr.GetValue(0).ToString();
+							}
+							dr.Close();
+						}
+					}
 
                     //usuario tipo admision - caja
                     if ( Usuario.id_area == "28" )
@@ -246,17 +259,19 @@ Regresa:
                         vSQL = vSQL + "WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' ";
                         vSQL = vSQL + "AND Id_Oper = '" + Operativo.id_oper + "' ";
                         vSQL = vSQL + "AND LTrim(RTrim(NCon)) <> '' ";
-                        Conexion.CMD.CommandText = vSQL;
-                        using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                        {
-                            if ( drLectura.HasRows )
-                            {
-                                while ( drLectura.Read() )
-                                    sFecTalon = drLectura.GetValue(0).ToString();
-                            }
-                            drLectura.Close();
-                        }
-
+						using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+						{
+							using( SqlDataReader dr = cmd.ExecuteReader() )
+							{
+								if( dr.HasRows )
+								{
+									while( dr.Read() )
+										sFecTalon = dr.GetValue(0).ToString();
+								}
+								dr.Close();
+							}
+						}
+						
                         if ( !(sFecTalon == null || sFecTalon == String.Empty || sFecTalon == "") )
                         {
                             if ( Convert.ToDateTime(sFecTalon) < DateTime.Now )
@@ -265,88 +280,90 @@ Regresa:
                                 vSQL = vSQL + "FROM Talon ";
                                 vSQL = vSQL + "WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' ";
                                 vSQL = vSQL + "AND Id_Oper = '" + Operativo.id_oper + "' ";
-                                vSQL = vSQL + "AND CONVERT(varchar, MAX(Fecha), 103) >= '" + sFecTalon + "' ";
+                                vSQL = vSQL + "AND CONVERT(varchar, Fecha, 103) >= '" + sFecTalon + "' ";
                                 vSQL = vSQL + "AND LTrim(RTrim(NCon)) <> '' ";
-                                Conexion.CMD.CommandText = vSQL;
-                                using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                                {
-                                    if ( drLectura.HasRows )
-                                    {
-                                        while ( drLectura.Read() )
-                                        {
-                                            Talon.usuario = drLectura.GetValue(0).ToString();
-                                            Talon.fecha = Convert.ToDateTime(drLectura.GetValue(1).ToString());
-                                            Talon.ninicial = drLectura.GetValue(2).ToString();
-                                            Talon.nfinal = drLectura.GetValue(3).ToString();
-                                            Talon.id_oper = drLectura.GetValue(4).ToString();
-                                            Talon.serie = drLectura.GetValue(5).ToString();
-                                            Talon.dventa = Convert.ToChar(drLectura.GetValue(6).ToString());
-                                            Talon.ncon = drLectura.GetValue(7).ToString();
-                                            Talon.tdef = Convert.ToChar(drLectura.GetValue(8).ToString());
+								using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+								{
+									using( SqlDataReader dr = cmd.ExecuteReader() )
+									{
+										if( dr.HasRows )
+										{
+											while( dr.Read() )
+											{
+												Talon.usuario = dr.GetValue(0).ToString();
+												Talon.fecha = Convert.ToDateTime(dr.GetValue(1).ToString());
+												Talon.ninicial = dr.GetValue(2).ToString();
+												Talon.nfinal = dr.GetValue(3).ToString();
+												Talon.id_oper = dr.GetValue(4).ToString();
+												Talon.serie = dr.GetValue(5).ToString();
+												Talon.dventa = dr.GetValue(6).ToString();
+												Talon.ncon = dr.GetValue(7).ToString();
+												Talon.tdef = dr.GetValue(8).ToString();
 
-                                            vSQL = "SELECT MAX(Nro_Ticket) ";
-                                            vSQL = vSQL + " FROM Tickets ";
-                                            vSQL = vSQL + " WHERE CONVERT(varchar, Fecha_Emision, 103) >= '" + Talon.fecha + "' ";
-                                            vSQL = vSQL + " AND CONVERT(varchar, Fecha_Emision, 103) <= '" + Talon.fecha + "' ";
-                                            vSQL = vSQL + " AND LTRIM(RTRIM(Digitador)) = '" + Talon.usuario + "' ";
-                                            vSQL = vSQL + " AND SUBSTRING(Nro_Historia,1,3) = '" + Talon.id_oper + "' ";
-                                            vSQL = vSQL + " AND LTRIM(RTRIM(Serie)) = '" + Talon.serie + "' ";
-                                            vSQL = vSQL + " AND LTRIM(RTRIM(DVenta)) = '" + Talon.dventa + "' ";
-                                            Conexion.CMD.CommandText = vSQL;
-                                            using ( SqlDataReader drTiket = Conexion.CMD.ExecuteReader() )
-                                            {
-                                                if ( drTiket.HasRows )
-                                                {
-                                                    if ( drTiket.Read() )
-                                                        sNroTicket = drLectura.GetValue(0).ToString();
+												vSQL = "SELECT MAX(CAST(Nro_Ticket AS int)) ";
+												vSQL = vSQL + " FROM Tickets ";
+												vSQL = vSQL + " WHERE CONVERT(varchar, Fecha_Emision, 103) >= '" + Talon.fecha + "' ";
+												vSQL = vSQL + " AND CONVERT(varchar, Fecha_Emision, 103) <= '" + Talon.fecha + "' ";
+												vSQL = vSQL + " AND LTRIM(RTRIM(Digitador)) = '" + Talon.usuario + "' ";
+												vSQL = vSQL + " AND SUBSTRING(Nro_Historia,1,3) = '" + Talon.id_oper + "' ";
+												vSQL = vSQL + " AND LTRIM(RTRIM(Serie)) = '" + Talon.serie + "' ";
+												vSQL = vSQL + " AND LTRIM(RTRIM(DVenta)) = '" + Talon.dventa + "' ";
+												Conexion.CMD.CommandText = vSQL;
+												using( SqlDataReader drTiket = Conexion.CMD.ExecuteReader() )
+												{
+													if( drTiket.HasRows )
+													{
+														if( drTiket.Read() )
+															sNroTicket = drTiket.GetValue(0).ToString();
 
-                                                    if ( !(sNroTicket.Trim() == null || sNroTicket.Trim() == String.Empty) )
-                                                    {
-                                                        vSQL = "UPDATE Talon ";
-                                                        vSQL = vSQL + " SET NFinal = '" + sNroTicket + "' ";
-                                                        vSQL = vSQL + " WHERE LTRIM(RTRIM(NCon)) <> '' ";
-                                                        vSQL = vSQL + " AND CONVERT(varchar, Fecha, 103) = '" + Talon.fecha + "' ";
-                                                        vSQL = vSQL + " AND LTRIM(RTRIM(Usuario)) = '" + Talon.usuario + "' ";
-                                                        vSQL = vSQL + " AND Id_Oper = '" + Talon.id_oper + "' ";
-                                                        vSQL = vSQL + " AND LTRIM(RTRIM(Serie)) = '" + Talon.serie + "' ";
-                                                        vSQL = vSQL + " AND LTRIM(RTRIM(DVenta)) = '" + Talon.dventa + "' ";
-                                                        Conexion.CMD.CommandText = vSQL;
-                                                        Conexion.CMD.ExecuteNonQuery();
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        drLectura.Close();
-                                    }
-                                }
+														if( !( sNroTicket.Trim() == null || sNroTicket.Trim() == String.Empty ) )
+														{
+															vSQL = "UPDATE Talon ";
+															vSQL = vSQL + " SET NFinal = '" + sNroTicket + "' ";
+															vSQL = vSQL + " WHERE LTRIM(RTRIM(NCon)) <> '' ";
+															vSQL = vSQL + " AND CONVERT(varchar, Fecha, 103) = '" + Talon.fecha + "' ";
+															vSQL = vSQL + " AND LTRIM(RTRIM(Usuario)) = '" + Talon.usuario + "' ";
+															vSQL = vSQL + " AND Id_Oper = '" + Talon.id_oper + "' ";
+															vSQL = vSQL + " AND LTRIM(RTRIM(Serie)) = '" + Talon.serie + "' ";
+															vSQL = vSQL + " AND LTRIM(RTRIM(DVenta)) = '" + Talon.dventa + "' ";
+															Conexion.CMD.CommandText = vSQL;
+															Conexion.CMD.ExecuteNonQuery();
+														}
+													}
+													drTiket.Close();
+												}
+											}
+										}
+										dr.Close();
+									}
+								}
                             }
 
                             //Selecciona la serie del usuario en curso
-                            vSQL = "SELECT MAX(serie) ";
+                            vSQL = "SELECT MAX(CAST(serie AS int)) ";
                             vSQL = vSQL + "FROM Talon ";
                             vSQL = vSQL + "WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' ";
                             vSQL = vSQL + "AND Id_Oper = '" + Operativo.id_oper + "' ";
-                            vSQL = vSQL + "AND CONVERT(varchar, MAX(Fecha), 103) = '" + sFecTalon + "' ";
+                            vSQL = vSQL + "AND CONVERT(varchar, Fecha, 103) = '" + sFecTalon + "' ";
                             vSQL = vSQL + "AND LTrim(RTrim(NCon)) <> '' ";
-                            Conexion.CMD.CommandText = vSQL;
-                            using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                            {
-                                if ( drLectura.HasRows )
-                                {
-                                    while ( drLectura.Read() )
-                                        Talon.serie = drLectura.GetValue(0).ToString();
-                                        
-                                }
-                                drLectura.Close();
-                            }
+							using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
+							{
+								using( SqlDataReader dr = cmd.ExecuteReader() )
+								{
+									if( dr.HasRows )
+									{
+										while( dr.Read() )
+											Talon.serie = dr.GetValue(0).ToString();
+
+									}
+									dr.Close();
+								}
+							}
 
                             if ( (Talon.serie == null || Talon.serie == String.Empty || Talon.serie == "") )
                                 bBlanco = true;
                             else
-                            {
                                 sSerie = Talon.serie;
-
-                            }
                         }
                         else
                             bBlanco = true;
@@ -486,10 +503,10 @@ RegresaTalon:
             vSQL = vSQL + " On I.Id_Distrito=U.Id_Old ";
             vSQL = vSQL + " ORDER BY 2";
             Conexion.CMD.CommandText = vSQL;
-            using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
+            using ( SqlDataReader dr = Conexion.CMD.ExecuteReader() )
             {
-                if ( drLectura.HasRows )
-                    General.LlenaOperativo(drLectura);
+                if ( dr.HasRows )
+                    General.LlenaOperativo(dr);
             }
 
         }
