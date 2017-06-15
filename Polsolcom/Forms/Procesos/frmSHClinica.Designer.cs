@@ -239,14 +239,18 @@ namespace Polsolcom.Forms.Procesos
 			this.txtNHP.Name = "txtNHP";
 			this.txtNHP.Size = new System.Drawing.Size(66, 20);
 			this.txtNHP.TabIndex = 6;
+			this.txtNHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtNHP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtDigitador
 			// 
+			this.txtDigitador.BackColor = System.Drawing.SystemColors.Window;
 			this.txtDigitador.Location = new System.Drawing.Point(359, 25);
 			this.txtDigitador.Name = "txtDigitador";
+			this.txtDigitador.ReadOnly = true;
 			this.txtDigitador.Size = new System.Drawing.Size(66, 20);
 			this.txtDigitador.TabIndex = 5;
+			this.txtDigitador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtDigitador.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtNroTicket
@@ -255,14 +259,18 @@ namespace Polsolcom.Forms.Procesos
 			this.txtNroTicket.Name = "txtNroTicket";
 			this.txtNroTicket.Size = new System.Drawing.Size(66, 20);
 			this.txtNroTicket.TabIndex = 4;
+			this.txtNroTicket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtNroTicket.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtSerie
 			// 
+			this.txtSerie.BackColor = System.Drawing.SystemColors.Window;
 			this.txtSerie.Location = new System.Drawing.Point(250, 25);
 			this.txtSerie.Name = "txtSerie";
+			this.txtSerie.ReadOnly = true;
 			this.txtSerie.Size = new System.Drawing.Size(35, 20);
 			this.txtSerie.TabIndex = 3;
+			this.txtSerie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtSerie.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// cmbMVen
@@ -318,6 +326,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// btnQuitar
 			// 
+			this.btnQuitar.Enabled = false;
 			this.btnQuitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnQuitar.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitar.Image")));
 			this.btnQuitar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -332,6 +341,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// btnAgregar
 			// 
+			this.btnAgregar.Enabled = false;
 			this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
 			this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -388,6 +398,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// btnNuevo
 			// 
+			this.btnNuevo.Enabled = false;
 			this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
 			this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -536,6 +547,7 @@ namespace Polsolcom.Forms.Procesos
 			this.txtAsegurado.Name = "txtAsegurado";
 			this.txtAsegurado.Size = new System.Drawing.Size(49, 20);
 			this.txtAsegurado.TabIndex = 22;
+			this.txtAsegurado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtAsegurado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtODoc
@@ -651,6 +663,7 @@ namespace Polsolcom.Forms.Procesos
 			this.txtEdad.Name = "txtEdad";
 			this.txtEdad.Size = new System.Drawing.Size(66, 20);
 			this.txtEdad.TabIndex = 15;
+			this.txtEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtEdad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtFecNac
@@ -710,6 +723,7 @@ namespace Polsolcom.Forms.Procesos
 			this.txtDNI.Name = "txtDNI";
 			this.txtDNI.Size = new System.Drawing.Size(66, 20);
 			this.txtDNI.TabIndex = 13;
+			this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtSexo
@@ -718,6 +732,7 @@ namespace Polsolcom.Forms.Procesos
 			this.txtSexo.Name = "txtSexo";
 			this.txtSexo.Size = new System.Drawing.Size(66, 20);
 			this.txtSexo.TabIndex = 12;
+			this.txtSexo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtSexo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtApeMaterno
@@ -750,6 +765,7 @@ namespace Polsolcom.Forms.Procesos
 			this.txtID.Name = "txtID";
 			this.txtID.Size = new System.Drawing.Size(66, 20);
 			this.txtID.TabIndex = 8;
+			this.txtID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// label14
