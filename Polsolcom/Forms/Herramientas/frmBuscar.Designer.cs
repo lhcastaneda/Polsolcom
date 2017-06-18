@@ -158,6 +158,8 @@ namespace Polsolcom.Forms.Herramientas
 			this.fGrid.Name = "fGrid";
 			this.fGrid.Size = new System.Drawing.Size(550, 200);
 			this.fGrid.TabIndex = 0;
+			this.fGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
+			this.fGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fGrid_MouseDoubleClick);
 			// 
 			// frmBuscar
 			// 

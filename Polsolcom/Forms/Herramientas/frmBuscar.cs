@@ -90,6 +90,7 @@ namespace Polsolcom.Forms.Herramientas
 			if( vSQL == "" )
 				return;
 
+			Cursor.Current = Cursors.WaitCursor;
 			Conexion.CMD.CommandText = vSQL;
 			using( SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD) )
 			{
@@ -104,6 +105,7 @@ namespace Polsolcom.Forms.Herramientas
 				fGrid.FillWithData(dr);
 				dr.Close();
 			}
+			Cursor.Current = Cursors.Default;
 			FormateaGrilla();
 		}
 
@@ -150,7 +152,21 @@ namespace Polsolcom.Forms.Herramientas
 					CargaGrilla();
 			}
 		}
-		
 
+		private void fGrid_MouseDoubleClick( object sender, MouseEventArgs e )
+		{
+			if( fGrid.Rows.Count != 0 )
+			{
+				if( General.ODB == 0 )
+				{
+					
+				}
+				else
+				{
+					MessageBox.Show(fGrid.Cells[fGrid.CurRow.Index, 0].Text);
+
+				}
+			}
+		}
 	}
 }
