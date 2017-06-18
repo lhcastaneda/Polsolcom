@@ -194,9 +194,9 @@ Regresa:
                     if ( Usuario.id_area == "25" || Usuario.id_area == "27" )
                     {
                         //valida que existe tipo de cambio para la fecha actual
-                        vSQL = "SELECT COUNT(*) ";
-                        vSQL = vSQL + " FROM cambio ";
-                        vSQL = vSQL + " WHERE CONVERT(varchar, fecha, 103) BETWEEN CONVERT(varchar, GETDATE(), 103) AND CONVERT(varchar, GETDATE()+1, 103) ";
+                        vSQL = "SELECT COUNT(*) " +
+								" FROM cambio " +
+								" WHERE CONVERT(varchar, fecha, 103) BETWEEN CONVERT(varchar, GETDATE(), 103) AND CONVERT(varchar, GETDATE()+1, 103) ";
 						using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
 						{
 							using( SqlDataReader dr = cmd.ExecuteReader() )
@@ -274,64 +274,53 @@ Regresa:
 						
                         if ( !(sFecTalon == null || sFecTalon == String.Empty || sFecTalon == "") )
                         {
-                            if ( Convert.ToDateTime(sFecTalon) < DateTime.Now )
+							if ( Convert.ToDateTime(sFecTalon) < DateTime.Now )
                             {   //consulta que trae los datos de la serie, documento de venta para la fecha seleccionada
-                                vSQL = "SELECT usuario,fecha,ninicial,nfinal,id_oper,serie,dventa,ncon,tdef ";
-                                vSQL = vSQL + "FROM Talon ";
-                                vSQL = vSQL + "WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' ";
-                                vSQL = vSQL + "AND Id_Oper = '" + Operativo.id_oper + "' ";
-                                vSQL = vSQL + "AND CONVERT(varchar, Fecha, 103) >= '" + sFecTalon + "' ";
-                                vSQL = vSQL + "AND LTrim(RTrim(NCon)) <> '' ";
+                                vSQL = "SELECT usuario,fecha,ninicial,nfinal,id_oper,serie,dventa,ncon,tdef " +
+										"FROM Talon " +
+										"WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' " +
+										"AND Id_Oper = '" + Operativo.id_oper + "' " +
+										"AND Fecha >= CAST('" + Convert.ToDateTime(sFecTalon).ToString("yyyy-MM-dd")  + "' AS smalldatetime) " +
+										"AND LTrim(RTrim(NCon)) <> '' ";
 								using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
 								{
 									using( SqlDataReader dr = cmd.ExecuteReader() )
 									{
 										if( dr.HasRows )
 										{
-											while( dr.Read() )
+											General.LlenaTalon(dr);
+											
+											vSQL = "SELECT MAX(CAST(Nro_Ticket AS int)) " +
+													" FROM Tickets " +
+													" WHERE Fecha_Emision Between CAST('" + Talon.fecha.ToString("yyyy-MM-dd") + "' AS smalldatetime) " +
+													" AND CAST('" + General.FechaServidor("YYYY-MM-DD") + "' AS smalldatetime) " +
+													" AND LTRIM(RTRIM(Digitador)) = '" + Talon.usuario + "' " +
+													" AND SUBSTRING(Nro_Historia,1,3) = '" + Talon.id_oper + "' " +
+													" AND LTRIM(RTRIM(Serie)) = '" + Talon.serie + "' " +
+													" AND LTRIM(RTRIM(DVenta)) = '" + Talon.dventa + "' ";
+											Conexion.CMD.CommandText = vSQL;
+											using( SqlDataReader drTiket = Conexion.CMD.ExecuteReader() )
 											{
-												Talon.usuario = dr.GetValue(0).ToString();
-												Talon.fecha = Convert.ToDateTime(dr.GetValue(1).ToString());
-												Talon.ninicial = dr.GetValue(2).ToString();
-												Talon.nfinal = dr.GetValue(3).ToString();
-												Talon.id_oper = dr.GetValue(4).ToString();
-												Talon.serie = dr.GetValue(5).ToString();
-												Talon.dventa = dr.GetValue(6).ToString();
-												Talon.ncon = dr.GetValue(7).ToString();
-												Talon.tdef = dr.GetValue(8).ToString();
-
-												vSQL = "SELECT MAX(CAST(Nro_Ticket AS int)) ";
-												vSQL = vSQL + " FROM Tickets ";
-												vSQL = vSQL + " WHERE CONVERT(varchar, Fecha_Emision, 103) >= '" + Talon.fecha + "' ";
-												vSQL = vSQL + " AND CONVERT(varchar, Fecha_Emision, 103) <= '" + Talon.fecha + "' ";
-												vSQL = vSQL + " AND LTRIM(RTRIM(Digitador)) = '" + Talon.usuario + "' ";
-												vSQL = vSQL + " AND SUBSTRING(Nro_Historia,1,3) = '" + Talon.id_oper + "' ";
-												vSQL = vSQL + " AND LTRIM(RTRIM(Serie)) = '" + Talon.serie + "' ";
-												vSQL = vSQL + " AND LTRIM(RTRIM(DVenta)) = '" + Talon.dventa + "' ";
-												Conexion.CMD.CommandText = vSQL;
-												using( SqlDataReader drTiket = Conexion.CMD.ExecuteReader() )
+												if( drTiket.HasRows )
 												{
-													if( drTiket.HasRows )
-													{
-														if( drTiket.Read() )
-															sNroTicket = drTiket.GetValue(0).ToString();
+													if( drTiket.Read() )
+														sNroTicket = drTiket.GetValue(0).ToString();
 
-														if( !( sNroTicket.Trim() == null || sNroTicket.Trim() == String.Empty ) )
-														{
-															vSQL = "UPDATE Talon ";
-															vSQL = vSQL + " SET NFinal = '" + sNroTicket + "' ";
-															vSQL = vSQL + " WHERE LTRIM(RTRIM(NCon)) <> '' ";
-															vSQL = vSQL + " AND CONVERT(varchar, Fecha, 103) = '" + Talon.fecha + "' ";
-															vSQL = vSQL + " AND LTRIM(RTRIM(Usuario)) = '" + Talon.usuario + "' ";
-															vSQL = vSQL + " AND Id_Oper = '" + Talon.id_oper + "' ";
-															vSQL = vSQL + " AND LTRIM(RTRIM(Serie)) = '" + Talon.serie + "' ";
-															vSQL = vSQL + " AND LTRIM(RTRIM(DVenta)) = '" + Talon.dventa + "' ";
-															Conexion.CMD.CommandText = vSQL;
-															Conexion.CMD.ExecuteNonQuery();
-														}
+													if( !( sNroTicket.Trim() == null || sNroTicket.Trim() == String.Empty ) )
+													{
+														vSQL = "UPDATE Talon " +
+														" SET NFinal = '" + sNroTicket + "' " +
+														" WHERE LTRIM(RTRIM(NCon)) <> '' " +
+														" AND CONVERT(varchar, Fecha, 103) = '" + Talon.fecha.ToString("dd/MM/yyyy") + "' " +
+														" AND LTRIM(RTRIM(Usuario)) = '" + Talon.usuario + "' " +
+														" AND Id_Oper = '" + Talon.id_oper + "' " +
+														" AND LTRIM(RTRIM(Serie)) = '" + Talon.serie + "' " +
+														" AND LTRIM(RTRIM(DVenta)) = '" + Talon.dventa + "' ";
+														Conexion.CMD.CommandText = vSQL;
+														Conexion.CMD.ExecuteNonQuery();
 													}
-													drTiket.Close();
 												}
+												drTiket.Close();
 											}
 										}
 										dr.Close();
@@ -340,12 +329,12 @@ Regresa:
                             }
 
                             //Selecciona la serie del usuario en curso
-                            vSQL = "SELECT MAX(CAST(serie AS int)) ";
-                            vSQL = vSQL + "FROM Talon ";
-                            vSQL = vSQL + "WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' ";
-                            vSQL = vSQL + "AND Id_Oper = '" + Operativo.id_oper + "' ";
-                            vSQL = vSQL + "AND CONVERT(varchar, Fecha, 103) = '" + sFecTalon + "' ";
-                            vSQL = vSQL + "AND LTrim(RTrim(NCon)) <> '' ";
+                            vSQL = "SELECT MAX(CAST(serie AS int)) " +
+									"FROM Talon " +
+									"WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' " +
+									"AND Id_Oper = '" + Operativo.id_oper + "' " +
+									"AND CONVERT(varchar, Fecha, 103) = '" + sFecTalon + "' " +
+									"AND LTrim(RTrim(NCon)) <> '' ";
 							using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
 							{
 								using( SqlDataReader dr = cmd.ExecuteReader() )

@@ -91,6 +91,7 @@ namespace Polsolcom.Dominio.Helpers
         public static ToolTip ttMensaje = new ToolTip();
 		public static Label lblLabel = new Label();
         public static List<TipoUsuario> lstTipoUsuario = new List<TipoUsuario>();
+		public static int ODB = 0; //variable manejo de ventanas form fmrSHClinica 0: Paciente Existente, 1: Paciente Nuevo 
 
         #region Cryptography
         public static string cryptgr(string cWWord, bool lflag, int nlevel)
@@ -906,9 +907,21 @@ namespace Polsolcom.Dominio.Helpers
 				cmb.SelectedIndex = -1;
 		}
 
-		public static string FechaServidor()
+		public static string FechaServidor(string sFormat = "DD/MM/YYYY")
 		{
 			string sFec = "";
+			string sQuery = "";
+
+			switch (sFormat)
+			{
+				case "DD/MM/YYYY":
+					sQuery = "SELECT CONVERT(VARCHAR(10),GETDATE(),103) FROM dual";
+					break;
+				case "YYYY-MM-DD":
+					sQuery = "SELECT CONVERT(VARCHAR,GETDATE(),23) FROM dual";
+					break;
+			}
+			
 			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
 			{
 				try
@@ -916,12 +929,106 @@ namespace Polsolcom.Dominio.Helpers
 					if( db.State == ConnectionState.Closed )
 						db.Open();
 
-					sFec = db.ExecuteScalar<string>("SELECT CONVERT(VARCHAR(10),GETDATE(),103) FROM dual");
+					sFec = db.ExecuteScalar<string>(sQuery);
 				}
 				catch( Exception ex )
 				{ MessageBox.Show(ex.Message); }
 			}
 			return sFec;
+		}
+
+		public static string DevuelveQueryPaciente (string ApPaterno, string ApMaterno, string Nombres, string DNI, string IdPaciente, string NroHistoria, int Num1, int ODB)
+		{
+			string sVSQL = "";
+			int iVal     = 0;
+			int TDB      = 1; //variable seteada para sintaxis SQL Server
+
+			string sApPaterno   = ApPaterno.Trim();
+			string sApMaterno   = ApMaterno.Trim();
+			string sNombres     = Nombres.Trim();
+			string sDNI         = DNI.Trim();
+			string sIdPaciente  = IdPaciente.Trim();
+			string sNroHistoria = NroHistoria.Trim();
+
+			if(ODB == 1)
+			{
+				iVal = (sApPaterno == "" ? 0 : 1);
+				iVal = iVal + ( sApMaterno == "" ? 0 : 1);
+				iVal = iVal + ( sNombres == "" ? 0 : 1 );
+				iVal = iVal + ( sDNI == "" ? 0 : 1 );
+
+				if( iVal < 1 )
+					return "";
+
+				sVSQL = "SELECT " + ( TDB == 1 ? "Top 50 " : "" ) +
+						"P.ape_pat+' '+P.Ape_Mat+' '+P.Nombres,P.Ubigeo,P.DNI,Id_Old,'','' " + 
+					    "FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " + 
+					    "ON P.Ubigeo=U.Ubigeo WHERE 1 = 1 ";
+
+				if( sApPaterno != "")
+					sVSQL = sVSQL + "AND Ape_Pat = '" + sApPaterno + "' ";
+
+				if( sApMaterno != "" )
+					sVSQL = sVSQL + "AND Ape_Mat = '" + sApMaterno + "' ";
+
+				if( sNombres != "" )
+					sVSQL = sVSQL + "AND Nombres LIKE '" + sNombres + "%' ";
+
+				if( sDNI != "" )
+					sVSQL = sVSQL + "AND DNI = '" + sDNI + "' ";
+
+				sVSQL = sVSQL + "Order By Ape_Pat,Ape_Mat,Nombres " + ( TDB == 1 ? "" : " Limit 50" );
+			}
+			else
+			{
+				if( sDNI.Length < 8 && sIdPaciente.Length < 4 && sNroHistoria.Length == 0 )
+				{
+					if( sApPaterno == "" )
+						sApPaterno = "A";
+
+					if( sApMaterno == "" )
+						sApMaterno = "A";
+
+					if( sNombres == "" )
+						sNombres = "A";
+				}
+
+				sVSQL = "SELECT " + ( TDB == 1 ? "Top 50 " : "" ) +
+						"P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre,P.id_paciente,P.DNI,P.Id_Distrito,P.Asegurado,P.Nro_Historia ";
+
+				if( Num1 == 2 )
+					sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito ";
+
+				sVSQL = sVSQL + " FROM Pacientes P ";
+
+				if( Num1 == 2 )
+					sVSQL = sVSQL + "LEFT JOIN Ubigeo2005 U ON P.Id_Distrito = U.Id_Old ";
+
+				sVSQL = sVSQL + " WHERE 1 = 1 ";
+
+				if( sApPaterno.Length > 0)
+					sVSQL = sVSQL + "AND Ape_Paterno LIKE '" + sApPaterno + "%' ";
+
+				if( sApMaterno.Length > 0 )
+					sVSQL = sVSQL + "AND Ape_Materno LIKE '" + sApMaterno + "%' ";
+
+				if( sNombres.Length > 0 )
+					sVSQL = sVSQL + "AND Nombre LIKE '" + sNombres + "%' ";
+
+				if( sDNI.Length == 8 )
+					sVSQL = sVSQL + "AND DNI = '" + sDNI + "' ";
+				else
+					sVSQL = sVSQL + "AND DNI LIKE '" + sDNI + "%' ";
+
+				if( sIdPaciente.Length > 3 )
+					sVSQL = sVSQL + "AND Id_Paciente LIKE '" + sIdPaciente + "%' ";
+
+				if( sNroHistoria.Length > 0 )
+					sVSQL = sVSQL + "AND Nro_Historia LIKE '" + sNroHistoria + "%' ";
+
+				sVSQL = sVSQL + "ORDER BY Ape_Paterno,Ape_Materno,Nombre" + ( TDB == 1 ? "" : " Limit 50" );
+			}
+			return sVSQL;
 		}
 	}
 }
