@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Connection;
 using Polsolcom.Resources;
+using System.Data;
 
 namespace Polsolcom.Dominio.Helpers
 {

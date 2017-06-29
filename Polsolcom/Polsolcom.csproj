@@ -140,6 +140,14 @@
     <Compile Include="Dominio\Data\ParteDiario.cs">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\TipoDocumento.cs">
+      <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\TipoDocumento.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Helpers\Serie.cs" />
     <Compile Include="Dominio\Modelos\Consultorio.cs" />
     <Compile Include="Dominio\Modelos\Especialidad.cs" />
@@ -828,6 +836,17 @@
     </None>
     <None Include="Dominio\Data\ParteDiario.xss">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoDocumento.xsc">
+      <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoDocumento.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TipoDocumento.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\TipoDocumento.xss">
+      <DependentUpon>TipoDocumento.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Polsolcom_TemporaryKey.pfx" />

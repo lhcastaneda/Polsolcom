@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtCuenta = new System.Windows.Forms.TextBox();
             this.txtNFinal = new System.Windows.Forms.TextBox();
@@ -44,7 +45,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbIngresar = new System.Windows.Forms.Button();
+            this.tipoDocumento = new Polsolcom.Dominio.Data.TipoDocumento();
+            this.tipoDocumentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tipoDocumentoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -157,6 +167,8 @@
             // 
             // cmbDocVenta
             // 
+            this.cmbDocVenta.DataSource = this.tablaTipoBindingSource;
+            this.cmbDocVenta.DisplayMember = "Descripcion";
             this.cmbDocVenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDocVenta.FormattingEnabled = true;
             this.cmbDocVenta.Location = new System.Drawing.Point(176, 30);
@@ -232,6 +244,30 @@
             this.cmbIngresar.UseVisualStyleBackColor = true;
             this.cmbIngresar.Click += new System.EventHandler(this.cmbIngresar_Click);
             // 
+            // tipoDocumento
+            // 
+            this.tipoDocumento.DataSetName = "TipoDocumento";
+            this.tipoDocumento.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tipoDocumentoBindingSource
+            // 
+            this.tipoDocumentoBindingSource.DataSource = this.tipoDocumento;
+            this.tipoDocumentoBindingSource.Position = 0;
+            // 
+            // tipoDocumentoBindingSource1
+            // 
+            this.tipoDocumentoBindingSource1.DataMember = "TipoDocumento";
+            this.tipoDocumentoBindingSource1.DataSource = this.tipoDocumentoBindingSource;
+            // 
+            // tablaTipoBindingSource
+            // 
+            this.tablaTipoBindingSource.DataMember = "TablaTipo";
+            this.tablaTipoBindingSource.DataSource = this.tipoDocumentoBindingSource;
+            // 
+            // tablaTipoTableAdapter
+            // 
+            this.tablaTipoTableAdapter.ClearBeforeFill = true;
+            // 
             // frmTalonario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +285,9 @@
             this.Load += new System.EventHandler(this.frmTalonario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -271,6 +310,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmbIngresar;
-
+        private System.Windows.Forms.BindingSource tipoDocumentoBindingSource;
+        private Dominio.Data.TipoDocumento tipoDocumento;
+        private System.Windows.Forms.BindingSource tipoDocumentoBindingSource1;
+        private System.Windows.Forms.BindingSource tablaTipoBindingSource;
+        private Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter;
     }
 }
