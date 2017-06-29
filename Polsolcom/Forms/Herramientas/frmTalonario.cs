@@ -45,7 +45,7 @@ namespace Polsolcom.Forms
             cmbDocVenta.Focus();
 
             //trae los valores maximos de inicio y fin del talonario
-            vSQL = "SELECT MAX(CAST(NInicial AS int)), MAX(CAST(NFinal AS int)) ";
+            vSQL = "SELECT MAX(CONVERT(int, ninicial)), MAX(CONVERT(int, nfinal)) ";
             vSQL = vSQL + " FROM Talon ";
             Conexion.CMD.CommandText = vSQL;
             using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
@@ -279,8 +279,8 @@ namespace Polsolcom.Forms
                 vSQL = vSQL + "'" + Operativo.id_oper + "', ";
                 vSQL = vSQL + "'" + txtSerie.Text + "', ";
                 vSQL = vSQL + "'" + itm.Value + "', ";
-                vSQL = vSQL + "'" + txtCuenta.Text + "', ";
-				vSQL = vSQL + "'' ) ";
+                vSQL = vSQL + "'', ";
+                vSQL = vSQL + "'' ) ";
                 Conexion.CMD.CommandText = vSQL;
                 Conexion.CMD.ExecuteNonQuery();
                 MessageBox.Show("Actualizacion satisfactoria.", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -319,39 +319,13 @@ namespace Polsolcom.Forms
         private void txtNFinal_Enter(object sender, EventArgs e)
         {
             General.ttMensaje.Show(string.Empty, txtNFinal);
-            General.ttMensaje.Show("Ultimo Talon Final: " + sMaxNFinal, txtNFinal, 0);
+            General.ttMensaje.Show("Talon Final MAX: " + sMaxNFinal, txtNFinal, 0);
         }
 
         private void txtNInicial_Enter(object sender, EventArgs e)
         {
             General.ttMensaje.Show(string.Empty, txtNInicial);
-            General.ttMensaje.Show("Ultimo Talon Inicial: " + sMaxNInicial, txtNInicial, 0);
+            General.ttMensaje.Show("Talon Inicial MAX: " + sMaxNInicial, txtNInicial, 0);
         }
-
-		private void txtNInicial_TextChanged( object sender, EventArgs e )
-		{
-			txtCuenta.Text = "0";
-		}
-
-		private void txtNInicial_MouseMove( object sender, MouseEventArgs e )
-		{
-			General.ttMensaje.Show(string.Empty, txtNInicial);
-			General.ttMensaje.Show("Ultimo Talon Inicial: " + sMaxNInicial, txtNInicial, 0);
-		}
-
-		private void txtNFinal_MouseMove( object sender, MouseEventArgs e )
-		{
-			General.ttMensaje.Show(string.Empty, txtNFinal);
-			General.ttMensaje.Show("Ultimo Talon Final: " + sMaxNFinal, txtNFinal, 0);
-		}
-
-		private void frmTalonario_KeyDown( object sender, KeyEventArgs e )
-		{
-			if( e.KeyCode == Keys.Escape )
-			{
-				DialogResult = DialogResult.Cancel;
-				Close();
-			}
-		}
-	}
+    }
 }

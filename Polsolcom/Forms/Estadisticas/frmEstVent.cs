@@ -431,9 +431,6 @@ namespace Polsolcom.Forms
 
         private void frmEstVent_Load(object sender, EventArgs e)
         {
-            //Borrar esto al reestablecer el formulario de login como pantalla principal
-            Conexion.ConectaBD();
-            Conexion.CMD.Connection = Conexion.CNN;
             //Llenaremos combobox
             LlenarOperativos();
             LlenarMeses();

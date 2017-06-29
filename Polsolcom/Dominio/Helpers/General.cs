@@ -6,10 +6,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Connection;
-using System.Data;
-using System.Configuration;
-using Dapper;
-using System.Linq;
+using Polsolcom.Resources;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -47,26 +44,19 @@ namespace Polsolcom.Dominio.Helpers
         }
 
     }
-
-	public class Ubigeo
-	{
-		public string IdUbigeo { get; set; }
-		public string Descripcion { get; set; }
-	}
-
+	
 	//clase que guarda los parametros generales a mostrar en un grafico
 	public class Grafico
 	{
 		public static string sSQL { get; set; }
-		public static string NombreSerie { get; set; }
-		public static string LeyendaSerie { get; set; }
 		public static string TituloChart { get; set; }
 		public static string TipoChart { get; set; }
 		public static string TituloX { get; set; }
 		public static string TituloY { get; set; }
 		public static string LeyendaX { get; set; }
 		public static string LeyendaY { get; set; }
-	}
+        public static List<Serie> series { get; set; }
+    }
 
 	public class ItemMenus
     {
@@ -89,9 +79,7 @@ namespace Polsolcom.Dominio.Helpers
     public static class General
     {
         public static ToolTip ttMensaje = new ToolTip();
-		public static Label lblLabel = new Label();
         public static List<TipoUsuario> lstTipoUsuario = new List<TipoUsuario>();
-		public static int ODB = 0; //variable manejo de ventanas form fmrSHClinica 0: Paciente Existente, 1: Paciente Nuevo 
 
         #region Cryptography
         public static string cryptgr(string cWWord, bool lflag, int nlevel)
@@ -180,7 +168,7 @@ namespace Polsolcom.Dominio.Helpers
                 while (dr.Read())
                 {
 					Usuario.id_us = dr.GetValue(0).ToString().Trim();
-					Usuario.usuario = General.cryptgr(dr.GetValue(1).ToString().Trim(), false, 1);
+                    Usuario.usuario = dr.GetValue(1).ToString().Trim();
 					Usuario.clave = dr.GetValue(2).ToString().Trim();
 					Usuario.tipo = cryptgr(dr.GetValue(3).ToString().Trim(), false, 2);
 					Usuario.descripcion = dr.GetValue(4).ToString().Trim();
@@ -190,51 +178,7 @@ namespace Polsolcom.Dominio.Helpers
                 dr.Close();
             }
         }
-
-		public static void LlenarRegistroVenta( string idUsuario, string DVenta )
-		{
-			string vSQL = "SELECT S.id_oper AS Oper,T.Usuario,T.DVenta,T.Serie,S.Autoriz " +
-						  "FROM Talon T INNER JOIN Serie S " +
-						  "ON T.Id_Oper = S.Id_Oper " +
-						  "AND T.DVenta = S.Id_TDoc " +
-						  "AND T.Serie = S.Serie " +
-						  "WHERE CONVERT(VARCHAR(10),Fecha,103) = ( SELECT CONVERT(VARCHAR(10), GETDATE(), 103) FROM dual) " +
-						  "AND Usuario = '" + idUsuario.Trim() + "' " +
-						  "AND NCon <> '' ";
-			if( DVenta.Trim() == "" )
-				vSQL = vSQL + "AND TDef = '' ";
-			else
-				vSQL = vSQL + "AND DVenta = '" + DVenta.Trim() + "'";
-
-			using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
-			{
-				using( SqlDataReader dr = cmd.ExecuteReader() )
-				{
-					if( dr.HasRows )
-					{
-						while( dr.Read() )
-						{
-							RangoVenta.Oper = dr.GetValue(0).ToString();
-							RangoVenta.Usuario = dr.GetValue(1).ToString();
-							RangoVenta.DVenta = dr.GetValue(2).ToString();
-							RangoVenta.Serie = dr.GetValue(3).ToString();
-							RangoVenta.Autoriz = dr.GetValue(4).ToString();
-						}
-					}
-					else
-					{
-						RangoVenta.Oper = "";
-						RangoVenta.Usuario = "";
-						RangoVenta.DVenta = "";
-						RangoVenta.Serie = "";
-						RangoVenta.Autoriz = "";
-					}
-					dr.Close();
-				}
-			}
-		}
-
-		public static bool ValidaPass(string sPassword)
+        public static bool ValidaPass(string sPassword)
         {
             string c1 = sPassword.ToString();
             int x = 0;
@@ -259,7 +203,6 @@ namespace Polsolcom.Dominio.Helpers
             else
                 return true;
         }
-
         public static string DevuelveUsuario(string id_usuario)
         {
             string sUsuario = "";
@@ -282,112 +225,6 @@ namespace Polsolcom.Dominio.Helpers
             }
             return sUsuario;
         }
-
-		public static string Frase ( string PT )
-		{
-			string sValor = "";
-			string vSQL = "";
-			int iCant = 0;
-			
-			if( PT.Trim() == "D")
-			{
-				vSQL = "SELECT COUNT(*) AS C FROM Frases WHERE Tipo = 'D'";
-				using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-				{
-					try
-					{
-						if( db.State == ConnectionState.Closed )
-							db.Open();
-
-						iCant = db.ExecuteScalar<int>(vSQL);
-					}
-					catch( Exception ex )
-					{ MessageBox.Show(ex.Message); }
-				}
-
-				if (iCant == 0)
-				{
-					vSQL = "UPDATE Frases SET Tipo = 'D' WHERE Tipo = 'X'";
-					using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-					{
-						int vRes = db.Execute(vSQL);
-					}
-				}
-			}
-
-			vSQL = "SELECT TOP 1 frase FROM Frases WHERE Tipo = '" + PT.Trim() + "'";
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				try
-				{
-					if( db.State == ConnectionState.Closed )
-						db.Open();
-
-					sValor = db.ExecuteScalar<string>(vSQL);
-					sValor = sValor.Trim();
-				}
-				catch( Exception ex )
-				{
-					MessageBox.Show(ex.Message);
-				}
-			}
-
-			if( PT.Trim() == "D" )
-			{
-				vSQL = "UPDATE Frases SET Tipo = 'X' WHERE Frase LIKE '" + @sValor + "'";
-				using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-				{	
-					try
-					{
-						if( db.State == ConnectionState.Closed )
-							db.Open();
-
-						int vRes = db.Execute(vSQL);
-					}
-					catch( Exception ex )
-					{
-						MessageBox.Show(ex.Message);
-					}
-				}
-			}
-			return sValor;
-		}
-
-		public static bool TieneDocVenta(string idUsuario, string DVenta)
-		{
-			bool bExisteDoc = false;
-			string vSQL = "SELECT T.DVenta,T.Serie,S.Autoriz " +
-						  "FROM Talon T INNER JOIN Serie S " +
-						  "ON T.Id_Oper = S.Id_Oper " +
-						  "AND T.DVenta = S.Id_TDoc " +
-						  "AND T.Serie = S.Serie " +
-						  "WHERE CONVERT(VARCHAR(10),Fecha,103) = ( SELECT CONVERT(VARCHAR(10), GETDATE(), 103) FROM dual) " +
-						  "AND Usuario = '" + idUsuario.Trim() + "' " +
-						  "AND NCon <> '' ";
-			if( DVenta.Trim() == "" )
-				vSQL = vSQL + "AND TDef = '' ";
-			else
-				vSQL = vSQL + "AND DVenta = '" + DVenta.Trim() + "'";
-
-			using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
-			{
-				using( SqlDataReader dr = cmd.ExecuteReader() )
-				{
-					if( dr.HasRows )
-					{
-						while( dr.Read() )
-							bExisteDoc = true;
-					}
-					dr.Close();
-				}
-			}
-
-			if( bExisteDoc == false )
-				MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-
-			return bExisteDoc;
-		}
-
         public static void ReseteaSesion()
         {
             //Limpia Usuario
@@ -405,12 +242,12 @@ namespace Polsolcom.Dominio.Helpers
             Talon.nfinal = "";
             Talon.id_oper = "";
             Talon.serie = "";
-            Talon.dventa = "";
-			Talon.ncon = "";
-            Talon.tdef = "";
+            Talon.dventa = '\0';
+            Talon.ncon = "";
+            Talon.tdef = '\0';
 
-			//Limpia Especialidad
-			Especialidad.esp = "";
+            //Limpia Especialidad
+            Especialidad.esp = "";
             Especialidad.nrz = "";
             Especialidad.con = "";
             Especialidad.tcn = "";
@@ -422,7 +259,6 @@ namespace Polsolcom.Dominio.Helpers
             frmLogin.bBlanco = false;
 
         }
-
         public static void CargaTipoUsuario()
         {
             string vSQL = "";
@@ -451,13 +287,12 @@ namespace Polsolcom.Dominio.Helpers
             }
 
         }
-
         public static string TradUser(string sVariable)
         {
             string sUsuario = "";
             string vSQL = "";
 
-            vSQL = "SELECT Key_Pass AS Usuario " +
+            vSQL = "SELECT Key_Pass AS Usuario  " +
                     "FROM sysaccusers " +
                     "WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable + "' " +
                     "OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable + "' ";
@@ -511,9 +346,9 @@ namespace Polsolcom.Dominio.Helpers
                     Talon.nfinal = dr.GetValue(3).ToString();
                     Talon.id_oper = dr.GetValue(4).ToString();
                     Talon.serie = dr.GetValue(5).ToString();
-                    Talon.dventa = dr.GetValue(6).ToString();
+                    Talon.dventa = Convert.ToChar(dr.GetValue(6).ToString());
                     Talon.ncon = dr.GetValue(7).ToString();
-                    Talon.tdef = dr.GetValue(8).ToString();
+                    Talon.tdef = Convert.ToChar(dr.GetValue(8).ToString());
                 }
                 dr.Close();
             }
@@ -632,7 +467,8 @@ namespace Polsolcom.Dominio.Helpers
         public static List<Lugar>TraerLugares()
         {
             List<Lugar> ListaLugares = new List<Lugar>();
-            var vSQL = "SELECT * FROM ubigeo2005 ";
+            var vSQL = "SELECT * " +
+                    "FROM ubigeo2005 ";
             SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
             SqlDataReader drLugares = cmd.ExecuteReader();
             while (drLugares.Read())
@@ -653,8 +489,8 @@ namespace Polsolcom.Dominio.Helpers
         {
             List<Institucion> lista = new List<Institucion>();
             string vSQL;
-            vSQL = "SELECT * ";
-            vSQL = vSQL + "FROM Institucion";
+            vSQL = "SELECT *";
+            vSQL = vSQL + "FROM  Institucion";
             SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
             SqlDataReader drInstitucion = cmd.ExecuteReader();
             while (drInstitucion.Read())
@@ -688,7 +524,7 @@ namespace Polsolcom.Dominio.Helpers
         public static List<Consultorio> TraerConsultorios()
         {
             List<Consultorio> ConsultorioList = new List<Consultorio>();
-            var vSQL = "SELECT * ";
+            var vSQL = "SELECT *";
             vSQL = vSQL + "FROM  Consultorios";
             SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
             SqlDataReader drConsultorios = cmd.ExecuteReader();
@@ -716,7 +552,7 @@ namespace Polsolcom.Dominio.Helpers
         {
             List<Producto> ProductosList = new List<Producto>();
             bool statebool = false;
-            var vSQL = "SELECT * ";
+            var vSQL = "SELECT *";
             vSQL = vSQL + "FROM  Productos";
             SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
             SqlDataReader drProductos = cmd.ExecuteReader();
@@ -764,271 +600,41 @@ namespace Polsolcom.Dominio.Helpers
             return ListaEspecialistas;
         }
 
-		public static void LUbigeo( string sValor, string sTipo, ComboBox cmb )
-		{
-			string vSQL = "";
-			List<Ubigeo> cOper = new List<Ubigeo>();
+        #region Estadistica Pacientes
+        public static List<StatPatientsModel> TraerDatosPacientes()
+        {
+            SqlDataReader drStatPatientsList;
+            List<StatPatientsModel> StatPatientsList = new List<StatPatientsModel>();
+            var vSQL = Variables.PatientQuery;
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            drStatPatientsList = cmd.ExecuteReader();              
+            while (drStatPatientsList.Read())
+            {
+                StatPatientsModel oConsultorio = new StatPatientsModel()
+                {
+                    Year = Convert.ToInt32(drStatPatientsList.GetValue(0)),
+                    Month = drStatPatientsList.GetValue(1).ToString(),
+                    Fecha = Convert.ToDateTime(drStatPatientsList.GetValue(2)),
+                    Pnew = Convert.ToInt32(drStatPatientsList.GetValue(3)),
+                    PCon = Convert.ToInt32(drStatPatientsList.GetValue(4)),
+                    Ptot = Convert.ToInt32(drStatPatientsList.GetValue(5))
+                };
+                StatPatientsList.Add(oConsultorio);
+            }
+            return StatPatientsList;
+        }
 
-			cmb.DataSource = null;
-			cmb.Items.Clear();
+    }
 
-			if( sTipo.Trim().ToUpper() == "DEPARTAMENTO" )
-			{
-				vSQL = "SELECT DISTINCT departamento AS Descripcion,LEFT(id_old,2) AS IdUbigeo " + 
-						"FROM Ubigeo2005 ubigeo " + 
-						"WHERE LEFT(ubigeo, 2) <= '26' " + 
-						"ORDER BY 1";
-			}
-			else if( sTipo.Trim().ToUpper() == "PROVINCIA" )
-			{
-				vSQL = "SELECT DISTINCT provincia AS Descripcion,LEFT(id_old,4) AS IdUbigeo " + 
-						"FROM Ubigeo2005 " + 
-						"WHERE LEFT(ubigeo,2) <= '26' " + 
-						"AND LEFT(id_old,2) LIKE '%" + sValor.Trim().ToUpper() + "' " + 
-						"ORDER BY 1 ";
-			}
-			else if( sTipo.Trim().ToUpper() == "DISTRITO" )
-			{
-				vSQL = "SELECT DISTINCT distrito AS descripcion,MAX(LEFT(id_old,6)) AS IdUbigeo " + 
-						"FROM Ubigeo2005 " + 
-						"WHERE LEFT(ubigeo,2) <= '26' " +
-						"AND LEFT(id_old,4) LIKE '%" + sValor.Trim().ToUpper() + "' " +
-						"GROUP BY distrito " +
-						"ORDER BY 1 ";
-			}
+    public class StatPatientsModel
+    {
+        public int Year { get; set; }
+        public string Month { get; set; }
+        public DateTime Fecha { get; set; }
+        public int Pnew { get; set; }
+        public int PCon { get; set; }
+        public int Ptot { get; set; }
+    }
+    #endregion
 
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				try
-				{
-					if( db.State == ConnectionState.Closed )
-						db.Open();
-
-					cmb.DataSource = db.Query<Ubigeo>(vSQL).ToList();
-					cmb.DisplayMember = "Descripcion";
-				}
-				catch( Exception ex )
-				{
-					MessageBox.Show(ex.Message);
-					cmb.DataSource = cOper;
-				}
-			}
-			cmb.SelectedIndex = -1;
-		}
-
-		public static void LlenaComboBox( ComboBox cmb, string sTIPO, string vSQL = "" )
-		{
-			string sQuery = "";
-			switch( sTIPO )
-			{
-				case "MEDICO":
-					sQuery = "SELECT Ape_Paterno+' '+Ape_Materno+','+Nombres AS Descripcion,Id_Personal AS IdUbigeo " +
-							"FROM Personal " +
-							"WHERE TNCol <> '' " +
-							"UNION SELECT Descripcion,Id_Tipo " +
-							"FROM TablaTipo " +
-							"WHERE Id_Tabla IN " +
-							"(SELECT Id_Tipo " +
-							" FROM TablaTipo " +
-							" WHERE Descripcion = 'VAR_EXTRAS' " +
-							" AND Id_Tabla = '0') " +
-							"ORDER BY 1";
-					break;
-				case "INSTITUCION":
-					sQuery = "SELECT Nom_Raz_Soc AS Descripcion,TInst+Id_Inst AS IdUbigeo " +
-						 	 "FROM Institucion " +
-							 "WHERE Estado = '1' " +
-							 "AND TInst IN('T', 'M') " +
-							 "ORDER BY 1";
-					break;
-				case "FORMA_PAGO":
-					sQuery = "SELECT Descripcion, Id_Tipo AS IdUbigeo " +
-							 "FROM TablaTipo " +
-							 "WHERE Id_Tabla In " +
-							 "(SELECT Id_Tipo " +
-							 " FROM TablaTipo " +
-							 " WHERE LTrim(RTrim(Descripcion)) = 'FORMA_PAGO' " +
-							 " AND LTrim(RTrim(Id_Tabla)) = '0') " +
-							 "ORDER BY 1";
-					break;
-				case "DOC_VENTA":
-					sQuery = "SELECT Descripcion, Id_Tipo AS IdUbigeo " + 
-							 "FROM TablaTipo " + 
-							 "WHERE Id_Tabla In " + 
-							 "(SELECT Id_Tipo " + 
-							 " FROM TablaTipo " + 
-							 " WHERE LTRIM(RTRIM(Descripcion)) = 'DOC_VENTA' " + 
-							 " AND LTRIM(RTRIM(Id_Tabla)) = '0') " + 
-							 "ORDER BY 1";
-					break;
-				case "IGV":
-					sQuery = "SELECT Descripcion, Id_Tipo AS IdUbigeo " + 
-							 "FROM TablaTipo " + 
-							 "WHERE Id_Tabla In " + 
-							 "(SELECT Id_Tipo " + 
-							 " FROM TablaTipo " + 
-							 " WHERE LTRIM(RTRIM(Descripcion)) Like '%IGV%' " + 
-							 " And LTRIM(RTRIM(Id_Tabla)) = '0') " + 
-							 " And Val_Abr = '1' " + 
-							 "ORDER BY 1";
-					break;
-				case "D":
-					sQuery = "";
-					break;
-				case "SQL":
-					sQuery = vSQL;
-					break;
-			}
-
-			List<Ubigeo> cOper = new List<Ubigeo>();
-			cmb.DataSource = null;
-			cmb.Items.Clear();
-						
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				try
-				{
-					if( db.State == ConnectionState.Closed )
-						db.Open();
-
-					cmb.DataSource = db.Query<Ubigeo>(sQuery).ToList();
-					cmb.DisplayMember = "Descripcion";
-				}
-				catch( Exception ex )
-				{
-					MessageBox.Show(ex.Message);
-					cmb.DataSource = cOper;
-				}
-			}
-
-			if( cmb.Items.Count == 0 )
-				cmb.Enabled = false;
-			else
-				cmb.SelectedIndex = -1;
-		}
-
-		public static string FechaServidor(string sFormat = "DD/MM/YYYY")
-		{
-			string sFec = "";
-			string sQuery = "";
-
-			switch (sFormat)
-			{
-				case "DD/MM/YYYY":
-					sQuery = "SELECT CONVERT(VARCHAR(10),GETDATE(),103) FROM dual";
-					break;
-				case "YYYY-MM-DD":
-					sQuery = "SELECT CONVERT(VARCHAR,GETDATE(),23) FROM dual";
-					break;
-			}
-			
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				try
-				{
-					if( db.State == ConnectionState.Closed )
-						db.Open();
-
-					sFec = db.ExecuteScalar<string>(sQuery);
-				}
-				catch( Exception ex )
-				{ MessageBox.Show(ex.Message); }
-			}
-			return sFec;
-		}
-
-		public static string DevuelveQueryPaciente (string ApPaterno, string ApMaterno, string Nombres, string DNI, string IdPaciente, string NroHistoria, int Num1, int ODB)
-		{
-			string sVSQL = "";
-			int iVal     = 0;
-			int TDB      = 1; //variable seteada para sintaxis SQL Server
-
-			string sApPaterno   = ApPaterno.Trim();
-			string sApMaterno   = ApMaterno.Trim();
-			string sNombres     = Nombres.Trim();
-			string sDNI         = DNI.Trim();
-			string sIdPaciente  = IdPaciente.Trim();
-			string sNroHistoria = NroHistoria.Trim();
-
-			if(ODB == 1)
-			{
-				iVal = (sApPaterno == "" ? 0 : 1);
-				iVal = iVal + ( sApMaterno == "" ? 0 : 1);
-				iVal = iVal + ( sNombres == "" ? 0 : 1 );
-				iVal = iVal + ( sDNI == "" ? 0 : 1 );
-
-				if( iVal < 1 )
-					return "";
-
-				sVSQL = "SELECT " + ( TDB == 1 ? "Top 50 " : "" ) +
-						"P.ape_pat+' '+P.Ape_Mat+' '+P.Nombres,P.Ubigeo,P.DNI,Id_Old,'','' " + 
-					    "FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " + 
-					    "ON P.Ubigeo=U.Ubigeo WHERE 1 = 1 ";
-
-				if( sApPaterno != "")
-					sVSQL = sVSQL + "AND Ape_Pat = '" + sApPaterno + "' ";
-
-				if( sApMaterno != "" )
-					sVSQL = sVSQL + "AND Ape_Mat = '" + sApMaterno + "' ";
-
-				if( sNombres != "" )
-					sVSQL = sVSQL + "AND Nombres LIKE '" + sNombres + "%' ";
-
-				if( sDNI != "" )
-					sVSQL = sVSQL + "AND DNI = '" + sDNI + "' ";
-
-				sVSQL = sVSQL + "Order By Ape_Pat,Ape_Mat,Nombres " + ( TDB == 1 ? "" : " Limit 50" );
-			}
-			else
-			{
-				if( sDNI.Length < 8 && sIdPaciente.Length < 4 && sNroHistoria.Length == 0 )
-				{
-					if( sApPaterno == "" )
-						sApPaterno = "A";
-
-					if( sApMaterno == "" )
-						sApMaterno = "A";
-
-					if( sNombres == "" )
-						sNombres = "A";
-				}
-
-				sVSQL = "SELECT " + ( TDB == 1 ? "Top 50 " : "" ) +
-						"P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre,P.id_paciente,P.DNI,P.Id_Distrito,P.Asegurado,P.Nro_Historia ";
-
-				if( Num1 == 2 )
-					sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito ";
-
-				sVSQL = sVSQL + " FROM Pacientes P ";
-
-				if( Num1 == 2 )
-					sVSQL = sVSQL + "LEFT JOIN Ubigeo2005 U ON P.Id_Distrito = U.Id_Old ";
-
-				sVSQL = sVSQL + " WHERE 1 = 1 ";
-
-				if( sApPaterno.Length > 0)
-					sVSQL = sVSQL + "AND Ape_Paterno LIKE '" + sApPaterno + "%' ";
-
-				if( sApMaterno.Length > 0 )
-					sVSQL = sVSQL + "AND Ape_Materno LIKE '" + sApMaterno + "%' ";
-
-				if( sNombres.Length > 0 )
-					sVSQL = sVSQL + "AND Nombre LIKE '" + sNombres + "%' ";
-
-				if( sDNI.Length == 8 )
-					sVSQL = sVSQL + "AND DNI = '" + sDNI + "' ";
-				else
-					sVSQL = sVSQL + "AND DNI LIKE '" + sDNI + "%' ";
-
-				if( sIdPaciente.Length > 3 )
-					sVSQL = sVSQL + "AND Id_Paciente LIKE '" + sIdPaciente + "%' ";
-
-				if( sNroHistoria.Length > 0 )
-					sVSQL = sVSQL + "AND Nro_Historia LIKE '" + sNroHistoria + "%' ";
-
-				sVSQL = sVSQL + "ORDER BY Ape_Paterno,Ape_Materno,Nombre" + ( TDB == 1 ? "" : " Limit 50" );
-			}
-			return sVSQL;
-		}
-	}
 }

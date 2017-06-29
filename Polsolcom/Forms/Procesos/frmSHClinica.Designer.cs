@@ -135,7 +135,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			this.label8.AutoSize = true;
 			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(526, 10);
+			this.label8.Location = new System.Drawing.Point(516, 10);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(28, 13);
 			this.label8.TabIndex = 18;
@@ -145,7 +145,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(438, 10);
+			this.label7.Location = new System.Drawing.Point(428, 10);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(68, 13);
 			this.label7.TabIndex = 17;
@@ -155,7 +155,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(381, 10);
+			this.label6.Location = new System.Drawing.Point(371, 10);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(43, 13);
 			this.label6.TabIndex = 16;
@@ -165,7 +165,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(296, 10);
+			this.label5.Location = new System.Drawing.Point(286, 10);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(74, 13);
 			this.label5.TabIndex = 15;
@@ -175,7 +175,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(258, 10);
+			this.label4.Location = new System.Drawing.Point(248, 10);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(36, 13);
 			this.label4.TabIndex = 14;
@@ -195,7 +195,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(94, 10);
+			this.label2.Location = new System.Drawing.Point(84, 10);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(72, 13);
 			this.label2.TabIndex = 12;
@@ -205,17 +205,17 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(-2, 10);
+			this.label1.Location = new System.Drawing.Point(16, 10);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(89, 13);
+			this.label1.Size = new System.Drawing.Size(42, 13);
 			this.label1.TabIndex = 11;
-			this.label1.Text = "Fecha Emision";
+			this.label1.Text = "Fecha";
 			// 
 			// cmbIGV
 			// 
 			this.cmbIGV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbIGV.FormattingEnabled = true;
-			this.cmbIGV.Location = new System.Drawing.Point(523, 25);
+			this.cmbIGV.Location = new System.Drawing.Point(499, 25);
 			this.cmbIGV.Name = "cmbIGV";
 			this.cmbIGV.Size = new System.Drawing.Size(66, 21);
 			this.cmbIGV.Sorted = true;
@@ -226,7 +226,7 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			this.cmbTDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbTDoc.FormattingEnabled = true;
-			this.cmbTDoc.Location = new System.Drawing.Point(175, 25);
+			this.cmbTDoc.Location = new System.Drawing.Point(163, 25);
 			this.cmbTDoc.Name = "cmbTDoc";
 			this.cmbTDoc.Size = new System.Drawing.Size(83, 21);
 			this.cmbTDoc.Sorted = true;
@@ -235,51 +235,41 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtNHP
 			// 
-			this.txtNHP.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.txtNHP.Location = new System.Drawing.Point(450, 25);
+			this.txtNHP.Location = new System.Drawing.Point(429, 25);
 			this.txtNHP.Name = "txtNHP";
 			this.txtNHP.Size = new System.Drawing.Size(66, 20);
 			this.txtNHP.TabIndex = 6;
-			this.txtNHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtNHP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtDigitador
 			// 
-			this.txtDigitador.BackColor = System.Drawing.Color.Gold;
-			this.txtDigitador.Location = new System.Drawing.Point(371, 25);
+			this.txtDigitador.Location = new System.Drawing.Point(359, 25);
 			this.txtDigitador.Name = "txtDigitador";
-			this.txtDigitador.ReadOnly = true;
 			this.txtDigitador.Size = new System.Drawing.Size(66, 20);
 			this.txtDigitador.TabIndex = 5;
-			this.txtDigitador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtDigitador.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtNroTicket
 			// 
-			this.txtNroTicket.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.txtNroTicket.Location = new System.Drawing.Point(301, 25);
+			this.txtNroTicket.Location = new System.Drawing.Point(289, 25);
 			this.txtNroTicket.Name = "txtNroTicket";
 			this.txtNroTicket.Size = new System.Drawing.Size(66, 20);
 			this.txtNroTicket.TabIndex = 4;
-			this.txtNroTicket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtNroTicket.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtSerie
 			// 
-			this.txtSerie.BackColor = System.Drawing.Color.Gold;
-			this.txtSerie.Location = new System.Drawing.Point(262, 25);
+			this.txtSerie.Location = new System.Drawing.Point(250, 25);
 			this.txtSerie.Name = "txtSerie";
-			this.txtSerie.ReadOnly = true;
 			this.txtSerie.Size = new System.Drawing.Size(35, 20);
 			this.txtSerie.TabIndex = 3;
-			this.txtSerie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtSerie.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// cmbMVen
 			// 
 			this.cmbMVen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbMVen.FormattingEnabled = true;
-			this.cmbMVen.Location = new System.Drawing.Point(93, 25);
+			this.cmbMVen.Location = new System.Drawing.Point(81, 25);
 			this.cmbMVen.Name = "cmbMVen";
 			this.cmbMVen.Size = new System.Drawing.Size(78, 21);
 			this.cmbMVen.Sorted = true;
@@ -291,7 +281,7 @@ namespace Polsolcom.Forms.Procesos
 			this.txtFechaEmision.Location = new System.Drawing.Point(2, 25);
 			this.txtFechaEmision.Mask = "00/00/0000";
 			this.txtFechaEmision.Name = "txtFechaEmision";
-			this.txtFechaEmision.Size = new System.Drawing.Size(83, 20);
+			this.txtFechaEmision.Size = new System.Drawing.Size(75, 20);
 			this.txtFechaEmision.TabIndex = 0;
 			this.txtFechaEmision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtFechaEmision.ValidatingType = typeof(System.DateTime);
@@ -328,7 +318,6 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// btnQuitar
 			// 
-			this.btnQuitar.Enabled = false;
 			this.btnQuitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnQuitar.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitar.Image")));
 			this.btnQuitar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -343,7 +332,6 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// btnAgregar
 			// 
-			this.btnAgregar.Enabled = false;
 			this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
 			this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -400,7 +388,6 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// btnNuevo
 			// 
-			this.btnNuevo.Enabled = false;
 			this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
 			this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -517,7 +504,6 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtEmail
 			// 
-			this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
 			this.txtEmail.Location = new System.Drawing.Point(6, 135);
 			this.txtEmail.Name = "txtEmail";
 			this.txtEmail.Size = new System.Drawing.Size(332, 20);
@@ -546,17 +532,14 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtAsegurado
 			// 
-			this.txtAsegurado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtAsegurado.Location = new System.Drawing.Point(515, 97);
 			this.txtAsegurado.Name = "txtAsegurado";
 			this.txtAsegurado.Size = new System.Drawing.Size(49, 20);
 			this.txtAsegurado.TabIndex = 22;
-			this.txtAsegurado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtAsegurado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtODoc
 			// 
-			this.txtODoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtODoc.Location = new System.Drawing.Point(416, 97);
 			this.txtODoc.Name = "txtODoc";
 			this.txtODoc.Size = new System.Drawing.Size(97, 20);
@@ -565,7 +548,6 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtTelefono
 			// 
-			this.txtTelefono.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtTelefono.Location = new System.Drawing.Point(280, 97);
 			this.txtTelefono.Name = "txtTelefono";
 			this.txtTelefono.Size = new System.Drawing.Size(131, 20);
@@ -657,7 +639,6 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtDireccion
 			// 
-			this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtDireccion.Location = new System.Drawing.Point(159, 60);
 			this.txtDireccion.Name = "txtDireccion";
 			this.txtDireccion.Size = new System.Drawing.Size(264, 20);
@@ -666,12 +647,10 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtEdad
 			// 
-			this.txtEdad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtEdad.Location = new System.Drawing.Point(86, 59);
 			this.txtEdad.Name = "txtEdad";
 			this.txtEdad.Size = new System.Drawing.Size(66, 20);
 			this.txtEdad.TabIndex = 15;
-			this.txtEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtEdad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtFecNac
@@ -727,27 +706,22 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtDNI
 			// 
-			this.txtDNI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtDNI.Location = new System.Drawing.Point(376, 22);
 			this.txtDNI.Name = "txtDNI";
 			this.txtDNI.Size = new System.Drawing.Size(66, 20);
 			this.txtDNI.TabIndex = 13;
-			this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtSexo
 			// 
-			this.txtSexo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtSexo.Location = new System.Drawing.Point(306, 23);
 			this.txtSexo.Name = "txtSexo";
 			this.txtSexo.Size = new System.Drawing.Size(66, 20);
 			this.txtSexo.TabIndex = 12;
-			this.txtSexo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtSexo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// txtApeMaterno
 			// 
-			this.txtApeMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtApeMaterno.Location = new System.Drawing.Point(234, 22);
 			this.txtApeMaterno.Name = "txtApeMaterno";
 			this.txtApeMaterno.Size = new System.Drawing.Size(66, 20);
@@ -756,7 +730,6 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtApePaterno
 			// 
-			this.txtApePaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtApePaterno.Location = new System.Drawing.Point(163, 22);
 			this.txtApePaterno.Name = "txtApePaterno";
 			this.txtApePaterno.Size = new System.Drawing.Size(66, 20);
@@ -765,7 +738,6 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtNombres
 			// 
-			this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtNombres.Location = new System.Drawing.Point(87, 23);
 			this.txtNombres.Name = "txtNombres";
 			this.txtNombres.Size = new System.Drawing.Size(66, 20);
@@ -774,12 +746,10 @@ namespace Polsolcom.Forms.Procesos
 			// 
 			// txtID
 			// 
-			this.txtID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtID.Location = new System.Drawing.Point(6, 23);
 			this.txtID.Name = "txtID";
 			this.txtID.Size = new System.Drawing.Size(66, 20);
 			this.txtID.TabIndex = 8;
-			this.txtID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// label14

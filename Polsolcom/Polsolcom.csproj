@@ -98,8 +98,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="tentec.windows.igridlib.igrid.v5.0, Version=5.0.15.0, Culture=neutral, PublicKeyToken=9d47002745f2416c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="tentec.windows.igridlib.igrid.v5.0">
       <HintPath>.\tentec.windows.igridlib.igrid.v5.0.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -151,7 +150,6 @@
     <Compile Include="Dominio\Modelos\Operativo.cs" />
     <Compile Include="Dominio\Modelos\Personal.cs" />
     <Compile Include="Dominio\Modelos\Producto.cs" />
-    <Compile Include="Dominio\Modelos\RangoVenta.cs" />
     <Compile Include="Dominio\Modelos\Talon.cs" />
     <Compile Include="Dominio\Modelos\Usuario.cs" />
     <Compile Include="Dominio\Helpers\WaitWindow.cs" />
@@ -936,6 +934,7 @@
     <Content Include="Imagenes\US-dollar-icon.png" />
     <Content Include="Imagenes\web-layout-icon.png" />
     <Content Include="Resources\login.png" />
+    <Content Include="tentec.windows.igridlib.igrid.v5.0.dll" />
     <None Include="Imagenes\login.png" />
   </ItemGroup>
   <ItemGroup>
