@@ -17,7 +17,6 @@ namespace Polsolcom.Forms
 		//define variable para SQL
 		string vSQL = "";
 		DataSet dt = new DataSet();
-		DataTable dtg = new DataTable();
 		Chart chartFinal = new Chart();
 
 		public frmGenEtareo() 
