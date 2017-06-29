@@ -39,32 +39,8 @@ namespace Polsolcom.Forms
                 //crea el comando para ejecutar las sentencias SQL
                 Conexion.CMD.Connection = Conexion.CNN;
 
-                //consulta que trae los datos del centro operativo
-                vSQL = "SELECT O.Descripcion,O.Id_Oper,O.Estado,MO.Descripcion As Mod_Oper, ";
-                vSQL = vSQL + " O.Id_Distrito,O.Uni_Org,O.Fil_Ubi,I.Nom_Raz_Soc,I.RUC,I.Direccion,U.Distrito ";
-                vSQL = vSQL + " FROM Operativo O INNER JOIN ";
-                vSQL = vSQL + " (SELECT Id_Tipo,Descripcion ";
-                vSQL = vSQL + "  FROM TablaTipo ";
-                vSQL = vSQL + "  WHERE Id_Tabla In ";
-                vSQL = vSQL + "  (SELECT Id_Tipo ";
-                vSQL = vSQL + "   FROM TablaTipo ";
-                vSQL = vSQL + "   WHERE LTrim(RTrim(Descripcion))='MODALIDAD_OPERATIVO' ";
-                vSQL = vSQL + "   And LTrim(RTrim(Id_Tabla))='0')) MO ";
-                vSQL = vSQL + " On O.Mod_Oper=MO.Id_Tipo INNER JOIN Institucion I ";
-                vSQL = vSQL + " On O.Id_Emp=I.TInst+I.Id_Inst INNER JOIN Ubigeo2005 U ";
-                vSQL = vSQL + " On I.Id_Distrito=U.Id_Old ";
-                vSQL = vSQL + " ORDER BY 2";
-                Conexion.CMD.CommandText = vSQL;
-                using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-                {//declarandolo de esta manera el datareader se puede usar nuevamente mas adelante
-                    if ( drLectura.HasRows )
-                        General.LlenaOperativo(drLectura);
-                    else
-                    {
-                        MessageBox.Show("No se tiene datos del operativo." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                        Application.Exit();
-                    }
-                }
+                General.LlenaOperativo();
+
                 txtOperativo.Text = Operativo.descripcion;
 
                 //consulta que trae los datos del usuario, tipo de usuario y nombre
@@ -470,28 +446,7 @@ RegresaTalon:
 			if ( DialogResult != DialogResult.OK )
 				return;
 
-			//vuelve a actualizar los datos del operativo
-			vSQL = "SELECT O.Descripcion,O.Id_Oper,O.Estado,MO.Descripcion As Mod_Oper, ";
-            vSQL = vSQL + " O.Id_Distrito,O.Uni_Org,O.Fil_Ubi,I.Nom_Raz_Soc,I.RUC,I.Direccion,U.Distrito ";
-            vSQL = vSQL + " FROM Operativo O INNER JOIN ";
-            vSQL = vSQL + " (SELECT Id_Tipo,Descripcion ";
-            vSQL = vSQL + "  FROM TablaTipo ";
-            vSQL = vSQL + "  WHERE Id_Tabla In ";
-            vSQL = vSQL + "  (SELECT Id_Tipo ";
-            vSQL = vSQL + "   FROM TablaTipo ";
-            vSQL = vSQL + "   WHERE LTrim(RTrim(Descripcion))='MODALIDAD_OPERATIVO' ";
-            vSQL = vSQL + "   And LTrim(RTrim(Id_Tabla))='0')) MO ";
-            vSQL = vSQL + " On O.Mod_Oper=MO.Id_Tipo INNER JOIN Institucion I ";
-            vSQL = vSQL + " On O.Id_Emp=I.TInst+I.Id_Inst INNER JOIN Ubigeo2005 U ";
-            vSQL = vSQL + " On I.Id_Distrito=U.Id_Old ";
-            vSQL = vSQL + " ORDER BY 2";
-            Conexion.CMD.CommandText = vSQL;
-            using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
-            {
-                if ( drLectura.HasRows )
-                    General.LlenaOperativo(drLectura);
-            }
-
+            General.LlenaOperativo();
         }
 
         private void frmLogin_Activated(object sender, EventArgs e)

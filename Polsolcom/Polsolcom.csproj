@@ -104,6 +104,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dominio\Data\Consolidado.cs">
+      <DependentUpon>Consolidado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ConsultoriosDS.cs">
+      <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ConsultoriosDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Controls\CheckBoxComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,6 +134,11 @@
     </Compile>
     <Compile Include="Dominio\Controls\PopupComboBox.designer.cs">
       <DependentUpon>PopupComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\CProductosDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CProductosDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\EstadisticaPacientes.cs">
       <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
@@ -148,6 +164,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\TipoProductoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Helpers\Serie.cs" />
     <Compile Include="Dominio\Modelos\Consultorio.cs" />
     <Compile Include="Dominio\Modelos\Especialidad.cs" />
@@ -170,6 +191,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptCProductos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCProductos.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Dominio\Reportes\rptEstPac2.cs">
       <DependentUpon>rptEstPac2.rpt</DependentUpon>
@@ -515,11 +542,11 @@
     <Compile Include="Forms\Herramientas\frmTalonario.Designer.cs">
       <DependentUpon>frmTalonario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consultas\frmTarProducts.cs">
+    <Compile Include="Forms\Consultas\frmCProductos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consultas\frmTarProducts.Designer.cs">
-      <DependentUpon>frmTarProducts.cs</DependentUpon>
+    <Compile Include="Forms\Consultas\frmCProductos.Designer.cs">
+      <DependentUpon>frmCProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Principal\frmTPCam.cs">
       <SubType>Form</SubType>
@@ -572,6 +599,10 @@
       <DependentUpon>Variables.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Dominio\Reportes\rptCProductos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCProductos.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dominio\Reportes\rptEstPac2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEstPac2.cs</LastGenOutput>
@@ -753,8 +784,8 @@
     <EmbeddedResource Include="Forms\Herramientas\frmTalonario.resx">
       <DependentUpon>frmTalonario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consultas\frmTarProducts.resx">
-      <DependentUpon>frmTarProducts.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Consultas\frmCProductos.resx">
+      <DependentUpon>frmCProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Principal\frmTPCam.resx">
       <DependentUpon>frmTPCam.cs</DependentUpon>
@@ -793,6 +824,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Variables.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Dominio\Data\ConsultoriosDS.xsc">
+      <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ConsultoriosDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ConsultoriosDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\ConsultoriosDS.xss">
+      <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\Consolidado.xsc">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </None>
@@ -803,6 +845,17 @@
     </None>
     <None Include="Dominio\Data\Consolidado.xss">
       <DependentUpon>Consolidado.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\CProductosDS.xsc">
+      <DependentUpon>CProductosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\CProductosDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CProductosDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\CProductosDS.xss">
+      <DependentUpon>CProductosDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\EstadisticaPacientes.xsc">
       <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
@@ -847,6 +900,17 @@
     </None>
     <None Include="Dominio\Data\TipoDocumento.xss">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoProductoDS.xsc">
+      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoProductoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TipoProductoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\TipoProductoDS.xss">
+      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Polsolcom_TemporaryKey.pfx" />
