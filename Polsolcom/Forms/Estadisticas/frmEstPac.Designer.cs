@@ -253,6 +253,7 @@
             this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.fGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Name = "frmEstPac";
             this.Load += new System.EventHandler(this.frmEstPac_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEstPac_KeyDown);
