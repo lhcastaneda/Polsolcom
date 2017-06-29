@@ -268,20 +268,40 @@ namespace Polsolcom.Dominio.Helpers
             vSQL = "SELECT nombres + ' ' + ape_paterno + ' ' + ape_materno AS persona " +
                     "FROM personal " +
                     "WHERE Id_Personal = '" + id_usuario + "' ";
-            using (SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN))
-            {
-                using (SqlDataReader drUsuario = cmd.ExecuteReader())
-                {
-                    if (drUsuario.HasRows)
-                    {
-                        while (drUsuario.Read())
-                            sUsuario = drUsuario.GetValue(0).ToString();
-                    }
-                    drUsuario.Close();
-                }
-            }
+			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+			{
+				try
+				{
+					if( db.State == ConnectionState.Closed )
+						db.Open();
+
+					sUsuario = db.ExecuteScalar<string>(vSQL);
+				}
+				catch( Exception ex )
+				{ MessageBox.Show(ex.Message); }
+			}
             return sUsuario;
         }
+
+		public static string TomaValor( string sSQL )
+		{
+			string sResult = "";
+
+			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+			{
+				try
+				{
+					if( db.State == ConnectionState.Closed )
+						db.Open();
+
+					sResult = db.ExecuteScalar<string>(sSQL);
+				}
+				catch( Exception ex )
+				{ MessageBox.Show(ex.Message); }
+			}
+			return sResult;
+
+		}
 
 		public static string Frase ( string PT )
 		{
@@ -327,9 +347,7 @@ namespace Polsolcom.Dominio.Helpers
 					sValor = sValor.Trim();
 				}
 				catch( Exception ex )
-				{
-					MessageBox.Show(ex.Message);
-				}
+				{ MessageBox.Show(ex.Message); }
 			}
 
 			if( PT.Trim() == "D" )
@@ -345,9 +363,7 @@ namespace Polsolcom.Dominio.Helpers
 						int vRes = db.Execute(vSQL);
 					}
 					catch( Exception ex )
-					{
-						MessageBox.Show(ex.Message);
-					}
+					{ MessageBox.Show(ex.Message); }
 				}
 			}
 			return sValor;
@@ -461,19 +477,22 @@ namespace Polsolcom.Dominio.Helpers
                     "FROM sysaccusers " +
                     "WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable + "' " +
                     "OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable + "' ";
-            using (SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN))
-            {
-                using (SqlDataReader drUsuario = cmd.ExecuteReader())
-                {
-                    if (drUsuario.HasRows)
-                    {
-                        while (drUsuario.Read())
-                            sUsuario = cryptgr(drUsuario.GetValue(0).ToString(), false, 1);
-                    }
-                    drUsuario.Close();
-                }
-            }
+
+			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+			{
+				try
+				{
+					if( db.State == ConnectionState.Closed )
+						db.Open();
+
+					sUsuario = db.ExecuteScalar<string>(vSQL);
+				}
+				catch( Exception ex )
+				{ MessageBox.Show(ex.Message); }
+			}
+			sUsuario = cryptgr(sUsuario, false, 1);
             return sUsuario;
+
         }
         #endregion
 
@@ -774,10 +793,10 @@ namespace Polsolcom.Dominio.Helpers
 
 			if( sTipo.Trim().ToUpper() == "DEPARTAMENTO" )
 			{
-				vSQL = "SELECT DISTINCT departamento AS Descripcion,LEFT(id_old,2) AS IdUbigeo " + 
-						"FROM Ubigeo2005 ubigeo " + 
-						"WHERE LEFT(ubigeo, 2) <= '26' " + 
-						"ORDER BY 1";
+				vSQL = "SELECT DISTINCT departamento AS Descripcion,LEFT(id_old,2) AS IdUbigeo " +
+						"FROM Ubigeo2005 " +
+						"WHERE LEFT(ubigeo, 2) <= '26' " +
+						"ORDER BY 1 ";
 			}
 			else if( sTipo.Trim().ToUpper() == "PROVINCIA" )
 			{
@@ -825,7 +844,7 @@ namespace Polsolcom.Dominio.Helpers
 					sQuery = "SELECT Ape_Paterno+' '+Ape_Materno+','+Nombres AS Descripcion,Id_Personal AS IdUbigeo " +
 							"FROM Personal " +
 							"WHERE TNCol <> '' " +
-							"UNION SELECT Descripcion,Id_Tipo " +
+							"UNION SELECT '** '+Descripcion+' **' AS Descripcion,Id_Tipo " +
 							"FROM TablaTipo " +
 							"WHERE Id_Tabla IN " +
 							"(SELECT Id_Tipo " +
@@ -872,8 +891,9 @@ namespace Polsolcom.Dominio.Helpers
 							 " And Val_Abr = '1' " + 
 							 "ORDER BY 1";
 					break;
-				case "D":
-					sQuery = "";
+				case "SERIE":
+					sQuery = "SELECT serie+' - '+autoriz AS Descripcion,id_serie AS IdUbigeo " +
+							 "FROM serie ORDER BY Id_Serie";
 					break;
 				case "SQL":
 					sQuery = vSQL;
@@ -883,7 +903,7 @@ namespace Polsolcom.Dominio.Helpers
 			List<Ubigeo> cOper = new List<Ubigeo>();
 			cmb.DataSource = null;
 			cmb.Items.Clear();
-						
+
 			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
 			{
 				try

@@ -61,12 +61,6 @@ namespace Polsolcom.Forms.Herramientas
 			fGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
 			fGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
 
-			fGrid.Cols[3].Text = "Id_Distrito";
-			fGrid.Cols[3].Width = 1;
-			fGrid.Cols[3].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
-
 			fGrid.Cols[4].Text = "Id_Asegurado";
 			fGrid.Cols[4].Width = 1;
 			fGrid.Cols[4].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
@@ -159,12 +153,24 @@ namespace Polsolcom.Forms.Herramientas
 			{
 				if( General.ODB == 0 )
 				{
-					
+					if(fGrid.Cells[fGrid.CurRow.Index, 4].Text == "A")
+					{
+						MessageBox.Show( "El registro esta anulado, consulte con el administrador del sistema...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1 );
+						General.ODB = 0;
+						lblIdPaciente.Text = "";
+						DialogResult = DialogResult.Cancel;
+						return;
+					}
+					lblIdPaciente.Text = fGrid.Cells[fGrid.CurRow.Index, 1].Text;
+					DialogResult = DialogResult.OK;
+					Close();
 				}
 				else
 				{
-					MessageBox.Show(fGrid.Cells[fGrid.CurRow.Index, 0].Text);
-
+					General.ODB = 1;
+					lblIdPaciente.Text = fGrid.Cells[fGrid.CurRow.Index, 2].Text;
+					DialogResult = DialogResult.OK;
+					Close();
 				}
 			}
 		}

@@ -280,7 +280,7 @@ Regresa:
 										"FROM Talon " +
 										"WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' " +
 										"AND Id_Oper = '" + Operativo.id_oper + "' " +
-										"AND Fecha >= CAST('" + Convert.ToDateTime(sFecTalon).ToString("yyyy-MM-dd")  + "' AS smalldatetime) " +
+										"AND Fecha >= CONVERT(Datetime, '" + Convert.ToDateTime(sFecTalon).ToString("yyyy-MM-dd")  + "', 120) " +
 										"AND LTrim(RTrim(NCon)) <> '' ";
 								using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
 								{

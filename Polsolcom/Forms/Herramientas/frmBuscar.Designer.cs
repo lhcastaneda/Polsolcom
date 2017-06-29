@@ -29,6 +29,7 @@ namespace Polsolcom.Forms.Herramientas
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.lblIdPaciente = new System.Windows.Forms.Label();
 			this.txtDNI = new System.Windows.Forms.TextBox();
 			this.txtNombres = new System.Windows.Forms.TextBox();
 			this.txtAPMaterno = new System.Windows.Forms.TextBox();
@@ -44,6 +45,7 @@ namespace Polsolcom.Forms.Herramientas
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.lblIdPaciente);
 			this.groupBox1.Controls.Add(this.txtDNI);
 			this.groupBox1.Controls.Add(this.txtNombres);
 			this.groupBox1.Controls.Add(this.txtAPMaterno);
@@ -57,6 +59,14 @@ namespace Polsolcom.Forms.Herramientas
 			this.groupBox1.Size = new System.Drawing.Size(548, 49);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
+			// 
+			// lblIdPaciente
+			// 
+			this.lblIdPaciente.AutoSize = true;
+			this.lblIdPaciente.Location = new System.Drawing.Point(403, 7);
+			this.lblIdPaciente.Name = "lblIdPaciente";
+			this.lblIdPaciente.Size = new System.Drawing.Size(0, 13);
+			this.lblIdPaciente.TabIndex = 1;
 			// 
 			// txtDNI
 			// 
@@ -194,5 +204,6 @@ namespace Polsolcom.Forms.Herramientas
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private TenTec.Windows.iGridLib.iGrid fGrid;
+		public System.Windows.Forms.Label lblIdPaciente;
 	}
 }
