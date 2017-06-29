@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EstadisticaPacientes" targetNamespace="http://tempuri.org/EstadisticaPacientes.xsd" xmlns:mstns="http://tempuri.org/EstadisticaPacientes.xsd" xmlns="http://tempuri.org/EstadisticaPacientes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PolsolcomConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PolsolcomConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Polsolcom.Properties.Settings.GlobalReference.Default.PolsolcomConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EstadisticaPacientes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="EstadisticaPacientes" msprop:Generator_UserDSName="EstadisticaPacientes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="EstadisticaPacientes" msprop:Generator_TableClassName="EstadisticaPacientesDataTable" msprop:Generator_TableVarName="tableEstadisticaPacientes" msprop:Generator_RowChangedName="EstadisticaPacientesRowChanged" msprop:Generator_TablePropName="_EstadisticaPacientes" msprop:Generator_RowDeletingName="EstadisticaPacientesRowDeleting" msprop:Generator_RowChangingName="EstadisticaPacientesRowChanging" msprop:Generator_RowEvHandlerName="EstadisticaPacientesRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadisticaPacientesRowDeleted" msprop:Generator_RowClassName="EstadisticaPacientesRow" msprop:Generator_UserTableName="EstadisticaPacientes" msprop:Generator_RowEvArgName="EstadisticaPacientesRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Año" msprop:Generator_ColumnVarNameInTable="columnAño" msprop:Generator_ColumnPropNameInRow="Año" msprop:Generator_ColumnPropNameInTable="AñoColumn" msprop:Generator_UserColumnName="Año" type="xs:int" minOccurs="0" />
+              <xs:element name="Mes" msprop:Generator_ColumnVarNameInTable="columnMes" msprop:Generator_ColumnPropNameInRow="Mes" msprop:Generator_ColumnPropNameInTable="MesColumn" msprop:Generator_UserColumnName="Mes" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PNew" msprop:Generator_ColumnVarNameInTable="columnPNew" msprop:Generator_ColumnPropNameInRow="PNew" msprop:Generator_ColumnPropNameInTable="PNewColumn" msprop:Generator_UserColumnName="PNew" type="xs:int" minOccurs="0" />
+              <xs:element name="POld" msprop:Generator_ColumnVarNameInTable="columnPOld" msprop:Generator_ColumnPropNameInRow="POld" msprop:Generator_ColumnPropNameInTable="POldColumn" msprop:Generator_UserColumnName="POld" type="xs:int" minOccurs="0" />
+              <xs:element name="PTot" msprop:Generator_ColumnVarNameInTable="columnPTot" msprop:Generator_ColumnPropNameInRow="PTot" msprop:Generator_ColumnPropNameInTable="PTotColumn" msprop:Generator_UserColumnName="PTot" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

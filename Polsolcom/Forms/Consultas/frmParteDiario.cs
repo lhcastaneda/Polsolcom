@@ -321,213 +321,217 @@ namespace Polsolcom.Forms
 		{
 			try
 			{
-				//ingresa fecha del reporte, no debe ser mayor que la fecha actual
-				if ( Convert.ToDateTime(txtFecha.Text) > DateTime.Today )
-				{
-					MessageBox.Show("Fecha del reporte no debe ser mayor que la fecha actual.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-					txtFecha.Focus();
-					return;
-				}
 
-				//selecciona opcion de reporte cmbOpciones
-				if ( cmbOpciones.SelectedIndex == -1 )
-				{
-					MessageBox.Show("Debe seleccionar un tipo de reporte a generar.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-					cmbOpciones.Focus();
-					return;
-				}
-				else if ( cmbOpciones.SelectedIndex == 0 )
-				{//Parte de Atención Diaria
-					vSQL = "Select C.Descripcion AS Especialidad, B.Bus, Serie + '-' + Nro_Ticket AS Ticket, " +
-							"P.Ape_Paterno + ' ' + P.Ape_Materno + ' ' + P.Nombre AS Completo, " +
-							"P.Edad, CASE WHEN P.Sexo = 'M' THEN 'MASCULINO' ELSE 'FEMENINO' END AS Sexo, " +
-							"CB.Nro_Historia,CB.Fecha_Atencion, (SELECT DISTINCT Descripcion FROM TablaTipo T1 " +
-							"WHERE T1.Id_Tipo = CB.turno " +
-							"AND EXISTS (" +
-							" SELECT 1 " +
-							" FROM TablaTipo T2 " + 
-							" WHERE T1.Id_Tabla = T2.Id_Tipo " +
-							" AND LTRIM(RTRIM(T2.Descripcion)) = 'TURNOS' " +
-							" AND LTRIM(RTRIM(T2.Id_Tabla)) = '0')) AS Turno, " +
-							" M.Ape_Paterno + ' ' + M.Ape_Materno + ' ' + M.Nombres AS CMP,DC.Cie10 AS prdg, " +
-							" LTrim(RTrim(DC.Procedimiento)) AS prcn " +
-							"FROM Cab_Cie10 CB Inner Join Tickets T " +
-							"On CB.Nro_Historia = T.Nro_Historia " +
-							"Inner Join Pacientes P " +
-							"On T.Id_Paciente = P.Id_Paciente " +
-							"Left Join Det_Cie10 DC " +
-							"On CB.Nro_Historia = DC.Nro_Historia " +
-							"Inner Join Personal M " +
-							"On CB.CMP = M.Id_Personal " +
-							"Inner Join Buses B " +
-							"On CB.Id_Bus = B.Id_Bus " +
-							"Inner Join Consultorios C " +
-							"On B.Id_Esp = C.Id_Consultorio " +
-							"Where CONVERT(VARCHAR,cb.fecha_atencion, 103) = '" + txtFecha.Text + "' " +
-							"And Left(CB.Nro_Historia,3) = '" + Operativo.id_oper + "'";
-				}
-				else if ( cmbOpciones.SelectedIndex == 1 )
-				{//Consolidado de Atenciones
-					vSQL = "Select C.Descripcion Consu,B.Bus,X.Descripcion Turn,Ape_Paterno+' ' + Ape_Materno + Case " +
-							"Nombres When '' Then '' Else ', ' End + Nombres Completo,P.Descripcion Producto, " +
-							"Sum(D.Cantidad) Cantidad,D.Monto Precio,Sum(D.Cantidad*D.Monto) Total " +
-							"From Cab_Cie10 CB Inner Join Tickets T " +
-							"On CB.Nro_Historia = T.Nro_Historia " +
-							"Inner Join Detalles D " +
-							"On T.Nro_Historia = D.Nro_Historia " +
-							"Inner Join Productos P " +
-							"On D.Id_Producto = P.Id_Producto " +
-							"Inner Join Buses B " +
-							"On CB.Id_Bus = B.Id_Bus " +
-							"Inner Join Consultorios C " +
-							"On B.Id_Esp = C.Id_Consultorio " +
-							"Inner Join " +
-							"(Select Id_Tipo,Descripcion " +
-							" From TablaTipo " +
-							" Where Id_Tabla In " +
-							" (Select Id_Tipo " +
-							"  From TablaTipo " +
-							"  Where Descripcion = 'TURNOS' " +
-							"  And Id_Tabla = '0')) X " +
-							"On CB.Turno = X.Id_Tipo " +
-							"Inner Join Personal M " +
-							"On CB.CMP = M.Id_Personal " +
-							"Where CONVERT(VARCHAR,fecha_atencion, 103) = '" + txtFecha.Text + "' " +
-							"And Left(CB.Nro_Historia,3) = '" + Operativo.id_oper + "'";
-				}
-				else if ( cmbOpciones.SelectedIndex == 2 )
-				{//Consolidado de Atenciones
-					vSQL = "Select C.Descripcion Especialidad,B.Bus Consultorio,X.Descripcion Turno,Ape_Paterno+' '+Ape_Materno+Case" +
-							" Nombres When '' Then '' Else ', ' End + Nombres Especialista,P.Descripcion Producto," +
-							" Sum(D.Cantidad) Cantidad,D.Monto Precio,Sum(D.Cantidad*D.Monto) Total" +
-							" From Cab_Cie10 CB Inner Join Tickets T" +
-							" On CB.Nro_Historia = T.Nro_Historia" +
-							" Inner Join Detalles D" +
-							" On T.Nro_Historia = D.Nro_Historia" +
-							" Inner Join Productos P" +
-							" On D.Id_Producto = P.Id_Producto" +
-							" Inner Join Buses B" +
-							" On CB.Id_Bus = B.Id_Bus" +
-							" Inner Join Consultorios C" +
-							" On B.Id_Esp = C.Id_Consultorio" +
-							" Inner Join" +
-							" (Select Id_Tipo,Descripcion" +
-							"  From TablaTipo" +
-							"  Where Id_Tabla" +
-							"  In (Select Id_Tipo" +
-							" 	   From TablaTipo" +
-							"      Where Descripcion = 'TURNOS'" +
-							"      And Id_Tabla = '0')) X" +
-							" On CB.Turno = X.Id_Tipo" +
-							" Inner Join" +
-							" (Select Ape_Paterno,Ape_Materno,Nombres,Id_Personal" +
-							"  From Personal" +
-							"  Union All Select Descripcion,'','', Id_Tipo " +
-							"  From TablaTipo" +
-							"  Where Id_Tabla In" +
-							"  (Select Id_Tipo" +
-							"   From TablaTipo" +
-							"   Where Descripcion = 'VAR_EXTRAS'" +
-							"   And Id_Tabla = '0')) M" +
-							" On T.CMP = M.Id_Personal" +
-							" Where CONVERT(VARCHAR,fecha_atencion, 103) = '" + txtFecha.Text + "' " +
-							" And Left(CB.Nro_Historia,3) = '" + Operativo.id_oper + "'";
-				}
-
-				//si la especialidad esta en 'ECOGRAFIA', 'RAYOS X', 'MAMOGRAFIA' entonces D.Pagado <> ''
-				int iCantE = CuentaEspecialidad(Operativo.id_oper, txtFecha.Text);
-
-				if ( cmbOpciones.SelectedIndex > 0 && iCantE > 0 )
-				vSQL = vSQL + "And NOT D.Pagado = '' ";
-			
-				//selecciona especialidad cmbEspecialidad
-				if ( cmbEspecialidad.SelectedIndex == -1 )
-				{
-					MessageBox.Show("Debe seleccionar una especialidad.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-					cmbEspecialidad.Focus();
-					return;
-				}
-				else
-					vEspecialidad = (Combos)cmbEspecialidad.SelectedItem;
-			 
-				//selecciona consultorio cmbConsultorio
-				if ( cmbConsultorio.SelectedIndex == -1 )
-				{
-					MessageBox.Show("Debe seleccionar un consultorio.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-					cmbConsultorio.Focus();
-					return;
-				}
-				else
-					vConsultorio = (Combos)cmbConsultorio.SelectedItem;
-			
-				//selecciona especialista cmbEspecialista
-				if ( cmbEspecialista.SelectedIndex == -1 )
-				{
-					MessageBox.Show("Debe seleccionar un especialista.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-					cmbEspecialista.Focus();
-					return;
-				}
-				else
-					vEspecialista = (Combos)cmbEspecialista.SelectedItem;
-
-				//selecciona turno cmbTurno
-				if ( cmbTurno.SelectedIndex == -1 )
-				{
-					MessageBox.Show("Debe seleccionar un turno.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-					cmbTurno.Focus();
-					return;
-				}
-				else
-					vTurno = (Combos)cmbTurno.SelectedItem;
-
-				//agrega especialidad al query de los 3 tipos
-				if ( vEspecialidad.id_tipo != "TODOS" )
-					vSQL = vSQL + "And C.Id_Consultorio = '" + vEspecialidad.id_tipo + "' ";
-
-				//agrega consultorio al query de los 3 tipos
-				if ( vConsultorio.id_tipo != "TODOS" )
-					vSQL = vSQL + "And CB.Id_Bus = '" + vConsultorio.id_tipo + "' ";
-
-				//agrega especialista al query de los 3 tipos
-				if ( vEspecialista.id_tipo != "TODOS" )
-					vSQL = vSQL + "And CB.CMP = '" + vEspecialista.id_tipo + "' ";
-
-				//agrega turno al query de los 3 tipos
-				if ( vTurno.id_tipo != "TODOS" )
-					vSQL = vSQL + "And CB.Turno = '" + vTurno.id_tipo + "' ";
-
-				//agrega ordenacion al query Parte de Atención Diaria
-				if ( cmbOpciones.SelectedIndex == 0 )
-					vSQL = vSQL + "Order By C.Descripcion,B.Bus,CB.Fecha_Atencion,CB.Turno ";
-
-				//agrega agrupacion y ordenacion al query Consolidado de Atenciones y de Consolidado de Derivaciones
-				if ( cmbOpciones.SelectedIndex > 0 )
-				{
-					vSQL = vSQL + "Group By C.Descripcion,B.Bus,X.Descripcion,Ape_Paterno,Ape_Materno,Nombres,P.Descripcion,D.Monto ";
-					vSQL = vSQL + "Order By 1,2,3,4,5";
-				}
-			
-				//genera reporte y carga los datos
-				object result = WaitWindow.Show(WorkerMethod, "Generando el reporte...");
-				if ( result == null )
-				{
-					MessageBox.Show("No se pudo procesar el reporte.");
-					return;
-				}
-
-				//llama al formulario que muestra el reporte
-				frmCRViewer frg = new frmCRViewer(rpt);
-				frg.ShowDialog();
+			//ingresa fecha del reporte, no debe ser mayor que la fecha actual
+			if ( Convert.ToDateTime(txtFecha.Text) > DateTime.Today )
+			{
+				MessageBox.Show("Fecha del reporte no debe ser mayor que la fecha actual.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				txtFecha.Focus();
+				return;
 			}
+
+			//selecciona opcion de reporte cmbOpciones
+			if ( cmbOpciones.SelectedIndex == -1 )
+			{
+				MessageBox.Show("Debe seleccionar un tipo de reporte a generar.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				cmbOpciones.Focus();
+				return;
+			}
+			else if ( cmbOpciones.SelectedIndex == 0 )
+			{//Parte de Atención Diaria
+				vSQL = "Select C.Descripcion AS Especialidad, B.Bus, Serie + '-' + Nro_Ticket AS Ticket, " +
+						"P.Ape_Paterno + ' ' + P.Ape_Materno + ' ' + P.Nombre AS Completo, " +
+						"P.Edad, CASE WHEN P.Sexo = 'M' THEN 'MASCULINO' ELSE 'FEMENINO' END AS Sexo, " +
+						"CB.Nro_Historia,CB.Fecha_Atencion, (SELECT DISTINCT Descripcion FROM TablaTipo T1 " +
+						"WHERE T1.Id_Tipo = CB.turno " +
+						"AND EXISTS (" +
+						" SELECT 1 " +
+						" FROM TablaTipo T2 " + 
+						" WHERE T1.Id_Tabla = T2.Id_Tipo " +
+						" AND LTRIM(RTRIM(T2.Descripcion)) = 'TURNOS' " +
+						" AND LTRIM(RTRIM(T2.Id_Tabla)) = '0')) AS Turno, " +
+						" M.Ape_Paterno + ' ' + M.Ape_Materno + ' ' + M.Nombres AS CMP,DC.Cie10 AS prdg, " +
+						" LTrim(RTrim(DC.Procedimiento)) AS prcn " +
+						"FROM Cab_Cie10 CB Inner Join Tickets T " +
+						"On CB.Nro_Historia = T.Nro_Historia " +
+						"Inner Join Pacientes P " +
+						"On T.Id_Paciente = P.Id_Paciente " +
+						"Left Join Det_Cie10 DC " +
+						"On CB.Nro_Historia = DC.Nro_Historia " +
+						"Inner Join Personal M " +
+						"On CB.CMP = M.Id_Personal " +
+						"Inner Join Buses B " +
+						"On CB.Id_Bus = B.Id_Bus " +
+						"Inner Join Consultorios C " +
+						"On B.Id_Esp = C.Id_Consultorio " +
+						"Where CONVERT(VARCHAR,cb.fecha_atencion, 103) = '" + txtFecha.Text + "' " +
+						"And Left(CB.Nro_Historia,3) = '" + Operativo.id_oper + "'";
+			}
+			else if ( cmbOpciones.SelectedIndex == 1 )
+			{//Consolidado de Atenciones
+				vSQL = "Select C.Descripcion Consu,B.Bus,X.Descripcion Turn,Ape_Paterno+' ' + Ape_Materno + Case " +
+						"Nombres When '' Then '' Else ', ' End + Nombres Completo,P.Descripcion Producto, " +
+						"Sum(D.Cantidad) Cantidad,D.Monto Precio,Sum(D.Cantidad*D.Monto) Total " +
+						"From Cab_Cie10 CB Inner Join Tickets T " +
+						"On CB.Nro_Historia = T.Nro_Historia " +
+						"Inner Join Detalles D " +
+						"On T.Nro_Historia = D.Nro_Historia " +
+						"Inner Join Productos P " +
+						"On D.Id_Producto = P.Id_Producto " +
+						"Inner Join Buses B " +
+						"On CB.Id_Bus = B.Id_Bus " +
+						"Inner Join Consultorios C " +
+						"On B.Id_Esp = C.Id_Consultorio " +
+						"Inner Join " +
+						"(Select Id_Tipo,Descripcion " +
+						" From TablaTipo " +
+						" Where Id_Tabla In " +
+						" (Select Id_Tipo " +
+						"  From TablaTipo " +
+						"  Where Descripcion = 'TURNOS' " +
+						"  And Id_Tabla = '0')) X " +
+						"On CB.Turno = X.Id_Tipo " +
+						"Inner Join Personal M " +
+						"On CB.CMP = M.Id_Personal " +
+						"Where CONVERT(VARCHAR,fecha_atencion, 103) = '" + txtFecha.Text + "' " +
+						"And Left(CB.Nro_Historia,3) = '" + Operativo.id_oper + "'";
+			}
+			else if ( cmbOpciones.SelectedIndex == 2 )
+			{//Consolidado de Atenciones
+				vSQL = "Select C.Descripcion Especialidad,B.Bus Consultorio,X.Descripcion Turno,Ape_Paterno+' '+Ape_Materno+Case" +
+						" Nombres When '' Then '' Else ', ' End + Nombres Especialista,P.Descripcion Producto," +
+						" Sum(D.Cantidad) Cantidad,D.Monto Precio,Sum(D.Cantidad*D.Monto) Total" +
+						" From Cab_Cie10 CB Inner Join Tickets T" +
+						" On CB.Nro_Historia = T.Nro_Historia" +
+						" Inner Join Detalles D" +
+						" On T.Nro_Historia = D.Nro_Historia" +
+						" Inner Join Productos P" +
+						" On D.Id_Producto = P.Id_Producto" +
+						" Inner Join Buses B" +
+						" On CB.Id_Bus = B.Id_Bus" +
+						" Inner Join Consultorios C" +
+						" On B.Id_Esp = C.Id_Consultorio" +
+						" Inner Join" +
+						" (Select Id_Tipo,Descripcion" +
+						"  From TablaTipo" +
+						"  Where Id_Tabla" +
+						"  In (Select Id_Tipo" +
+						" 	   From TablaTipo" +
+						"      Where Descripcion = 'TURNOS'" +
+						"      And Id_Tabla = '0')) X" +
+						" On CB.Turno = X.Id_Tipo" +
+						" Inner Join" +
+						" (Select Ape_Paterno,Ape_Materno,Nombres,Id_Personal" +
+						"  From Personal" +
+						"  Union All Select Descripcion,'','', Id_Tipo " +
+						"  From TablaTipo" +
+						"  Where Id_Tabla In" +
+						"  (Select Id_Tipo" +
+						"   From TablaTipo" +
+						"   Where Descripcion = 'VAR_EXTRAS'" +
+						"   And Id_Tabla = '0')) M" +
+						" On T.CMP = M.Id_Personal" +
+						" Where CONVERT(VARCHAR,fecha_atencion, 103) = '" + txtFecha.Text + "' " +
+						" And Left(CB.Nro_Historia,3) = '" + Operativo.id_oper + "'";
+			}
+
+			//si la especialidad esta en 'ECOGRAFIA', 'RAYOS X', 'MAMOGRAFIA' entonces D.Pagado <> ''
+			int iCantE = CuentaEspecialidad(Operativo.id_oper, txtFecha.Text);
+
+			if ( cmbOpciones.SelectedIndex > 0 && iCantE > 0 )
+			vSQL = vSQL + "And NOT D.Pagado = '' ";
+			
+			//selecciona especialidad cmbEspecialidad
+			if ( cmbEspecialidad.SelectedIndex == -1 )
+			{
+				MessageBox.Show("Debe seleccionar una especialidad.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				cmbEspecialidad.Focus();
+				return;
+			}
+			else
+				vEspecialidad = (Combos)cmbEspecialidad.SelectedItem;
+			 
+			//selecciona consultorio cmbConsultorio
+			if ( cmbConsultorio.SelectedIndex == -1 )
+			{
+				MessageBox.Show("Debe seleccionar un consultorio.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				cmbConsultorio.Focus();
+				return;
+			}
+			else
+				vConsultorio = (Combos)cmbConsultorio.SelectedItem;
+			
+			//selecciona especialista cmbEspecialista
+			if ( cmbEspecialista.SelectedIndex == -1 )
+			{
+				MessageBox.Show("Debe seleccionar un especialista.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				cmbEspecialista.Focus();
+				return;
+			}
+			else
+				vEspecialista = (Combos)cmbEspecialista.SelectedItem;
+
+			//selecciona turno cmbTurno
+			if ( cmbTurno.SelectedIndex == -1 )
+			{
+				MessageBox.Show("Debe seleccionar un turno.", "Generacion Reportes", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				cmbTurno.Focus();
+				return;
+			}
+			else
+				vTurno = (Combos)cmbTurno.SelectedItem;
+
+			//agrega especialidad al query de los 3 tipos
+			if ( vEspecialidad.id_tipo != "TODOS" )
+				vSQL = vSQL + "And C.Id_Consultorio = '" + vEspecialidad.id_tipo + "' ";
+
+			//agrega consultorio al query de los 3 tipos
+			if ( vConsultorio.id_tipo != "TODOS" )
+				vSQL = vSQL + "And CB.Id_Bus = '" + vConsultorio.id_tipo + "' ";
+
+			//agrega especialista al query de los 3 tipos
+			if ( vEspecialista.id_tipo != "TODOS" )
+				vSQL = vSQL + "And CB.CMP = '" + vEspecialista.id_tipo + "' ";
+
+			//agrega turno al query de los 3 tipos
+			if ( vTurno.id_tipo != "TODOS" )
+				vSQL = vSQL + "And CB.Turno = '" + vTurno.id_tipo + "' ";
+
+			//agrega ordenacion al query Parte de Atención Diaria
+			if ( cmbOpciones.SelectedIndex == 0 )
+				vSQL = vSQL + "Order By C.Descripcion,B.Bus,CB.Fecha_Atencion,CB.Turno ";
+
+			//agrega agrupacion y ordenacion al query Consolidado de Atenciones y de Consolidado de Derivaciones
+			if ( cmbOpciones.SelectedIndex > 0 )
+			{
+				vSQL = vSQL + "Group By C.Descripcion,B.Bus,X.Descripcion,Ape_Paterno,Ape_Materno,Nombres,P.Descripcion,D.Monto ";
+				vSQL = vSQL + "Order By 1,2,3,4,5";
+			}
+			
+			//genera reporte y carga los datos
+			object result = WaitWindow.Show(WorkerMethod, "Generando el reporte...");
+			if ( result == null )
+			{
+				MessageBox.Show("No se pudo procesar el reporte.");
+				return;
+			}
+
+			//llama al formulario que muestra el reporte
+			frmCRViewer frg = new frmCRViewer(rpt);
+			frg.ShowDialog();
+
+		}
 			catch( Exception ex )
 			{
 				var st = new StackTrace(ex, true);
-				var frame = st.GetFrame(0);
-				var line = frame.GetFileLineNumber();
-				var col = frame.GetFileColumnNumber();
-				MessageBox.Show(ex.Message + (char)13 + "Linea: " + line + " Columna: " + col);
+		var frame = st.GetFrame(0);
+		var line = frame.GetFileLineNumber();
+		var col = frame.GetFileColumnNumber();
+		MessageBox.Show(ex.Message + (char)13 + "Linea: " + line + " Columna: " + col);
 			}
-		}
+
+
+}
 
 		private void WorkerMethod( object sender, WaitWindowEventArgs e )
 		{

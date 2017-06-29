@@ -1,12 +1,10 @@
-using Dapper;
 using Polsolcom.Dominio.Connection;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Modelos;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -69,11 +67,8 @@ namespace Polsolcom.Forms
 
         private void CargaMenuUsuario()
         {
-			if( Usuario.id_us.Trim() != "" && Usuario.tipo.Trim() != "" && menuMDI.Items.Count == 0 )
-			{
-				InicializaMenu();
-				General.lblLabel.Text = General.Frase("D");
-			}
+            if ( Usuario.id_us.Trim() != "" && Usuario.tipo.Trim() != "" && menuMDI.Items.Count == 0 )
+                InicializaMenu();
         }
 
         private void CreaSubMenus()
@@ -303,46 +298,9 @@ namespace Polsolcom.Forms
 			//}
 		}
 
-		private void tmrLmn_Tick( object sender, EventArgs e )
+		private void tmrMDI_Tick( object sender, EventArgs e )
 		{
 			toolStripStatusF1.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-			toolStripStatusF2.Text = IsKeyLocked(Keys.CapsLock) ? "CapsLock ON" : "CapsLock OFF";
-			toolStripStatusF3.Text = IsKeyLocked(Keys.NumLock) ? "NumLock ON" : "NumLock OFF";
-			toolStripStatusF4.Text = IsKeyLocked(Keys.Scroll) ? "Scroll ON" : "Scroll OFF";
-			
-			int lTimer = 0;
-			if( Usuario.id_us.Trim() != "" && Usuario.tipo.Trim() != "" && menuMDI.Items.Count == 0 )
-				General.lblLabel.Text  = General.Frase("D");
-
-			if( tmrLmn.Interval >= 1200 )
-				lTimer = 1200;
-
-			switch( lTimer )
-			{
-				case 1200:
-					vSQL = "SELECT COUNT(*) AS C FROM Accesos WHERE LTRIM(RTRIM(Mnu_Us)) = '" + Usuario.id_us + "'";
-					using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-					{
-						try
-						{
-							if( db.State == ConnectionState.Closed )
-								db.Open();
-
-							int iCant = db.ExecuteScalar<int>(vSQL);
-							if( iCant - menuMDI.Items.Count != 0 )
-								CargaMenuUsuario();
-						}
-						catch( Exception ex )
-						{
-							MessageBox.Show(ex.Message);
-						}
-					}
-					tmrLmn.Stop();
-					tmrLmn.Start();
-					break;
-				default:
-					break;
-			}
 		}
 
 		private void frmMain_FormClosing( object sender, FormClosingEventArgs e )
@@ -355,7 +313,6 @@ namespace Polsolcom.Forms
 				return;
 			}
 		}
-
 	}
 
 }

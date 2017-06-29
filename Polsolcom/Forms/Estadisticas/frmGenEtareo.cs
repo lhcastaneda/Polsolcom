@@ -7,6 +7,8 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace Polsolcom.Forms
 {
@@ -15,6 +17,7 @@ namespace Polsolcom.Forms
 		//define variable para SQL
 		string vSQL = "";
 		DataSet dt = new DataSet();
+		DataTable dtg = new DataTable();
 		Chart chartFinal = new Chart();
 
 		public frmGenEtareo() 
@@ -243,21 +246,23 @@ namespace Polsolcom.Forms
 
 			if ( optSexo.Checked == true )
 			{   //agrupa los datos por sexo
-				vSQL = "SELECT sexo AS campo, SUM(cantidad) AS total" +
+				vSQL = "SELECT SUM(cantidad) AS total, sexo AS campo" +
 				       " FROM tmpGETareo" +
 				       " GROUP BY sexo" +
 				       " ORDER BY 1";
 			}
 			else
 			{   //agrupa los datos por etareo
-				vSQL = "SELECT gpo_etareo AS campo, SUM(cantidad) AS total" + 
+				vSQL = "SELECT SUM(cantidad) AS total, gpo_etareo AS campo" + 
 				       " FROM tmpGETareo" +
 				       " GROUP BY gpo_etareo" +
 				       " ORDER BY 1";
 			}
-			//define los valores que se enviara al formulario que grafica
-			Grafico.sSQL = vSQL;
-			Grafico.LeyendaSerie = "Distribucion de la Informacion";
+            //define los valores que se enviara al formulario que grafica
+            Grafico.series = new List<Serie>();
+            Grafico.series.Add(new Serie("Distribucion de la Informacion", Color.Orange));
+
+            Grafico.sSQL = vSQL;
 			Grafico.TituloChart = "Grafico Estadistico del " + dtpicFInicial.Text.Substring(0, 10) + " al " + dtpicFFinal.Text.Substring(0, 10) + ((optSexo.Checked == true) ? " Por Genero" : " Por Grupo Etareo");
 			Grafico.TituloX = ((optSexo.Checked == true) ? "Genero" : "Grupo Etareo");
 			Grafico.LeyendaX = "Agrupacion por Distribucion";
@@ -281,11 +286,5 @@ namespace Polsolcom.Forms
 				this.Close();
 			}
 		}
-
-	
-
-
-
-
 	}
 }

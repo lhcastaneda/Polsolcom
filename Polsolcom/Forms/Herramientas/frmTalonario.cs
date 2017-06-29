@@ -5,6 +5,7 @@ using Microsoft.VisualBasic;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
+using System.Data;
 
 namespace Polsolcom.Forms
 {
@@ -23,6 +24,14 @@ namespace Polsolcom.Forms
 
         private void frmTalonario_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'tipoDocumento.TablaTipo' table. You can move, or remove it, as needed.
+            this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
+            
+            /*
+            Conexion.CNN = Conexion.ConectaBD();
+            Conexion.CMD.Connection = Conexion.CNN;
+            */
+
             CargaDatosDefault();
             General.ttMensaje.InitialDelay = 0;
             General.ttMensaje.IsBalloon = false;
@@ -45,7 +54,7 @@ namespace Polsolcom.Forms
             cmbDocVenta.Focus();
 
             //trae los valores maximos de inicio y fin del talonario
-            vSQL = "SELECT MAX(CAST(NInicial AS int)), MAX(CAST(NFinal AS int)) ";
+            vSQL = "SELECT MAX(CONVERT(int, ninicial)), MAX(CONVERT(int, nfinal)) ";
             vSQL = vSQL + " FROM Talon ";
             Conexion.CMD.CommandText = vSQL;
             using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
@@ -189,15 +198,19 @@ namespace Polsolcom.Forms
                 return;
             }
 
+
             //Trae los valores del documento seleccionado
-            Item itm = (Item)cmbDocVenta.SelectedItem;
+            DataRowView itm = (DataRowView)cmbDocVenta.SelectedItem;
+            int xxx = Int32.Parse(itm.Row["Id_Tipo"].ToString());
+           // MessageBox.Show(xxx);
+
             string sDef = (cmbDefault.Text == "SI" ? "" : "");
                         
 			//valida que no haya valores del talonario abiertos
             vSQL = "SELECT COUNT(*) C ";
             vSQL = vSQL + " FROM Talon ";
             vSQL = vSQL + " WHERE Id_Oper = '" + Operativo.id_oper + "' ";
-            vSQL = vSQL + " AND DVenta = '" + itm.Value + "' ";
+            vSQL = vSQL + " AND DVenta = '" + xxx + "' ";
             vSQL = vSQL + " AND TDef = '" + sDef + "' ";
             vSQL = vSQL + " AND LTRIM(RTRIM(Usuario)) = '" + Usuario.id_us + "' ";
             vSQL = vSQL + " AND LEN(NCon) > 0 ";
@@ -220,7 +233,7 @@ namespace Polsolcom.Forms
             vSQL = "SELECT * ";
             vSQL = vSQL + " FROM Talon ";
             vSQL = vSQL + " WHERE Id_Oper = '" + Operativo.id_oper + "' ";
-            vSQL = vSQL + " AND DVenta = '" + itm.Value + "' ";
+            vSQL = vSQL + " AND DVenta = '" + xxx + "' ";
             vSQL = vSQL + " AND serie = '" + txtSerie.Text.ToString() + "' ";
             vSQL = vSQL + " AND TDef = '" + sDef + "' ";
             vSQL = vSQL + " ORDER BY 2,3 ";
@@ -237,14 +250,14 @@ namespace Polsolcom.Forms
                         sUser = General.DevuelveUsuario(dr.GetValue(0).ToString());
                         sFecTalon = dr.GetValue(1).ToString().Substring(0, 10);
 
-                        if ( (Convert.ToInt32(txtNInicial.Text) >= Convert.ToInt32(dr.GetValue(2).ToString())) && (Convert.ToInt32(txtNInicial.Text) <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) && (itm.Value == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
+                        if ( (Convert.ToInt32(txtNInicial.Text) >= Convert.ToInt32(dr.GetValue(2).ToString())) && (Convert.ToInt32(txtNInicial.Text) <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) && (xxx == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
                         {
                             MessageBox.Show("Numero inicial corresponde al rango de " + sUser + " en la fecha de " + sFecTalon + " en la serie " + dr.GetValue(5).ToString() + (char)13 + "Modifique el rango...", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                             txtNInicial.Focus();
                             return;
                         }
 
-                        if ( (Convert.ToInt32(txtNFinal.Text) >= Convert.ToInt32(dr.GetValue(2).ToString())) && (Convert.ToInt32(txtNFinal.Text) <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) && (itm.Value == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
+                        if ( (Convert.ToInt32(txtNFinal.Text) >= Convert.ToInt32(dr.GetValue(2).ToString())) && (Convert.ToInt32(txtNFinal.Text) <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) && (xxx == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
                         {
                             MessageBox.Show("Numero final corresponde al rango de " + sUser + (char)13 + " en la fecha de " + sFecTalon + " en la serie " + dr.GetValue(5).ToString() + (char)13 + "Modifique el rango...", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                             txtNFinal.Focus();
@@ -254,7 +267,7 @@ namespace Polsolcom.Forms
                         int i = Convert.ToInt32(txtNInicial.Text);
                         while ( i <= Convert.ToInt32(txtNFinal.Text) )
                         {
-                            if ( (i >= Convert.ToInt32(dr.GetValue(2).ToString())) && (i <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Information.IsNumeric(txtSerie.Text) ? (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) : (txtSerie.Text == dr.GetValue(5).ToString())) && (itm.Value == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
+                            if ( (i >= Convert.ToInt32(dr.GetValue(2).ToString())) && (i <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Information.IsNumeric(txtSerie.Text) ? (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) : (txtSerie.Text == dr.GetValue(5).ToString())) && (xxx == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
                             {
                                 MessageBox.Show("El rango de " + i + " a " + dr.GetValue(3).ToString() + " le corresponde a " + sUser + " en la fecha de " + sFecTalon + " en la serie " + dr.GetValue(5).ToString() + (char)13 + "Modifique el rango...", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                                 txtNInicial.Focus();
@@ -267,7 +280,7 @@ namespace Polsolcom.Forms
                 dr.Close();
             }
 
-            Talon.serie = (itm.Value == 3 ? Talon.serie : txtSerie.Text.Trim());
+            Talon.serie = (xxx == 3 ? Talon.serie : txtSerie.Text.Trim());
 
             try
             {//registra el nuevo rango de talonario para el usuario
@@ -278,9 +291,9 @@ namespace Polsolcom.Forms
                 vSQL = vSQL + "'" + txtNFinal.Text  + "', ";
                 vSQL = vSQL + "'" + Operativo.id_oper + "', ";
                 vSQL = vSQL + "'" + txtSerie.Text + "', ";
-                vSQL = vSQL + "'" + itm.Value + "', ";
-                vSQL = vSQL + "'" + txtCuenta.Text + "', ";
-				vSQL = vSQL + "'' ) ";
+                vSQL = vSQL + "'" + xxx + "', ";
+                vSQL = vSQL + "'', ";
+                vSQL = vSQL + "'' ) ";
                 Conexion.CMD.CommandText = vSQL;
                 Conexion.CMD.ExecuteNonQuery();
                 MessageBox.Show("Actualizacion satisfactoria.", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -319,39 +332,23 @@ namespace Polsolcom.Forms
         private void txtNFinal_Enter(object sender, EventArgs e)
         {
             General.ttMensaje.Show(string.Empty, txtNFinal);
-            General.ttMensaje.Show("Ultimo Talon Final: " + sMaxNFinal, txtNFinal, 0);
+            General.ttMensaje.Show("Talon Final MAX: " + sMaxNFinal, txtNFinal, 0);
         }
 
         private void txtNInicial_Enter(object sender, EventArgs e)
         {
             General.ttMensaje.Show(string.Empty, txtNInicial);
-            General.ttMensaje.Show("Ultimo Talon Inicial: " + sMaxNInicial, txtNInicial, 0);
+            General.ttMensaje.Show("Talon Inicial MAX: " + sMaxNInicial, txtNInicial, 0);
         }
 
-		private void txtNInicial_TextChanged( object sender, EventArgs e )
-		{
-			txtCuenta.Text = "0";
-		}
-
-		private void txtNInicial_MouseMove( object sender, MouseEventArgs e )
-		{
-			General.ttMensaje.Show(string.Empty, txtNInicial);
-			General.ttMensaje.Show("Ultimo Talon Inicial: " + sMaxNInicial, txtNInicial, 0);
-		}
-
-		private void txtNFinal_MouseMove( object sender, MouseEventArgs e )
-		{
-			General.ttMensaje.Show(string.Empty, txtNFinal);
-			General.ttMensaje.Show("Ultimo Talon Final: " + sMaxNFinal, txtNFinal, 0);
-		}
-
-		private void frmTalonario_KeyDown( object sender, KeyEventArgs e )
-		{
-			if( e.KeyCode == Keys.Escape )
-			{
-				DialogResult = DialogResult.Cancel;
-				Close();
-			}
-		}
-	}
+        private void frmTalonario_KeyDown(object sender, KeyEventArgs e)
+        {
+            //cierra el formulario cuando se presiona la tecla ESC
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+    }
 }
