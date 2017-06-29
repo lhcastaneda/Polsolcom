@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Polsolcom.Forms;
+using Polsolcom.Forms.Procesos;
 
 namespace Polsolcom
 {
@@ -13,8 +14,10 @@ namespace Polsolcom
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new frmLogin());
-                                    
+            //Para efectos de prueba lo primero que cargaremos ser el formulario con el que estemos trabajando
+            //Application.Run(new frmLogin());
+            Application.Run(new frmSHClinica());
+
         }
     }
 }

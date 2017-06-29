@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Connection;
+using Polsolcom.Resources;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -48,15 +49,14 @@ namespace Polsolcom.Dominio.Helpers
 	public class Grafico
 	{
 		public static string sSQL { get; set; }
-		public static string NombreSerie { get; set; }
-		public static string LeyendaSerie { get; set; }
 		public static string TituloChart { get; set; }
 		public static string TipoChart { get; set; }
 		public static string TituloX { get; set; }
 		public static string TituloY { get; set; }
 		public static string LeyendaX { get; set; }
 		public static string LeyendaY { get; set; }
-	}
+        public static List<Serie> series { get; set; }
+    }
 
 	public class ItemMenus
     {
@@ -599,5 +599,42 @@ namespace Polsolcom.Dominio.Helpers
             }
             return ListaEspecialistas;
         }
+
+        #region Estadistica Pacientes
+        public static List<StatPatientsModel> TraerDatosPacientes()
+        {
+            SqlDataReader drStatPatientsList;
+            List<StatPatientsModel> StatPatientsList = new List<StatPatientsModel>();
+            var vSQL = Variables.PatientQuery;
+            SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN);
+            drStatPatientsList = cmd.ExecuteReader();              
+            while (drStatPatientsList.Read())
+            {
+                StatPatientsModel oConsultorio = new StatPatientsModel()
+                {
+                    Year = Convert.ToInt32(drStatPatientsList.GetValue(0)),
+                    Month = drStatPatientsList.GetValue(1).ToString(),
+                    Fecha = Convert.ToDateTime(drStatPatientsList.GetValue(2)),
+                    Pnew = Convert.ToInt32(drStatPatientsList.GetValue(3)),
+                    PCon = Convert.ToInt32(drStatPatientsList.GetValue(4)),
+                    Ptot = Convert.ToInt32(drStatPatientsList.GetValue(5))
+                };
+                StatPatientsList.Add(oConsultorio);
+            }
+            return StatPatientsList;
+        }
+
     }
+
+    public class StatPatientsModel
+    {
+        public int Year { get; set; }
+        public string Month { get; set; }
+        public DateTime Fecha { get; set; }
+        public int Pnew { get; set; }
+        public int PCon { get; set; }
+        public int Ptot { get; set; }
+    }
+    #endregion
+
 }
