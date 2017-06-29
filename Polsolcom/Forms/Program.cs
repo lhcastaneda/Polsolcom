@@ -16,7 +16,7 @@ namespace Polsolcom
 
             //Para efectos de prueba lo primero que cargaremos ser el formulario con el que estemos trabajando
             //Application.Run(new frmLogin());
-            Application.Run(new frmTalonario());
+            Application.Run(new frmLogin());
 
         }
     }

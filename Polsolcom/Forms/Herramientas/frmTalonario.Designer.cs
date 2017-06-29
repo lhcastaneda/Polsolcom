@@ -39,22 +39,22 @@
             this.txtSerie = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbDocVenta = new System.Windows.Forms.ComboBox();
+            this.tablaTipoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tipoDocumentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tipoDocumento = new Polsolcom.Dominio.Data.TipoDocumento();
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.cmbDefault = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbIngresar = new System.Windows.Forms.Button();
-            this.tipoDocumento = new Polsolcom.Dominio.Data.TipoDocumento();
-            this.tipoDocumentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tipoDocumentoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.tablaTipoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -178,6 +178,21 @@
             this.cmbDocVenta.SelectedIndexChanged += new System.EventHandler(this.cmbDocVenta_SelectedIndexChanged);
             this.cmbDocVenta.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDocVenta_KeyDown);
             // 
+            // tablaTipoBindingSource
+            // 
+            this.tablaTipoBindingSource.DataMember = "TablaTipo";
+            this.tablaTipoBindingSource.DataSource = this.tipoDocumentoBindingSource;
+            // 
+            // tipoDocumentoBindingSource
+            // 
+            this.tipoDocumentoBindingSource.DataSource = this.tipoDocumento;
+            this.tipoDocumentoBindingSource.Position = 0;
+            // 
+            // tipoDocumento
+            // 
+            this.tipoDocumento.DataSetName = "TipoDocumento";
+            this.tipoDocumento.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // txtFecha
             // 
             this.txtFecha.Enabled = false;
@@ -244,25 +259,10 @@
             this.cmbIngresar.UseVisualStyleBackColor = true;
             this.cmbIngresar.Click += new System.EventHandler(this.cmbIngresar_Click);
             // 
-            // tipoDocumento
-            // 
-            this.tipoDocumento.DataSetName = "TipoDocumento";
-            this.tipoDocumento.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tipoDocumentoBindingSource
-            // 
-            this.tipoDocumentoBindingSource.DataSource = this.tipoDocumento;
-            this.tipoDocumentoBindingSource.Position = 0;
-            // 
             // tipoDocumentoBindingSource1
             // 
             this.tipoDocumentoBindingSource1.DataMember = "TipoDocumento";
             this.tipoDocumentoBindingSource1.DataSource = this.tipoDocumentoBindingSource;
-            // 
-            // tablaTipoBindingSource
-            // 
-            this.tablaTipoBindingSource.DataMember = "TablaTipo";
-            this.tablaTipoBindingSource.DataSource = this.tipoDocumentoBindingSource;
             // 
             // tablaTipoTableAdapter
             // 
@@ -283,11 +283,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingreso de Talon de Documentos de Venta";
             this.Load += new System.EventHandler(this.frmTalonario_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmTalonario_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).EndInit();
             this.ResumeLayout(false);
 
         }

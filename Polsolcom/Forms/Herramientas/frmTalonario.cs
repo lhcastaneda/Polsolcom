@@ -340,5 +340,15 @@ namespace Polsolcom.Forms
             General.ttMensaje.Show(string.Empty, txtNInicial);
             General.ttMensaje.Show("Talon Inicial MAX: " + sMaxNInicial, txtNInicial, 0);
         }
+
+        private void frmTalonario_KeyDown(object sender, KeyEventArgs e)
+        {
+            //cierra el formulario cuando se presiona la tecla ESC
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
     }
 }
