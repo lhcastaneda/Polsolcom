@@ -11,9 +11,9 @@ namespace Polsolcom.Dominio.Modelos
         public static string nfinal {get;set;}
         public static string id_oper {get;set;}
         public static string serie {get;set;}
-        public static string dventa {get;set;}
+        public static char dventa {get;set;}
         public static string ncon {get;set;}
-        public static string tdef {get;set;}
+        public static char tdef {get;set;}
  
     }
 }

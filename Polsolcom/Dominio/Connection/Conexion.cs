@@ -38,6 +38,31 @@ namespace Polsolcom.Dominio.Connection
                 }
             }
         }
+
+        static public void AddParameter(string column, object value)
+        {
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@" + column;
+            param.Value = value;
+
+            CMD.Parameters.Add(param);
+
+
+        }
+
+        /// <summary>
+        /// Retorna un DataTable
+        /// </summary>
+        /// <param name="sql">Consulta SQL a generar</param>
+        /// <returns>DataTable</returns>
+        static public DataTable GetTable(string sql)
+        {
+            CMD.CommandText = sql;
+            SqlDataAdapter adapter = new SqlDataAdapter(CMD);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            return table;
+        }
     }
 
 	

@@ -117,22 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="cAnno.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cMes.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cFech.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cNuevos.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cAntiguos.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cTotal.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="PatientQuery" xml:space="preserve">
+    <value>SELECT Año,
+       Mes,
+       Fecha,
+       SUM(PNew) AS PNew,
+       SUM(PTot-PNew) AS POld,
+       SUM(PTot) AS PTot
+FROM
+  (SELECT Año,
+          Mes,
+          Fecha,
+           CASE
+              WHEN Tipo='T' THEN SUM(Cant)
+              ELSE 0
+          END AS PTot,
+          CASE
+              WHEN Tipo='N' THEN SUM(Cant)
+              ELSE 0
+          END AS PNew
+   FROM
+     (SELECT DATEPART(YEAR,x.fecha) AS Año,
+             DATENAME(MONTH,x.fecha) AS Mes,
+             CAST(CONVERT(Datetime,CONVERT(varchar(10),x.fecha,103), 103) AS datetime) AS Fecha,
+             COUNT(x.id_paciente) AS Cant,
+             'N' AS Tipo
+      FROM
+        (SELECT Id_Paciente,
+                MIN(fecha_emision) AS Fecha
+         FROM tickets
+         GROUP BY Id_Paciente) AS x
+      GROUP BY DATEPART(YEAR,x.fecha),
+               DATENAME(MONTH,x.fecha),
+               CAST(CONVERT(Datetime,CONVERT(varchar(10),x.fecha,103), 103) AS datetime)
+      UNION SELECT DATEPART(YEAR,x.fecha) AS Año,
+                   DATENAME(MONTH,x.fecha) AS Mes,
+                   Fecha,
+                   COUNT(x.id_paciente) AS Cant,
+                   'T' AS Tipo
+      FROM
+        (SELECT Id_Paciente,
+                CAST(CONVERT(Datetime,CONVERT(varchar(10),fecha_emision,103), 103) AS datetime) AS Fecha
+         FROM tickets
+         GROUP BY Id_Paciente,
+                  CAST(CONVERT(Datetime,CONVERT(varchar(10),fecha_emision,103), 103) AS datetime)) AS x
+      GROUP BY DATEPART(YEAR,x.fecha),
+               DATENAME(MONTH,x.fecha),
+               x.Fecha) y
+   GROUP BY año,
+            mes,
+            fecha,
+            tipo) z
+WHERE CONVERT(VARCHAR,fecha, 103) &gt;= @desde
+  AND CONVERT(VARCHAR,fecha, 103) &lt;= @hasta
+GROUP BY @group
+ORDER BY 3</value>
+  </data>
 </root>

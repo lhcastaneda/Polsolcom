@@ -98,13 +98,78 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="tentec.windows.igridlib.igrid.v5.0, Version=5.0.15.0, Culture=neutral, PublicKeyToken=9d47002745f2416c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="tentec.windows.igridlib.igrid.v5.0">
       <HintPath>.\tentec.windows.igridlib.igrid.v5.0.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dominio\Data\Consolidado.cs">
+      <DependentUpon>Consolidado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ConsultoriosDS.cs">
+      <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ConsultoriosDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Controls\CheckBoxComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dominio\Controls\CheckBoxComboBox.Designer.cs">
+      <DependentUpon>CheckBoxComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Controls\GripBounds.cs" />
+    <Compile Include="Dominio\Controls\NativeMethods.cs" />
+    <Compile Include="Dominio\Controls\Popup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Controls\Popup.designer.cs">
+      <DependentUpon>Popup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Controls\PopupComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Controls\PopupComboBox.designer.cs">
+      <DependentUpon>PopupComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\CProductosDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CProductosDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\EstadisticaPacientes.cs">
+      <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\EstadisticaPacientes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\Operativos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Operativos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ParteDiario.cs">
+      <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\TipoDocumento.cs">
+      <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\TipoDocumento.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\TipoProductoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Helpers\Serie.cs" />
     <Compile Include="Dominio\Modelos\Consultorio.cs" />
     <Compile Include="Dominio\Modelos\Especialidad.cs" />
     <Compile Include="Dominio\Helpers\General.cs" />
@@ -114,7 +179,6 @@
     <Compile Include="Dominio\Modelos\Operativo.cs" />
     <Compile Include="Dominio\Modelos\Personal.cs" />
     <Compile Include="Dominio\Modelos\Producto.cs" />
-    <Compile Include="Dominio\Modelos\RangoVenta.cs" />
     <Compile Include="Dominio\Modelos\Talon.cs" />
     <Compile Include="Dominio\Modelos\Usuario.cs" />
     <Compile Include="Dominio\Helpers\WaitWindow.cs" />
@@ -128,6 +192,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptCProductos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCProductos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptEstPac2.cs">
+      <DependentUpon>rptEstPac2.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptEstPac.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEstPac.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Helpers\ListSelectionWrapper.cs" />
+    <Compile Include="Dominio\Helpers\ObjectSelectionWrapper.cs" />
     <Compile Include="Forms\frmAdmCounterfoilA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -446,17 +530,17 @@
     <Compile Include="Forms\Estadisticas\frmStatGenGroupEtareo.Designer.cs">
       <DependentUpon>frmStatGenGroupEtareo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Estadisticas\frmStatPatients.cs">
+    <Compile Include="Forms\Estadisticas\frmEstPac.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Estadisticas\frmStatPatients.Designer.cs">
-      <DependentUpon>frmStatPatients.cs</DependentUpon>
+    <Compile Include="Forms\Estadisticas\frmEstPac.Designer.cs">
+      <DependentUpon>frmEstPac.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Estadisticas\frmStatSales.cs">
+    <Compile Include="Forms\Estadisticas\frmEstVent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Estadisticas\frmStatSales.Designer.cs">
-      <DependentUpon>frmStatSales.cs</DependentUpon>
+    <Compile Include="Forms\Estadisticas\frmEstVent.Designer.cs">
+      <DependentUpon>frmEstVent.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Herramientas\frmTalonario.cs">
       <SubType>Form</SubType>
@@ -464,11 +548,11 @@
     <Compile Include="Forms\Herramientas\frmTalonario.Designer.cs">
       <DependentUpon>frmTalonario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consultas\frmTarProducts.cs">
+    <Compile Include="Forms\Consultas\frmCProductos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consultas\frmTarProducts.Designer.cs">
-      <DependentUpon>frmTarProducts.cs</DependentUpon>
+    <Compile Include="Forms\Consultas\frmCProductos.Designer.cs">
+      <DependentUpon>frmCProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Principal\frmTPCam.cs">
       <SubType>Form</SubType>
@@ -515,7 +599,27 @@
       <DependentUpon>rptpardia.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Resources\Variables.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Variables.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Dominio\Reportes\rptCProductos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCProductos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptEstPac2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEstPac2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptEstPac.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEstPac.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
+      <DependentUpon>frmEstPac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAdmCounterfoilA.resx">
       <DependentUpon>frmAdmCounterfoilA.cs</DependentUpon>
     </EmbeddedResource>
@@ -680,17 +784,17 @@
     <EmbeddedResource Include="Forms\Estadisticas\frmStatGenGroupEtareo.resx">
       <DependentUpon>frmStatGenGroupEtareo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Estadisticas\frmStatPatients.resx">
-      <DependentUpon>frmStatPatients.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.resx">
+      <DependentUpon>frmEstPac.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Estadisticas\frmStatSales.resx">
-      <DependentUpon>frmStatSales.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Estadisticas\frmEstVent.resx">
+      <DependentUpon>frmEstVent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Herramientas\frmTalonario.resx">
       <DependentUpon>frmTalonario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consultas\frmTarProducts.resx">
-      <DependentUpon>frmTarProducts.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Consultas\frmCProductos.resx">
+      <DependentUpon>frmCProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Principal\frmTPCam.resx">
       <DependentUpon>frmTPCam.cs</DependentUpon>
@@ -725,6 +829,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptpardia.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Variables.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Variables.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Dominio\Data\ConsultoriosDS.xsc">
+      <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ConsultoriosDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ConsultoriosDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\ConsultoriosDS.xss">
+      <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\Consolidado.xsc">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </None>
@@ -736,6 +855,39 @@
     <None Include="Dominio\Data\Consolidado.xss">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </None>
+    <None Include="Dominio\Data\CProductosDS.xsc">
+      <DependentUpon>CProductosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\CProductosDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CProductosDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\CProductosDS.xss">
+      <DependentUpon>CProductosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\EstadisticaPacientes.xsc">
+      <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\EstadisticaPacientes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EstadisticaPacientes.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\EstadisticaPacientes.xss">
+      <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\Operativos.xsc">
+      <DependentUpon>Operativos.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\Operativos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Operativos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\Operativos.xss">
+      <DependentUpon>Operativos.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\ParteDiario.xsc">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </None>
@@ -746,6 +898,28 @@
     </None>
     <None Include="Dominio\Data\ParteDiario.xss">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoDocumento.xsc">
+      <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoDocumento.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TipoDocumento.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\TipoDocumento.xss">
+      <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoProductoDS.xsc">
+      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoProductoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TipoProductoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\TipoProductoDS.xss">
+      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Polsolcom_TemporaryKey.pfx" />
@@ -852,6 +1026,7 @@
     <Content Include="Imagenes\US-dollar-icon.png" />
     <Content Include="Imagenes\web-layout-icon.png" />
     <Content Include="Resources\login.png" />
+    <Content Include="tentec.windows.igridlib.igrid.v5.0.dll" />
     <None Include="Imagenes\login.png" />
   </ItemGroup>
   <ItemGroup>
