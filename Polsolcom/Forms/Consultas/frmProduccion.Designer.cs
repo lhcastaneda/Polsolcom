@@ -36,6 +36,8 @@
             this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbCajero = new System.Windows.Forms.ComboBox();
+            this.cajerosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cajerosDS = new Polsolcom.Dominio.Data.CajerosDS();
             this.btnTimer = new System.Windows.Forms.Button();
             this.dtpFechInicio = new System.Windows.Forms.DateTimePicker();
             this.btnEjecutar = new System.Windows.Forms.Button();
@@ -59,15 +61,13 @@
             this.rbVendido = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
-            this.cajerosDS = new Polsolcom.Dominio.Data.CajerosDS();
-            this.cajerosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cajerosTableAdapter = new Polsolcom.Dominio.Data.CajerosDSTableAdapters.CajerosTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
-            this.pnlCheck.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cajerosDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cajerosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cajerosDS)).BeginInit();
+            this.pnlCheck.SuspendLayout();
             this.SuspendLayout();
             // 
             // fGrid
@@ -132,6 +132,16 @@
             this.cmbCajero.TabIndex = 3;
             this.cmbCajero.ValueMember = "Id_User";
             // 
+            // cajerosBindingSource
+            // 
+            this.cajerosBindingSource.DataMember = "Cajeros";
+            this.cajerosBindingSource.DataSource = this.cajerosDS;
+            // 
+            // cajerosDS
+            // 
+            this.cajerosDS.DataSetName = "CajerosDS";
+            this.cajerosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // btnTimer
             // 
             this.btnTimer.Location = new System.Drawing.Point(378, 65);
@@ -172,6 +182,7 @@
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // btnSalir
             // 
@@ -242,6 +253,7 @@
             // 
             this.txtcVen.Location = new System.Drawing.Point(620, 395);
             this.txtcVen.Name = "txtcVen";
+            this.txtcVen.ReadOnly = true;
             this.txtcVen.Size = new System.Drawing.Size(91, 20);
             this.txtcVen.TabIndex = 21;
             // 
@@ -249,6 +261,7 @@
             // 
             this.txtcExt.Location = new System.Drawing.Point(620, 422);
             this.txtcExt.Name = "txtcExt";
+            this.txtcExt.ReadOnly = true;
             this.txtcExt.Size = new System.Drawing.Size(91, 20);
             this.txtcExt.TabIndex = 22;
             // 
@@ -256,6 +269,7 @@
             // 
             this.txtCant.Location = new System.Drawing.Point(620, 448);
             this.txtCant.Name = "txtCant";
+            this.txtCant.ReadOnly = true;
             this.txtCant.Size = new System.Drawing.Size(91, 20);
             this.txtCant.TabIndex = 23;
             // 
@@ -263,6 +277,7 @@
             // 
             this.txtsVen.Location = new System.Drawing.Point(717, 395);
             this.txtsVen.Name = "txtsVen";
+            this.txtsVen.ReadOnly = true;
             this.txtsVen.Size = new System.Drawing.Size(91, 20);
             this.txtsVen.TabIndex = 24;
             // 
@@ -270,6 +285,7 @@
             // 
             this.txtsExt.Location = new System.Drawing.Point(718, 422);
             this.txtsExt.Name = "txtsExt";
+            this.txtsExt.ReadOnly = true;
             this.txtsExt.Size = new System.Drawing.Size(90, 20);
             this.txtsExt.TabIndex = 25;
             // 
@@ -277,6 +293,7 @@
             // 
             this.txtTotal.Location = new System.Drawing.Point(718, 449);
             this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(90, 20);
             this.txtTotal.TabIndex = 26;
             // 
@@ -338,16 +355,6 @@
             // 
             this.consultoriosTableAdapter.ClearBeforeFill = true;
             // 
-            // cajerosDS
-            // 
-            this.cajerosDS.DataSetName = "CajerosDS";
-            this.cajerosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cajerosBindingSource
-            // 
-            this.cajerosBindingSource.DataMember = "Cajeros";
-            this.cajerosBindingSource.DataSource = this.cajerosDS;
-            // 
             // cajerosTableAdapter
             // 
             this.cajerosTableAdapter.ClearBeforeFill = true;
@@ -389,10 +396,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cajerosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cajerosDS)).EndInit();
             this.pnlCheck.ResumeLayout(false);
             this.pnlCheck.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cajerosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cajerosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,6 @@
-﻿using Polsolcom.Dominio.Connection;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Polsolcom.Dominio.Connection;
+using Polsolcom.Dominio.Data;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Modelos;
 using System;
@@ -19,6 +21,7 @@ namespace Polsolcom.Forms
     {
         string vSQL = "";
         DataSet dt = new DataSet();
+        ReportDocument rpt = new ReportDocument();
 
         public frmProduccion()
         {
@@ -33,7 +36,7 @@ namespace Polsolcom.Forms
             //fGrid.Footer.Font = new Font("Verdana", 12, FontStyle.Bold);
             //
             fGrid.DefaultRow.Height = 15;
-            fGrid.Cols.Count = 8;
+            fGrid.Cols.Count = 9;
             fGrid.Cols[0].Text = "Doc. Venta";
             fGrid.Cols[0].Width = 60;
             fGrid.Cols[0].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
@@ -82,6 +85,8 @@ namespace Polsolcom.Forms
             fGrid.Cols[7].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
             fGrid.Cols[7].CellStyle.ReadOnly = iGBool.True;
             //
+            fGrid.Cols[8].Text = "Modo";
+            fGrid.Cols[8].Visible = false;
         }
 
         private void cargarUsuarios()
@@ -106,8 +111,21 @@ namespace Polsolcom.Forms
         {
             DateTime fechaInicio = dtpFechInicio.Value;
             DateTime fechaFin = dtpFechFinal.Value;
-            string idUsuario = ((DataRowView)cmbCajero.SelectedItem).Row["Id_User"].ToString();
-            string consultorio = ((DataRowView)cmbEspecialidad.SelectedItem).Row["Id_Consultorio"].ToString();
+
+            string idUsuario = "";
+            if (cmbCajero.SelectedIndex != -1)
+            {
+                idUsuario = ((DataRowView)cmbCajero.SelectedItem).Row["Id_User"].ToString();
+
+            }
+
+            string consultorio = "";
+            if (cmbEspecialidad.SelectedIndex != -1)
+            {
+                consultorio = ((DataRowView)cmbEspecialidad.SelectedItem).Row["Id_Consultorio"].ToString();
+
+            }
+
             int opt = 1;
 
             if (rbVendido.Checked)
@@ -155,6 +173,46 @@ namespace Polsolcom.Forms
                 e.Result = "Proceso culminado.";
         }
 
+        private void WorkerMethodRPT(object sender, WaitWindowEventArgs e)
+        {
+            //define la ruta por defecto de la app
+            string path = Application.StartupPath;
+            path = path.Replace("\\", "/");
+            path = path.Replace("/bin/Debug", "");
+
+            //define el reporte dependiendo del tipo de seleccion
+            path = path + "/Dominio/Reportes/rptProduccion.rpt";
+
+            //carga el reporte
+            rpt.Load(path);
+
+            Conexion.CMD.CommandText = this.vSQL;
+            using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
+            {
+                using (ProduccionDS ds = new ProduccionDS())
+                {
+                    ds.Clear();
+                    da.Fill(ds, "Produccion");
+
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        ds.Tables[0].Rows[i][6] = General.cryptgr(ds.Tables[0].Rows[i][6].ToString(), false, 1);
+                    }
+
+                    rpt.SetDataSource(ds);
+                }
+            }
+
+            //setea los parametros del reporte Parte de atencion diario
+            rpt.SetParameterValue("TituloReporte", "Reporte Detallado X Fecha X Cajero");
+
+            if (e.Arguments.Count > 0)
+                e.Result = e.Arguments[0].ToString();
+            else
+                e.Result = "Proceso culminado.";
+
+        }
+
         void llenarGrilla()
         {
             generateSQL();
@@ -174,37 +232,60 @@ namespace Polsolcom.Forms
             FormateaGrilla();
 
             //Desencriptamos
+            int cVent = 0;
+            int cExt = 0;
+            float sVent = 0;
+            float sExt = 0;
 
             for (int i = 0; i <= fGrid.Rows.Count - 1; i++)
             {
+                if (fGrid.Cells[i, 8].Value.ToString() == "VENDIDOS" || fGrid.Cells[i, 8].Value.ToString() == "ANULADO")
+                {
+                    cVent += Int32.Parse(fGrid.Cells[i, 4].Value.ToString());
+                    sVent += float.Parse(fGrid.Cells[i, 5].Value.ToString());
+                }
+
+                if (fGrid.Cells[i, 8].Value.ToString() == "EXTORNOS")
+                {
+                    cExt += Int32.Parse(fGrid.Cells[i, 4].Value.ToString());
+                    sExt += float.Parse(fGrid.Cells[i, 5].Value.ToString());
+                }
+
                 fGrid.Cells[i, 6].Value = General.cryptgr(fGrid.Cells[i, 6].Value.ToString(), false, 1);
             }
 
+            txtcVen.Text = cVent.ToString();
+            txtsVen.Text = sVent.ToString();
+            txtcExt.Text = cExt.ToString();
+            txtsExt.Text = sExt.ToString();
+            txtCant.Text = (cVent + cExt).ToString();
+            txtTotal.Text = (sVent + sExt).ToString();
         }
 
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
-            cargarUsuarios();
-
-            if (cmbCajero.SelectedIndex == -1)
+            if (Usuario.tipo == "U")
             {
-                MessageBox.Show("Debe seleccionar un cajero");
-                return;
+                if (cmbCajero.SelectedIndex != -1)
+                {
+                    if (Usuario.id_us != ((DataRowView)cmbCajero.SelectedItem).Row["Id_User"].ToString())
+                    {
+                        MessageBox.Show("No tiene autorización para relizar esta consulta ...", "Permiso denegado");
+                    }
+                }
             }
 
+            cargarUsuarios();
             llenarGrilla();
         }
 
         private void frmProduccion_Load(object sender, EventArgs e)
         {
-            //abre la conexion a la BD
-            Conexion.CNN = Conexion.ConectaBD();
-            Conexion.CMD.Connection = Conexion.CNN;
-
-            General.LlenaOperativo();
             this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
 
             FormateaGrilla();
+
+            cmbEspecialidad.SelectedIndex = -1;
         }
 
         private void frmProduccion_KeyDown(object sender, KeyEventArgs e)
@@ -220,6 +301,23 @@ namespace Polsolcom.Forms
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            generateSQL();
+
+            //genera reporte y carga los datos
+            object result = WaitWindow.Show(WorkerMethodRPT, "Generando el reporte...");
+            if (result == null)
+            {
+                MessageBox.Show("No se pudo procesar el reporte.");
+                return;
+            }
+
+            //llama al formulario que muestra el reporte
+            frmCRViewer frg = new frmCRViewer(rpt);
+            frg.ShowDialog();
         }
     }
 }
