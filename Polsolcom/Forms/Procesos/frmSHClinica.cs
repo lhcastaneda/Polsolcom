@@ -17,7 +17,6 @@ namespace Polsolcom.Forms.Procesos
 		bool bTieneDocVenta = false;
 		string BUS = "";
 		string NROHISTORIA = "";
-		string TICKET = "";
 		DataGridViewComboBoxCell ComboProducto = new DataGridViewComboBoxCell();
 
 		public frmSHClinica()
@@ -359,10 +358,8 @@ namespace Polsolcom.Forms.Procesos
 		{
 			string F1 = General.FechaServidor();
 			string F2 = Convert.ToDateTime(F1).AddDays(1).ToString("dd/MM/yyyy");
-			int iCant = 0;
 			string sRes = "";
 			string sQuery = "";
-			string NCon = "";
 			bool Error = false;
 			
 			sQuery = "EXEC GenDocVen '" + F1 + "','" + F2 + "','" + Usuario.id_us + "','" + Operativo.id_oper + "','" + Talon.serie + "','" + Talon.dventa + "',''";
@@ -378,89 +375,7 @@ namespace Polsolcom.Forms.Procesos
 					dr.Close();
 				}
 			}
-
-
-/*
-			sQuery = "SELECT COUNT(*) AS C " + 
-				  	 "FROM Talon " +
-					 "WHERE Fecha Between CONVERT(DATETIME, '" + F1 + "', 126) " +
-					 "AND CONVERT(DATETIME, '" + F2 + "', 126) " +  
-					 "AND Usuario = '" + Usuario.id_us + "' " +
-					 "AND Id_Oper = '" + Operativo.id_oper + "' " +
-					 "AND NCon <> NFinal " + 
-					 "AND NCon <> '' " + 
-					 "AND Serie = '" + Talon.serie + "' " +
-					 "AND DVenta = '" + Talon.dventa + "'";
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				if( db.State == ConnectionState.Closed )
-					db.Open();
-
-				iCant = db.ExecuteScalar<int>(sQuery);
-				if( iCant > 0 && NCon != "" )
-				{
-					sQuery = "UPDATE Talon " +
-							 "SET NCon= '" + NCon + "' " +
-							 "WHERE Fecha Between CONVERT(DATETIME, '" + F1 + "', 126) " +
-							 "AND CONVERT(DATETIME, '" + F2 + "', 126) " +
-							 "AND Usuario = '" + Usuario.id_us + "' " +
-							 "AND Id_Oper = '" + Operativo.id_oper + "' " +
-							 "AND NCon <> NFinal " + 
-							 "AND NCon <> '' " +
-							 "AND Serie = '" + Talon.serie + "' " +
-							 "AND DVenta = '" + Talon.dventa + "'";
-					iCant = db.Execute(sQuery);
-
-					sQuery = "UPDATE Talon " + 
-							 "SET NFinal = NCon, " + 
-							 "NCon = '' " +
-							 "WHERE Fecha Between CONVERT(DATETIME, '" + F1 + "', 126) " +
-							 "AND CONVERT(DATETIME, '" + F2 + "', 126) " +
-							 "AND Usuario = '" + Usuario.id_us + "' " +
-							 "AND Id_Oper = '" + Operativo.id_oper + "' " +
-							 "AND NCon = NFinal " + 
-							 "AND NCon <> '' " +
-							 "AND Serie = '" + Talon.serie + "' " +
-							 "AND DVenta = '" + Talon.dventa + "'";
-					iCant = db.Execute(sQuery);
-				}
-
-				sQuery = "SELECT COUNT(*) C " + 
-						 "FROM Talon " +
-						 "WHERE Fecha Between CONVERT(DATETIME, '" + F1 + "', 126) " +
-						 "AND CONVERT(DATETIME, '" + F2 + "', 126) " +
-						 "AND Usuario = '" + Usuario.id_us + "' " +
-						 "AND Id_Oper = '" + Operativo.id_oper + "' " +
-						 "AND NCon <> NFinal " + 
-						 "AND NCon <> '' " +
-						 "AND Serie = '" + Talon.serie + "' " +
-						 "AND DVenta = '" + Talon.dventa + "'";
-				iCant = db.ExecuteScalar<int>(sQuery);
-
-				sQuery = "SELECT Usuario,Fecha,NInicial,NFinal,Id_Oper,Serie,DVenta,NCon,TDef " +
-						 "FROM Talon " +
-						 "WHERE Fecha Between CONVERT(DATETIME, '" + F1 + "', 126) " +
-						 "AND CONVERT(DATETIME, '" + F2 + "', 126) " +
-						 "AND Usuario = '" + Usuario.id_us + "' " +
-						 "AND Id_Oper = '" + Operativo.id_oper + "' " +
-						 "AND NCon <> NFinal " +
-						 "AND NCon <> '' " +
-						 "AND Serie = '" + Talon.serie + "' " +
-						 "AND DVenta = '" + Talon.dventa + "'";
-
-
-				using( SqlCommand cmd = new SqlCommand(sQuery, Conexion.CNN) )
-				{
-					using( SqlDataReader dr = cmd.ExecuteReader() )
-					{
-						if( dr.HasRows )
-							General.LlenaTalon(dr);
-						dr.Close();
-					}
-				}
-			}
-			sRes = iCant>0 ? (int.Parse(Talon.ncon) == 0 ? Talon.ninicial : Convert.ToString(int.Parse(Talon.ncon) + 1)) : "";
-*/
+			
 			if( ( sRes == null || sRes == String.Empty || sRes == "" ) )
 			{
 				MessageBox.Show("No tiene rango de documentos de venta ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
