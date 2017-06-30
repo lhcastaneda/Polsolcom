@@ -48,13 +48,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbIngresar = new System.Windows.Forms.Button();
-            this.tipoDocumentoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -261,9 +259,6 @@
             // 
             // tipoDocumentoBindingSource1
             // 
-            this.tipoDocumentoBindingSource1.DataMember = "TipoDocumento";
-            this.tipoDocumentoBindingSource1.DataSource = this.tipoDocumentoBindingSource;
-            // 
             // tablaTipoTableAdapter
             // 
             this.tablaTipoTableAdapter.ClearBeforeFill = true;
@@ -313,7 +308,6 @@
         private System.Windows.Forms.Button cmbIngresar;
         private System.Windows.Forms.BindingSource tipoDocumentoBindingSource;
         private Dominio.Data.TipoDocumento tipoDocumento;
-        private System.Windows.Forms.BindingSource tipoDocumentoBindingSource1;
         private System.Windows.Forms.BindingSource tablaTipoBindingSource;
         private Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter;
     }

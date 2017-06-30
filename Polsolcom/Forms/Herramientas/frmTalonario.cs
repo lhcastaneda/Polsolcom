@@ -27,10 +27,9 @@ namespace Polsolcom.Forms
             // TODO: This line of code loads data into the 'tipoDocumento.TablaTipo' table. You can move, or remove it, as needed.
             this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
             
-            /*
             Conexion.CNN = Conexion.ConectaBD();
             Conexion.CMD.Connection = Conexion.CNN;
-            */
+            
 
             CargaDatosDefault();
             General.ttMensaje.InitialDelay = 0;
@@ -50,7 +49,7 @@ namespace Polsolcom.Forms
                 cmbDefault.Enabled = false;
 
             txtSerie.Text = Talon.serie;
-            General.CargaTipoDocVenta(cmbDocVenta);
+            //General.CargaTipoDocVenta(cmbDocVenta);
             cmbDocVenta.Focus();
 
             //trae los valores maximos de inicio y fin del talonario
@@ -201,8 +200,7 @@ namespace Polsolcom.Forms
 
             //Trae los valores del documento seleccionado
             DataRowView itm = (DataRowView)cmbDocVenta.SelectedItem;
-            int xxx = Int32.Parse(itm.Row["Id_Tipo"].ToString());
-           // MessageBox.Show(xxx);
+            int dVenta = Int32.Parse(itm.Row["Id_Tipo"].ToString());
 
             string sDef = (cmbDefault.Text == "SI" ? "" : "");
                         
@@ -210,7 +208,7 @@ namespace Polsolcom.Forms
             vSQL = "SELECT COUNT(*) C ";
             vSQL = vSQL + " FROM Talon ";
             vSQL = vSQL + " WHERE Id_Oper = '" + Operativo.id_oper + "' ";
-            vSQL = vSQL + " AND DVenta = '" + xxx + "' ";
+            vSQL = vSQL + " AND DVenta = '" + dVenta + "' ";
             vSQL = vSQL + " AND TDef = '" + sDef + "' ";
             vSQL = vSQL + " AND LTRIM(RTRIM(Usuario)) = '" + Usuario.id_us + "' ";
             vSQL = vSQL + " AND LEN(NCon) > 0 ";
@@ -233,7 +231,7 @@ namespace Polsolcom.Forms
             vSQL = "SELECT * ";
             vSQL = vSQL + " FROM Talon ";
             vSQL = vSQL + " WHERE Id_Oper = '" + Operativo.id_oper + "' ";
-            vSQL = vSQL + " AND DVenta = '" + xxx + "' ";
+            vSQL = vSQL + " AND DVenta = '" + dVenta + "' ";
             vSQL = vSQL + " AND serie = '" + txtSerie.Text.ToString() + "' ";
             vSQL = vSQL + " AND TDef = '" + sDef + "' ";
             vSQL = vSQL + " ORDER BY 2,3 ";
@@ -250,14 +248,14 @@ namespace Polsolcom.Forms
                         sUser = General.DevuelveUsuario(dr.GetValue(0).ToString());
                         sFecTalon = dr.GetValue(1).ToString().Substring(0, 10);
 
-                        if ( (Convert.ToInt32(txtNInicial.Text) >= Convert.ToInt32(dr.GetValue(2).ToString())) && (Convert.ToInt32(txtNInicial.Text) <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) && (xxx == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
+                        if ( (Convert.ToInt32(txtNInicial.Text) >= Convert.ToInt32(dr.GetValue(2).ToString())) && (Convert.ToInt32(txtNInicial.Text) <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) && (dVenta == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
                         {
                             MessageBox.Show("Numero inicial corresponde al rango de " + sUser + " en la fecha de " + sFecTalon + " en la serie " + dr.GetValue(5).ToString() + (char)13 + "Modifique el rango...", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                             txtNInicial.Focus();
                             return;
                         }
 
-                        if ( (Convert.ToInt32(txtNFinal.Text) >= Convert.ToInt32(dr.GetValue(2).ToString())) && (Convert.ToInt32(txtNFinal.Text) <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) && (xxx == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
+                        if ( (Convert.ToInt32(txtNFinal.Text) >= Convert.ToInt32(dr.GetValue(2).ToString())) && (Convert.ToInt32(txtNFinal.Text) <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) && (dVenta == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
                         {
                             MessageBox.Show("Numero final corresponde al rango de " + sUser + (char)13 + " en la fecha de " + sFecTalon + " en la serie " + dr.GetValue(5).ToString() + (char)13 + "Modifique el rango...", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                             txtNFinal.Focus();
@@ -267,7 +265,7 @@ namespace Polsolcom.Forms
                         int i = Convert.ToInt32(txtNInicial.Text);
                         while ( i <= Convert.ToInt32(txtNFinal.Text) )
                         {
-                            if ( (i >= Convert.ToInt32(dr.GetValue(2).ToString())) && (i <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Information.IsNumeric(txtSerie.Text) ? (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) : (txtSerie.Text == dr.GetValue(5).ToString())) && (xxx == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
+                            if ( (i >= Convert.ToInt32(dr.GetValue(2).ToString())) && (i <= Convert.ToInt32(dr.GetValue(3).ToString())) && (Information.IsNumeric(txtSerie.Text) ? (Convert.ToInt32(txtSerie.Text) == Convert.ToInt32(dr.GetValue(5).ToString())) : (txtSerie.Text == dr.GetValue(5).ToString())) && (dVenta == Convert.ToInt32(dr.GetValue(6).ToString())) && (dr.GetValue(8).ToString() == sDef) )
                             {
                                 MessageBox.Show("El rango de " + i + " a " + dr.GetValue(3).ToString() + " le corresponde a " + sUser + " en la fecha de " + sFecTalon + " en la serie " + dr.GetValue(5).ToString() + (char)13 + "Modifique el rango...", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                                 txtNInicial.Focus();
@@ -280,7 +278,7 @@ namespace Polsolcom.Forms
                 dr.Close();
             }
 
-            Talon.serie = (xxx == 3 ? Talon.serie : txtSerie.Text.Trim());
+            Talon.serie = (dVenta == 3 ? Talon.serie : txtSerie.Text.Trim());
 
             try
             {//registra el nuevo rango de talonario para el usuario
@@ -291,7 +289,7 @@ namespace Polsolcom.Forms
                 vSQL = vSQL + "'" + txtNFinal.Text  + "', ";
                 vSQL = vSQL + "'" + Operativo.id_oper + "', ";
                 vSQL = vSQL + "'" + txtSerie.Text + "', ";
-                vSQL = vSQL + "'" + xxx + "', ";
+                vSQL = vSQL + "'" + dVenta + "', ";
                 vSQL = vSQL + "'', ";
                 vSQL = vSQL + "'' ) ";
                 Conexion.CMD.CommandText = vSQL;
