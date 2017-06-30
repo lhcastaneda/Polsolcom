@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.fGrid = new TenTec.Windows.iGridLib.iGrid();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.consultoriosBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -43,13 +44,6 @@
             this.dtpFechFinal = new System.Windows.Forms.DateTimePicker();
             this.tmrSelec = new System.Windows.Forms.Timer(this.components);
             this.label3 = new System.Windows.Forms.Label();
-            this.gdvDatos = new System.Windows.Forms.DataGridView();
-            this.cDocVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cEspecialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cProdSer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -68,13 +62,21 @@
             this.cajerosDS = new Polsolcom.Dominio.Data.CajerosDS();
             this.cajerosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cajerosTableAdapter = new Polsolcom.Dominio.Data.CajerosDSTableAdapters.CajerosTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.fGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvDatos)).BeginInit();
             this.pnlCheck.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cajerosDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cajerosBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // fGrid
+            // 
+            this.fGrid.Location = new System.Drawing.Point(6, 170);
+            this.fGrid.Name = "fGrid";
+            this.fGrid.ReadOnly = true;
+            this.fGrid.Size = new System.Drawing.Size(805, 220);
+            this.fGrid.TabIndex = 0;
             // 
             // label1
             // 
@@ -145,7 +147,7 @@
             this.dtpFechInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechInicio.Location = new System.Drawing.Point(12, 77);
             this.dtpFechInicio.Name = "dtpFechInicio";
-            this.dtpFechInicio.Size = new System.Drawing.Size(139, 20);
+            this.dtpFechInicio.Size = new System.Drawing.Size(160, 20);
             this.dtpFechInicio.TabIndex = 5;
             // 
             // btnEjecutar
@@ -181,6 +183,7 @@
             this.btnSalir.Text = "&Salir";
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // dtpFechFinal
             // 
@@ -188,7 +191,7 @@
             this.dtpFechFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechFinal.Location = new System.Drawing.Point(207, 76);
             this.dtpFechFinal.Name = "dtpFechFinal";
-            this.dtpFechFinal.Size = new System.Drawing.Size(138, 20);
+            this.dtpFechFinal.Size = new System.Drawing.Size(156, 20);
             this.dtpFechFinal.TabIndex = 10;
             // 
             // label3
@@ -201,54 +204,6 @@
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 12;
             this.label3.Text = "Seleccione Inicio";
-            // 
-            // gdvDatos
-            // 
-            this.gdvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gdvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cDocVenta,
-            this.cEspecialidad,
-            this.cProdSer,
-            this.cPrecio,
-            this.cCant,
-            this.cTotal});
-            this.gdvDatos.Location = new System.Drawing.Point(13, 159);
-            this.gdvDatos.Name = "gdvDatos";
-            this.gdvDatos.Size = new System.Drawing.Size(795, 230);
-            this.gdvDatos.TabIndex = 17;
-            // 
-            // cDocVenta
-            // 
-            this.cDocVenta.HeaderText = "Doc. Venta";
-            this.cDocVenta.Name = "cDocVenta";
-            this.cDocVenta.Width = 60;
-            // 
-            // cEspecialidad
-            // 
-            this.cEspecialidad.HeaderText = "Especialidad";
-            this.cEspecialidad.Name = "cEspecialidad";
-            this.cEspecialidad.Width = 200;
-            // 
-            // cProdSer
-            // 
-            this.cProdSer.HeaderText = "Producto / Servicio";
-            this.cProdSer.Name = "cProdSer";
-            this.cProdSer.Width = 200;
-            // 
-            // cPrecio
-            // 
-            this.cPrecio.HeaderText = "Precio";
-            this.cPrecio.Name = "cPrecio";
-            // 
-            // cCant
-            // 
-            this.cCant.HeaderText = "Cantidad";
-            this.cCant.Name = "cCant";
-            // 
-            // cTotal
-            // 
-            this.cTotal.HeaderText = "Total S/.";
-            this.cTotal.Name = "cTotal";
             // 
             // label8
             // 
@@ -289,7 +244,6 @@
             this.txtcVen.Name = "txtcVen";
             this.txtcVen.Size = new System.Drawing.Size(91, 20);
             this.txtcVen.TabIndex = 21;
-            this.txtcVen.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // txtcExt
             // 
@@ -415,7 +369,6 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.gdvDatos);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dtpFechFinal);
             this.Controls.Add(this.btnSalir);
@@ -427,14 +380,15 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbEspecialidad);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.fGrid);
             this.KeyPreview = true;
             this.Name = "frmProduccion";
             this.Text = "Reporte Detallado de los Cajeros";
             this.Load += new System.EventHandler(this.frmProduccion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmProduccion_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvDatos)).EndInit();
             this.pnlCheck.ResumeLayout(false);
             this.pnlCheck.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cajerosDS)).EndInit();
@@ -458,13 +412,6 @@
         private System.Windows.Forms.DateTimePicker dtpFechFinal;
         private System.Windows.Forms.Timer tmrSelec;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView gdvDatos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cDocVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cEspecialidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cProdSer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCant;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cTotal;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -482,6 +429,7 @@
         private System.Windows.Forms.RadioButton rbExtorno;
         private System.Windows.Forms.RadioButton rbAnulado;
         private System.Windows.Forms.RadioButton rbVendido;
+        private TenTec.Windows.iGridLib.iGrid fGrid;
         private System.Windows.Forms.BindingSource cajerosBindingSource;
         private Dominio.Data.CajerosDS cajerosDS;
         private Dominio.Data.CajerosDSTableAdapters.CajerosTableAdapter cajerosTableAdapter;

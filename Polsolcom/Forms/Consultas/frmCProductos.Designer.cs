@@ -183,7 +183,6 @@
             this.txtProd.Name = "txtProd";
             this.txtProd.Size = new System.Drawing.Size(285, 20);
             this.txtProd.TabIndex = 10;
-            this.txtProd.TextChanged += new System.EventHandler(this.txtProd_TextChanged);
             // 
             // btnImprimir
             // 
@@ -195,16 +194,13 @@
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnImprimir.UseVisualStyleBackColor = true;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // txtSuma
             // 
             this.txtSuma.Location = new System.Drawing.Point(479, 164);
             this.txtSuma.Name = "txtSuma";
-            this.txtSuma.ReadOnly = true;
             this.txtSuma.Size = new System.Drawing.Size(100, 20);
             this.txtSuma.TabIndex = 12;
-            this.txtSuma.Text = "0.00";
             // 
             // label6
             // 
@@ -280,11 +276,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.KeyPreview = true;
             this.Name = "frmCProductos";
             this.Text = "frmProducts";
             this.Load += new System.EventHandler(this.frmTarProducts_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCProductos_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();

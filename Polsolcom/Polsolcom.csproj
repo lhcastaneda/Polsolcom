@@ -218,6 +218,12 @@
     </Compile>
     <Compile Include="Dominio\Helpers\ListSelectionWrapper.cs" />
     <Compile Include="Dominio\Helpers\ObjectSelectionWrapper.cs" />
+    <Compile Include="Dominio\Reportes\rptProduccion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProduccion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\frmAdmCounterfoilA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -628,6 +634,10 @@
     <EmbeddedResource Include="Dominio\Reportes\rptEstPac.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEstPac.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptProduccion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProduccion.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>
