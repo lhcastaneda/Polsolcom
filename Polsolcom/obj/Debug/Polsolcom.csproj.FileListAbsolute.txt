@@ -88,3 +88,5 @@ C:\Users\Administrador\Desktop\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frm
 C:\Users\Administrador\Desktop\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmConsultorios.resources
 C:\Users\Administrador\Desktop\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEspecialistas.resources
 C:\Users\Administrador\Desktop\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
