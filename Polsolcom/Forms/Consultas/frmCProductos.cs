@@ -30,7 +30,8 @@ namespace Polsolcom.Forms
 
         private void frmTarProducts_Load(object sender, EventArgs e)
         {
-            General.LlenaOperativo();
+			//debe pasarse un datareader a la funcion
+			//General.LlenaOperativo();
 
             this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
             this.tablaTipoTableAdapter.Fill(this.tipoProductoDS.TablaTipo);
@@ -114,7 +115,8 @@ namespace Polsolcom.Forms
         {
             try
             {
-                General.LlenaOperativo();
+				//debe pasar un datareader para usar la funcion
+                //General.LlenaOperativo();
 
                 Conexion.CMD.CommandText = vSQL + " ORDER BY 5, 2";
 
