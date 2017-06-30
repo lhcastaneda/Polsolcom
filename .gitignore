@@ -1,2 +1,9 @@
-Polsolcom/bin/
+/build/
 *.suo
+*.user
+_ReSharper.*/
+*.sdf
+bin/
+obj/
+Debug/
+Release/
