@@ -15,8 +15,8 @@ namespace Polsolcom
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Para efectos de prueba lo primero que cargaremos ser el formulario con el que estemos trabajando
-            Application.Run(new frmLogin());
-            //Application.Run(new frmProduccion());
+            //Application.Run(new frmLogin());
+            Application.Run(new frmProduccion());
 
         }
     }
