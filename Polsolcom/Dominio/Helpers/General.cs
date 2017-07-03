@@ -57,16 +57,15 @@ namespace Polsolcom.Dominio.Helpers
 	//clase que guarda los parametros generales a mostrar en un grafico
 	public class Grafico
 	{
-		public static string sSQL { get; set; }
-		public static string NombreSerie { get; set; }
-		public static string LeyendaSerie { get; set; }
-		public static string TituloChart { get; set; }
-		public static string TipoChart { get; set; }
-		public static string TituloX { get; set; }
-		public static string TituloY { get; set; }
-		public static string LeyendaX { get; set; }
-		public static string LeyendaY { get; set; }
-	}
+        public static string sSQL { get; set; }
+        public static string TituloChart { get; set; }
+        public static string TipoChart { get; set; }
+        public static string TituloX { get; set; }
+        public static string TituloY { get; set; }
+        public static string LeyendaX { get; set; }
+        public static string LeyendaY { get; set; }
+        public static List<Serie> series { get; set; }
+    }
 
 	public class ItemMenus
     {
@@ -496,25 +495,49 @@ namespace Polsolcom.Dominio.Helpers
         }
         #endregion
 
-        public static void LlenaOperativo(SqlDataReader dr)
+        public static void LlenaOperativo()
         {
-            if ( dr.HasRows )
-            {
-                while ( dr.Read() )
+            //consulta que trae los datos del centro operativo
+            string vSQL = "SELECT O.Descripcion,O.Id_Oper,O.Estado,MO.Descripcion As Mod_Oper, ";
+            vSQL = vSQL + " O.Id_Distrito,O.Uni_Org,O.Fil_Ubi,I.Nom_Raz_Soc,I.RUC,I.Direccion,U.Distrito ";
+            vSQL = vSQL + " FROM Operativo O INNER JOIN ";
+            vSQL = vSQL + " (SELECT Id_Tipo,Descripcion ";
+            vSQL = vSQL + "  FROM TablaTipo ";
+            vSQL = vSQL + "  WHERE Id_Tabla In ";
+            vSQL = vSQL + "  (SELECT Id_Tipo ";
+            vSQL = vSQL + "   FROM TablaTipo ";
+            vSQL = vSQL + "   WHERE LTrim(RTrim(Descripcion))='MODALIDAD_OPERATIVO' ";
+            vSQL = vSQL + "   And LTrim(RTrim(Id_Tabla))='0')) MO ";
+            vSQL = vSQL + " On O.Mod_Oper=MO.Id_Tipo INNER JOIN Institucion I ";
+            vSQL = vSQL + " On O.Id_Emp=I.TInst+I.Id_Inst INNER JOIN Ubigeo2005 U ";
+            vSQL = vSQL + " On I.Id_Distrito=U.Id_Old ";
+            vSQL = vSQL + " ORDER BY 2";
+            Conexion.CMD.CommandText = vSQL;
+            using (SqlDataReader dr = Conexion.CMD.ExecuteReader())
+            {//declarandolo de esta manera el datareader se puede usar nuevamente mas adelante
+                if (dr.HasRows)
                 {
-                    Operativo.descripcion = dr.GetValue(0).ToString();
-                    Operativo.id_oper = dr.GetValue(1).ToString();
-                    Operativo.estado = dr.GetValue(2).ToString();
-                    Operativo.mod_oper = dr.GetValue(3).ToString();
-                    Operativo.id_distrito = dr.GetValue(4).ToString();
-                    Operativo.uni_org = dr.GetValue(5).ToString();
-                    Operativo.fil_ubi = dr.GetValue(6).ToString();
-                    Operativo.nom_raz_soc = dr.GetValue(7).ToString();
-                    Operativo.ruc = dr.GetValue(8).ToString();
-                    Operativo.direccion = dr.GetValue(9).ToString();
-                    Operativo.distrito = dr.GetValue(10).ToString();
+                    while (dr.Read())
+                    {
+                        Operativo.descripcion = dr.GetValue(0).ToString();
+                        Operativo.id_oper = dr.GetValue(1).ToString();
+                        Operativo.estado = dr.GetValue(2).ToString();
+                        Operativo.mod_oper = dr.GetValue(3).ToString();
+                        Operativo.id_distrito = dr.GetValue(4).ToString();
+                        Operativo.uni_org = dr.GetValue(5).ToString();
+                        Operativo.fil_ubi = dr.GetValue(6).ToString();
+                        Operativo.nom_raz_soc = dr.GetValue(7).ToString();
+                        Operativo.ruc = dr.GetValue(8).ToString();
+                        Operativo.direccion = dr.GetValue(9).ToString();
+                        Operativo.distrito = dr.GetValue(10).ToString();
+                    }
+                    dr.Close();
                 }
-                dr.Close();
+                else
+                {
+                    MessageBox.Show("No se tiene datos del operativo." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    Application.Exit();
+                }
             }
         }
 

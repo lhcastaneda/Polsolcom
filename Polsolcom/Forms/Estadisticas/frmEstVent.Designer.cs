@@ -282,7 +282,6 @@ namespace Polsolcom.Forms
             this.optCircular.Name = "optCircular";
             this.optCircular.Size = new System.Drawing.Size(136, 21);
             this.optCircular.TabIndex = 6;
-            this.optCircular.TabStop = true;
             this.optCircular.Text = "Grafico Circular";
             this.optCircular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.optCircular.UseVisualStyleBackColor = true;
@@ -296,7 +295,6 @@ namespace Polsolcom.Forms
             this.optLineas.Name = "optLineas";
             this.optLineas.Size = new System.Drawing.Size(148, 21);
             this.optLineas.TabIndex = 5;
-            this.optLineas.TabStop = true;
             this.optLineas.Text = "Grafico de Lineas";
             this.optLineas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.optLineas.UseVisualStyleBackColor = true;
@@ -310,7 +308,6 @@ namespace Polsolcom.Forms
             this.optAreas.Name = "optAreas";
             this.optAreas.Size = new System.Drawing.Size(142, 21);
             this.optAreas.TabIndex = 4;
-            this.optAreas.TabStop = true;
             this.optAreas.Text = "Grafico de Areas";
             this.optAreas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.optAreas.UseVisualStyleBackColor = true;
@@ -324,13 +321,13 @@ namespace Polsolcom.Forms
             this.optBarras.Name = "optBarras";
             this.optBarras.Size = new System.Drawing.Size(146, 21);
             this.optBarras.TabIndex = 3;
-            this.optBarras.TabStop = true;
             this.optBarras.Text = "Grafico de Barras";
             this.optBarras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.optBarras.UseVisualStyleBackColor = true;
             // 
             // optColumnas
             // 
+            this.optColumnas.Checked = true;
             this.optColumnas.ForeColor = System.Drawing.Color.Black;
             this.optColumnas.Image = ((System.Drawing.Image)(resources.GetObject("optColumnas.Image")));
             this.optColumnas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
