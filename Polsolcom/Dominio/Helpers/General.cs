@@ -284,6 +284,9 @@ namespace Polsolcom.Dominio.Helpers
 
 		public static string TomaValor( string sSQL )
 		{
+			if( sSQL.Trim() == "" )
+				return "";
+
 			string sResult = "";
 
 			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )

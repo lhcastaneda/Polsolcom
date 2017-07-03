@@ -29,8 +29,6 @@ namespace Polsolcom.Forms.Procesos
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSHClinica));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txtDigitador = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -101,15 +99,11 @@ namespace Polsolcom.Forms.Procesos
 			this.txtAutoriza = new System.Windows.Forms.TextBox();
 			this.txtSon = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
-			this.grd = new System.Windows.Forms.DataGridView();
-			this.producto = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.iGrid = new TenTec.Windows.iGridLib.iGrid();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.iGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -937,69 +931,19 @@ namespace Polsolcom.Forms.Procesos
 			this.label28.Text = "[Ins] Nuevo Paciente   [F3] Buscar Paciente   [F4] Buscar Venta   [F5] Recargar V" +
     "enta   [F6] Grabar";
 			// 
-			// grd
+			// iGrid
 			// 
-			this.grd.AllowUserToResizeColumns = false;
-			this.grd.AllowUserToResizeRows = false;
-			this.grd.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.grd.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-			this.grd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.grd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.producto,
-            this.cantidad,
-            this.precio,
-            this.subtotal});
-			this.grd.Location = new System.Drawing.Point(6, 237);
-			this.grd.Name = "grd";
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.grd.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-			this.grd.RowHeadersVisible = false;
-			this.grd.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.grd.Size = new System.Drawing.Size(591, 120);
-			this.grd.TabIndex = 48;
-			this.grd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
-			// 
-			// producto
-			// 
-			this.producto.HeaderText = "Descripcion del Producto o Servicio";
-			this.producto.MaxDropDownItems = 15;
-			this.producto.Name = "producto";
-			this.producto.ReadOnly = true;
-			this.producto.Sorted = true;
-			this.producto.Width = 400;
-			// 
-			// cantidad
-			// 
-			this.cantidad.HeaderText = "Cantidad";
-			this.cantidad.Name = "cantidad";
-			this.cantidad.Width = 50;
-			// 
-			// precio
-			// 
-			this.precio.HeaderText = "Precio";
-			this.precio.Name = "precio";
-			this.precio.ReadOnly = true;
-			this.precio.Width = 50;
-			// 
-			// subtotal
-			// 
-			this.subtotal.HeaderText = "Sub Total";
-			this.subtotal.Name = "subtotal";
-			this.subtotal.ReadOnly = true;
-			this.subtotal.Width = 85;
+			this.iGrid.BorderStyle = TenTec.Windows.iGridLib.iGBorderStyle.None;
+			this.iGrid.CreateRowCellStyleDynamically = false;
+			this.iGrid.Location = new System.Drawing.Point(5, 237);
+			this.iGrid.Name = "iGrid";
+			this.iGrid.PressedMouseMoveMode = TenTec.Windows.iGridLib.iGPressedMouseMoveMode.Normal;
+			this.iGrid.RowMode = true;
+			this.iGrid.RowTextVisible = true;
+			this.iGrid.SelectionMode = TenTec.Windows.iGridLib.iGSelectionMode.None;
+			this.iGrid.Size = new System.Drawing.Size(594, 120);
+			this.iGrid.TabIndex = 0;
+			this.iGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// frmSHClinica
 			// 
@@ -1008,7 +952,6 @@ namespace Polsolcom.Forms.Procesos
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.ClientSize = new System.Drawing.Size(718, 425);
 			this.ControlBox = false;
-			this.Controls.Add(this.grd);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.label28);
 			this.Controls.Add(this.txtSon);
@@ -1018,6 +961,7 @@ namespace Polsolcom.Forms.Procesos
 			this.Controls.Add(this.txtNeto);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox3);
+			this.Controls.Add(this.iGrid);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "frmSHClinica";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -1029,7 +973,7 @@ namespace Polsolcom.Forms.Procesos
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.grd)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.iGrid)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1107,10 +1051,6 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.TextBox txtAutoriza;
 		private System.Windows.Forms.TextBox txtSon;
 		private System.Windows.Forms.Label label28;
-		private System.Windows.Forms.DataGridView grd;
-		private System.Windows.Forms.DataGridViewComboBoxColumn producto;
-		private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
-		private System.Windows.Forms.DataGridViewTextBoxColumn precio;
-		private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
+		private TenTec.Windows.iGridLib.iGrid iGrid;
 	}
 }

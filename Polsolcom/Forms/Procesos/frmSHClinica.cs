@@ -9,6 +9,7 @@ using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
 using System.Linq;
+using TenTec.Windows.iGridLib;
 
 namespace Polsolcom.Forms.Procesos
 {
@@ -28,21 +29,18 @@ namespace Polsolcom.Forms.Procesos
 		{
 			General.ttMensaje.InitialDelay = 0;
 			General.ttMensaje.IsBalloon = false;
+			FormateaGrids();
 			btnBuscarT.Enabled = true;
-			FormateaGrid();
 			bTieneDocVenta = General.TieneDocVenta(Usuario.id_us,"");
 			if( bTieneDocVenta == true )
 			{
 				General.LlenarRegistroVenta(Usuario.id_us, "");
 				btnNuevo.Enabled = true;
 				btnBuscar.Enabled = true;
-				
 			}
 			else
 			{
 				
-
-
 			}
 
 			General.LUbigeo("","DEPARTAMENTO", cmbDepartamento);
@@ -66,36 +64,57 @@ namespace Polsolcom.Forms.Procesos
 			Habilita(0);
 			btnAgregar.Enabled = false;
 			btnQuitar.Enabled = false;
-
-
+			
 		}
-
-		private void FormateaGrid()
+		
+		private void FormateaGrids()
 		{
-			grd.ColumnHeadersHeight = 30;
+			iGDropDownList cmb = new iGDropDownList();
+			iGrid.RowHeader.Visible = false;
+			iGrid.DefaultRow.Height = 17;
+			iGrid.Cols.Count = 5;
+			//producto
+			iGrid.Cols[0].Text = "Descripcion del Producto o Servicio";
+			iGrid.Cols[0].Width = 425;
+			iGrid.Cols[0].CellStyle.ImageAlign = iGContentAlignment.MiddleLeft;
+			iGrid.Cols[0].CellStyle.DropDownControl = cmb; //agrega el combobox
+			iGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
+			iGrid.Cols[0].CellStyle.ValueType = typeof(string);
+			//cantidad
+			iGrid.Cols[1].Text = "Cant.";
+			iGrid.Cols[1].Width = 40;
+			iGrid.Cols[1].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
+			iGrid.Cols[1].CellStyle.ReadOnly = iGBool.False;
+			//precio
+			iGrid.Cols[2].Text = "Precio";
+			iGrid.Cols[2].Width = 50;
+			iGrid.Cols[2].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
+			iGrid.Cols[2].CellStyle.FormatString = "{0:#,#}";
+			iGrid.Cols[2].CellStyle.ReadOnly = iGBool.True;
+			//sub total
+			iGrid.Cols[3].Text = "Sub Total";
+			iGrid.Cols[3].Width = 60;
+			iGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
+			iGrid.Cols[3].CellStyle.FormatString = "{0:#,#}";
+			iGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
+			//id
+			iGrid.Cols[4].Text = "ID";
+			iGrid.Cols[4].Width = 1;
+			iGrid.Cols[4].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
+			iGrid.Cols[4].CellStyle.ReadOnly = iGBool.True;
+			// Popup menu de la grid
+			//iGrid.ContextMenuStrip = new ContextMenuStrip();
+			//iGrid.ContextMenuStrip.Items.Add("Exportar");
+			//iGrid.ContextMenuStrip.Items.Add("Copiar");
+			
 
-			grd.Columns[0].Width = 365;
-			grd.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-			grd.Columns[1].Width = 60;
-			grd.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-			grd.Columns[1].DefaultCellStyle.Format = "#";
-
-			grd.Columns[2].Width = 60;
-			grd.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-			grd.Columns[2].DefaultCellStyle.Format = "#,#.0#";
-
-			grd.Columns[3].Width = 85;
-			grd.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-			grd.Columns[3].DefaultCellStyle.Format = "#,#.0#";
-			grd.ScrollBars = ScrollBars.Vertical;
 		}
 
 		private DataGridViewComboBoxCell LlenaProductos( string sCategoria, string idProducto = "" )
 		{
 			DataGridViewComboBoxCell cmb = new DataGridViewComboBoxCell();
 
-			string sQuery = "SELECT id_producto,descripcion,monto,tipo,estado,tpesp " +
+			string sQuery = "SELECT descripcion,CAST(SubString(Id_Producto,4,5) AS INT) AS Id_Producto " +
 							"FROM Productos " +
 							"WHERE 1 = 1 " +
 							"AND Estado = '1' " +
@@ -103,7 +122,7 @@ namespace Polsolcom.Forms.Procesos
 			if(idProducto != "")
 				sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
 			else
-				sQuery = sQuery + "ORDER BY 2";
+				sQuery = sQuery + "ORDER BY 1";
 
 			cmb.DataSource = null;
 			cmb.Items.Clear();
@@ -115,16 +134,41 @@ namespace Polsolcom.Forms.Procesos
 					if( db.State == ConnectionState.Closed )
 						db.Open();
 
-					cmb.DataSource = db.Query<Producto>(sQuery).ToList();
+					cmb.DataSource = db.Query<Prod>(sQuery).ToList();
 					cmb.DisplayMember = "descripcion";
+					cmb.ValueMember = "id_producto";
 				}
 				catch( Exception ex )
 				{ MessageBox.Show(ex.Message); }
 			}
+			
 			return cmb;
 
 		}
 
+		private iGDropDownList CargaProductos( string sCategoria, string idProducto = "" )
+		{
+			iGDropDownList cmb = new iGDropDownList();
+			string sQuery = "SELECT CAST(SubString(Id_Producto,4,5) AS INT) AS Id,Descripcion " +
+							"FROM Productos " +
+							"WHERE 1 = 1 " +
+							"AND Estado = '1' " +
+							"AND LEFT(Id_Producto,6) = '" + sCategoria.Trim() + "' ";
+			if( idProducto != "" )
+				sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
+			else
+				sQuery = sQuery + "ORDER BY 1";
+
+			Conexion.CMD.CommandText = sQuery;
+			cmb.Items.Clear();
+			cmb.FillWithData(Conexion.CMD, "Id", "Descripcion");
+
+			if( cmb.Items.Count == 1 )
+				cmb.Items[0].Selectable = true;
+			
+			return cmb;
+		}
+		
 		private string DevuelvePrecioProducto( string idProduct )
 		{
 			string sPrecio = "";
@@ -150,8 +194,7 @@ namespace Polsolcom.Forms.Procesos
 			return sPrecio;
 
 		}
-
-
+		
 		protected override bool ProcessCmdKey( ref Message msg, Keys keyData )
 		{
 			bool result = false;
@@ -588,7 +631,7 @@ namespace Polsolcom.Forms.Procesos
 
 			if( NROHISTORIA != "" )
 			{
-				ValidaDatosTicket(NROHISTORIA);
+				CargaDatosHistoria(NROHISTORIA);
 				btnImprimir.Enabled = true;
 			}
 
@@ -627,7 +670,7 @@ namespace Polsolcom.Forms.Procesos
 		{
 			string sSQL = "";
 
-			if( sNroHistoria != "" || int.Parse(sNroHistoria) != 0 )
+			if( sNroHistoria == "" || sNroHistoria.Length == 0 )
 				return;
 
 			sSQL = "SELECT T.Nro_Historia, T.Nro_Ticket, T.Fecha_Emision, T.Id_Consultorio, T.Id_Paciente, " + 
@@ -655,45 +698,56 @@ namespace Polsolcom.Forms.Procesos
 							UbicaItemCombo(cmbEspecialidad, dr.GetValue(3).ToString().Trim());
 							txtID.Text = dr.GetValue(4).ToString().Trim();
 							txtDigitador.Text = General.TradUser(dr.GetValue(5).ToString().Trim());
-
-
-
-
-
-
-							UbicaItemCombo(cmbTDoc, dr.GetValue(14).ToString().Trim());
 							UbicaItemCombo(cmbMVen, dr.GetValue(7).ToString().Trim());
+							if( dr.GetValue(8).ToString().Trim() !="")
+								if( dr.GetValue(8).ToString().Substring(0, 1) == "D" )
+								{
+									string ads = dr.GetValue(8).ToString().Substring(29, 9).Trim();
 
-							UbicaItemCombo(cmbDepartamento, dr.GetValue(7).ToString().Substring(0, 2));
-							UbicaItemCombo(cmbProvincia, dr.GetValue(7).ToString().Substring(0, 4));
-							UbicaItemCombo(cmbDistrito, dr.GetValue(7).ToString());
+									sSQL = "Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Personal,Id_Personal " +
+											"From Personal " +
+											"Where Id_Personal = '" + ads.Trim() + "' " +
+											"Union All " +
+											"Select Nom_Raz_Soc Personal,TInst + Id_Inst Id_Personal " +
+											"  From Institucion " +
+											"  Where TInst + Id_Inst = '" + ads.Trim() + "' ";
 
-							
+									using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
+									{
+										try
+										{
+											if( db.State == ConnectionState.Closed )
+												db.Open();
+
+											dynamic returns = db.Query<dynamic>(sSQL);
+											txtAutoriza.Text = returns[0].Personal + " (S/. " + dr.GetValue(8).ToString().Substring(38, 8).Trim() + ")";
+										}
+										catch( Exception ex )
+										{ MessageBox.Show(ex.Message); }
+									}
+								}
+							txtSerie.Text = dr.GetValue(9).ToString().Trim();
 							UbicaItemCombo(cmbEspecialista, dr.GetValue(10).ToString().Trim());
 							UbicaItemCombo(cmbInstitucion, dr.GetValue(11).ToString().Trim());
-
-							txtApeMaterno.Text = dr.GetValue(3).ToString();
-							txtApePaterno.Text = dr.GetValue(2).ToString();
-							txtAsegurado.Text = dr.GetValue(9).ToString();
+							UbicaItemCombo(cmbTDoc, dr.GetValue(14).ToString().Trim());
+							txtNombres.Text = dr.GetValue(17).ToString();
+							txtApePaterno.Text = dr.GetValue(18).ToString();
+							txtApeMaterno.Text = dr.GetValue(19).ToString();
+							txtDNI.Text = dr.GetValue(20).ToString();
+							txtFecNac.Text = dr.GetValue(21).ToString();
+							txtEdad.Text = dr.GetValue(22).ToString();
+							txtSexo.Text = dr.GetValue(23).ToString();
+							txtTelefono.Text = dr.GetValue(24).ToString();
+							txtDireccion.Text = dr.GetValue(25).ToString();
+							txtAsegurado.Text = dr.GetValue(26).ToString();
+							UbicaItemCombo(cmbDepartamento, dr.GetValue(27).ToString().Substring(0, 2));
+							UbicaItemCombo(cmbProvincia, dr.GetValue(27).ToString().Substring(0, 4));
+							UbicaItemCombo(cmbDistrito, dr.GetValue(27).ToString());
+							txtODoc.Text = dr.GetValue(28).ToString();
+							txtEmail.Text = dr.GetValue(29).ToString();
 							txtAutoriza.Text = "";
-							txtDNI.Text = dr.GetValue(4).ToString();
-							
-							txtDireccion.Text = dr.GetValue(8).ToString();
-							txtEdad.Text = dr.GetValue(5).ToString();
-							txtEmail.Text = dr.GetValue(12).ToString();
-							txtFecNac.Text = dr.GetValue(4).ToString().Substring(0, 10);
-							
-							
-							
-							txtNombres.Text = dr.GetValue(1).ToString();
-							
-							txtODoc.Text = dr.GetValue(11).ToString();
-							txtSerie.Text = dr.GetValue(9).ToString().Trim();
-							txtSexo.Text = dr.GetValue(6).ToString();
-							txtTelefono.Text = dr.GetValue(7).ToString();
-
 							//carga detalle
-
+							CargaDetalleTicket(sNroHistoria, dr.GetValue(3).ToString().Trim());
 						}
 					}
 					dr.Close();
@@ -705,7 +759,7 @@ namespace Polsolcom.Forms.Procesos
 		{
 			string sSQL = "";
 
-			if( sNroHistoria != "" || int.Parse(sNroHistoria) != 0 )
+			if( sNroHistoria != "" || sNroHistoria.Length != 0 )
 			{
 				sSQL = "SELECT Nro_Historia,Nro_Ticket,Fecha_Emision,Id_Consultorio, " + 
 						"Id_Paciente,Digitador,Anulado,ForPago,Descuento,Serie, " + 
@@ -771,9 +825,8 @@ namespace Polsolcom.Forms.Procesos
 											if( db.State == ConnectionState.Closed )
 												db.Open();
 
-											//var returns = db.Query<object>(sSQL);
 											dynamic returns = db.Query<dynamic>(sSQL);
-											txtAutoriza.Text = returns[0] + " (S/. " + dr.GetValue(8).ToString().Substring(38, 8).Trim();
+											txtAutoriza.Text = returns[0].Personal + " (S/. " + dr.GetValue(8).ToString().Substring(38, 8).Trim();
 
 										}
 										catch( Exception ex )
@@ -804,15 +857,14 @@ namespace Polsolcom.Forms.Procesos
 					dr.Close();
 				}
 			}
-
-
-
+			
 		}
 
 		private void CargaDetalleTicket( string sNHC, string sEspecialidad )
-		{
-			grd.Rows.Clear();
-			grd.Refresh();
+		{			
+			//grd.Rows.Clear();
+			iGrid.Rows.Clear();
+			FormateaGrids();
 
 			if( sNHC.Trim() == "" )
 				return;
@@ -820,33 +872,67 @@ namespace Polsolcom.Forms.Procesos
 			if( sEspecialidad.Trim() == "" )
 				return;
 
-			string vSQL = "SELECT nro_historia,id_producto,monto,cantidad," +
-						  "pagado,dscto,resultado,conclusion " +
+			string vSQL = "SELECT COUNT(*) AS cant " +
 						  "FROM Detalles " +
 						  "WHERE Nro_Historia = '" + sNHC.ToString() + "'";
+			int iCant = Int32.Parse(General.TomaValor(vSQL));
+			
+			vSQL = "SELECT nro_historia,id_producto,monto,cantidad," +
+				   "pagado,dscto,resultado,conclusion " +
+				   "FROM Detalles " +
+				   "WHERE Nro_Historia = '" + sNHC.ToString() + "'";
 			using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
 			{
 				using( SqlDataReader dr = cmd.ExecuteReader() )
 				{
 					if( dr.HasRows )
 					{
+						iGrid.BeginUpdate();
+						iGrid.Rows.Count = iCant;
+
+						foreach( iGRow row in iGrid.Rows )
+						{
+							dr.Read();
+							iGDropDownList cmb = CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
+							row.Cells[0].DropDownControl = cmb;
+							row.Cells[0].Value = cmb.Items[0].Value;
+							row.Cells[1].Value = dr.GetValue(3).ToString();
+							row.Cells[2].Value = DevuelvePrecioProducto(dr.GetValue(1).ToString());
+							row.Cells[3].Value = dr.GetValue(2).ToString();
+							row.Cells[4].Value = dr.GetValue(1).ToString();
+						}
+						iGrid.EndUpdate();
+
+
+						/*
 						while( dr.Read() )
 						{
-							int idRow = grd.Rows.Count;
-							if( idRow != 0 )
-								idRow = idRow - 1;
+							DataGridViewRow row = new DataGridViewRow();
+							DataGridViewComboBoxCell cmbDGV = LlenaProductos(sEspecialidad, dr.GetValue(1).ToString());
+							DataGridViewCell cellCant = new DataGridViewTextBoxCell();
+							DataGridViewCell cellPrecio = new DataGridViewTextBoxCell();
+							DataGridViewCell cellSubTotal = new DataGridViewTextBoxCell();
+							DataGridViewCell cellID = new DataGridViewTextBoxCell();
 
-							DataGridViewComboBoxCell cmbDGV = LlenaProductos(sEspecialidad, dr.GetValue(2).ToString());
+							cellCant.Value = dr.GetValue(3).ToString();
+							cellPrecio.Value = DevuelvePrecioProducto(dr.GetValue(1).ToString());
+							cellSubTotal.Value = dr.GetValue(2).ToString();
+							cellID.Value = dr.GetValue(1).ToString();
 
-							grd.Rows.Insert(idRow, cmbDGV, dr.GetValue(3).ToString(), DevuelvePrecioProducto(dr.GetValue(1).ToString()), string.Format("{0:f2}", dr.GetValue(2).ToString()));
+							row.Cells.Add(cmbDGV);
+							row.Cells.Add(cellCant);
+							row.Cells.Add(cellPrecio);
+							row.Cells.Add(cellSubTotal);
+							row.Cells.Add(cellID);
+							grd.Rows.Add(row);
+							grd.Rows[grd.Rows.Count-1].Cells[0].Value = (row.Cells[0] as DataGridViewComboBoxCell).Items[0];
 						}
+						*/
+
 					}
 					dr.Close();
 				}
 			}
-
-
-
 		}
 
 		private void BloqueaControles()
@@ -925,9 +1011,10 @@ namespace Polsolcom.Forms.Procesos
 			}
 			btnAgregar.Enabled = true;
 		}
+				
 	}
 
-	public partial class Producto
+	public partial class Prod
 	{
 		public string Id_Producto {get; set;}
 		public string Descripcion {get; set;}
