@@ -104,6 +104,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dominio\Data\CajerosDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CajerosDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\Consolidado.cs">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </Compile>
@@ -155,6 +160,11 @@
     </Compile>
     <Compile Include="Dominio\Data\ParteDiario.cs">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ProduccionDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\TipoDocumento.cs">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
@@ -213,6 +223,12 @@
     </Compile>
     <Compile Include="Dominio\Helpers\ListSelectionWrapper.cs" />
     <Compile Include="Dominio\Helpers\ObjectSelectionWrapper.cs" />
+    <Compile Include="Dominio\Reportes\rptProduccion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProduccion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\frmAdmCounterfoilA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +330,12 @@
     </Compile>
     <Compile Include="Forms\frmMantImpFicha.Designer.cs">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmIngresoCie10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmIngresoCie10.Designer.cs">
+      <DependentUpon>frmIngresoCie10.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Procesos\frmMntVentas.cs">
       <SubType>Form</SubType>
@@ -618,6 +640,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEstPac.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptProduccion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProduccion.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>
     </EmbeddedResource>
@@ -680,6 +706,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMantImpFicha.resx">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmIngresoCie10.resx">
+      <DependentUpon>frmIngresoCie10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmMntVentas.resx">
       <DependentUpon>frmMntVentas.cs</DependentUpon>
@@ -834,6 +863,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Variables.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Dominio\Data\CajerosDS.xsc">
+      <DependentUpon>CajerosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\CajerosDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CajerosDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\CajerosDS.xss">
+      <DependentUpon>CajerosDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\ConsultoriosDS.xsc">
       <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
     </None>
@@ -899,6 +939,17 @@
     </None>
     <None Include="Dominio\Data\ParteDiario.xss">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ProduccionDS.xsc">
+      <DependentUpon>ProduccionDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ProduccionDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProduccionDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\ProduccionDS.xss">
+      <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\TipoDocumento.xsc">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>

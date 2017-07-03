@@ -120,7 +120,6 @@
             this.optCircular.ForeColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.optCircular, "optCircular");
             this.optCircular.Name = "optCircular";
-            this.optCircular.TabStop = true;
             this.optCircular.UseVisualStyleBackColor = true;
             // 
             // optLineas
@@ -128,7 +127,6 @@
             this.optLineas.ForeColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.optLineas, "optLineas");
             this.optLineas.Name = "optLineas";
-            this.optLineas.TabStop = true;
             this.optLineas.UseVisualStyleBackColor = true;
             // 
             // optAreas
@@ -136,7 +134,6 @@
             this.optAreas.ForeColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.optAreas, "optAreas");
             this.optAreas.Name = "optAreas";
-            this.optAreas.TabStop = true;
             this.optAreas.UseVisualStyleBackColor = true;
             // 
             // optBarras
@@ -144,11 +141,11 @@
             this.optBarras.ForeColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.optBarras, "optBarras");
             this.optBarras.Name = "optBarras";
-            this.optBarras.TabStop = true;
             this.optBarras.UseVisualStyleBackColor = true;
             // 
             // optColumnas
             // 
+            this.optColumnas.Checked = true;
             this.optColumnas.ForeColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.optColumnas, "optColumnas");
             this.optColumnas.Name = "optColumnas";
@@ -169,12 +166,12 @@
             resources.ApplyResources(this.optFecha, "optFecha");
             this.optFecha.ForeColor = System.Drawing.Color.Black;
             this.optFecha.Name = "optFecha";
-            this.optFecha.TabStop = true;
             this.optFecha.UseVisualStyleBackColor = true;
             // 
             // optAnho
             // 
             resources.ApplyResources(this.optAnho, "optAnho");
+            this.optAnho.Checked = true;
             this.optAnho.ForeColor = System.Drawing.Color.Black;
             this.optAnho.Name = "optAnho";
             this.optAnho.TabStop = true;
