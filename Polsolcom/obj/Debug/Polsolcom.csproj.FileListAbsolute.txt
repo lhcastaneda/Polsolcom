@@ -96,3 +96,5 @@ C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\bin\Debug\Dapper.xml
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\yo\Polsolcom.resources.dll
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
