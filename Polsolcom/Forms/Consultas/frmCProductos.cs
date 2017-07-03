@@ -31,8 +31,6 @@ namespace Polsolcom.Forms
         private void frmTarProducts_Load(object sender, EventArgs e)
         {
 			//debe pasarse un datareader a la funcion
-			//General.LlenaOperativo();
-
             this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
             this.tablaTipoTableAdapter.Fill(this.tipoProductoDS.TablaTipo);
 
@@ -116,8 +114,6 @@ namespace Polsolcom.Forms
             try
             {
 				//debe pasar un datareader para usar la funcion
-                //General.LlenaOperativo();
-
                 Conexion.CMD.CommandText = vSQL + " ORDER BY 5, 2";
 
                 using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
@@ -278,6 +274,23 @@ namespace Polsolcom.Forms
             else
                 e.Result = "Proceso culminado.";
 
+        }
+
+        private void btnImprimir_Click_1(object sender, EventArgs e)
+        {
+            generateSQL();
+
+            //genera reporte y carga los datos
+            object result = WaitWindow.Show(WorkerMethodRPT, "Generando el reporte...");
+            if (result == null)
+            {
+                MessageBox.Show("No se pudo procesar el reporte.");
+                return;
+            }
+
+            //llama al formulario que muestra el reporte
+            frmCRViewer frg = new frmCRViewer(rpt);
+            frg.ShowDialog();
         }
     }
 }

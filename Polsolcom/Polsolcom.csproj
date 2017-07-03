@@ -161,6 +161,11 @@
     <Compile Include="Dominio\Data\ParteDiario.cs">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\ProduccionDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProduccionDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\TipoDocumento.cs">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
     </Compile>
@@ -934,6 +939,17 @@
     </None>
     <None Include="Dominio\Data\ParteDiario.xss">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ProduccionDS.xsc">
+      <DependentUpon>ProduccionDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ProduccionDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProduccionDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\ProduccionDS.xss">
+      <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\TipoDocumento.xsc">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
