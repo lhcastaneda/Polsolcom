@@ -31,17 +31,15 @@ namespace Polsolcom.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties4 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
             Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties1 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
-            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties2 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEstVent));
-            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties3 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
+            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties2 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnEjecutar = new System.Windows.Forms.Button();
             this.btnVerGraf = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.rbEspecialidad = new System.Windows.Forms.RadioButton();
             this.rbAños = new System.Windows.Forms.RadioButton();
             this.rbFechas = new System.Windows.Forms.RadioButton();
@@ -62,10 +60,10 @@ namespace Polsolcom.Forms
             this.txtTNew = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.cmbOperativo = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
-            this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.grpAgrupacion = new System.Windows.Forms.GroupBox();
             this.grpTipoGraph.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).BeginInit();
+            this.grpAgrupacion.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -118,38 +116,15 @@ namespace Polsolcom.Forms
             this.btnVerGraf.TabIndex = 24;
             this.btnVerGraf.Text = "&Ver Gráfico";
             this.btnVerGraf.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Controls.Add(this.cmbEspecialidad);
-            this.groupBox1.Controls.Add(this.cmbMeses);
-            this.groupBox1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.groupBox1.Location = new System.Drawing.Point(7, 77);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(335, 133);
-            this.groupBox1.TabIndex = 29;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Agrupar por:";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.rbEspecialidad);
-            this.panel1.Controls.Add(this.rbAños);
-            this.panel1.Controls.Add(this.rbFechas);
-            this.panel1.Controls.Add(this.rbMeses);
-            this.panel1.Location = new System.Drawing.Point(8, 18);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(133, 107);
-            this.panel1.TabIndex = 49;
+            this.btnVerGraf.Click += new System.EventHandler(this.btnVerGraf_Click);
             // 
             // rbEspecialidad
             // 
+            this.rbEspecialidad.AccessibleDescription = "Especialidad";
             this.rbEspecialidad.AutoSize = true;
             this.rbEspecialidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbEspecialidad.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.rbEspecialidad.Location = new System.Drawing.Point(9, 75);
+            this.rbEspecialidad.Location = new System.Drawing.Point(15, 84);
             this.rbEspecialidad.Name = "rbEspecialidad";
             this.rbEspecialidad.Size = new System.Drawing.Size(106, 17);
             this.rbEspecialidad.TabIndex = 50;
@@ -158,10 +133,11 @@ namespace Polsolcom.Forms
             // 
             // rbAños
             // 
+            this.rbAños.AccessibleDescription = "Años";
             this.rbAños.AutoSize = true;
             this.rbAños.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbAños.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.rbAños.Location = new System.Drawing.Point(8, 54);
+            this.rbAños.Location = new System.Drawing.Point(14, 63);
             this.rbAños.Name = "rbAños";
             this.rbAños.Size = new System.Drawing.Size(67, 17);
             this.rbAños.TabIndex = 49;
@@ -170,11 +146,12 @@ namespace Polsolcom.Forms
             // 
             // rbFechas
             // 
+            this.rbFechas.AccessibleDescription = "Fechas";
             this.rbFechas.AutoSize = true;
             this.rbFechas.Checked = true;
             this.rbFechas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbFechas.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.rbFechas.Location = new System.Drawing.Point(8, 12);
+            this.rbFechas.Location = new System.Drawing.Point(14, 21);
             this.rbFechas.Name = "rbFechas";
             this.rbFechas.Size = new System.Drawing.Size(76, 17);
             this.rbFechas.TabIndex = 47;
@@ -184,10 +161,11 @@ namespace Polsolcom.Forms
             // 
             // rbMeses
             // 
+            this.rbMeses.AccessibleDescription = "Meses";
             this.rbMeses.AutoSize = true;
             this.rbMeses.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMeses.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.rbMeses.Location = new System.Drawing.Point(8, 33);
+            this.rbMeses.Location = new System.Drawing.Point(14, 42);
             this.rbMeses.Name = "rbMeses";
             this.rbMeses.Size = new System.Drawing.Size(77, 17);
             this.rbMeses.TabIndex = 48;
@@ -197,26 +175,26 @@ namespace Polsolcom.Forms
             // 
             // cmbEspecialidad
             // 
-            checkBoxProperties1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbEspecialidad.CheckBoxProperties = checkBoxProperties1;
+            checkBoxProperties4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cmbEspecialidad.CheckBoxProperties = checkBoxProperties4;
             this.cmbEspecialidad.DisplayMemberSingleItem = "";
             this.cmbEspecialidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEspecialidad.FormattingEnabled = true;
-            this.cmbEspecialidad.Location = new System.Drawing.Point(146, 93);
+            this.cmbEspecialidad.Location = new System.Drawing.Point(122, 85);
             this.cmbEspecialidad.Name = "cmbEspecialidad";
-            this.cmbEspecialidad.Size = new System.Drawing.Size(182, 21);
+            this.cmbEspecialidad.Size = new System.Drawing.Size(256, 21);
             this.cmbEspecialidad.TabIndex = 17;
             // 
             // cmbMeses
             // 
-            checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbMeses.CheckBoxProperties = checkBoxProperties2;
+            checkBoxProperties1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cmbMeses.CheckBoxProperties = checkBoxProperties1;
             this.cmbMeses.DisplayMemberSingleItem = "";
             this.cmbMeses.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMeses.FormattingEnabled = true;
-            this.cmbMeses.Location = new System.Drawing.Point(146, 47);
+            this.cmbMeses.Location = new System.Drawing.Point(122, 40);
             this.cmbMeses.Name = "cmbMeses";
-            this.cmbMeses.Size = new System.Drawing.Size(183, 21);
+            this.cmbMeses.Size = new System.Drawing.Size(257, 21);
             this.cmbMeses.TabIndex = 16;
             // 
             // dtpicFFinal
@@ -371,8 +349,8 @@ namespace Polsolcom.Forms
             // 
             // cmbOperativo
             // 
-            checkBoxProperties3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbOperativo.CheckBoxProperties = checkBoxProperties3;
+            checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cmbOperativo.CheckBoxProperties = checkBoxProperties2;
             this.cmbOperativo.DisplayMemberSingleItem = "";
             this.cmbOperativo.FormattingEnabled = true;
             this.cmbOperativo.Location = new System.Drawing.Point(74, 47);
@@ -380,12 +358,28 @@ namespace Polsolcom.Forms
             this.cmbOperativo.Size = new System.Drawing.Size(270, 21);
             this.cmbOperativo.TabIndex = 37;
             // 
+            // grpAgrupacion
+            // 
+            this.grpAgrupacion.Controls.Add(this.rbEspecialidad);
+            this.grpAgrupacion.Controls.Add(this.cmbEspecialidad);
+            this.grpAgrupacion.Controls.Add(this.rbFechas);
+            this.grpAgrupacion.Controls.Add(this.cmbMeses);
+            this.grpAgrupacion.Controls.Add(this.rbAños);
+            this.grpAgrupacion.Controls.Add(this.rbMeses);
+            this.grpAgrupacion.Location = new System.Drawing.Point(10, 81);
+            this.grpAgrupacion.Name = "grpAgrupacion";
+            this.grpAgrupacion.Size = new System.Drawing.Size(395, 125);
+            this.grpAgrupacion.TabIndex = 50;
+            this.grpAgrupacion.TabStop = false;
+            this.grpAgrupacion.Text = "Agrupar por";
+            // 
             // frmEstVent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 535);
             this.ControlBox = false;
+            this.Controls.Add(this.grpAgrupacion);
             this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.txtTTot);
             this.Controls.Add(this.txtTOld);
@@ -399,7 +393,6 @@ namespace Polsolcom.Forms
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.fGrid);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -408,11 +401,10 @@ namespace Polsolcom.Forms
             this.Text = "Estadísticas de Ventas";
             this.Load += new System.EventHandler(this.frmEstVent_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEstVent_KeyDown);
-            this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.grpTipoGraph.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
+            this.grpAgrupacion.ResumeLayout(false);
+            this.grpAgrupacion.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,7 +416,6 @@ namespace Polsolcom.Forms
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnEjecutar;
         private System.Windows.Forms.Button btnVerGraf;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker dtpicFFinal;
         private System.Windows.Forms.DateTimePicker dtpicFInicial;
         private System.Windows.Forms.GroupBox grpTipoGraph;
@@ -443,8 +434,8 @@ namespace Polsolcom.Forms
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.RadioButton rbFechas;
         private System.Windows.Forms.RadioButton rbMeses;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton rbEspecialidad;
         private System.Windows.Forms.RadioButton rbAños;
+        private System.Windows.Forms.GroupBox grpAgrupacion;
     }
 }

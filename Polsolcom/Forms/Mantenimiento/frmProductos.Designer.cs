@@ -516,8 +516,12 @@
             this.Controls.Add(this.btnSgte);
             this.Controls.Add(this.btnAnterior);
             this.Controls.Add(this.btnInicio);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmProductos";
             this.Text = "Productos";
+            this.Load += new System.EventHandler(this.frmProductos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmProductos_KeyDown);
             this.pnlBusqueda.ResumeLayout(false);
             this.pnlBusqueda.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gdvProductos)).EndInit();

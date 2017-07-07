@@ -64,6 +64,7 @@ namespace Polsolcom.Dominio.Helpers
         public static string TituloY { get; set; }
         public static string LeyendaX { get; set; }
         public static string LeyendaY { get; set; }
+        public static bool Decimal { get; set; }
         public static List<Serie> series { get; set; }
     }
 

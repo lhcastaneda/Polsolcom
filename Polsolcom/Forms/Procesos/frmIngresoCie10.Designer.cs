@@ -31,6 +31,17 @@
             this.components = new System.ComponentModel.Container();
             this.tabIngresoConsulta = new System.Windows.Forms.TabControl();
             this.tabIngresar = new System.Windows.Forms.TabPage();
+            this.lstTickets = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.consultoriosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
@@ -136,17 +147,6 @@
             this.label42 = new System.Windows.Forms.Label();
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
             this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
-            this.lstTickets = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
@@ -194,6 +194,75 @@
             this.tabIngresar.Text = "Ingresar datos";
             this.tabIngresar.UseVisualStyleBackColor = true;
             // 
+            // lstTickets
+            // 
+            this.lstTickets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.lstTickets.FullRowSelect = true;
+            this.lstTickets.Location = new System.Drawing.Point(158, 63);
+            this.lstTickets.MultiSelect = false;
+            this.lstTickets.Name = "lstTickets";
+            this.lstTickets.Size = new System.Drawing.Size(262, 82);
+            this.lstTickets.TabIndex = 17;
+            this.lstTickets.UseCompatibleStateImageBehavior = false;
+            this.lstTickets.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Serie";
+            this.columnHeader1.Width = 40;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Nro Ticket";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Fecha Atención";
+            this.columnHeader3.Width = 80;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Digitador";
+            this.columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Nro Historia";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Id Paciente";
+            this.columnHeader6.Width = 40;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Descripcion";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Orden";
+            this.columnHeader8.Width = 50;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Anulado";
+            this.columnHeader9.Width = 70;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Fecha Emisión";
+            this.columnHeader10.Width = 70;
+            // 
             // cmbEspecialidad
             // 
             this.cmbEspecialidad.DataSource = this.consultoriosBindingSource;
@@ -237,6 +306,7 @@
             // 
             // txtNroDoc
             // 
+            this.txtNroDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNroDoc.Location = new System.Drawing.Point(62, 63);
             this.txtNroDoc.Name = "txtNroDoc";
             this.txtNroDoc.Size = new System.Drawing.Size(88, 20);
@@ -246,6 +316,7 @@
             // 
             // txtSerie
             // 
+            this.txtSerie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSerie.Location = new System.Drawing.Point(8, 63);
             this.txtSerie.Name = "txtSerie";
             this.txtSerie.Size = new System.Drawing.Size(44, 20);
@@ -1115,75 +1186,6 @@
             // 
             this.tablaTipoTableAdapter.ClearBeforeFill = true;
             // 
-            // lstTickets
-            // 
-            this.lstTickets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
-            this.lstTickets.FullRowSelect = true;
-            this.lstTickets.Location = new System.Drawing.Point(158, 63);
-            this.lstTickets.MultiSelect = false;
-            this.lstTickets.Name = "lstTickets";
-            this.lstTickets.Size = new System.Drawing.Size(262, 82);
-            this.lstTickets.TabIndex = 17;
-            this.lstTickets.UseCompatibleStateImageBehavior = false;
-            this.lstTickets.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Serie";
-            this.columnHeader1.Width = 40;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Nro Ticket";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Fecha Atención";
-            this.columnHeader3.Width = 80;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Digitador";
-            this.columnHeader4.Width = 100;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Nro Historia";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Id Paciente";
-            this.columnHeader6.Width = 40;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Descripcion";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Orden";
-            this.columnHeader8.Width = 50;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Anulado";
-            this.columnHeader9.Width = 70;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Fecha Emisión";
-            this.columnHeader10.Width = 70;
-            // 
             // frmIngresoCie10
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1215,10 +1217,13 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tabIngresoConsulta);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmIngresoCie10";
             this.Text = "Ingreso y Consulta de Atenciones Realizadas (epicrisis, diagnóstico, tratamiento," +
     " etc.)";
             this.Load += new System.EventHandler(this.frmIngresoCie10_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmIngresoCie10_KeyDown);
             this.tabIngresoConsulta.ResumeLayout(false);
             this.tabIngresar.ResumeLayout(false);
             this.tabIngresar.PerformLayout();

@@ -38,5 +38,19 @@ namespace Polsolcom.Forms
         {
 
         }
+
+        private void frmProductos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
     }
 }

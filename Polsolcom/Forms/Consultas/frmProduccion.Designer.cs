@@ -159,6 +159,7 @@
             this.dtpFechInicio.Name = "dtpFechInicio";
             this.dtpFechInicio.Size = new System.Drawing.Size(160, 20);
             this.dtpFechInicio.TabIndex = 5;
+            this.dtpFechInicio.ValueChanged += new System.EventHandler(this.dtpFechInicio_ValueChanged);
             // 
             // btnEjecutar
             // 
@@ -388,6 +389,7 @@
             this.Controls.Add(this.cmbEspecialidad);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fGrid);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmProduccion";
             this.Text = "Reporte Detallado de los Cajeros";

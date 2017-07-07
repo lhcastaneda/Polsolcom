@@ -90,11 +90,13 @@ namespace Polsolcom.Forms.Herramientas
 					return;
 				}
 
+			/*
 			if( iCont > 0 && iCont < 3 )
 			{
 				MessageBox.Show("Debe ingresar la combinacion de nombre, apellido paterno" + (char)13 + "y apellido materno para ejecutar la consulta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 				return;
 			}
+			*/
 
 			string sQuery = "SELECT Descripcion AS Consultorio, " + 
 						"P.Ape_Paterno + ' ' + P.Ape_Materno + ' ' + P.Nombre AS Paciente," + 
@@ -110,7 +112,7 @@ namespace Polsolcom.Forms.Herramientas
 			if( txtDNI.Text.Length == 8 )
 				sQuery = sQuery + "AND P.DNI = '" + txtDNI.Text.Trim() + "' ";
 
-			if( txtFechaEmision.Text.Trim().Length == 12 )
+			if( txtFechaEmision.Text.Trim().Length == 10 )
 				sQuery = sQuery + "AND CONVERT(VARCHAR(10),T.Fecha_Emision,103) = '" + txtFechaEmision.Text.Trim() + "' ";
 
 			if( vIDSerie != "" )
@@ -122,13 +124,26 @@ namespace Polsolcom.Forms.Herramientas
 			if( vIDEspecialidad != "" )
 				sQuery = sQuery + "AND C.Id_Consultorio = '" + vIDEspecialidad + "' ";
 
+			if( txtApePaterno.Text.Trim() != "" )
+				sQuery = sQuery + "AND P.Ape_Paterno LIKE '" + txtApePaterno.Text.Trim() + "%' ";
+
+			if( txtApeMaterno.Text.Trim() != "" )
+				sQuery = sQuery + "AND P.Ape_Materno LIKE '" + txtApeMaterno.Text.Trim() + "%' ";
+
+			if( txtNombres.Text.Trim() != "" )
+				sQuery = sQuery + "AND P.Nombre LIKE '" + txtNombres.Text.Trim() + "%' ";
+
+
+			/*
 			if( iCont >= 3 )
 			{
 				sQuery = sQuery + "AND P.Ape_Paterno LIKE '" + txtApePaterno.Text.Trim() + "%' ";
 				sQuery = sQuery + "AND P.Ape_Materno LIKE '" + txtApeMaterno.Text.Trim() + "%' ";
 				sQuery = sQuery + "AND P.Nombre LIKE '" + txtNombres.Text.Trim() + "%' ";
 			}
-			sQuery = sQuery + "ORDER BY 2 ";
+			*/
+
+			sQuery = sQuery + "ORDER BY 4 DESC ";
 			Cursor.Current = Cursors.WaitCursor;
 			Conexion.CMD.CommandText = sQuery;
 			using( SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD) )
@@ -271,10 +286,42 @@ namespace Polsolcom.Forms.Herramientas
 
 		private void txtNombres_TextChanged( object sender, EventArgs e )
 		{
-			if( txtApePaterno.Text.Trim() == "" || txtApeMaterno.Text.Trim() == "" )
+			if( txtNombres.Text.Trim() == "" )
 				return;
 
 			CargaTickets();
+		}
+
+		private void txtApePaterno_KeyDown( object sender, KeyEventArgs e )
+		{
+			if( e.KeyCode == Keys.Escape )
+			{
+				DialogResult = DialogResult.Cancel;
+				Close();
+			}
+			else if( e.KeyCode == Keys.Enter )
+			{
+				if( txtApePaterno.Text.Trim() == "" )
+					return;
+
+				CargaTickets();
+			}
+		}
+
+		private void txtApeMaterno_KeyDown( object sender, KeyEventArgs e )
+		{
+			if( e.KeyCode == Keys.Escape )
+			{
+				DialogResult = DialogResult.Cancel;
+				Close();
+			}
+			else if( e.KeyCode == Keys.Enter )
+			{
+				if( txtApeMaterno.Text.Trim() == "" )
+					return;
+
+				CargaTickets();
+			}
 		}
 	}
 }

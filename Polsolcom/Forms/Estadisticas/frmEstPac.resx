@@ -296,6 +296,93 @@
   <data name="&gt;&gt;lblCantidad.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="&gt;&gt;optCircular.Name" xml:space="preserve">
+    <value>optCircular</value>
+  </data>
+  <data name="&gt;&gt;optCircular.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optCircular.Parent" xml:space="preserve">
+    <value>grpTipoGraph</value>
+  </data>
+  <data name="&gt;&gt;optCircular.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;optLineas.Name" xml:space="preserve">
+    <value>optLineas</value>
+  </data>
+  <data name="&gt;&gt;optLineas.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optLineas.Parent" xml:space="preserve">
+    <value>grpTipoGraph</value>
+  </data>
+  <data name="&gt;&gt;optLineas.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;optAreas.Name" xml:space="preserve">
+    <value>optAreas</value>
+  </data>
+  <data name="&gt;&gt;optAreas.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optAreas.Parent" xml:space="preserve">
+    <value>grpTipoGraph</value>
+  </data>
+  <data name="&gt;&gt;optAreas.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;optBarras.Name" xml:space="preserve">
+    <value>optBarras</value>
+  </data>
+  <data name="&gt;&gt;optBarras.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optBarras.Parent" xml:space="preserve">
+    <value>grpTipoGraph</value>
+  </data>
+  <data name="&gt;&gt;optBarras.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;optColumnas.Name" xml:space="preserve">
+    <value>optColumnas</value>
+  </data>
+  <data name="&gt;&gt;optColumnas.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optColumnas.Parent" xml:space="preserve">
+    <value>grpTipoGraph</value>
+  </data>
+  <data name="&gt;&gt;optColumnas.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="grpTipoGraph.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="grpTipoGraph.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 361</value>
+  </data>
+  <data name="grpTipoGraph.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 90</value>
+  </data>
+  <data name="grpTipoGraph.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="grpTipoGraph.Text" xml:space="preserve">
+    <value>Tipo de Grafico</value>
+  </data>
+  <data name="&gt;&gt;grpTipoGraph.Name" xml:space="preserve">
+    <value>grpTipoGraph</value>
+  </data>
+  <data name="&gt;&gt;grpTipoGraph.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpTipoGraph.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpTipoGraph.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="optCircular.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         Qk0GAwAAAAAAADYAAAAoAAAAEAAAAA8AAAABABgAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAA////////
@@ -538,32 +625,56 @@
   <data name="&gt;&gt;optColumnas.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="grpTipoGraph.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="&gt;&gt;optFecha.Name" xml:space="preserve">
+    <value>optFecha</value>
+  </data>
+  <data name="&gt;&gt;optFecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optFecha.Parent" xml:space="preserve">
+    <value>grpGender</value>
+  </data>
+  <data name="&gt;&gt;optFecha.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;optAnho.Name" xml:space="preserve">
+    <value>optAnho</value>
+  </data>
+  <data name="&gt;&gt;optAnho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optAnho.Parent" xml:space="preserve">
+    <value>grpGender</value>
+  </data>
+  <data name="&gt;&gt;optAnho.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpGender.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
-  <data name="grpTipoGraph.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 361</value>
+  <data name="grpGender.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 458</value>
   </data>
-  <data name="grpTipoGraph.Size" type="System.Drawing.Size, System.Drawing">
-    <value>324, 90</value>
+  <data name="grpGender.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 39</value>
   </data>
-  <data name="grpTipoGraph.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+  <data name="grpGender.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
   </data>
-  <data name="grpTipoGraph.Text" xml:space="preserve">
-    <value>Tipo de Grafico</value>
+  <data name="grpGender.Text" xml:space="preserve">
+    <value>Agrupar Grafico Por</value>
   </data>
-  <data name="&gt;&gt;grpTipoGraph.Name" xml:space="preserve">
-    <value>grpTipoGraph</value>
+  <data name="&gt;&gt;grpGender.Name" xml:space="preserve">
+    <value>grpGender</value>
   </data>
-  <data name="&gt;&gt;grpTipoGraph.Type" xml:space="preserve">
+  <data name="&gt;&gt;grpGender.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpTipoGraph.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpGender.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;grpTipoGraph.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;grpGender.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="optFecha.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -618,33 +729,6 @@
   </data>
   <data name="&gt;&gt;optAnho.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="grpGender.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
-  </data>
-  <data name="grpGender.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 458</value>
-  </data>
-  <data name="grpGender.Size" type="System.Drawing.Size, System.Drawing">
-    <value>323, 39</value>
-  </data>
-  <data name="grpGender.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="grpGender.Text" xml:space="preserve">
-    <value>Agrupar Grafico Por</value>
-  </data>
-  <data name="&gt;&gt;grpGender.Name" xml:space="preserve">
-    <value>grpGender</value>
-  </data>
-  <data name="&gt;&gt;grpGender.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpGender.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpGender.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <data name="btnCerrar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
@@ -892,7 +976,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>570, 745</value>
+    <value>570, 563</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Estadísticas Pacientes Nuevos y Continuadores</value>

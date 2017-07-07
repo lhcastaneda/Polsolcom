@@ -99,7 +99,7 @@
 			this.txtApeMaterno.Name = "txtApeMaterno";
 			this.txtApeMaterno.Size = new System.Drawing.Size(100, 20);
 			this.txtApeMaterno.TabIndex = 3;
-			this.txtApeMaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscaT_KeyDown);
+			this.txtApeMaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtApeMaterno_KeyDown);
 			// 
 			// txtApePaterno
 			// 
@@ -108,7 +108,7 @@
 			this.txtApePaterno.Name = "txtApePaterno";
 			this.txtApePaterno.Size = new System.Drawing.Size(100, 20);
 			this.txtApePaterno.TabIndex = 2;
-			this.txtApePaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscaT_KeyDown);
+			this.txtApePaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtApePaterno_KeyDown);
 			// 
 			// txtNombres
 			// 

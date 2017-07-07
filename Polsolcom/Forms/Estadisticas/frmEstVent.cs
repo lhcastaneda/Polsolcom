@@ -108,12 +108,52 @@ namespace Polsolcom.Forms
             cmbEspecialidad.ValueMember = "Selected";
         }
 
-        private void BorraTablaTemporal()
+        private string BorrarTablaTemporal(bool execute = true)
         {
-            //borra la tabla temporal
             string vSQL = "IF OBJECT_ID('tempdb.dbo.#tmpEstVent', 'U') IS NOT NULL DROP TABLE #tmpEstVent;";
-            Conexion.CMD.CommandText = vSQL;
-            Conexion.CMD.ExecuteNonQuery();
+
+            if (execute)
+            {
+                Conexion.CMD.CommandText = vSQL;
+                Conexion.CMD.ExecuteNonQuery();
+            }
+
+            return vSQL;
+        }
+
+        private string GenerarTabla(int mod, List<string> arrayEspecialidades, List<string> arrayMeses, bool execute = true)
+        {
+            string bSQL = BorrarTablaTemporal(execute);
+
+            string vSQL = "";
+            //agrupa los datos para mostrarlos en la grilla
+            switch (mod)
+            {
+                case 1:
+                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total decimal(10,2), Fecha DateTime, TCons varchar(25), Operativo varchar(20), Mes varchar(10), Año int);" +
+                        "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";";
+                    break;
+                case 2:
+                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20), Mes varchar(10), NMes int, Año int);" +
+                        "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";" ;
+                    break;
+                case 3:
+                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20), Año int);" +
+                        "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";";
+                    break;
+                case 4:
+                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20));" +
+                        "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";";
+                    break;
+            }
+
+            if (execute)
+            {
+                Conexion.CMD.CommandText = vSQL;
+                Conexion.CMD.ExecuteNonQuery();
+            }
+
+            return bSQL + vSQL;
         }
 
         public void FormateaGrilla()
@@ -134,7 +174,7 @@ namespace Polsolcom.Forms
                     fGrid.Cols.Count = 4;
                     //
                     fGrid.Cols[0].Text = "Fecha";
-                    fGrid.Cols[0].Width = 95;
+                    fGrid.Cols[0].Width = 230;
                     fGrid.Cols[0].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
                     fGrid.Cols[0].CellStyle.TextAlign = iGContentAlignment.MiddleLeft;
                     fGrid.Cols[0].CellStyle.ReadOnly = iGBool.True;
@@ -239,7 +279,7 @@ namespace Polsolcom.Forms
                     fGrid.Cols.Count = 4;
                     //
                     fGrid.Cols[0].Text = "Consultorio";
-                    fGrid.Cols[0].Width = 95;
+                    fGrid.Cols[0].Width = 230;
                     fGrid.Cols[0].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
                     fGrid.Cols[0].CellStyle.TextAlign = iGContentAlignment.MiddleLeft;
                     fGrid.Cols[0].CellStyle.ReadOnly = iGBool.True;
@@ -267,7 +307,8 @@ namespace Polsolcom.Forms
             }
         }
 
-        private List<string> getSelected(ListSelectionWrapper<DataRow> lista) {
+        private List<string> getSelected(ListSelectionWrapper<DataRow> lista)
+        {
             //Lista de operativos
             List<string> array = new List<string>();
 
@@ -282,28 +323,20 @@ namespace Polsolcom.Forms
             return array;
         }
 
-        private string getSQL(int mod, List<string> arrayEspecialidades, List<string> arrayMeses)
+        private string getSQL(int mod, List<string> arrayMeses)
         {
 
             //agrupa los datos para mostrarlos en la grilla
             switch (mod)
             {
                 case 1:
-                    return "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total int, Fecha DateTime, TCons varchar(25), Operativo varchar(20), Mes varchar(10), Año int);" +
-                "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";" +
-                "SELECT Fecha, SUM(Tickets) AS Tickets, SUM(Cantidad) AS Cantidad, SUM(Total) AS Total FROM #tmpEstVent GROUP BY Fecha ORDER BY 1;";
+                    return "SELECT Fecha, SUM(Tickets) AS Tickets, SUM(Cantidad) AS Cantidad, SUM(Total) AS Total FROM #tmpEstVent GROUP BY Fecha";
                 case 2:
-                    return "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total int, TCons varchar(25), Operativo varchar(20), Mes varchar(10), NMes int, Año int);" +
-                "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";" +
-                 "SELECT Año, Mes, SUM(Tickets) AS Tickets, SUM(Cantidad) AS Cantidad, SUM(Total) AS Total FROM #tmpEstVent WHERE NMes In(" + String.Join(", ", arrayMeses.ToArray()) + ") GROUP BY Año, Mes, NMes ORDER BY 1, 3;";
+                    return "SELECT Año, Mes, SUM(Tickets) AS Tickets, SUM(Cantidad) AS Cantidad, SUM(Total) AS Total FROM #tmpEstVent WHERE NMes In(" + String.Join(", ", arrayMeses.ToArray()) + ") GROUP BY Año, Mes, NMes";
                 case 3:
-                    return "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total int, TCons varchar(25), Operativo varchar(20), Año int);" +
-                "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";" +
-                "SELECT Año, SUM(Tickets) AS Tickets, SUM(Cantidad) AS Cantidad, SUM(Total) AS Total FROM #tmpEstVent GROUP BY Año ORDER BY 1;";
+                    return "SELECT Año, SUM(Tickets) AS Tickets, SUM(Cantidad) AS Cantidad, SUM(Total) AS Total FROM #tmpEstVent GROUP BY Año";
                 case 4:
-                    return "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total int, TCons varchar(25), Operativo varchar(20));" +
-                "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";" +
-                "SELECT Consultorio, SUM(Tickets) AS Tickets, SUM(Cantidad) AS Cantidad, SUM(Total) AS Total FROM #tmpEstVent GROUP BY Consultorio ORDER BY 1;";
+                    return "SELECT Consultorio, SUM(Tickets) AS Tickets, SUM(Cantidad) AS Cantidad, SUM(Total) AS Total FROM #tmpEstVent GROUP BY Consultorio";
             }
 
             return null;
@@ -314,22 +347,22 @@ namespace Polsolcom.Forms
         {
             //Modo
             int mod = getMod();
-            
+
             //Lista de operativos
             List<string> arrayOperativos = getSelected(listaOperativos);
 
             //Lista de especialidades
             List<string> arrayEspecialidades = getSelected(listaEspecialidades);
-            
+
             //Lista de meses
             List<string> arrayMeses = getSelected(listaMeses);
 
-            BorraTablaTemporal();
+            GenerarTabla(mod, arrayEspecialidades, arrayMeses);
 
             try
             {
                 //selecciona los datos e inserta en tabla temporal
-                string vSQL = getSQL(mod, arrayEspecialidades, arrayMeses);
+                string vSQL = getSQL(mod, arrayMeses) + (rbMeses.Checked ? " ORDER BY 1, 3": " ORDER BY 1") + ";";
                 Conexion.CMD.CommandText = vSQL;
                 using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
                 {
@@ -408,15 +441,15 @@ namespace Polsolcom.Forms
             fGrid.FillWithData(dr);
             dr.Close();
 
-            int tNew = 0;
-            int tOld = 0;
-            int tTot = 0;
+            decimal tNew = 0;
+            decimal tOld = 0;
+            decimal tTot = 0;
 
             for (int i = 0; i <= fGrid.Rows.Count - 1; i++)
             {
-                tNew = tNew + Convert.ToInt32(fGrid.Cells[i, fGrid.Cols.Count - 3].Value);
-                tOld = tOld + Convert.ToInt32(fGrid.Cells[i, fGrid.Cols.Count - 2].Value);
-                tTot = tTot + Convert.ToInt32(fGrid.Cells[i, fGrid.Cols.Count - 1].Value);
+                tNew = tNew + Convert.ToDecimal(fGrid.Cells[i, fGrid.Cols.Count - 3].Value);
+                tOld = tOld + Convert.ToDecimal(fGrid.Cells[i, fGrid.Cols.Count - 2].Value);
+                tTot = tTot + Convert.ToDecimal(fGrid.Cells[i, fGrid.Cols.Count - 1].Value);
 
             }
 
@@ -443,7 +476,7 @@ namespace Polsolcom.Forms
         {
             if (e.KeyCode == Keys.Escape)
             {
-                BorraTablaTemporal();
+                BorrarTablaTemporal(true);
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
@@ -452,6 +485,155 @@ namespace Polsolcom.Forms
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnVerGraf_Click(object sender, EventArgs e)
+        {
+            int mod = getMod();
+
+            //Lista de operativos
+            List<string> arrayOperativos = getSelected(listaOperativos);
+
+            //Lista de especialidades
+            List<string> arrayEspecialidades = getSelected(listaEspecialidades);
+
+            //Lista de meses
+            List<string> arrayMeses = getSelected(listaMeses);
+
+            //Lista de operativos
+            if (arrayOperativos.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar un Operativo");
+                return;
+            }
+
+            //Lista de especialidades
+            if (arrayEspecialidades.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una o más especialidades");
+                return;
+            }
+
+            switch (mod)
+            {
+                case 1:
+                    break;
+                case 2:
+                    if (arrayMeses.Count == 0)
+                    {
+                        MessageBox.Show("Debe seleccionar uno o más meses");
+                        return;
+                    }
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+
+            bool bEncontrado = false;
+
+            //valida que alguna opcion del tipo de grafico debe estar seleccionado
+            foreach (Control cntrl in grpTipoGraph.Controls)
+            {
+                RadioButton rb = (RadioButton)cntrl;
+                if (rb.Checked)
+                {
+                    bEncontrado = true;
+                    break;
+                }
+            }
+
+            if (bEncontrado == false)
+            {
+                MessageBox.Show("Debe seleccionar un tipo de grafico.", "Estadistica - Ventas", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                return;
+            }
+
+            //valida que alguna opcion de agrupacion este seleccionado
+            bEncontrado = false;
+            string description = "";
+            foreach (Control cntrl in grpAgrupacion.Controls)
+            {
+                if (cntrl is RadioButton)
+                {
+                    RadioButton rb = (RadioButton)cntrl;
+                    if (rb.Checked)
+                    {
+                        bEncontrado = true;
+                        description = rb.AccessibleDescription;
+                        break;
+                    }
+                }
+
+            }
+
+            if (bEncontrado == false)
+            {
+                MessageBox.Show("Debe seleccionar un tipo de agrupacion.", "Estadistica - Ventas", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                return;
+            }
+
+            //define el tipo de grafico a usar
+            if (optColumnas.Checked == true)
+                Grafico.TipoChart = "Column";
+            else if (optBarras.Checked == true)
+                Grafico.TipoChart = "Bar";
+            else if (optAreas.Checked == true)
+                Grafico.TipoChart = "Area";
+            else if (optLineas.Checked == true)
+                Grafico.TipoChart = "Line";
+            else if (optCircular.Checked == true)
+                Grafico.TipoChart = "Pie";
+
+
+            string bSQL = GenerarTabla(mod, arrayEspecialidades, arrayMeses, false);
+
+            //selecciona los datos e inserta en tabla temporal
+            string vSQL = getSQL(mod, arrayMeses);
+
+            string gSQL = "";
+
+            if (rbFechas.Checked == true) { 
+                gSQL = "SELECT X.Total, CONVERT(varchar(10), X.Fecha, 103) AS campo" +
+                       " FROM (" + vSQL + ") X";
+            }
+
+            if (rbMeses.Checked == true)
+            {  
+                gSQL = "SELECT X.Total, X.Mes AS campo" +
+                       " FROM (" + vSQL + ") X";
+            }
+
+            if (rbAños.Checked == true)
+            {   
+                gSQL = "SELECT X.Total, STR(X.Año) AS campo" +
+                       " FROM (" + vSQL + ") X";
+            }
+
+            if (rbEspecialidad.Checked == true)
+            {  
+                gSQL = "SELECT X.Total, X.Consultorio AS campo" +
+                       " FROM (" + vSQL + ") X";
+            }
+
+            //define los valores que se enviara al formulario que grafica
+            Grafico.series = new List<Serie>();
+            Grafico.series.Add(new Serie("Total", Color.Blue));
+
+            Grafico.sSQL = bSQL + gSQL;
+            Grafico.TituloChart = "Grafico Estadistico del " + dtpicFInicial.Text.Substring(0, 10) + " al " + dtpicFFinal.Text.Substring(0, 10) + " Por " + description;
+            Grafico.TituloX = description;
+            Grafico.LeyendaX = "Agrupacion por Distribucion";
+            Grafico.TituloY = "Cantidad";
+            Grafico.LeyendaY = "En Soles";
+            Grafico.Decimal = true;
+
+            //crea el formulario del grafico
+            frmGrafico frg = new frmGrafico();
+            frg.CargaChart();
+            frg.Text = "Grafico Estadistico por " + description;
+            frg.ShowDialog();
         }
     }
 }

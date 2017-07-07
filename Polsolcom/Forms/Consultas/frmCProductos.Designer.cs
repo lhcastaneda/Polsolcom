@@ -60,7 +60,7 @@
             // 
             // fGrid
             // 
-            this.fGrid.Location = new System.Drawing.Point(6, 200);
+            this.fGrid.Location = new System.Drawing.Point(6, 140);
             this.fGrid.Name = "fGrid";
             this.fGrid.ReadOnly = true;
             this.fGrid.Size = new System.Drawing.Size(570, 176);
@@ -167,6 +167,7 @@
             // 
             // txtIdProd
             // 
+            this.txtIdProd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIdProd.Location = new System.Drawing.Point(324, 89);
             this.txtIdProd.Name = "txtIdProd";
             this.txtIdProd.Size = new System.Drawing.Size(81, 20);
@@ -175,6 +176,7 @@
             // 
             // txtPrec
             // 
+            this.txtPrec.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPrec.Location = new System.Drawing.Point(474, 88);
             this.txtPrec.Name = "txtPrec";
             this.txtPrec.Size = new System.Drawing.Size(100, 20);
@@ -183,6 +185,7 @@
             // 
             // txtProd
             // 
+            this.txtProd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtProd.Location = new System.Drawing.Point(147, 116);
             this.txtProd.Name = "txtProd";
             this.txtProd.Size = new System.Drawing.Size(256, 20);
@@ -203,6 +206,7 @@
             // 
             // txtSuma
             // 
+            this.txtSuma.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSuma.Location = new System.Drawing.Point(475, 112);
             this.txtSuma.Name = "txtSuma";
             this.txtSuma.Size = new System.Drawing.Size(100, 20);
@@ -271,10 +275,12 @@
             this.Controls.Add(this.cmbEspecialidad);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fGrid);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmCProductos";
             this.Text = "Tarifario - ";
             this.Load += new System.EventHandler(this.frmTarProducts_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCProductos_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
