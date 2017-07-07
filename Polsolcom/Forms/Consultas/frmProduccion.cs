@@ -319,5 +319,10 @@ namespace Polsolcom.Forms
             frmCRViewer frg = new frmCRViewer(rpt);
             frg.ShowDialog();
         }
+
+        private void dtpFechInicio_ValueChanged(object sender, EventArgs e)
+        {
+            dtpFechFinal.Value = dtpFechInicio.Value;
+        }
     }
 }

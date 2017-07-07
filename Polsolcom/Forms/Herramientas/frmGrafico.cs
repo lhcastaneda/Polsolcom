@@ -101,8 +101,8 @@ namespace Polsolcom.Forms
 						while ( dr.Read() )
 						{	//dibuja los puntos de la grafica
                             for (int j = 0; j < Grafico.series.Count; j++) {
-                                chartGrafico.Series[j].Points.AddXY(dr.GetString(Grafico.series.Count), dr.GetInt32(j));
-                                chartGrafico.Series[j].Points[i].Label = dr.GetInt32(j).ToString();
+                                chartGrafico.Series[j].Points.AddXY(dr.GetString(Grafico.series.Count), Grafico.Decimal ? dr.GetDecimal(j): dr.GetInt32(j));
+                                chartGrafico.Series[j].Points[i].Label = (Grafico.Decimal ? dr.GetDecimal(j) : dr.GetInt32(j)).ToString();
                                 chartGrafico.Series[j].Points[i].Font = new Font("Verdana", 10, FontStyle.Bold);
                             }
                                
@@ -114,8 +114,13 @@ namespace Polsolcom.Forms
 			}
 		}
 
-
-
-
-	}
+        private void frmGrafico_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+    }
 }

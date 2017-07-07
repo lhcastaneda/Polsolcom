@@ -50,6 +50,10 @@
             this.txtNFinal = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.gdvTipDoc = new System.Windows.Forms.DataGridView();
+            this.cTipDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSerieNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cFechEm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cNomEspedd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -84,23 +88,19 @@
             this.cmbAprDscto = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.gdvProducto = new System.Windows.Forms.DataGridView();
-            this.btnAnul = new System.Windows.Forms.Button();
-            this.btnDesc = new System.Windows.Forms.Button();
-            this.btnExtornado = new System.Windows.Forms.Button();
-            this.btnObserv = new System.Windows.Forms.Button();
             this.cProdSer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cCant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cPrec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cSubTot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cMD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAnul = new System.Windows.Forms.Button();
+            this.btnDesc = new System.Windows.Forms.Button();
+            this.btnExtornado = new System.Windows.Forms.Button();
+            this.btnObserv = new System.Windows.Forms.Button();
             this.txtUsFechMod = new System.Windows.Forms.TextBox();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.lstPacientes = new System.Windows.Forms.ListBox();
-            this.cTipDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSerieNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cFechEm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cNomEspedd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlPac = new System.Windows.Forms.Panel();
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -315,6 +315,30 @@
             this.gdvTipDoc.Size = new System.Drawing.Size(538, 162);
             this.gdvTipDoc.TabIndex = 22;
             this.gdvTipDoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gdvTipDoc_CellContentClick);
+            // 
+            // cTipDoc
+            // 
+            this.cTipDoc.HeaderText = "Tipo Doc.";
+            this.cTipDoc.Name = "cTipDoc";
+            this.cTipDoc.Width = 80;
+            // 
+            // cSerieNum
+            // 
+            this.cSerieNum.HeaderText = "Serie y Número";
+            this.cSerieNum.Name = "cSerieNum";
+            this.cSerieNum.Width = 80;
+            // 
+            // cFechEm
+            // 
+            this.cFechEm.HeaderText = "Fecha de Emisión";
+            this.cFechEm.Name = "cFechEm";
+            this.cFechEm.Width = 80;
+            // 
+            // cNomEspedd
+            // 
+            this.cNomEspedd.HeaderText = "Nombre de la Especialidad";
+            this.cNomEspedd.Name = "cNomEspedd";
+            this.cNomEspedd.Width = 260;
             // 
             // label12
             // 
@@ -621,6 +645,36 @@
             this.gdvProducto.Size = new System.Drawing.Size(538, 182);
             this.gdvProducto.TabIndex = 57;
             // 
+            // cProdSer
+            // 
+            this.cProdSer.HeaderText = "Producto y/o Servicio";
+            this.cProdSer.Name = "cProdSer";
+            this.cProdSer.Width = 260;
+            // 
+            // cCant
+            // 
+            this.cCant.HeaderText = "Cantidad";
+            this.cCant.Name = "cCant";
+            this.cCant.Width = 60;
+            // 
+            // cPrec
+            // 
+            this.cPrec.HeaderText = "Precio";
+            this.cPrec.Name = "cPrec";
+            this.cPrec.Width = 60;
+            // 
+            // cSubTot
+            // 
+            this.cSubTot.HeaderText = "Sub Total";
+            this.cSubTot.Name = "cSubTot";
+            this.cSubTot.Width = 60;
+            // 
+            // cMD
+            // 
+            this.cMD.HeaderText = "MD";
+            this.cMD.Name = "cMD";
+            this.cMD.Width = 60;
+            // 
             // btnAnul
             // 
             this.btnAnul.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -660,36 +714,6 @@
             this.btnObserv.TabIndex = 61;
             this.btnObserv.Text = "&Observación";
             this.btnObserv.UseVisualStyleBackColor = true;
-            // 
-            // cProdSer
-            // 
-            this.cProdSer.HeaderText = "Producto y/o Servicio";
-            this.cProdSer.Name = "cProdSer";
-            this.cProdSer.Width = 260;
-            // 
-            // cCant
-            // 
-            this.cCant.HeaderText = "Cantidad";
-            this.cCant.Name = "cCant";
-            this.cCant.Width = 60;
-            // 
-            // cPrec
-            // 
-            this.cPrec.HeaderText = "Precio";
-            this.cPrec.Name = "cPrec";
-            this.cPrec.Width = 60;
-            // 
-            // cSubTot
-            // 
-            this.cSubTot.HeaderText = "Sub Total";
-            this.cSubTot.Name = "cSubTot";
-            this.cSubTot.Width = 60;
-            // 
-            // cMD
-            // 
-            this.cMD.HeaderText = "MD";
-            this.cMD.Name = "cMD";
-            this.cMD.Width = 60;
             // 
             // txtUsFechMod
             // 
@@ -731,30 +755,6 @@
             this.lstPacientes.Size = new System.Drawing.Size(309, 134);
             this.lstPacientes.TabIndex = 65;
             this.lstPacientes.SelectedIndexChanged += new System.EventHandler(this.lstPacientes_SelectedIndexChanged);
-            // 
-            // cTipDoc
-            // 
-            this.cTipDoc.HeaderText = "Tipo Doc.";
-            this.cTipDoc.Name = "cTipDoc";
-            this.cTipDoc.Width = 80;
-            // 
-            // cSerieNum
-            // 
-            this.cSerieNum.HeaderText = "Serie y Número";
-            this.cSerieNum.Name = "cSerieNum";
-            this.cSerieNum.Width = 80;
-            // 
-            // cFechEm
-            // 
-            this.cFechEm.HeaderText = "Fecha de Emisión";
-            this.cFechEm.Name = "cFechEm";
-            this.cFechEm.Width = 80;
-            // 
-            // cNomEspedd
-            // 
-            this.cNomEspedd.HeaderText = "Nombre de la Especialidad";
-            this.cNomEspedd.Name = "cNomEspedd";
-            this.cNomEspedd.Width = 260;
             // 
             // pnlPac
             // 
@@ -856,8 +856,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlPac);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmMntVentas";
             this.Text = "Depuración de Documentos de Venta";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMntVentas_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gdvTipDoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvProducto)).EndInit();
             this.pnlPac.ResumeLayout(false);

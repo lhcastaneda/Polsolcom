@@ -583,8 +583,11 @@
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.pnlInstitucion);
             this.Controls.Add(this.pnlBuscar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmInstitucion";
             this.Text = "Registro de Empresas e Instituciones";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInstitucion_KeyDown);
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
             this.pnlInstitucion.ResumeLayout(false);

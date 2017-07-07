@@ -150,6 +150,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmRotations";
             this.Load += new System.EventHandler(this.frmRotations_Load);
             this.panel1.ResumeLayout(false);

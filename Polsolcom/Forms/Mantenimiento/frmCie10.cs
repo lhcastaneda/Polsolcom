@@ -26,5 +26,14 @@ namespace Polsolcom.Forms
         {
 
         }
+
+        private void frmCie10_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
     }
 }

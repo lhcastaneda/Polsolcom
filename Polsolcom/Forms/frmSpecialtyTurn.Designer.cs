@@ -92,7 +92,8 @@
             this.ClientSize = new System.Drawing.Size(669, 349);
             this.ControlBox = false;
             this.Controls.Add(this.GridSpecialtyTurn);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmSpecialtyTurn";
             this.Text = "Especialidad y Turnos";
             ((System.ComponentModel.ISupportInitialize)(this.GridSpecialtyTurn)).EndInit();

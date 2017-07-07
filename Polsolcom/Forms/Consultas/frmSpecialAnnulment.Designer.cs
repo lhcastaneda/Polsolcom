@@ -194,7 +194,8 @@
             this.Controls.Add(this.txtNumDoc);
             this.Controls.Add(this.txtSerie);
             this.Controls.Add(this.cmbTipDoc);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmSpecialAnnulment";
             this.Text = "Anulacion Especial";
             ((System.ComponentModel.ISupportInitialize)(this.GridSpecialAnn)).EndInit();

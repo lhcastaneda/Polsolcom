@@ -249,7 +249,7 @@
             this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.fGrid);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmEstPac";
             this.Load += new System.EventHandler(this.frmEstPac_Load);

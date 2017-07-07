@@ -34,17 +34,17 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtpInicipPer = new System.Windows.Forms.DateTimePicker();
-            this.dtpFinalPer = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtNomPer = new System.Windows.Forms.TextBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.txtCreation = new System.Windows.Forms.TextBox();
-            this.txtLastUpDate = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtIdPer = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtLastUpDate = new System.Windows.Forms.TextBox();
+            this.txtCreation = new System.Windows.Forms.TextBox();
+            this.txtNomPer = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtpFinalPer = new System.Windows.Forms.DateTimePicker();
+            this.dtpInicipPer = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,94 +114,12 @@
             this.panel1.Size = new System.Drawing.Size(420, 141);
             this.panel1.TabIndex = 5;
             // 
-            // label2
+            // txtIdPer
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label2.Location = new System.Drawing.Point(12, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Inicio Periodo";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label3.Location = new System.Drawing.Point(120, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Final Periodo";
-            // 
-            // dtpInicipPer
-            // 
-            this.dtpInicipPer.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpInicipPer.Location = new System.Drawing.Point(12, 29);
-            this.dtpInicipPer.Name = "dtpInicipPer";
-            this.dtpInicipPer.Size = new System.Drawing.Size(102, 20);
-            this.dtpInicipPer.TabIndex = 2;
-            // 
-            // dtpFinalPer
-            // 
-            this.dtpFinalPer.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFinalPer.Location = new System.Drawing.Point(120, 29);
-            this.dtpFinalPer.Name = "dtpFinalPer";
-            this.dtpFinalPer.Size = new System.Drawing.Size(102, 20);
-            this.dtpFinalPer.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label4.Location = new System.Drawing.Point(12, 61);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Nombre del Periodo";
-            // 
-            // txtNomPer
-            // 
-            this.txtNomPer.Location = new System.Drawing.Point(12, 78);
-            this.txtNomPer.Name = "txtNomPer";
-            this.txtNomPer.Size = new System.Drawing.Size(391, 20);
-            this.txtNomPer.TabIndex = 5;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(278, 289);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(99, 40);
-            this.btnEliminar.TabIndex = 6;
-            this.btnEliminar.Text = "&Eliminar";
-            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // txtCreation
-            // 
-            this.txtCreation.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtCreation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCreation.Location = new System.Drawing.Point(12, 105);
-            this.txtCreation.Name = "txtCreation";
-            this.txtCreation.Size = new System.Drawing.Size(190, 20);
-            this.txtCreation.TabIndex = 6;
-            this.txtCreation.Text = "Creation";
-            this.txtCreation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtLastUpDate
-            // 
-            this.txtLastUpDate.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtLastUpDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLastUpDate.Location = new System.Drawing.Point(218, 105);
-            this.txtLastUpDate.Name = "txtLastUpDate";
-            this.txtLastUpDate.Size = new System.Drawing.Size(185, 20);
-            this.txtLastUpDate.TabIndex = 7;
-            this.txtLastUpDate.Text = "LastUpDate";
-            this.txtLastUpDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtIdPer.Location = new System.Drawing.Point(303, 28);
+            this.txtIdPer.Name = "txtIdPer";
+            this.txtIdPer.Size = new System.Drawing.Size(100, 20);
+            this.txtIdPer.TabIndex = 9;
             // 
             // label5
             // 
@@ -214,12 +132,94 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "ID Periodo";
             // 
-            // txtIdPer
+            // txtLastUpDate
             // 
-            this.txtIdPer.Location = new System.Drawing.Point(303, 28);
-            this.txtIdPer.Name = "txtIdPer";
-            this.txtIdPer.Size = new System.Drawing.Size(100, 20);
-            this.txtIdPer.TabIndex = 9;
+            this.txtLastUpDate.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtLastUpDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLastUpDate.Location = new System.Drawing.Point(218, 105);
+            this.txtLastUpDate.Name = "txtLastUpDate";
+            this.txtLastUpDate.Size = new System.Drawing.Size(185, 20);
+            this.txtLastUpDate.TabIndex = 7;
+            this.txtLastUpDate.Text = "LastUpDate";
+            this.txtLastUpDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtCreation
+            // 
+            this.txtCreation.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtCreation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCreation.Location = new System.Drawing.Point(12, 105);
+            this.txtCreation.Name = "txtCreation";
+            this.txtCreation.Size = new System.Drawing.Size(190, 20);
+            this.txtCreation.TabIndex = 6;
+            this.txtCreation.Text = "Creation";
+            this.txtCreation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtNomPer
+            // 
+            this.txtNomPer.Location = new System.Drawing.Point(12, 78);
+            this.txtNomPer.Name = "txtNomPer";
+            this.txtNomPer.Size = new System.Drawing.Size(391, 20);
+            this.txtNomPer.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label4.Location = new System.Drawing.Point(12, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Nombre del Periodo";
+            // 
+            // dtpFinalPer
+            // 
+            this.dtpFinalPer.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFinalPer.Location = new System.Drawing.Point(120, 29);
+            this.dtpFinalPer.Name = "dtpFinalPer";
+            this.dtpFinalPer.Size = new System.Drawing.Size(102, 20);
+            this.dtpFinalPer.TabIndex = 3;
+            // 
+            // dtpInicipPer
+            // 
+            this.dtpInicipPer.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpInicipPer.Location = new System.Drawing.Point(12, 29);
+            this.dtpInicipPer.Name = "dtpInicipPer";
+            this.dtpInicipPer.Size = new System.Drawing.Size(102, 20);
+            this.dtpInicipPer.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label3.Location = new System.Drawing.Point(120, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Final Periodo";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label2.Location = new System.Drawing.Point(12, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Inicio Periodo";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(278, 289);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(99, 40);
+            this.btnEliminar.TabIndex = 6;
+            this.btnEliminar.Text = "&Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEliminar.UseVisualStyleBackColor = true;
             // 
             // frmPerPago
             // 
@@ -234,8 +234,11 @@
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.lstPeriodos);
             this.Controls.Add(this.txtBuscar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmPerPago";
             this.Text = "Periodos de Pago";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPerPago_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

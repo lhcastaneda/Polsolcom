@@ -273,7 +273,8 @@
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnVerGraf);
             this.Controls.Add(this.btnEjecutar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmStatGenGroupEtareo";
             this.Text = "frmStatGenGroupEtareo";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

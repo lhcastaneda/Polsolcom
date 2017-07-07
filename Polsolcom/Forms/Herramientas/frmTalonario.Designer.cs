@@ -257,8 +257,6 @@
             this.cmbIngresar.UseVisualStyleBackColor = true;
             this.cmbIngresar.Click += new System.EventHandler(this.cmbIngresar_Click);
             // 
-            // tipoDocumentoBindingSource1
-            // 
             // tablaTipoTableAdapter
             // 
             this.tablaTipoTableAdapter.ClearBeforeFill = true;
@@ -271,7 +269,8 @@
             this.ControlBox = false;
             this.Controls.Add(this.cmbIngresar);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmTalonario";
