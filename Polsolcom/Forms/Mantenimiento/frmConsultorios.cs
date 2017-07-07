@@ -55,5 +55,14 @@ namespace Polsolcom.Forms
             if (index < lstConsultorios.Items.Count)
                 lstConsultorios.SelectedIndex = index;
         }
+
+        private void frmConsultorios_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
     }
 }

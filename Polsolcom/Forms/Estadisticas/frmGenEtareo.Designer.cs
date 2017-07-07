@@ -301,7 +301,7 @@ namespace Polsolcom.Forms
             this.Controls.Add(this.btnVerGraf);
             this.Controls.Add(this.btnEjecutar);
             this.Controls.Add(this.fGrid);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

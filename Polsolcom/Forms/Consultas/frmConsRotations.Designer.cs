@@ -334,10 +334,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmConsRotations";
             this.Text = "frmConsRotations";
             this.Load += new System.EventHandler(this.frmConsRotations_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConsRotations_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.nmrHorahInicio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrHoraFinal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

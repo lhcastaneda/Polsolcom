@@ -65,29 +65,29 @@
             this.cCant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c2Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gdvTurn = new System.Windows.Forms.DataGridView();
+            this.cFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c3Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c3Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtTotTickets = new System.Windows.Forms.TextBox();
-            this.txtTotCant = new System.Windows.Forms.TextBox();
-            this.txtTotTotal = new System.Windows.Forms.TextBox();
-            this.chkTodTurn = new System.Windows.Forms.CheckBox();
             this.cmbTurn = new System.Windows.Forms.ComboBox();
+            this.chkTodTurn = new System.Windows.Forms.CheckBox();
+            this.txtTotTotal = new System.Windows.Forms.TextBox();
+            this.txtTotCant = new System.Windows.Forms.TextBox();
+            this.txtTotTickets = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnEjecutar = new System.Windows.Forms.Button();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnMarcar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.cFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c3Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c3Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.pnlTipReport = new System.Windows.Forms.Panel();
-            this.chkReportDetallado = new System.Windows.Forms.CheckBox();
-            this.chkReportResProd = new System.Windows.Forms.CheckBox();
             this.chkReportResFech = new System.Windows.Forms.CheckBox();
+            this.chkReportResProd = new System.Windows.Forms.CheckBox();
+            this.chkReportDetallado = new System.Windows.Forms.CheckBox();
             this.pnlCondConsul = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -436,6 +436,28 @@
             this.gdvTurn.Size = new System.Drawing.Size(402, 150);
             this.gdvTurn.TabIndex = 23;
             // 
+            // cFecha
+            // 
+            this.cFecha.HeaderText = "Fecha";
+            this.cFecha.Name = "cFecha";
+            this.cFecha.Width = 80;
+            // 
+            // cTicket
+            // 
+            this.cTicket.HeaderText = "Tickets";
+            this.cTicket.Name = "cTicket";
+            this.cTicket.Width = 80;
+            // 
+            // c3Cant
+            // 
+            this.c3Cant.HeaderText = "Cantidad";
+            this.c3Cant.Name = "c3Cant";
+            // 
+            // c3Total
+            // 
+            this.c3Total.HeaderText = "Total S/.";
+            this.c3Total.Name = "c3Total";
+            // 
             // txtTotal
             // 
             this.txtTotal.Location = new System.Drawing.Point(798, 354);
@@ -467,36 +489,14 @@
             this.panel1.Size = new System.Drawing.Size(431, 229);
             this.panel1.TabIndex = 26;
             // 
-            // label6
+            // cmbTurn
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(83, 202);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Totales";
-            // 
-            // txtTotTickets
-            // 
-            this.txtTotTickets.Location = new System.Drawing.Point(137, 199);
-            this.txtTotTickets.Name = "txtTotTickets";
-            this.txtTotTickets.Size = new System.Drawing.Size(80, 20);
-            this.txtTotTickets.TabIndex = 25;
-            // 
-            // txtTotCant
-            // 
-            this.txtTotCant.Location = new System.Drawing.Point(223, 199);
-            this.txtTotCant.Name = "txtTotCant";
-            this.txtTotCant.Size = new System.Drawing.Size(92, 20);
-            this.txtTotCant.TabIndex = 26;
-            // 
-            // txtTotTotal
-            // 
-            this.txtTotTotal.Location = new System.Drawing.Point(320, 199);
-            this.txtTotTotal.Name = "txtTotTotal";
-            this.txtTotTotal.Size = new System.Drawing.Size(92, 20);
-            this.txtTotTotal.TabIndex = 27;
+            this.cmbTurn.Enabled = false;
+            this.cmbTurn.FormattingEnabled = true;
+            this.cmbTurn.Location = new System.Drawing.Point(210, 8);
+            this.cmbTurn.Name = "cmbTurn";
+            this.cmbTurn.Size = new System.Drawing.Size(202, 21);
+            this.cmbTurn.TabIndex = 29;
             // 
             // chkTodTurn
             // 
@@ -511,14 +511,36 @@
             this.chkTodTurn.Text = "Todos los Turnos";
             this.chkTodTurn.UseVisualStyleBackColor = true;
             // 
-            // cmbTurn
+            // txtTotTotal
             // 
-            this.cmbTurn.Enabled = false;
-            this.cmbTurn.FormattingEnabled = true;
-            this.cmbTurn.Location = new System.Drawing.Point(210, 8);
-            this.cmbTurn.Name = "cmbTurn";
-            this.cmbTurn.Size = new System.Drawing.Size(202, 21);
-            this.cmbTurn.TabIndex = 29;
+            this.txtTotTotal.Location = new System.Drawing.Point(320, 199);
+            this.txtTotTotal.Name = "txtTotTotal";
+            this.txtTotTotal.Size = new System.Drawing.Size(92, 20);
+            this.txtTotTotal.TabIndex = 27;
+            // 
+            // txtTotCant
+            // 
+            this.txtTotCant.Location = new System.Drawing.Point(223, 199);
+            this.txtTotCant.Name = "txtTotCant";
+            this.txtTotCant.Size = new System.Drawing.Size(92, 20);
+            this.txtTotCant.TabIndex = 26;
+            // 
+            // txtTotTickets
+            // 
+            this.txtTotTickets.Location = new System.Drawing.Point(137, 199);
+            this.txtTotTickets.Name = "txtTotTickets";
+            this.txtTotTickets.Size = new System.Drawing.Size(80, 20);
+            this.txtTotTickets.TabIndex = 25;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(83, 202);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Totales";
             // 
             // btnEjecutar
             // 
@@ -578,28 +600,6 @@
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
-            // cFecha
-            // 
-            this.cFecha.HeaderText = "Fecha";
-            this.cFecha.Name = "cFecha";
-            this.cFecha.Width = 80;
-            // 
-            // cTicket
-            // 
-            this.cTicket.HeaderText = "Tickets";
-            this.cTicket.Name = "cTicket";
-            this.cTicket.Width = 80;
-            // 
-            // c3Cant
-            // 
-            this.c3Cant.HeaderText = "Cantidad";
-            this.c3Cant.Name = "c3Cant";
-            // 
-            // c3Total
-            // 
-            this.c3Total.HeaderText = "Total S/.";
-            this.c3Total.Name = "c3Total";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -622,17 +622,15 @@
             this.pnlTipReport.Size = new System.Drawing.Size(200, 150);
             this.pnlTipReport.TabIndex = 34;
             // 
-            // chkReportDetallado
+            // chkReportResFech
             // 
-            this.chkReportDetallado.AutoSize = true;
-            this.chkReportDetallado.Checked = true;
-            this.chkReportDetallado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReportDetallado.Location = new System.Drawing.Point(11, 16);
-            this.chkReportDetallado.Name = "chkReportDetallado";
-            this.chkReportDetallado.Size = new System.Drawing.Size(170, 17);
-            this.chkReportDetallado.TabIndex = 0;
-            this.chkReportDetallado.Text = "Reporte detallado por Recibos";
-            this.chkReportDetallado.UseVisualStyleBackColor = true;
+            this.chkReportResFech.AutoSize = true;
+            this.chkReportResFech.Location = new System.Drawing.Point(11, 95);
+            this.chkReportResFech.Name = "chkReportResFech";
+            this.chkReportResFech.Size = new System.Drawing.Size(165, 17);
+            this.chkReportResFech.TabIndex = 2;
+            this.chkReportResFech.Text = "Reporte resumido por Fechas";
+            this.chkReportResFech.UseVisualStyleBackColor = true;
             // 
             // chkReportResProd
             // 
@@ -644,15 +642,17 @@
             this.chkReportResProd.Text = "Reporte resumido por Productos";
             this.chkReportResProd.UseVisualStyleBackColor = true;
             // 
-            // chkReportResFech
+            // chkReportDetallado
             // 
-            this.chkReportResFech.AutoSize = true;
-            this.chkReportResFech.Location = new System.Drawing.Point(11, 95);
-            this.chkReportResFech.Name = "chkReportResFech";
-            this.chkReportResFech.Size = new System.Drawing.Size(165, 17);
-            this.chkReportResFech.TabIndex = 2;
-            this.chkReportResFech.Text = "Reporte resumido por Fechas";
-            this.chkReportResFech.UseVisualStyleBackColor = true;
+            this.chkReportDetallado.AutoSize = true;
+            this.chkReportDetallado.Checked = true;
+            this.chkReportDetallado.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReportDetallado.Location = new System.Drawing.Point(11, 16);
+            this.chkReportDetallado.Name = "chkReportDetallado";
+            this.chkReportDetallado.Size = new System.Drawing.Size(170, 17);
+            this.chkReportDetallado.TabIndex = 0;
+            this.chkReportDetallado.Text = "Reporte detallado por Recibos";
+            this.chkReportDetallado.UseVisualStyleBackColor = true;
             // 
             // pnlCondConsul
             // 
@@ -759,6 +759,8 @@
             this.Controls.Add(this.chkFechas);
             this.Controls.Add(this.cmbPerPago);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmRepProdTer";
             this.Text = "Producción de Terceros por Consultorio";
             ((System.ComponentModel.ISupportInitialize)(this.gdvAtencion)).EndInit();

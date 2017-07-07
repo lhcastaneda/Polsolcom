@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.pnlAtencion = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTotPacientes = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTotPacientes = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,14 +47,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.gdvServPrestados = new System.Windows.Forms.DataGridView();
-            this.label10 = new System.Windows.Forms.Label();
-            this.gdvPerEpidem = new System.Windows.Forms.DataGridView();
-            this.cDiag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c2Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cCant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label10 = new System.Windows.Forms.Label();
+            this.gdvPerEpidem = new System.Windows.Forms.DataGridView();
+            this.cDiag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c2Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -79,23 +79,26 @@
             this.pnlAtencion.Size = new System.Drawing.Size(313, 100);
             this.pnlAtencion.TabIndex = 0;
             // 
-            // label1
+            // textBox3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Pacientes Atendidos";
+            this.textBox3.Location = new System.Drawing.Point(145, 63);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(158, 20);
+            this.textBox3.TabIndex = 5;
             // 
-            // label2
+            // textBox2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Atenciones Realizadas";
+            this.textBox2.Location = new System.Drawing.Point(145, 37);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(158, 20);
+            this.textBox2.TabIndex = 4;
+            // 
+            // txtTotPacientes
+            // 
+            this.txtTotPacientes.Location = new System.Drawing.Point(145, 11);
+            this.txtTotPacientes.Name = "txtTotPacientes";
+            this.txtTotPacientes.Size = new System.Drawing.Size(158, 20);
+            this.txtTotPacientes.TabIndex = 3;
             // 
             // label3
             // 
@@ -106,26 +109,23 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Total Ventas";
             // 
-            // txtTotPacientes
+            // label2
             // 
-            this.txtTotPacientes.Location = new System.Drawing.Point(145, 11);
-            this.txtTotPacientes.Name = "txtTotPacientes";
-            this.txtTotPacientes.Size = new System.Drawing.Size(158, 20);
-            this.txtTotPacientes.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Atenciones Realizadas";
             // 
-            // textBox2
+            // label1
             // 
-            this.textBox2.Location = new System.Drawing.Point(145, 37);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(158, 20);
-            this.textBox2.TabIndex = 4;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(145, 63);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(158, 20);
-            this.textBox3.TabIndex = 5;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Pacientes Atendidos";
             // 
             // label4
             // 
@@ -252,6 +252,28 @@
             this.gdvServPrestados.Size = new System.Drawing.Size(542, 150);
             this.gdvServPrestados.TabIndex = 12;
             // 
+            // cProd
+            // 
+            this.cProd.HeaderText = "Producto";
+            this.cProd.Name = "cProd";
+            this.cProd.Width = 240;
+            // 
+            // cCant
+            // 
+            this.cCant.HeaderText = "Cantidad";
+            this.cCant.Name = "cCant";
+            this.cCant.Width = 60;
+            // 
+            // cPrecio
+            // 
+            this.cPrecio.HeaderText = "Precio";
+            this.cPrecio.Name = "cPrecio";
+            // 
+            // cTotal
+            // 
+            this.cTotal.HeaderText = "Total";
+            this.cTotal.Name = "cTotal";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -284,28 +306,6 @@
             // 
             this.c2Cant.HeaderText = "Cantidad";
             this.c2Cant.Name = "c2Cant";
-            // 
-            // cProd
-            // 
-            this.cProd.HeaderText = "Producto";
-            this.cProd.Name = "cProd";
-            this.cProd.Width = 240;
-            // 
-            // cCant
-            // 
-            this.cCant.HeaderText = "Cantidad";
-            this.cCant.Name = "cCant";
-            this.cCant.Width = 60;
-            // 
-            // cPrecio
-            // 
-            this.cPrecio.HeaderText = "Precio";
-            this.cPrecio.Name = "cPrecio";
-            // 
-            // cTotal
-            // 
-            this.cTotal.HeaderText = "Total";
-            this.cTotal.Name = "cTotal";
             // 
             // label11
             // 
@@ -364,6 +364,8 @@
             this.Controls.Add(this.cmbEspecialidad);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pnlAtencion);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmResperTer";
             this.Text = "Resumen de Terceros";
             this.pnlAtencion.ResumeLayout(false);

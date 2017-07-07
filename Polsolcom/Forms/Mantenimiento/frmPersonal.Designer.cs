@@ -1091,11 +1091,13 @@
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.pnlDatos);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmPersonal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro del Personal";
             this.TopMost = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPersonal_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlDatos.ResumeLayout(false);

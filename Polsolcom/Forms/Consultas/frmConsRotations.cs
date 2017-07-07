@@ -21,5 +21,14 @@ namespace Polsolcom.Forms
         {
 
         }
+
+        private void frmConsRotations_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
     }
 }

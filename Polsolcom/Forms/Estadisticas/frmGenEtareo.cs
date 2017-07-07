@@ -268,9 +268,10 @@ namespace Polsolcom.Forms
 			Grafico.LeyendaX = "Agrupacion por Distribucion";
 			Grafico.TituloY = "Cantidad";
 			Grafico.LeyendaY = "En Unidades";
+            Grafico.Decimal = false;
 
-			//crea el formulario del grafico
-			frmGrafico frg = new frmGrafico();
+            //crea el formulario del grafico
+            frmGrafico frg = new frmGrafico();
 			frg.CargaChart();
 			frg.Text = "Grafico Estadistico " + ( ( optSexo.Checked == true ) ? "Por Genero" : "Por Grupo Etareo" );
 			frg.ShowDialog();

@@ -27,10 +27,9 @@ namespace Polsolcom.Forms
             // TODO: This line of code loads data into the 'tipoDocumento.TablaTipo' table. You can move, or remove it, as needed.
             this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
             
-            Conexion.CNN = Conexion.ConectaBD();
-            Conexion.CMD.Connection = Conexion.CNN;
+            //Conexion.CNN = Conexion.ConectaBD();
+            //Conexion.CMD.Connection = Conexion.CNN;
             
-
             CargaDatosDefault();
             General.ttMensaje.InitialDelay = 0;
             General.ttMensaje.IsBalloon = false;

@@ -37,7 +37,7 @@ namespace Polsolcom.Forms
             fGrid.DefaultRow.Height = 20;
             fGrid.Cols.Count = 6;
             fGrid.Cols[0].Text = "Año";
-            fGrid.Cols[0].Width = 95;
+            fGrid.Cols[0].Width = 80;
             fGrid.Cols[0].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
             fGrid.Cols[0].CellStyle.TextAlign = iGContentAlignment.MiddleLeft;
             fGrid.Cols[0].CellStyle.ReadOnly = iGBool.True;
@@ -55,21 +55,21 @@ namespace Polsolcom.Forms
             fGrid.Cols[2].CellStyle.ReadOnly = iGBool.True;
             //
             fGrid.Cols[3].Text = "Nueva";
-            fGrid.Cols[3].Width = 90;
+            fGrid.Cols[3].Width = 80;
             fGrid.Cols[3].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
             fGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
             fGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
             //fGrid.Footer.Cells[0, 3].AggregateFunction = iGAggregateFunction.Sum;
             //
             fGrid.Cols[4].Text = "Antiguos";
-            fGrid.Cols[4].Width = 90;
+            fGrid.Cols[4].Width = 80;
             fGrid.Cols[4].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
             fGrid.Cols[4].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
             fGrid.Cols[4].CellStyle.ReadOnly = iGBool.True;
             //fGrid.Footer.Cells[0, 4].AggregateFunction = iGAggregateFunction.Sum;
             //
             fGrid.Cols[5].Text = "Total";
-            fGrid.Cols[5].Width = 90;
+            fGrid.Cols[5].Width = 80;
             fGrid.Cols[5].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
             fGrid.Cols[5].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
             fGrid.Cols[5].CellStyle.ReadOnly = iGBool.True;
@@ -259,9 +259,10 @@ namespace Polsolcom.Forms
             Grafico.LeyendaX = "Agrupacion por Distribucion";
             Grafico.TituloY = "Cantidad";
             Grafico.LeyendaY = "En Unidades";
+            Grafico.Decimal = false;
 
-            //crea el formulario del grafico
-            frmGrafico frg = new frmGrafico();
+           //crea el formulario del grafico
+           frmGrafico frg = new frmGrafico();
             frg.CargaChart();
             frg.Text = "Grafico Estadistico " + ((optAnho.Checked == true) ? "Año" : "Fecha");
             frg.ShowDialog();
