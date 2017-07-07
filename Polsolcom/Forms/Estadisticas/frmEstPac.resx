@@ -132,13 +132,13 @@
     <value>True</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 23</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
+    <value>81, 13</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -162,13 +162,13 @@
     <value>True</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>203, 22</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+    <value>77, 13</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -192,7 +192,7 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="btnExportar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 106</value>
+    <value>424, 36</value>
   </data>
   <data name="btnExportar.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 23</value>
@@ -202,6 +202,9 @@
   </data>
   <data name="btnExportar.Text" xml:space="preserve">
     <value>E&amp;xportar</value>
+  </data>
+  <data name="btnExportar.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;btnExportar.Name" xml:space="preserve">
     <value>btnExportar</value>
@@ -620,7 +623,7 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="grpGender.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 453</value>
+    <value>12, 458</value>
   </data>
   <data name="grpGender.Size" type="System.Drawing.Size, System.Drawing">
     <value>323, 39</value>
@@ -766,7 +769,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 108</value>
+    <value>424, 10</value>
   </data>
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -859,7 +862,7 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 13</value>
+    <value>8, 6</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>403, 51</value>

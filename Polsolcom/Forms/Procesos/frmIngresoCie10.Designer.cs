@@ -31,11 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.tabIngresoConsulta = new System.Windows.Forms.TabControl();
             this.tabIngresar = new System.Windows.Forms.TabPage();
+            this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
+            this.consultoriosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
+            this.chkFiltro = new System.Windows.Forms.CheckBox();
             this.dtpFechaVent = new System.Windows.Forms.DateTimePicker();
-            this.txtFilaResult = new System.Windows.Forms.TextBox();
             this.txtNroDoc = new System.Windows.Forms.TextBox();
             this.txtSerie = new System.Windows.Forms.TextBox();
             this.cmbTipoDoc = new System.Windows.Forms.ComboBox();
+            this.tablaTipoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tipoDocumento = new Polsolcom.Dominio.Data.TipoDocumento();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -74,6 +79,14 @@
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.grpFiliacion = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
+            this.btnVerifica = new System.Windows.Forms.Button();
+            this.btnBCie10 = new System.Windows.Forms.Button();
+            this.btnGrabar = new System.Windows.Forms.Button();
+            this.btnQuitar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.dtpFechaVenta = new System.Windows.Forms.DateTimePicker();
             this.txtNomEspecialidad = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -85,70 +98,67 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnQuitar = new System.Windows.Forms.Button();
-            this.btnGrabar = new System.Windows.Forms.Button();
-            this.btnBCie10 = new System.Windows.Forms.Button();
-            this.btnVerifica = new System.Windows.Forms.Button();
-            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.grpEnfermedad = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txtInicio = new System.Windows.Forms.TextBox();
-            this.txtCurso = new System.Windows.Forms.TextBox();
             this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.txtCurso = new System.Windows.Forms.TextBox();
+            this.txtInicio = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.grpAntecedentes = new System.Windows.Forms.GroupBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.txtPersonales = new System.Windows.Forms.TextBox();
-            this.txtFamiliares = new System.Windows.Forms.TextBox();
-            this.txtEpidem = new System.Windows.Forms.TextBox();
+            this.txtOtros = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
             this.txtQuirurgicos = new System.Windows.Forms.TextBox();
+            this.txtEpidem = new System.Windows.Forms.TextBox();
+            this.txtFamiliares = new System.Windows.Forms.TextBox();
+            this.txtPersonales = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.grpExClinico = new System.Windows.Forms.GroupBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.txtPeso = new System.Windows.Forms.TextBox();
-            this.txtTalla = new System.Windows.Forms.TextBox();
-            this.txtPresArt = new System.Windows.Forms.TextBox();
-            this.txtFC = new System.Windows.Forms.TextBox();
-            this.txtTemp = new System.Windows.Forms.TextBox();
-            this.txtFR = new System.Windows.Forms.TextBox();
             this.txtExamenGeneral = new System.Windows.Forms.TextBox();
+            this.txtFR = new System.Windows.Forms.TextBox();
+            this.txtTemp = new System.Windows.Forms.TextBox();
+            this.txtFC = new System.Windows.Forms.TextBox();
+            this.txtPresArt = new System.Windows.Forms.TextBox();
+            this.txtTalla = new System.Windows.Forms.TextBox();
+            this.txtPeso = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.grpTratamiento = new System.Windows.Forms.GroupBox();
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.txtOtros = new System.Windows.Forms.TextBox();
-            this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
-            this.consultoriosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
-            this.tipoDocumento = new Polsolcom.Dominio.Data.TipoDocumento();
-            this.tablaTipoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
-            this.chkFiltro = new System.Windows.Forms.CheckBox();
-            this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
+            this.lstTickets = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
             this.tabConsultar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.grpFiliacion.SuspendLayout();
             this.grpEnfermedad.SuspendLayout();
             this.grpAntecedentes.SuspendLayout();
             this.grpExClinico.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabIngresoConsulta
@@ -163,10 +173,10 @@
             // 
             // tabIngresar
             // 
+            this.tabIngresar.Controls.Add(this.lstTickets);
             this.tabIngresar.Controls.Add(this.cmbEspecialidad);
             this.tabIngresar.Controls.Add(this.chkFiltro);
             this.tabIngresar.Controls.Add(this.dtpFechaVent);
-            this.tabIngresar.Controls.Add(this.txtFilaResult);
             this.tabIngresar.Controls.Add(this.txtNroDoc);
             this.tabIngresar.Controls.Add(this.txtSerie);
             this.tabIngresar.Controls.Add(this.cmbTipoDoc);
@@ -184,6 +194,39 @@
             this.tabIngresar.Text = "Ingresar datos";
             this.tabIngresar.UseVisualStyleBackColor = true;
             // 
+            // cmbEspecialidad
+            // 
+            this.cmbEspecialidad.DataSource = this.consultoriosBindingSource;
+            this.cmbEspecialidad.DisplayMember = "Descripcion";
+            this.cmbEspecialidad.FormattingEnabled = true;
+            this.cmbEspecialidad.Location = new System.Drawing.Point(10, 26);
+            this.cmbEspecialidad.Name = "cmbEspecialidad";
+            this.cmbEspecialidad.Size = new System.Drawing.Size(175, 21);
+            this.cmbEspecialidad.TabIndex = 16;
+            this.cmbEspecialidad.ValueMember = "Id_Consultorio";
+            // 
+            // consultoriosBindingSource
+            // 
+            this.consultoriosBindingSource.DataMember = "Consultorios";
+            this.consultoriosBindingSource.DataSource = this.consultoriosDS;
+            // 
+            // consultoriosDS
+            // 
+            this.consultoriosDS.DataSetName = "ConsultoriosDS";
+            this.consultoriosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // chkFiltro
+            // 
+            this.chkFiltro.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkFiltro.AutoSize = true;
+            this.chkFiltro.Location = new System.Drawing.Point(50, 99);
+            this.chkFiltro.Name = "chkFiltro";
+            this.chkFiltro.Size = new System.Drawing.Size(71, 23);
+            this.chkFiltro.TabIndex = 15;
+            this.chkFiltro.Text = "Aplicar filtro";
+            this.chkFiltro.UseVisualStyleBackColor = true;
+            this.chkFiltro.CheckedChanged += new System.EventHandler(this.chkFiltro_CheckedChanged);
+            // 
             // dtpFechaVent
             // 
             this.dtpFechaVent.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -192,25 +235,18 @@
             this.dtpFechaVent.Size = new System.Drawing.Size(100, 20);
             this.dtpFechaVent.TabIndex = 14;
             // 
-            // txtFilaResult
-            // 
-            this.txtFilaResult.Location = new System.Drawing.Point(170, 71);
-            this.txtFilaResult.Multiline = true;
-            this.txtFilaResult.Name = "txtFilaResult";
-            this.txtFilaResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFilaResult.Size = new System.Drawing.Size(212, 43);
-            this.txtFilaResult.TabIndex = 12;
-            // 
             // txtNroDoc
             // 
-            this.txtNroDoc.Location = new System.Drawing.Point(62, 72);
+            this.txtNroDoc.Location = new System.Drawing.Point(62, 63);
             this.txtNroDoc.Name = "txtNroDoc";
-            this.txtNroDoc.Size = new System.Drawing.Size(100, 20);
+            this.txtNroDoc.Size = new System.Drawing.Size(88, 20);
             this.txtNroDoc.TabIndex = 11;
+            this.txtNroDoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroDoc_KeyDown);
+            this.txtNroDoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNroDoc_KeyPress);
             // 
             // txtSerie
             // 
-            this.txtSerie.Location = new System.Drawing.Point(8, 72);
+            this.txtSerie.Location = new System.Drawing.Point(8, 63);
             this.txtSerie.Name = "txtSerie";
             this.txtSerie.Size = new System.Drawing.Size(44, 20);
             this.txtSerie.TabIndex = 10;
@@ -226,10 +262,20 @@
             this.cmbTipoDoc.TabIndex = 8;
             this.cmbTipoDoc.ValueMember = "Id_Tipo";
             // 
+            // tablaTipoBindingSource
+            // 
+            this.tablaTipoBindingSource.DataMember = "TablaTipo";
+            this.tablaTipoBindingSource.DataSource = this.tipoDocumento;
+            // 
+            // tipoDocumento
+            // 
+            this.tipoDocumento.DataSetName = "TipoDocumento";
+            this.tipoDocumento.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(168, 56);
+            this.label6.Location = new System.Drawing.Point(155, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(146, 13);
             this.label6.TabIndex = 5;
@@ -256,7 +302,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(62, 56);
+            this.label3.Location = new System.Drawing.Point(62, 47);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 2;
@@ -265,7 +311,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 56);
+            this.label2.Location = new System.Drawing.Point(10, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 1;
@@ -575,6 +621,78 @@
             this.grpFiliacion.TabStop = false;
             this.grpFiliacion.Text = "1. FILIACIÓN:";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(319, 99);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(83, 13);
+            this.label10.TabIndex = 53;
+            this.label10.Text = "Fecha de Venta";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(317, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(63, 13);
+            this.label9.TabIndex = 52;
+            this.label9.Text = "Fecha Nac.";
+            // 
+            // dtpFechaNac
+            // 
+            this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaNac.Location = new System.Drawing.Point(318, 37);
+            this.dtpFechaNac.Name = "dtpFechaNac";
+            this.dtpFechaNac.Size = new System.Drawing.Size(100, 20);
+            this.dtpFechaNac.TabIndex = 51;
+            // 
+            // btnVerifica
+            // 
+            this.btnVerifica.Location = new System.Drawing.Point(333, 271);
+            this.btnVerifica.Name = "btnVerifica";
+            this.btnVerifica.Size = new System.Drawing.Size(75, 23);
+            this.btnVerifica.TabIndex = 50;
+            this.btnVerifica.Text = "&Verifica";
+            this.btnVerifica.UseVisualStyleBackColor = true;
+            // 
+            // btnBCie10
+            // 
+            this.btnBCie10.Location = new System.Drawing.Point(256, 271);
+            this.btnBCie10.Name = "btnBCie10";
+            this.btnBCie10.Size = new System.Drawing.Size(75, 23);
+            this.btnBCie10.TabIndex = 49;
+            this.btnBCie10.Text = "&BCie10";
+            this.btnBCie10.UseVisualStyleBackColor = true;
+            // 
+            // btnGrabar
+            // 
+            this.btnGrabar.Enabled = false;
+            this.btnGrabar.Location = new System.Drawing.Point(179, 271);
+            this.btnGrabar.Name = "btnGrabar";
+            this.btnGrabar.Size = new System.Drawing.Size(75, 23);
+            this.btnGrabar.TabIndex = 48;
+            this.btnGrabar.Text = "&Grabar";
+            this.btnGrabar.UseVisualStyleBackColor = true;
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.Location = new System.Drawing.Point(102, 271);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitar.TabIndex = 47;
+            this.btnQuitar.Text = "&Quitar";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(24, 271);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 46;
+            this.btnAgregar.Text = "&Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            // 
             // dtpFechaVenta
             // 
             this.dtpFechaVenta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -663,78 +781,6 @@
             this.label20.TabIndex = 33;
             this.label20.Text = "Apellidos y Nombres (ID Pacientes)";
             // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(24, 271);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 46;
-            this.btnAgregar.Text = "&Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitar
-            // 
-            this.btnQuitar.Location = new System.Drawing.Point(102, 271);
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(75, 23);
-            this.btnQuitar.TabIndex = 47;
-            this.btnQuitar.Text = "&Quitar";
-            this.btnQuitar.UseVisualStyleBackColor = true;
-            // 
-            // btnGrabar
-            // 
-            this.btnGrabar.Enabled = false;
-            this.btnGrabar.Location = new System.Drawing.Point(179, 271);
-            this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(75, 23);
-            this.btnGrabar.TabIndex = 48;
-            this.btnGrabar.Text = "&Grabar";
-            this.btnGrabar.UseVisualStyleBackColor = true;
-            // 
-            // btnBCie10
-            // 
-            this.btnBCie10.Location = new System.Drawing.Point(256, 271);
-            this.btnBCie10.Name = "btnBCie10";
-            this.btnBCie10.Size = new System.Drawing.Size(75, 23);
-            this.btnBCie10.TabIndex = 49;
-            this.btnBCie10.Text = "&BCie10";
-            this.btnBCie10.UseVisualStyleBackColor = true;
-            // 
-            // btnVerifica
-            // 
-            this.btnVerifica.Location = new System.Drawing.Point(333, 271);
-            this.btnVerifica.Name = "btnVerifica";
-            this.btnVerifica.Size = new System.Drawing.Size(75, 23);
-            this.btnVerifica.TabIndex = 50;
-            this.btnVerifica.Text = "&Verifica";
-            this.btnVerifica.UseVisualStyleBackColor = true;
-            // 
-            // dtpFechaNac
-            // 
-            this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNac.Location = new System.Drawing.Point(318, 37);
-            this.dtpFechaNac.Name = "dtpFechaNac";
-            this.dtpFechaNac.Size = new System.Drawing.Size(100, 20);
-            this.dtpFechaNac.TabIndex = 51;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(317, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(63, 13);
-            this.label9.TabIndex = 52;
-            this.label9.Text = "Fecha Nac.";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(319, 99);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 13);
-            this.label10.TabIndex = 53;
-            this.label10.Text = "Fecha de Venta";
-            // 
             // grpEnfermedad
             // 
             this.grpEnfermedad.Controls.Add(this.txtObservacion);
@@ -750,23 +796,27 @@
             this.grpEnfermedad.TabStop = false;
             this.grpEnfermedad.Text = "2. ENFERMEDAD ACTUAL :";
             // 
-            // label13
+            // txtObservacion
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(10, 18);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(44, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Inicio ...";
+            this.txtObservacion.Location = new System.Drawing.Point(8, 78);
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(277, 20);
+            this.txtObservacion.TabIndex = 5;
             // 
-            // label21
+            // txtCurso
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(166, 16);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(46, 13);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "Curso ...";
+            this.txtCurso.Location = new System.Drawing.Point(166, 35);
+            this.txtCurso.Name = "txtCurso";
+            this.txtCurso.Size = new System.Drawing.Size(120, 20);
+            this.txtCurso.TabIndex = 4;
+            this.txtCurso.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+            // 
+            // txtInicio
+            // 
+            this.txtInicio.Location = new System.Drawing.Point(8, 35);
+            this.txtInicio.Name = "txtInicio";
+            this.txtInicio.Size = new System.Drawing.Size(152, 20);
+            this.txtInicio.TabIndex = 3;
             // 
             // label29
             // 
@@ -777,27 +827,23 @@
             this.label29.TabIndex = 2;
             this.label29.Text = "Relato ...";
             // 
-            // txtInicio
+            // label21
             // 
-            this.txtInicio.Location = new System.Drawing.Point(8, 35);
-            this.txtInicio.Name = "txtInicio";
-            this.txtInicio.Size = new System.Drawing.Size(152, 20);
-            this.txtInicio.TabIndex = 3;
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(166, 16);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(46, 13);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "Curso ...";
             // 
-            // txtCurso
+            // label13
             // 
-            this.txtCurso.Location = new System.Drawing.Point(166, 35);
-            this.txtCurso.Name = "txtCurso";
-            this.txtCurso.Size = new System.Drawing.Size(120, 20);
-            this.txtCurso.TabIndex = 4;
-            this.txtCurso.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
-            // 
-            // txtObservacion
-            // 
-            this.txtObservacion.Location = new System.Drawing.Point(8, 78);
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(277, 20);
-            this.txtObservacion.TabIndex = 5;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(10, 18);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(44, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Inicio ...";
             // 
             // grpAntecedentes
             // 
@@ -818,32 +864,49 @@
             this.grpAntecedentes.TabStop = false;
             this.grpAntecedentes.Text = "3. ANTECEDENTES:";
             // 
-            // label30
+            // txtOtros
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(11, 16);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(71, 13);
-            this.label30.TabIndex = 34;
-            this.label30.Text = "Personales ...";
+            this.txtOtros.Location = new System.Drawing.Point(333, 70);
+            this.txtOtros.Name = "txtOtros";
+            this.txtOtros.Size = new System.Drawing.Size(172, 20);
+            this.txtOtros.TabIndex = 43;
             // 
-            // label31
+            // label43
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(289, 14);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(65, 13);
-            this.label31.TabIndex = 35;
-            this.label31.Text = "Familiares ...";
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(335, 56);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(44, 13);
+            this.label43.TabIndex = 42;
+            this.label43.Text = "Otros ...";
             // 
-            // label32
+            // txtQuirurgicos
             // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(13, 57);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(87, 13);
-            this.label32.TabIndex = 36;
-            this.label32.Text = "Epidemológios ...";
+            this.txtQuirurgicos.Location = new System.Drawing.Point(186, 71);
+            this.txtQuirurgicos.Name = "txtQuirurgicos";
+            this.txtQuirurgicos.Size = new System.Drawing.Size(143, 20);
+            this.txtQuirurgicos.TabIndex = 41;
+            // 
+            // txtEpidem
+            // 
+            this.txtEpidem.Location = new System.Drawing.Point(13, 72);
+            this.txtEpidem.Name = "txtEpidem";
+            this.txtEpidem.Size = new System.Drawing.Size(167, 20);
+            this.txtEpidem.TabIndex = 40;
+            // 
+            // txtFamiliares
+            // 
+            this.txtFamiliares.Location = new System.Drawing.Point(289, 31);
+            this.txtFamiliares.Name = "txtFamiliares";
+            this.txtFamiliares.Size = new System.Drawing.Size(212, 20);
+            this.txtFamiliares.TabIndex = 39;
+            // 
+            // txtPersonales
+            // 
+            this.txtPersonales.Location = new System.Drawing.Point(11, 32);
+            this.txtPersonales.Name = "txtPersonales";
+            this.txtPersonales.Size = new System.Drawing.Size(268, 20);
+            this.txtPersonales.TabIndex = 38;
             // 
             // label33
             // 
@@ -854,33 +917,32 @@
             this.label33.TabIndex = 37;
             this.label33.Text = "Quirúrgicos ...";
             // 
-            // txtPersonales
+            // label32
             // 
-            this.txtPersonales.Location = new System.Drawing.Point(11, 32);
-            this.txtPersonales.Name = "txtPersonales";
-            this.txtPersonales.Size = new System.Drawing.Size(268, 20);
-            this.txtPersonales.TabIndex = 38;
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(13, 57);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(87, 13);
+            this.label32.TabIndex = 36;
+            this.label32.Text = "Epidemológios ...";
             // 
-            // txtFamiliares
+            // label31
             // 
-            this.txtFamiliares.Location = new System.Drawing.Point(289, 31);
-            this.txtFamiliares.Name = "txtFamiliares";
-            this.txtFamiliares.Size = new System.Drawing.Size(212, 20);
-            this.txtFamiliares.TabIndex = 39;
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(289, 14);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(65, 13);
+            this.label31.TabIndex = 35;
+            this.label31.Text = "Familiares ...";
             // 
-            // txtEpidem
+            // label30
             // 
-            this.txtEpidem.Location = new System.Drawing.Point(13, 72);
-            this.txtEpidem.Name = "txtEpidem";
-            this.txtEpidem.Size = new System.Drawing.Size(167, 20);
-            this.txtEpidem.TabIndex = 40;
-            // 
-            // txtQuirurgicos
-            // 
-            this.txtQuirurgicos.Location = new System.Drawing.Point(186, 71);
-            this.txtQuirurgicos.Name = "txtQuirurgicos";
-            this.txtQuirurgicos.Size = new System.Drawing.Size(143, 20);
-            this.txtQuirurgicos.TabIndex = 41;
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(11, 16);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(71, 13);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "Personales ...";
             // 
             // grpExClinico
             // 
@@ -905,59 +967,55 @@
             this.grpExClinico.TabStop = false;
             this.grpExClinico.Text = "4. EXAMEN CLÍNICO:";
             // 
-            // label34
+            // txtExamenGeneral
             // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(8, 16);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(31, 13);
-            this.label34.TabIndex = 35;
-            this.label34.Text = "Peso";
+            this.txtExamenGeneral.Location = new System.Drawing.Point(9, 70);
+            this.txtExamenGeneral.Name = "txtExamenGeneral";
+            this.txtExamenGeneral.Size = new System.Drawing.Size(332, 20);
+            this.txtExamenGeneral.TabIndex = 49;
             // 
-            // label35
+            // txtFR
             // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(78, 14);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(30, 13);
-            this.label35.TabIndex = 36;
-            this.label35.Text = "Talla";
+            this.txtFR.Location = new System.Drawing.Point(264, 31);
+            this.txtFR.Name = "txtFR";
+            this.txtFR.Size = new System.Drawing.Size(37, 20);
+            this.txtFR.TabIndex = 48;
+            this.txtFR.TextChanged += new System.EventHandler(this.textBox31_TextChanged);
             // 
-            // label36
+            // txtTemp
             // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(144, 14);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(50, 13);
-            this.label36.TabIndex = 37;
-            this.label36.Text = "Pres. Art.";
+            this.txtTemp.Location = new System.Drawing.Point(304, 31);
+            this.txtTemp.Name = "txtTemp";
+            this.txtTemp.Size = new System.Drawing.Size(37, 20);
+            this.txtTemp.TabIndex = 47;
             // 
-            // label37
+            // txtFC
             // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(225, 15);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(20, 13);
-            this.label37.TabIndex = 38;
-            this.label37.Text = "FC";
+            this.txtFC.Location = new System.Drawing.Point(225, 31);
+            this.txtFC.Name = "txtFC";
+            this.txtFC.Size = new System.Drawing.Size(35, 20);
+            this.txtFC.TabIndex = 46;
             // 
-            // label38
+            // txtPresArt
             // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(265, 15);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(21, 13);
-            this.label38.TabIndex = 39;
-            this.label38.Text = "FR";
+            this.txtPresArt.Location = new System.Drawing.Point(143, 31);
+            this.txtPresArt.Name = "txtPresArt";
+            this.txtPresArt.Size = new System.Drawing.Size(78, 20);
+            this.txtPresArt.TabIndex = 45;
             // 
-            // label39
+            // txtTalla
             // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(303, 15);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(31, 13);
-            this.label39.TabIndex = 40;
-            this.label39.Text = "T(°C)";
+            this.txtTalla.Location = new System.Drawing.Point(78, 31);
+            this.txtTalla.Name = "txtTalla";
+            this.txtTalla.Size = new System.Drawing.Size(60, 20);
+            this.txtTalla.TabIndex = 44;
+            // 
+            // txtPeso
+            // 
+            this.txtPeso.Location = new System.Drawing.Point(8, 31);
+            this.txtPeso.Name = "txtPeso";
+            this.txtPeso.Size = new System.Drawing.Size(66, 20);
+            this.txtPeso.TabIndex = 43;
             // 
             // label40
             // 
@@ -968,55 +1026,59 @@
             this.label40.TabIndex = 41;
             this.label40.Text = "Exámen General";
             // 
-            // txtPeso
+            // label39
             // 
-            this.txtPeso.Location = new System.Drawing.Point(8, 31);
-            this.txtPeso.Name = "txtPeso";
-            this.txtPeso.Size = new System.Drawing.Size(66, 20);
-            this.txtPeso.TabIndex = 43;
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(303, 15);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(31, 13);
+            this.label39.TabIndex = 40;
+            this.label39.Text = "T(°C)";
             // 
-            // txtTalla
+            // label38
             // 
-            this.txtTalla.Location = new System.Drawing.Point(78, 31);
-            this.txtTalla.Name = "txtTalla";
-            this.txtTalla.Size = new System.Drawing.Size(60, 20);
-            this.txtTalla.TabIndex = 44;
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(265, 15);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(21, 13);
+            this.label38.TabIndex = 39;
+            this.label38.Text = "FR";
             // 
-            // txtPresArt
+            // label37
             // 
-            this.txtPresArt.Location = new System.Drawing.Point(143, 31);
-            this.txtPresArt.Name = "txtPresArt";
-            this.txtPresArt.Size = new System.Drawing.Size(78, 20);
-            this.txtPresArt.TabIndex = 45;
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(225, 15);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(20, 13);
+            this.label37.TabIndex = 38;
+            this.label37.Text = "FC";
             // 
-            // txtFC
+            // label36
             // 
-            this.txtFC.Location = new System.Drawing.Point(225, 31);
-            this.txtFC.Name = "txtFC";
-            this.txtFC.Size = new System.Drawing.Size(35, 20);
-            this.txtFC.TabIndex = 46;
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(144, 14);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(50, 13);
+            this.label36.TabIndex = 37;
+            this.label36.Text = "Pres. Art.";
             // 
-            // txtTemp
+            // label35
             // 
-            this.txtTemp.Location = new System.Drawing.Point(304, 31);
-            this.txtTemp.Name = "txtTemp";
-            this.txtTemp.Size = new System.Drawing.Size(37, 20);
-            this.txtTemp.TabIndex = 47;
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(78, 14);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(30, 13);
+            this.label35.TabIndex = 36;
+            this.label35.Text = "Talla";
             // 
-            // txtFR
+            // label34
             // 
-            this.txtFR.Location = new System.Drawing.Point(264, 31);
-            this.txtFR.Name = "txtFR";
-            this.txtFR.Size = new System.Drawing.Size(37, 20);
-            this.txtFR.TabIndex = 48;
-            this.txtFR.TextChanged += new System.EventHandler(this.textBox31_TextChanged);
-            // 
-            // txtExamenGeneral
-            // 
-            this.txtExamenGeneral.Location = new System.Drawing.Point(9, 70);
-            this.txtExamenGeneral.Name = "txtExamenGeneral";
-            this.txtExamenGeneral.Size = new System.Drawing.Size(332, 20);
-            this.txtExamenGeneral.TabIndex = 49;
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(8, 16);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(31, 13);
+            this.label34.TabIndex = 35;
+            this.label34.Text = "Peso";
             // 
             // grpTratamiento
             // 
@@ -1045,72 +1107,82 @@
             this.label42.TabIndex = 37;
             this.label42.Text = "6. PROCEDIMIENTOS - EXÁMENES:";
             // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(335, 56);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(44, 13);
-            this.label43.TabIndex = 42;
-            this.label43.Text = "Otros ...";
-            // 
-            // txtOtros
-            // 
-            this.txtOtros.Location = new System.Drawing.Point(333, 70);
-            this.txtOtros.Name = "txtOtros";
-            this.txtOtros.Size = new System.Drawing.Size(172, 20);
-            this.txtOtros.TabIndex = 43;
-            // 
-            // consultoriosDS
-            // 
-            this.consultoriosDS.DataSetName = "ConsultoriosDS";
-            this.consultoriosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // consultoriosBindingSource
-            // 
-            this.consultoriosBindingSource.DataMember = "Consultorios";
-            this.consultoriosBindingSource.DataSource = this.consultoriosDS;
-            // 
             // consultoriosTableAdapter
             // 
             this.consultoriosTableAdapter.ClearBeforeFill = true;
-            // 
-            // tipoDocumento
-            // 
-            this.tipoDocumento.DataSetName = "TipoDocumento";
-            this.tipoDocumento.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tablaTipoBindingSource
-            // 
-            this.tablaTipoBindingSource.DataMember = "TablaTipo";
-            this.tablaTipoBindingSource.DataSource = this.tipoDocumento;
             // 
             // tablaTipoTableAdapter
             // 
             this.tablaTipoTableAdapter.ClearBeforeFill = true;
             // 
-            // chkFiltro
+            // lstTickets
             // 
-            this.chkFiltro.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkFiltro.AutoSize = true;
-            this.chkFiltro.Location = new System.Drawing.Point(160, 119);
-            this.chkFiltro.Name = "chkFiltro";
-            this.chkFiltro.Size = new System.Drawing.Size(71, 23);
-            this.chkFiltro.TabIndex = 15;
-            this.chkFiltro.Text = "Aplicar filtro";
-            this.chkFiltro.UseVisualStyleBackColor = true;
-            this.chkFiltro.CheckedChanged += new System.EventHandler(this.chkFiltro_CheckedChanged);
+            this.lstTickets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.lstTickets.FullRowSelect = true;
+            this.lstTickets.Location = new System.Drawing.Point(158, 63);
+            this.lstTickets.MultiSelect = false;
+            this.lstTickets.Name = "lstTickets";
+            this.lstTickets.Size = new System.Drawing.Size(262, 82);
+            this.lstTickets.TabIndex = 17;
+            this.lstTickets.UseCompatibleStateImageBehavior = false;
+            this.lstTickets.View = System.Windows.Forms.View.Details;
             // 
-            // cmbEspecialidad
+            // columnHeader1
             // 
-            this.cmbEspecialidad.DataSource = this.consultoriosBindingSource;
-            this.cmbEspecialidad.DisplayMember = "Descripcion";
-            this.cmbEspecialidad.FormattingEnabled = true;
-            this.cmbEspecialidad.Location = new System.Drawing.Point(10, 26);
-            this.cmbEspecialidad.Name = "cmbEspecialidad";
-            this.cmbEspecialidad.Size = new System.Drawing.Size(175, 21);
-            this.cmbEspecialidad.TabIndex = 16;
-            this.cmbEspecialidad.ValueMember = "Id_Consultorio";
+            this.columnHeader1.Text = "Serie";
+            this.columnHeader1.Width = 40;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Nro Ticket";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Fecha Atención";
+            this.columnHeader3.Width = 80;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Digitador";
+            this.columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Nro Historia";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Id Paciente";
+            this.columnHeader6.Width = 40;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Descripcion";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Orden";
+            this.columnHeader8.Width = 50;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Anulado";
+            this.columnHeader9.Width = 70;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Fecha Emisión";
+            this.columnHeader10.Width = 70;
             // 
             // frmIngresoCie10
             // 
@@ -1150,6 +1222,10 @@
             this.tabIngresoConsulta.ResumeLayout(false);
             this.tabIngresar.ResumeLayout(false);
             this.tabIngresar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).EndInit();
             this.tabConsultar.ResumeLayout(false);
             this.tabConsultar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
@@ -1161,10 +1237,6 @@
             this.grpAntecedentes.PerformLayout();
             this.grpExClinico.ResumeLayout(false);
             this.grpExClinico.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1174,7 +1246,6 @@
 
         private System.Windows.Forms.TabControl tabIngresoConsulta;
         private System.Windows.Forms.TabPage tabIngresar;
-        private System.Windows.Forms.TextBox txtFilaResult;
         private System.Windows.Forms.TextBox txtNroDoc;
         private System.Windows.Forms.TextBox txtSerie;
         private System.Windows.Forms.ComboBox cmbTipoDoc;
@@ -1280,5 +1351,16 @@
         private Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter;
         private System.Windows.Forms.CheckBox chkFiltro;
         private System.Windows.Forms.ComboBox cmbEspecialidad;
+        private System.Windows.Forms.ListView lstTickets;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }
