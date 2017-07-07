@@ -10,6 +10,7 @@ using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
 using System.Linq;
 using TenTec.Windows.iGridLib;
+using System.Collections.Generic;
 
 namespace Polsolcom.Forms.Procesos
 {
@@ -19,6 +20,7 @@ namespace Polsolcom.Forms.Procesos
 		string BUS = "";
 		string NROHISTORIA = "";
 		DataGridViewComboBoxCell ComboProducto = new DataGridViewComboBoxCell();
+		static List<Temporal> lstTemp = new List<Temporal>();
 
 		public frmSHClinica()
 		{
@@ -80,6 +82,7 @@ namespace Polsolcom.Forms.Procesos
 			iGrid.Cols[0].CellStyle.DropDownControl = cmb; //agrega el combobox
 			iGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
 			iGrid.Cols[0].CellStyle.ValueType = typeof(string);
+			
 			//cantidad
 			iGrid.Cols[1].Text = "Cant.";
 			iGrid.Cols[1].Width = 40;
@@ -745,7 +748,6 @@ namespace Polsolcom.Forms.Procesos
 							UbicaItemCombo(cmbDistrito, dr.GetValue(27).ToString());
 							txtODoc.Text = dr.GetValue(28).ToString();
 							txtEmail.Text = dr.GetValue(29).ToString();
-							txtAutoriza.Text = "";
 							//carga detalle
 							CargaDetalleTicket(sNroHistoria, dr.GetValue(3).ToString().Trim());
 						}
@@ -830,9 +832,7 @@ namespace Polsolcom.Forms.Procesos
 
 										}
 										catch( Exception ex )
-										{
-											MessageBox.Show(ex.Message);
-										}
+										{ MessageBox.Show(ex.Message); }
 									}
 								}
 
@@ -862,7 +862,6 @@ namespace Polsolcom.Forms.Procesos
 
 		private void CargaDetalleTicket( string sNHC, string sEspecialidad )
 		{			
-			//grd.Rows.Clear();
 			iGrid.Rows.Clear();
 			FormateaGrids();
 
@@ -875,7 +874,7 @@ namespace Polsolcom.Forms.Procesos
 			string vSQL = "SELECT COUNT(*) AS cant " +
 						  "FROM Detalles " +
 						  "WHERE Nro_Historia = '" + sNHC.ToString() + "'";
-			int iCant = Int32.Parse(General.TomaValor(vSQL));
+			int iCant = int.Parse(General.TomaValor(vSQL));
 			
 			vSQL = "SELECT nro_historia,id_producto,monto,cantidad," +
 				   "pagado,dscto,resultado,conclusion " +
@@ -897,38 +896,11 @@ namespace Polsolcom.Forms.Procesos
 							row.Cells[0].DropDownControl = cmb;
 							row.Cells[0].Value = cmb.Items[0].Value;
 							row.Cells[1].Value = dr.GetValue(3).ToString();
-							row.Cells[2].Value = DevuelvePrecioProducto(dr.GetValue(1).ToString());
-							row.Cells[3].Value = dr.GetValue(2).ToString();
+							row.Cells[2].Value = dr.GetValue(2).ToString(); //DevuelvePrecioProducto(dr.GetValue(1).ToString());
+							row.Cells[3].Value = int.Parse(row.Cells[1].Value.ToString()) * double.Parse(row.Cells[2].Value.ToString());
 							row.Cells[4].Value = dr.GetValue(1).ToString();
 						}
 						iGrid.EndUpdate();
-
-
-						/*
-						while( dr.Read() )
-						{
-							DataGridViewRow row = new DataGridViewRow();
-							DataGridViewComboBoxCell cmbDGV = LlenaProductos(sEspecialidad, dr.GetValue(1).ToString());
-							DataGridViewCell cellCant = new DataGridViewTextBoxCell();
-							DataGridViewCell cellPrecio = new DataGridViewTextBoxCell();
-							DataGridViewCell cellSubTotal = new DataGridViewTextBoxCell();
-							DataGridViewCell cellID = new DataGridViewTextBoxCell();
-
-							cellCant.Value = dr.GetValue(3).ToString();
-							cellPrecio.Value = DevuelvePrecioProducto(dr.GetValue(1).ToString());
-							cellSubTotal.Value = dr.GetValue(2).ToString();
-							cellID.Value = dr.GetValue(1).ToString();
-
-							row.Cells.Add(cmbDGV);
-							row.Cells.Add(cellCant);
-							row.Cells.Add(cellPrecio);
-							row.Cells.Add(cellSubTotal);
-							row.Cells.Add(cellID);
-							grd.Rows.Add(row);
-							grd.Rows[grd.Rows.Count-1].Cells[0].Value = (row.Cells[0] as DataGridViewComboBoxCell).Items[0];
-						}
-						*/
-
 					}
 					dr.Close();
 				}
@@ -1023,4 +995,16 @@ namespace Polsolcom.Forms.Procesos
 		public string Estado {get; set;}
 		public string TPEsp {get; set;}
 	}
+
+	public partial class Temporal
+	{
+		public string Ipr { get; set; }
+		public int Cant { get; set; }
+		public double Cost { get; set; }
+		public double SubT { get; set; }
+		public string Nrv { get; set; }
+		public string Npro { get; set; }
+		public string Tp { get; set; }
+	}
+
 }
