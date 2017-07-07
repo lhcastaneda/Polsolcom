@@ -289,8 +289,8 @@ namespace Polsolcom.Forms
                 vSQL = vSQL + "'" + Operativo.id_oper + "', ";
                 vSQL = vSQL + "'" + txtSerie.Text + "', ";
                 vSQL = vSQL + "'" + dVenta + "', ";
-                vSQL = vSQL + "'', ";
-                vSQL = vSQL + "'' ) ";
+				vSQL = vSQL + "'" + txtCuenta.Text + "', ";
+				vSQL = vSQL + "'' ) ";
                 Conexion.CMD.CommandText = vSQL;
                 Conexion.CMD.ExecuteNonQuery();
                 MessageBox.Show("Actualizacion satisfactoria.", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -347,5 +347,11 @@ namespace Polsolcom.Forms
                 this.Close();
             }
         }
-    }
+
+		private void txtNInicial_TextChanged( object sender, EventArgs e )
+		{
+			if( txtNInicial.Text.Trim() != "" )
+				txtCuenta.Text = "0";
+		}
+	}
 }
