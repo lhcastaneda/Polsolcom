@@ -28,19 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbFechInicio = new System.Windows.Forms.ComboBox();
-            this.cmbFechFinal = new System.Windows.Forms.ComboBox();
-            this.nmrHorahInicio = new System.Windows.Forms.NumericUpDown();
-            this.nmrHoraFinal = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,128 +48,33 @@
             this.cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrHorahInicio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrHoraFinal)).BeginInit();
+            this.dtpicFFinal = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpicFInicial = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(182, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Consultar Rotaciones Aplicadas";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(69, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Inicio";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(341, 42);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Final";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(69, 126);
+            this.label4.Location = new System.Drawing.Point(11, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(160, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Seleccione la Especialidad";
             // 
-            // comboBox1
+            // cmbEspecialidad
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(72, 142);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(458, 21);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(69, 66);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Fecha";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(69, 93);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 13);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Hora";
-            // 
-            // cmbFechInicio
-            // 
-            this.cmbFechInicio.FormattingEnabled = true;
-            this.cmbFechInicio.Location = new System.Drawing.Point(132, 63);
-            this.cmbFechInicio.Name = "cmbFechInicio";
-            this.cmbFechInicio.Size = new System.Drawing.Size(121, 21);
-            this.cmbFechInicio.TabIndex = 7;
-            // 
-            // cmbFechFinal
-            // 
-            this.cmbFechFinal.FormattingEnabled = true;
-            this.cmbFechFinal.Location = new System.Drawing.Point(409, 58);
-            this.cmbFechFinal.Name = "cmbFechFinal";
-            this.cmbFechFinal.Size = new System.Drawing.Size(121, 21);
-            this.cmbFechFinal.TabIndex = 8;
-            // 
-            // nmrHorahInicio
-            // 
-            this.nmrHorahInicio.Location = new System.Drawing.Point(132, 91);
-            this.nmrHorahInicio.Name = "nmrHorahInicio";
-            this.nmrHorahInicio.Size = new System.Drawing.Size(120, 20);
-            this.nmrHorahInicio.TabIndex = 9;
-            // 
-            // nmrHoraFinal
-            // 
-            this.nmrHoraFinal.Location = new System.Drawing.Point(409, 90);
-            this.nmrHoraFinal.Name = "nmrHoraFinal";
-            this.nmrHoraFinal.Size = new System.Drawing.Size(120, 20);
-            this.nmrHoraFinal.TabIndex = 10;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(341, 66);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 13);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Fecha";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(341, 90);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Hora";
+            this.cmbEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEspecialidad.FormattingEnabled = true;
+            this.cmbEspecialidad.Location = new System.Drawing.Point(13, 64);
+            this.cmbEspecialidad.Name = "cmbEspecialidad";
+            this.cmbEspecialidad.Size = new System.Drawing.Size(458, 21);
+            this.cmbEspecialidad.TabIndex = 4;
             // 
             // dataGridView1
             // 
@@ -192,7 +86,7 @@
             this.alterno,
             this.vend,
             this.anulado});
-            this.dataGridView1.Location = new System.Drawing.Point(2, 178);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 97);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(579, 87);
             this.dataGridView1.TabIndex = 13;
@@ -240,7 +134,7 @@
             this.paciente,
             this.a,
             this.cajero});
-            this.dataGridView2.Location = new System.Drawing.Point(2, 288);
+            this.dataGridView2.Location = new System.Drawing.Point(4, 191);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(579, 128);
             this.dataGridView2.TabIndex = 14;
@@ -283,7 +177,7 @@
             this.cant,
             this.prec,
             this.total});
-            this.dataGridView3.Location = new System.Drawing.Point(2, 444);
+            this.dataGridView3.Location = new System.Drawing.Point(5, 327);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(579, 101);
             this.dataGridView3.TabIndex = 15;
@@ -312,36 +206,71 @@
             this.total.Name = "total";
             this.total.Width = 60;
             // 
+            // dtpicFFinal
+            // 
+            this.dtpicFFinal.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            this.dtpicFFinal.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dtpicFFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpicFFinal.Location = new System.Drawing.Point(267, 19);
+            this.dtpicFFinal.Name = "dtpicFFinal";
+            this.dtpicFFinal.Size = new System.Drawing.Size(142, 20);
+            this.dtpicFFinal.TabIndex = 32;
+            this.dtpicFFinal.Value = new System.DateTime(2017, 4, 8, 9, 44, 22, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(299, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Fecha Final";
+            // 
+            // dtpicFInicial
+            // 
+            this.dtpicFInicial.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            this.dtpicFInicial.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dtpicFInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpicFInicial.Location = new System.Drawing.Point(89, 19);
+            this.dtpicFInicial.Name = "dtpicFInicial";
+            this.dtpicFInicial.Size = new System.Drawing.Size(142, 20);
+            this.dtpicFInicial.TabIndex = 31;
+            this.dtpicFInicial.Value = new System.DateTime(2017, 4, 8, 9, 44, 33, 0);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(114, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Fecha Inicial";
+            // 
             // frmConsRotations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 557);
+            this.ClientSize = new System.Drawing.Size(593, 439);
             this.ControlBox = false;
+            this.Controls.Add(this.dtpicFFinal);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpicFInicial);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.nmrHoraFinal);
-            this.Controls.Add(this.nmrHorahInicio);
-            this.Controls.Add(this.cmbFechFinal);
-            this.Controls.Add(this.cmbFechInicio);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbEspecialidad);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmConsRotations";
-            this.Text = "frmConsRotations";
+            this.Text = "Consultar Rotaciones Aplicadas";
             this.Load += new System.EventHandler(this.frmConsRotations_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConsRotations_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.nmrHorahInicio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrHoraFinal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -351,20 +280,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmbFechInicio;
-        private System.Windows.Forms.ComboBox cmbFechFinal;
-        private System.Windows.Forms.NumericUpDown nmrHorahInicio;
-        private System.Windows.Forms.NumericUpDown nmrHoraFinal;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cmbEspecialidad;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView3;
@@ -383,5 +300,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cant;
         private System.Windows.Forms.DataGridViewTextBoxColumn prec;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DateTimePicker dtpicFFinal;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpicFInicial;
+        private System.Windows.Forms.Label label2;
     }
 }

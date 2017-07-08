@@ -32,11 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmbOperativo = new System.Windows.Forms.ComboBox();
             this.cmbConsultorio = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtFechInicio = new System.Windows.Forms.TextBox();
-            this.txtFechFinal = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.checkAgrupar = new System.Windows.Forms.CheckBox();
             this.checklstAgrupar = new System.Windows.Forms.CheckedListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -49,7 +44,13 @@
             this.btnCerrar = new System.Windows.Forms.Button();
             this.checkTop = new System.Windows.Forms.CheckBox();
             this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpInicio = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtpFinal = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -91,55 +92,11 @@
             this.cmbConsultorio.Size = new System.Drawing.Size(136, 21);
             this.cmbConsultorio.TabIndex = 3;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Rango de Fechas";
-            // 
-            // txtFechInicio
-            // 
-            this.txtFechInicio.Location = new System.Drawing.Point(90, 81);
-            this.txtFechInicio.Name = "txtFechInicio";
-            this.txtFechInicio.Size = new System.Drawing.Size(100, 20);
-            this.txtFechInicio.TabIndex = 5;
-            this.txtFechInicio.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // txtFechFinal
-            // 
-            this.txtFechFinal.Location = new System.Drawing.Point(285, 81);
-            this.txtFechFinal.Name = "txtFechFinal";
-            this.txtFechFinal.Size = new System.Drawing.Size(100, 20);
-            this.txtFechFinal.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 84);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Fecha Inicio:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(214, 83);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Fecha Final:";
-            // 
             // checkAgrupar
             // 
             this.checkAgrupar.AutoSize = true;
             this.checkAgrupar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkAgrupar.Location = new System.Drawing.Point(446, 60);
+            this.checkAgrupar.Location = new System.Drawing.Point(453, 18);
             this.checkAgrupar.Name = "checkAgrupar";
             this.checkAgrupar.Size = new System.Drawing.Size(134, 17);
             this.checkAgrupar.TabIndex = 9;
@@ -154,7 +111,7 @@
             "Mensual",
             "Anual",
             "Rango"});
-            this.checklstAgrupar.Location = new System.Drawing.Point(444, 81);
+            this.checklstAgrupar.Location = new System.Drawing.Point(451, 39);
             this.checklstAgrupar.Name = "checklstAgrupar";
             this.checklstAgrupar.Size = new System.Drawing.Size(117, 64);
             this.checklstAgrupar.TabIndex = 10;
@@ -192,10 +149,10 @@
             this.btnEjecutar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEjecutar.Location = new System.Drawing.Point(201, 329);
             this.btnEjecutar.Name = "btnEjecutar";
-            this.btnEjecutar.Size = new System.Drawing.Size(124, 47);
+            this.btnEjecutar.Size = new System.Drawing.Size(124, 32);
             this.btnEjecutar.TabIndex = 12;
             this.btnEjecutar.Text = "&Ejecutar";
-            this.btnEjecutar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEjecutar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEjecutar.UseVisualStyleBackColor = true;
             // 
             // btnExportar
@@ -203,10 +160,10 @@
             this.btnExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportar.Location = new System.Drawing.Point(331, 329);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(124, 47);
+            this.btnExportar.Size = new System.Drawing.Size(124, 32);
             this.btnExportar.TabIndex = 13;
             this.btnExportar.Text = "E&xportar";
-            this.btnExportar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExportar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExportar.UseVisualStyleBackColor = true;
             // 
             // btnImprimir
@@ -214,10 +171,10 @@
             this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimir.Location = new System.Drawing.Point(461, 329);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(124, 47);
+            this.btnImprimir.Size = new System.Drawing.Size(124, 32);
             this.btnImprimir.TabIndex = 14;
             this.btnImprimir.Text = "&Imprimir";
-            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = true;
             // 
             // btnCerrar
@@ -225,17 +182,17 @@
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrar.Location = new System.Drawing.Point(591, 329);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(124, 47);
+            this.btnCerrar.Size = new System.Drawing.Size(124, 32);
             this.btnCerrar.TabIndex = 15;
             this.btnCerrar.Text = "&Cerrar";
-            this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCerrar.UseVisualStyleBackColor = true;
             // 
             // checkTop
             // 
             this.checkTop.AutoSize = true;
             this.checkTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkTop.Location = new System.Drawing.Point(594, 60);
+            this.checkTop.Location = new System.Drawing.Point(601, 18);
             this.checkTop.Name = "checkTop";
             this.checkTop.Size = new System.Drawing.Size(48, 17);
             this.checkTop.TabIndex = 16;
@@ -244,17 +201,76 @@
             // 
             // domainUpDown1
             // 
-            this.domainUpDown1.Location = new System.Drawing.Point(591, 81);
+            this.domainUpDown1.Location = new System.Drawing.Point(598, 39);
             this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.domainUpDown1.Size = new System.Drawing.Size(109, 20);
             this.domainUpDown1.TabIndex = 17;
             this.domainUpDown1.Text = "domainUpDown1";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.dtpInicio);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.dtpFinal);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.groupBox1.Location = new System.Drawing.Point(16, 57);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(403, 51);
+            this.groupBox1.TabIndex = 44;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Rango Fechas";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(7, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Fecha Inicio:";
+            // 
+            // dtpInicio
+            // 
+            this.dtpInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpInicio.Location = new System.Drawing.Point(90, 20);
+            this.dtpInicio.Name = "dtpInicio";
+            this.dtpInicio.Size = new System.Drawing.Size(99, 20);
+            this.dtpInicio.TabIndex = 18;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label4.Location = new System.Drawing.Point(203, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Fecha Final:";
+            // 
+            // dtpFinal
+            // 
+            this.dtpFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.dtpFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFinal.Location = new System.Drawing.Point(286, 21);
+            this.dtpFinal.Name = "dtpFinal";
+            this.dtpFinal.Size = new System.Drawing.Size(98, 20);
+            this.dtpFinal.TabIndex = 19;
             // 
             // frmDiseases
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 394);
+            this.ClientSize = new System.Drawing.Size(732, 375);
+            this.ControlBox = false;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.domainUpDown1);
             this.Controls.Add(this.checkTop);
             this.Controls.Add(this.btnCerrar);
@@ -264,19 +280,18 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.checklstAgrupar);
             this.Controls.Add(this.checkAgrupar);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtFechFinal);
-            this.Controls.Add(this.txtFechInicio);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbConsultorio);
             this.Controls.Add(this.cmbOperativo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Name = "frmDiseases";
             this.Text = "Epidemología";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmDiseases_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,11 +303,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbOperativo;
         private System.Windows.Forms.ComboBox cmbConsultorio;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtFechInicio;
-        private System.Windows.Forms.TextBox txtFechFinal;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox checkAgrupar;
         private System.Windows.Forms.CheckedListBox checklstAgrupar;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -305,5 +315,10 @@
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.CheckBox checkTop;
         private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dtpInicio;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dtpFinal;
     }
 }

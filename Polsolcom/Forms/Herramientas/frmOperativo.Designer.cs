@@ -83,7 +83,6 @@
             this.lstOperativos.ScrollAlwaysVisible = true;
             this.lstOperativos.Size = new System.Drawing.Size(187, 264);
             this.lstOperativos.TabIndex = 0;
-            //this.lstOperativos.SelectedIndexChanged += new System.EventHandler(this.lstOperativos_SelectedIndexChanged); TO DO: Fix bug
             this.lstOperativos.DoubleClick += new System.EventHandler(this.lstOperativos_DoubleClick);
             // 
             // label2
@@ -234,6 +233,7 @@
             // 
             // txtId
             // 
+            this.txtId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtId.Location = new System.Drawing.Point(203, 24);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(50, 20);
@@ -241,6 +241,7 @@
             // 
             // txtDescrip
             // 
+            this.txtDescrip.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDescrip.Location = new System.Drawing.Point(259, 24);
             this.txtDescrip.Name = "txtDescrip";
             this.txtDescrip.Size = new System.Drawing.Size(243, 20);
@@ -255,14 +256,15 @@
             // 
             // txtDirec
             // 
+            this.txtDirec.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDirec.Location = new System.Drawing.Point(203, 67);
             this.txtDirec.Name = "txtDirec";
             this.txtDirec.Size = new System.Drawing.Size(440, 20);
             this.txtDirec.TabIndex = 4;
-            //this.txtDirec.TextChanged += new System.EventHandler(this.txtDirec_TextChanged); //TO DO: Fix error//
             // 
             // txtJefe
             // 
+            this.txtJefe.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtJefe.Location = new System.Drawing.Point(203, 152);
             this.txtJefe.Name = "txtJefe";
             this.txtJefe.Size = new System.Drawing.Size(252, 20);
@@ -290,6 +292,7 @@
             // 
             // txtObservacion
             // 
+            this.txtObservacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtObservacion.Location = new System.Drawing.Point(203, 240);
             this.txtObservacion.Multiline = true;
             this.txtObservacion.Name = "txtObservacion";

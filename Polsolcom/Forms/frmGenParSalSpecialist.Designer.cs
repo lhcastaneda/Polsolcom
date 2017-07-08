@@ -43,7 +43,6 @@
             this.cPProc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cSOP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridPagoEspec)).BeginInit();
             this.SuspendLayout();
@@ -56,9 +55,9 @@
             this.panel1.Controls.Add(this.btnGenerar);
             this.panel1.Controls.Add(this.cmbEspec);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(15, 43);
+            this.panel1.Location = new System.Drawing.Point(8, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(832, 78);
+            this.panel1.Size = new System.Drawing.Size(839, 78);
             this.panel1.TabIndex = 0;
             // 
             // btnCerrar
@@ -123,7 +122,7 @@
             this.cPProc,
             this.cSOP,
             this.cEstado});
-            this.GridPagoEspec.Location = new System.Drawing.Point(15, 146);
+            this.GridPagoEspec.Location = new System.Drawing.Point(9, 97);
             this.GridPagoEspec.Name = "GridPagoEspec";
             this.GridPagoEspec.Size = new System.Drawing.Size(832, 172);
             this.GridPagoEspec.TabIndex = 1;
@@ -174,32 +173,23 @@
             this.cEstado.HeaderText = "Estado";
             this.cEstado.Name = "cEstado";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(296, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Generador de Parámetros de Pago por Especialista";
-            // 
             // frmGenParSalSpecialist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 341);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(863, 286);
+            this.ControlBox = false;
             this.Controls.Add(this.GridPagoEspec);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Name = "frmGenParSalSpecialist";
-            this.Text = "frmGenParSalSpecialist";
+            this.Text = "Generador de Parámetros de Pago por Especialista";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmGenParSalSpecialist_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridPagoEspec)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -220,6 +210,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cPProc;
         private System.Windows.Forms.DataGridViewTextBoxColumn cSOP;
         private System.Windows.Forms.DataGridViewTextBoxColumn cEstado;
-        private System.Windows.Forms.Label label2;
     }
 }

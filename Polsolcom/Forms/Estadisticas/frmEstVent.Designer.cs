@@ -31,10 +31,10 @@ namespace Polsolcom.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties4 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
             Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties1 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEstVent));
             Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties2 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEstVent));
+            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties3 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -83,15 +83,15 @@ namespace Polsolcom.Forms
             this.label6.ForeColor = System.Drawing.Color.DarkBlue;
             this.label6.Location = new System.Drawing.Point(180, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.Size = new System.Drawing.Size(118, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Fecha:";
+            this.label6.Text = "Fecha y Hora Final:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(10, 50);
+            this.label8.Location = new System.Drawing.Point(10, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(62, 13);
             this.label8.TabIndex = 11;
@@ -175,8 +175,8 @@ namespace Polsolcom.Forms
             // 
             // cmbEspecialidad
             // 
-            checkBoxProperties4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbEspecialidad.CheckBoxProperties = checkBoxProperties4;
+            checkBoxProperties1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cmbEspecialidad.CheckBoxProperties = checkBoxProperties1;
             this.cmbEspecialidad.DisplayMemberSingleItem = "";
             this.cmbEspecialidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEspecialidad.FormattingEnabled = true;
@@ -187,8 +187,8 @@ namespace Polsolcom.Forms
             // 
             // cmbMeses
             // 
-            checkBoxProperties1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbMeses.CheckBoxProperties = checkBoxProperties1;
+            checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cmbMeses.CheckBoxProperties = checkBoxProperties2;
             this.cmbMeses.DisplayMemberSingleItem = "";
             this.cmbMeses.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMeses.FormattingEnabled = true;
@@ -232,7 +232,7 @@ namespace Polsolcom.Forms
             this.grpTipoGraph.ForeColor = System.Drawing.Color.Navy;
             this.grpTipoGraph.Location = new System.Drawing.Point(429, 10);
             this.grpTipoGraph.Name = "grpTipoGraph";
-            this.grpTipoGraph.Size = new System.Drawing.Size(175, 183);
+            this.grpTipoGraph.Size = new System.Drawing.Size(175, 147);
             this.grpTipoGraph.TabIndex = 33;
             this.grpTipoGraph.TabStop = false;
             this.grpTipoGraph.Text = "Tipo de Grafico";
@@ -349,11 +349,11 @@ namespace Polsolcom.Forms
             // 
             // cmbOperativo
             // 
-            checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbOperativo.CheckBoxProperties = checkBoxProperties2;
+            checkBoxProperties3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cmbOperativo.CheckBoxProperties = checkBoxProperties3;
             this.cmbOperativo.DisplayMemberSingleItem = "";
             this.cmbOperativo.FormattingEnabled = true;
-            this.cmbOperativo.Location = new System.Drawing.Point(74, 47);
+            this.cmbOperativo.Location = new System.Drawing.Point(74, 53);
             this.cmbOperativo.Name = "cmbOperativo";
             this.cmbOperativo.Size = new System.Drawing.Size(270, 21);
             this.cmbOperativo.TabIndex = 37;

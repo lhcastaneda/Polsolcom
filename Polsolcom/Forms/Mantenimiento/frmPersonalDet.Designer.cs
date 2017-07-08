@@ -94,8 +94,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(767, 415);
             this.Controls.Add(this.tabControl1);
+            this.KeyPreview = true;
             this.Name = "frmPersonalDet";
             this.Text = "frmPersonalDet";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPersonalDet_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 

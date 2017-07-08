@@ -87,7 +87,7 @@ namespace Polsolcom.Forms.Procesos
 
             if (tabIngresoConsulta.SelectedIndex == 0)
             {
-                if (chkFiltro.Checked || General.vtrls("LA MELLI"))//Averiguar de donde sale frmmain.esp
+                if (chkFiltro.Checked || General.vtrls(Especialidad.esp))
                 {
                     vSQL += cmbEspecialidad.SelectedIndex != -1 ? (" T.Id_Consultorio Like '" + (((DataRowView)cmbEspecialidad.SelectedItem).Row["Id_Consultorio"]).ToString() + "'") : "";
                     vSQL += vSQL.Contains("Like") && cmbEspecialidad.SelectedIndex != -1 ? " And" : "";
