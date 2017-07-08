@@ -26,7 +26,8 @@ namespace Polsolcom.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SERVER\\SERVER;Initial Catalog=Polsolcom;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=server;Initial Catalog=DesPolsolcom;Integrated Security=SSPI;Connect " +
+            "Timeout=15;MultipleActiveResultSets=true;")]
         public string PolsolcomConnectionString {
             get {
                 return ((string)(this["PolsolcomConnectionString"]));
