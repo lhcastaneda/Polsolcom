@@ -18,7 +18,7 @@ namespace Polsolcom
             //Application.Run(new frmLogin());
             //Application.Run(new frmLogin());
 
-            Application.Run(new frmPersonalDet());
+            Application.Run(new frmLogin());
 
         }
     }

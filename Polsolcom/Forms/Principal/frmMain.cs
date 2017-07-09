@@ -47,7 +47,8 @@ namespace Polsolcom.Forms
              if(Usuario.id_us.Substring(0,3) == Operativo.id_oper)
             {
                 //selecciona los datos de la especialidad del usuario         
-				vSQL = "SELECT Descripcion AS Esp, " +
+
+                vSQL = "SELECT Descripcion AS Esp, " +
 				       " Nom_Raz_Soc AS Nrz, " +
 				       " Bus AS Con, " +
 				       " TBus AS Tcn " +
@@ -55,7 +56,7 @@ namespace Polsolcom.Forms
 				       " ON C.Id_Consultorio = B.Id_Esp " +
 				       " INNER JOIN Institucion I " +
 				       " ON B.Id_Emp = I.TInst + I.Id_Inst " +
-				       " WHERE LEFT(LTRIM(RTRIM(Id_Bus)),3) = '" + Usuario.id_us + "' ";
+				       " WHERE LTRIM(RTRIM(Id_Bus)) = '" + Usuario.id_us + "' ";
                 Conexion.CMD.CommandText = vSQL;
                 using ( SqlDataReader drLectura = Conexion.CMD.ExecuteReader() )
                 {

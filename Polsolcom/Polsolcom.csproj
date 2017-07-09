@@ -184,6 +184,7 @@
     <Compile Include="Dominio\Modelos\Especialidad.cs" />
     <Compile Include="Dominio\Helpers\General.cs" />
     <Compile Include="Dominio\Modelos\Especialista.cs" />
+    <Compile Include="Dominio\Modelos\CabCie10.cs" />
     <Compile Include="Dominio\Modelos\Institucion.cs" />
     <Compile Include="Dominio\Modelos\Lugar.cs" />
     <Compile Include="Dominio\Modelos\Operativo.cs" />

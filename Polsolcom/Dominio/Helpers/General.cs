@@ -1082,6 +1082,4 @@ namespace Polsolcom.Dominio.Helpers
             return array.Contains(parameter);
         }
     }
-
-
 }

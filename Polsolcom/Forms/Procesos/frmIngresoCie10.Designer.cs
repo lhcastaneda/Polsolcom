@@ -54,7 +54,6 @@
             this.tipoDocumento = new Polsolcom.Dominio.Data.TipoDocumento();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -71,14 +70,14 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.cmbFechaAten = new System.Windows.Forms.ComboBox();
+            this.cmbMedico = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtEspecialista = new System.Windows.Forms.TextBox();
             this.txtObserv = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmbConsultorio = new System.Windows.Forms.ComboBox();
+            this.cmbBus = new System.Windows.Forms.ComboBox();
             this.dtpFechaAten = new System.Windows.Forms.DateTimePicker();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
@@ -147,6 +146,7 @@
             this.label42 = new System.Windows.Forms.Label();
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
             this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
+            this.chkFechaVent = new System.Windows.Forms.CheckBox();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
@@ -173,6 +173,7 @@
             // 
             // tabIngresar
             // 
+            this.tabIngresar.Controls.Add(this.chkFechaVent);
             this.tabIngresar.Controls.Add(this.lstTickets);
             this.tabIngresar.Controls.Add(this.cmbEspecialidad);
             this.tabIngresar.Controls.Add(this.chkFiltro);
@@ -182,7 +183,6 @@
             this.tabIngresar.Controls.Add(this.cmbTipoDoc);
             this.tabIngresar.Controls.Add(this.label6);
             this.tabIngresar.Controls.Add(this.label5);
-            this.tabIngresar.Controls.Add(this.label4);
             this.tabIngresar.Controls.Add(this.label3);
             this.tabIngresar.Controls.Add(this.label2);
             this.tabIngresar.Controls.Add(this.label1);
@@ -215,6 +215,7 @@
             this.lstTickets.TabIndex = 17;
             this.lstTickets.UseCompatibleStateImageBehavior = false;
             this.lstTickets.View = System.Windows.Forms.View.Details;
+            this.lstTickets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstTickets_KeyDown);
             // 
             // columnHeader1
             // 
@@ -298,6 +299,7 @@
             // 
             // dtpFechaVent
             // 
+            this.dtpFechaVent.Enabled = false;
             this.dtpFechaVent.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaVent.Location = new System.Drawing.Point(187, 28);
             this.dtpFechaVent.Name = "dtpFechaVent";
@@ -312,7 +314,6 @@
             this.txtNroDoc.Size = new System.Drawing.Size(88, 20);
             this.txtNroDoc.TabIndex = 11;
             this.txtNroDoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroDoc_KeyDown);
-            this.txtNroDoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNroDoc_KeyPress);
             // 
             // txtSerie
             // 
@@ -321,6 +322,7 @@
             this.txtSerie.Name = "txtSerie";
             this.txtSerie.Size = new System.Drawing.Size(44, 20);
             this.txtSerie.TabIndex = 10;
+            this.txtSerie.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie_KeyDown);
             // 
             // cmbTipoDoc
             // 
@@ -360,15 +362,6 @@
             this.label5.Size = new System.Drawing.Size(54, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Tipo Doc.";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(185, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Fecha Vent.";
             // 
             // label3
             // 
@@ -519,13 +512,13 @@
             this.label14.TabIndex = 0;
             this.label14.Text = "Apellido Paterno";
             // 
-            // cmbFechaAten
+            // cmbMedico
             // 
-            this.cmbFechaAten.FormattingEnabled = true;
-            this.cmbFechaAten.Location = new System.Drawing.Point(6, 250);
-            this.cmbFechaAten.Name = "cmbFechaAten";
-            this.cmbFechaAten.Size = new System.Drawing.Size(71, 21);
-            this.cmbFechaAten.TabIndex = 7;
+            this.cmbMedico.FormattingEnabled = true;
+            this.cmbMedico.Location = new System.Drawing.Point(6, 250);
+            this.cmbMedico.Name = "cmbMedico";
+            this.cmbMedico.Size = new System.Drawing.Size(71, 21);
+            this.cmbMedico.TabIndex = 7;
             // 
             // label7
             // 
@@ -577,13 +570,13 @@
             this.label12.TabIndex = 13;
             this.label12.Text = "Observación";
             // 
-            // cmbConsultorio
+            // cmbBus
             // 
-            this.cmbConsultorio.FormattingEnabled = true;
-            this.cmbConsultorio.Location = new System.Drawing.Point(112, 200);
-            this.cmbConsultorio.Name = "cmbConsultorio";
-            this.cmbConsultorio.Size = new System.Drawing.Size(108, 21);
-            this.cmbConsultorio.TabIndex = 14;
+            this.cmbBus.FormattingEnabled = true;
+            this.cmbBus.Location = new System.Drawing.Point(112, 200);
+            this.cmbBus.Name = "cmbBus";
+            this.cmbBus.Size = new System.Drawing.Size(108, 21);
+            this.cmbBus.TabIndex = 14;
             // 
             // dtpFechaAten
             // 
@@ -1186,6 +1179,17 @@
             // 
             this.tablaTipoTableAdapter.ClearBeforeFill = true;
             // 
+            // chkFechaVent
+            // 
+            this.chkFechaVent.AutoSize = true;
+            this.chkFechaVent.Location = new System.Drawing.Point(186, 8);
+            this.chkFechaVent.Name = "chkFechaVent";
+            this.chkFechaVent.Size = new System.Drawing.Size(84, 17);
+            this.chkFechaVent.TabIndex = 18;
+            this.chkFechaVent.Text = "Fecha Vent.";
+            this.chkFechaVent.UseVisualStyleBackColor = true;
+            this.chkFechaVent.CheckedChanged += new System.EventHandler(this.chkFechaVent_CheckedChanged);
+            // 
             // frmIngresoCie10
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1208,10 +1212,10 @@
             this.Controls.Add(this.txtDigitador);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.dtpFechaAten);
-            this.Controls.Add(this.cmbConsultorio);
+            this.Controls.Add(this.cmbBus);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtObserv);
-            this.Controls.Add(this.cmbFechaAten);
+            this.Controls.Add(this.cmbMedico);
             this.Controls.Add(this.txtEspecialista);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
@@ -1254,10 +1258,9 @@
         private System.Windows.Forms.TextBox txtNroDoc;
         private System.Windows.Forms.TextBox txtSerie;
         private System.Windows.Forms.ComboBox cmbTipoDoc;
-        private System.Windows.Forms.ComboBox cmbFechaAten;
+        private System.Windows.Forms.ComboBox cmbMedico;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -1268,7 +1271,7 @@
         private System.Windows.Forms.TextBox txtEspecialista;
         private System.Windows.Forms.TextBox txtObserv;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cmbConsultorio;
+        private System.Windows.Forms.ComboBox cmbBus;
         private System.Windows.Forms.DateTimePicker dtpFechaVent;
         private System.Windows.Forms.DateTimePicker dtpFechaAten;
         private System.Windows.Forms.TextBox txtListAtenciones;
@@ -1367,5 +1370,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.CheckBox chkFechaVent;
     }
 }
