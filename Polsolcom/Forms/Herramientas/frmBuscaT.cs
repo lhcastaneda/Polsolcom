@@ -143,7 +143,7 @@ namespace Polsolcom.Forms.Herramientas
 			}
 			*/
 
-			sQuery = sQuery + "ORDER BY 4 DESC ";
+			sQuery = sQuery + "ORDER BY T.Fecha_Emision DESC ";
 			Cursor.Current = Cursors.WaitCursor;
 			Conexion.CMD.CommandText = sQuery;
 			using( SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD) )
