@@ -48,6 +48,17 @@ namespace Polsolcom.Dominio.Helpers
 
     }
 
+    public class ComboboxItem
+    {
+        public string Text { get; set; }
+        public object Value { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
+    }
+
     public class Ubigeo
     {
         public string IdUbigeo { get; set; }
@@ -1038,7 +1049,7 @@ namespace Polsolcom.Dominio.Helpers
                 }
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre,P.id_paciente,P.DNI,P.Id_Distrito,P.Asegurado,P.Nro_Historia ";
+                        "P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente,P.id_paciente,P.DNI,P.Id_Distrito,P.Asegurado,P.Nro_Historia ";
 
                 if (Num1 == 2)
                     sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito ";
@@ -1080,6 +1091,93 @@ namespace Polsolcom.Dominio.Helpers
             string[] array = { "ECOGRAFIA", "RAYOS X", "MAMOGRAFIA" };
 
             return array.Contains(parameter);
+        }
+
+        public static void SetPropertyValue(object obj, string propName, object value)
+        {
+            obj.GetType().GetProperty(propName).SetValue(obj, value, null);
+        }
+
+        public static List<Dictionary<string, string>> GetDictionaryList(string sql)
+        {
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+
+            using (SqlCommand cmd = new SqlCommand(sql, Conexion.CNN))
+            {
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Dictionary<string, string> item = new Dictionary<string, string>();
+                            for (int i = 0; i < dr.FieldCount; i++)
+                            {
+                                item.Add(dr.GetName(i), dr.GetValue(i).ToString());
+                            }
+
+                            list.Add(item);
+                        }
+                    }
+
+                    dr.Close();
+                }
+            }
+
+            return list;
+        }
+
+        public static Dictionary<string, string> GetDictionary(string sql)
+        {
+            using (SqlCommand cmd = new SqlCommand(sql, Conexion.CNN))
+            {
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Dictionary<string, string> item = new Dictionary<string, string>();
+                            for (int i = 0; i < dr.FieldCount; i++)
+                            {
+                                item.Add(dr.GetName(i), dr.GetValue(i).ToString());
+                            }
+
+                            return item;
+                        }
+                    }
+
+                    dr.Close();
+                }
+            }
+
+            return null;
+        }
+
+        public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields)
+        {
+            listview.Items.Clear();
+
+            foreach (Dictionary<string, string> item in items)
+            {
+                List<string> values = new List<string>();
+                foreach (string field in fields)
+                {
+                    values.Add(item[field]);
+                }
+
+                listview.Items.Add(new ListViewItem(values.ToArray()));
+            }
+        }
+
+        public static ListViewItem GetSelectedItem(ListView listView)
+        {
+            foreach (ListViewItem item in listView.SelectedItems)
+            {
+                return item;
+            }
+
+            return null;
         }
     }
 }
