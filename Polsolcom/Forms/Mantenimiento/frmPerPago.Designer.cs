@@ -50,6 +50,7 @@
             // 
             // txtBuscar
             // 
+            this.txtBuscar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBuscar.Location = new System.Drawing.Point(114, 13);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(318, 20);
@@ -156,6 +157,7 @@
             // 
             // txtNomPer
             // 
+            this.txtNomPer.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNomPer.Location = new System.Drawing.Point(12, 78);
             this.txtNomPer.Name = "txtNomPer";
             this.txtNomPer.Size = new System.Drawing.Size(391, 20);

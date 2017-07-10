@@ -45,6 +45,7 @@ namespace Polsolcom.Dominio.Helpers
         public override string ToString()
         {
             return Descripcion;
+
         }
 
     }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtRuta = new System.Windows.Forms.TextBox();
@@ -40,19 +39,10 @@
             this.btnCerrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Exportar Datos ... ";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 50);
+            this.label2.Location = new System.Drawing.Point(12, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 13);
             this.label2.TabIndex = 1;
@@ -61,7 +51,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 88);
+            this.label3.Location = new System.Drawing.Point(12, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 2;
@@ -69,14 +59,15 @@
             // 
             // txtRuta
             // 
-            this.txtRuta.Location = new System.Drawing.Point(145, 50);
+            this.txtRuta.Location = new System.Drawing.Point(131, 12);
             this.txtRuta.Name = "txtRuta";
             this.txtRuta.Size = new System.Drawing.Size(439, 20);
             this.txtRuta.TabIndex = 3;
             // 
             // txtNomArchivo
             // 
-            this.txtNomArchivo.Location = new System.Drawing.Point(145, 85);
+            this.txtNomArchivo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNomArchivo.Location = new System.Drawing.Point(131, 47);
             this.txtNomArchivo.Name = "txtNomArchivo";
             this.txtNomArchivo.Size = new System.Drawing.Size(209, 20);
             this.txtNomArchivo.TabIndex = 4;
@@ -84,7 +75,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(360, 88);
+            this.label4.Location = new System.Drawing.Point(346, 50);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 13);
             this.label4.TabIndex = 5;
@@ -93,7 +84,7 @@
             // cmbTipArchivo
             // 
             this.cmbTipArchivo.FormattingEnabled = true;
-            this.cmbTipArchivo.Location = new System.Drawing.Point(463, 85);
+            this.cmbTipArchivo.Location = new System.Drawing.Point(449, 47);
             this.cmbTipArchivo.Name = "cmbTipArchivo";
             this.cmbTipArchivo.Size = new System.Drawing.Size(121, 21);
             this.cmbTipArchivo.TabIndex = 6;
@@ -101,7 +92,7 @@
             // btnAbrir
             // 
             this.btnAbrir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbrir.Location = new System.Drawing.Point(590, 50);
+            this.btnAbrir.Location = new System.Drawing.Point(576, 12);
             this.btnAbrir.Name = "btnAbrir";
             this.btnAbrir.Size = new System.Drawing.Size(49, 56);
             this.btnAbrir.TabIndex = 7;
@@ -111,9 +102,9 @@
             // 
             // btnExportar
             // 
-            this.btnExportar.Location = new System.Drawing.Point(366, 123);
+            this.btnExportar.Location = new System.Drawing.Point(352, 85);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(129, 41);
+            this.btnExportar.Size = new System.Drawing.Size(129, 30);
             this.btnExportar.TabIndex = 8;
             this.btnExportar.Text = "&Exportar";
             this.btnExportar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -121,9 +112,9 @@
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(510, 123);
+            this.btnCerrar.Location = new System.Drawing.Point(496, 85);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(129, 41);
+            this.btnCerrar.Size = new System.Drawing.Size(129, 30);
             this.btnCerrar.TabIndex = 9;
             this.btnCerrar.Text = "&Cerrar";
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -133,7 +124,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 184);
+            this.ClientSize = new System.Drawing.Size(635, 123);
+            this.ControlBox = false;
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.btnAbrir);
@@ -143,19 +135,17 @@
             this.Controls.Add(this.txtRuta);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmExport";
-            this.Text = "Exportar Datos";
+            this.Text = "Exportar Datos . . .";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmExport_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtRuta;

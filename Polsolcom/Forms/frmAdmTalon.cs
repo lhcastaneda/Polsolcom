@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Polsolcom.Forms
 {
-    public partial class frmAdmCounterfoilA : Form
+    public partial class frmAdmTalon : Form
     {
-        public frmAdmCounterfoilA()
+        public frmAdmTalon()
         {
             InitializeComponent();
         }

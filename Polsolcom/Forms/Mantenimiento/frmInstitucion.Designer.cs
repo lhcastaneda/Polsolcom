@@ -71,18 +71,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnNuevo = new System.Windows.Forms.Button();
             this.pnlBuscar.SuspendLayout();
             this.pnlInstitucion.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDoc
             // 
+            this.txtDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDoc.Location = new System.Drawing.Point(17, 27);
             this.txtDoc.Name = "txtDoc";
             this.txtDoc.Size = new System.Drawing.Size(128, 20);
@@ -99,6 +100,7 @@
             // 
             // txtBuscar
             // 
+            this.txtBuscar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBuscar.Location = new System.Drawing.Point(17, 74);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(256, 20);
@@ -110,7 +112,7 @@
             this.lstInstitucion.Location = new System.Drawing.Point(17, 117);
             this.lstInstitucion.Name = "lstInstitucion";
             this.lstInstitucion.ScrollAlwaysVisible = true;
-            this.lstInstitucion.Size = new System.Drawing.Size(256, 342);
+            this.lstInstitucion.Size = new System.Drawing.Size(256, 290);
             this.lstInstitucion.TabIndex = 3;
             this.lstInstitucion.SelectedIndexChanged += new System.EventHandler(this.lstInstitucion_SelectedIndexChanged);
             // 
@@ -125,7 +127,7 @@
             this.pnlBuscar.Controls.Add(this.cmbEstado);
             this.pnlBuscar.Location = new System.Drawing.Point(13, 13);
             this.pnlBuscar.Name = "pnlBuscar";
-            this.pnlBuscar.Size = new System.Drawing.Size(290, 483);
+            this.pnlBuscar.Size = new System.Drawing.Size(290, 426);
             this.pnlBuscar.TabIndex = 4;
             // 
             // Doc
@@ -189,15 +191,16 @@
             this.pnlInstitucion.Controls.Add(this.label1);
             this.pnlInstitucion.Location = new System.Drawing.Point(310, 41);
             this.pnlInstitucion.Name = "pnlInstitucion";
-            this.pnlInstitucion.Size = new System.Drawing.Size(583, 394);
+            this.pnlInstitucion.Size = new System.Drawing.Size(583, 350);
             this.pnlInstitucion.TabIndex = 5;
             // 
             // chkActiv
             // 
             this.chkActiv.AutoSize = true;
+            this.chkActiv.Enabled = false;
             this.chkActiv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkActiv.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.chkActiv.Location = new System.Drawing.Point(454, 362);
+            this.chkActiv.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkActiv.Location = new System.Drawing.Point(458, 315);
             this.chkActiv.Name = "chkActiv";
             this.chkActiv.Size = new System.Drawing.Size(104, 19);
             this.chkActiv.TabIndex = 34;
@@ -207,7 +210,7 @@
             // txtLastUpdate
             // 
             this.txtLastUpdate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLastUpdate.Location = new System.Drawing.Point(214, 336);
+            this.txtLastUpdate.Location = new System.Drawing.Point(218, 312);
             this.txtLastUpdate.Name = "txtLastUpdate";
             this.txtLastUpdate.Size = new System.Drawing.Size(171, 20);
             this.txtLastUpdate.TabIndex = 33;
@@ -215,18 +218,19 @@
             // txtCreation
             // 
             this.txtCreation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCreation.Location = new System.Drawing.Point(15, 336);
+            this.txtCreation.Location = new System.Drawing.Point(15, 313);
             this.txtCreation.Name = "txtCreation";
             this.txtCreation.Size = new System.Drawing.Size(193, 20);
             this.txtCreation.TabIndex = 32;
             // 
             // txtObserv
             // 
+            this.txtObserv.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtObserv.Location = new System.Drawing.Point(265, 254);
             this.txtObserv.Multiline = true;
             this.txtObserv.Name = "txtObserv";
             this.txtObserv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObserv.Size = new System.Drawing.Size(295, 76);
+            this.txtObserv.Size = new System.Drawing.Size(295, 53);
             this.txtObserv.TabIndex = 31;
             // 
             // label17
@@ -241,11 +245,12 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmail.Location = new System.Drawing.Point(16, 254);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtEmail.Size = new System.Drawing.Size(243, 76);
+            this.txtEmail.Size = new System.Drawing.Size(243, 51);
             this.txtEmail.TabIndex = 29;
             // 
             // label16
@@ -278,6 +283,7 @@
             // 
             // txtRepresent
             // 
+            this.txtRepresent.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRepresent.Location = new System.Drawing.Point(272, 162);
             this.txtRepresent.Name = "txtRepresent";
             this.txtRepresent.Size = new System.Drawing.Size(288, 20);
@@ -345,6 +351,7 @@
             // 
             // txtDirecc
             // 
+            this.txtDirecc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDirecc.Location = new System.Drawing.Point(16, 117);
             this.txtDirecc.Name = "txtDirecc";
             this.txtDirecc.Size = new System.Drawing.Size(291, 20);
@@ -436,6 +443,7 @@
             // 
             // txtRuc
             // 
+            this.txtRuc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRuc.Location = new System.Drawing.Point(16, 73);
             this.txtRuc.Name = "txtRuc";
             this.txtRuc.Size = new System.Drawing.Size(103, 20);
@@ -453,6 +461,7 @@
             // 
             // txtNomRazSocial
             // 
+            this.txtNomRazSocial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNomRazSocial.Location = new System.Drawing.Point(272, 30);
             this.txtNomRazSocial.Name = "txtNomRazSocial";
             this.txtNomRazSocial.Size = new System.Drawing.Size(288, 20);
@@ -460,6 +469,7 @@
             // 
             // txtNumId
             // 
+            this.txtNumId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNumId.Location = new System.Drawing.Point(159, 31);
             this.txtNumId.Name = "txtNumId";
             this.txtNumId.Size = new System.Drawing.Size(107, 20);
@@ -503,23 +513,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tipo";
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(336, 451);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(102, 45);
-            this.btnNuevo.TabIndex = 6;
-            this.btnNuevo.Text = "&Nuevo";
-            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            // 
             // btnGrabar
             // 
             this.btnGrabar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrabar.Location = new System.Drawing.Point(444, 451);
+            this.btnGrabar.Location = new System.Drawing.Point(432, 404);
             this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(102, 45);
+            this.btnGrabar.Size = new System.Drawing.Size(102, 34);
             this.btnGrabar.TabIndex = 7;
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -528,9 +527,9 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(552, 451);
+            this.btnCancelar.Location = new System.Drawing.Point(540, 404);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(102, 45);
+            this.btnCancelar.Size = new System.Drawing.Size(102, 34);
             this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -539,9 +538,9 @@
             // btnEditar
             // 
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(660, 451);
+            this.btnEditar.Location = new System.Drawing.Point(648, 404);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(102, 45);
+            this.btnEditar.Size = new System.Drawing.Size(102, 34);
             this.btnEditar.TabIndex = 9;
             this.btnEditar.Text = "&Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -550,9 +549,9 @@
             // btnImprimir
             // 
             this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.Location = new System.Drawing.Point(768, 451);
+            this.btnImprimir.Location = new System.Drawing.Point(756, 404);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(102, 45);
+            this.btnImprimir.Size = new System.Drawing.Size(102, 34);
             this.btnImprimir.TabIndex = 10;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -569,11 +568,22 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Institución / Empresa";
             // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.Location = new System.Drawing.Point(324, 404);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(102, 34);
+            this.btnNuevo.TabIndex = 6;
+            this.btnNuevo.Text = "&Nuevo";
+            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            // 
             // frmInstitucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 513);
+            this.ClientSize = new System.Drawing.Size(905, 449);
             this.ControlBox = false;
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnImprimir);
@@ -607,7 +617,6 @@
         private System.Windows.Forms.Panel pnlInstitucion;
         private System.Windows.Forms.TextBox txtNomRazSocial;
         private System.Windows.Forms.TextBox txtNumId;
-        private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cmbTipo;
@@ -648,5 +657,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label Doc;
         private System.Windows.Forms.Label Estado;
+        private System.Windows.Forms.Button btnNuevo;
     }
 }

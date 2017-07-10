@@ -183,7 +183,10 @@
     <Compile Include="Dominio\Modelos\Consultorio.cs" />
     <Compile Include="Dominio\Modelos\Especialidad.cs" />
     <Compile Include="Dominio\Helpers\General.cs" />
+    <Compile Include="Dominio\Modelos\Ticket.cs" />
+    <Compile Include="Dominio\Modelos\Paciente.cs" />
     <Compile Include="Dominio\Modelos\Especialista.cs" />
+    <Compile Include="Dominio\Modelos\CabCie10.cs" />
     <Compile Include="Dominio\Modelos\Institucion.cs" />
     <Compile Include="Dominio\Modelos\Lugar.cs" />
     <Compile Include="Dominio\Modelos\Operativo.cs" />
@@ -229,11 +232,11 @@
       <DependentUpon>rptProduccion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\frmAdmCounterfoilA.cs">
+    <Compile Include="Forms\frmAdmTalon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmAdmCounterfoilA.Designer.cs">
-      <DependentUpon>frmAdmCounterfoilA.cs</DependentUpon>
+    <Compile Include="Forms\frmAdmTalon.Designer.cs">
+      <DependentUpon>frmAdmTalon.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Herramientas\frmBuscar.cs">
       <SubType>Form</SubType>
@@ -547,12 +550,6 @@
     <Compile Include="Forms\frmSpecialtyTurn.Designer.cs">
       <DependentUpon>frmSpecialtyTurn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Estadisticas\frmStatGenGroupEtareo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Estadisticas\frmStatGenGroupEtareo.Designer.cs">
-      <DependentUpon>frmStatGenGroupEtareo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Estadisticas\frmEstPac.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -647,8 +644,8 @@
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmAdmCounterfoilA.resx">
-      <DependentUpon>frmAdmCounterfoilA.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frmAdmTalon.resx">
+      <DependentUpon>frmAdmTalon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Herramientas\frmBuscar.resx">
       <DependentUpon>frmBuscar.cs</DependentUpon>
@@ -810,9 +807,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSpecialtyTurn.resx">
       <DependentUpon>frmSpecialtyTurn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Estadisticas\frmStatGenGroupEtareo.resx">
-      <DependentUpon>frmStatGenGroupEtareo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>
