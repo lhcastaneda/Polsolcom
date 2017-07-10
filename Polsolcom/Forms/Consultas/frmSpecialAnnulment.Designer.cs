@@ -44,7 +44,6 @@
             this.FAtencion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Consultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridSpecialAnn)).BeginInit();
             this.SuspendLayout();
             // 
@@ -169,23 +168,11 @@
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(291, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 16);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Anulacion Especial";
-            // 
             // frmSpecialAnnulment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 441);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.GridSpecialAnn);
             this.Controls.Add(this.btnAnular);
             this.Controls.Add(this.label3);
@@ -222,7 +209,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FAtencion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Consultorio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.Label label4;
 
     }
 }

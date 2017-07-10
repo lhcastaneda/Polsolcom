@@ -106,21 +106,9 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnOtrosDatos = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.pnlDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -947,7 +935,7 @@
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevo.Location = new System.Drawing.Point(275, 412);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(108, 47);
+            this.btnNuevo.Size = new System.Drawing.Size(108, 38);
             this.btnNuevo.TabIndex = 2;
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -961,7 +949,7 @@
             this.btnGrabar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnGrabar.Location = new System.Drawing.Point(389, 412);
             this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(108, 47);
+            this.btnGrabar.Size = new System.Drawing.Size(108, 38);
             this.btnGrabar.TabIndex = 3;
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -974,7 +962,7 @@
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancelar.Location = new System.Drawing.Point(503, 412);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(108, 47);
+            this.btnCancelar.Size = new System.Drawing.Size(108, 38);
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -986,7 +974,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Location = new System.Drawing.Point(617, 412);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(108, 47);
+            this.btnEditar.Size = new System.Drawing.Size(108, 38);
             this.btnEditar.TabIndex = 5;
             this.btnEditar.Text = "&Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -998,7 +986,7 @@
             this.btnOtrosDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOtrosDatos.Location = new System.Drawing.Point(731, 412);
             this.btnOtrosDatos.Name = "btnOtrosDatos";
-            this.btnOtrosDatos.Size = new System.Drawing.Size(108, 47);
+            this.btnOtrosDatos.Size = new System.Drawing.Size(108, 38);
             this.btnOtrosDatos.TabIndex = 6;
             this.btnOtrosDatos.Text = "&Otros\r\nDatos";
             this.btnOtrosDatos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1010,79 +998,18 @@
             this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimir.Location = new System.Drawing.Point(845, 412);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(108, 47);
+            this.btnImprimir.Size = new System.Drawing.Size(108, 38);
             this.btnImprimir.TabIndex = 7;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(288, 417);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(38, 37);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 8;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(403, 417);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(38, 37);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 9;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Location = new System.Drawing.Point(511, 417);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(38, 37);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 10;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Location = new System.Drawing.Point(632, 417);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(38, 37);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 11;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Location = new System.Drawing.Point(750, 417);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(38, 37);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 12;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Location = new System.Drawing.Point(858, 417);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(38, 37);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 13;
-            this.pictureBox7.TabStop = false;
-            // 
             // frmPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 475);
+            this.ClientSize = new System.Drawing.Size(1004, 478);
             this.ControlBox = false;
-            this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnOtrosDatos);
             this.Controls.Add(this.btnEditar);
@@ -1103,12 +1030,6 @@
             this.pnlDatos.ResumeLayout(false);
             this.pnlDatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1193,11 +1114,5 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnOtrosDatos;
         private System.Windows.Forms.Button btnImprimir;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }

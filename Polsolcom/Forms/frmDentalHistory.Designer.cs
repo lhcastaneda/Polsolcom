@@ -55,6 +55,14 @@
             this.cObserv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.cPieza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTrata = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cOdont2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cAten = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cTick2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cFechAten = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cPrec2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cObserv2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnInsertar = new System.Windows.Forms.Button();
@@ -66,28 +74,26 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.cPieza2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cU1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cU2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cU3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBusPaciente = new System.Windows.Forms.Button();
-            this.cPieza = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cTrata = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOdont2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cAten = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.cTick2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cFechAten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPrec2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cObserv2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -193,6 +199,7 @@
             // 
             // txtPaciente
             // 
+            this.txtPaciente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPaciente.Location = new System.Drawing.Point(107, 42);
             this.txtPaciente.Name = "txtPaciente";
             this.txtPaciente.Size = new System.Drawing.Size(401, 20);
@@ -200,6 +207,7 @@
             // 
             // txtDirecc
             // 
+            this.txtDirecc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDirecc.Location = new System.Drawing.Point(107, 68);
             this.txtDirecc.Name = "txtDirecc";
             this.txtDirecc.Size = new System.Drawing.Size(568, 20);
@@ -319,6 +327,56 @@
             this.dataGridView2.Size = new System.Drawing.Size(743, 150);
             this.dataGridView2.TabIndex = 19;
             // 
+            // cPieza
+            // 
+            this.cPieza.HeaderText = "Pieza";
+            this.cPieza.Name = "cPieza";
+            this.cPieza.Width = 40;
+            // 
+            // cTrata
+            // 
+            this.cTrata.HeaderText = "Tratamiento";
+            this.cTrata.Name = "cTrata";
+            this.cTrata.Width = 160;
+            // 
+            // cOdont2
+            // 
+            this.cOdont2.HeaderText = "Odontólogo";
+            this.cOdont2.Name = "cOdont2";
+            this.cOdont2.Width = 140;
+            // 
+            // cAten
+            // 
+            this.cAten.HeaderText = "Aten";
+            this.cAten.Name = "cAten";
+            this.cAten.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cAten.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.cAten.Width = 40;
+            // 
+            // cTick2
+            // 
+            this.cTick2.HeaderText = "Ticket";
+            this.cTick2.Name = "cTick2";
+            this.cTick2.Width = 60;
+            // 
+            // cFechAten
+            // 
+            this.cFechAten.HeaderText = "Fecha Aten";
+            this.cFechAten.Name = "cFechAten";
+            this.cFechAten.Width = 60;
+            // 
+            // cPrec2
+            // 
+            this.cPrec2.HeaderText = "Precio";
+            this.cPrec2.Name = "cPrec2";
+            this.cPrec2.Width = 60;
+            // 
+            // cObserv2
+            // 
+            this.cObserv2.HeaderText = "Observación";
+            this.cObserv2.Name = "cObserv2";
+            this.cObserv2.Width = 140;
+            // 
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(600, 318);
@@ -418,58 +476,6 @@
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Diagnósticos",
-            "Tratamientos"});
-            this.checkedListBox1.Location = new System.Drawing.Point(807, 395);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 34);
-            this.checkedListBox1.TabIndex = 31;
-            // 
-            // checkedListBox2
-            // 
-            this.checkedListBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
-            "Atendidos",
-            "Por atender",
-            "Todos"});
-            this.checkedListBox2.Location = new System.Drawing.Point(807, 467);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(120, 49);
-            this.checkedListBox2.TabIndex = 32;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(807, 379);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(99, 13);
-            this.label11.TabIndex = 33;
-            this.label11.Text = "Tipo de Reporte";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(807, 451);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(102, 13);
-            this.label12.TabIndex = 34;
-            this.label12.Text = "Filtro de Reporte";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(814, 350);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(113, 13);
-            this.label13.TabIndex = 35;
-            this.label13.Text = "Sobre la Impresora";
-            // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -517,68 +523,104 @@
             this.btnBusPaciente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBusPaciente.UseVisualStyleBackColor = true;
             // 
-            // cPieza
+            // groupBox1
             // 
-            this.cPieza.HeaderText = "Pieza";
-            this.cPieza.Name = "cPieza";
-            this.cPieza.Width = 40;
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Location = new System.Drawing.Point(778, 328);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(167, 207);
+            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Sobre la Impresora";
             // 
-            // cTrata
+            // groupBox2
             // 
-            this.cTrata.HeaderText = "Tratamiento";
-            this.cTrata.Name = "cTrata";
-            this.cTrata.Width = 160;
+            this.groupBox2.Controls.Add(this.radioButton1);
+            this.groupBox2.Controls.Add(this.radioButton2);
+            this.groupBox2.Location = new System.Drawing.Point(10, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(144, 77);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Tipo de Reporte";
             // 
-            // cOdont2
+            // groupBox3
             // 
-            this.cOdont2.HeaderText = "Odontólogo";
-            this.cOdont2.Name = "cOdont2";
-            this.cOdont2.Width = 140;
+            this.groupBox3.Controls.Add(this.radioButton5);
+            this.groupBox3.Controls.Add(this.radioButton4);
+            this.groupBox3.Controls.Add(this.radioButton3);
+            this.groupBox3.Location = new System.Drawing.Point(11, 105);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(142, 91);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Filtro de Reporte";
             // 
-            // cAten
+            // radioButton1
             // 
-            this.cAten.HeaderText = "Aten";
-            this.cAten.Name = "cAten";
-            this.cAten.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cAten.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cAten.Width = 40;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(8, 21);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(92, 17);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Diagnóstico";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // cTick2
+            // radioButton2
             // 
-            this.cTick2.HeaderText = "Ticket";
-            this.cTick2.Name = "cTick2";
-            this.cTick2.Width = 60;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(7, 45);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(92, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Tratamiento";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // cFechAten
+            // radioButton3
             // 
-            this.cFechAten.HeaderText = "Fecha Aten";
-            this.cFechAten.Name = "cFechAten";
-            this.cFechAten.Width = 60;
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(7, 22);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(81, 17);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Atendidos";
+            this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // cPrec2
+            // radioButton4
             // 
-            this.cPrec2.HeaderText = "Precio";
-            this.cPrec2.Name = "cPrec2";
-            this.cPrec2.Width = 60;
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(7, 42);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(92, 17);
+            this.radioButton4.TabIndex = 3;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Por Atender";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // cObserv2
+            // radioButton5
             // 
-            this.cObserv2.HeaderText = "Observación";
-            this.cObserv2.Name = "cObserv2";
-            this.cObserv2.Width = 140;
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(7, 64);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(60, 17);
+            this.radioButton5.TabIndex = 4;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Todos";
+            this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // frmDentalHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(978, 553);
+            this.ControlBox = false;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBusPaciente);
             this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.checkedListBox2);
-            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnEliminar);
@@ -611,12 +653,17 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmDentalHistory";
             this.Text = "Historia Dental";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -655,11 +702,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Button btnCerrar;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewTextBoxColumn cPieza2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cU1;
@@ -681,5 +723,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cFechAten;
         private System.Windows.Forms.DataGridViewTextBoxColumn cPrec2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cObserv2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

@@ -1,20 +1,22 @@
-﻿using System.Data;
+﻿using Polsolcom.Dominio.Helpers;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Polsolcom.Dominio.Connection
 {
-	public static class Conexion
+    public static class Conexion
     {
-        public static string connetionString {get;set;}
-        public static string strServer {get;set;}
-        public static SqlConnection CNN {get;set;}
-        public static SqlCommand CMD {get;set;}
-       
+        public static string connetionString { get; set; }
+        public static string strServer { get; set; }
+        public static SqlConnection CNN { get; set; }
+        public static SqlCommand CMD { get; set; }
+
         static public SqlConnection ConectaBD()
         {
             strServer = "server";
-            if ( strServer == "" )
+            if (strServer == "")
             {
                 MessageBox.Show("No se obtuvo nombre del servidor de base de datos." + (char)13 + "Contactar al administrador de sistemas", "Error Conexion");
                 Application.Exit();
@@ -28,7 +30,7 @@ namespace Polsolcom.Dominio.Connection
 
                 CNN.ConnectionString = connetionString;
                 CNN.Open();
-                if ( CNN.State == ConnectionState.Open )
+                if (CNN.State == ConnectionState.Open)
                     return CNN;
                 else
                 {
@@ -55,7 +57,7 @@ namespace Polsolcom.Dominio.Connection
         /// </summary>
         /// <param name="sql">Consulta SQL a generar</param>
         /// <returns>DataTable</returns>
-        static public DataTable GetTable(string sql)
+        public static DataTable GetTable(string sql)
         {
             CMD.CommandText = sql;
             SqlDataAdapter adapter = new SqlDataAdapter(CMD);
@@ -63,7 +65,12 @@ namespace Polsolcom.Dominio.Connection
             adapter.Fill(table);
             return table;
         }
-    }
 
+        public static int ExecuteNonQuery(string sql)
+        {
+            CMD.CommandText = sql;
+            return CMD.ExecuteNonQuery();
+        }
+    }
 	
 }

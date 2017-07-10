@@ -1,7 +1,6 @@
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache
-C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmAdmCounterfoilA.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Herramientas.frmBuscar.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Herramientas.frmBuscaT.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmCie10.resources
@@ -54,7 +53,6 @@ C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Form
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEspecialistas.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmConsultorios.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmSpecialtyTurn.resources
-C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmStatGenGroupEtareo.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEstPac.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEstVent.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmTalonario.resources
@@ -194,3 +192,4 @@ E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.Genera
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\yo\Polsolcom.resources.dll
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmAdmTalon.resources

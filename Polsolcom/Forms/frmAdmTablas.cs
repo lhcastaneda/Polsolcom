@@ -28,5 +28,21 @@ namespace Polsolcom.Forms
         {
 
         }
+
+        private void frmAdmTablas_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void frmAdmTablas_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
     }
 }

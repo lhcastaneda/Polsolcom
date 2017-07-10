@@ -37,7 +37,7 @@
             // btnAfCajaProd
             // 
             this.btnAfCajaProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAfCajaProd.ForeColor = System.Drawing.Color.Blue;
+            this.btnAfCajaProd.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnAfCajaProd.Location = new System.Drawing.Point(12, 12);
             this.btnAfCajaProd.Name = "btnAfCajaProd";
             this.btnAfCajaProd.Size = new System.Drawing.Size(329, 31);
@@ -48,7 +48,7 @@
             // btnTrans
             // 
             this.btnTrans.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTrans.ForeColor = System.Drawing.Color.Blue;
+            this.btnTrans.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnTrans.Location = new System.Drawing.Point(12, 49);
             this.btnTrans.Name = "btnTrans";
             this.btnTrans.Size = new System.Drawing.Size(329, 31);
@@ -59,7 +59,7 @@
             // btnAdmi
             // 
             this.btnAdmi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdmi.ForeColor = System.Drawing.Color.Blue;
+            this.btnAdmi.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnAdmi.Location = new System.Drawing.Point(12, 86);
             this.btnAdmi.Name = "btnAdmi";
             this.btnAdmi.Size = new System.Drawing.Size(329, 31);
@@ -70,12 +70,12 @@
             // btnGestion
             // 
             this.btnGestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGestion.ForeColor = System.Drawing.Color.Blue;
+            this.btnGestion.ForeColor = System.Drawing.Color.DarkBlue;
             this.btnGestion.Location = new System.Drawing.Point(12, 123);
             this.btnGestion.Name = "btnGestion";
             this.btnGestion.Size = new System.Drawing.Size(329, 31);
             this.btnGestion.TabIndex = 3;
-            this.btnGestion.Text = "Móduo de &Gestión";
+            this.btnGestion.Text = "Módulo de &Gestión";
             this.btnGestion.UseVisualStyleBackColor = true;
             // 
             // frmModulos
@@ -88,8 +88,10 @@
             this.Controls.Add(this.btnAdmi);
             this.Controls.Add(this.btnTrans);
             this.Controls.Add(this.btnAfCajaProd);
+            this.KeyPreview = true;
             this.Name = "frmModulos";
             this.Text = "Módulos";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmModulos_KeyDown);
             this.ResumeLayout(false);
 
         }

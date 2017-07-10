@@ -88,8 +88,10 @@
             this.Controls.Add(this.checkAsc);
             this.Controls.Add(this.txtFinal);
             this.Controls.Add(this.txtInicio);
+            this.KeyPreview = true;
             this.Name = "frmExecute";
             this.Text = "Ejecuta";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmExecute_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
