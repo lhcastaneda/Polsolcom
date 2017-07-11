@@ -11,6 +11,7 @@ using Polsolcom.Dominio.Connection;
 using System.Linq;
 using TenTec.Windows.iGridLib;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Polsolcom.Forms.Procesos
 {
@@ -286,7 +287,7 @@ namespace Polsolcom.Forms.Procesos
 						btnBuscar.Enabled = true;
 						btnBuscarT.Enabled = true;
 						ValidaDatosTicket("");
-						BloqueaControles();
+						BloqueaControles(this,"D"); 
 
 					}
 					else
@@ -354,10 +355,15 @@ namespace Polsolcom.Forms.Procesos
 					( (TextBox)c ).Clear();
 				else if( c is ComboBox )
 					( (ComboBox)c ).SelectedIndex = -1;
+				else if( c is MaskedTextBox )
+					((MaskedTextBox)c).Clear();
 
 				if( c.HasChildren )
 					LimpiaControles(c);
 			}
+			iGrid.Rows.Clear();
+			FormateaGrids();
+
 		}
 
 		private void UbicaItemCombo(ComboBox cmb, string sValor)
@@ -624,11 +630,16 @@ namespace Polsolcom.Forms.Procesos
 
 		private void btnBuscarT_Click( object sender, EventArgs e )
 		{
+			LimpiaControles(this);
 			frmBuscaT fr = new frmBuscaT();
 			fr.ShowDialog();
 
 			if( fr.DialogResult != DialogResult.OK )
+			{
+				btnAgregar.Enabled = false;
+				btnQuitar.Enabled = false;
 				return;
+			}
 			else
 				NROHISTORIA = fr.lblTicket.Text;
 
@@ -636,6 +647,9 @@ namespace Polsolcom.Forms.Procesos
 			{
 				CargaDatosHistoria(NROHISTORIA);
 				btnImprimir.Enabled = true;
+				btnAgregar.Enabled = false;
+				btnQuitar.Enabled = false;
+				BloqueaControles(this);
 			}
 
 		}
@@ -666,6 +680,16 @@ namespace Polsolcom.Forms.Procesos
 
 		private void btnImprimir_Click( object sender, EventArgs e )
 		{
+			if( txtNroTicket.Text.Trim() == "" || int.Parse(txtNroTicket.Text.Trim()) == 0 )
+				return;
+
+			if( NROHISTORIA == "" )
+				return;
+
+			if( BUS == "" )
+				return;
+
+
 
 		}
 
@@ -678,10 +702,11 @@ namespace Polsolcom.Forms.Procesos
 
 			sSQL = "SELECT T.Nro_Historia, T.Nro_Ticket, T.Fecha_Emision, T.Id_Consultorio, T.Id_Paciente, " + 
 					"T.Digitador, T.Anulado, T.ForPago, T.Descuento, T.Serie, T.CMP, T.Id_Inst, T.Moneda, " + 
-					"T.Convenio, T.DVenta, T.Id_Bus, T.tsg, P.Nombre, P.Ape_Paterno, P.Ape_Materno, " + 
-					"P.DNI, P.Fecha_Nac, P.Edad, P.Sexo, P.Telefono, P.Direccion, P.Asegurado, P.Id_Distrito, " + 
+					"T.Convenio, T.DVenta, T.Id_Bus, T.tsg, P.Nombre, P.Ape_Paterno, P.Ape_Materno, " +
+					"P.DNI, P.Fecha_Nac, P.Edad, CASE WHEN P.Sexo = 'M' THEN 'MASCULINO' ELSE 'FEMENINO' END AS sexo, " +
+					"P.Telefono, P.Direccion, P.Asegurado, P.Id_Distrito, " +
 					"P.ODoc, P.E_Mail, C.Descripcion, C.Estado, C.Turno, " + 
-					"C.Tipo, C.Observacion " +
+					"C.Tipo, C.Observacion, P.Nro_Historia " +
 					"FROM Tickets T INNER JOIN Pacientes P " +
 					"ON T.Id_Paciente = P.Id_paciente " +
 					"INNER JOIN Consultorios C " +
@@ -695,7 +720,7 @@ namespace Polsolcom.Forms.Procesos
 					{
 						while( dr.Read() )
 						{
-							txtNHP.Text = dr.GetValue(0).ToString().Trim();
+							txtNHP.Text = dr.GetValue(35).ToString().Trim();
 							txtNroTicket.Text = dr.GetValue(1).ToString().Trim();
 							txtFechaEmision.Text = dr.GetValue(2).ToString().Trim();
 							UbicaItemCombo(cmbEspecialidad, dr.GetValue(3).ToString().Trim());
@@ -861,7 +886,8 @@ namespace Polsolcom.Forms.Procesos
 		}
 
 		private void CargaDetalleTicket( string sNHC, string sEspecialidad )
-		{			
+		{
+			double dTotal = 0;
 			iGrid.Rows.Clear();
 			FormateaGrids();
 
@@ -897,19 +923,64 @@ namespace Polsolcom.Forms.Procesos
 							row.Cells[0].Value = cmb.Items[0].Value;
 							row.Cells[1].Value = dr.GetValue(3).ToString();
 							row.Cells[2].Value = dr.GetValue(2).ToString(); //DevuelvePrecioProducto(dr.GetValue(1).ToString());
-							row.Cells[3].Value = int.Parse(row.Cells[1].Value.ToString()) * double.Parse(row.Cells[2].Value.ToString());
+							row.Cells[3].Value = (int.Parse(row.Cells[1].Value.ToString()) * double.Parse(row.Cells[2].Value.ToString())).ToString("#,###.#0");
 							row.Cells[4].Value = dr.GetValue(1).ToString();
+							dTotal = dTotal + double.Parse(row.Cells[3].Value.ToString());
 						}
 						iGrid.EndUpdate();
+						txtNeto.Text = dTotal.ToString("#,###.#0");
+						txtTotal.Text = dTotal.ToString("#,###.#0");
+						txtSon.Text = General.NumeroTexto(dTotal.ToString("#.#0"));
 					}
 					dr.Close();
 				}
 			}
 		}
 
-		private void BloqueaControles()
+		private void BloqueaControles( Control con, string FLAG = "" )
 		{
+			//para bloquear dejar en blanco la segunda variable
+			//para desbloquear segunda variable no debe estar en blanco
 
+			foreach( Control c in con.Controls )
+			{
+				if( c is TextBox )
+					if( FLAG == "" )
+					{
+						((TextBox)c).ReadOnly = true;
+						if( ((TextBox)c).BackColor != Color.Gold )
+							((TextBox)c).BackColor = Color.White;
+					}
+					else
+						((TextBox)c).ReadOnly = false;
+				else if( c is ComboBox )
+					if( FLAG == "" )
+					{
+						((ComboBox)c).Enabled = false;
+						((ComboBox)c).BackColor = Color.White;
+					}
+					else
+						((ComboBox)c).Enabled = true;
+				else if( c is MaskedTextBox )
+					if( FLAG == "" )
+					{
+						((MaskedTextBox)c).ReadOnly = true;
+						((MaskedTextBox)c).BackColor = Color.White;
+					}
+					else
+						((MaskedTextBox)c).ReadOnly = false;
+
+				if( c.HasChildren )
+					BloqueaControles(c);
+			}
+
+			if( FLAG == "" )
+			{
+				iGrid.Enabled = false;
+				iGrid.BackColor = Color.White;
+			}
+			else
+				iGrid.Enabled = true;
 		}
 
 		private void txtTelefono_KeyPress( object sender, KeyPressEventArgs e )
