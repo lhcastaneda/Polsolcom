@@ -71,6 +71,19 @@ namespace Polsolcom.Dominio.Connection
             CMD.CommandText = sql;
             return CMD.ExecuteNonQuery();
         }
+
+        public static int ExecuteScalar(string sql)
+        {
+            SqlCommand cmd = new SqlCommand(sql, CNN);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                return int.Parse(dr.GetValue(0).ToString());
+            }
+
+            return 0;
+        }
     }
 	
 }

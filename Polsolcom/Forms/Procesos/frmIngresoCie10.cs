@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,19 +17,22 @@ namespace Polsolcom.Forms.Procesos
 {
     public partial class frmIngresoCie10 : Form
     {
+        Dictionary<string, string> paciente;
+        Dictionary<string, string> ticket;
+        Dictionary<string, string> medic;
+        List<Dictionary<string, string>> medics;
+        List<Dictionary<string, string>> tickets;
+        List<Dictionary<string, string>> pacientes;
+        List<Dictionary<string, string>> tempDetVent;
+        string nh;
+        int dr;
+        int iu;
+        int pg;
+
         public frmIngresoCie10()
         {
             InitializeComponent();
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox31_TextChanged(object sender, EventArgs e)
-        {
-
+            tempDetVent = new List<Dictionary<string, string>>();
         }
 
         private void frmIngresoCie10_Load(object sender, EventArgs e)
@@ -41,11 +45,6 @@ namespace Polsolcom.Forms.Procesos
             cmbDVenta.SelectedIndex = -1;
         }
 
-        private void btnFiltro_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void chkFiltro_CheckedChanged(object sender, EventArgs e)
         {
             bool check = ((CheckBox)sender).Checked;
@@ -55,16 +54,6 @@ namespace Polsolcom.Forms.Procesos
             chkFechaVent.Enabled = !check;
             dtpFechaEmi.Enabled = !check && chkFechaVent.Checked;
             txtSerie.Enabled = !check;
-        }
-
-        private void cmbEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNroDoc_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           
         }
 
         private void txtNroDoc_KeyDown(object sender, KeyEventArgs e)
@@ -135,8 +124,12 @@ namespace Polsolcom.Forms.Procesos
         void clearFields()
         { }
 
+        DateTime hi;
+
         private int pfv()
         {
+            this.hi = DateTime.Today;
+
             string vSQL = "";
             vSQL += "Select T.Serie,T.Nro_Ticket,";
             vSQL += tabIngresoConsulta.SelectedIndex == 1 ? "T.Fecha_Emision," : "CB.Fecha_Atencion,";
@@ -164,18 +157,18 @@ namespace Polsolcom.Forms.Procesos
             }
             else
             {
-                vSQL += " T.Id_Paciente='" + Paciente.Id_Paciente + "'";
+                vSQL += " T.Id_Paciente='" + paciente["id_paciente"] + "'";
             }
 
             lstTickets0.Items.Clear();
             lstTickets1.Items.Clear();
 
-            List<Dictionary<string, string>> tickets = General.GetDictionaryList(vSQL);
+            tickets = General.GetDictionaryList(vSQL);
 
             //General.TradUser()
             if (tickets.Count > 0)
             {
-                string[] fields = {"Serie", "Nro_Ticket", "Fecha_Emision", "Digitador", "Nro_Historia", "Anulado", "Id_Paciente" };
+                string[] fields = {"Serie", "Nro_Ticket", "Fecha_Emision", "Digitador" };
 
                 if (tabIngresoConsulta.SelectedIndex == 0)
                 {
@@ -220,26 +213,49 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ListViewItem item = General.GetSelectedItem((ListView)sender);
+                int index = General.GetSelectedIndex((ListView)sender);
+                ticket = tickets[index];
 
                 if (!opened)
                 {
-                    if (item.SubItems[5].Text != "")
+                    if (ticket["Anulado"] != "")
                     {
                         MessageBox.Show("N° de documento de venta esta anulado ...", "Anulado");
                         pcl();
                         return;
                     }
 
-                    pfp(item.SubItems[6].Text);
-                    pla(item.SubItems[4].Text);
+                    pfp(ticket["Id_Paciente"]);
+                    pla();
                     opened = true;
                 }
 
             }
         }
 
-        public void pfp(string lp)
+
+        public int vexis(string sql, string msg, bool cnd, string pex)
+        {
+            int c = Conexion.ExecuteScalar(sql);
+
+            if (!cnd ? c == 0 : c > 0)
+            {
+                MessageBox.Show(msg, "Advertencia");
+                if (!cnd)
+                {
+                    Type thisType = this.GetType();
+                    MethodInfo theMethod = thisType.GetMethod(pex);
+                    theMethod.Invoke(this, null);
+                }
+
+                return 0;
+            }
+            else
+                return c;
+        }
+
+
+        public void pfp(string lp = null)
         {
             string xp = lp;
             int np = tabIngresoConsulta.SelectedIndex;
@@ -247,12 +263,13 @@ namespace Polsolcom.Forms.Procesos
             string pt = (np == 1 ? txtApePat.Text : "");
             string mt = (np == 1 ? txtApeMat.Text : "");
             string nm = (np == 1 ? txtNombre.Text : "");
-            string ip = (true ? txtIdPac.Text : xp);
+            string ip = (lp == null ? txtIdPac.Text : xp);
 
-            if (pt.Length + nm.Length + ip.Length > 0)
+            if ((pt.Length + nm.Length + ip.Length) > 0)
             {
                 string sql = General.DevuelveQueryPaciente(pt, mt, nm, "", ip, "", 2, 0);
-                List<Dictionary<string, string>> pacientes = General.GetDictionaryList(sql);
+                pacientes = General.GetDictionaryList(sql);
+                paciente = pacientes[0];
                 General.FillListView(lstPacientes, pacientes, new string[] { "Paciente" });
             }
 
@@ -264,7 +281,126 @@ namespace Polsolcom.Forms.Procesos
             Refresh();
         }
 
-        void pla(string nro_historia)
+        public void pla()
+        {
+            txtPaciente.Text = paciente["Ape_Paterno"] + " " + paciente["Ape_Materno"] + ", " + paciente["Nombre"] + " (" + paciente["Id_Paciente"] + ")";
+            dtpFechaNac.Value = DateTime.Parse(paciente["Fecha_Nac"]);
+            txtEdad.Text = paciente["Edad"];
+            txtSexo.Text = paciente["Sexo"] == "M" ? "MASCULINO" : "FEMENINO";
+            txtOrden.Text = ticket["Orden"];
+            txtEspecialidad.Text = ticket["Descripcion"];
+            dtpFechaEmiFil.Value = DateTime.Parse(ticket["Fecha_Emision"]);
+            txtCajero.Text = "CAJERO: ( " + ticket["Digitador"] + " )";
+            this.nh = ticket["Nro_Historia"];
+
+            tempDetVent.Clear();
+
+            string detSql = "Select D.*,P.Descripcion From Detalles D Inner Join Productos P On D.Id_Producto=P.Id_Producto Where Nro_Historia='" + this.nh + "'";
+            List<Dictionary<string, string>> detalles = General.GetDictionaryList(detSql);
+
+            double total = 0f;
+            for (int i = 0; i < detalles.Count; i++)
+            {
+                double subtotal = Math.Round(int.Parse(detalles[i]["Cantidad"]) * double.Parse(detalles[i]["Monto"]), 2);
+                total += subtotal;
+                //
+                detalles[i]["Subtotal"] = subtotal.ToString();
+                detalles[i]["M"] = "1";
+            }
+
+            txtTotal.Text = total.ToString();
+
+            string cabCie10Sql = "Select * From Cab_Cie10 Where Nro_Historia = '" + ticket["Nro_Historia"] + "'";
+            Dictionary<string, string> cabCie10 = General.GetDictionary(cabCie10Sql);
+
+            if (cabCie10.Count > 0)
+            {
+                if (tabIngresoConsulta.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Ya fue procesada la historia clinica ...", "Advertencia");
+                    string ia = Usuario.id_area;//REEMPLAZAR
+                    string iu = cabCie10["Digitador"];
+                    /*
+                    //La siguiente línea no se pudo ejecutar
+                    if (ia.Substring(0, 3) == Operativo.id_oper)//REEMPLAZAR
+                    {
+                        vexis("Select Count(*) as C From sysaccusers Where Id_Us = '" + iu + "' And Id_Area = '" + ia + "'", "Este registro no corresponde a su consultorio", false, "pcl");
+                    }*/
+
+                    txtNroDoc.Focus();
+                }
+
+                pce(true, true);//Change
+                dtpFechaAten.Text = cabCie10["Fecha_Atencion"];
+                cmbBus.SelectedValue = cabCie10["id_bus"];
+                cmbTurno.SelectedValue = cabCie10["turno"];
+                cmbMedico.SelectedValue = cabCie10["cmp"];
+                txtMedico.Text = cmbMedico.SelectedIndex != -1 ? "" : medic["especialista"];
+                txtDigitador.Text = General.TradUser(cabCie10["digitador"]);
+                txtEnAcIni.Text = cabCie10["en_ac_ini"];
+                txtEnAcCur.Text = cabCie10["en_ac_cur"];
+                txtEnAcRel.Text = cabCie10["en_ac_rel"];
+                txtAnPer.Text = cabCie10["an_per"];
+                txtAnFam.Text = cabCie10["an_fam"];
+                txtAnEpi.Text = cabCie10["an_epi"];
+                txtAnQui.Text = cabCie10["an_qui"];
+                txtAnOtr.Text = cabCie10["an_otr"];
+                txtExClPs.Text = (cabCie10["ex_cl_ps"].Length == 0 ? "0.00" : cabCie10["ex_cl_ps"]);
+                txtExClTl.Text = (cabCie10["ex_cl_tl"].Length == 0 ? "0.00" : cabCie10["ex_cl_tl"]);
+                txtExClPa.Text = cabCie10["ex_cl_pa"];
+                txtExClFc.Text = (cabCie10["ex_cl_fc"].Length == 0 ? "0" : cabCie10["ex_cl_fc"]);
+                txtExClFr.Text = (cabCie10["ex_cl_fr"].Length == 0 ? "0" : cabCie10["ex_cl_fr"]);
+                txtExClTm.Text = (cabCie10["ex_cl_tm"].Length == 0 ? "0" : cabCie10["ex_cl_tm"]);
+                txtExClEg.Text = cabCie10["ex_cl_eg"];
+                txtObservacion.Text = cabCie10["observacion"];
+                dtpFechaIngreso.Value = DateTime.Parse(cabCie10["fecha_ingreso"]);
+
+                //tmpCie10.Clear();
+
+                string detCie10Sql = "Select DC.*,CI.Descripcion From Det_Cie10 DC Left Join Cie10 CI On DC.Cie10=CI.Cie10 Where Nro_Historia='" + this.nh + "'";
+                List<Dictionary<string, string>> tmpCie10 = General.GetDictionaryList(detCie10Sql);
+                this.dr = tmpCie10.Count;
+
+                btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = (dr > 0 && tabIngresoConsulta.SelectedIndex == 0);
+                //btnImprimir.Enabled = (dr > 0);
+                btnGrabar.Enabled = (tabIngresoConsulta.SelectedIndex == 0);
+
+                string tratMedSql = "Select * From tratmed Where nro_reg='" + this.nh + "'";
+                List<Dictionary<string, string>> tratMed = General.GetDictionaryList(tratMedSql);
+
+                this.dr += tratMed.Count;
+                this.iu = 1;
+                this.pg = cabCie10["id_per"] != "" ? 1 : 0;
+
+            }
+            else
+            {
+                this.dr = 0;
+                this.iu = 0;
+                this.pg = 0;
+
+                clearFields();
+
+                btnVerifica.Enabled = true;
+                cmbBus.SelectedValue = ("Usuario.id_area".Substring(0, 3) == "Operativo.id_oper") ? "Usuario.id_area" : cmbBus.SelectedValue;
+                txtDigitador.Text = Usuario.usuario;
+                //dtpFechaIngreso = NULL;
+                if (chkIdem.Checked)
+                {
+                    dtpFechaAten.Focus();
+                }
+                else
+                {
+                    txtObservacion.Focus();
+                }
+            }
+
+            this.Refresh();
+
+        }
+
+
+        void plaold(string nro_historia)
         {
             txtPaciente.Text = Paciente.Ape_Paterno + " " + Paciente.Ape_Materno + ", " + Paciente.Nombre + "(" + Paciente.Id_Paciente + ")";
             dtpFechaNac.Value = DateTime.Parse(Paciente.Fecha_Nac);
@@ -333,7 +469,7 @@ namespace Polsolcom.Forms.Procesos
 
         void pce(bool lci, bool lrc)
         {
-            int xcm = cmbMedico.SelectedIndex;
+            int xcm = (cmbMedico.SelectedIndex != -1 && lrc? cmbMedico.SelectedIndex: -1);
             cmbMedico.Items.Clear();
 
             if (lci && lrc)
@@ -347,20 +483,21 @@ namespace Polsolcom.Forms.Procesos
             string bus = (cmbBus.SelectedIndex == -1 ? "": cmbBus.SelectedValue.ToString());
 
             string sql2 = "Select * From #tmpEspecialista " + (lci ? "": "Where Id_Bus Like '" + bus + "%'") + " Order By 3";
-            List<Dictionary<string, string>> especialistas = General.GetDictionaryList(sql2);
+            medics = General.GetDictionaryList(sql2);
 
-            foreach (Dictionary<string, string> especialidad in especialistas)
+            foreach (Dictionary<string, string> medic in medics)
             {
                 ComboboxItem item = new ComboboxItem();
-                item.Text = especialidad["CMP"] + " | " + especialidad["Especialista"];
-                item.Value = especialidad["CMP"];
+                item.Text = medic["CMP"] + " | " + medic["Especialista"];
+                item.Value = medic["CMP"];
                 cmbMedico.Items.Add(item);
             }
 
             if (xcm != -1 && lrc)
             {
                 cmbMedico.SelectedIndex = xcm;
-                txtMedico.Text = xcm == -1 ? "" : especialistas[xcm]["Especialista"];
+                txtMedico.Text = xcm == -1 ? "" : medics[xcm]["Especialista"];
+                this.medic = medics[xcm];
             }
 
             Refresh();

@@ -10,6 +10,7 @@ using System.Data;
 using System.Configuration;
 using Dapper;
 using System.Linq;
+using System.Reflection;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -478,6 +479,30 @@ namespace Polsolcom.Dominio.Helpers
             }
 
         }
+
+        /*
+        public static string TradUser(string sus, string nbs)
+        {
+            if (sus.Length > 0 && nbs.Length == 0)
+            {
+                string sql = "SELECT Key_Pass AS Usuario " +
+                    "FROM sysaccusers " +
+                    "WHERE LTRIM(RTRIM(Id_Us)) = '" + sus + "' " +
+                    "OR LTRIM(RTRIM(Key_Pass)) = '" + sus + "' ";
+
+                Dictionary<string, string> nus = General.GetDictionary(sql);
+
+                return cryptgr(nus["Usuario"], false, 1);
+            }
+
+            if (sus.Length > 0 && nbs.Length > 0)
+            {
+                Type thisType = typeof(General);
+                MethodInfo theMethod = thisType.GetMethod(nbs);
+                theMethod.Invoke(null, null);
+
+            }
+        }*/
 
         public static string TradUser(string sVariable)
         {
@@ -1049,7 +1074,7 @@ namespace Polsolcom.Dominio.Helpers
                 }
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente,P.id_paciente,P.DNI,P.Id_Distrito,P.Asegurado,P.Nro_Historia ";
+                        "P.Ape_Paterno, P.Ape_Materno, P.Nombre, P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente, P.Id_Paciente, P.DNI, P.Id_Distrito, P.Asegurado, P.Nro_Historia, P.Fecha_Nac, P.Edad, P.Sexo ";
 
                 if (Num1 == 2)
                     sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito ";
@@ -1178,6 +1203,16 @@ namespace Polsolcom.Dominio.Helpers
             }
 
             return null;
+        }
+
+        public static int GetSelectedIndex(ListView listView)
+        {
+            foreach (int index in listView.SelectedIndices)
+            {
+                return index;
+            }
+
+            return -1;
         }
     }
 }
