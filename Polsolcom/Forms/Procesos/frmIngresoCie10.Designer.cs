@@ -96,7 +96,7 @@
             this.grpFiliacion = new System.Windows.Forms.GroupBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtCajero = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.grdDetalle = new System.Windows.Forms.ListView();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -155,13 +155,27 @@
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.grpTratamiento = new System.Windows.Forms.GroupBox();
+            this.groupBoxTraMed = new System.Windows.Forms.GroupBox();
+            this.grdTraMed = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
             this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
             this.chkIdem = new System.Windows.Forms.CheckBox();
             this.txtTi = new System.Windows.Forms.TextBox();
+            this.chkCompleto = new System.Windows.Forms.CheckBox();
+            this.grdDetCie10 = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dgvDetCie10 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
@@ -174,6 +188,8 @@
             this.grpEnfermedad.SuspendLayout();
             this.grpAntecedentes.SuspendLayout();
             this.grpExClinico.SuspendLayout();
+            this.groupBoxTraMed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).BeginInit();
             this.SuspendLayout();
             // 
             // tabIngresoConsulta
@@ -416,6 +432,7 @@
             this.lstPacientes.TabIndex = 19;
             this.lstPacientes.UseCompatibleStateImageBehavior = false;
             this.lstPacientes.View = System.Windows.Forms.View.Details;
+            this.lstPacientes.SelectedIndexChanged += new System.EventHandler(this.lstPacientes_SelectedIndexChanged);
             // 
             // columnHeader29
             // 
@@ -442,6 +459,7 @@
             this.lstTickets1.TabIndex = 18;
             this.lstTickets1.UseCompatibleStateImageBehavior = false;
             this.lstTickets1.View = System.Windows.Forms.View.Details;
+            this.lstTickets1.SelectedIndexChanged += new System.EventHandler(this.lstTickets1_SelectedIndexChanged);
             // 
             // columnHeader17
             // 
@@ -496,6 +514,7 @@
             this.txtIdPac.Name = "txtIdPac";
             this.txtIdPac.Size = new System.Drawing.Size(100, 20);
             this.txtIdPac.TabIndex = 9;
+            this.txtIdPac.TextChanged += new System.EventHandler(this.txtIdPac_TextChanged);
             // 
             // txtNombre
             // 
@@ -503,6 +522,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 8;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtApeMat
             // 
@@ -510,6 +530,7 @@
             this.txtApeMat.Name = "txtApeMat";
             this.txtApeMat.Size = new System.Drawing.Size(100, 20);
             this.txtApeMat.TabIndex = 7;
+            this.txtApeMat.TextChanged += new System.EventHandler(this.txtApeMat_TextChanged);
             // 
             // txtApePat
             // 
@@ -517,6 +538,7 @@
             this.txtApePat.Name = "txtApePat";
             this.txtApePat.Size = new System.Drawing.Size(100, 20);
             this.txtApePat.TabIndex = 6;
+            this.txtApePat.TextChanged += new System.EventHandler(this.txtApePat_TextChanged);
             // 
             // label19
             // 
@@ -672,6 +694,7 @@
             // 
             this.txtDigitador.Location = new System.Drawing.Point(330, 200);
             this.txtDigitador.Name = "txtDigitador";
+            this.txtDigitador.ReadOnly = true;
             this.txtDigitador.Size = new System.Drawing.Size(100, 20);
             this.txtDigitador.TabIndex = 20;
             // 
@@ -712,7 +735,7 @@
             // 
             this.grpFiliacion.Controls.Add(this.txtTotal);
             this.grpFiliacion.Controls.Add(this.txtCajero);
-            this.grpFiliacion.Controls.Add(this.listView1);
+            this.grpFiliacion.Controls.Add(this.grdDetalle);
             this.grpFiliacion.Controls.Add(this.label10);
             this.grpFiliacion.Controls.Add(this.label9);
             this.grpFiliacion.Controls.Add(this.dtpFechaNac);
@@ -751,54 +774,57 @@
             // 
             this.txtCajero.Location = new System.Drawing.Point(15, 244);
             this.txtCajero.Name = "txtCajero";
+            this.txtCajero.ReadOnly = true;
             this.txtCajero.Size = new System.Drawing.Size(100, 20);
             this.txtCajero.TabIndex = 55;
             // 
-            // listView1
+            // grdDetalle
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.grdDetalle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader11,
             this.columnHeader12,
             this.columnHeader13,
             this.columnHeader14,
             this.columnHeader15,
             this.columnHeader16});
-            this.listView1.FullRowSelect = true;
-            this.listView1.Location = new System.Drawing.Point(15, 145);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(405, 98);
-            this.listView1.TabIndex = 54;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.grdDetalle.FullRowSelect = true;
+            this.grdDetalle.Location = new System.Drawing.Point(15, 145);
+            this.grdDetalle.MultiSelect = false;
+            this.grdDetalle.Name = "grdDetalle";
+            this.grdDetalle.Size = new System.Drawing.Size(405, 98);
+            this.grdDetalle.TabIndex = 54;
+            this.grdDetalle.UseCompatibleStateImageBehavior = false;
+            this.grdDetalle.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader11
             // 
             this.columnHeader11.Text = "Producto y/o Servicio";
-            this.columnHeader11.Width = 40;
+            this.columnHeader11.Width = 150;
             // 
             // columnHeader12
             // 
             this.columnHeader12.Text = "Cant.";
+            this.columnHeader12.Width = 50;
             // 
             // columnHeader13
             // 
             this.columnHeader13.Text = "Prec.";
-            this.columnHeader13.Width = 80;
+            this.columnHeader13.Width = 50;
             // 
             // columnHeader14
             // 
             this.columnHeader14.Text = "S.Total";
-            this.columnHeader14.Width = 100;
+            this.columnHeader14.Width = 50;
             // 
             // columnHeader15
             // 
             this.columnHeader15.Text = "Con.";
+            this.columnHeader15.Width = 50;
             // 
             // columnHeader16
             // 
             this.columnHeader16.Text = "Dto.";
-            this.columnHeader16.Width = 40;
+            this.columnHeader16.Width = 50;
             // 
             // label10
             // 
@@ -844,6 +870,7 @@
             this.btnBCie10.TabIndex = 49;
             this.btnBCie10.Text = "&BCie10";
             this.btnBCie10.UseVisualStyleBackColor = true;
+            this.btnBCie10.Click += new System.EventHandler(this.btnBCie10_Click);
             // 
             // btnGrabar
             // 
@@ -854,6 +881,7 @@
             this.btnGrabar.TabIndex = 48;
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.UseVisualStyleBackColor = true;
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // btnQuitar
             // 
@@ -863,6 +891,7 @@
             this.btnQuitar.TabIndex = 47;
             this.btnQuitar.Text = "&Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // btnAgregar
             // 
@@ -872,6 +901,7 @@
             this.btnAgregar.TabIndex = 46;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // dtpFechaEmiFil
             // 
@@ -1258,14 +1288,50 @@
             this.label34.TabIndex = 35;
             this.label34.Text = "Peso";
             // 
-            // grpTratamiento
+            // groupBoxTraMed
             // 
-            this.grpTratamiento.Location = new System.Drawing.Point(360, 434);
-            this.grpTratamiento.Name = "grpTratamiento";
-            this.grpTratamiento.Size = new System.Drawing.Size(506, 100);
-            this.grpTratamiento.TabIndex = 35;
-            this.grpTratamiento.TabStop = false;
-            this.grpTratamiento.Text = "7. TRATAMIENTO";
+            this.groupBoxTraMed.Controls.Add(this.grdTraMed);
+            this.groupBoxTraMed.Location = new System.Drawing.Point(360, 434);
+            this.groupBoxTraMed.Name = "groupBoxTraMed";
+            this.groupBoxTraMed.Size = new System.Drawing.Size(506, 100);
+            this.groupBoxTraMed.TabIndex = 35;
+            this.groupBoxTraMed.TabStop = false;
+            this.groupBoxTraMed.Text = "7. TRATAMIENTO";
+            // 
+            // grdTraMed
+            // 
+            this.grdTraMed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.grdTraMed.FullRowSelect = true;
+            this.grdTraMed.Location = new System.Drawing.Point(10, 15);
+            this.grdTraMed.MultiSelect = false;
+            this.grdTraMed.Name = "grdTraMed";
+            this.grdTraMed.Size = new System.Drawing.Size(483, 82);
+            this.grdTraMed.TabIndex = 18;
+            this.grdTraMed.UseCompatibleStateImageBehavior = false;
+            this.grdTraMed.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Serie";
+            this.columnHeader5.Width = 40;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Nro Ticket";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Fecha Emisión";
+            this.columnHeader7.Width = 80;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Digitador";
+            this.columnHeader8.Width = 100;
             // 
             // label41
             // 
@@ -1303,6 +1369,7 @@
             this.chkIdem.TabIndex = 38;
             this.chkIdem.Text = "Idem";
             this.chkIdem.UseVisualStyleBackColor = true;
+            this.chkIdem.CheckedChanged += new System.EventHandler(this.chkIdem_CheckedChanged);
             // 
             // txtTi
             // 
@@ -1311,6 +1378,78 @@
             this.txtTi.ReadOnly = true;
             this.txtTi.Size = new System.Drawing.Size(100, 20);
             this.txtTi.TabIndex = 54;
+            this.txtTi.Text = "0";
+            this.txtTi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // chkCompleto
+            // 
+            this.chkCompleto.AutoSize = true;
+            this.chkCompleto.Location = new System.Drawing.Point(200, 4);
+            this.chkCompleto.Name = "chkCompleto";
+            this.chkCompleto.Size = new System.Drawing.Size(70, 17);
+            this.chkCompleto.TabIndex = 56;
+            this.chkCompleto.Text = "Completo";
+            this.chkCompleto.UseVisualStyleBackColor = true;
+            // 
+            // grdDetCie10
+            // 
+            this.grdDetCie10.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader27});
+            this.grdDetCie10.FullRowSelect = true;
+            this.grdDetCie10.Location = new System.Drawing.Point(10, 561);
+            this.grdDetCie10.MultiSelect = false;
+            this.grdDetCie10.Name = "grdDetCie10";
+            this.grdDetCie10.Size = new System.Drawing.Size(855, 81);
+            this.grdDetCie10.TabIndex = 57;
+            this.grdDetCie10.UseCompatibleStateImageBehavior = false;
+            this.grdDetCie10.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Cie10";
+            this.columnHeader9.Width = 70;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Descripción del diagnóstico";
+            this.columnHeader10.Width = 350;
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.Text = "Procedimientos, exámenes aux, intervenciones...";
+            this.columnHeader27.Width = 350;
+            // 
+            // dgvDetCie10
+            // 
+            this.dgvDetCie10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetCie10.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dgvDetCie10.Location = new System.Drawing.Point(124, 551);
+            this.dgvDetCie10.Name = "dgvDetCie10";
+            this.dgvDetCie10.Size = new System.Drawing.Size(363, 77);
+            this.dgvDetCie10.TabIndex = 58;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Cie10";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 70;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Descripción del diagnóstico";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 350;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Procedimientos, exámenes aux, inervenciones...";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 350;
             // 
             // frmIngresoCie10
             // 
@@ -1318,11 +1457,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 647);
             this.ControlBox = false;
+            this.Controls.Add(this.dgvDetCie10);
+            this.Controls.Add(this.grdDetCie10);
+            this.Controls.Add(this.chkCompleto);
             this.Controls.Add(this.txtTi);
             this.Controls.Add(this.chkIdem);
             this.Controls.Add(this.label42);
             this.Controls.Add(this.label41);
-            this.Controls.Add(this.grpTratamiento);
+            this.Controls.Add(this.groupBoxTraMed);
             this.Controls.Add(this.grpExClinico);
             this.Controls.Add(this.grpAntecedentes);
             this.Controls.Add(this.grpEnfermedad);
@@ -1369,6 +1511,8 @@
             this.grpAntecedentes.PerformLayout();
             this.grpExClinico.ResumeLayout(false);
             this.grpExClinico.PerformLayout();
+            this.groupBoxTraMed.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1467,7 +1611,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.GroupBox grpTratamiento;
+        private System.Windows.Forms.GroupBox groupBoxTraMed;
         private System.Windows.Forms.TextBox txtExClEg;
         private System.Windows.Forms.TextBox txtAnOtr;
         private System.Windows.Forms.Label label43;
@@ -1489,7 +1633,7 @@
         private System.Windows.Forms.TextBox txtTi;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.TextBox txtCajero;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView grdDetalle;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
@@ -1509,5 +1653,19 @@
         private System.Windows.Forms.ColumnHeader columnHeader26;
         private System.Windows.Forms.ListView lstPacientes;
         private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.CheckBox chkCompleto;
+        private System.Windows.Forms.ListView grdTraMed;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ListView grdDetCie10;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader27;
+        private System.Windows.Forms.DataGridView dgvDetCie10;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

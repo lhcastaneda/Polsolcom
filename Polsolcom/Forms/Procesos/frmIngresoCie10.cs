@@ -23,26 +23,80 @@ namespace Polsolcom.Forms.Procesos
         List<Dictionary<string, string>> medics;
         List<Dictionary<string, string>> tickets;
         List<Dictionary<string, string>> pacientes;
-        List<Dictionary<string, string>> tempDetVent;
+        List<Dictionary<string, string>> tmpDetVent = new List<Dictionary<string, string>>();
+        List<Dictionary<string, string>> tmpCie10 = new List<Dictionary<string, string>>();
+        List<Dictionary<string, string>> tmpTratMed = new List<Dictionary<string, string>>();
+        List<Dictionary<string, string>> iCons = new List<Dictionary<string, string>>();
+        List<Dictionary<string, string>> buses;
+        List<Dictionary<string, string>> medicaments;
+
+        string[] tmpDetVenFields = { "Producto", "Cantidad", "Precio", "Con", "Descuento" };
+        string[] tmpCie10Fields = new string[] { "Producto", "Cantidad", "Precio", "Con", "Descuento" };
+        string[] tmpTratMedFields = new string[] { "Producto", "Cantidad", "Precio", "Con", "Descuento" };
+
         string nh;
         int dr;
         int iu;
         int pg;
+        int ce = 0;
+        int ca = 0;
+        int ga = 0;
+        DateTime hi;
 
         public frmIngresoCie10()
         {
             InitializeComponent();
-            tempDetVent = new List<Dictionary<string, string>>();
+
+                        // TODO: This line of code loads data into the 'tipoDocumento.TablaTipo' table. You can move, or remove it, as needed.
+            this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
+            this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
+
+            //frmConsulta.hide
+            //frmResultado.hide
+
+            ce = General.vtrls(Especialidad.esp) ? 1 : 0;
+            ca = Especialidad.esp.Length > 0 ? 1 : 0;
+
+            txtEnAcIni.Enabled = txtEnAcCur.Enabled = txtEnAcRel.Enabled = txtAnPer.Enabled = txtAnFam.Enabled = txtAnEpi.Enabled = txtAnQui.Enabled = txtAnOtr.Enabled = txtExClPs.Enabled = txtExClTl.Enabled = txtExClPa.Enabled = txtExClFc.Enabled = txtExClFr.Enabled = txtExClTm.Enabled = txtExClEg.Enabled = groupBoxTraMed.Enabled = grdDetCie10.Enabled = chkCompleto.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = btnVerifica.Enabled = cmbEspecialidad.Enabled = !(ca + ce == 2);
+            chkCompleto.Checked = (ca + ce == 2);
+            cmbEspecialidad.SelectedIndex = (ca + ce == 2) ? 0 : -1;
+            //cmbBus.Enabled = !(ca == 1);
+            cmbBus.SelectedValue = (ca == 1 ? Usuario.id_area : "");
+            dtpFechaAten.Value = DateTime.Today;
+            txtDigitador.Text = Usuario.usuario;
+
+            General.FillListView(grdDetalle, tmpDetVent, tmpDetVenFields);
+            General.FillListView(grdDetCie10, tmpCie10, tmpCie10Fields);
+            General.FillListView(grdTraMed, tmpTratMed, tmpTratMedFields);
+
+            this.pce(true, true);
         }
 
         private void frmIngresoCie10_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'tipoDocumento.TablaTipo' table. You can move, or remove it, as needed.
-            this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
-            this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
             //Hacemos que no salgan nseleccionados ningún ítem
-            cmbEspecialidad.SelectedIndex = -1;
             cmbDVenta.SelectedIndex = -1;
+
+            string cr = "";
+            if (Especialidad.esp.Length > 0)
+            {
+                cr = "Descripcion='" + Especialidad.esp + "'";
+            }
+            else
+            {
+                cr = "Left(Id_Consultorio,3)='" + Operativo.id_oper + "'";
+            }
+
+            string sql1 = "Select Id_Consultorio,Descripcion From Consultorios Where " + cr + " Order By 2";
+            this.iCons = General.GetDictionaryList(sql1);
+
+            string sql2 = "Select Id_Bus,Bus,Estado From Buses Where Left(Id_Esp,3) = '" + Operativo.id_oper + "' Order By 2";
+            this.buses = General.GetDictionaryList(sql2);
+            General.FillComboBox(cmbBus, this.buses, "Id_Bus", "Bus");
+
+            string sql3 = "Select id_med, descr + Case When Len(conc)>0 Then ' (' + conc + ')' Else '' End medicamento, cla2 + ' (' + pres + ')' presentacion From medicaments Order By 2";
+            this.medicaments = General.GetDictionaryList(sql3);
+
         }
 
         private void chkFiltro_CheckedChanged(object sender, EventArgs e)
@@ -54,6 +108,7 @@ namespace Polsolcom.Forms.Procesos
             chkFechaVent.Enabled = !check;
             dtpFechaEmi.Enabled = !check && chkFechaVent.Checked;
             txtSerie.Enabled = !check;
+            this.Refresh();
         }
 
         private void txtNroDoc_KeyDown(object sender, KeyEventArgs e)
@@ -79,8 +134,8 @@ namespace Polsolcom.Forms.Procesos
 
         public void pcl()
         {
-            Conexion.ExecuteNonQuery("DELETE FROM #tmpDetVent");
-            Conexion.ExecuteNonQuery("DELETE FROM #tmpCie10");
+            tmpDetVent.Clear();
+            tmpCie10.Clear();
 
             int ne = cmbEspecialidad.SelectedIndex;
             DateTime fe = dtpFechaEmi.Value;
@@ -93,7 +148,9 @@ namespace Polsolcom.Forms.Procesos
             int cm = cmbMedico.SelectedIndex;
             string cn = txtCuenta.Text;
 
-            clearFields();
+            setAll<TextBox, string>(this, "Text", "");
+            setAll<ComboBox, int>(this, "SelectedIndex", -1);
+            setAll<Button, bool>(this, "Enabled", false);
 
             btnVerifica.Enabled = true;
 
@@ -109,7 +166,7 @@ namespace Polsolcom.Forms.Procesos
                 cmbBus.SelectedIndex = bs;
                 cmbTurno.SelectedIndex = tr;
                 cmbMedico.SelectedIndex = cm;
-                //txtMedico.Text = (cmbMedico.SelectedIndex == -1?"":medic.especialista)
+                txtMedico.Text = (cmbMedico.SelectedIndex == -1 ? "" : medic["Especialista"]);
             }
 
             dtpFechaAten.Value = fa;
@@ -121,10 +178,18 @@ namespace Polsolcom.Forms.Procesos
 
         }
 
-        void clearFields()
-        { }
-
-        DateTime hi;
+        void setAll<A, B>(Control control, string property, B value)
+        {
+            foreach (Control subControl in control.Controls)
+            {
+                if (subControl is A)
+                {
+                    Type t = subControl.GetType();
+                    PropertyInfo p = t.GetProperty(property);
+                    p.SetValue(subControl, value);
+                }
+            }
+        }
 
         private int pfv()
         {
@@ -220,7 +285,7 @@ namespace Polsolcom.Forms.Procesos
                 {
                     if (ticket["Anulado"] != "")
                     {
-                        MessageBox.Show("N° de documento de venta esta anulado ...", "Anulado");
+                        MessageBox.Show("N° de documento de venta esta anulado ...", "Advertencia");
                         pcl();
                         return;
                     }
@@ -236,7 +301,7 @@ namespace Polsolcom.Forms.Procesos
 
         public int vexis(string sql, string msg, bool cnd, string pex)
         {
-            int c = Conexion.ExecuteScalar(sql);
+            int c = Conexion.ExecuteScalar<int>(sql);
 
             if (!cnd ? c == 0 : c > 0)
             {
@@ -293,7 +358,7 @@ namespace Polsolcom.Forms.Procesos
             txtCajero.Text = "CAJERO: ( " + ticket["Digitador"] + " )";
             this.nh = ticket["Nro_Historia"];
 
-            tempDetVent.Clear();
+            tmpDetVent.Clear();
 
             string detSql = "Select D.*,P.Descripcion From Detalles D Inner Join Productos P On D.Id_Producto=P.Id_Producto Where Nro_Historia='" + this.nh + "'";
             List<Dictionary<string, string>> detalles = General.GetDictionaryList(detSql);
@@ -332,33 +397,33 @@ namespace Polsolcom.Forms.Procesos
 
                 pce(true, true);//Change
                 dtpFechaAten.Text = cabCie10["Fecha_Atencion"];
-                cmbBus.SelectedValue = cabCie10["id_bus"];
-                cmbTurno.SelectedValue = cabCie10["turno"];
-                cmbMedico.SelectedValue = cabCie10["cmp"];
-                txtMedico.Text = cmbMedico.SelectedIndex != -1 ? "" : medic["especialista"];
-                txtDigitador.Text = General.TradUser(cabCie10["digitador"]);
-                txtEnAcIni.Text = cabCie10["en_ac_ini"];
-                txtEnAcCur.Text = cabCie10["en_ac_cur"];
-                txtEnAcRel.Text = cabCie10["en_ac_rel"];
-                txtAnPer.Text = cabCie10["an_per"];
-                txtAnFam.Text = cabCie10["an_fam"];
-                txtAnEpi.Text = cabCie10["an_epi"];
-                txtAnQui.Text = cabCie10["an_qui"];
-                txtAnOtr.Text = cabCie10["an_otr"];
-                txtExClPs.Text = (cabCie10["ex_cl_ps"].Length == 0 ? "0.00" : cabCie10["ex_cl_ps"]);
-                txtExClTl.Text = (cabCie10["ex_cl_tl"].Length == 0 ? "0.00" : cabCie10["ex_cl_tl"]);
-                txtExClPa.Text = cabCie10["ex_cl_pa"];
-                txtExClFc.Text = (cabCie10["ex_cl_fc"].Length == 0 ? "0" : cabCie10["ex_cl_fc"]);
-                txtExClFr.Text = (cabCie10["ex_cl_fr"].Length == 0 ? "0" : cabCie10["ex_cl_fr"]);
-                txtExClTm.Text = (cabCie10["ex_cl_tm"].Length == 0 ? "0" : cabCie10["ex_cl_tm"]);
-                txtExClEg.Text = cabCie10["ex_cl_eg"];
-                txtObservacion.Text = cabCie10["observacion"];
-                dtpFechaIngreso.Value = DateTime.Parse(cabCie10["fecha_ingreso"]);
+                cmbBus.SelectedValue = cabCie10["Id_Bus"];
+                cmbTurno.SelectedValue = cabCie10["Turno"];
+                cmbMedico.SelectedValue = cabCie10["CMP"];
+                txtMedico.Text = cmbMedico.SelectedIndex == -1 ? "" : medic["Especialista"];
+                txtDigitador.Text = General.TradUser(cabCie10["Digitador"]);
+                txtEnAcIni.Text = cabCie10["En_Ac_Ini"];
+                txtEnAcCur.Text = cabCie10["En_Ac_Cur"];
+                txtEnAcRel.Text = cabCie10["En_Ac_Rel"];
+                txtAnPer.Text = cabCie10["An_Per"];
+                txtAnFam.Text = cabCie10["An_Fam"];
+                txtAnEpi.Text = cabCie10["An_Epi"];
+                txtAnQui.Text = cabCie10["An_Qui"];
+                txtAnOtr.Text = cabCie10["An_Otr"];
+                txtExClPs.Text = (cabCie10["Ex_Cl_Ps"].Length == 0 ? "0.00" : cabCie10["Ex_Cl_Ps"]);
+                txtExClTl.Text = (cabCie10["Ex_Cl_Tl"].Length == 0 ? "0.00" : cabCie10["Ex_Cl_Tl"]);
+                txtExClPa.Text = cabCie10["Ex_Cl_PA"];
+                txtExClFc.Text = (cabCie10["Ex_Cl_FC"].Length == 0 ? "0" : cabCie10["Ex_Cl_FC"]);
+                txtExClFr.Text = (cabCie10["Ex_Cl_FR"].Length == 0 ? "0" : cabCie10["Ex_Cl_FR"]);
+                txtExClTm.Text = (cabCie10["Ex_Cl_Tm"].Length == 0 ? "0" : cabCie10["Ex_Cl_Tm"]);
+                txtExClEg.Text = cabCie10["Ex_Cl_Eg"];
+                txtObservacion.Text = cabCie10["Observacion"];
+                dtpFechaIngreso.Value = DateTime.Parse(cabCie10["Fecha_Ingreso"]);
 
-                //tmpCie10.Clear();
+                tmpCie10.Clear();
 
                 string detCie10Sql = "Select DC.*,CI.Descripcion From Det_Cie10 DC Left Join Cie10 CI On DC.Cie10=CI.Cie10 Where Nro_Historia='" + this.nh + "'";
-                List<Dictionary<string, string>> tmpCie10 = General.GetDictionaryList(detCie10Sql);
+                this.tmpCie10 = General.GetDictionaryList(detCie10Sql);
                 this.dr = tmpCie10.Count;
 
                 btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = (dr > 0 && tabIngresoConsulta.SelectedIndex == 0);
@@ -370,7 +435,7 @@ namespace Polsolcom.Forms.Procesos
 
                 this.dr += tratMed.Count;
                 this.iu = 1;
-                this.pg = cabCie10["id_per"] != "" ? 1 : 0;
+                this.pg = cabCie10["Id_Per"] != "" ? 1 : 0;
 
             }
             else
@@ -379,12 +444,13 @@ namespace Polsolcom.Forms.Procesos
                 this.iu = 0;
                 this.pg = 0;
 
-                clearFields();
+                setAll<TextBox, string>(this, "Text", "");
+                setAll<Button, bool>(this, "Enabled", false);
 
                 btnVerifica.Enabled = true;
                 cmbBus.SelectedValue = ("Usuario.id_area".Substring(0, 3) == "Operativo.id_oper") ? "Usuario.id_area" : cmbBus.SelectedValue;
                 txtDigitador.Text = Usuario.usuario;
-                //dtpFechaIngreso = NULL;
+                dtpFechaIngreso.Value = DateTime.Today;
                 if (chkIdem.Checked)
                 {
                     dtpFechaAten.Focus();
@@ -399,6 +465,58 @@ namespace Polsolcom.Forms.Procesos
 
         }
 
+        public void pvl(int lv)
+        {
+            if (lv == 5)
+            {
+                if (tmpDetVent.Count == 0)
+                {
+                    MessageBox.Show("El registro no tiene detalle de venta ... comuniquese con el administrador del sistema ... urgente !!!", "Advertencia");
+                    return;
+                }
+            }
+
+            if (lv == 1 || lv == 5)
+            {
+                if (dtpFechaAten.Enabled && dtpFechaAten.Value < dtpFechaEmi.Value)
+                {
+                    MessageBox.Show("Corregir datos, fecha de atención no puede ser menor que fecha de emisión ...", "Advertencia");
+                    dtpFechaAten.Focus();
+                    return;
+                }
+            }
+
+            if (lv == 2 || lv == 5)
+            {
+
+                if (cmbBus.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Ingrese nombre de  consultorio (Bus) ...", "Advertencia");
+                    cmbBus.Focus();
+                    return;
+                }
+            }
+
+            if (lv == 3 || lv == 5)
+            {
+                if (cmbTurno.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Ingrese turno ...", "Advertencia");
+                    cmbTurno.Focus();
+                    return;
+                }
+            }
+
+            if (lv == 4 || lv == 5)
+            {
+                if (cmbMedico.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Ingrese numero de colegiatura del especialista ...", "Advertencia");
+                    cmbMedico.Focus();
+                    return;
+                }
+            }
+        }
 
         void plaold(string nro_historia)
         {
@@ -534,6 +652,110 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnVerifica_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void chkIdem_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtApePat_TextChanged(object sender, EventArgs e)
+        {
+            this.pfp();
+        }
+
+        private void txtApeMat_TextChanged(object sender, EventArgs e)
+        {
+            this.pfp();
+        }
+
+        private void txtIdPac_TextChanged(object sender, EventArgs e)
+        {
+            this.pfp();
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            this.pfp();
+        }
+
+        private void lstTickets1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.pla();
+        }
+
+        private void lstPacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.pfv();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (this.ga == 0)
+            {
+                ComboBox cb = new ComboBox();
+                grdDetCie10.Controls.Add(cb);
+            }
+
+            //Agregamos de grdDetCie10
+
+
+            this.dr++;
+
+            if (dr > 0)
+            {
+                btnQuitar.Enabled = btnGrabar.Enabled = true;
+            }
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            //Quitamos de grdDetCie10
+
+            this.dr--;
+
+            if (this.dr == 0) {
+                btnGrabar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = true; 
+            }
+
+            this.Refresh();
+
+        }
+
+        private void btnBCie10_Click(object sender, EventArgs e)
+        {
+            //frmCie10.Show();
+        }
+
+        private void btnGrabar_Click(object sender, EventArgs e)
+        {
+            this.pvl(5);
+
+            string nh = this.nh;
+            string fa = dtpFechaAten.Value.ToString();
+            string cm = cmbMedico.SelectedValue.ToString();
+            string bs = cmbBus.SelectedValue.ToString();
+            string tr = cmbTurno.SelectedValue.ToString();
+            string dg = Usuario.id_us;
+            string ei = txtEnAcIni.Text;
+            string ec = txtEnAcCur.Text;
+            string er = txtEnAcRel.Text;
+            string ap = txtAnPer.Text;
+            string af = txtAnFam.Text;
+            string ae = txtAnEpi.Text;
+            string aq = txtAnQui.Text;
+            string ao = txtAnOtr.Text;
+            string ps = txtExClPs.Text;
+            string tl = txtExClTl.Text;
+            string pa = txtExClPa.Text;
+            string fc = txtExClFc.Text;
+            string fr = txtExClFr.Text;
+            string tm = txtExClTm.Text;
+            string eg = txtExClEg.Text;
+            string ob = txtObservacion.Text;
+            double df = (DateTime.Today - this.hi).TotalSeconds;
+
 
         }
     }

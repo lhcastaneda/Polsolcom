@@ -11,6 +11,7 @@ using System.Configuration;
 using Dapper;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -480,30 +481,6 @@ namespace Polsolcom.Dominio.Helpers
 
         }
 
-        /*
-        public static string TradUser(string sus, string nbs)
-        {
-            if (sus.Length > 0 && nbs.Length == 0)
-            {
-                string sql = "SELECT Key_Pass AS Usuario " +
-                    "FROM sysaccusers " +
-                    "WHERE LTRIM(RTRIM(Id_Us)) = '" + sus + "' " +
-                    "OR LTRIM(RTRIM(Key_Pass)) = '" + sus + "' ";
-
-                Dictionary<string, string> nus = General.GetDictionary(sql);
-
-                return cryptgr(nus["Usuario"], false, 1);
-            }
-
-            if (sus.Length > 0 && nbs.Length > 0)
-            {
-                Type thisType = typeof(General);
-                MethodInfo theMethod = thisType.GetMethod(nbs);
-                theMethod.Invoke(null, null);
-
-            }
-        }*/
-
         public static string TradUser(string sVariable)
         {
             string sUsuario = "";
@@ -637,6 +614,116 @@ namespace Polsolcom.Dominio.Helpers
                 drLectura.Close();
             }
             cmb.SelectedIndex = -1;
+        }
+
+        public static string NumeroTexto(string numero, string moneda = "")
+        {
+            string literal = "";
+            string parte_decimal;
+            Regex r;
+
+            numero = numero.Replace(",", ""); //quita las comas de miles  
+            if (numero.IndexOf(".") == -1)
+                numero = numero + ".00"; //no tienedecimal, agrega .00  
+
+            r = new Regex(@"\d{1,9}.\d{1,2}"); //valida formato 0.00 y 999 999 999.00  
+            MatchCollection mc = r.Matches(numero);
+            if (mc.Count > 0)
+            {
+                string[] Num = numero.Split('.'); //divide nro 0000000,00 en entero y decimal  
+
+                parte_decimal = Num[1] + (moneda.Trim() == "" ? "/100 SOLES" : "/100 " + moneda.Trim().ToUpper());
+
+                if (int.Parse(Num[0]) == 0)
+                    literal = "CERO ";
+                else if (int.Parse(Num[0]) > 999999)
+                    literal = Millones(Num[0]);
+                else if (int.Parse(Num[0]) > 999)
+                    literal = Miles(Num[0]);
+                else if (int.Parse(Num[0]) > 99)
+                    literal = Centenas(Num[0]);
+                else if (int.Parse(Num[0]) > 9)
+                    literal = Decenas(Num[0]);
+                else
+                    literal = Unidades(Num[0]);
+
+                return (literal + "CON " + parte_decimal).ToUpper();
+            }
+            else
+                return literal = null;
+        }
+
+
+        private static string Unidades(string numero)
+        {
+            string[] UNIDADES = { "", "UN ", "DOS ", "TRES ", "CUATRO ", "CINCO ", "SEIS ", "SIETE ", "OCHO ", "NUEVE " };
+
+            string num = numero.Substring(numero.Length - 1);
+            return UNIDADES[int.Parse(num)];
+        }
+
+        private static string Decenas(string num)
+        {
+            string[] DECENAS = { "DIEZ ", "ONCE ", "DOCE ", "TRECE ", "CATORCE ", "QUINCE ", "DIECISEIS ", "DIECISIETE ", "DIECIOCHO ", "DIECINUEVE", "VEINTE ", "TREINTA ", "CUARENTA ", "CINCUENTA ", "SESENTA ", "SETENTA ", "OCHENTA ", "NOVENTA " };
+
+            int n = int.Parse(num);
+
+            if (n < 10)
+                return Unidades(num); //para 01...09  
+            else if (n > 19)
+            {
+                string u = Unidades(num); //para 20...99  
+                if (u.Equals(""))
+                    return DECENAS[int.Parse(num.Substring(0, 1)) + 8]; //para 20,30,40,50,60,70,80,90  
+                else
+                    return DECENAS[int.Parse(num.Substring(0, 1)) + 8] + "Y " + u;
+            }
+            else
+                return DECENAS[n - 10]; //numeros entre 11 y 19  
+        }
+
+        private static string Centenas(string num)
+        {
+            string[] CENTENAS = { "", "CIENTO ", "DOSCIENTOS ", "TRECIENTOS ", "CUATROCIENTOS ", "QUINIENTOS ", "SEISCIENTOS ", "SETECIENTOS ", "OCHOCIENTOS ", "NOVECIENTOS " };
+
+            if (int.Parse(num) > 99)
+            {
+                if (int.Parse(num) == 100)
+                    return " CIEN ";
+                else
+                    return CENTENAS[int.Parse(num.Substring(0, 1))] + Decenas(num.Substring(1));
+            }
+            else
+                return Decenas(int.Parse(num) + "");
+        }
+
+        private static string Miles(string numero)
+        {
+            string c = numero.Substring(numero.Length - 3); //lee las centenas  
+            string m = numero.Substring(0, numero.Length - 3); //lee los miles  
+            string n = "";
+
+            if (int.Parse(m) > 0) //se valida que miles tenga valor entero  
+            {
+                n = Centenas(m);
+                return n + "MIL " + Centenas(c);
+            }
+            else
+                return "" + Centenas(c);
+        }
+
+        private static string Millones(string numero)
+        {
+            string miles = numero.Substring(numero.Length - 6); //lee los miles  
+            string millon = numero.Substring(0, numero.Length - 6); //lee los millones  
+            string n = "";
+
+            if (millon.Length > 1)
+                n = Centenas(millon) + "MILLONES ";
+            else
+                n = Unidades(millon) + "MILLON ";
+
+            return n + Miles(miles);
         }
 
         #region Metodos Personal
@@ -1192,6 +1279,19 @@ namespace Polsolcom.Dominio.Helpers
                 }
 
                 listview.Items.Add(new ListViewItem(values.ToArray()));
+            }
+        }
+
+        public static void FillComboBox(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)
+        {
+            comboBox.Items.Clear();
+
+            foreach (Dictionary<string, string> item in items)
+            {
+                ComboboxItem comboBoxItem = new ComboboxItem();
+                comboBoxItem.Text = item[displayMember];
+                comboBoxItem.Value = item[valueMember];
+                comboBox.Items.Add(comboBoxItem);
             }
         }
 
