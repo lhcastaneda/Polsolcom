@@ -1198,11 +1198,11 @@ namespace Polsolcom.Dominio.Helpers
             return sVSQL;
         }
 
-        public static bool vtrls(string parameter)
+        public static int vtrls(string parameter)
         {
             string[] array = { "ECOGRAFIA", "RAYOS X", "MAMOGRAFIA" };
 
-            return array.Contains(parameter);
+            return array.Contains(parameter) ? 1 : 0;
         }
 
         public static void SetPropertyValue(object obj, string propName, object value)
@@ -1313,6 +1313,21 @@ namespace Polsolcom.Dominio.Helpers
             }
 
             return -1;
+        }
+
+        public static void AdjustComboBoxWidth(ComboBox comboBox)
+        {
+            int maxWidth = 0, temp = 0;
+            foreach (var obj in comboBox.Items)
+            {
+                temp = TextRenderer.MeasureText(obj.ToString(), comboBox.Font).Width;
+                if (temp > maxWidth)
+                {
+                    maxWidth = temp;
+                }
+            }
+
+            comboBox.DropDownWidth = maxWidth;
         }
     }
 }

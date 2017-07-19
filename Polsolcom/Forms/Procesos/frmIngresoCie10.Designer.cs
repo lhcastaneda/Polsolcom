@@ -176,6 +176,9 @@
             this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.turnosDS = new Polsolcom.Dominio.Data.TurnosDS();
+            this.tablaTipoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoTableAdapter1 = new Polsolcom.Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
@@ -190,6 +193,8 @@
             this.grpExClinico.SuspendLayout();
             this.groupBoxTraMed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabIngresoConsulta
@@ -601,6 +606,8 @@
             this.cmbMedico.Name = "cmbMedico";
             this.cmbMedico.Size = new System.Drawing.Size(71, 21);
             this.cmbMedico.TabIndex = 7;
+            this.cmbMedico.SelectedIndexChanged += new System.EventHandler(this.cmbMedico_SelectedIndexChanged);
+            this.cmbMedico.Leave += new System.EventHandler(this.cmbMedico_Leave);
             // 
             // label7
             // 
@@ -642,6 +649,7 @@
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.Size = new System.Drawing.Size(318, 20);
             this.txtObservacion.TabIndex = 12;
+            this.txtObservacion.Leave += new System.EventHandler(this.txtObservacion_Leave);
             // 
             // label12
             // 
@@ -659,6 +667,7 @@
             this.cmbBus.Name = "cmbBus";
             this.cmbBus.Size = new System.Drawing.Size(108, 21);
             this.cmbBus.TabIndex = 14;
+            this.cmbBus.Leave += new System.EventHandler(this.cmbBus_Leave);
             // 
             // dtpFechaAten
             // 
@@ -700,11 +709,15 @@
             // 
             // cmbTurno
             // 
+            this.cmbTurno.DataSource = this.tablaTipoBindingSource1;
+            this.cmbTurno.DisplayMember = "Descripcion";
             this.cmbTurno.FormattingEnabled = true;
             this.cmbTurno.Location = new System.Drawing.Point(224, 199);
             this.cmbTurno.Name = "cmbTurno";
             this.cmbTurno.Size = new System.Drawing.Size(103, 21);
             this.cmbTurno.TabIndex = 21;
+            this.cmbTurno.ValueMember = "Id_Tipo";
+            this.cmbTurno.Leave += new System.EventHandler(this.cmbTurno_Leave);
             // 
             // label27
             // 
@@ -1451,6 +1464,20 @@
             this.Column3.Name = "Column3";
             this.Column3.Width = 350;
             // 
+            // turnosDS
+            // 
+            this.turnosDS.DataSetName = "TurnosDS";
+            this.turnosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tablaTipoBindingSource1
+            // 
+            this.tablaTipoBindingSource1.DataMember = "TablaTipo";
+            this.tablaTipoBindingSource1.DataSource = this.turnosDS;
+            // 
+            // tablaTipoTableAdapter1
+            // 
+            this.tablaTipoTableAdapter1.ClearBeforeFill = true;
+            // 
             // frmIngresoCie10
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1513,6 +1540,8 @@
             this.grpExClinico.PerformLayout();
             this.groupBoxTraMed.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1667,5 +1696,8 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private Dominio.Data.TurnosDS turnosDS;
+        private System.Windows.Forms.BindingSource tablaTipoBindingSource1;
+        private Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter1;
     }
 }

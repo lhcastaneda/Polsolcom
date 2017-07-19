@@ -47,9 +47,9 @@ namespace Polsolcom.Forms.Procesos
         {
             InitializeComponent();
 
-                        // TODO: This line of code loads data into the 'tipoDocumento.TablaTipo' table. You can move, or remove it, as needed.
             this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
             this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
+            this.tablaTipoTableAdapter1.Fill(this.turnosDS.TablaTipo);
 
             //frmConsulta.hide
             //frmResultado.hide
@@ -60,7 +60,7 @@ namespace Polsolcom.Forms.Procesos
             txtEnAcIni.Enabled = txtEnAcCur.Enabled = txtEnAcRel.Enabled = txtAnPer.Enabled = txtAnFam.Enabled = txtAnEpi.Enabled = txtAnQui.Enabled = txtAnOtr.Enabled = txtExClPs.Enabled = txtExClTl.Enabled = txtExClPa.Enabled = txtExClFc.Enabled = txtExClFr.Enabled = txtExClTm.Enabled = txtExClEg.Enabled = groupBoxTraMed.Enabled = grdDetCie10.Enabled = chkCompleto.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = btnVerifica.Enabled = cmbEspecialidad.Enabled = !(ca + ce == 2);
             chkCompleto.Checked = (ca + ce == 2);
             cmbEspecialidad.SelectedIndex = (ca + ce == 2) ? 0 : -1;
-            //cmbBus.Enabled = !(ca == 1);
+            cmbBus.Enabled = !(ca == 1);
             cmbBus.SelectedValue = (ca == 1 ? Usuario.id_area : "");
             dtpFechaAten.Value = DateTime.Today;
             txtDigitador.Text = Usuario.usuario;
@@ -74,8 +74,10 @@ namespace Polsolcom.Forms.Procesos
 
         private void frmIngresoCie10_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'turnosDS.TablaTipo' table. You can move, or remove it, as needed.
             //Hacemos que no salgan nseleccionados ningún ítem
             cmbDVenta.SelectedIndex = -1;
+            cmbTurno.SelectedIndex = -1;
 
             string cr = "";
             if (Especialidad.esp.Length > 0)
@@ -585,6 +587,13 @@ namespace Polsolcom.Forms.Procesos
             }
         }
 
+        public string ptc(string lib, int lmd)
+        {
+            string xib = lib.Trim();
+
+            return Conexion.ExecuteScalar<string>("Select " + (lmd == 0 ? "C.Tipo" : "C.Descripcion") + " As Res From Consultorios C Inner Join Buses B On C.Id_Consultorio=B.Id_Esp Where B.Id_Bus = '" + xib + "'");
+        }
+
         void pce(bool lci, bool lrc)
         {
             int xcm = (cmbMedico.SelectedIndex != -1 && lrc? cmbMedico.SelectedIndex: -1);
@@ -610,6 +619,8 @@ namespace Polsolcom.Forms.Procesos
                 item.Value = medic["CMP"];
                 cmbMedico.Items.Add(item);
             }
+
+            General.AdjustComboBoxWidth(cmbMedico);
 
             if (xcm != -1 && lrc)
             {
@@ -757,6 +768,86 @@ namespace Polsolcom.Forms.Procesos
             double df = (DateTime.Today - this.hi).TotalSeconds;
 
 
+        }
+
+        private void cmbBus_Leave(object sender, EventArgs e)
+        {
+            this.pvl(1);
+
+            if (buses[0]["Estado"] != "1")
+            {
+                MessageBox.Show("Consultorio (Bus) seleccionado esta desactivado ...", "Advertencia");
+                cmbBus.SelectedIndex = 1;
+                return;
+            }
+
+            string es = txtEspecialidad.Text;
+            string ib = cmbBus.SelectedValue.ToString();
+
+            string sql = "'Select Count(*) As C From Buses B Inner Join Consultorios C On C.Id_Consultorio=B.Id_Esp Where C.Descripcion = '" + es + "' And Id_Bus = '" + ib + "'";
+            int c = Conexion.ExecuteScalar<int>(sql);
+
+            if (c == 0)
+            {
+                MessageBox.Show("Consultorio (Bus) no corresponde a la especialidad ... desea continuar ?", "Advertencia");
+                cmbBus.SelectedIndex = 1;
+                return;
+            }
+
+            this.pce(false, true);
+        }
+
+        private void cmbMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.pvl(3);
+            txtMedico.Text = cmbMedico.SelectedIndex == -1 ? "" : medics[cmbMedico.SelectedIndex]["Especialista"];
+
+            if (!chkCompleto.Checked)
+            {
+                txtObservacion.Focus();
+            }
+
+            this.Refresh();
+        }
+
+        private void cmbTurno_Leave(object sender, EventArgs e)
+        {
+            this.pvl(2);
+        }
+
+        private void txtObservacion_Leave(object sender, EventArgs e)
+        {
+            this.pvl(4);
+
+            if (this.pg == 0 && tabIngresoConsulta.SelectedIndex == 0)
+            {
+                if (this.ptc(cmbBus.SelectedValue.ToString(), 1) == "LABORATORIO")
+                {
+                    btnGrabar.Enabled = /* .grddetalle.column5.cmbpagado.enabled = */ true;
+                    /*STORE .F. TO .grddetalle.column5.readonly, .grddetalle.column6.readonly
+          .grddetalle.column5.cmbpagado.setfocus */
+                }
+                else {
+                    /*STORE IIF(thisformset.iu=0, .T., .F.) TO .grddetalle.column5.readonly, .grddetalle.column6.readonly
+          .grddetalle.column5.cmbpagado.enabled = IIF(thisformset.iu=0, .F., .T.)*/
+                    btnAgregar.Enabled = true;
+                }
+
+                this.ga = 0;
+            }
+
+            this.Refresh();
+        }
+
+        private void cmbMedico_Leave(object sender, EventArgs e)
+        {
+            this.pvl(3);
+            txtMedico.Text = cmbMedico.SelectedIndex == -1 ? "" : medics[cmbMedico.SelectedIndex]["Especialista"];
+
+            if (chkCompleto.Checked)
+            {
+                txtObservacion.Focus();
+            }
         }
     }
 
