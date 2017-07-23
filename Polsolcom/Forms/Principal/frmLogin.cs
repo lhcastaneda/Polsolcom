@@ -115,6 +115,7 @@ namespace Polsolcom.Forms
                 vKey_Pass = @General.cryptgr(vKey_Pass, true, 1);
 
                 //consulta que trae los datos completos del usuario 
+
                 vSQL = "SELECT Id_Us,Key_Pass AS Usuario,Us_Log AS Clave, ";
                 vSQL = vSQL + "Type AS Tipo, CASE WHEN Nombres IS NULL ";
                 vSQL = vSQL + "THEN 'Root' ELSE Nombres +' '+ Ape_Paterno +' '+ Ape_Materno END AS Descripcion,S.Id_Area, ";

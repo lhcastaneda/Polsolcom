@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -17,17 +18,13 @@ namespace Polsolcom.Forms.Procesos
 {
     public partial class frmIngresoCie10 : Form
     {
-        Dictionary<string, string> paciente;
         Dictionary<string, string> ticket;
-        Dictionary<string, string> medic;
-        List<Dictionary<string, string>> medics;
         List<Dictionary<string, string>> tickets;
         List<Dictionary<string, string>> pacientes;
         List<Dictionary<string, string>> tmpDetVent = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> tmpCie10 = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> tmpTratMed = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> iCons = new List<Dictionary<string, string>>();
-        List<Dictionary<string, string>> buses;
         List<Dictionary<string, string>> medicaments;
 
         string[] tmpDetVenFields = { "Producto", "Cantidad", "Precio", "Con", "Descuento" };
@@ -42,6 +39,8 @@ namespace Polsolcom.Forms.Procesos
         int ca = 0;
         int ga = 0;
         DateTime hi;
+        public int iteration = 0;
+        bool opened = false;
 
         public frmIngresoCie10()
         {
@@ -49,20 +48,23 @@ namespace Polsolcom.Forms.Procesos
 
             this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
             this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
+            this.busesTableAdapter.Fill(this.busesDS.Buses, Operativo.id_oper);
             this.tablaTipoTableAdapter1.Fill(this.turnosDS.TablaTipo);
 
             //frmConsulta.hide
             //frmResultado.hide
 
-            ce = General.vtrls(Especialidad.esp) ? 1 : 0;
-            ca = Especialidad.esp.Length > 0 ? 1 : 0;
+            //ce = General.vtrls(Especialidad.esp);
+            //ca = Especialidad.esp.Length > 0 ? 1 : 0;
+            ce = 0;
+            ce = 0;
 
             txtEnAcIni.Enabled = txtEnAcCur.Enabled = txtEnAcRel.Enabled = txtAnPer.Enabled = txtAnFam.Enabled = txtAnEpi.Enabled = txtAnQui.Enabled = txtAnOtr.Enabled = txtExClPs.Enabled = txtExClTl.Enabled = txtExClPa.Enabled = txtExClFc.Enabled = txtExClFr.Enabled = txtExClTm.Enabled = txtExClEg.Enabled = groupBoxTraMed.Enabled = grdDetCie10.Enabled = chkCompleto.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = btnVerifica.Enabled = cmbEspecialidad.Enabled = !(ca + ce == 2);
             chkCompleto.Checked = (ca + ce == 2);
             cmbEspecialidad.SelectedIndex = (ca + ce == 2) ? 0 : -1;
             cmbBus.Enabled = !(ca == 1);
             cmbBus.SelectedValue = (ca == 1 ? Usuario.id_area : "");
-            dtpFechaAten.Value = DateTime.Today;
+            txtFechaAten.Text = (ca == 1 ? DateTime.Today.ToString() : "");
             txtDigitador.Text = Usuario.usuario;
 
             General.FillListView(grdDetalle, tmpDetVent, tmpDetVenFields);
@@ -92,10 +94,6 @@ namespace Polsolcom.Forms.Procesos
             string sql1 = "Select Id_Consultorio,Descripcion From Consultorios Where " + cr + " Order By 2";
             this.iCons = General.GetDictionaryList(sql1);
 
-            string sql2 = "Select Id_Bus,Bus,Estado From Buses Where Left(Id_Esp,3) = '" + Operativo.id_oper + "' Order By 2";
-            this.buses = General.GetDictionaryList(sql2);
-            General.FillComboBox(cmbBus, this.buses, "Id_Bus", "Bus");
-
             string sql3 = "Select id_med, descr + Case When Len(conc)>0 Then ' (' + conc + ')' Else '' End medicamento, cla2 + ' (' + pres + ')' presentacion From medicaments Order By 2";
             this.medicaments = General.GetDictionaryList(sql3);
 
@@ -107,8 +105,7 @@ namespace Polsolcom.Forms.Procesos
 
             cmbEspecialidad.Enabled = !check;
             cmbDVenta.Enabled = !check;
-            chkFechaVent.Enabled = !check;
-            dtpFechaEmi.Enabled = !check && chkFechaVent.Checked;
+            txtFechaEmi.Enabled = !check;
             txtSerie.Enabled = !check;
             this.Refresh();
         }
@@ -140,11 +137,11 @@ namespace Polsolcom.Forms.Procesos
             tmpCie10.Clear();
 
             int ne = cmbEspecialidad.SelectedIndex;
-            DateTime fe = dtpFechaEmi.Value;
+            string fe = txtFechaEmi.Text;
             int dv = cmbDVenta.SelectedIndex;
             string sr = txtSerie.Text;
 
-            DateTime fa = dtpFechaAten.Value;
+            string fa = txtFechaAten.Text;
             int bs = cmbBus.SelectedIndex;
             int tr = cmbTurno.SelectedIndex;
             int cm = cmbMedico.SelectedIndex;
@@ -157,22 +154,22 @@ namespace Polsolcom.Forms.Procesos
             btnVerifica.Enabled = true;
 
             cmbEspecialidad.SelectedIndex = ne;
-            dtpFechaEmi.Value = fe;
+            txtFechaEmi.Text = fe;
             cmbDVenta.SelectedIndex = dv;
             txtSerie.Text = sr;
             txtCuenta.Text = cn;
 
             if (chkIdem.Checked)
             {
-                dtpFechaAten.Value = fa;
+                txtFechaAten.Text = fa;
                 cmbBus.SelectedIndex = bs;
                 cmbTurno.SelectedIndex = tr;
                 cmbMedico.SelectedIndex = cm;
-                txtMedico.Text = (cmbMedico.SelectedIndex == -1 ? "" : medic["Especialista"]);
+                txtMedico.Text = (cmbMedico.SelectedIndex == -1 ? "" :cmbMedico.SelectedText);
             }
 
-            dtpFechaAten.Value = fa;
-            dtpFechaAten.Enabled = false;
+            txtFechaAten.Text = fa;
+            txtFechaAten.Enabled = false;
             txtTi.Text = "0";
             txtTotal.Text = "0.00";
             txtNroDoc.Focus();
@@ -200,30 +197,31 @@ namespace Polsolcom.Forms.Procesos
             string vSQL = "";
             vSQL += "Select T.Serie,T.Nro_Ticket,";
             vSQL += tabIngresoConsulta.SelectedIndex == 1 ? "T.Fecha_Emision," : "CB.Fecha_Atencion,";
-            vSQL += "T.Digitador+Space(11) Digitador,T.Nro_Historia,T.Id_Paciente,C.Descripcion,X.Orden,T.Anulado";
-            vSQL += tabIngresoConsulta.SelectedIndex == 1 ?" ": ",T.Fecha_Emision ";
+            vSQL += "T.Digitador AS Digitador,T.Nro_Historia,T.Id_Paciente,C.Descripcion,X.Orden,T.Anulado";
+            vSQL += tabIngresoConsulta.SelectedIndex == 1 ? " " : ",T.Fecha_Emision ";
             vSQL += "From Tickets T Inner Join Consultorios C On T.Id_Consultorio=C.Id_Consultorio " + "Inner Join (Select Ape_Paterno+' '+Ape_Materno+', '+Nombres+' ('+SubString(TNCol,2,6)+')' Orden,Id_Personal " + "From Personal Union All Select Descripcion,Id_Tipo From TablaTipo Where Id_Tabla In " + "(Select Id_Tipo From TablaTipo Where Descripcion='VAR_EXTRAS' And Id_Tabla='0'))X On T.CMP=X.Id_Personal ";
-            vSQL += tabIngresoConsulta.SelectedIndex == 1 ?"": "Inner Join Cab_Cie10 CB On CB.Nro_Historia=T.Nro_Historia ";
+            vSQL += tabIngresoConsulta.SelectedIndex == 1 ? "" : "Inner Join Cab_Cie10 CB On CB.Nro_Historia=T.Nro_Historia ";
             vSQL += "Where";
 
             if (tabIngresoConsulta.SelectedIndex == 0)
             {
-                if (chkFiltro.Checked || General.vtrls(Especialidad.esp))
+                if (chkFiltro.Checked || General.vtrls(Especialidad.esp) == 1)
                 {
                     vSQL += cmbEspecialidad.SelectedIndex != -1 ? (" T.Id_Consultorio Like '" + (((DataRowView)cmbEspecialidad.SelectedItem).Row["Id_Consultorio"]).ToString() + "'") : "";
                     vSQL += vSQL.Contains("Like") && cmbEspecialidad.SelectedIndex != -1 ? " And" : "";
-                    vSQL += chkFechaVent.Checked ? (" T.Fecha_Emision Between '" + dtpFechaEmi.Value.ToString() + "' And '" + dtpFechaEmi.Value.AddDays(1).ToString() + "'") : "";
-                    vSQL += vSQL.Contains("Like") && chkFechaVent.Checked ? " And" : "";
+                    vSQL += txtFechaEmi.Text != "  /  /" ? (" T.Fecha_Emision Between '" + txtFechaEmi.Text + "' And '" + DateTime.Parse(txtFechaEmi.Text).AddDays(1).ToString() + "'") : "";
+                    vSQL += vSQL.Contains("Like") && txtFechaEmi.Text != "  /  /" ? " And" : "";
                     vSQL += cmbDVenta.SelectedIndex != -1 ? (" T.DVenta Like '" + (((DataRowView)cmbDVenta.SelectedItem).Row["Id_Tipo"]).ToString() + "'") : "";
                 }
 
                 vSQL += vSQL.Contains("Like") && cmbDVenta.SelectedIndex != -1 ? " And" : "";
                 vSQL += txtSerie.Text.Length > 0 ? (" T.Serie Like '" + txtSerie.Text + "'") : "";
                 vSQL += vSQL.Contains("Like") && txtSerie.Text.Length > 0 ? " And" : "";
-                vSQL += txtNroDoc.Text.Length > 0 ? (" T.Nro_Ticket Like '" + txtNroDoc.Text + "'") : "";
+                vSQL += txtNroDoc.Text.Length > 0 ? (" T.Nro_Ticket Like '" + txtNroDoc.Text + "%'") : "";
             }
             else
             {
+                Dictionary<string, string> paciente = pacientes[General.GetSelectedIndex(lstPacientes)];
                 vSQL += " T.Id_Paciente='" + paciente["id_paciente"] + "'";
             }
 
@@ -232,23 +230,31 @@ namespace Polsolcom.Forms.Procesos
 
             tickets = General.GetDictionaryList(vSQL);
 
-            //General.TradUser()
             if (tickets.Count > 0)
             {
-                string[] fields = {"Serie", "Nro_Ticket", "Fecha_Emision", "Digitador" };
+                string[] fields = { "Serie", "Nro_Ticket", "Fecha_Emision", "Digitador" };
 
                 if (tabIngresoConsulta.SelectedIndex == 0)
                 {
                     General.FillListView(lstTickets0, tickets, fields);
+                    for (int i = 0; i < lstTickets0.Items.Count; i++)
+                    {
+                        lstTickets0.Items[i].SubItems["Digitador"].Text = General.TradUser(lstTickets0.Items[i].SubItems["Digitador"].Text);
+                    }
                     lstTickets0.Focus();
                 }
                 else
                 {
                     General.FillListView(lstTickets1, tickets, fields);
+                    for (int i = 0; i < lstTickets1.Items.Count; i++)
+                    {
+                        lstTickets1.Items[i].SubItems["Digitador"].Text = General.TradUser(lstTickets1.Items[i].SubItems["Digitador"].Text);
+                    }
                     lstTickets1.Focus();
                 }
             }
 
+           
             return tickets.Count;
         }
 
@@ -269,17 +275,11 @@ namespace Polsolcom.Forms.Procesos
             }
         }
 
-        private void chkFechaVent_CheckedChanged(object sender, EventArgs e)
-        {
-            dtpFechaEmi.Enabled = chkFechaVent.Checked;
-        }
-
-        bool opened = false;
-
         private void lstTickets_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+                iteration++;
                 int index = General.GetSelectedIndex((ListView)sender);
                 ticket = tickets[index];
 
@@ -297,6 +297,11 @@ namespace Polsolcom.Forms.Procesos
                     opened = true;
                 }
 
+                if (iteration == ((ListView)sender).Items.Count)
+                {
+                    opened = false;
+                    iteration = 0;
+                }
             }
         }
 
@@ -324,6 +329,7 @@ namespace Polsolcom.Forms.Procesos
 
         public void pfp(string lp = null)
         {
+
             string xp = lp;
             int np = tabIngresoConsulta.SelectedIndex;
 
@@ -336,7 +342,6 @@ namespace Polsolcom.Forms.Procesos
             {
                 string sql = General.DevuelveQueryPaciente(pt, mt, nm, "", ip, "", 2, 0);
                 pacientes = General.GetDictionaryList(sql);
-                paciente = pacientes[0];
                 General.FillListView(lstPacientes, pacientes, new string[] { "Paciente" });
             }
 
@@ -350,14 +355,16 @@ namespace Polsolcom.Forms.Procesos
 
         public void pla()
         {
+            Dictionary<string, string> paciente = pacientes[General.GetSelectedIndex(lstPacientes)];
+
             txtPaciente.Text = paciente["Ape_Paterno"] + " " + paciente["Ape_Materno"] + ", " + paciente["Nombre"] + " (" + paciente["Id_Paciente"] + ")";
-            dtpFechaNac.Value = DateTime.Parse(paciente["Fecha_Nac"]);
+            txtFechaNac.Text = paciente["Fecha_Nac"];
             txtEdad.Text = paciente["Edad"];
             txtSexo.Text = paciente["Sexo"] == "M" ? "MASCULINO" : "FEMENINO";
             txtOrden.Text = ticket["Orden"];
             txtEspecialidad.Text = ticket["Descripcion"];
-            dtpFechaEmiFil.Value = DateTime.Parse(ticket["Fecha_Emision"]);
-            txtCajero.Text = "CAJERO: ( " + ticket["Digitador"] + " )";
+            txtFechaEmiFil.Text = ticket["Fecha_Emision"];
+            txtCajero.Text = "CAJERO: ( " + General.TradUser(ticket["Digitador"]) + " )";
             this.nh = ticket["Nro_Historia"];
 
             tmpDetVent.Clear();
@@ -387,22 +394,22 @@ namespace Polsolcom.Forms.Procesos
                     MessageBox.Show("Ya fue procesada la historia clinica ...", "Advertencia");
                     string ia = Usuario.id_area;//REEMPLAZAR
                     string iu = cabCie10["Digitador"];
-                    /*
+
                     //La siguiente línea no se pudo ejecutar
-                    if (ia.Substring(0, 3) == Operativo.id_oper)//REEMPLAZAR
+                    if ((ia.Length > 3 ? ia.Substring(0, 3) : ia) == Operativo.id_oper)//REEMPLAZAR
                     {
                         vexis("Select Count(*) as C From sysaccusers Where Id_Us = '" + iu + "' And Id_Area = '" + ia + "'", "Este registro no corresponde a su consultorio", false, "pcl");
-                    }*/
+                    }
 
                     txtNroDoc.Focus();
                 }
 
                 pce(true, true);//Change
-                dtpFechaAten.Text = cabCie10["Fecha_Atencion"];
+                txtFechaAten.Text = cabCie10["Fecha_Atencion"];
                 cmbBus.SelectedValue = cabCie10["Id_Bus"];
                 cmbTurno.SelectedValue = cabCie10["Turno"];
                 cmbMedico.SelectedValue = cabCie10["CMP"];
-                txtMedico.Text = cmbMedico.SelectedIndex == -1 ? "" : medic["Especialista"];
+                txtMedico.Text =cmbMedico.SelectedText;
                 txtDigitador.Text = General.TradUser(cabCie10["Digitador"]);
                 txtEnAcIni.Text = cabCie10["En_Ac_Ini"];
                 txtEnAcCur.Text = cabCie10["En_Ac_Cur"];
@@ -420,7 +427,7 @@ namespace Polsolcom.Forms.Procesos
                 txtExClTm.Text = (cabCie10["Ex_Cl_Tm"].Length == 0 ? "0" : cabCie10["Ex_Cl_Tm"]);
                 txtExClEg.Text = cabCie10["Ex_Cl_Eg"];
                 txtObservacion.Text = cabCie10["Observacion"];
-                dtpFechaIngreso.Value = DateTime.Parse(cabCie10["Fecha_Ingreso"]);
+                txtFechaIngreso.Text = cabCie10["Fecha_Ingreso"];
 
                 tmpCie10.Clear();
 
@@ -450,12 +457,12 @@ namespace Polsolcom.Forms.Procesos
                 setAll<Button, bool>(this, "Enabled", false);
 
                 btnVerifica.Enabled = true;
-                cmbBus.SelectedValue = ("Usuario.id_area".Substring(0, 3) == "Operativo.id_oper") ? "Usuario.id_area" : cmbBus.SelectedValue;
+                cmbBus.SelectedValue = ((Usuario.id_area.Length > 3? Usuario.id_area.Substring(0, 3): Usuario.id_area) == Operativo.id_oper) ? Usuario.id_area : cmbBus.SelectedValue;
                 txtDigitador.Text = Usuario.usuario;
-                dtpFechaIngreso.Value = DateTime.Today;
+                txtFechaIngreso.Text = "  /  /";
                 if (chkIdem.Checked)
                 {
-                    dtpFechaAten.Focus();
+                    txtFechaAten.Focus();
                 }
                 else
                 {
@@ -480,10 +487,10 @@ namespace Polsolcom.Forms.Procesos
 
             if (lv == 1 || lv == 5)
             {
-                if (dtpFechaAten.Enabled && dtpFechaAten.Value < dtpFechaEmi.Value)
+                if (DateTime.Parse(txtFechaAten.Text) < DateTime.Parse(txtFechaEmi.Text))
                 {
                     MessageBox.Show("Corregir datos, fecha de atención no puede ser menor que fecha de emisión ...", "Advertencia");
-                    dtpFechaAten.Focus();
+                    txtFechaAten.Focus();
                     return;
                 }
             }
@@ -520,73 +527,6 @@ namespace Polsolcom.Forms.Procesos
             }
         }
 
-        void plaold(string nro_historia)
-        {
-            txtPaciente.Text = Paciente.Ape_Paterno + " " + Paciente.Ape_Materno + ", " + Paciente.Nombre + "(" + Paciente.Id_Paciente + ")";
-            dtpFechaNac.Value = DateTime.Parse(Paciente.Fecha_Nac);
-            txtEdad.Text = Paciente.Edad;
-
-
-            string sql1 = "Select Nro_Historia, Fecha_Atencion, CMP, Id_Bus, Turno, Digitador, Fecha_Ingreso, Tsg From Cab_Cie10 Where Nro_Historia = '" + nro_historia + "'";
-
-            SqlCommand cmd1 = new SqlCommand(sql1, Conexion.CNN);
-            SqlDataReader dr1 = cmd1.ExecuteReader();
-            CabCie10 cabCie10 = null;
-
-            while (dr1.Read())
-            {
-                cabCie10 = new CabCie10()
-                {
-                    Nro_Historia = dr1.GetValue(0).ToString(),
-                    Fecha_Atencion = DateTime.Parse(dr1.GetValue(1).ToString()),
-                    CMP = dr1.GetValue(2).ToString(),
-                    Id_Bus = dr1.GetValue(3).ToString(),
-                    Turno = dr1.GetValue(4).ToString(),
-                    Digitador = dr1.GetValue(5).ToString(),
-                    Fecha_Ingreso = dr1.GetValue(6).ToString(),
-                    Tsg = dr1.GetValue(7).ToString(),
-                };
-            }
-
-            //Comprobamos si hay datos
-            if (cabCie10 != null)
-            {
-                if (tabIngresoConsulta.SelectedIndex == 0)
-                {
-                    MessageBox.Show("Ya fue procesada la historia clinica ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-
-                    string ia = Usuario.id_area;
-                    string iu = cabCie10.Digitador;
-
-                    if (iu.Substring(0, 3) == Operativo.id_oper)
-                    {
-                        string sql2 = "Select Count(*) As C From sysaccusers Where Id_Us = '" + iu + "' And Id_Area= '" + ia + "'";
-
-                        SqlCommand cmd2 = new SqlCommand(sql2, Conexion.CNN);
-                        SqlDataReader dr2 = cmd2.ExecuteReader();
-                        int count = 0;
-                        while (dr2.Read())
-                        {
-                            count = int.Parse(dr2.GetValue(0).ToString());
-                        }
-
-                        if (count == 0)
-                        {
-                            MessageBox.Show("Este registro no corresponde a su consultorio", "Ingreso y consulta de atenciones realizadas", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            return;
-                        }
-                    }
-
-                    txtNroDoc.Focus();
-                }
-
-                pce(true, true);
-            }
-            else {
-
-            }
-        }
-
         public string ptc(string lib, int lmd)
         {
             string xib = lib.Trim();
@@ -596,45 +536,34 @@ namespace Polsolcom.Forms.Procesos
 
         void pce(bool lci, bool lrc)
         {
-            int xcm = (cmbMedico.SelectedIndex != -1 && lrc? cmbMedico.SelectedIndex: -1);
-            cmbMedico.Items.Clear();
+            int xcm = (cmbMedico.SelectedIndex != -1 && lrc ? cmbMedico.SelectedIndex : -1);
 
             if (lci && lrc)
             {
                 BorrarTablaEspecialista();
-                string sql1 = "Select Id_Personal As NCMP, SubString(TNCol,2,7) As CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + Nombres As Especialista, MB.Id_Bus "+
-                    "Into #tmpEspecialista From Personal P Inner Join MedBus MB On P.Id_Personal = MB.CMP Order By 3";
+                string sql1 = "Select Id_Personal As NCMP, SubString(TNCol,2,7) As CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + Nombres As Especialista, MB.Id_Bus " +
+                    "Into tmpEspecialista From Personal P Inner Join MedBus MB On P.Id_Personal = MB.CMP Order By 3";
                 Conexion.ExecuteNonQuery(sql1);
             }
 
-            string bus = (cmbBus.SelectedIndex == -1 ? "": cmbBus.SelectedValue.ToString());
-
-            string sql2 = "Select * From #tmpEspecialista " + (lci ? "": "Where Id_Bus Like '" + bus + "%'") + " Order By 3";
-            medics = General.GetDictionaryList(sql2);
-
-            foreach (Dictionary<string, string> medic in medics)
-            {
-                ComboboxItem item = new ComboboxItem();
-                item.Text = medic["CMP"] + " | " + medic["Especialista"];
-                item.Value = medic["CMP"];
-                cmbMedico.Items.Add(item);
-            }
+            string bus = (cmbBus.SelectedIndex == -1 || lci ? "%" : cmbBus.SelectedValue.ToString());
+            //Llenamos especialistas
+            this.tmpEspecialistaTableAdapter.Fill(this.tmpEspecialistaDS.tmpEspecialista, bus);
 
             General.AdjustComboBoxWidth(cmbMedico);
 
             if (xcm != -1 && lrc)
             {
                 cmbMedico.SelectedIndex = xcm;
-                txtMedico.Text = xcm == -1 ? "" : medics[xcm]["Especialista"];
-                this.medic = medics[xcm];
+                txtMedico.Text = cmbMedico.SelectedText;
             }
 
             Refresh();
         }
 
-        private string BorrarTablaTemporal(bool execute = true)
+        private string BorrarTablaEspecialista(bool execute = true)
         {
-            string vSQL = "IF OBJECT_ID('tempdb.dbo.#tmpEspecialista', 'U') IS NOT NULL DROP TABLE #tmpEspecialista;";
+            string vSQL = "IF OBJECT_ID('dbo.tmpEspecialista', 'U') IS NOT NULL DROP TABLE tmpEspecialista;";
 
             if (execute)
             {
@@ -642,14 +571,6 @@ namespace Polsolcom.Forms.Procesos
                 Conexion.CMD.ExecuteNonQuery();
             }
 
-            return vSQL;
-        }
-
-        private string BorrarTablaEspecialista()
-        {
-            string vSQL = "IF OBJECT_ID('tempdb.dbo.#tmpEspecialista', 'U') IS NOT NULL DROP TABLE #tmpEspecialista;";
-            Conexion.CMD.CommandText = vSQL;
-            Conexion.CMD.ExecuteNonQuery();
             return vSQL;
         }
 
@@ -726,8 +647,9 @@ namespace Polsolcom.Forms.Procesos
 
             this.dr--;
 
-            if (this.dr == 0) {
-                btnGrabar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = true; 
+            if (this.dr == 0)
+            {
+                btnGrabar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = true;
             }
 
             this.Refresh();
@@ -744,7 +666,7 @@ namespace Polsolcom.Forms.Procesos
             this.pvl(5);
 
             string nh = this.nh;
-            string fa = dtpFechaAten.Value.ToString();
+            string fa = txtFechaAten.Text;
             string cm = cmbMedico.SelectedValue.ToString();
             string bs = cmbBus.SelectedValue.ToString();
             string tr = cmbTurno.SelectedValue.ToString();
@@ -774,7 +696,9 @@ namespace Polsolcom.Forms.Procesos
         {
             this.pvl(1);
 
-            if (buses[0]["Estado"] != "1")
+            DataRow bus = (DataRow)cmbBus.SelectedItem;
+
+            if (bus["Estado"].ToString() != "1")
             {
                 MessageBox.Show("Consultorio (Bus) seleccionado esta desactivado ...", "Advertencia");
                 cmbBus.SelectedIndex = 1;
@@ -800,7 +724,7 @@ namespace Polsolcom.Forms.Procesos
         private void cmbMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.pvl(3);
-            txtMedico.Text = cmbMedico.SelectedIndex == -1 ? "" : medics[cmbMedico.SelectedIndex]["Especialista"];
+            txtMedico.Text = cmbMedico.SelectedIndex == -1 ? "" : cmbMedico.SelectedText;
 
             if (!chkCompleto.Checked)
             {
@@ -827,7 +751,8 @@ namespace Polsolcom.Forms.Procesos
                     /*STORE .F. TO .grddetalle.column5.readonly, .grddetalle.column6.readonly
           .grddetalle.column5.cmbpagado.setfocus */
                 }
-                else {
+                else
+                {
                     /*STORE IIF(thisformset.iu=0, .T., .F.) TO .grddetalle.column5.readonly, .grddetalle.column6.readonly
           .grddetalle.column5.cmbpagado.enabled = IIF(thisformset.iu=0, .F., .T.)*/
                     btnAgregar.Enabled = true;
@@ -842,15 +767,35 @@ namespace Polsolcom.Forms.Procesos
         private void cmbMedico_Leave(object sender, EventArgs e)
         {
             this.pvl(3);
-            txtMedico.Text = cmbMedico.SelectedIndex == -1 ? "" : medics[cmbMedico.SelectedIndex]["Especialista"];
+            txtMedico.Text = cmbMedico.SelectedIndex == -1 ? "" :cmbMedico.SelectedText;
 
             if (chkCompleto.Checked)
             {
                 txtObservacion.Focus();
             }
         }
+
+        private void txtFechaEmi_Validating(object sender, CancelEventArgs e)
+        {
+            DateTime rs;
+            if (!DateTime.TryParseExact(this.txtFechaEmi.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out rs))
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void txtFechaAten_Validating(object sender, CancelEventArgs e)
+        {
+            DateTime rs;
+            if (!DateTime.TryParseExact(this.txtFechaAten.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out rs))
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void txtNroDoc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
-
-   
-
 }

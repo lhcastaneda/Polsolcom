@@ -31,7 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.tabIngresoConsulta = new System.Windows.Forms.TabControl();
             this.tabIngresar = new System.Windows.Forms.TabPage();
-            this.chkFechaVent = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtFechaEmi = new System.Windows.Forms.MaskedTextBox();
             this.lstTickets0 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -41,7 +42,6 @@
             this.consultoriosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
             this.chkFiltro = new System.Windows.Forms.CheckBox();
-            this.dtpFechaEmi = new System.Windows.Forms.DateTimePicker();
             this.txtNroDoc = new System.Windows.Forms.TextBox();
             this.txtSerie = new System.Windows.Forms.TextBox();
             this.cmbDVenta = new System.Windows.Forms.ComboBox();
@@ -77,6 +77,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.cmbMedico = new System.Windows.Forms.ComboBox();
+            this.tmpEspecialistaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tmpEspecialistaDS = new Polsolcom.Dominio.Data.tmpEspecialistaDS();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -84,16 +86,20 @@
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbBus = new System.Windows.Forms.ComboBox();
-            this.dtpFechaAten = new System.Windows.Forms.DateTimePicker();
+            this.busesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.busesDS = new Polsolcom.Dominio.Data.BusesDS();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
             this.label26 = new System.Windows.Forms.Label();
             this.txtDigitador = new System.Windows.Forms.TextBox();
             this.cmbTurno = new System.Windows.Forms.ComboBox();
+            this.tablaTipoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.turnosDS = new Polsolcom.Dominio.Data.TurnosDS();
             this.label27 = new System.Windows.Forms.Label();
             this.txtCuenta = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.grpFiliacion = new System.Windows.Forms.GroupBox();
+            this.txtFechaEmiFil = new System.Windows.Forms.MaskedTextBox();
+            this.txtFechaNac = new System.Windows.Forms.MaskedTextBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtCajero = new System.Windows.Forms.TextBox();
             this.grdDetalle = new System.Windows.Forms.ListView();
@@ -105,13 +111,11 @@
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.btnVerifica = new System.Windows.Forms.Button();
             this.btnBCie10 = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.dtpFechaEmiFil = new System.Windows.Forms.DateTimePicker();
             this.txtEspecialidad = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -176,9 +180,11 @@
             this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.turnosDS = new Polsolcom.Dominio.Data.TurnosDS();
-            this.tablaTipoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tablaTipoTableAdapter1 = new Polsolcom.Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter();
+            this.txtFechaAten = new System.Windows.Forms.MaskedTextBox();
+            this.txtFechaIngreso = new System.Windows.Forms.MaskedTextBox();
+            this.busesTableAdapter = new Polsolcom.Dominio.Data.BusesDSTableAdapters.BusesTableAdapter();
+            this.tmpEspecialistaTableAdapter = new Polsolcom.Dominio.Data.tmpEspecialistaDSTableAdapters.tmpEspecialistaTableAdapter();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
@@ -186,15 +192,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
             this.tabConsultar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).BeginInit();
             this.grpFiliacion.SuspendLayout();
             this.grpEnfermedad.SuspendLayout();
             this.grpAntecedentes.SuspendLayout();
             this.grpExClinico.SuspendLayout();
             this.groupBoxTraMed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabIngresoConsulta
@@ -209,11 +219,11 @@
             // 
             // tabIngresar
             // 
-            this.tabIngresar.Controls.Add(this.chkFechaVent);
+            this.tabIngresar.Controls.Add(this.label4);
+            this.tabIngresar.Controls.Add(this.txtFechaEmi);
             this.tabIngresar.Controls.Add(this.lstTickets0);
             this.tabIngresar.Controls.Add(this.cmbEspecialidad);
             this.tabIngresar.Controls.Add(this.chkFiltro);
-            this.tabIngresar.Controls.Add(this.dtpFechaEmi);
             this.tabIngresar.Controls.Add(this.txtNroDoc);
             this.tabIngresar.Controls.Add(this.txtSerie);
             this.tabIngresar.Controls.Add(this.cmbDVenta);
@@ -230,16 +240,24 @@
             this.tabIngresar.Text = "Ingresar datos";
             this.tabIngresar.UseVisualStyleBackColor = true;
             // 
-            // chkFechaVent
+            // label4
             // 
-            this.chkFechaVent.AutoSize = true;
-            this.chkFechaVent.Location = new System.Drawing.Point(186, 8);
-            this.chkFechaVent.Name = "chkFechaVent";
-            this.chkFechaVent.Size = new System.Drawing.Size(84, 17);
-            this.chkFechaVent.TabIndex = 18;
-            this.chkFechaVent.Text = "Fecha Vent.";
-            this.chkFechaVent.UseVisualStyleBackColor = true;
-            this.chkFechaVent.CheckedChanged += new System.EventHandler(this.chkFechaVent_CheckedChanged);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(184, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Fecha Vent.";
+            // 
+            // txtFechaEmi
+            // 
+            this.txtFechaEmi.Location = new System.Drawing.Point(188, 27);
+            this.txtFechaEmi.Mask = "00/00/0000";
+            this.txtFechaEmi.Name = "txtFechaEmi";
+            this.txtFechaEmi.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaEmi.TabIndex = 19;
+            this.txtFechaEmi.ValidatingType = typeof(System.DateTime);
+            this.txtFechaEmi.Validating += new System.ComponentModel.CancelEventHandler(this.txtFechaEmi_Validating);
             // 
             // lstTickets0
             // 
@@ -310,15 +328,6 @@
             this.chkFiltro.UseVisualStyleBackColor = true;
             this.chkFiltro.CheckedChanged += new System.EventHandler(this.chkFiltro_CheckedChanged);
             // 
-            // dtpFechaEmi
-            // 
-            this.dtpFechaEmi.Enabled = false;
-            this.dtpFechaEmi.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaEmi.Location = new System.Drawing.Point(187, 28);
-            this.dtpFechaEmi.Name = "dtpFechaEmi";
-            this.dtpFechaEmi.Size = new System.Drawing.Size(100, 20);
-            this.dtpFechaEmi.TabIndex = 14;
-            // 
             // txtNroDoc
             // 
             this.txtNroDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -326,6 +335,7 @@
             this.txtNroDoc.Name = "txtNroDoc";
             this.txtNroDoc.Size = new System.Drawing.Size(88, 20);
             this.txtNroDoc.TabIndex = 11;
+            this.txtNroDoc.TextChanged += new System.EventHandler(this.txtNroDoc_TextChanged);
             this.txtNroDoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroDoc_KeyDown);
             // 
             // txtSerie
@@ -601,13 +611,26 @@
             // 
             // cmbMedico
             // 
+            this.cmbMedico.DataSource = this.tmpEspecialistaBindingSource;
+            this.cmbMedico.DisplayMember = "FullEspecialista";
             this.cmbMedico.FormattingEnabled = true;
             this.cmbMedico.Location = new System.Drawing.Point(6, 250);
             this.cmbMedico.Name = "cmbMedico";
             this.cmbMedico.Size = new System.Drawing.Size(71, 21);
             this.cmbMedico.TabIndex = 7;
+            this.cmbMedico.ValueMember = "NCMP";
             this.cmbMedico.SelectedIndexChanged += new System.EventHandler(this.cmbMedico_SelectedIndexChanged);
             this.cmbMedico.Leave += new System.EventHandler(this.cmbMedico_Leave);
+            // 
+            // tmpEspecialistaBindingSource
+            // 
+            this.tmpEspecialistaBindingSource.DataMember = "tmpEspecialista";
+            this.tmpEspecialistaBindingSource.DataSource = this.tmpEspecialistaDS;
+            // 
+            // tmpEspecialistaDS
+            // 
+            this.tmpEspecialistaDS.DataSetName = "tmpEspecialistaDS";
+            this.tmpEspecialistaDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label7
             // 
@@ -662,33 +685,30 @@
             // 
             // cmbBus
             // 
+            this.cmbBus.DataSource = this.busesBindingSource;
+            this.cmbBus.DisplayMember = "Bus";
             this.cmbBus.FormattingEnabled = true;
             this.cmbBus.Location = new System.Drawing.Point(112, 200);
             this.cmbBus.Name = "cmbBus";
             this.cmbBus.Size = new System.Drawing.Size(108, 21);
             this.cmbBus.TabIndex = 14;
+            this.cmbBus.ValueMember = "Id_Bus";
             this.cmbBus.Leave += new System.EventHandler(this.cmbBus_Leave);
             // 
-            // dtpFechaAten
+            // busesBindingSource
             // 
-            this.dtpFechaAten.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaAten.Location = new System.Drawing.Point(6, 201);
-            this.dtpFechaAten.Name = "dtpFechaAten";
-            this.dtpFechaAten.Size = new System.Drawing.Size(99, 20);
-            this.dtpFechaAten.TabIndex = 15;
+            this.busesBindingSource.DataMember = "Buses";
+            this.busesBindingSource.DataSource = this.busesDS;
+            // 
+            // busesDS
+            // 
+            this.busesDS.DataSetName = "BusesDS";
+            this.busesDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // dtpFechaIngreso
-            // 
-            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaIngreso.Location = new System.Drawing.Point(328, 289);
-            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
-            this.dtpFechaIngreso.Size = new System.Drawing.Size(98, 20);
-            this.dtpFechaIngreso.TabIndex = 29;
             // 
             // label26
             // 
@@ -719,6 +739,16 @@
             this.cmbTurno.ValueMember = "Id_Tipo";
             this.cmbTurno.Leave += new System.EventHandler(this.cmbTurno_Leave);
             // 
+            // tablaTipoBindingSource1
+            // 
+            this.tablaTipoBindingSource1.DataMember = "TablaTipo";
+            this.tablaTipoBindingSource1.DataSource = this.turnosDS;
+            // 
+            // turnosDS
+            // 
+            this.turnosDS.DataSetName = "TurnosDS";
+            this.turnosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label27
             // 
             this.label27.AutoSize = true;
@@ -746,18 +776,18 @@
             // 
             // grpFiliacion
             // 
+            this.grpFiliacion.Controls.Add(this.txtFechaEmiFil);
+            this.grpFiliacion.Controls.Add(this.txtFechaNac);
             this.grpFiliacion.Controls.Add(this.txtTotal);
             this.grpFiliacion.Controls.Add(this.txtCajero);
             this.grpFiliacion.Controls.Add(this.grdDetalle);
             this.grpFiliacion.Controls.Add(this.label10);
             this.grpFiliacion.Controls.Add(this.label9);
-            this.grpFiliacion.Controls.Add(this.dtpFechaNac);
             this.grpFiliacion.Controls.Add(this.btnVerifica);
             this.grpFiliacion.Controls.Add(this.btnBCie10);
             this.grpFiliacion.Controls.Add(this.btnGrabar);
             this.grpFiliacion.Controls.Add(this.btnQuitar);
             this.grpFiliacion.Controls.Add(this.btnAgregar);
-            this.grpFiliacion.Controls.Add(this.dtpFechaEmiFil);
             this.grpFiliacion.Controls.Add(this.txtEspecialidad);
             this.grpFiliacion.Controls.Add(this.label25);
             this.grpFiliacion.Controls.Add(this.label24);
@@ -774,6 +804,24 @@
             this.grpFiliacion.TabIndex = 31;
             this.grpFiliacion.TabStop = false;
             this.grpFiliacion.Text = "1. FILIACIÓN:";
+            // 
+            // txtFechaEmiFil
+            // 
+            this.txtFechaEmiFil.Location = new System.Drawing.Point(318, 120);
+            this.txtFechaEmiFil.Mask = "00/00/0000";
+            this.txtFechaEmiFil.Name = "txtFechaEmiFil";
+            this.txtFechaEmiFil.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaEmiFil.TabIndex = 62;
+            this.txtFechaEmiFil.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtFechaNac
+            // 
+            this.txtFechaNac.Location = new System.Drawing.Point(319, 38);
+            this.txtFechaNac.Mask = "00/00/0000";
+            this.txtFechaNac.Name = "txtFechaNac";
+            this.txtFechaNac.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaNac.TabIndex = 61;
+            this.txtFechaNac.ValidatingType = typeof(System.DateTime);
             // 
             // txtTotal
             // 
@@ -857,14 +905,6 @@
             this.label9.TabIndex = 52;
             this.label9.Text = "Fecha Nac.";
             // 
-            // dtpFechaNac
-            // 
-            this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNac.Location = new System.Drawing.Point(318, 37);
-            this.dtpFechaNac.Name = "dtpFechaNac";
-            this.dtpFechaNac.Size = new System.Drawing.Size(100, 20);
-            this.dtpFechaNac.TabIndex = 51;
-            // 
             // btnVerifica
             // 
             this.btnVerifica.Location = new System.Drawing.Point(333, 271);
@@ -915,14 +955,6 @@
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // dtpFechaEmiFil
-            // 
-            this.dtpFechaEmiFil.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaEmiFil.Location = new System.Drawing.Point(319, 121);
-            this.dtpFechaEmiFil.Name = "dtpFechaEmiFil";
-            this.dtpFechaEmiFil.Size = new System.Drawing.Size(99, 20);
-            this.dtpFechaEmiFil.TabIndex = 43;
             // 
             // txtEspecialidad
             // 
@@ -1464,19 +1496,36 @@
             this.Column3.Name = "Column3";
             this.Column3.Width = 350;
             // 
-            // turnosDS
-            // 
-            this.turnosDS.DataSetName = "TurnosDS";
-            this.turnosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tablaTipoBindingSource1
-            // 
-            this.tablaTipoBindingSource1.DataMember = "TablaTipo";
-            this.tablaTipoBindingSource1.DataSource = this.turnosDS;
-            // 
             // tablaTipoTableAdapter1
             // 
             this.tablaTipoTableAdapter1.ClearBeforeFill = true;
+            // 
+            // txtFechaAten
+            // 
+            this.txtFechaAten.Location = new System.Drawing.Point(9, 200);
+            this.txtFechaAten.Mask = "00/00/0000";
+            this.txtFechaAten.Name = "txtFechaAten";
+            this.txtFechaAten.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaAten.TabIndex = 59;
+            this.txtFechaAten.ValidatingType = typeof(System.DateTime);
+            this.txtFechaAten.Validating += new System.ComponentModel.CancelEventHandler(this.txtFechaAten_Validating);
+            // 
+            // txtFechaIngreso
+            // 
+            this.txtFechaIngreso.Location = new System.Drawing.Point(329, 288);
+            this.txtFechaIngreso.Mask = "00/00/0000";
+            this.txtFechaIngreso.Name = "txtFechaIngreso";
+            this.txtFechaIngreso.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaIngreso.TabIndex = 60;
+            this.txtFechaIngreso.ValidatingType = typeof(System.DateTime);
+            // 
+            // busesTableAdapter
+            // 
+            this.busesTableAdapter.ClearBeforeFill = true;
+            // 
+            // tmpEspecialistaTableAdapter
+            // 
+            this.tmpEspecialistaTableAdapter.ClearBeforeFill = true;
             // 
             // frmIngresoCie10
             // 
@@ -1484,6 +1533,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 647);
             this.ControlBox = false;
+            this.Controls.Add(this.txtFechaIngreso);
+            this.Controls.Add(this.txtFechaAten);
             this.Controls.Add(this.dgvDetCie10);
             this.Controls.Add(this.grdDetCie10);
             this.Controls.Add(this.chkCompleto);
@@ -1499,11 +1550,9 @@
             this.Controls.Add(this.label28);
             this.Controls.Add(this.txtCuenta);
             this.Controls.Add(this.label27);
-            this.Controls.Add(this.dtpFechaIngreso);
             this.Controls.Add(this.cmbTurno);
             this.Controls.Add(this.txtDigitador);
             this.Controls.Add(this.label26);
-            this.Controls.Add(this.dtpFechaAten);
             this.Controls.Add(this.cmbBus);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtObservacion);
@@ -1529,7 +1578,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).EndInit();
             this.tabConsultar.ResumeLayout(false);
             this.tabConsultar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).EndInit();
             this.grpFiliacion.ResumeLayout(false);
             this.grpFiliacion.PerformLayout();
             this.grpEnfermedad.ResumeLayout(false);
@@ -1540,8 +1595,6 @@
             this.grpExClinico.PerformLayout();
             this.groupBoxTraMed.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1568,8 +1621,6 @@
         private System.Windows.Forms.TextBox txtObservacion;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbBus;
-        private System.Windows.Forms.DateTimePicker dtpFechaEmi;
-        private System.Windows.Forms.DateTimePicker dtpFechaAten;
         private System.Windows.Forms.TextBox txtIdPac;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApeMat;
@@ -1581,7 +1632,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.DateTimePicker dtpFechaIngreso;
         private System.Windows.Forms.GroupBox grpEnfermedad;
         private System.Windows.Forms.TextBox txtEnAcRel;
         private System.Windows.Forms.TextBox txtEnAcCur;
@@ -1592,13 +1642,11 @@
         private System.Windows.Forms.GroupBox grpFiliacion;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dtpFechaNac;
         private System.Windows.Forms.Button btnVerifica;
         private System.Windows.Forms.Button btnBCie10;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.DateTimePicker dtpFechaEmiFil;
         private System.Windows.Forms.TextBox txtEspecialidad;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
@@ -1657,7 +1705,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.CheckBox chkFechaVent;
         private System.Windows.Forms.CheckBox chkIdem;
         private System.Windows.Forms.TextBox txtTi;
         private System.Windows.Forms.TextBox txtTotal;
@@ -1699,5 +1746,17 @@
         private Dominio.Data.TurnosDS turnosDS;
         private System.Windows.Forms.BindingSource tablaTipoBindingSource1;
         private Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.MaskedTextBox txtFechaEmi;
+        private System.Windows.Forms.MaskedTextBox txtFechaAten;
+        private System.Windows.Forms.MaskedTextBox txtFechaIngreso;
+        private System.Windows.Forms.MaskedTextBox txtFechaEmiFil;
+        private System.Windows.Forms.MaskedTextBox txtFechaNac;
+        private System.Windows.Forms.BindingSource busesBindingSource;
+        private Dominio.Data.BusesDS busesDS;
+        private Dominio.Data.BusesDSTableAdapters.BusesTableAdapter busesTableAdapter;
+        private System.Windows.Forms.BindingSource tmpEspecialistaBindingSource;
+        private Dominio.Data.tmpEspecialistaDS tmpEspecialistaDS;
+        private Dominio.Data.tmpEspecialistaDSTableAdapters.tmpEspecialistaTableAdapter tmpEspecialistaTableAdapter;
     }
 }

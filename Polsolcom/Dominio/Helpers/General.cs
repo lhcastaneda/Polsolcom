@@ -12,6 +12,8 @@ using Dapper;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Globalization;
+using static System.Windows.Forms.ListViewItem;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -1201,7 +1203,6 @@ namespace Polsolcom.Dominio.Helpers
         public static int vtrls(string parameter)
         {
             string[] array = { "ECOGRAFIA", "RAYOS X", "MAMOGRAFIA" };
-
             return array.Contains(parameter) ? 1 : 0;
         }
 
@@ -1272,13 +1273,16 @@ namespace Polsolcom.Dominio.Helpers
 
             foreach (Dictionary<string, string> item in items)
             {
-                List<string> values = new List<string>();
+                List<ListViewSubItem> values = new List<ListViewSubItem>();
                 foreach (string field in fields)
                 {
-                    values.Add(item[field]);
+                    ListViewSubItem subItem = new ListViewSubItem();
+                    subItem.Name = field;
+                    subItem.Text = item[field];
+                    values.Add(subItem);
                 }
 
-                listview.Items.Add(new ListViewItem(values.ToArray()));
+                listview.Items.Add(new ListViewItem(values.ToArray(), 0));
             }
         }
 
@@ -1305,14 +1309,48 @@ namespace Polsolcom.Dominio.Helpers
             return null;
         }
 
-        public static int GetSelectedIndex(ListView listView)
+        public static Dictionary<string, string> ConvertToDictionary(ListViewItem item)
+        {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            foreach (ListViewSubItem subitem in item.SubItems)
+            {
+                dictionary[subitem.Name] = subitem.Text;
+            }
+            return dictionary;
+        }
+
+        public static Dictionary<string, string> GetSelectedItemAsDictionary(ListView listView, bool returnFirst = true)
+        {
+            foreach (ListViewItem item in listView.SelectedItems)
+            {
+                return ConvertToDictionary(item);
+            }
+
+            if (listView.Items.Count > 0 && returnFirst)
+            {
+                return ConvertToDictionary(listView.Items[0]);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static int GetSelectedIndex(ListView listView, bool returnFirst = true)
         {
             foreach (int index in listView.SelectedIndices)
             {
                 return index;
             }
 
-            return -1;
+            if (listView.Items.Count > 0 && returnFirst)
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public static void AdjustComboBoxWidth(ComboBox comboBox)
