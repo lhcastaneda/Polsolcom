@@ -182,21 +182,9 @@ namespace Polsolcom.Forms.Procesos
 							"WHERE 1 = 1 " +
 							"AND Estado = '1' " +
 							"AND Id_Producto = '" + idProduct.Trim() + "' ";
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				try
-				{
-					if( db.State == ConnectionState.Closed )
-						db.Open();
-
-					sPrecio = db.ExecuteScalar<string>(sQuery);
-					sPrecio = sPrecio.Trim();
-				}
-				catch( Exception ex )
-				{ MessageBox.Show(ex.Message); }
-			}
+			sPrecio = General.TomaValor(sQuery);
+			sPrecio = sPrecio.Trim();
 			return sPrecio;
-
 		}
 		
 		protected override bool ProcessCmdKey( ref Message msg, Keys keyData )
@@ -241,20 +229,9 @@ namespace Polsolcom.Forms.Procesos
 				btnBuscar.Enabled = false;
 				General.ODB = 1;  //1: Nuevo Paciente, 0: Paciente Existente
 				int iCant = 0;
+
 				string vSQL = "SELECT Count(Name) AS C FROM master.dbo.sysdatabases WHERE Name = 'DNI'";
-				using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-				{
-					try
-					{
-						if( db.State == ConnectionState.Closed )
-							db.Open();
-
-						iCant = db.ExecuteScalar<int>(vSQL);
-					}
-					catch( Exception ex )
-					{ MessageBox.Show(ex.Message); }
-				}
-
+				iCant = int.Parse(General.TomaValor(vSQL));
 				if( iCant > 0 )
 					if( MessageBox.Show("Desea realizar busqueda en base de datos general...?", "Busqueda Pacientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No )
 						Habilita(1);
@@ -288,17 +265,18 @@ namespace Polsolcom.Forms.Procesos
 						btnBuscarT.Enabled = true;
 						ValidaDatosTicket("");
 						BloqueaControles(this,"D"); 
-
 					}
 					else
 						txtDNI.Focus();
 				}
 				else
 				{
+					if( MessageBox.Show("Desea guardar los cambios...?", "Mensaje al Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes )
+					{
+
+					}
 
 				}
-
-
 			}			
 		}
 
@@ -311,6 +289,14 @@ namespace Polsolcom.Forms.Procesos
 			}
 		}
 
+		private void ValidaTextosTicket()
+		{
+			if( txtNombres.Text.Trim() == "" || txtNombres.Text.Trim().Length == 0 )
+			{
+
+			}
+		}
+		
 		private void Habilita(int iOpcion)
 		{
 			switch( iOpcion )
@@ -391,18 +377,7 @@ namespace Polsolcom.Forms.Procesos
 							" And Id_Consultorio In " + 
 							" (SELECT Left(Id_producto, 6) " + 
 							"  FROM ImpFicha WHERE Estado = '1'))";
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				try
-				{
-					if( db.State == ConnectionState.Closed )
-						db.Open();
-
-					sRes = db.ExecuteScalar<string>(sQuery);
-				}
-				catch( Exception ex )
-				{ MessageBox.Show(ex.Message); }
-			}
+			sRes = General.TomaValor(sQuery);
 			return sRes;
 		}
 
@@ -452,14 +427,8 @@ namespace Polsolcom.Forms.Procesos
 					 "WHERE Serie = '" + sSerie + "' " +
 					 "AND DVenta = '" + sDventa + "'" +
 					 "AND Nro_Ticket = '" + sInicial + "'";
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				if( db.State == ConnectionState.Closed )
-					db.Open();
-
-				iCant = db.ExecuteScalar<int>(sQuery);
-			}
-
+			iCant = int.Parse(General.TomaValor(sQuery));
+			
 			sQuery = "SELECT Nro_Historia,Nro_Ticket,CONVERT(VARCHAR(10),Fecha_Emision,103) AS Fecha," +
 					 "Id_Consultorio,Id_Paciente,Digitador,Anulado,ForPago,Descuento," +
 					 "Serie,CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " +
@@ -680,14 +649,52 @@ namespace Polsolcom.Forms.Procesos
 
 		private void btnImprimir_Click( object sender, EventArgs e )
 		{
+			string sSQL = "";
+
+			Ubigeo oEspecialidad = (Ubigeo)cmbEspecialidad.SelectedItem;
+
 			if( txtNroTicket.Text.Trim() == "" || int.Parse(txtNroTicket.Text.Trim()) == 0 )
 				return;
 
 			if( NROHISTORIA == "" )
 				return;
 
-			if( BUS == "" )
-				return;
+			if( BUS.Trim() == "" || BUS.Trim().Length == 0 )
+			{
+				//agregar codigo para identificar BUS
+			}
+
+			sSQL = "SELECT Ape_Paterno,Ape_Materno,Nombre,DNI,ODoc,Fecha_Nac, " + 
+				   "Edad,Sexo,P.Direccion,DP.Distrito PDist, Nro_Ticket, " + 
+				   "Fecha_Emision, Serie, C.Descripcion Espec, Nom_Raz_Soc, " + 
+				   "I.Direccion + ', ' + DI.Distrito IDireccion " + 
+				   "FROM Tickets T INNER JOIN Pacientes P " + 
+				   "ON T.Id_Paciente = P.Id_Paciente " + 
+				   "INNER JOIN Consultorios C " + 
+			  	   "ON T.Id_Consultorio = C.Id_Consultorio " + 
+				   "LEFT JOIN Ubigeo2005 DP " + 
+				   "ON P.Id_Distrito = DP.Id_Old " + 
+				   "LEFT JOIN Institucion I " + 
+				   "ON T.Id_Inst = I.TInst + I.Id_Inst " + 
+				   "LEFT JOIN Ubigeo2005 DI " + 
+				   "ON I.Id_Distrito = DI.Id_Old " + 
+				   "WHERE T.Nro_Historia = '" + NROHISTORIA + "'";
+			using( SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN) )
+			{
+				using( SqlDataReader dr = cmd.ExecuteReader() )
+				{
+					if( dr.HasRows )
+					{
+						dr.Read();
+						 
+					}
+					dr.Close();
+				}
+			}
+
+
+
+
 
 
 
