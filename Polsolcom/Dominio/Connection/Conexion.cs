@@ -1,4 +1,5 @@
 ﻿using Polsolcom.Dominio.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -70,6 +71,19 @@ namespace Polsolcom.Dominio.Connection
         {
             CMD.CommandText = sql;
             return CMD.ExecuteNonQuery();
+        }
+
+        public static T ExecuteScalar<T>(string sql)
+        {
+            SqlCommand cmd = new SqlCommand(sql, CNN);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                return (T)Convert.ChangeType(dr.GetValue(0), typeof(T));
+            }
+
+            return default(T);
         }
     }
 	
