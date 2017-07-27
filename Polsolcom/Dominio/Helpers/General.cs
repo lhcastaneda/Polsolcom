@@ -10,7 +10,10 @@ using System.Data;
 using System.Configuration;
 using Dapper;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Globalization;
+using static System.Windows.Forms.ListViewItem;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -45,9 +48,19 @@ namespace Polsolcom.Dominio.Helpers
         public override string ToString()
         {
             return Descripcion;
-
         }
 
+    }
+
+    public class ComboboxItem
+    {
+        public string Text { get; set; }
+        public object Value { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 
     public class Ubigeo
@@ -605,118 +618,118 @@ namespace Polsolcom.Dominio.Helpers
             cmb.SelectedIndex = -1;
         }
 
-		public static string NumeroTexto( string numero, string moneda = "")
-		{
-			string literal = "";
-			string parte_decimal;
-			Regex r;
+        public static string NumeroTexto(string numero, string moneda = "")
+        {
+            string literal = "";
+            string parte_decimal;
+            Regex r;
 
-			numero = numero.Replace(",", ""); //quita las comas de miles
-			if( numero.IndexOf(".") == -1 )
-				numero = numero + ".00"; //no tienedecimal, agrega .00
-			
-			r = new Regex(@"\d{1,9}.\d{1,2}"); //valida formato 0.00 y 999 999 999.00
-			MatchCollection mc = r.Matches(numero);
-			if( mc.Count > 0 )
-			{				
-				string[] Num = numero.Split('.'); //divide nro 0000000,00 en entero y decimal
+            numero = numero.Replace(",", ""); //quita las comas de miles  
+            if (numero.IndexOf(".") == -1)
+                numero = numero + ".00"; //no tienedecimal, agrega .00  
 
-				parte_decimal = Num[1] + (moneda.Trim() == "" ? "/100 SOLES" : "/100 " + moneda.Trim().ToUpper()) ;
-				
-				if( int.Parse(Num[0]) == 0 )
-					literal = "CERO ";
-				else if( int.Parse(Num[0]) > 999999 )
-					literal = Millones(Num[0]);
-				else if( int.Parse(Num[0]) > 999 )
-					literal = Miles(Num[0]);
-				else if( int.Parse(Num[0]) > 99 )
-					literal = Centenas(Num[0]);
-				else if( int.Parse(Num[0]) > 9 )
-					literal = Decenas(Num[0]);
-				else
-					literal = Unidades(Num[0]);
-				
-				return (literal + "CON " + parte_decimal).ToUpper();
-			}
-			else
-				return literal = null;
-		}
+            r = new Regex(@"\d{1,9}.\d{1,2}"); //valida formato 0.00 y 999 999 999.00  
+            MatchCollection mc = r.Matches(numero);
+            if (mc.Count > 0)
+            {
+                string[] Num = numero.Split('.'); //divide nro 0000000,00 en entero y decimal  
+
+                parte_decimal = Num[1] + (moneda.Trim() == "" ? "/100 SOLES" : "/100 " + moneda.Trim().ToUpper());
+
+                if (int.Parse(Num[0]) == 0)
+                    literal = "CERO ";
+                else if (int.Parse(Num[0]) > 999999)
+                    literal = Millones(Num[0]);
+                else if (int.Parse(Num[0]) > 999)
+                    literal = Miles(Num[0]);
+                else if (int.Parse(Num[0]) > 99)
+                    literal = Centenas(Num[0]);
+                else if (int.Parse(Num[0]) > 9)
+                    literal = Decenas(Num[0]);
+                else
+                    literal = Unidades(Num[0]);
+
+                return (literal + "CON " + parte_decimal).ToUpper();
+            }
+            else
+                return literal = null;
+        }
 
 
-		private static string Unidades( string numero )
-		{       
-			string[] UNIDADES = { "", "UN ", "DOS ", "TRES ", "CUATRO ", "CINCO ", "SEIS ", "SIETE ", "OCHO ", "NUEVE " };
+        private static string Unidades(string numero)
+        {
+            string[] UNIDADES = { "", "UN ", "DOS ", "TRES ", "CUATRO ", "CINCO ", "SEIS ", "SIETE ", "OCHO ", "NUEVE " };
 
-			string num = numero.Substring(numero.Length - 1);
-			return UNIDADES[int.Parse(num)];
-		}
+            string num = numero.Substring(numero.Length - 1);
+            return UNIDADES[int.Parse(num)];
+        }
 
-		private static string Decenas( string num )
-		{
-			string[] DECENAS = {"DIEZ ", "ONCE ", "DOCE ", "TRECE ", "CATORCE ", "QUINCE ", "DIECISEIS ","DIECISIETE ", "DIECIOCHO ", "DIECINUEVE", "VEINTE ", "TREINTA ", "CUARENTA ","CINCUENTA ", "SESENTA ", "SETENTA ", "OCHENTA ", "NOVENTA "};
+        private static string Decenas(string num)
+        {
+            string[] DECENAS = { "DIEZ ", "ONCE ", "DOCE ", "TRECE ", "CATORCE ", "QUINCE ", "DIECISEIS ", "DIECISIETE ", "DIECIOCHO ", "DIECINUEVE", "VEINTE ", "TREINTA ", "CUARENTA ", "CINCUENTA ", "SESENTA ", "SETENTA ", "OCHENTA ", "NOVENTA " };
 
-			int n = int.Parse(num);
+            int n = int.Parse(num);
 
-			if( n < 10 )
-				return Unidades(num); //para 01...09
-			else if( n > 19 )
-			{
-				string u = Unidades(num); //para 20...99
-				if( u.Equals("") )
-					return DECENAS[int.Parse(num.Substring(0, 1)) + 8]; //para 20,30,40,50,60,70,80,90
-				else
-					return DECENAS[int.Parse(num.Substring(0, 1)) + 8] + "Y " + u;
-			}
-			else
-				return DECENAS[n - 10]; //numeros entre 11 y 19
-		}
+            if (n < 10)
+                return Unidades(num); //para 01...09  
+            else if (n > 19)
+            {
+                string u = Unidades(num); //para 20...99  
+                if (u.Equals(""))
+                    return DECENAS[int.Parse(num.Substring(0, 1)) + 8]; //para 20,30,40,50,60,70,80,90  
+                else
+                    return DECENAS[int.Parse(num.Substring(0, 1)) + 8] + "Y " + u;
+            }
+            else
+                return DECENAS[n - 10]; //numeros entre 11 y 19  
+        }
 
-		private static string Centenas( string num )
-		{
-			string[] CENTENAS = {"", "CIENTO ", "DOSCIENTOS ", "TRECIENTOS ", "CUATROCIENTOS ", "QUINIENTOS ", "SEISCIENTOS ", "SETECIENTOS ", "OCHOCIENTOS ", "NOVECIENTOS "};
-			
-			if( int.Parse(num) > 99 )
-			{ 
-				if( int.Parse(num) == 100 )
-					return " CIEN ";
-				else
-					return CENTENAS[int.Parse(num.Substring(0, 1))] + Decenas(num.Substring(1));
-			}
-			else
-				return Decenas(int.Parse(num) + "");
-		}
+        private static string Centenas(string num)
+        {
+            string[] CENTENAS = { "", "CIENTO ", "DOSCIENTOS ", "TRECIENTOS ", "CUATROCIENTOS ", "QUINIENTOS ", "SEISCIENTOS ", "SETECIENTOS ", "OCHOCIENTOS ", "NOVECIENTOS " };
 
-		private static string Miles( string numero )
-		{
-			string c = numero.Substring(numero.Length - 3); //lee las centenas
-			string m = numero.Substring(0, numero.Length - 3); //lee los miles
-			string n = "";
-			
-			if( int.Parse(m) > 0 ) //se valida que miles tenga valor entero
-			{
-				n = Centenas(m);
-				return n + "MIL " + Centenas(c);
-			}
-			else
-				return "" + Centenas(c);
-		}
+            if (int.Parse(num) > 99)
+            {
+                if (int.Parse(num) == 100)
+                    return " CIEN ";
+                else
+                    return CENTENAS[int.Parse(num.Substring(0, 1))] + Decenas(num.Substring(1));
+            }
+            else
+                return Decenas(int.Parse(num) + "");
+        }
 
-		private static string Millones( string numero )
-		{
-			string miles = numero.Substring(numero.Length - 6); //lee los miles
-			string millon = numero.Substring(0, numero.Length - 6); //lee los millones
-			string n = "";
+        private static string Miles(string numero)
+        {
+            string c = numero.Substring(numero.Length - 3); //lee las centenas  
+            string m = numero.Substring(0, numero.Length - 3); //lee los miles  
+            string n = "";
 
-			if( millon.Length > 1 )
-				n = Centenas(millon) + "MILLONES ";
-			else
-				n = Unidades(millon) + "MILLON ";
+            if (int.Parse(m) > 0) //se valida que miles tenga valor entero  
+            {
+                n = Centenas(m);
+                return n + "MIL " + Centenas(c);
+            }
+            else
+                return "" + Centenas(c);
+        }
 
-			return n + Miles(miles);
-		}
-		
-		#region Metodos Personal
-		public static List<Personal> TraerPersonal()
+        private static string Millones(string numero)
+        {
+            string miles = numero.Substring(numero.Length - 6); //lee los miles  
+            string millon = numero.Substring(0, numero.Length - 6); //lee los millones  
+            string n = "";
+
+            if (millon.Length > 1)
+                n = Centenas(millon) + "MILLONES ";
+            else
+                n = Unidades(millon) + "MILLON ";
+
+            return n + Miles(miles);
+        }
+
+        #region Metodos Personal
+        public static List<Personal> TraerPersonal()
         {
             List<Personal> lista = new List<Personal>();
             string vSQL;
@@ -1150,7 +1163,7 @@ namespace Polsolcom.Dominio.Helpers
                 }
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre,P.id_paciente,P.DNI,P.Id_Distrito,P.Asegurado,P.Nro_Historia ";
+                        "P.Ape_Paterno, P.Ape_Materno, P.Nombre, P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente, P.Id_Paciente, P.DNI, P.Id_Distrito, P.Asegurado, P.Nro_Historia, P.Fecha_Nac, P.Edad, P.Sexo ";
 
                 if (Num1 == 2)
                     sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito ";
@@ -1187,14 +1200,172 @@ namespace Polsolcom.Dominio.Helpers
             return sVSQL;
         }
 
-        public static bool vtrls(string parameter)
+        public static int vtrls(string parameter)
         {
             string[] array = { "ECOGRAFIA", "RAYOS X", "MAMOGRAFIA" };
-
-            return array.Contains(parameter);
+            return array.Contains(parameter) ? 1 : 0;
         }
 
+        public static void SetPropertyValue(object obj, string propName, object value)
+        {
+            obj.GetType().GetProperty(propName).SetValue(obj, value, null);
+        }
+
+        public static List<Dictionary<string, string>> GetDictionaryList(string sql)
+        {
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+
+            using (SqlCommand cmd = new SqlCommand(sql, Conexion.CNN))
+            {
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Dictionary<string, string> item = new Dictionary<string, string>();
+                            for (int i = 0; i < dr.FieldCount; i++)
+                            {
+                                item.Add(dr.GetName(i), dr.GetValue(i).ToString());
+                            }
+
+                            list.Add(item);
+                        }
+                    }
+
+                    dr.Close();
+                }
+            }
+
+            return list;
+        }
+
+        public static Dictionary<string, string> GetDictionary(string sql)
+        {
+            using (SqlCommand cmd = new SqlCommand(sql, Conexion.CNN))
+            {
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Dictionary<string, string> item = new Dictionary<string, string>();
+                            for (int i = 0; i < dr.FieldCount; i++)
+                            {
+                                item.Add(dr.GetName(i), dr.GetValue(i).ToString());
+                            }
+
+                            return item;
+                        }
+                    }
+
+                    dr.Close();
+                }
+            }
+
+            return null;
+        }
+
+        public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields)
+        {
+            listview.Items.Clear();
+
+            foreach (Dictionary<string, string> item in items)
+            {
+                List<ListViewSubItem> values = new List<ListViewSubItem>();
+                foreach (string field in fields)
+                {
+                    ListViewSubItem subItem = new ListViewSubItem();
+                    subItem.Name = field;
+                    subItem.Text = item[field];
+                    values.Add(subItem);
+                }
+
+                listview.Items.Add(new ListViewItem(values.ToArray(), 0));
+            }
+        }
+
+        public static void FillComboBox(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)
+        {
+            comboBox.Items.Clear();
+
+            foreach (Dictionary<string, string> item in items)
+            {
+                ComboboxItem comboBoxItem = new ComboboxItem();
+                comboBoxItem.Text = item[displayMember];
+                comboBoxItem.Value = item[valueMember];
+                comboBox.Items.Add(comboBoxItem);
+            }
+        }
+
+        public static ListViewItem GetSelectedItem(ListView listView)
+        {
+            foreach (ListViewItem item in listView.SelectedItems)
+            {
+                return item;
+            }
+
+            return null;
+        }
+
+        public static Dictionary<string, string> ConvertToDictionary(ListViewItem item)
+        {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            foreach (ListViewSubItem subitem in item.SubItems)
+            {
+                dictionary[subitem.Name] = subitem.Text;
+            }
+            return dictionary;
+        }
+
+        public static Dictionary<string, string> GetSelectedItemAsDictionary(ListView listView, bool returnFirst = true)
+        {
+            foreach (ListViewItem item in listView.SelectedItems)
+            {
+                return ConvertToDictionary(item);
+            }
+
+            if (listView.Items.Count > 0 && returnFirst)
+            {
+                return ConvertToDictionary(listView.Items[0]);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static int GetSelectedIndex(ListView listView, bool returnFirst = true)
+        {
+            foreach (int index in listView.SelectedIndices)
+            {
+                return index;
+            }
+
+            if (listView.Items.Count > 0 && returnFirst)
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static void AdjustComboBoxWidth(ComboBox comboBox)
+        {
+            int maxWidth = 0, temp = 0;
+            foreach (var obj in comboBox.Items)
+            {
+                temp = TextRenderer.MeasureText(obj.ToString(), comboBox.Font).Width;
+                if (temp > maxWidth)
+                {
+                    maxWidth = temp;
+                }
+            }
+
+            comboBox.DropDownWidth = maxWidth;
+        }
     }
-
-
 }

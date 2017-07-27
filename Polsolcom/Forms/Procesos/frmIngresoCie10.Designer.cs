@@ -31,18 +31,17 @@
             this.components = new System.ComponentModel.Container();
             this.tabIngresoConsulta = new System.Windows.Forms.TabControl();
             this.tabIngresar = new System.Windows.Forms.TabPage();
-            this.chkFechaVent = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtFechaEmi = new System.Windows.Forms.MaskedTextBox();
             this.lstTickets0 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.consultoriosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
             this.chkFiltro = new System.Windows.Forms.CheckBox();
-            this.dtpFechaEmi = new System.Windows.Forms.DateTimePicker();
             this.txtNroDoc = new System.Windows.Forms.TextBox();
             this.txtSerie = new System.Windows.Forms.TextBox();
             this.cmbDVenta = new System.Windows.Forms.ComboBox();
@@ -54,102 +53,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabConsultar = new System.Windows.Forms.TabPage();
-            this.txtIdPac = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtApeMat = new System.Windows.Forms.TextBox();
-            this.txtApePat = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.cmbMedico = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtMedico = new System.Windows.Forms.TextBox();
-            this.txtObserv = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cmbBus = new System.Windows.Forms.ComboBox();
-            this.dtpFechaAten = new System.Windows.Forms.DateTimePicker();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtDigitador = new System.Windows.Forms.TextBox();
-            this.cmbTurno = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtCuenta = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.grpFiliacion = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
-            this.btnVerifica = new System.Windows.Forms.Button();
-            this.btnBCie10 = new System.Windows.Forms.Button();
-            this.btnGrabar = new System.Windows.Forms.Button();
-            this.btnQuitar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.dtpFechaEmiFil = new System.Windows.Forms.DateTimePicker();
-            this.txtEspecialidad = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtOrden = new System.Windows.Forms.TextBox();
-            this.txtSexo = new System.Windows.Forms.TextBox();
-            this.txtEdad = new System.Windows.Forms.TextBox();
-            this.txtPaciente = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.grpEnfermedad = new System.Windows.Forms.GroupBox();
-            this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.txtCurso = new System.Windows.Forms.TextBox();
-            this.txtInicio = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.grpAntecedentes = new System.Windows.Forms.GroupBox();
-            this.txtOtros = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.txtQuirurgicos = new System.Windows.Forms.TextBox();
-            this.txtEpidem = new System.Windows.Forms.TextBox();
-            this.txtFamiliares = new System.Windows.Forms.TextBox();
-            this.txtPersonales = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.grpExClinico = new System.Windows.Forms.GroupBox();
-            this.txtExamenGeneral = new System.Windows.Forms.TextBox();
-            this.txtFR = new System.Windows.Forms.TextBox();
-            this.txtTemp = new System.Windows.Forms.TextBox();
-            this.txtFC = new System.Windows.Forms.TextBox();
-            this.txtPresArt = new System.Windows.Forms.TextBox();
-            this.txtTalla = new System.Windows.Forms.TextBox();
-            this.txtPeso = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.grpTratamiento = new System.Windows.Forms.GroupBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
-            this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
-            this.chkIdem = new System.Windows.Forms.CheckBox();
-            this.txtTi = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtCajero = new System.Windows.Forms.TextBox();
-            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.lstPacientes = new System.Windows.Forms.ListView();
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lstTickets1 = new System.Windows.Forms.ListView();
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -161,10 +66,125 @@
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtIdPac = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtApeMat = new System.Windows.Forms.TextBox();
+            this.txtApePat = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cmbMedico = new System.Windows.Forms.ComboBox();
+            this.tmpEspecialistaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tmpEspecialistaDS = new Polsolcom.Dominio.Data.tmpEspecialistaDS();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtMedico = new System.Windows.Forms.TextBox();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cmbBus = new System.Windows.Forms.ComboBox();
+            this.busesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.busesDS = new Polsolcom.Dominio.Data.BusesDS();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtDigitador = new System.Windows.Forms.TextBox();
+            this.cmbTurno = new System.Windows.Forms.ComboBox();
+            this.tablaTipoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.turnosDS = new Polsolcom.Dominio.Data.TurnosDS();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtCuenta = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.grpFiliacion = new System.Windows.Forms.GroupBox();
+            this.txtFechaEmiFil = new System.Windows.Forms.MaskedTextBox();
+            this.txtFechaNac = new System.Windows.Forms.MaskedTextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtCajero = new System.Windows.Forms.TextBox();
+            this.grdDetalle = new System.Windows.Forms.ListView();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnVerifica = new System.Windows.Forms.Button();
+            this.btnBCie10 = new System.Windows.Forms.Button();
+            this.btnGrabar = new System.Windows.Forms.Button();
+            this.btnQuitar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.txtEspecialidad = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtOrden = new System.Windows.Forms.TextBox();
+            this.txtSexo = new System.Windows.Forms.TextBox();
+            this.txtEdad = new System.Windows.Forms.TextBox();
+            this.txtPaciente = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.grpEnfermedad = new System.Windows.Forms.GroupBox();
+            this.txtEnAcRel = new System.Windows.Forms.TextBox();
+            this.txtEnAcCur = new System.Windows.Forms.TextBox();
+            this.txtEnAcIni = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.grpAntecedentes = new System.Windows.Forms.GroupBox();
+            this.txtAnOtr = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.txtAnQui = new System.Windows.Forms.TextBox();
+            this.txtAnEpi = new System.Windows.Forms.TextBox();
+            this.txtAnFam = new System.Windows.Forms.TextBox();
+            this.txtAnPer = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.grpExClinico = new System.Windows.Forms.GroupBox();
+            this.txtExClEg = new System.Windows.Forms.TextBox();
+            this.txtExClFr = new System.Windows.Forms.TextBox();
+            this.txtExClTm = new System.Windows.Forms.TextBox();
+            this.txtExClFc = new System.Windows.Forms.TextBox();
+            this.txtExClPa = new System.Windows.Forms.TextBox();
+            this.txtExClTl = new System.Windows.Forms.TextBox();
+            this.txtExClPs = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.groupBoxTraMed = new System.Windows.Forms.GroupBox();
+            this.grdTraMed = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lstPacientes = new System.Windows.Forms.ListView();
-            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
+            this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
+            this.chkIdem = new System.Windows.Forms.CheckBox();
+            this.txtTi = new System.Windows.Forms.TextBox();
+            this.chkCompleto = new System.Windows.Forms.CheckBox();
+            this.grdDetCie10 = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dgvDetCie10 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tablaTipoTableAdapter1 = new Polsolcom.Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter();
+            this.txtFechaAten = new System.Windows.Forms.MaskedTextBox();
+            this.txtFechaIngreso = new System.Windows.Forms.MaskedTextBox();
+            this.busesTableAdapter = new Polsolcom.Dominio.Data.BusesDSTableAdapters.BusesTableAdapter();
+            this.tmpEspecialistaTableAdapter = new Polsolcom.Dominio.Data.tmpEspecialistaDSTableAdapters.tmpEspecialistaTableAdapter();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
@@ -172,11 +192,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
             this.tabConsultar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).BeginInit();
             this.grpFiliacion.SuspendLayout();
             this.grpEnfermedad.SuspendLayout();
             this.grpAntecedentes.SuspendLayout();
             this.grpExClinico.SuspendLayout();
+            this.groupBoxTraMed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).BeginInit();
             this.SuspendLayout();
             // 
             // tabIngresoConsulta
@@ -191,11 +219,11 @@
             // 
             // tabIngresar
             // 
-            this.tabIngresar.Controls.Add(this.chkFechaVent);
+            this.tabIngresar.Controls.Add(this.label4);
+            this.tabIngresar.Controls.Add(this.txtFechaEmi);
             this.tabIngresar.Controls.Add(this.lstTickets0);
             this.tabIngresar.Controls.Add(this.cmbEspecialidad);
             this.tabIngresar.Controls.Add(this.chkFiltro);
-            this.tabIngresar.Controls.Add(this.dtpFechaEmi);
             this.tabIngresar.Controls.Add(this.txtNroDoc);
             this.tabIngresar.Controls.Add(this.txtSerie);
             this.tabIngresar.Controls.Add(this.cmbDVenta);
@@ -212,16 +240,24 @@
             this.tabIngresar.Text = "Ingresar datos";
             this.tabIngresar.UseVisualStyleBackColor = true;
             // 
-            // chkFechaVent
+            // label4
             // 
-            this.chkFechaVent.AutoSize = true;
-            this.chkFechaVent.Location = new System.Drawing.Point(186, 8);
-            this.chkFechaVent.Name = "chkFechaVent";
-            this.chkFechaVent.Size = new System.Drawing.Size(84, 17);
-            this.chkFechaVent.TabIndex = 18;
-            this.chkFechaVent.Text = "Fecha Vent.";
-            this.chkFechaVent.UseVisualStyleBackColor = true;
-            this.chkFechaVent.CheckedChanged += new System.EventHandler(this.chkFechaVent_CheckedChanged);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(184, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Fecha Vent.";
+            // 
+            // txtFechaEmi
+            // 
+            this.txtFechaEmi.Location = new System.Drawing.Point(188, 27);
+            this.txtFechaEmi.Mask = "00/00/0000";
+            this.txtFechaEmi.Name = "txtFechaEmi";
+            this.txtFechaEmi.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaEmi.TabIndex = 19;
+            this.txtFechaEmi.ValidatingType = typeof(System.DateTime);
+            this.txtFechaEmi.Validating += new System.ComponentModel.CancelEventHandler(this.txtFechaEmi_Validating);
             // 
             // lstTickets0
             // 
@@ -229,10 +265,7 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
+            this.columnHeader4});
             this.lstTickets0.FullRowSelect = true;
             this.lstTickets0.Location = new System.Drawing.Point(158, 63);
             this.lstTickets0.MultiSelect = false;
@@ -261,11 +294,6 @@
             // 
             this.columnHeader4.Text = "Digitador";
             this.columnHeader4.Width = 100;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Nro Historia";
-            this.columnHeader5.Width = 0;
             // 
             // cmbEspecialidad
             // 
@@ -300,15 +328,6 @@
             this.chkFiltro.UseVisualStyleBackColor = true;
             this.chkFiltro.CheckedChanged += new System.EventHandler(this.chkFiltro_CheckedChanged);
             // 
-            // dtpFechaEmi
-            // 
-            this.dtpFechaEmi.Enabled = false;
-            this.dtpFechaEmi.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaEmi.Location = new System.Drawing.Point(187, 28);
-            this.dtpFechaEmi.Name = "dtpFechaEmi";
-            this.dtpFechaEmi.Size = new System.Drawing.Size(100, 20);
-            this.dtpFechaEmi.TabIndex = 14;
-            // 
             // txtNroDoc
             // 
             this.txtNroDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -316,6 +335,7 @@
             this.txtNroDoc.Name = "txtNroDoc";
             this.txtNroDoc.Size = new System.Drawing.Size(88, 20);
             this.txtNroDoc.TabIndex = 11;
+            this.txtNroDoc.TextChanged += new System.EventHandler(this.txtNroDoc_TextChanged);
             this.txtNroDoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroDoc_KeyDown);
             // 
             // txtSerie
@@ -415,12 +435,101 @@
             this.tabConsultar.Text = "Consultar Atenciones";
             this.tabConsultar.UseVisualStyleBackColor = true;
             // 
+            // lstPacientes
+            // 
+            this.lstPacientes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader29});
+            this.lstPacientes.FullRowSelect = true;
+            this.lstPacientes.Location = new System.Drawing.Point(4, 63);
+            this.lstPacientes.MultiSelect = false;
+            this.lstPacientes.Name = "lstPacientes";
+            this.lstPacientes.Size = new System.Drawing.Size(154, 82);
+            this.lstPacientes.TabIndex = 19;
+            this.lstPacientes.UseCompatibleStateImageBehavior = false;
+            this.lstPacientes.View = System.Windows.Forms.View.Details;
+            this.lstPacientes.SelectedIndexChanged += new System.EventHandler(this.lstPacientes_SelectedIndexChanged);
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Text = "Paciente";
+            // 
+            // lstTickets1
+            // 
+            this.lstTickets1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader17,
+            this.columnHeader18,
+            this.columnHeader19,
+            this.columnHeader20,
+            this.columnHeader21,
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24,
+            this.columnHeader25,
+            this.columnHeader26});
+            this.lstTickets1.FullRowSelect = true;
+            this.lstTickets1.Location = new System.Drawing.Point(162, 62);
+            this.lstTickets1.MultiSelect = false;
+            this.lstTickets1.Name = "lstTickets1";
+            this.lstTickets1.Size = new System.Drawing.Size(262, 82);
+            this.lstTickets1.TabIndex = 18;
+            this.lstTickets1.UseCompatibleStateImageBehavior = false;
+            this.lstTickets1.View = System.Windows.Forms.View.Details;
+            this.lstTickets1.SelectedIndexChanged += new System.EventHandler(this.lstTickets1_SelectedIndexChanged);
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "Serie";
+            this.columnHeader17.Width = 40;
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "Nro Ticket";
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "Fecha Atención";
+            this.columnHeader19.Width = 80;
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Text = "Digitador";
+            this.columnHeader20.Width = 100;
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.Text = "Nro Historia";
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Text = "Id Paciente";
+            this.columnHeader22.Width = 40;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Text = "Descripcion";
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Text = "Orden";
+            this.columnHeader24.Width = 50;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Text = "Anulado";
+            this.columnHeader25.Width = 70;
+            // 
+            // columnHeader26
+            // 
+            this.columnHeader26.Text = "Fecha Emisión";
+            this.columnHeader26.Width = 70;
+            // 
             // txtIdPac
             // 
             this.txtIdPac.Location = new System.Drawing.Point(316, 25);
             this.txtIdPac.Name = "txtIdPac";
             this.txtIdPac.Size = new System.Drawing.Size(100, 20);
             this.txtIdPac.TabIndex = 9;
+            this.txtIdPac.TextChanged += new System.EventHandler(this.txtIdPac_TextChanged);
             // 
             // txtNombre
             // 
@@ -428,6 +537,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 8;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtApeMat
             // 
@@ -435,6 +545,7 @@
             this.txtApeMat.Name = "txtApeMat";
             this.txtApeMat.Size = new System.Drawing.Size(100, 20);
             this.txtApeMat.TabIndex = 7;
+            this.txtApeMat.TextChanged += new System.EventHandler(this.txtApeMat_TextChanged);
             // 
             // txtApePat
             // 
@@ -442,6 +553,7 @@
             this.txtApePat.Name = "txtApePat";
             this.txtApePat.Size = new System.Drawing.Size(100, 20);
             this.txtApePat.TabIndex = 6;
+            this.txtApePat.TextChanged += new System.EventHandler(this.txtApePat_TextChanged);
             // 
             // label19
             // 
@@ -499,11 +611,26 @@
             // 
             // cmbMedico
             // 
+            this.cmbMedico.DataSource = this.tmpEspecialistaBindingSource;
+            this.cmbMedico.DisplayMember = "FullEspecialista";
             this.cmbMedico.FormattingEnabled = true;
             this.cmbMedico.Location = new System.Drawing.Point(6, 250);
             this.cmbMedico.Name = "cmbMedico";
             this.cmbMedico.Size = new System.Drawing.Size(71, 21);
             this.cmbMedico.TabIndex = 7;
+            this.cmbMedico.ValueMember = "NCMP";
+            this.cmbMedico.SelectedIndexChanged += new System.EventHandler(this.cmbMedico_SelectedIndexChanged);
+            this.cmbMedico.Leave += new System.EventHandler(this.cmbMedico_Leave);
+            // 
+            // tmpEspecialistaBindingSource
+            // 
+            this.tmpEspecialistaBindingSource.DataMember = "tmpEspecialista";
+            this.tmpEspecialistaBindingSource.DataSource = this.tmpEspecialistaDS;
+            // 
+            // tmpEspecialistaDS
+            // 
+            this.tmpEspecialistaDS.DataSetName = "tmpEspecialistaDS";
+            this.tmpEspecialistaDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label7
             // 
@@ -539,12 +666,13 @@
             this.txtMedico.Size = new System.Drawing.Size(270, 20);
             this.txtMedico.TabIndex = 9;
             // 
-            // txtObserv
+            // txtObservacion
             // 
-            this.txtObserv.Location = new System.Drawing.Point(7, 289);
-            this.txtObserv.Name = "txtObserv";
-            this.txtObserv.Size = new System.Drawing.Size(318, 20);
-            this.txtObserv.TabIndex = 12;
+            this.txtObservacion.Location = new System.Drawing.Point(7, 289);
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(318, 20);
+            this.txtObservacion.TabIndex = 12;
+            this.txtObservacion.Leave += new System.EventHandler(this.txtObservacion_Leave);
             // 
             // label12
             // 
@@ -557,32 +685,30 @@
             // 
             // cmbBus
             // 
+            this.cmbBus.DataSource = this.busesBindingSource;
+            this.cmbBus.DisplayMember = "Bus";
             this.cmbBus.FormattingEnabled = true;
             this.cmbBus.Location = new System.Drawing.Point(112, 200);
             this.cmbBus.Name = "cmbBus";
             this.cmbBus.Size = new System.Drawing.Size(108, 21);
             this.cmbBus.TabIndex = 14;
+            this.cmbBus.ValueMember = "Id_Bus";
+            this.cmbBus.Leave += new System.EventHandler(this.cmbBus_Leave);
             // 
-            // dtpFechaAten
+            // busesBindingSource
             // 
-            this.dtpFechaAten.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaAten.Location = new System.Drawing.Point(6, 201);
-            this.dtpFechaAten.Name = "dtpFechaAten";
-            this.dtpFechaAten.Size = new System.Drawing.Size(99, 20);
-            this.dtpFechaAten.TabIndex = 15;
+            this.busesBindingSource.DataMember = "Buses";
+            this.busesBindingSource.DataSource = this.busesDS;
+            // 
+            // busesDS
+            // 
+            this.busesDS.DataSetName = "BusesDS";
+            this.busesDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // dtpFechaIngreso
-            // 
-            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaIngreso.Location = new System.Drawing.Point(328, 289);
-            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
-            this.dtpFechaIngreso.Size = new System.Drawing.Size(98, 20);
-            this.dtpFechaIngreso.TabIndex = 29;
             // 
             // label26
             // 
@@ -597,16 +723,31 @@
             // 
             this.txtDigitador.Location = new System.Drawing.Point(330, 200);
             this.txtDigitador.Name = "txtDigitador";
+            this.txtDigitador.ReadOnly = true;
             this.txtDigitador.Size = new System.Drawing.Size(100, 20);
             this.txtDigitador.TabIndex = 20;
             // 
             // cmbTurno
             // 
+            this.cmbTurno.DataSource = this.tablaTipoBindingSource1;
+            this.cmbTurno.DisplayMember = "Descripcion";
             this.cmbTurno.FormattingEnabled = true;
             this.cmbTurno.Location = new System.Drawing.Point(224, 199);
             this.cmbTurno.Name = "cmbTurno";
             this.cmbTurno.Size = new System.Drawing.Size(103, 21);
             this.cmbTurno.TabIndex = 21;
+            this.cmbTurno.ValueMember = "Id_Tipo";
+            this.cmbTurno.Leave += new System.EventHandler(this.cmbTurno_Leave);
+            // 
+            // tablaTipoBindingSource1
+            // 
+            this.tablaTipoBindingSource1.DataMember = "TablaTipo";
+            this.tablaTipoBindingSource1.DataSource = this.turnosDS;
+            // 
+            // turnosDS
+            // 
+            this.turnosDS.DataSetName = "TurnosDS";
+            this.turnosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label27
             // 
@@ -635,18 +776,18 @@
             // 
             // grpFiliacion
             // 
+            this.grpFiliacion.Controls.Add(this.txtFechaEmiFil);
+            this.grpFiliacion.Controls.Add(this.txtFechaNac);
             this.grpFiliacion.Controls.Add(this.txtTotal);
             this.grpFiliacion.Controls.Add(this.txtCajero);
-            this.grpFiliacion.Controls.Add(this.listView1);
+            this.grpFiliacion.Controls.Add(this.grdDetalle);
             this.grpFiliacion.Controls.Add(this.label10);
             this.grpFiliacion.Controls.Add(this.label9);
-            this.grpFiliacion.Controls.Add(this.dtpFechaNac);
             this.grpFiliacion.Controls.Add(this.btnVerifica);
             this.grpFiliacion.Controls.Add(this.btnBCie10);
             this.grpFiliacion.Controls.Add(this.btnGrabar);
             this.grpFiliacion.Controls.Add(this.btnQuitar);
             this.grpFiliacion.Controls.Add(this.btnAgregar);
-            this.grpFiliacion.Controls.Add(this.dtpFechaEmiFil);
             this.grpFiliacion.Controls.Add(this.txtEspecialidad);
             this.grpFiliacion.Controls.Add(this.label25);
             this.grpFiliacion.Controls.Add(this.label24);
@@ -663,6 +804,88 @@
             this.grpFiliacion.TabIndex = 31;
             this.grpFiliacion.TabStop = false;
             this.grpFiliacion.Text = "1. FILIACIÓN:";
+            // 
+            // txtFechaEmiFil
+            // 
+            this.txtFechaEmiFil.Location = new System.Drawing.Point(318, 120);
+            this.txtFechaEmiFil.Mask = "00/00/0000";
+            this.txtFechaEmiFil.Name = "txtFechaEmiFil";
+            this.txtFechaEmiFil.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaEmiFil.TabIndex = 62;
+            this.txtFechaEmiFil.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtFechaNac
+            // 
+            this.txtFechaNac.Location = new System.Drawing.Point(319, 38);
+            this.txtFechaNac.Mask = "00/00/0000";
+            this.txtFechaNac.Name = "txtFechaNac";
+            this.txtFechaNac.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaNac.TabIndex = 61;
+            this.txtFechaNac.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Location = new System.Drawing.Point(240, 243);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(100, 20);
+            this.txtTotal.TabIndex = 56;
+            // 
+            // txtCajero
+            // 
+            this.txtCajero.Location = new System.Drawing.Point(15, 244);
+            this.txtCajero.Name = "txtCajero";
+            this.txtCajero.ReadOnly = true;
+            this.txtCajero.Size = new System.Drawing.Size(100, 20);
+            this.txtCajero.TabIndex = 55;
+            // 
+            // grdDetalle
+            // 
+            this.grdDetalle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16});
+            this.grdDetalle.FullRowSelect = true;
+            this.grdDetalle.Location = new System.Drawing.Point(15, 145);
+            this.grdDetalle.MultiSelect = false;
+            this.grdDetalle.Name = "grdDetalle";
+            this.grdDetalle.Size = new System.Drawing.Size(405, 98);
+            this.grdDetalle.TabIndex = 54;
+            this.grdDetalle.UseCompatibleStateImageBehavior = false;
+            this.grdDetalle.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Producto y/o Servicio";
+            this.columnHeader11.Width = 150;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Cant.";
+            this.columnHeader12.Width = 50;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Prec.";
+            this.columnHeader13.Width = 50;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "S.Total";
+            this.columnHeader14.Width = 50;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Con.";
+            this.columnHeader15.Width = 50;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Dto.";
+            this.columnHeader16.Width = 50;
             // 
             // label10
             // 
@@ -682,14 +905,6 @@
             this.label9.TabIndex = 52;
             this.label9.Text = "Fecha Nac.";
             // 
-            // dtpFechaNac
-            // 
-            this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNac.Location = new System.Drawing.Point(318, 37);
-            this.dtpFechaNac.Name = "dtpFechaNac";
-            this.dtpFechaNac.Size = new System.Drawing.Size(100, 20);
-            this.dtpFechaNac.TabIndex = 51;
-            // 
             // btnVerifica
             // 
             this.btnVerifica.Location = new System.Drawing.Point(333, 271);
@@ -708,6 +923,7 @@
             this.btnBCie10.TabIndex = 49;
             this.btnBCie10.Text = "&BCie10";
             this.btnBCie10.UseVisualStyleBackColor = true;
+            this.btnBCie10.Click += new System.EventHandler(this.btnBCie10_Click);
             // 
             // btnGrabar
             // 
@@ -718,6 +934,7 @@
             this.btnGrabar.TabIndex = 48;
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.UseVisualStyleBackColor = true;
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // btnQuitar
             // 
@@ -727,6 +944,7 @@
             this.btnQuitar.TabIndex = 47;
             this.btnQuitar.Text = "&Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // btnAgregar
             // 
@@ -736,14 +954,7 @@
             this.btnAgregar.TabIndex = 46;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // dtpFechaEmiFil
-            // 
-            this.dtpFechaEmiFil.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaEmiFil.Location = new System.Drawing.Point(319, 121);
-            this.dtpFechaEmiFil.Name = "dtpFechaEmiFil";
-            this.dtpFechaEmiFil.Size = new System.Drawing.Size(99, 20);
-            this.dtpFechaEmiFil.TabIndex = 43;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // txtEspecialidad
             // 
@@ -827,9 +1038,9 @@
             // 
             // grpEnfermedad
             // 
-            this.grpEnfermedad.Controls.Add(this.txtObservacion);
-            this.grpEnfermedad.Controls.Add(this.txtCurso);
-            this.grpEnfermedad.Controls.Add(this.txtInicio);
+            this.grpEnfermedad.Controls.Add(this.txtEnAcRel);
+            this.grpEnfermedad.Controls.Add(this.txtEnAcCur);
+            this.grpEnfermedad.Controls.Add(this.txtEnAcIni);
             this.grpEnfermedad.Controls.Add(this.label29);
             this.grpEnfermedad.Controls.Add(this.label21);
             this.grpEnfermedad.Controls.Add(this.label13);
@@ -840,27 +1051,26 @@
             this.grpEnfermedad.TabStop = false;
             this.grpEnfermedad.Text = "2. ENFERMEDAD ACTUAL :";
             // 
-            // txtObservacion
+            // txtEnAcRel
             // 
-            this.txtObservacion.Location = new System.Drawing.Point(8, 78);
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(277, 20);
-            this.txtObservacion.TabIndex = 5;
+            this.txtEnAcRel.Location = new System.Drawing.Point(8, 78);
+            this.txtEnAcRel.Name = "txtEnAcRel";
+            this.txtEnAcRel.Size = new System.Drawing.Size(277, 20);
+            this.txtEnAcRel.TabIndex = 5;
             // 
-            // txtCurso
+            // txtEnAcCur
             // 
-            this.txtCurso.Location = new System.Drawing.Point(166, 35);
-            this.txtCurso.Name = "txtCurso";
-            this.txtCurso.Size = new System.Drawing.Size(120, 20);
-            this.txtCurso.TabIndex = 4;
-            this.txtCurso.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+            this.txtEnAcCur.Location = new System.Drawing.Point(166, 35);
+            this.txtEnAcCur.Name = "txtEnAcCur";
+            this.txtEnAcCur.Size = new System.Drawing.Size(120, 20);
+            this.txtEnAcCur.TabIndex = 4;
             // 
-            // txtInicio
+            // txtEnAcIni
             // 
-            this.txtInicio.Location = new System.Drawing.Point(8, 35);
-            this.txtInicio.Name = "txtInicio";
-            this.txtInicio.Size = new System.Drawing.Size(152, 20);
-            this.txtInicio.TabIndex = 3;
+            this.txtEnAcIni.Location = new System.Drawing.Point(8, 35);
+            this.txtEnAcIni.Name = "txtEnAcIni";
+            this.txtEnAcIni.Size = new System.Drawing.Size(152, 20);
+            this.txtEnAcIni.TabIndex = 3;
             // 
             // label29
             // 
@@ -891,12 +1101,12 @@
             // 
             // grpAntecedentes
             // 
-            this.grpAntecedentes.Controls.Add(this.txtOtros);
+            this.grpAntecedentes.Controls.Add(this.txtAnOtr);
             this.grpAntecedentes.Controls.Add(this.label43);
-            this.grpAntecedentes.Controls.Add(this.txtQuirurgicos);
-            this.grpAntecedentes.Controls.Add(this.txtEpidem);
-            this.grpAntecedentes.Controls.Add(this.txtFamiliares);
-            this.grpAntecedentes.Controls.Add(this.txtPersonales);
+            this.grpAntecedentes.Controls.Add(this.txtAnQui);
+            this.grpAntecedentes.Controls.Add(this.txtAnEpi);
+            this.grpAntecedentes.Controls.Add(this.txtAnFam);
+            this.grpAntecedentes.Controls.Add(this.txtAnPer);
             this.grpAntecedentes.Controls.Add(this.label33);
             this.grpAntecedentes.Controls.Add(this.label32);
             this.grpAntecedentes.Controls.Add(this.label31);
@@ -908,12 +1118,12 @@
             this.grpAntecedentes.TabStop = false;
             this.grpAntecedentes.Text = "3. ANTECEDENTES:";
             // 
-            // txtOtros
+            // txtAnOtr
             // 
-            this.txtOtros.Location = new System.Drawing.Point(333, 70);
-            this.txtOtros.Name = "txtOtros";
-            this.txtOtros.Size = new System.Drawing.Size(172, 20);
-            this.txtOtros.TabIndex = 43;
+            this.txtAnOtr.Location = new System.Drawing.Point(333, 70);
+            this.txtAnOtr.Name = "txtAnOtr";
+            this.txtAnOtr.Size = new System.Drawing.Size(172, 20);
+            this.txtAnOtr.TabIndex = 43;
             // 
             // label43
             // 
@@ -924,33 +1134,33 @@
             this.label43.TabIndex = 42;
             this.label43.Text = "Otros ...";
             // 
-            // txtQuirurgicos
+            // txtAnQui
             // 
-            this.txtQuirurgicos.Location = new System.Drawing.Point(186, 71);
-            this.txtQuirurgicos.Name = "txtQuirurgicos";
-            this.txtQuirurgicos.Size = new System.Drawing.Size(143, 20);
-            this.txtQuirurgicos.TabIndex = 41;
+            this.txtAnQui.Location = new System.Drawing.Point(186, 71);
+            this.txtAnQui.Name = "txtAnQui";
+            this.txtAnQui.Size = new System.Drawing.Size(143, 20);
+            this.txtAnQui.TabIndex = 41;
             // 
-            // txtEpidem
+            // txtAnEpi
             // 
-            this.txtEpidem.Location = new System.Drawing.Point(13, 72);
-            this.txtEpidem.Name = "txtEpidem";
-            this.txtEpidem.Size = new System.Drawing.Size(167, 20);
-            this.txtEpidem.TabIndex = 40;
+            this.txtAnEpi.Location = new System.Drawing.Point(13, 72);
+            this.txtAnEpi.Name = "txtAnEpi";
+            this.txtAnEpi.Size = new System.Drawing.Size(167, 20);
+            this.txtAnEpi.TabIndex = 40;
             // 
-            // txtFamiliares
+            // txtAnFam
             // 
-            this.txtFamiliares.Location = new System.Drawing.Point(289, 31);
-            this.txtFamiliares.Name = "txtFamiliares";
-            this.txtFamiliares.Size = new System.Drawing.Size(212, 20);
-            this.txtFamiliares.TabIndex = 39;
+            this.txtAnFam.Location = new System.Drawing.Point(289, 31);
+            this.txtAnFam.Name = "txtAnFam";
+            this.txtAnFam.Size = new System.Drawing.Size(212, 20);
+            this.txtAnFam.TabIndex = 39;
             // 
-            // txtPersonales
+            // txtAnPer
             // 
-            this.txtPersonales.Location = new System.Drawing.Point(11, 32);
-            this.txtPersonales.Name = "txtPersonales";
-            this.txtPersonales.Size = new System.Drawing.Size(268, 20);
-            this.txtPersonales.TabIndex = 38;
+            this.txtAnPer.Location = new System.Drawing.Point(11, 32);
+            this.txtAnPer.Name = "txtAnPer";
+            this.txtAnPer.Size = new System.Drawing.Size(268, 20);
+            this.txtAnPer.TabIndex = 38;
             // 
             // label33
             // 
@@ -990,13 +1200,13 @@
             // 
             // grpExClinico
             // 
-            this.grpExClinico.Controls.Add(this.txtExamenGeneral);
-            this.grpExClinico.Controls.Add(this.txtFR);
-            this.grpExClinico.Controls.Add(this.txtTemp);
-            this.grpExClinico.Controls.Add(this.txtFC);
-            this.grpExClinico.Controls.Add(this.txtPresArt);
-            this.grpExClinico.Controls.Add(this.txtTalla);
-            this.grpExClinico.Controls.Add(this.txtPeso);
+            this.grpExClinico.Controls.Add(this.txtExClEg);
+            this.grpExClinico.Controls.Add(this.txtExClFr);
+            this.grpExClinico.Controls.Add(this.txtExClTm);
+            this.grpExClinico.Controls.Add(this.txtExClFc);
+            this.grpExClinico.Controls.Add(this.txtExClPa);
+            this.grpExClinico.Controls.Add(this.txtExClTl);
+            this.grpExClinico.Controls.Add(this.txtExClPs);
             this.grpExClinico.Controls.Add(this.label40);
             this.grpExClinico.Controls.Add(this.label39);
             this.grpExClinico.Controls.Add(this.label38);
@@ -1011,55 +1221,54 @@
             this.grpExClinico.TabStop = false;
             this.grpExClinico.Text = "4. EXAMEN CLÍNICO:";
             // 
-            // txtExamenGeneral
+            // txtExClEg
             // 
-            this.txtExamenGeneral.Location = new System.Drawing.Point(9, 70);
-            this.txtExamenGeneral.Name = "txtExamenGeneral";
-            this.txtExamenGeneral.Size = new System.Drawing.Size(332, 20);
-            this.txtExamenGeneral.TabIndex = 49;
+            this.txtExClEg.Location = new System.Drawing.Point(9, 70);
+            this.txtExClEg.Name = "txtExClEg";
+            this.txtExClEg.Size = new System.Drawing.Size(332, 20);
+            this.txtExClEg.TabIndex = 49;
             // 
-            // txtFR
+            // txtExClFr
             // 
-            this.txtFR.Location = new System.Drawing.Point(264, 31);
-            this.txtFR.Name = "txtFR";
-            this.txtFR.Size = new System.Drawing.Size(37, 20);
-            this.txtFR.TabIndex = 48;
-            this.txtFR.TextChanged += new System.EventHandler(this.textBox31_TextChanged);
+            this.txtExClFr.Location = new System.Drawing.Point(264, 31);
+            this.txtExClFr.Name = "txtExClFr";
+            this.txtExClFr.Size = new System.Drawing.Size(37, 20);
+            this.txtExClFr.TabIndex = 48;
             // 
-            // txtTemp
+            // txtExClTm
             // 
-            this.txtTemp.Location = new System.Drawing.Point(304, 31);
-            this.txtTemp.Name = "txtTemp";
-            this.txtTemp.Size = new System.Drawing.Size(37, 20);
-            this.txtTemp.TabIndex = 47;
+            this.txtExClTm.Location = new System.Drawing.Point(304, 31);
+            this.txtExClTm.Name = "txtExClTm";
+            this.txtExClTm.Size = new System.Drawing.Size(37, 20);
+            this.txtExClTm.TabIndex = 47;
             // 
-            // txtFC
+            // txtExClFc
             // 
-            this.txtFC.Location = new System.Drawing.Point(225, 31);
-            this.txtFC.Name = "txtFC";
-            this.txtFC.Size = new System.Drawing.Size(35, 20);
-            this.txtFC.TabIndex = 46;
+            this.txtExClFc.Location = new System.Drawing.Point(225, 31);
+            this.txtExClFc.Name = "txtExClFc";
+            this.txtExClFc.Size = new System.Drawing.Size(35, 20);
+            this.txtExClFc.TabIndex = 46;
             // 
-            // txtPresArt
+            // txtExClPa
             // 
-            this.txtPresArt.Location = new System.Drawing.Point(143, 31);
-            this.txtPresArt.Name = "txtPresArt";
-            this.txtPresArt.Size = new System.Drawing.Size(78, 20);
-            this.txtPresArt.TabIndex = 45;
+            this.txtExClPa.Location = new System.Drawing.Point(143, 31);
+            this.txtExClPa.Name = "txtExClPa";
+            this.txtExClPa.Size = new System.Drawing.Size(78, 20);
+            this.txtExClPa.TabIndex = 45;
             // 
-            // txtTalla
+            // txtExClTl
             // 
-            this.txtTalla.Location = new System.Drawing.Point(78, 31);
-            this.txtTalla.Name = "txtTalla";
-            this.txtTalla.Size = new System.Drawing.Size(60, 20);
-            this.txtTalla.TabIndex = 44;
+            this.txtExClTl.Location = new System.Drawing.Point(78, 31);
+            this.txtExClTl.Name = "txtExClTl";
+            this.txtExClTl.Size = new System.Drawing.Size(60, 20);
+            this.txtExClTl.TabIndex = 44;
             // 
-            // txtPeso
+            // txtExClPs
             // 
-            this.txtPeso.Location = new System.Drawing.Point(8, 31);
-            this.txtPeso.Name = "txtPeso";
-            this.txtPeso.Size = new System.Drawing.Size(66, 20);
-            this.txtPeso.TabIndex = 43;
+            this.txtExClPs.Location = new System.Drawing.Point(8, 31);
+            this.txtExClPs.Name = "txtExClPs";
+            this.txtExClPs.Size = new System.Drawing.Size(66, 20);
+            this.txtExClPs.TabIndex = 43;
             // 
             // label40
             // 
@@ -1124,14 +1333,50 @@
             this.label34.TabIndex = 35;
             this.label34.Text = "Peso";
             // 
-            // grpTratamiento
+            // groupBoxTraMed
             // 
-            this.grpTratamiento.Location = new System.Drawing.Point(360, 434);
-            this.grpTratamiento.Name = "grpTratamiento";
-            this.grpTratamiento.Size = new System.Drawing.Size(506, 100);
-            this.grpTratamiento.TabIndex = 35;
-            this.grpTratamiento.TabStop = false;
-            this.grpTratamiento.Text = "7. TRATAMIENTO";
+            this.groupBoxTraMed.Controls.Add(this.grdTraMed);
+            this.groupBoxTraMed.Location = new System.Drawing.Point(360, 434);
+            this.groupBoxTraMed.Name = "groupBoxTraMed";
+            this.groupBoxTraMed.Size = new System.Drawing.Size(506, 100);
+            this.groupBoxTraMed.TabIndex = 35;
+            this.groupBoxTraMed.TabStop = false;
+            this.groupBoxTraMed.Text = "7. TRATAMIENTO";
+            // 
+            // grdTraMed
+            // 
+            this.grdTraMed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.grdTraMed.FullRowSelect = true;
+            this.grdTraMed.Location = new System.Drawing.Point(10, 15);
+            this.grdTraMed.MultiSelect = false;
+            this.grdTraMed.Name = "grdTraMed";
+            this.grdTraMed.Size = new System.Drawing.Size(483, 82);
+            this.grdTraMed.TabIndex = 18;
+            this.grdTraMed.UseCompatibleStateImageBehavior = false;
+            this.grdTraMed.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Serie";
+            this.columnHeader5.Width = 40;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Nro Ticket";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Fecha Emisión";
+            this.columnHeader7.Width = 80;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Digitador";
+            this.columnHeader8.Width = 100;
             // 
             // label41
             // 
@@ -1169,6 +1414,7 @@
             this.chkIdem.TabIndex = 38;
             this.chkIdem.Text = "Idem";
             this.chkIdem.UseVisualStyleBackColor = true;
+            this.chkIdem.CheckedChanged += new System.EventHandler(this.chkIdem_CheckedChanged);
             // 
             // txtTi
             // 
@@ -1177,163 +1423,109 @@
             this.txtTi.ReadOnly = true;
             this.txtTi.Size = new System.Drawing.Size(100, 20);
             this.txtTi.TabIndex = 54;
+            this.txtTi.Text = "0";
+            this.txtTi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // listView1
+            // chkCompleto
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15,
-            this.columnHeader16});
-            this.listView1.FullRowSelect = true;
-            this.listView1.Location = new System.Drawing.Point(15, 145);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(405, 98);
-            this.listView1.TabIndex = 54;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.chkCompleto.AutoSize = true;
+            this.chkCompleto.Location = new System.Drawing.Point(200, 4);
+            this.chkCompleto.Name = "chkCompleto";
+            this.chkCompleto.Size = new System.Drawing.Size(70, 17);
+            this.chkCompleto.TabIndex = 56;
+            this.chkCompleto.Text = "Completo";
+            this.chkCompleto.UseVisualStyleBackColor = true;
             // 
-            // columnHeader11
+            // grdDetCie10
             // 
-            this.columnHeader11.Text = "Producto y/o Servicio";
-            this.columnHeader11.Width = 40;
+            this.grdDetCie10.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader27});
+            this.grdDetCie10.FullRowSelect = true;
+            this.grdDetCie10.Location = new System.Drawing.Point(10, 561);
+            this.grdDetCie10.MultiSelect = false;
+            this.grdDetCie10.Name = "grdDetCie10";
+            this.grdDetCie10.Size = new System.Drawing.Size(855, 81);
+            this.grdDetCie10.TabIndex = 57;
+            this.grdDetCie10.UseCompatibleStateImageBehavior = false;
+            this.grdDetCie10.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader12
+            // columnHeader9
             // 
-            this.columnHeader12.Text = "Cant.";
+            this.columnHeader9.Text = "Cie10";
+            this.columnHeader9.Width = 70;
             // 
-            // columnHeader13
+            // columnHeader10
             // 
-            this.columnHeader13.Text = "Prec.";
-            this.columnHeader13.Width = 80;
+            this.columnHeader10.Text = "Descripción del diagnóstico";
+            this.columnHeader10.Width = 350;
             // 
-            // columnHeader14
+            // columnHeader27
             // 
-            this.columnHeader14.Text = "S.Total";
-            this.columnHeader14.Width = 100;
+            this.columnHeader27.Text = "Procedimientos, exámenes aux, intervenciones...";
+            this.columnHeader27.Width = 350;
             // 
-            // columnHeader15
+            // dgvDetCie10
             // 
-            this.columnHeader15.Text = "Con.";
+            this.dgvDetCie10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetCie10.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dgvDetCie10.Location = new System.Drawing.Point(124, 551);
+            this.dgvDetCie10.Name = "dgvDetCie10";
+            this.dgvDetCie10.Size = new System.Drawing.Size(363, 77);
+            this.dgvDetCie10.TabIndex = 58;
             // 
-            // columnHeader16
+            // Column1
             // 
-            this.columnHeader16.Text = "Dto.";
-            this.columnHeader16.Width = 40;
+            this.Column1.HeaderText = "Cie10";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 70;
             // 
-            // txtCajero
+            // Column2
             // 
-            this.txtCajero.Location = new System.Drawing.Point(15, 244);
-            this.txtCajero.Name = "txtCajero";
-            this.txtCajero.Size = new System.Drawing.Size(100, 20);
-            this.txtCajero.TabIndex = 55;
+            this.Column2.HeaderText = "Descripción del diagnóstico";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 350;
             // 
-            // txtTotal
+            // Column3
             // 
-            this.txtTotal.Location = new System.Drawing.Point(240, 243);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(100, 20);
-            this.txtTotal.TabIndex = 56;
+            this.Column3.HeaderText = "Procedimientos, exámenes aux, inervenciones...";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 350;
             // 
-            // lstTickets1
+            // tablaTipoTableAdapter1
             // 
-            this.lstTickets1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader17,
-            this.columnHeader18,
-            this.columnHeader19,
-            this.columnHeader20,
-            this.columnHeader21,
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24,
-            this.columnHeader25,
-            this.columnHeader26});
-            this.lstTickets1.FullRowSelect = true;
-            this.lstTickets1.Location = new System.Drawing.Point(162, 62);
-            this.lstTickets1.MultiSelect = false;
-            this.lstTickets1.Name = "lstTickets1";
-            this.lstTickets1.Size = new System.Drawing.Size(262, 82);
-            this.lstTickets1.TabIndex = 18;
-            this.lstTickets1.UseCompatibleStateImageBehavior = false;
-            this.lstTickets1.View = System.Windows.Forms.View.Details;
+            this.tablaTipoTableAdapter1.ClearBeforeFill = true;
             // 
-            // columnHeader17
+            // txtFechaAten
             // 
-            this.columnHeader17.Text = "Serie";
-            this.columnHeader17.Width = 40;
+            this.txtFechaAten.Location = new System.Drawing.Point(9, 200);
+            this.txtFechaAten.Mask = "00/00/0000";
+            this.txtFechaAten.Name = "txtFechaAten";
+            this.txtFechaAten.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaAten.TabIndex = 59;
+            this.txtFechaAten.ValidatingType = typeof(System.DateTime);
+            this.txtFechaAten.Validating += new System.ComponentModel.CancelEventHandler(this.txtFechaAten_Validating);
             // 
-            // columnHeader18
+            // txtFechaIngreso
             // 
-            this.columnHeader18.Text = "Nro Ticket";
+            this.txtFechaIngreso.Location = new System.Drawing.Point(329, 288);
+            this.txtFechaIngreso.Mask = "00/00/0000";
+            this.txtFechaIngreso.Name = "txtFechaIngreso";
+            this.txtFechaIngreso.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaIngreso.TabIndex = 60;
+            this.txtFechaIngreso.ValidatingType = typeof(System.DateTime);
             // 
-            // columnHeader19
+            // busesTableAdapter
             // 
-            this.columnHeader19.Text = "Fecha Atención";
-            this.columnHeader19.Width = 80;
+            this.busesTableAdapter.ClearBeforeFill = true;
             // 
-            // columnHeader20
+            // tmpEspecialistaTableAdapter
             // 
-            this.columnHeader20.Text = "Digitador";
-            this.columnHeader20.Width = 100;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.Text = "Nro Historia";
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Text = "Id Paciente";
-            this.columnHeader22.Width = 40;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Text = "Descripcion";
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Text = "Orden";
-            this.columnHeader24.Width = 50;
-            // 
-            // columnHeader25
-            // 
-            this.columnHeader25.Text = "Anulado";
-            this.columnHeader25.Width = 70;
-            // 
-            // columnHeader26
-            // 
-            this.columnHeader26.Text = "Fecha Emisión";
-            this.columnHeader26.Width = 70;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Anulado";
-            this.columnHeader6.Width = 0;
-            // 
-            // lstPacientes
-            // 
-            this.lstPacientes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader29});
-            this.lstPacientes.FullRowSelect = true;
-            this.lstPacientes.Location = new System.Drawing.Point(4, 63);
-            this.lstPacientes.MultiSelect = false;
-            this.lstPacientes.Name = "lstPacientes";
-            this.lstPacientes.Size = new System.Drawing.Size(154, 82);
-            this.lstPacientes.TabIndex = 19;
-            this.lstPacientes.UseCompatibleStateImageBehavior = false;
-            this.lstPacientes.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader29
-            // 
-            this.columnHeader29.Text = "Paciente";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "ID Paciente";
-            this.columnHeader7.Width = 0;
+            this.tmpEspecialistaTableAdapter.ClearBeforeFill = true;
             // 
             // frmIngresoCie10
             // 
@@ -1341,11 +1533,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 647);
             this.ControlBox = false;
+            this.Controls.Add(this.txtFechaIngreso);
+            this.Controls.Add(this.txtFechaAten);
+            this.Controls.Add(this.dgvDetCie10);
+            this.Controls.Add(this.grdDetCie10);
+            this.Controls.Add(this.chkCompleto);
             this.Controls.Add(this.txtTi);
             this.Controls.Add(this.chkIdem);
             this.Controls.Add(this.label42);
             this.Controls.Add(this.label41);
-            this.Controls.Add(this.grpTratamiento);
+            this.Controls.Add(this.groupBoxTraMed);
             this.Controls.Add(this.grpExClinico);
             this.Controls.Add(this.grpAntecedentes);
             this.Controls.Add(this.grpEnfermedad);
@@ -1353,14 +1550,12 @@
             this.Controls.Add(this.label28);
             this.Controls.Add(this.txtCuenta);
             this.Controls.Add(this.label27);
-            this.Controls.Add(this.dtpFechaIngreso);
             this.Controls.Add(this.cmbTurno);
             this.Controls.Add(this.txtDigitador);
             this.Controls.Add(this.label26);
-            this.Controls.Add(this.dtpFechaAten);
             this.Controls.Add(this.cmbBus);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.txtObserv);
+            this.Controls.Add(this.txtObservacion);
             this.Controls.Add(this.cmbMedico);
             this.Controls.Add(this.txtMedico);
             this.Controls.Add(this.label11);
@@ -1383,7 +1578,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).EndInit();
             this.tabConsultar.ResumeLayout(false);
             this.tabConsultar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).EndInit();
             this.grpFiliacion.ResumeLayout(false);
             this.grpFiliacion.PerformLayout();
             this.grpEnfermedad.ResumeLayout(false);
@@ -1392,6 +1593,8 @@
             this.grpAntecedentes.PerformLayout();
             this.grpExClinico.ResumeLayout(false);
             this.grpExClinico.PerformLayout();
+            this.groupBoxTraMed.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1415,11 +1618,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtMedico;
-        private System.Windows.Forms.TextBox txtObserv;
+        private System.Windows.Forms.TextBox txtObservacion;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbBus;
-        private System.Windows.Forms.DateTimePicker dtpFechaEmi;
-        private System.Windows.Forms.DateTimePicker dtpFechaAten;
         private System.Windows.Forms.TextBox txtIdPac;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApeMat;
@@ -1431,24 +1632,21 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.DateTimePicker dtpFechaIngreso;
         private System.Windows.Forms.GroupBox grpEnfermedad;
-        private System.Windows.Forms.TextBox txtObservacion;
-        private System.Windows.Forms.TextBox txtCurso;
-        private System.Windows.Forms.TextBox txtInicio;
+        private System.Windows.Forms.TextBox txtEnAcRel;
+        private System.Windows.Forms.TextBox txtEnAcCur;
+        private System.Windows.Forms.TextBox txtEnAcIni;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox grpFiliacion;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dtpFechaNac;
         private System.Windows.Forms.Button btnVerifica;
         private System.Windows.Forms.Button btnBCie10;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.DateTimePicker dtpFechaEmiFil;
         private System.Windows.Forms.TextBox txtEspecialidad;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
@@ -1466,12 +1664,12 @@
         private System.Windows.Forms.TextBox txtDigitador;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.GroupBox grpExClinico;
-        private System.Windows.Forms.TextBox txtFR;
-        private System.Windows.Forms.TextBox txtTemp;
-        private System.Windows.Forms.TextBox txtFC;
-        private System.Windows.Forms.TextBox txtPresArt;
-        private System.Windows.Forms.TextBox txtTalla;
-        private System.Windows.Forms.TextBox txtPeso;
+        private System.Windows.Forms.TextBox txtExClFr;
+        private System.Windows.Forms.TextBox txtExClTm;
+        private System.Windows.Forms.TextBox txtExClFc;
+        private System.Windows.Forms.TextBox txtExClPa;
+        private System.Windows.Forms.TextBox txtExClTl;
+        private System.Windows.Forms.TextBox txtExClPs;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
@@ -1480,19 +1678,19 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.GroupBox grpAntecedentes;
-        private System.Windows.Forms.TextBox txtQuirurgicos;
-        private System.Windows.Forms.TextBox txtEpidem;
-        private System.Windows.Forms.TextBox txtFamiliares;
-        private System.Windows.Forms.TextBox txtPersonales;
+        private System.Windows.Forms.TextBox txtAnQui;
+        private System.Windows.Forms.TextBox txtAnEpi;
+        private System.Windows.Forms.TextBox txtAnFam;
+        private System.Windows.Forms.TextBox txtAnPer;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.GroupBox grpTratamiento;
-        private System.Windows.Forms.TextBox txtExamenGeneral;
-        private System.Windows.Forms.TextBox txtOtros;
+        private System.Windows.Forms.GroupBox groupBoxTraMed;
+        private System.Windows.Forms.TextBox txtExClEg;
+        private System.Windows.Forms.TextBox txtAnOtr;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.BindingSource consultoriosBindingSource;
         private Dominio.Data.ConsultoriosDS consultoriosDS;
@@ -1507,13 +1705,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.CheckBox chkFechaVent;
         private System.Windows.Forms.CheckBox chkIdem;
         private System.Windows.Forms.TextBox txtTi;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.TextBox txtCajero;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView grdDetalle;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
@@ -1531,9 +1727,36 @@
         private System.Windows.Forms.ColumnHeader columnHeader24;
         private System.Windows.Forms.ColumnHeader columnHeader25;
         private System.Windows.Forms.ColumnHeader columnHeader26;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ListView lstPacientes;
         private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.CheckBox chkCompleto;
+        private System.Windows.Forms.ListView grdTraMed;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ListView grdDetCie10;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader27;
+        private System.Windows.Forms.DataGridView dgvDetCie10;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private Dominio.Data.TurnosDS turnosDS;
+        private System.Windows.Forms.BindingSource tablaTipoBindingSource1;
+        private Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.MaskedTextBox txtFechaEmi;
+        private System.Windows.Forms.MaskedTextBox txtFechaAten;
+        private System.Windows.Forms.MaskedTextBox txtFechaIngreso;
+        private System.Windows.Forms.MaskedTextBox txtFechaEmiFil;
+        private System.Windows.Forms.MaskedTextBox txtFechaNac;
+        private System.Windows.Forms.BindingSource busesBindingSource;
+        private Dominio.Data.BusesDS busesDS;
+        private Dominio.Data.BusesDSTableAdapters.BusesTableAdapter busesTableAdapter;
+        private System.Windows.Forms.BindingSource tmpEspecialistaBindingSource;
+        private Dominio.Data.tmpEspecialistaDS tmpEspecialistaDS;
+        private Dominio.Data.tmpEspecialistaDSTableAdapters.tmpEspecialistaTableAdapter tmpEspecialistaTableAdapter;
     }
 }
