@@ -216,6 +216,7 @@
             this.tabIngresoConsulta.SelectedIndex = 0;
             this.tabIngresoConsulta.Size = new System.Drawing.Size(432, 175);
             this.tabIngresoConsulta.TabIndex = 0;
+            this.tabIngresoConsulta.Click += new System.EventHandler(this.tabIngresoConsulta_Click);
             // 
             // tabIngresar
             // 
@@ -619,7 +620,7 @@
             this.cmbMedico.Size = new System.Drawing.Size(71, 21);
             this.cmbMedico.TabIndex = 7;
             this.cmbMedico.ValueMember = "NCMP";
-            this.cmbMedico.SelectedIndexChanged += new System.EventHandler(this.cmbMedico_SelectedIndexChanged);
+            this.cmbMedico.SelectionChangeCommitted += new System.EventHandler(this.cmbMedico_SelectionChangeCommitted);
             this.cmbMedico.Leave += new System.EventHandler(this.cmbMedico_Leave);
             // 
             // tmpEspecialistaBindingSource
@@ -663,6 +664,7 @@
             // 
             this.txtMedico.Location = new System.Drawing.Point(84, 250);
             this.txtMedico.Name = "txtMedico";
+            this.txtMedico.ReadOnly = true;
             this.txtMedico.Size = new System.Drawing.Size(270, 20);
             this.txtMedico.TabIndex = 9;
             // 
@@ -670,7 +672,7 @@
             // 
             this.txtObservacion.Location = new System.Drawing.Point(7, 289);
             this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(318, 20);
+            this.txtObservacion.Size = new System.Drawing.Size(303, 20);
             this.txtObservacion.TabIndex = 12;
             this.txtObservacion.Leave += new System.EventHandler(this.txtObservacion_Leave);
             // 
@@ -762,8 +764,12 @@
             // 
             this.txtCuenta.Location = new System.Drawing.Point(357, 249);
             this.txtCuenta.Name = "txtCuenta";
+            this.txtCuenta.ReadOnly = true;
             this.txtCuenta.Size = new System.Drawing.Size(69, 20);
             this.txtCuenta.TabIndex = 24;
+            this.txtCuenta.Text = "0";
+            this.txtCuenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCuenta.Leave += new System.EventHandler(this.txtCuenta_Leave);
             // 
             // label28
             // 
@@ -807,10 +813,11 @@
             // 
             // txtFechaEmiFil
             // 
-            this.txtFechaEmiFil.Location = new System.Drawing.Point(318, 120);
-            this.txtFechaEmiFil.Mask = "00/00/0000";
+            this.txtFechaEmiFil.Location = new System.Drawing.Point(306, 120);
+            this.txtFechaEmiFil.Mask = "00/00/0000 00:00 AM";
             this.txtFechaEmiFil.Name = "txtFechaEmiFil";
-            this.txtFechaEmiFil.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaEmiFil.ReadOnly = true;
+            this.txtFechaEmiFil.Size = new System.Drawing.Size(112, 20);
             this.txtFechaEmiFil.TabIndex = 62;
             this.txtFechaEmiFil.ValidatingType = typeof(System.DateTime);
             // 
@@ -819,6 +826,7 @@
             this.txtFechaNac.Location = new System.Drawing.Point(319, 38);
             this.txtFechaNac.Mask = "00/00/0000";
             this.txtFechaNac.Name = "txtFechaNac";
+            this.txtFechaNac.ReadOnly = true;
             this.txtFechaNac.Size = new System.Drawing.Size(100, 20);
             this.txtFechaNac.TabIndex = 61;
             this.txtFechaNac.ValidatingType = typeof(System.DateTime);
@@ -836,7 +844,7 @@
             this.txtCajero.Location = new System.Drawing.Point(15, 244);
             this.txtCajero.Name = "txtCajero";
             this.txtCajero.ReadOnly = true;
-            this.txtCajero.Size = new System.Drawing.Size(100, 20);
+            this.txtCajero.Size = new System.Drawing.Size(214, 20);
             this.txtCajero.TabIndex = 55;
             // 
             // grdDetalle
@@ -960,7 +968,8 @@
             // 
             this.txtEspecialidad.Location = new System.Drawing.Point(15, 122);
             this.txtEspecialidad.Name = "txtEspecialidad";
-            this.txtEspecialidad.Size = new System.Drawing.Size(298, 20);
+            this.txtEspecialidad.ReadOnly = true;
+            this.txtEspecialidad.Size = new System.Drawing.Size(287, 20);
             this.txtEspecialidad.TabIndex = 42;
             // 
             // label25
@@ -985,6 +994,7 @@
             // 
             this.txtOrden.Location = new System.Drawing.Point(174, 77);
             this.txtOrden.Name = "txtOrden";
+            this.txtOrden.ReadOnly = true;
             this.txtOrden.Size = new System.Drawing.Size(244, 20);
             this.txtOrden.TabIndex = 39;
             // 
@@ -992,6 +1002,7 @@
             // 
             this.txtSexo.Location = new System.Drawing.Point(69, 76);
             this.txtSexo.Name = "txtSexo";
+            this.txtSexo.ReadOnly = true;
             this.txtSexo.Size = new System.Drawing.Size(100, 20);
             this.txtSexo.TabIndex = 38;
             // 
@@ -999,6 +1010,7 @@
             // 
             this.txtEdad.Location = new System.Drawing.Point(13, 76);
             this.txtEdad.Name = "txtEdad";
+            this.txtEdad.ReadOnly = true;
             this.txtEdad.Size = new System.Drawing.Size(48, 20);
             this.txtEdad.TabIndex = 37;
             // 
@@ -1006,6 +1018,7 @@
             // 
             this.txtPaciente.Location = new System.Drawing.Point(11, 38);
             this.txtPaciente.Name = "txtPaciente";
+            this.txtPaciente.ReadOnly = true;
             this.txtPaciente.Size = new System.Drawing.Size(303, 20);
             this.txtPaciente.TabIndex = 36;
             // 
@@ -1161,6 +1174,7 @@
             this.txtAnPer.Name = "txtAnPer";
             this.txtAnPer.Size = new System.Drawing.Size(268, 20);
             this.txtAnPer.TabIndex = 38;
+            this.txtAnPer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAnPer_KeyDown);
             // 
             // label33
             // 
@@ -1358,6 +1372,7 @@
             this.grdTraMed.TabIndex = 18;
             this.grdTraMed.UseCompatibleStateImageBehavior = false;
             this.grdTraMed.View = System.Windows.Forms.View.Details;
+            this.grdTraMed.Enter += new System.EventHandler(this.grdTraMed_Enter);
             // 
             // columnHeader5
             // 
@@ -1450,6 +1465,7 @@
             this.grdDetCie10.TabIndex = 57;
             this.grdDetCie10.UseCompatibleStateImageBehavior = false;
             this.grdDetCie10.View = System.Windows.Forms.View.Details;
+            this.grdDetCie10.Enter += new System.EventHandler(this.grdDetCie10_Enter);
             // 
             // columnHeader9
             // 
@@ -1473,9 +1489,9 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dgvDetCie10.Location = new System.Drawing.Point(124, 551);
+            this.dgvDetCie10.Location = new System.Drawing.Point(128, 558);
             this.dgvDetCie10.Name = "dgvDetCie10";
-            this.dgvDetCie10.Size = new System.Drawing.Size(363, 77);
+            this.dgvDetCie10.Size = new System.Drawing.Size(573, 93);
             this.dgvDetCie10.TabIndex = 58;
             // 
             // Column1
@@ -1508,16 +1524,17 @@
             this.txtFechaAten.Size = new System.Drawing.Size(100, 20);
             this.txtFechaAten.TabIndex = 59;
             this.txtFechaAten.ValidatingType = typeof(System.DateTime);
+            this.txtFechaAten.Leave += new System.EventHandler(this.txtFechaAten_Leave);
             this.txtFechaAten.Validating += new System.ComponentModel.CancelEventHandler(this.txtFechaAten_Validating);
             // 
             // txtFechaIngreso
             // 
-            this.txtFechaIngreso.Location = new System.Drawing.Point(329, 288);
-            this.txtFechaIngreso.Mask = "00/00/0000";
+            this.txtFechaIngreso.Location = new System.Drawing.Point(314, 288);
+            this.txtFechaIngreso.Mask = "00/00/0000 00:00 AM";
             this.txtFechaIngreso.Name = "txtFechaIngreso";
-            this.txtFechaIngreso.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaIngreso.ReadOnly = true;
+            this.txtFechaIngreso.Size = new System.Drawing.Size(115, 20);
             this.txtFechaIngreso.TabIndex = 60;
-            this.txtFechaIngreso.ValidatingType = typeof(System.DateTime);
             // 
             // busesTableAdapter
             // 

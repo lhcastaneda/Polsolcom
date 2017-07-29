@@ -1367,5 +1367,10 @@ namespace Polsolcom.Dominio.Helpers
 
             comboBox.DropDownWidth = maxWidth;
         }
+
+        public static string GetSelectedString(ComboBox comboBox, string attribute)
+        {
+            return comboBox.SelectedIndex == -1 ? "" : ((DataRowView)comboBox.SelectedItem)[attribute].ToString();
+        }
     }
 }
