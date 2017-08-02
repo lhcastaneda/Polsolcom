@@ -193,3 +193,5 @@ C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.cspr
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\yo\Polsolcom.resources.dll
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmConsultarCie10.resources
+C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmVerificaCie.resources

@@ -184,10 +184,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TipoProductoDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\tmpEspecialistaDS.cs">
+      <DependentUpon>tmpEspecialistaDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\tmpEspecialistaDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>tmpEspecialistaDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\TurnosDS.cs">
+      <DependentUpon>TurnosDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\TurnosDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -348,6 +354,12 @@
     </Compile>
     <Compile Include="Forms\frmMantImpFicha.Designer.cs">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmConsultarCie10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmConsultarCie10.Designer.cs">
+      <DependentUpon>frmConsultarCie10.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Procesos\frmIngresoCie10.cs">
       <SubType>Form</SubType>
@@ -619,6 +631,12 @@
     <Compile Include="Forms\Procesos\frmSHClinica.Designer.cs">
       <DependentUpon>frmSHClinica.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Procesos\frmVerificaCie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmVerificaCie.Designer.cs">
+      <DependentUpon>frmVerificaCie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Program.cs" />
     <Compile Include="Dominio\Connection\Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -718,6 +736,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMantImpFicha.resx">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmConsultarCie10.resx">
+      <DependentUpon>frmConsultarCie10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmIngresoCie10.resx">
       <DependentUpon>frmIngresoCie10.cs</DependentUpon>
@@ -849,6 +870,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmSHClinica.resx">
       <DependentUpon>frmSHClinica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmVerificaCie.resx">
+      <DependentUpon>frmVerificaCie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
