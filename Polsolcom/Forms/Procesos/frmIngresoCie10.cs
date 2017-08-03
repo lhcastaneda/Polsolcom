@@ -53,7 +53,7 @@ namespace Polsolcom.Forms.Procesos
             this.busesTableAdapter.Fill(this.busesDS.Buses, Operativo.id_oper);
             this.tablaTipoTableAdapter1.Fill(this.turnosDS.TablaTipo);
 
-            //frmConsulta.hide
+           //frmConsulta.hide
             //frmResultado.hide
 
             //ce = General.vtrls(Especialidad.esp);
@@ -61,7 +61,7 @@ namespace Polsolcom.Forms.Procesos
             ce = 0;
             ca = 0;
 
-            txtEnAcIni.Enabled = txtEnAcCur.Enabled = txtEnAcRel.Enabled = txtAnPer.Enabled = txtAnFam.Enabled = txtAnEpi.Enabled = txtAnQui.Enabled = txtAnOtr.Enabled = txtExClPs.Enabled = txtExClTl.Enabled = txtExClPa.Enabled = txtExClFc.Enabled = txtExClFr.Enabled = txtExClTm.Enabled = txtExClEg.Enabled = groupBoxTraMed.Enabled = grdDetCie10.Enabled = chkCompleto.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = btnVerifica.Enabled = cmbEspecialidad.Enabled = !(ca + ce == 2);
+            txtEnAcIni.Enabled = txtEnAcCur.Enabled = txtEnAcRel.Enabled = txtAnPer.Enabled = txtAnFam.Enabled = txtAnEpi.Enabled = txtAnQui.Enabled = txtAnOtr.Enabled = txtExClPs.Enabled = txtExClTl.Enabled = txtExClPa.Enabled = txtExClFc.Enabled = txtExClFr.Enabled = txtExClTm.Enabled = txtExClEg.Enabled = groupBoxTraMed.Enabled = dgvDetCie10.Enabled = chkCompleto.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = btnVerifica.Enabled = cmbEspecialidad.Enabled = !(ca + ce == 2);
             chkCompleto.Checked = (ca + ce == 2);
             cmbEspecialidad.SelectedIndex = (ca + ce == 2) ? 0 : -1;
             cmbBus.Enabled = !(ca == 1);
@@ -70,7 +70,6 @@ namespace Polsolcom.Forms.Procesos
             txtDigitador.Text = Usuario.usuario;
 
             General.FillListView(grdDetalle, tmpDetVent, tmpDetVenFields);
-            General.FillListView(grdDetCie10, tmpCie10, tmpCie10Fields);
             General.FillListView(grdTraMed, tmpTratMed, tmpTratMedFields);
 
             this.pce(true, true);
@@ -78,6 +77,8 @@ namespace Polsolcom.Forms.Procesos
 
         private void frmIngresoCie10_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cie10DS.CIE10' table. You can move, or remove it, as needed.
+            this.cIE10TableAdapter.Fill(this.cie10DS.CIE10);
             // TODO: This line of code loads data into the 'turnosDS.TablaTipo' table. You can move, or remove it, as needed.
             //Hacemos que no salgan nseleccionados ningún ítem
             cmbDVenta.SelectedIndex = -1;
@@ -112,24 +113,29 @@ namespace Polsolcom.Forms.Procesos
             this.Refresh();
         }
 
+        private void processKeyDown()
+        {
+            if (txtNroDoc.Text.Length == 0)
+            {
+                MessageBox.Show("Ingrese Nro. de documento de venta ...", "Ingreso y consulta de atenciones realizadas", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                return;
+            }
+
+            int count = pfv();
+            chkFiltro.Focus();
+
+            if (count == 0)
+            {
+                MessageBox.Show("Documento de venta no existe o no corresponde a la especialidad, verifique ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                pcl();
+            }
+        }
+
         private void txtNroDoc_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtNroDoc.Text.Length == 0)
-                {
-                    MessageBox.Show("Ingrese Nro. de documento de venta ...", "Ingreso y consulta de atenciones realizadas", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                    return;
-                }
-
-                int count = pfv();
-                chkFiltro.Focus();
-
-                if (count == 0)
-                {
-                    MessageBox.Show("Documento de venta no existe o no corresponde a la especialidad, verifique ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                    pcl();
-                }
+                processKeyDown();
             }
         }
 
@@ -514,12 +520,11 @@ namespace Polsolcom.Forms.Procesos
                 this.tmpCie10 = General.GetDictionaryList(detCie10Sql);
                 this.dr = tmpCie10.Count;
 
+                dgvDetCie10.Rows.Clear();
                 foreach (Dictionary<string, string> item in this.tmpCie10)
                 {
-                    dgvDetCie10.Rows.Add(item["CIE10"], item["Descripcion"], item["Procedimiento"]);
+                    dgvDetCie10.Rows.Add(new[] { item["CIE10"], item["Descripcion"], item["Procedimiento"] });
                 }
-
-                General.FillListView(grdDetCie10, tmpCie10, new[] { "CIE10", "Descripcion", "Procedimiento" });
 
                 btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = (this.dr > 0 && tabIngresoConsulta.SelectedIndex == 0);
                 //btnImprimir.Enabled = (this.dr > 0);//CUal botón imprimir?
@@ -669,8 +674,8 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnVerifica_Click(object sender, EventArgs e)
         {
-            string xbs = cmbBus.SelectedValue.ToString();
-            string xtr = cmbTurno.SelectedValue.ToString().Substring(0, 1);
+            string xbs = cmbBus.SelectedValue != null? cmbBus.SelectedValue.ToString(): "";
+            string xtr = cmbTurno.SelectedValue != null? cmbTurno.SelectedValue.ToString().Substring(0, 1): "";
             string xfa = txtFechaAten.Text;
             string xcm = cmbMedico.SelectedValue.ToString();
 
@@ -678,17 +683,23 @@ namespace Polsolcom.Forms.Procesos
             {
                 return;
             }
-
-            //frmConsulta.Show();
-            this.Hide();
             //
             string sql = "Select Serie, Nro_Ticket, Fecha_Atencion, SubString(TNCol,2, 7)CMP,B.Bus,C.Descripcion Consultorio, U.Descripcion Turno, CB.Digitador,DC.Cie10,DC.Procedimiento,CB.Nro_Historia,CI.Descripcion Diagnostico From Cab_Cie10 CB Inner Join(Select Id_Tipo, Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion = 'TURNOS' And Id_Tabla = '0'))U On CB.Turno = U.Id_Tipo Inner Join Tickets T On CB.Nro_Historia = T.Nro_Historia Inner Join Consultorios C On C.Id_Consultorio = T.Id_Consultorio Inner Join Buses B On CB.Id_Bus = B.Id_Bus Inner Join Personal P On CB.CMP = P.Id_Personal Left Join Det_Cie10 DC On CB.Nro_Historia = DC.Nro_Historia Left Join Cie10 CI On DC.Cie10 = CI.Cie10 Where CB.Id_Bus = '" + xbs + "' And CB.Turno = '" + xtr + "' And Fecha_Atencion = '" + xfa + "' ";
             sql += this.ptc(xbs, 0) == "T" ? "" : "And CB.CMP = '" + xcm + "' ";
             sql += "Order By Fecha_Ingreso";
             //
-            //Llenamos grilaConsulta
-            //VERIFICAR CODIGO PORQUE HAY QUE LLENAR OTRO FORMULARIO
+            List<Dictionary<string, string>> list = General.GetDictionaryList(sql);
+            frmVerificaCie frmVerificaCie10 = new frmVerificaCie(list);
+            frmVerificaCie10.FormClosed += new FormClosedEventHandler(frmVerificaCie_FormClosed);
+            frmVerificaCie10.Show();
+            this.Hide();
+        }
 
+        private void frmVerificaCie_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            txtNroDoc.Text = ((frmVerificaCie)sender).nroTicket;
+            this.processKeyDown();
+            this.Show();
         }
 
         private void chkIdem_CheckedChanged(object sender, EventArgs e)
@@ -732,15 +743,10 @@ namespace Polsolcom.Forms.Procesos
         {
             if (this.ga == 0)
             {
-                ComboBox cb = new ComboBox();
-                grdDetCie10.Controls.Add(cb);
+                dgvDetCie10.Rows.Add(new[] { "", "", "" });
             }
 
-            //Agregamos de grdDetCie10
-
-
             this.dr++;
-
             if (dr > 0)
             {
                 btnQuitar.Enabled = btnGrabar.Enabled = true;
@@ -749,7 +755,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            //Quitamos de grdDetCie10
+            dgvDetCie10.Rows.RemoveAt(dgvDetCie10.CurrentCell.RowIndex);
 
             this.dr--;
 
@@ -759,13 +765,24 @@ namespace Polsolcom.Forms.Procesos
             }
 
             this.Refresh();
-
         }
 
         private void btnBCie10_Click(object sender, EventArgs e)
         {
+            frmCie10 frmCie10 = new frmCie10();
+            frmCie10.FormClosed += new FormClosedEventHandler(frmCie10_FormClosed);
+            frmCie10.Show();
             this.Hide();
-            //frmCie10.Show();
+        }
+
+        private void frmCie10_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (((frmCie10)sender).cie10.Length > 0)
+            {
+                this.dgvDetCie10.Rows[this.dgvDetCie10.CurrentCell.RowIndex].Cells[0].Value = ((frmCie10)sender).cie10;
+                this.dgvDetCie10.Rows[this.dgvDetCie10.CurrentCell.RowIndex].Cells[1].Value = ((frmCie10)sender).descripcion;
+            }
+            this.Show();
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -971,6 +988,44 @@ namespace Polsolcom.Forms.Procesos
             }
 
             this.Refresh();
+        }
+
+        private void dgvDetCie10_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void dgvDetCie10_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            // Only for a DatagridComboBoxColumn at ColumnIndex 0.
+            if (dgvDetCie10.CurrentCell.ColumnIndex == 0)
+            {
+                ComboBox combo = (ComboBox)e.Control;
+                if ((combo != null))
+                {
+                    // Remove an existing event-handler, if present, to avoid 
+                    // adding multiple handlers when the editing control is reused.
+                    combo.SelectionChangeCommitted -= new EventHandler(ComboBox_SelectionChangeCommitted);
+
+                    // Add the event handler. 
+                    combo.SelectionChangeCommitted += new EventHandler(ComboBox_SelectionChangeCommitted);
+                }
+            }
+        }
+
+        private void ComboBox_SelectionChangeCommitted(System.Object sender, System.EventArgs e)
+        {
+            ComboBox combo = (ComboBox)sender;
+            string description = (((DataRowView)combo.SelectedItem).Row["Descripcion"]).ToString();
+            dgvDetCie10.Rows[dgvDetCie10.CurrentCell.RowIndex].Cells[1].Value = description;
+            //MessageBox.Show("Row: " + dgvDetCie10.CurrentCell.RowIndex + ", Value: " + combo.SelectedItem);
+            dgvDetCie10.CurrentCell = dgvDetCie10.Rows[dgvDetCie10.CurrentCell.RowIndex].Cells[2];
+            dgvDetCie10.CurrentCell.Selected = true;
+            //Console.WriteLine("Row: {0}, Value: {1}", dgvDetCie10.CurrentCell.RowIndex, combo.SelectedItem);
+        }
+
+        private void dgvDetCie10_Validated(object sender, EventArgs e)
+        {
+            this.ga = 0;
         }
     }
 }

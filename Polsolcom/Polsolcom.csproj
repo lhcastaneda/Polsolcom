@@ -114,6 +114,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CajerosDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\Cie10DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cie10DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\Consolidado.cs">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </Compile>
@@ -354,12 +359,6 @@
     </Compile>
     <Compile Include="Forms\frmMantImpFicha.Designer.cs">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Procesos\frmConsultarCie10.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Procesos\frmConsultarCie10.Designer.cs">
-      <DependentUpon>frmConsultarCie10.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Procesos\frmIngresoCie10.cs">
       <SubType>Form</SubType>
@@ -737,9 +736,6 @@
     <EmbeddedResource Include="Forms\frmMantImpFicha.resx">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Procesos\frmConsultarCie10.resx">
-      <DependentUpon>frmConsultarCie10.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmIngresoCie10.resx">
       <DependentUpon>frmIngresoCie10.cs</DependentUpon>
     </EmbeddedResource>
@@ -917,6 +913,17 @@
     </None>
     <None Include="Dominio\Data\CajerosDS.xss">
       <DependentUpon>CajerosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\Cie10DS.xsc">
+      <DependentUpon>Cie10DS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\Cie10DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Cie10DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\Cie10DS.xss">
+      <DependentUpon>Cie10DS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\ConsultoriosDS.xsc">
       <DependentUpon>ConsultoriosDS.xsd</DependentUpon>

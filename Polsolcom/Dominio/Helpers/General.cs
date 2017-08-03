@@ -1267,23 +1267,48 @@ namespace Polsolcom.Dominio.Helpers
             return null;
         }
 
-        public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields)
+        private static ListViewItem getListViewItem(Dictionary<string, string> item, string[] fields)
+        {
+            List<ListViewSubItem> values = new List<ListViewSubItem>();
+            foreach (string field in fields)
+            {
+                ListViewSubItem subItem = new ListViewSubItem();
+                subItem.Name = field;
+                subItem.Text = item[field];
+                values.Add(subItem);
+            }
+
+            return new ListViewItem(values.ToArray(), 0);
+        }
+
+        private static bool getFilter(Dictionary<string, string> item, Dictionary<string, string> filters)
+        {
+            bool ok = true;
+
+            foreach (string key in filters.Keys) {
+
+                if (!string.IsNullOrEmpty(key))
+                {
+                    ok = ok && item[key].Contains(filters[key]);
+                }
+            }
+
+            return ok;
+        }
+
+        public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields, Dictionary<string, string> filters = null)
         {
             listview.Items.Clear();
 
-            foreach (Dictionary<string, string> item in items)
+            if (filters != null)
             {
-                List<ListViewSubItem> values = new List<ListViewSubItem>();
-                foreach (string field in fields)
-                {
-                    ListViewSubItem subItem = new ListViewSubItem();
-                    subItem.Name = field;
-                    subItem.Text = item[field];
-                    values.Add(subItem);
-                }
-
-                listview.Items.Add(new ListViewItem(values.ToArray(), 0));
+                listview.Items.AddRange(items.Where(i => General.getFilter(i, filters)).Select(c => General.getListViewItem(c, fields)).ToArray());
             }
+            else
+            {
+                listview.Items.AddRange(items.Select(c => General.getListViewItem(c, fields)).ToArray());
+            }
+
         }
 
         public static void FillComboBox(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)

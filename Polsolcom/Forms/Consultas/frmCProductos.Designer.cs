@@ -278,7 +278,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmCProductos";
-            this.Text = "Tarifario - ";
+            this.Text = "Tarifario - POLICLÍNICO \"SOLIDARIO DE COMAS\"";
             this.Load += new System.EventHandler(this.frmTarProducts_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCProductos_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
