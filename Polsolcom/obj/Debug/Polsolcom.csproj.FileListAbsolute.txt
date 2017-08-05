@@ -194,3 +194,4 @@ C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmVerificaCie.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmResultado.resources
