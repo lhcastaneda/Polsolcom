@@ -340,6 +340,7 @@ namespace Polsolcom.Forms.Procesos
             txtNroDoc.Focus();
 
             int cp = 0;
+
             foreach (Dictionary<string, string> item in this.tmpDetVent)
             {
                 if (item["Nro_Historia"] == this.nh)
@@ -857,6 +858,7 @@ namespace Polsolcom.Forms.Procesos
 
                     string sql = "Exec AddCie10 '" + nh + "', '" + fa + "', '" + cm + "', '" + bs + "', '" + tr + "', '" + dg + "', '" + ei + "', '" + ec + "', '" + er + "', '" + ap + "', '" + af + "', '" + ae + "', '" + aq + "', '" + ao + "', '" + ps + "', '" + tl + "', '" + pa + "', '" + fc + "', '" + fr + "', '" + tm + "', '" + eg + "', '" + ob + "', '" + df + "'";
                     Conexion.ExecuteNonQuery(sql);
+
 
                     if (chkIdem.Checked)
                     {
