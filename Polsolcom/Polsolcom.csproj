@@ -171,6 +171,11 @@
     <Compile Include="Dominio\Data\ParteDiario.cs">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\PlantillasDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PlantillasDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\ProduccionDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -624,6 +629,12 @@
     <Compile Include="Forms\Principal\frmWait.designer.cs">
       <DependentUpon>frmWait.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Procesos\frmResultado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmResultado.Designer.cs">
+      <DependentUpon>frmResultado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Procesos\frmSHClinica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -864,6 +875,9 @@
     <EmbeddedResource Include="Forms\Principal\frmWait.resx">
       <DependentUpon>frmWait.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmResultado.resx">
+      <DependentUpon>frmResultado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmSHClinica.resx">
       <DependentUpon>frmSHClinica.cs</DependentUpon>
     </EmbeddedResource>
@@ -990,6 +1004,17 @@
     </None>
     <None Include="Dominio\Data\ParteDiario.xss">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\PlantillasDS.xsc">
+      <DependentUpon>PlantillasDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\PlantillasDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PlantillasDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\PlantillasDS.xss">
+      <DependentUpon>PlantillasDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\ProduccionDS.xsc">
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
