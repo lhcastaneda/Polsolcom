@@ -326,6 +326,12 @@ namespace Polsolcom.Forms.Procesos
             if (e.KeyCode == Keys.F9 && cmbBus.SelectedIndex > -1 && cmbMedico.SelectedIndex > -1)
             {
                 frmResultado frmResultado = new frmResultado(this.tmpDetVent, cmbBus.SelectedValue.ToString(), cmbMedico.SelectedValue.ToString(), this.nh);
+                frmResultado.docVenta = this.ticket["Serie"] + "-" + this.ticket["Nro_Ticket"];
+                frmResultado.paciente = txtPaciente.Text;
+                frmResultado.edad = txtEdad.Text;
+                frmResultado.especialidad = txtEspecialidad.Text;
+                frmResultado.medico = txtMedico.Text;
+                frmResultado.fechaAtencion = txtFechaAten.Text;
                 frmResultado.FormClosed += new FormClosedEventHandler(frmResultado_FormClosed);
                 frmResultado.Show();
                 this.Hide();

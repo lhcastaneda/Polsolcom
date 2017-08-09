@@ -30,22 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.cmbParticular = new System.Windows.Forms.ComboBox();
+            this.plantillasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.plantillasDS = new Polsolcom.Dominio.Data.PlantillasDS();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtResultado = new System.Windows.Forms.TextBox();
             this.txtConclusion = new System.Windows.Forms.TextBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.plantillasDS = new Polsolcom.Dominio.Data.PlantillasDS();
-            this.plantillasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.plantillasTableAdapter = new Polsolcom.Dominio.Data.PlantillasDSTableAdapters.PlantillasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plantillasDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantillasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantillasDS)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvProductos
@@ -66,6 +66,20 @@
             this.dgvProductos.TabIndex = 0;
             this.dgvProductos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellEnter);
             this.dgvProductos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductos_EditingControlShowing);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Producto y/o servicio";
+            this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "*";
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.Width = 50;
             // 
             // btnGrabar
             // 
@@ -89,6 +103,7 @@
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // cmbParticular
             // 
@@ -100,6 +115,17 @@
             this.cmbParticular.Size = new System.Drawing.Size(192, 21);
             this.cmbParticular.TabIndex = 3;
             this.cmbParticular.ValueMember = "id_part";
+            this.cmbParticular.SelectionChangeCommitted += new System.EventHandler(this.cmbParticular_SelectionChangeCommitted);
+            // 
+            // plantillasBindingSource
+            // 
+            this.plantillasBindingSource.DataMember = "Plantillas";
+            this.plantillasBindingSource.DataSource = this.plantillasDS;
+            // 
+            // plantillasDS
+            // 
+            this.plantillasDS.DataSetName = "PlantillasDS";
+            this.plantillasDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -154,30 +180,6 @@
             this.txtConclusion.Size = new System.Drawing.Size(439, 125);
             this.txtConclusion.TabIndex = 8;
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Producto y/o servicio";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "*";
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column2.Width = 50;
-            // 
-            // plantillasDS
-            // 
-            this.plantillasDS.DataSetName = "PlantillasDS";
-            this.plantillasDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // plantillasBindingSource
-            // 
-            this.plantillasBindingSource.DataMember = "Plantillas";
-            this.plantillasBindingSource.DataSource = this.plantillasDS;
-            // 
             // plantillasTableAdapter
             // 
             this.plantillasTableAdapter.ClearBeforeFill = true;
@@ -202,8 +204,8 @@
             this.Text = "Ingreso de Resultados...";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmResultado_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plantillasDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantillasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantillasDS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

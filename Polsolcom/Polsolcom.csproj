@@ -237,6 +237,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptResultado.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptResultado.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dominio\Reportes\rptCProductos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -668,6 +674,10 @@
       <DependentUpon>Variables.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Dominio\Reportes\rptResultado.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptResultado.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dominio\Reportes\rptCProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCProductos.cs</LastGenOutput>
