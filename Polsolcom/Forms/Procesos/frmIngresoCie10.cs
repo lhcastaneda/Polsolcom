@@ -148,9 +148,9 @@ namespace Polsolcom.Forms.Procesos
             int cm = cmbMedico.SelectedIndex;
             string cn = txtCuenta.Text;
 
-            setAll<TextBox, string>(this, "Text", "");
-            setAll<ComboBox, int>(this, "SelectedIndex", -1);
-            setAll<Button, bool>(this, "Enabled", false);
+            General.setAll<TextBox, string>(this, "Text", "");
+            General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
+            General.setAll<Button, bool>(this, "Enabled", false);
 
             btnVerifica.Enabled = true;
 
@@ -175,19 +175,6 @@ namespace Polsolcom.Forms.Procesos
             txtNroDoc.Focus();
             Refresh();
 
-        }
-
-        void setAll<A, B>(Control control, string property, B value)
-        {
-            foreach (Control subControl in control.Controls)
-            {
-                if (subControl is A)
-                {
-                    Type t = subControl.GetType();
-                    PropertyInfo p = t.GetProperty(property);
-                    p.SetValue(subControl, value);
-                }
-            }
         }
 
         private int pfv()
@@ -222,7 +209,7 @@ namespace Polsolcom.Forms.Procesos
             else
             {
                 Dictionary<string, string> paciente = pacientes[General.GetSelectedIndex(lstPacientes)];
-                vSQL += " T.Id_Paciente='" + paciente["id_paciente"] + "'";
+                vSQL += " T.Id_Paciente='" + paciente["Id_Paciente"] + "'";
             }
 
             lstTickets0.Items.Clear();
@@ -555,8 +542,8 @@ namespace Polsolcom.Forms.Procesos
                 this.iu = 0;
                 this.pg = 0;
 
-                setAll<TextBox, string>(this, "Text", "");
-                setAll<Button, bool>(this, "Enabled", false);
+                General.setAll<TextBox, string>(this, "Text", "");
+                General.setAll<Button, bool>(this, "Enabled", false);
 
                 btnVerifica.Enabled = true;
                 cmbBus.SelectedValue = ((Usuario.id_area.Length > 3 ? Usuario.id_area.Substring(0, 3) : Usuario.id_area) == Operativo.id_oper) ? Usuario.id_area : cmbBus.SelectedValue;
@@ -1033,7 +1020,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void tabIngresoConsulta_Click(object sender, EventArgs e)
         {
-            setAll<Button, bool>(this, "Enabled", false);
+            General.setAll<Button, bool>(this, "Enabled", false);
         }
 
         private void grdDetCie10_Enter(object sender, EventArgs e)

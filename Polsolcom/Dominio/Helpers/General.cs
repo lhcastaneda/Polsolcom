@@ -1397,5 +1397,32 @@ namespace Polsolcom.Dominio.Helpers
         {
             return comboBox.SelectedIndex == -1 ? "" : ((DataRowView)comboBox.SelectedItem)[attribute].ToString();
         }
+
+        public static string bfc(string nf, string lp)
+        {
+            int TDB = 1;
+
+            if (nf == "Space")
+            {
+                return (TDB == 1 ? "Space(" : "Repeat(' ',") + lp + ")";
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static void setAll<A, B>(Control control, string property, B value)
+        {
+            foreach (Control subControl in control.Controls)
+            {
+                if (subControl is A)
+                {
+                    Type t = subControl.GetType();
+                    PropertyInfo p = t.GetProperty(property);
+                    p.SetValue(subControl, value);
+                }
+            }
+        }
     }
 }

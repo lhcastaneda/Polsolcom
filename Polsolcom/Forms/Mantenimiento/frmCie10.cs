@@ -53,6 +53,9 @@ namespace Polsolcom.Forms
             btnNuevo.Enabled = btnModificar.Enabled = btnEliminar.Enabled = false;
             LlenarLista();
             LlenarListView();
+            //Seleccionamos primer elemento
+            txtCIE10.Text = this.items[current]["CIE10"];
+            txtDescripcion.Text = this.items[current]["Descripcion"];
         }
 
         private void txtFilt2_TextChanged(object sender, EventArgs e)
@@ -73,7 +76,6 @@ namespace Polsolcom.Forms
 
         private void lstDatos_Click(object sender, EventArgs e)
         {
-            int index = General.GetSelectedIndex((ListView)sender);
             ListViewItem item = General.GetSelectedItem((ListView)sender);
             txtCIE10.Text = item.SubItems[1].Text;
             txtDescripcion.Text = item.SubItems[0].Text;
