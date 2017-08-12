@@ -1,4 +1,5 @@
-﻿using Polsolcom.Dominio.Helpers;
+﻿using Polsolcom.Dominio.Connection;
+using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Modelos;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Polsolcom.Forms
 {
     public partial class frmConsultorios : Form
     {
+        List<Dictionary<string, string>> buses = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> mntspList = new List<Dictionary<string, string>>();
         Dictionary<string, string> mntsp = new Dictionary<string, string>();
         public List<Consultorio> ListaConsultorios { get; set; }
@@ -72,7 +74,7 @@ namespace Polsolcom.Forms
             }
         }
 
-        public void cet(string md)
+        public void cet(bool md = false)
         {
             //Cargar otro formulario
             /*
@@ -94,19 +96,19 @@ namespace Polsolcom.Forms
 
             string sql = "Select Id_Bus,Id_Esp,Bus,Alterno,Turno,Estado,TBus,Id_Emp,Fec_Ing,Us_Ing&sc&sp As Us_Ing,Fec_Mod,Us_Mod&sc&sp As Us_Mod From Buses Where LTrim(RTrim(Id_Esp))= '" + this.ie + "' Order By Bus";
 
-            List<Dictionary<string, string>> buses = new List<Dictionary<string, string>>();
+            List < Dictionary < string, string>> this.buses = new List<Dictionary<string, string>>();
 
-            for (int i = 0; i < buses.Count; i++)
+            for (int i = 0; i < this.buses.Count; i++)
             {
-                buses[i]["Us_Ing"] = General.TradUser(buses[i]["Us_Ing"]);
-                buses[i]["Us_Mod"] = General.TradUser(buses[i]["Us_Mod"]);
+                this.buses[i]["Us_Ing"] = General.TradUser(this.buses[i]["Us_Ing"]);
+                this.buses[i]["Us_Mod"] = General.TradUser(this.buses[i]["Us_Mod"]);
             }
 
-            General.FillListView(lstBuses, buses, new[] { "Bus", "TBus", "Fec_Mod", "Us_Mod" });
+            General.FillListView(lstBuses, this.buses, new[] { "Bus", "TBus", "Fec_Mod", "Us_Mod" });
 
             btnEditar.Enabled = false;
 
-            btnAgregar.Enabled = btnQuitar.Enabled = buses.Count > 0;
+            btnAgregar.Enabled = btnQuitar.Enabled = this.buses.Count > 0;
 
             if (this.mntspList.Count > 0)
             {
@@ -208,7 +210,7 @@ namespace Polsolcom.Forms
             string ne = txtDescripcion.Text;
             string io = Operativo.id_oper;
 
-            string sql = "Select Sum(C)As C,Sum(T)As T From (Select Count(*)As C,0 As T From Consultorios Where LTrim(RTrim(Descripcion))='" + ne + "' And SubString(Id_Consultorio,1,3) = '" + io + (this.iu? " And LTrim(RTrim(Id_Consultorio))<> '" + this.ie + "'": "") + (this.mntsp["Descripcion"] != ne && this.iu? " Union All Select 0 As C,Count(*)As T From Tickets Where LTrim(RTrim(Id_Consultorio))= '" + this.ie + "'": "") + ")As X";
+            string sql = "Select Sum(C)As C,Sum(T)As T From (Select Count(*)As C,0 As T From Consultorios Where LTrim(RTrim(Descripcion))='" + ne + "' And SubString(Id_Consultorio,1,3) = '" + io + (this.iu ? " And LTrim(RTrim(Id_Consultorio))<> '" + this.ie + "'" : "") + (this.mntsp["Descripcion"] != ne && this.iu ? " Union All Select 0 As C,Count(*)As T From Tickets Where LTrim(RTrim(Id_Consultorio))= '" + this.ie + "'" : "") + ")As X";
             Dictionary<string, string> res = General.GetDictionary(sql);
 
             int c = int.Parse(res["c"]);
@@ -235,7 +237,168 @@ namespace Polsolcom.Forms
 
             this.Refresh();
         }
+
+        private void chkEstado_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbEst.SelectedValue = chkEstado.Checked ? null : cmbEst.SelectedValue;
+            cmbEst.Enabled = !cmbEst.Enabled;
+            cmbEst_SelectionChangeCommitted(cmbEst, new EventArgs());
+
+
+        }
+
+        private void cmbEst_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            this.les<string>("");
+        }
+
+        private void lstConsultorios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ctb();
+        }
+
+        private void lstConsultorios_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                this.cet();
+            }
+
+            if (e.KeyCode == Keys.F3)
+            {
+                this.cet(true);
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            /*cargamos nuevo formulario*/
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            if (this.ie == "")
+            {
+                int index = General.GetSelectedIndex(lstBuses, true);
+                Dictionary<string, string> bus = this.buses[index];
+                string ic = bus["Id_Bus"];
+                string nb = bus["Bus"];
+
+                string sql = "Select Sum(C)As C From(Select Count(*)As C From Cab_Cie10 Where LTrim(RTrim(Id_Bus))='" + ic + "' Union All Select Count(*)As C From Tickets Where LTrim(RTrim(Id_Bus))='" + ic + "')X";
+
+                int c = Conexion.ExecuteScalar<int>(sql);
+
+                if (c > 0)
+                {
+                    MessageBox.Show("No puede eliminar el consultorio " + nb + ", por encontrarse en uso ...", "Advertencia");
+                    return;
+                }
+
+                if (MessageBox.Show("Esta seguro de eliminar el consultorio " + nb + " ... ?", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    return;
+                }
+
+                string sql2 = "Delete From Buses Where LTrim(RTrim(Id_Bus)) = '" + ic + "'";
+                Conexion.ExecuteNonQuery(sql2);
+
+                this.ctb();
+            }
+            else
+            {
+                MessageBox.Show("No hay consultorios a eliminar ...", "Aviso al usuario");
+                btnQuitar.Enabled = btnEditar.Enabled = false;
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            string papaya = "";
+
+            if (this.mntspList.Count > 0)
+            {
+                if (btnModificar.AccessibleDescription == "Modificar")
+                {
+                    btnModificar.AccessibleDescription = "Grabar";
+                }
+
+                this.iu = 1;
+                this.hab(true);
+                btnAgregar.Enabled = true;
+                btnQuitar.Enabled = lstBuses.Items.Count > 0;
+            }
+            else
+            {
+                if (MessageBox.Show("Desea guardar los cambios ... ?", "Mensaje al Usuario", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.viu();
+                    string ne = txtDescripcion.Text;
+                    string st = cmbEstado.SelectedValue.ToString();
+                    string tp = cmbTipo.SelectedValue.ToString();
+                    string ob = txtDescripcion.Text;
+                    string iu = Usuario.id_us;
+
+                    string sql = "Update consultorios Set descripcion = '" + ne + ", estado = '" + st + ", tipo = '" + tp + ", observacion = '" + ob + "', us_mod = '" + iu + "', fec_mod = GetDate() Where LTrim(RTrim(id_consultorio)) = '" + ie + "'";
+                }
+            }
+
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (lstBuses.Items.Count == 0)
+            {
+                MessageBox.Show("No hay consultorios (Buses) a editar ...", "Aviso al usuario");
+                btnQuitar.Enabled = btnEditar.Enabled = false;
+                return;
+            }
+
+            //Cargar formulario
+            frmNewBus frmNewBus = new frmNewBus();
+            frmNewBus.FormClosed += new FormClosedEventHandler(frmNewBus_FormClosed);
+            frmNewBus.Show();
+            this.Hide();
+        }
+
+        private void frmNewBus_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void lstBuses_Validated(object sender, EventArgs e)
+        {
+            btnEditar.Enabled = true;
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (mntspList.Count > 0)
+            {
+                string sql = "Select Count(*)As C From Tickets Where LTrim(RTrim(Id_Consultorio)) = '" + ie + "'";
+                int c = Conexion.ExecuteScalar<int>(sql);
+
+                if (c > 0)
+                {
+                    MessageBox.Show("No puede eliminar el registro ... existen ventas para esta especialidad ...", "Advertencia");
+                    return;
+                }
+
+                string sql2 = "Select Count(*)As C From Buses Where LTrim(RTrim(Id_Esp)) = '" + ie + "'";
+                int c2 = Conexion.ExecuteScalar<int>(sql2);
+
+                if (c2 > 0)
+                {
+                    MessageBox.Show("No puede eliminar el registro ... existen consultorios creados ...", "Advertencia");
+                    return;
+                }
+
+                if (MessageBox.Show("Esta seguro de eliminar la Especialidad " + txtDescripcion.Text + " ... ?", "Advertencia de eliminación", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    string sql3 = "Delete From Consultorios Where LTrim(RTrim(Id_Consultorio)) = '" + ie + "'";
+                    Conexion.ExecuteNonQuery(sql3);
+                    this.les<string>("");
+                }
+            }
+        }
     }
-
-
 }

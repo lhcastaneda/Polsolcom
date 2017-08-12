@@ -1285,7 +1285,8 @@ namespace Polsolcom.Dominio.Helpers
         {
             bool ok = true;
 
-            foreach (string key in filters.Keys) {
+            foreach (string key in filters.Keys)
+            {
 
                 if (!string.IsNullOrEmpty(key))
                 {
@@ -1424,5 +1425,47 @@ namespace Polsolcom.Dominio.Helpers
                 }
             }
         }
+
+        public void chgst(string nt, string it, string st)
+        {
+            string ne = "";
+
+            string ct = (nt == "Productos" ? "Id_Producto" : "Id_Consultorio");
+
+            if (nt == "Productos")
+            {
+                string sql = "Select Descripcion From Consultorios Where LTrim(RTrim(Id_Consultorio))='" + it.Substring(0, 6) + "'";
+                Dictionary<string, string> spc = General.GetDictionary(sql);
+
+                ne = spc["Descripcion"];
+            }
+
+            string sql2 = "Update " + nt + " Set Estado='" + st + "' Where " + ct + "='" + it + "'";
+            Conexion.ExecuteNonQuery(sql2);
+
+            string sql3 = "Select Descripcion,Estado From " + nt + " Where LTrim(RTrim(" + ct + "))='" + it + "'";
+            Dictionary<string, string> sta = General.GetDictionary(sql3);
+            string vc = sta["Descripcion"];
+            st = sta["Estado"];
+
+            st = (st == "1" ? "ACTIVADO" : (st == "0" ? "DESACTIVADO" : "SEPARADO"));
+            string ms = (nt == "Productos" ? vc + " de " : "Especialidad de ") + (nt == "Productos" ? ne : vc) + (st == "ACTIVADO" ? " " : " no ") + "vendan, ha sido " + st + ".";
+
+            return msg(ms, 0);
+
+        }
+
+        public static msg(string ms, int mm, string bw, string tw)
+        {
+            //Preguntar al sr Luis
+            if (mm == 0)
+            {
+            }
+            else
+            {
+
+            }
+        }
+
     }
 }
