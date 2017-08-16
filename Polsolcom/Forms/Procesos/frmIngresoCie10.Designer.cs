@@ -165,6 +165,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
@@ -172,12 +173,11 @@
             this.chkIdem = new System.Windows.Forms.CheckBox();
             this.txtTi = new System.Windows.Forms.TextBox();
             this.chkCompleto = new System.Windows.Forms.CheckBox();
-            this.grdDetCie10 = new System.Windows.Forms.ListView();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dgvDetCie10 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cIE10BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cie10DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cie10DS = new Polsolcom.Dominio.Data.Cie10DS();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tablaTipoTableAdapter1 = new Polsolcom.Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter();
@@ -185,6 +185,7 @@
             this.txtFechaIngreso = new System.Windows.Forms.MaskedTextBox();
             this.busesTableAdapter = new Polsolcom.Dominio.Data.BusesDSTableAdapters.BusesTableAdapter();
             this.tmpEspecialistaTableAdapter = new Polsolcom.Dominio.Data.tmpEspecialistaDSTableAdapters.tmpEspecialistaTableAdapter();
+            this.cIE10TableAdapter = new Polsolcom.Dominio.Data.Cie10DSTableAdapters.CIE10TableAdapter();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
@@ -205,6 +206,9 @@
             this.grpExClinico.SuspendLayout();
             this.groupBoxTraMed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cIE10BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cie10DSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cie10DS)).BeginInit();
             this.SuspendLayout();
             // 
             // tabIngresoConsulta
@@ -1057,7 +1061,7 @@
             this.grpEnfermedad.Controls.Add(this.label29);
             this.grpEnfermedad.Controls.Add(this.label21);
             this.grpEnfermedad.Controls.Add(this.label13);
-            this.grpEnfermedad.Location = new System.Drawing.Point(9, 320);
+            this.grpEnfermedad.Location = new System.Drawing.Point(9, 322);
             this.grpEnfermedad.Name = "grpEnfermedad";
             this.grpEnfermedad.Size = new System.Drawing.Size(340, 103);
             this.grpEnfermedad.TabIndex = 32;
@@ -1363,7 +1367,8 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader9});
             this.grdTraMed.FullRowSelect = true;
             this.grdTraMed.Location = new System.Drawing.Point(10, 15);
             this.grdTraMed.MultiSelect = false;
@@ -1372,26 +1377,33 @@
             this.grdTraMed.TabIndex = 18;
             this.grdTraMed.UseCompatibleStateImageBehavior = false;
             this.grdTraMed.View = System.Windows.Forms.View.Details;
+            this.grdTraMed.SelectedIndexChanged += new System.EventHandler(this.grdTraMed_SelectedIndexChanged);
             this.grdTraMed.Enter += new System.EventHandler(this.grdTraMed_Enter);
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Serie";
-            this.columnHeader5.Width = 40;
+            this.columnHeader5.Text = "Nombre de medicamento";
+            this.columnHeader5.Width = 140;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Nro Ticket";
+            this.columnHeader6.Text = "Presentación";
+            this.columnHeader6.Width = 140;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Fecha Emisión";
-            this.columnHeader7.Width = 80;
+            this.columnHeader7.Text = "Cantidad";
+            this.columnHeader7.Width = 50;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "Digitador";
+            this.columnHeader8.Text = "Dosis";
             this.columnHeader8.Width = 100;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Días";
+            this.columnHeader9.Width = 50;
             // 
             // label41
             // 
@@ -1451,59 +1463,54 @@
             this.chkCompleto.Text = "Completo";
             this.chkCompleto.UseVisualStyleBackColor = true;
             // 
-            // grdDetCie10
-            // 
-            this.grdDetCie10.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader27});
-            this.grdDetCie10.FullRowSelect = true;
-            this.grdDetCie10.Location = new System.Drawing.Point(10, 561);
-            this.grdDetCie10.MultiSelect = false;
-            this.grdDetCie10.Name = "grdDetCie10";
-            this.grdDetCie10.Size = new System.Drawing.Size(855, 81);
-            this.grdDetCie10.TabIndex = 57;
-            this.grdDetCie10.UseCompatibleStateImageBehavior = false;
-            this.grdDetCie10.View = System.Windows.Forms.View.Details;
-            this.grdDetCie10.Enter += new System.EventHandler(this.grdDetCie10_Enter);
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Cie10";
-            this.columnHeader9.Width = 70;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Descripción del diagnóstico";
-            this.columnHeader10.Width = 350;
-            // 
-            // columnHeader27
-            // 
-            this.columnHeader27.Text = "Procedimientos, exámenes aux, intervenciones...";
-            this.columnHeader27.Width = 350;
-            // 
             // dgvDetCie10
             // 
+            this.dgvDetCie10.AllowUserToAddRows = false;
+            this.dgvDetCie10.AllowUserToDeleteRows = false;
+            this.dgvDetCie10.AllowUserToResizeColumns = false;
+            this.dgvDetCie10.AllowUserToResizeRows = false;
             this.dgvDetCie10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetCie10.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dgvDetCie10.Location = new System.Drawing.Point(128, 558);
+            this.dgvDetCie10.Location = new System.Drawing.Point(10, 560);
+            this.dgvDetCie10.MultiSelect = false;
             this.dgvDetCie10.Name = "dgvDetCie10";
-            this.dgvDetCie10.Size = new System.Drawing.Size(573, 93);
+            this.dgvDetCie10.Size = new System.Drawing.Size(845, 81);
             this.dgvDetCie10.TabIndex = 58;
+            this.dgvDetCie10.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvDetCie10_EditingControlShowing);
+            this.dgvDetCie10.Validated += new System.EventHandler(this.dgvDetCie10_Validated);
             // 
             // Column1
             // 
+            this.Column1.DataSource = this.cIE10BindingSource;
+            this.Column1.DisplayMember = "CIE10";
             this.Column1.HeaderText = "Cie10";
             this.Column1.Name = "Column1";
+            this.Column1.ValueMember = "CIE10";
             this.Column1.Width = 70;
+            // 
+            // cIE10BindingSource
+            // 
+            this.cIE10BindingSource.DataMember = "CIE10";
+            this.cIE10BindingSource.DataSource = this.cie10DSBindingSource;
+            // 
+            // cie10DSBindingSource
+            // 
+            this.cie10DSBindingSource.DataSource = this.cie10DS;
+            this.cie10DSBindingSource.Position = 0;
+            // 
+            // cie10DS
+            // 
+            this.cie10DS.DataSetName = "Cie10DS";
+            this.cie10DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Descripción del diagnóstico";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             this.Column2.Width = 350;
             // 
             // Column3
@@ -1544,6 +1551,10 @@
             // 
             this.tmpEspecialistaTableAdapter.ClearBeforeFill = true;
             // 
+            // cIE10TableAdapter
+            // 
+            this.cIE10TableAdapter.ClearBeforeFill = true;
+            // 
             // frmIngresoCie10
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1553,7 +1564,6 @@
             this.Controls.Add(this.txtFechaIngreso);
             this.Controls.Add(this.txtFechaAten);
             this.Controls.Add(this.dgvDetCie10);
-            this.Controls.Add(this.grdDetCie10);
             this.Controls.Add(this.chkCompleto);
             this.Controls.Add(this.txtTi);
             this.Controls.Add(this.chkIdem);
@@ -1612,6 +1622,9 @@
             this.grpExClinico.PerformLayout();
             this.groupBoxTraMed.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cIE10BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cie10DSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cie10DS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1752,14 +1765,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ListView grdDetCie10;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader27;
         private System.Windows.Forms.DataGridView dgvDetCie10;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private Dominio.Data.TurnosDS turnosDS;
         private System.Windows.Forms.BindingSource tablaTipoBindingSource1;
         private Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter1;
@@ -1775,5 +1781,13 @@
         private System.Windows.Forms.BindingSource tmpEspecialistaBindingSource;
         private Dominio.Data.tmpEspecialistaDS tmpEspecialistaDS;
         private Dominio.Data.tmpEspecialistaDSTableAdapters.tmpEspecialistaTableAdapter tmpEspecialistaTableAdapter;
+        private Dominio.Data.Cie10DS cie10DS;
+        private System.Windows.Forms.BindingSource cie10DSBindingSource;
+        private System.Windows.Forms.BindingSource cIE10BindingSource;
+        private Dominio.Data.Cie10DSTableAdapters.CIE10TableAdapter cIE10TableAdapter;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }
