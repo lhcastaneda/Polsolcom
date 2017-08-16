@@ -1120,7 +1120,26 @@ namespace Polsolcom.Forms.Procesos
 				return "";
 
 		}
-				
+
+		private void iGrid_TextBoxTextChanged( object sender, iGTextBoxTextChangedEventArgs e )
+		{
+			string sProd = "";
+			string sIdxDuplicado = "";
+
+			if( iGrid.CurCell.RowIndex == -1 )
+				return;
+
+			if( iGrid.CurCell.ColIndex == 0 )
+				sProd = iGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
+
+			sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
+			if( sIdxDuplicado != "" )
+			{
+
+			}
+
+
+		}
 	}
 
 	public partial class Prod
