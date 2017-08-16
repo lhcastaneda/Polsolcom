@@ -1267,23 +1267,49 @@ namespace Polsolcom.Dominio.Helpers
             return null;
         }
 
-        public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields)
+        private static ListViewItem getListViewItem(Dictionary<string, string> item, string[] fields)
+        {
+            List<ListViewSubItem> values = new List<ListViewSubItem>();
+            foreach (string field in fields)
+            {
+                ListViewSubItem subItem = new ListViewSubItem();
+                subItem.Name = field;
+                subItem.Text = item[field];
+                values.Add(subItem);
+            }
+
+            return new ListViewItem(values.ToArray(), 0);
+        }
+
+        private static bool getFilter(Dictionary<string, string> item, Dictionary<string, string> filters)
+        {
+            bool ok = true;
+
+            foreach (string key in filters.Keys)
+            {
+
+                if (!string.IsNullOrEmpty(key))
+                {
+                    ok = ok && item[key].Contains(filters[key]);
+                }
+            }
+
+            return ok;
+        }
+
+        public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields, Dictionary<string, string> filters = null)
         {
             listview.Items.Clear();
 
-            foreach (Dictionary<string, string> item in items)
+            if (filters != null)
             {
-                List<ListViewSubItem> values = new List<ListViewSubItem>();
-                foreach (string field in fields)
-                {
-                    ListViewSubItem subItem = new ListViewSubItem();
-                    subItem.Name = field;
-                    subItem.Text = item[field];
-                    values.Add(subItem);
-                }
-
-                listview.Items.Add(new ListViewItem(values.ToArray(), 0));
+                listview.Items.AddRange(items.Where(i => General.getFilter(i, filters)).Select(c => General.getListViewItem(c, fields)).ToArray());
             }
+            else
+            {
+                listview.Items.AddRange(items.Select(c => General.getListViewItem(c, fields)).ToArray());
+            }
+
         }
 
         public static void FillComboBox(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)
@@ -1372,5 +1398,74 @@ namespace Polsolcom.Dominio.Helpers
         {
             return comboBox.SelectedIndex == -1 ? "" : ((DataRowView)comboBox.SelectedItem)[attribute].ToString();
         }
+
+        public static string bfc(string nf, string lp)
+        {
+            int TDB = 1;
+
+            if (nf == "Space")
+            {
+                return (TDB == 1 ? "Space(" : "Repeat(' ',") + lp + ")";
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static void setAll<A, B>(Control control, string property, B value)
+        {
+            foreach (Control subControl in control.Controls)
+            {
+                if (subControl is A)
+                {
+                    Type t = subControl.GetType();
+                    PropertyInfo p = t.GetProperty(property);
+                    p.SetValue(subControl, value);
+                }
+            }
+        }
+
+        public void chgst(string nt, string it, string st)
+        {
+            string ne = "";
+
+            string ct = (nt == "Productos" ? "Id_Producto" : "Id_Consultorio");
+
+            if (nt == "Productos")
+            {
+                string sql = "Select Descripcion From Consultorios Where LTrim(RTrim(Id_Consultorio))='" + it.Substring(0, 6) + "'";
+                Dictionary<string, string> spc = General.GetDictionary(sql);
+
+                ne = spc["Descripcion"];
+            }
+
+            string sql2 = "Update " + nt + " Set Estado='" + st + "' Where " + ct + "='" + it + "'";
+            Conexion.ExecuteNonQuery(sql2);
+
+            string sql3 = "Select Descripcion,Estado From " + nt + " Where LTrim(RTrim(" + ct + "))='" + it + "'";
+            Dictionary<string, string> sta = General.GetDictionary(sql3);
+            string vc = sta["Descripcion"];
+            st = sta["Estado"];
+
+            st = (st == "1" ? "ACTIVADO" : (st == "0" ? "DESACTIVADO" : "SEPARADO"));
+            string ms = (nt == "Productos" ? vc + " de " : "Especialidad de ") + (nt == "Productos" ? ne : vc) + (st == "ACTIVADO" ? " " : " no ") + "vendan, ha sido " + st + ".";
+
+            return msg(ms, 0);
+
+        }
+
+        public static msg(string ms, int mm, string bw, string tw)
+        {
+            //Preguntar al sr Luis
+            if (mm == 0)
+            {
+            }
+            else
+            {
+
+            }
+        }
+
     }
 }

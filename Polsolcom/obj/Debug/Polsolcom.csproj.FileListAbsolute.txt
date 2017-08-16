@@ -26,7 +26,6 @@ E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\stdole.dll
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Dapper.xml
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
-E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmAdmCounterfoilA.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Herramientas.frmBuscar.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Herramientas.frmBuscaT.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmCie10.resources
@@ -79,7 +78,6 @@ E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmSpec
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEspecialistas.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmConsultorios.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmSpecialtyTurn.resources
-E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmStatGenGroupEtareo.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEstPac.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEstVent.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmTalonario.resources
@@ -122,7 +120,6 @@ C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\bin\Debug\ShockwaveFlash
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\bin\Debug\stdole.dll
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\bin\Debug\Dapper.xml
-C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmAdmTalon.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Herramientas.frmBuscar.resources
@@ -193,5 +190,12 @@ C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.cspr
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\yo\Polsolcom.resources.dll
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
-C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmConsultarCie10.resources
 C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmVerificaCie.resources
+<<<<<<< HEAD
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmAdmTalon.resources
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmConsultarCie10.resources
+E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmVerificaCie.resources
+=======
+C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Source\Repos\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.Procesos.frmResultado.resources
+>>>>>>> origin/master

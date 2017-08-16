@@ -28,49 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
-            this.cmbCMP = new System.Windows.Forms.ComboBox();
-            this.cmbDigitador = new System.Windows.Forms.ComboBox();
             this.lstMostrarDatos = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtToTing = new System.Windows.Forms.TextBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtEspecialidad = new System.Windows.Forms.TextBox();
+            this.txtCMP = new System.Windows.Forms.TextBox();
+            this.txtDigitador = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // cmbEspecialidad
-            // 
-            this.cmbEspecialidad.FormattingEnabled = true;
-            this.cmbEspecialidad.Location = new System.Drawing.Point(25, 28);
-            this.cmbEspecialidad.Name = "cmbEspecialidad";
-            this.cmbEspecialidad.Size = new System.Drawing.Size(282, 21);
-            this.cmbEspecialidad.TabIndex = 0;
-            // 
-            // cmbCMP
-            // 
-            this.cmbCMP.FormattingEnabled = true;
-            this.cmbCMP.Location = new System.Drawing.Point(318, 29);
-            this.cmbCMP.Name = "cmbCMP";
-            this.cmbCMP.Size = new System.Drawing.Size(121, 21);
-            this.cmbCMP.TabIndex = 1;
-            // 
-            // cmbDigitador
-            // 
-            this.cmbDigitador.FormattingEnabled = true;
-            this.cmbDigitador.Location = new System.Drawing.Point(444, 28);
-            this.cmbDigitador.Name = "cmbDigitador";
-            this.cmbDigitador.Size = new System.Drawing.Size(121, 21);
-            this.cmbDigitador.TabIndex = 2;
             // 
             // lstMostrarDatos
             // 
@@ -87,13 +63,14 @@
             this.columnHeader10});
             this.lstMostrarDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstMostrarDatos.FullRowSelect = true;
-            this.lstMostrarDatos.Location = new System.Drawing.Point(13, 67);
+            this.lstMostrarDatos.Location = new System.Drawing.Point(13, 48);
             this.lstMostrarDatos.MultiSelect = false;
             this.lstMostrarDatos.Name = "lstMostrarDatos";
-            this.lstMostrarDatos.Size = new System.Drawing.Size(955, 284);
+            this.lstMostrarDatos.Size = new System.Drawing.Size(955, 312);
             this.lstMostrarDatos.TabIndex = 19;
             this.lstMostrarDatos.UseCompatibleStateImageBehavior = false;
             this.lstMostrarDatos.View = System.Windows.Forms.View.Details;
+            this.lstMostrarDatos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstMostrarDatos_KeyDown);
             // 
             // columnHeader1
             // 
@@ -114,43 +91,6 @@
             // 
             this.columnHeader4.Text = "CMP";
             this.columnHeader4.Width = 66;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(575, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 20;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(688, 26);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 21;
-            this.btnEliminar.Text = "&Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(768, 26);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 22;
-            this.btnAceptar.Text = "&Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(847, 26);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 23;
-            this.btnCancelar.Text = "&Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // columnHeader5
             // 
@@ -175,12 +115,77 @@
             // columnHeader9
             // 
             this.columnHeader9.Text = "Cie10";
-            this.columnHeader9.Width = 0;
+            this.columnHeader9.Width = 50;
             // 
             // columnHeader10
             // 
             this.columnHeader10.Text = "Procedimiento";
             this.columnHeader10.Width = 237;
+            // 
+            // txtToTing
+            // 
+            this.txtToTing.Location = new System.Drawing.Point(575, 9);
+            this.txtToTing.Name = "txtToTing";
+            this.txtToTing.ReadOnly = true;
+            this.txtToTing.Size = new System.Drawing.Size(100, 20);
+            this.txtToTing.TabIndex = 20;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Enabled = false;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(688, 7);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 21;
+            this.btnEliminar.Text = "&Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Location = new System.Drawing.Point(768, 7);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 22;
+            this.btnAceptar.Text = "&Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(847, 7);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 23;
+            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // txtEspecialidad
+            // 
+            this.txtEspecialidad.Location = new System.Drawing.Point(25, 9);
+            this.txtEspecialidad.Name = "txtEspecialidad";
+            this.txtEspecialidad.ReadOnly = true;
+            this.txtEspecialidad.Size = new System.Drawing.Size(281, 20);
+            this.txtEspecialidad.TabIndex = 24;
+            // 
+            // txtCMP
+            // 
+            this.txtCMP.Location = new System.Drawing.Point(315, 9);
+            this.txtCMP.Name = "txtCMP";
+            this.txtCMP.ReadOnly = true;
+            this.txtCMP.Size = new System.Drawing.Size(123, 20);
+            this.txtCMP.TabIndex = 25;
+            // 
+            // txtDigitador
+            // 
+            this.txtDigitador.Location = new System.Drawing.Point(443, 9);
+            this.txtDigitador.Name = "txtDigitador";
+            this.txtDigitador.ReadOnly = true;
+            this.txtDigitador.Size = new System.Drawing.Size(123, 20);
+            this.txtDigitador.TabIndex = 26;
             // 
             // frmVerificaCie
             // 
@@ -188,32 +193,31 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 366);
             this.ControlBox = false;
+            this.Controls.Add(this.txtDigitador);
+            this.Controls.Add(this.txtCMP);
+            this.Controls.Add(this.txtEspecialidad);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtToTing);
             this.Controls.Add(this.lstMostrarDatos);
-            this.Controls.Add(this.cmbDigitador);
-            this.Controls.Add(this.cmbCMP);
-            this.Controls.Add(this.cmbEspecialidad);
+            this.KeyPreview = true;
             this.Name = "frmVerificaCie";
             this.Text = "Verificación de historias procesadas";
+            this.Load += new System.EventHandler(this.frmVerificaCie_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmVerificaCie_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cmbEspecialidad;
-        private System.Windows.Forms.ComboBox cmbCMP;
-        private System.Windows.Forms.ComboBox cmbDigitador;
         private System.Windows.Forms.ListView lstMostrarDatos;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtToTing;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
@@ -223,5 +227,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.TextBox txtEspecialidad;
+        private System.Windows.Forms.TextBox txtCMP;
+        private System.Windows.Forms.TextBox txtDigitador;
     }
 }

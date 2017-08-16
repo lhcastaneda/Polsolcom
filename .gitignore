@@ -8,3 +8,4 @@ obj/
 Debug/
 Release/
 Polsolcom/obj/Debug/
+*.suo
