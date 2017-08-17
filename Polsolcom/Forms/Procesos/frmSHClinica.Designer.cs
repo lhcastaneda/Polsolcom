@@ -100,7 +100,6 @@ namespace Polsolcom.Forms.Procesos
 			this.txtSon = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
 			this.iGrid = new TenTec.Windows.iGridLib.iGrid();
-			this.iGDropDown = new TenTec.Windows.iGridLib.iGDropDownList();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -1059,6 +1058,9 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.TextBox txtSon;
 		private System.Windows.Forms.Label label28;
 		private TenTec.Windows.iGridLib.iGrid iGrid;
+<<<<<<< HEAD
 		private TenTec.Windows.iGridLib.iGDropDownList iGDropDown;
+=======
+>>>>>>> origin/master
 	}
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.pdb
@@ -25,6 +26,8 @@ E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\ShockwaveFlashObjects.d
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\stdole.dll
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Dapper.xml
+=======
+>>>>>>> origin/master
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csprojResolveAssemblyReference.cache
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.ResolveComReference.cache
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmAdmTalon.resources
@@ -96,6 +99,9 @@ E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Properties.Re
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Resources.Variables.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEstPac.yo.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.GenerateResource.Cache
+<<<<<<< HEAD
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\yo\Polsolcom.resources.dll
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.exe
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.pdb
+=======
+>>>>>>> origin/master

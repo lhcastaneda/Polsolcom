@@ -20,8 +20,7 @@ namespace Polsolcom.Forms.Procesos
 		bool bTieneDocVenta = false;
 		string BUS = "";
 		string NROHISTORIA = "";
-		//DataGridViewComboBoxCell ComboProducto = new DataGridViewComboBoxCell();
-		//iGDropDownList ComboProducto = new iGDropDownList();
+		DataGridViewComboBoxCell ComboProducto = new DataGridViewComboBoxCell();
 		static List<Temporal> lstTemp = new List<Temporal>();
 
 		public frmSHClinica()
@@ -73,7 +72,7 @@ namespace Polsolcom.Forms.Procesos
 
 		private void FormateaGrids()
 		{
-			//iGDropDownList cmb = new iGDropDownList();
+			iGDropDownList cmb = new iGDropDownList();
 			iGrid.RowHeader.Visible = false;
 			iGrid.DefaultRow.Height = 17;
 			iGrid.Cols.Count = 5;
@@ -81,9 +80,10 @@ namespace Polsolcom.Forms.Procesos
 			iGrid.Cols[0].Text = "Descripcion del Producto o Servicio";
 			iGrid.Cols[0].Width = 425;
 			iGrid.Cols[0].CellStyle.ImageAlign = iGContentAlignment.MiddleLeft;
-			iGrid.Cols[0].CellStyle.DropDownControl = iGDropDown; //cmb agrega el combobox
+			iGrid.Cols[0].CellStyle.DropDownControl = cmb; //agrega el combobox
 			iGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
 			iGrid.Cols[0].CellStyle.ValueType = typeof(string);
+			
 			//cantidad
 			iGrid.Cols[1].Text = "Cant.";
 			iGrid.Cols[1].Width = 40;
@@ -163,7 +163,7 @@ namespace Polsolcom.Forms.Procesos
 			if( idProducto != "" )
 				sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
 			else
-				sQuery = sQuery + "ORDER BY 2";
+				sQuery = sQuery + "ORDER BY 1";
 
 			Conexion.CMD.CommandText = sQuery;
 			cmb.Items.Clear();
@@ -365,13 +365,6 @@ namespace Polsolcom.Forms.Procesos
 					cmb.SelectedItem = item;
 					break;
 				}
-		}
-
-		private void LimpiaGrilla()
-		{
-			iGrid.Rows.Clear();
-			FormateaGrids();
-
 		}
 
 		private string TieneInstitucion()
@@ -649,6 +642,7 @@ namespace Polsolcom.Forms.Procesos
 				return;
 			}
 
+<<<<<<< HEAD
 			//agrega una fila
 			iGrid.Rows.Count = iGrid.Rows.Count + 1;
 			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDown;
@@ -658,6 +652,8 @@ namespace Polsolcom.Forms.Procesos
 			else
 				btnQuitar.Enabled = false;
 
+=======
+>>>>>>> origin/master
 		}
 
 		private void btnQuitar_Click( object sender, EventArgs e )
@@ -1064,9 +1060,13 @@ namespace Polsolcom.Forms.Procesos
 				if( bTieneDocVenta == false )
 					return;
 
+<<<<<<< HEAD
 				//ComboProducto = LlenaProductos(itm.IdUbigeo);
 				iGDropDown = CargaProductos(itm.IdUbigeo);
 
+=======
+				ComboProducto = LlenaProductos(itm.IdUbigeo);
+>>>>>>> origin/master
 				btnAgregar.Enabled = true;
 				cmbEspecialista.Focus();
 			}
@@ -1085,6 +1085,7 @@ namespace Polsolcom.Forms.Procesos
 			}
 			btnAgregar.Enabled = true;
 		}
+<<<<<<< HEAD
 
 		private void iGDropDown_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
 		{
@@ -1127,6 +1128,9 @@ namespace Polsolcom.Forms.Procesos
 
 		}
 
+=======
+				
+>>>>>>> origin/master
 	}
 
 	public partial class Prod

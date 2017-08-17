@@ -1451,6 +1451,7 @@ namespace Polsolcom.Dominio.Helpers
             st = (st == "1" ? "ACTIVADO" : (st == "0" ? "DESACTIVADO" : "SEPARADO"));
             string ms = (nt == "Productos" ? vc + " de " : "Especialidad de ") + (nt == "Productos" ? ne : vc) + (st == "ACTIVADO" ? " " : " no ") + "vendan, ha sido " + st + ".";
 
+<<<<<<< HEAD
             msg(ms, 0);
 
         }
@@ -1460,14 +1461,28 @@ namespace Polsolcom.Dominio.Helpers
 			//Preguntar al sr Luis
 
 			if (mm == 0)
+=======
+            return msg(ms, 0);
+
+        }
+
+        public static msg(string ms, int mm, string bw, string tw)
+        {
+            //Preguntar al sr Luis
+            if (mm == 0)
+>>>>>>> origin/master
             {
             }
             else
             {
 
             }
+<<<<<<< HEAD
 			return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
 		}
+=======
+        }
+>>>>>>> origin/master
 
         public static void UnselectListView(ListView listView) {
             for (int i = 0; i < listView.Items.Count; i++)

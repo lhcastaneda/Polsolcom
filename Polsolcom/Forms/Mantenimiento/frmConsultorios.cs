@@ -308,8 +308,12 @@ namespace Polsolcom.Forms
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
 			//LCC - falta agregar parametros
             frmNewBus frmNewBus = new frmNewBus("","","");
+=======
+            frmNewBus frmNewBus = new frmNewBus();
+>>>>>>> origin/master
             frmNewBus.Show();
             this.Hide();
             //
@@ -364,8 +368,12 @@ namespace Polsolcom.Forms
                     btnModificar.AccessibleDescription = "Grabar";
                 }
 
+<<<<<<< HEAD
 				//LCC - validar si es true or false
                 this.iu = true;
+=======
+                this.iu = 1;
+>>>>>>> origin/master
                 this.hab(true);
                 btnAgregar.Enabled = true;
                 btnQuitar.Enabled = lstBuses.Items.Count > 0;
@@ -396,8 +404,13 @@ namespace Polsolcom.Forms
                 return;
             }
 
+<<<<<<< HEAD
             //LCC - falta agregar parametros 
             frmNewBus frmNewBus = new frmNewBus("","","");
+=======
+            //Cargar formulario
+            frmNewBus frmNewBus = new frmNewBus();
+>>>>>>> origin/master
             frmNewBus.FormClosed += new FormClosedEventHandler(frmNewBus_FormClosed);
             frmNewBus.Show();
             this.Hide();
