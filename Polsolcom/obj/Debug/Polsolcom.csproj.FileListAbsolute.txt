@@ -68,4 +68,3 @@ E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Properties.Re
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Resources.Variables.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.Forms.frmEstPac.yo.resources
 E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\obj\Debug\Polsolcom.csproj.GenerateResource.Cache
-E:\NOTBACKEDUP\Repositorio\Polsolcom\Polsolcom\bin\Debug\Polsolcom.exe.config
