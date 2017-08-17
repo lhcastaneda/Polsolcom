@@ -20,8 +20,7 @@ namespace Polsolcom.Forms.Procesos
 		bool bTieneDocVenta = false;
 		string BUS = "";
 		string NROHISTORIA = "";
-		//DataGridViewComboBoxCell ComboProducto = new DataGridViewComboBoxCell();
-		//iGDropDownList ComboProducto = new iGDropDownList();
+		DataGridViewComboBoxCell ComboProducto = new DataGridViewComboBoxCell();
 		static List<Temporal> lstTemp = new List<Temporal>();
 
 		public frmSHClinica()
@@ -73,7 +72,7 @@ namespace Polsolcom.Forms.Procesos
 		
 		private void FormateaGrids()
 		{
-			//iGDropDownList cmb = new iGDropDownList();
+			iGDropDownList cmb = new iGDropDownList();
 			iGrid.RowHeader.Visible = false;
 			iGrid.DefaultRow.Height = 17;
 			iGrid.Cols.Count = 5;
@@ -81,9 +80,10 @@ namespace Polsolcom.Forms.Procesos
 			iGrid.Cols[0].Text = "Descripcion del Producto o Servicio";
 			iGrid.Cols[0].Width = 425;
 			iGrid.Cols[0].CellStyle.ImageAlign = iGContentAlignment.MiddleLeft;
-			iGrid.Cols[0].CellStyle.DropDownControl = iGDropDown; //cmb agrega el combobox
+			iGrid.Cols[0].CellStyle.DropDownControl = cmb; //agrega el combobox
 			iGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
 			iGrid.Cols[0].CellStyle.ValueType = typeof(string);
+			
 			//cantidad
 			iGrid.Cols[1].Text = "Cant.";
 			iGrid.Cols[1].Width = 40;
@@ -161,7 +161,7 @@ namespace Polsolcom.Forms.Procesos
 			if( idProducto != "" )
 				sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
 			else
-				sQuery = sQuery + "ORDER BY 2";
+				sQuery = sQuery + "ORDER BY 1";
 
 			Conexion.CMD.CommandText = sQuery;
 			cmb.Items.Clear();
@@ -363,13 +363,6 @@ namespace Polsolcom.Forms.Procesos
 					cmb.SelectedItem = item;
 					break;
 				}
-		}
-
-		private void LimpiaGrilla()
-		{
-			iGrid.Rows.Clear();
-			FormateaGrids();
-
 		}
 
 		private string TieneInstitucion()
@@ -646,15 +639,6 @@ namespace Polsolcom.Forms.Procesos
 				MessageBox.Show("Debe seleccionar un especialidad...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 				return;
 			}
-
-			//agrega una fila
-			iGrid.Rows.Count = iGrid.Rows.Count + 1;
-			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDown;
-			
-			if( iGrid.Rows.Count != 0 )
-				btnQuitar.Enabled = true;
-			else
-				btnQuitar.Enabled = false;
 
 		}
 
@@ -1058,9 +1042,7 @@ namespace Polsolcom.Forms.Procesos
 				if( bTieneDocVenta == false )
 					return;
 
-				//ComboProducto = LlenaProductos(itm.IdUbigeo);
-				iGDropDown = CargaProductos(itm.IdUbigeo);
-				
+				ComboProducto = LlenaProductos(itm.IdUbigeo);
 				btnAgregar.Enabled = true;
 				cmbEspecialista.Focus();
 			}
@@ -1079,67 +1061,7 @@ namespace Polsolcom.Forms.Procesos
 			}
 			btnAgregar.Enabled = true;
 		}
-
-		private void iGDropDown_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
-		{
-			string sProd = "";
-			string sIdxDuplicado = "";
-
-			if( iGrid.CurCell.RowIndex == -1 )
-				return;
-
-			if( iGrid.CurCell.ColIndex == 0 )
-				sProd = iGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
-
-			sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
-			if( sIdxDuplicado != "" )
-			{
-
-			}
-
-		}
-		
-		private string UbicaDuplicadoGrilla(string sDato)
-		{
-			string sResultado = "";
-			int iDup = 0;
-
-			for( int i = 0; i < iGrid.Rows.Count; i++ )
-			{
-				if( sDato == iGrid.Cells[i, 0].AuxValue.ToString().Trim().ToUpper() )
-				{
-					iDup = iDup + 1;
-					sResultado = i.ToString();
-					break;
-				}
-			}
-
-			if( iDup > 1 )
-				return sResultado;
-			else
-				return "";
-
-		}
-
-		private void iGrid_TextBoxTextChanged( object sender, iGTextBoxTextChangedEventArgs e )
-		{
-			string sProd = "";
-			string sIdxDuplicado = "";
-
-			if( iGrid.CurCell.RowIndex == -1 )
-				return;
-
-			if( iGrid.CurCell.ColIndex == 0 )
-				sProd = iGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
-
-			sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
-			if( sIdxDuplicado != "" )
-			{
-
-			}
-
-
-		}
+				
 	}
 
 	public partial class Prod

@@ -1,6 +1,7 @@
 ﻿using Polsolcom.Dominio.Connection;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Modelos;
+using Polsolcom.Forms.Mantenimiento;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +16,10 @@ namespace Polsolcom.Forms
 {
     public partial class frmConsultorios : Form
     {
+        int i = 0;
         List<Dictionary<string, string>> buses = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> mntspList = new List<Dictionary<string, string>>();
         Dictionary<string, string> mntsp = new Dictionary<string, string>();
-        public List<Consultorio> ListaConsultorios { get; set; }
-        public List<string> ListaNombresConsultorios;
         bool iu = true;
         string sc = "";
         string ie = "";
@@ -27,42 +27,77 @@ namespace Polsolcom.Forms
         public frmConsultorios()
         {
             InitializeComponent();
-            ListaNombresConsultorios = new List<string>();
-            ListaConsultorios = General.TraerConsultorios();
-            foreach (var item in ListaConsultorios)
-            {
-                ListaNombresConsultorios.Add(item.Descripcion);
-            }
-            ListaNombresConsultorios.Sort();
-            lstConsultorios.DataSource = ListaNombresConsultorios;
-            //
-            btnInicio_Click(btnInicio, new EventArgs());
         }
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            lstConsultorios.SelectedIndex = 0;
+            if (this.mntspList.Count > 0)
+            {
+                btnInicio.Enabled = btnAnterior.Enabled = false;
+                btnSiguiente.Enabled = btnFin.Enabled = true;
+            }
+
+            this.ctb();
         }
 
         private void btnFin_Click(object sender, EventArgs e)
         {
-            var final_index = lstConsultorios.Items.Count - 1;
-            lstConsultorios.SelectedIndex = final_index;
+            if (this.mntspList.Count > 0)
+            {
+                btnInicio.Enabled = btnAnterior.Enabled = true;
+                btnSiguiente.Enabled = btnFin.Enabled = false;
+            }
+
+            this.ctb();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnAnterior_Click(object sender, EventArgs e)
         {
-            var index = lstConsultorios.SelectedIndex - 1;
-            if (index >= 0)
-                lstConsultorios.SelectedIndex = index;
+            if (this.mntspList.Count > 0)
+            {
+                if (this.i > 0)
+                {
+                    lstConsultorios.Items[this.i].Selected = false;
+                    this.i--;
+                    lstConsultorios.Items[i].Selected = true;
+
+                    btnAnterior.Enabled = btnInicio.Enabled = btnAnterior.Enabled = true;
+
+
+                    if (this.i == 0)
+                    {
+                        btnInicio.Enabled = btnAnterior.Enabled = false;
+                        btnSiguiente.Enabled = btnFin.Enabled = true;
+                    }
+                }
+
+            }
+
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            var index = lstConsultorios.SelectedIndex + 1;
-            if (index < lstConsultorios.Items.Count)
-                lstConsultorios.SelectedIndex = index;
+            if (this.mntspList.Count > 0)
+            {
+                if (this.i < this.mntspList.Count - 1)
+                {
+                    lstConsultorios.Items[this.i].Selected = false;
+                    this.i++;
+                    lstConsultorios.Items[i].Selected = true;
+
+                    btnSiguiente.Enabled = btnInicio.Enabled = btnAnterior.Enabled = true;
+
+                    if (this.i == (this.mntspList.Count - 1))
+                    {
+                        btnInicio.Enabled = btnAnterior.Enabled = true;
+                        btnSiguiente.Enabled = btnFin.Enabled = false;
+                    }
+                }
+
+            }
+
+            this.ctb();
         }
 
         private void frmConsultorios_KeyDown(object sender, KeyEventArgs e)
@@ -74,16 +109,13 @@ namespace Polsolcom.Forms
             }
         }
 
-        public void cet(bool md = false)
+        public void cet(string md = "")
         {
-            //Cargar otro formulario
-            /*
-             hide
-    DO FORM frmCapEspTur.scx WITH IIF(md, ALLTRIM(.ie), md)
-    .show
-    .les(IIF(md, ALLTRIM(.ie), md))
-    .refresh
-             */
+            frmCapEspTur frmVerificaCie10 = new frmCapEspTur(md.Length > 0 ? this.ie: md);
+            frmVerificaCie10.Show();
+            this.Hide();
+
+            this.les<string>(md.Length > 0? this.ie : md);
         }
 
         public void ctb()
@@ -399,6 +431,12 @@ namespace Polsolcom.Forms
                     this.les<string>("");
                 }
             }
+        }
+
+        private void frmConsultorios_Load(object sender, EventArgs e)
+        {
+            this.les<string>("");
+            btnInicio_Click(btnInicio, new EventArgs());
         }
     }
 }
