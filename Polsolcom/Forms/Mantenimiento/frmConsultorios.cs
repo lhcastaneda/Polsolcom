@@ -111,11 +111,12 @@ namespace Polsolcom.Forms
 
         public void cet(string md = "")
         {
-            frmCapEspTur frmVerificaCie10 = new frmCapEspTur(md.Length > 0 ? this.ie: md);
-            frmVerificaCie10.Show();
+            frmCapEspTur frmCapEspTur = new frmCapEspTur(md.Length > 0 ? this.ie: md);
+            frmCapEspTur.Show();
             this.Hide();
 
             this.les<string>(md.Length > 0? this.ie : md);
+            this.Refresh();
         }
 
         public void ctb()
@@ -128,7 +129,7 @@ namespace Polsolcom.Forms
 
             string sql = "Select Id_Bus,Id_Esp,Bus,Alterno,Turno,Estado,TBus,Id_Emp,Fec_Ing,Us_Ing&sc&sp As Us_Ing,Fec_Mod,Us_Mod&sc&sp As Us_Mod From Buses Where LTrim(RTrim(Id_Esp))= '" + this.ie + "' Order By Bus";
 
-            List < Dictionary < string, string>> this.buses = new List<Dictionary<string, string>>();
+            this.buses = new List<Dictionary<string, string>>();
 
             for (int i = 0; i < this.buses.Count; i++)
             {
@@ -172,13 +173,17 @@ namespace Polsolcom.Forms
 
                 General.FillListView(lstTurnos, tmptr, new[] { "c", "m", "t", "n", "a" });
 
-                lstConsultorios.SelectedIndex = mntspList.IndexOf(mntsp);
+                //Deseleccionar todos
+                General.UnselectListView(lstConsultorios);
+                lstConsultorios.Items[mntspList.IndexOf(mntsp)].Selected = true;
 
             }
             else
             {
                 this.hab(false);
             }
+
+            this.Refresh();
 
         }
 
@@ -204,6 +209,9 @@ namespace Polsolcom.Forms
                 btnNuevo.Enabled = true;
                 cmbEstado.SelectedValue = "1";
             }
+
+            txtDescripcion.Focus();
+            this.Refresh();
         }
 
         public void les<T>(T ie)
@@ -235,6 +243,8 @@ namespace Polsolcom.Forms
             {
                 btnFin_Click(btnFin, new EventArgs());
             }
+
+            this.Refresh();
         }
 
         public void viu()
@@ -265,6 +275,7 @@ namespace Polsolcom.Forms
             if (txtDescripcion.Text.Length == 0 || cmbEstado.SelectedIndex == -1 || cmbTipo.SelectedIndex == -1)
             {
                 MessageBox.Show("Faltan datos para grabar el registro ...", "Advertencia");
+                return;
             }
 
             this.Refresh();
@@ -275,8 +286,7 @@ namespace Polsolcom.Forms
             cmbEst.SelectedValue = chkEstado.Checked ? null : cmbEst.SelectedValue;
             cmbEst.Enabled = !cmbEst.Enabled;
             cmbEst_SelectionChangeCommitted(cmbEst, new EventArgs());
-
-
+            this.Refresh();
         }
 
         private void cmbEst_SelectionChangeCommitted(object sender, EventArgs e)
@@ -298,13 +308,18 @@ namespace Polsolcom.Forms
 
             if (e.KeyCode == Keys.F3)
             {
-                this.cet(true);
+                this.cet("C");
             }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            /*cargamos nuevo formulario*/
+            frmNewBus frmNewBus = new frmNewBus();
+            frmNewBus.Show();
+            this.Hide();
+            //
+            this.ctb();
+            this.Refresh();
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)

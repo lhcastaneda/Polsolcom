@@ -1426,7 +1426,7 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        public void chgst(string nt, string it, string st)
+        public static void chgst(string nt, string it, string st)
         {
             string ne = "";
 
@@ -1464,6 +1464,13 @@ namespace Polsolcom.Dominio.Helpers
             else
             {
 
+            }
+        }
+
+        public static void UnselectListView(ListView listView) {
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                listView.Items[i].Selected = false;
             }
         }
 
