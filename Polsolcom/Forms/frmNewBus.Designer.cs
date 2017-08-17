@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtLastUpDate = new System.Windows.Forms.TextBox();
             this.txtCreation = new System.Windows.Forms.TextBox();
@@ -35,19 +36,24 @@
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbRotacion = new System.Windows.Forms.ComboBox();
+            this.rotationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rotationDS = new Polsolcom.Dominio.Data.RotationDS();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtlterno = new System.Windows.Forms.TextBox();
-            this.txtConsultorio = new System.Windows.Forms.TextBox();
+            this.txtAlterno = new System.Windows.Forms.TextBox();
+            this.txtBus = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.rotationTableAdapter = new Polsolcom.Dominio.Data.RotationDSTableAdapters.RotationTableAdapter();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rotationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rotationDS)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -92,8 +98,8 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.cmbEmpresa);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.txtlterno);
-            this.panel2.Controls.Add(this.txtConsultorio);
+            this.panel2.Controls.Add(this.txtAlterno);
+            this.panel2.Controls.Add(this.txtBus);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(12, 71);
@@ -122,11 +128,24 @@
             // 
             // cmbRotacion
             // 
+            this.cmbRotacion.DataSource = this.rotationBindingSource;
+            this.cmbRotacion.DisplayMember = "Descripcion";
             this.cmbRotacion.FormattingEnabled = true;
             this.cmbRotacion.Location = new System.Drawing.Point(206, 127);
             this.cmbRotacion.Name = "cmbRotacion";
             this.cmbRotacion.Size = new System.Drawing.Size(121, 21);
             this.cmbRotacion.TabIndex = 9;
+            this.cmbRotacion.ValueMember = "Id_Tipo";
+            // 
+            // rotationBindingSource
+            // 
+            this.rotationBindingSource.DataMember = "Rotation";
+            this.rotationBindingSource.DataSource = this.rotationDS;
+            // 
+            // rotationDS
+            // 
+            this.rotationDS.DataSetName = "RotationDS";
+            this.rotationDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label5
             // 
@@ -177,19 +196,19 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Nombre o Razón Social";
             // 
-            // txtlterno
+            // txtAlterno
             // 
-            this.txtlterno.Location = new System.Drawing.Point(239, 32);
-            this.txtlterno.Name = "txtlterno";
-            this.txtlterno.Size = new System.Drawing.Size(215, 20);
-            this.txtlterno.TabIndex = 3;
+            this.txtAlterno.Location = new System.Drawing.Point(239, 32);
+            this.txtAlterno.Name = "txtAlterno";
+            this.txtAlterno.Size = new System.Drawing.Size(215, 20);
+            this.txtAlterno.TabIndex = 3;
             // 
-            // txtConsultorio
+            // txtBus
             // 
-            this.txtConsultorio.Location = new System.Drawing.Point(14, 32);
-            this.txtConsultorio.Name = "txtConsultorio";
-            this.txtConsultorio.Size = new System.Drawing.Size(215, 20);
-            this.txtConsultorio.TabIndex = 2;
+            this.txtBus.Location = new System.Drawing.Point(14, 32);
+            this.txtBus.Name = "txtBus";
+            this.txtBus.Size = new System.Drawing.Size(215, 20);
+            this.txtBus.TabIndex = 2;
             // 
             // label2
             // 
@@ -222,6 +241,7 @@
             this.btnGrabar.TabIndex = 2;
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.UseVisualStyleBackColor = true;
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // btnCancelar
             // 
@@ -233,6 +253,10 @@
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // rotationTableAdapter
+            // 
+            this.rotationTableAdapter.ClearBeforeFill = true;
+            // 
             // frmNewBus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,12 +267,16 @@
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.KeyPreview = true;
             this.Name = "frmNewBus";
             this.Text = "Consultorios / Buses";
+            this.Load += new System.EventHandler(this.frmNewBus_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rotationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rotationDS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -267,11 +295,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbEmpresa;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtlterno;
-        private System.Windows.Forms.TextBox txtConsultorio;
+        private System.Windows.Forms.TextBox txtAlterno;
+        private System.Windows.Forms.TextBox txtBus;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnCancelar;
+        private Dominio.Data.RotationDS rotationDS;
+        private System.Windows.Forms.BindingSource rotationBindingSource;
+        private Dominio.Data.RotationDSTableAdapters.RotationTableAdapter rotationTableAdapter;
     }
 }

@@ -117,6 +117,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CajerosDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\Cie10DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cie10DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\Consolidado.cs">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </Compile>
@@ -169,10 +174,20 @@
     <Compile Include="Dominio\Data\ParteDiario.cs">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\PlantillasDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PlantillasDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\ProduccionDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\RotationDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RotationDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\TipoDocumento.cs">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
@@ -230,6 +245,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptResultado.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptResultado.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dominio\Reportes\rptCProductos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -279,6 +300,12 @@
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmCie10.Designer.cs">
       <DependentUpon>frmCie10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmCapEspTur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmCapEspTur.Designer.cs">
+      <DependentUpon>frmCapEspTur.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Consultas\frmConsRotations.cs">
       <SubType>Form</SubType>
@@ -357,12 +384,6 @@
     </Compile>
     <Compile Include="Forms\frmMantImpFicha.Designer.cs">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Procesos\frmConsultarCie10.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Procesos\frmConsultarCie10.Designer.cs">
-      <DependentUpon>frmConsultarCie10.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Procesos\frmIngresoCie10.cs">
       <SubType>Form</SubType>
@@ -628,6 +649,12 @@
     <Compile Include="Forms\Principal\frmWait.designer.cs">
       <DependentUpon>frmWait.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Procesos\frmResultado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmResultado.Designer.cs">
+      <DependentUpon>frmResultado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Procesos\frmSHClinica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -661,6 +688,10 @@
       <DependentUpon>Variables.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Dominio\Reportes\rptResultado.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptResultado.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dominio\Reportes\rptCProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCProductos.cs</LastGenOutput>
@@ -691,6 +722,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmCie10.resx">
       <DependentUpon>frmCie10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmCapEspTur.resx">
+      <DependentUpon>frmCapEspTur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmConsRotations.resx">
       <DependentUpon>frmConsRotations.cs</DependentUpon>
@@ -739,9 +773,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMantImpFicha.resx">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Procesos\frmConsultarCie10.resx">
-      <DependentUpon>frmConsultarCie10.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmIngresoCie10.resx">
       <DependentUpon>frmIngresoCie10.cs</DependentUpon>
@@ -871,6 +902,9 @@
     <EmbeddedResource Include="Forms\Principal\frmWait.resx">
       <DependentUpon>frmWait.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmResultado.resx">
+      <DependentUpon>frmResultado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmSHClinica.resx">
       <DependentUpon>frmSHClinica.cs</DependentUpon>
     </EmbeddedResource>
@@ -920,6 +954,17 @@
     </None>
     <None Include="Dominio\Data\CajerosDS.xss">
       <DependentUpon>CajerosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\Cie10DS.xsc">
+      <DependentUpon>Cie10DS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\Cie10DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Cie10DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\Cie10DS.xss">
+      <DependentUpon>Cie10DS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\ConsultoriosDS.xsc">
       <DependentUpon>ConsultoriosDS.xsd</DependentUpon>
@@ -987,6 +1032,17 @@
     <None Include="Dominio\Data\ParteDiario.xss">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </None>
+    <None Include="Dominio\Data\PlantillasDS.xsc">
+      <DependentUpon>PlantillasDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\PlantillasDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PlantillasDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\PlantillasDS.xss">
+      <DependentUpon>PlantillasDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\ProduccionDS.xsc">
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </None>
@@ -997,6 +1053,17 @@
     </None>
     <None Include="Dominio\Data\ProduccionDS.xss">
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\RotationDS.xsc">
+      <DependentUpon>RotationDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\RotationDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RotationDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\RotationDS.xss">
+      <DependentUpon>RotationDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\TipoDocumento.xsc">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>

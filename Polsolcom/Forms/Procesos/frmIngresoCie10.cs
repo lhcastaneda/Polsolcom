@@ -19,7 +19,7 @@ namespace Polsolcom.Forms.Procesos
     public partial class frmIngresoCie10 : Form
     {
         const string EMPTY_DATE = "  /  /";
-        const string EMPTY_DATETIME = "  /  /       :    M";
+        const string EMPTY_DATETIME = "  /  /       :  :    m";
         Dictionary<string, string> ticket;
         List<Dictionary<string, string>> tickets;
         List<Dictionary<string, string>> pacientes;
@@ -29,9 +29,8 @@ namespace Polsolcom.Forms.Procesos
         List<Dictionary<string, string>> iCons = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> medicaments;
 
-        string[] tmpDetVenFields = { "Producto", "Cantidad", "Precio", "Con", "Descuento" };
-        string[] tmpCie10Fields = new string[] { "Producto", "Cantidad", "Precio", "Con", "Descuento" };
-        string[] tmpTratMedFields = new string[] { "Producto", "Cantidad", "Precio", "Con", "Descuento" };
+        string[] tmpDetVenFields = { "Descripcion", "Cantidad", "Monto", "Subtotal", "Pagado", "Dscto" };
+        string[] tmpTratMedFields = new string[] { "nro_reg", "id_med", "cant", "dosis", "dias" };
 
         string nh;
         int dr;
@@ -53,15 +52,12 @@ namespace Polsolcom.Forms.Procesos
             this.busesTableAdapter.Fill(this.busesDS.Buses, Operativo.id_oper);
             this.tablaTipoTableAdapter1.Fill(this.turnosDS.TablaTipo);
 
-            //frmConsulta.hide
-            //frmResultado.hide
-
             //ce = General.vtrls(Especialidad.esp);
             //ca = Especialidad.esp.Length > 0 ? 1 : 0;
             ce = 0;
             ca = 0;
 
-            txtEnAcIni.Enabled = txtEnAcCur.Enabled = txtEnAcRel.Enabled = txtAnPer.Enabled = txtAnFam.Enabled = txtAnEpi.Enabled = txtAnQui.Enabled = txtAnOtr.Enabled = txtExClPs.Enabled = txtExClTl.Enabled = txtExClPa.Enabled = txtExClFc.Enabled = txtExClFr.Enabled = txtExClTm.Enabled = txtExClEg.Enabled = groupBoxTraMed.Enabled = grdDetCie10.Enabled = chkCompleto.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = btnVerifica.Enabled = cmbEspecialidad.Enabled = !(ca + ce == 2);
+            txtEnAcIni.Enabled = txtEnAcCur.Enabled = txtEnAcRel.Enabled = txtAnPer.Enabled = txtAnFam.Enabled = txtAnEpi.Enabled = txtAnQui.Enabled = txtAnOtr.Enabled = txtExClPs.Enabled = txtExClTl.Enabled = txtExClPa.Enabled = txtExClFc.Enabled = txtExClFr.Enabled = txtExClTm.Enabled = txtExClEg.Enabled = groupBoxTraMed.Enabled = dgvDetCie10.Enabled = chkCompleto.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = btnVerifica.Enabled = cmbEspecialidad.Enabled = !(ca + ce == 2);
             chkCompleto.Checked = (ca + ce == 2);
             cmbEspecialidad.SelectedIndex = (ca + ce == 2) ? 0 : -1;
             cmbBus.Enabled = !(ca == 1);
@@ -69,15 +65,13 @@ namespace Polsolcom.Forms.Procesos
             txtFechaAten.Text = (ca == 1 ? DateTime.Today.ToString() : "");
             txtDigitador.Text = Usuario.usuario;
 
-            General.FillListView(grdDetalle, tmpDetVent, tmpDetVenFields);
-            General.FillListView(grdDetCie10, tmpCie10, tmpCie10Fields);
-            General.FillListView(grdTraMed, tmpTratMed, tmpTratMedFields);
-
             this.pce(true, true);
         }
 
         private void frmIngresoCie10_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cie10DS.CIE10' table. You can move, or remove it, as needed.
+            this.cIE10TableAdapter.Fill(this.cie10DS.CIE10);
             // TODO: This line of code loads data into the 'turnosDS.TablaTipo' table. You can move, or remove it, as needed.
             //Hacemos que no salgan nseleccionados ningún ítem
             cmbDVenta.SelectedIndex = -1;
@@ -112,30 +106,35 @@ namespace Polsolcom.Forms.Procesos
             this.Refresh();
         }
 
+        private void processKeyDown()
+        {
+            if (txtNroDoc.Text.Length == 0)
+            {
+                MessageBox.Show("Ingrese Nro. de documento de venta ...", "Ingreso y consulta de atenciones realizadas", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                return;
+            }
+
+            int count = pfv();
+            chkFiltro.Focus();
+
+            if (count == 0)
+            {
+                MessageBox.Show("Documento de venta no existe o no corresponde a la especialidad, verifique ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                pcl();
+            }
+        }
+
         private void txtNroDoc_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtNroDoc.Text.Length == 0)
-                {
-                    MessageBox.Show("Ingrese Nro. de documento de venta ...", "Ingreso y consulta de atenciones realizadas", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                    return;
-                }
-
-                int count = pfv();
-                chkFiltro.Focus();
-
-                if (count == 0)
-                {
-                    MessageBox.Show("Documento de venta no existe o no corresponde a la especialidad, verifique ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                    pcl();
-                }
+                processKeyDown();
             }
         }
 
         public void pcl()
         {
-            tmpDetVent.Clear();
+            this.tmpDetVent.Clear();
             tmpCie10.Clear();
 
             int ne = cmbEspecialidad.SelectedIndex;
@@ -149,9 +148,9 @@ namespace Polsolcom.Forms.Procesos
             int cm = cmbMedico.SelectedIndex;
             string cn = txtCuenta.Text;
 
-            setAll<TextBox, string>(this, "Text", "");
-            setAll<ComboBox, int>(this, "SelectedIndex", -1);
-            setAll<Button, bool>(this, "Enabled", false);
+            General.setAll<TextBox, string>(this, "Text", "");
+            General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
+            General.setAll<Button, bool>(this, "Enabled", false);
 
             btnVerifica.Enabled = true;
 
@@ -176,19 +175,6 @@ namespace Polsolcom.Forms.Procesos
             txtNroDoc.Focus();
             Refresh();
 
-        }
-
-        void setAll<A, B>(Control control, string property, B value)
-        {
-            foreach (Control subControl in control.Controls)
-            {
-                if (subControl is A)
-                {
-                    Type t = subControl.GetType();
-                    PropertyInfo p = t.GetProperty(property);
-                    p.SetValue(subControl, value);
-                }
-            }
         }
 
         private int pfv()
@@ -223,7 +209,7 @@ namespace Polsolcom.Forms.Procesos
             else
             {
                 Dictionary<string, string> paciente = pacientes[General.GetSelectedIndex(lstPacientes)];
-                vSQL += " T.Id_Paciente='" + paciente["id_paciente"] + "'";
+                vSQL += " T.Id_Paciente='" + paciente["Id_Paciente"] + "'";
             }
 
             lstTickets0.Items.Clear();
@@ -255,7 +241,7 @@ namespace Polsolcom.Forms.Procesos
                 }
             }
 
-           
+
             return tickets.Count;
         }
 
@@ -324,26 +310,44 @@ namespace Polsolcom.Forms.Procesos
                 chkIdem_CheckedChanged(chkIdem, e);
             }
 
-            if (e.KeyCode == Keys.F9 && cmbBus.SelectedIndex > 0 && cmbMedico.SelectedIndex > 0)
+            if (e.KeyCode == Keys.F9 && cmbBus.SelectedIndex > -1 && cmbMedico.SelectedIndex > -1)
             {
+                frmResultado frmResultado = new frmResultado(this.tmpDetVent, cmbBus.SelectedValue.ToString(), cmbMedico.SelectedValue.ToString(), this.nh);
+                frmResultado.docVenta = this.ticket["Serie"] + "-" + this.ticket["Nro_Ticket"];
+                frmResultado.paciente = txtPaciente.Text;
+                frmResultado.edad = txtEdad.Text;
+                frmResultado.especialidad = txtEspecialidad.Text;
+                frmResultado.medico = txtMedico.Text;
+                frmResultado.fechaAtencion = txtFechaAten.Text;
+                frmResultado.FormClosed += new FormClosedEventHandler(frmResultado_FormClosed);
+                frmResultado.Show();
                 this.Hide();
-                /*
-              .hide
-          WITH thisformset.frmresultado
-             .show
-             .grdproducto.recordsource = 'tmpdetvent'
-             SELECT tmpdetvent
-             REPLACE m WITH 1 ALL
-             GOTO TOP
-             IF thisformset.iu=1
-                .grdproducto.column1.text1.setfocus
-             ELSE
-                STORE '' TO .cmbparticular.value, .edtresultado.value, .edtconclusion.value
-             ENDIF
-          ENDWITH
-          thisformset.refresh    
-             */
             }
+        }
+
+        private void frmResultado_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.tmpDetVent = ((frmResultado)sender).items;
+            //
+            txtNroDoc.Text = "";
+            txtNroDoc.Focus();
+
+            int cp = 0;
+
+            foreach (Dictionary<string, string> item in this.tmpDetVent)
+            {
+                if (item["Nro_Historia"] == this.nh)
+                {
+                    cp += item["Pagado"] != "" ? 1 : 0;
+                }
+            }
+
+            if (this.iu == 0 && cp == 0)
+            {
+                this.btnGrabar_Click(btnGrabar, new EventArgs());
+            }
+
+            this.Show();
         }
 
         private void txtSerie_KeyDown(object sender, KeyEventArgs e)
@@ -446,23 +450,23 @@ namespace Polsolcom.Forms.Procesos
             txtCajero.Text = "CAJERO: ( " + General.TradUser(ticket["Digitador"]) + " )";
             this.nh = ticket["Nro_Historia"];
 
-            tmpDetVent.Clear();
+            this.tmpDetVent.Clear();
 
             string detSql = "Select D.*,P.Descripcion From Detalles D Inner Join Productos P On D.Id_Producto=P.Id_Producto Where Nro_Historia='" + this.nh + "'";
-            List<Dictionary<string, string>> detalles = General.GetDictionaryList(detSql);
+            this.tmpDetVent = General.GetDictionaryList(detSql);
 
             double total = 0f;
-            for (int i = 0; i < detalles.Count; i++)
+            for (int i = 0; i < this.tmpDetVent.Count; i++)
             {
-                double subtotal = Math.Round(int.Parse(detalles[i]["Cantidad"]) * double.Parse(detalles[i]["Monto"]), 2);
+                double subtotal = Math.Round(int.Parse(this.tmpDetVent[i]["Cantidad"]) * double.Parse(this.tmpDetVent[i]["Monto"]), 2);
                 total += subtotal;
                 //
-                detalles[i]["Subtotal"] = subtotal.ToString();
-                detalles[i]["M"] = "1";
+                this.tmpDetVent[i]["Subtotal"] = subtotal.ToString();
+                this.tmpDetVent[i]["M"] = "1";
             }
-            
+
             txtTotal.Text = total.ToString();
-            General.FillListView(grdDetalle, detalles, new[] { "Descripcion", "Cantidad", "Monto", "Subtotal", "Pagado", "Dscto" });
+            General.FillListView(grdDetalle, this.tmpDetVent, this.tmpDetVenFields);
             string cabCie10Sql = "Select * From Cab_Cie10 Where Nro_Historia = '" + ticket["Nro_Historia"] + "'";
             Dictionary<string, string> cabCie10 = General.GetDictionary(cabCie10Sql);
 
@@ -514,21 +518,20 @@ namespace Polsolcom.Forms.Procesos
                 this.tmpCie10 = General.GetDictionaryList(detCie10Sql);
                 this.dr = tmpCie10.Count;
 
+                dgvDetCie10.Rows.Clear();
                 foreach (Dictionary<string, string> item in this.tmpCie10)
                 {
-                    dgvDetCie10.Rows.Add(item["CIE10"], item["Descripcion"], item["Procedimiento"]);
+                    dgvDetCie10.Rows.Add(new[] { item["CIE10"], item["Descripcion"], item["Procedimiento"] });
                 }
-
-                General.FillListView(grdDetCie10, tmpCie10, new[] { "CIE10", "Descripcion", "Procedimiento" });
 
                 btnAgregar.Enabled = btnQuitar.Enabled = btnBCie10.Enabled = (this.dr > 0 && tabIngresoConsulta.SelectedIndex == 0);
                 //btnImprimir.Enabled = (this.dr > 0);//CUal botón imprimir?
                 btnGrabar.Enabled = (tabIngresoConsulta.SelectedIndex == 0);
 
                 string tratMedSql = "Select * From tratmed Where nro_reg='" + this.nh + "'";
-                List<Dictionary<string, string>> tratMed = General.GetDictionaryList(tratMedSql);
+                this.tmpTratMed = General.GetDictionaryList(tratMedSql);
 
-                this.dr += tratMed.Count;
+                this.dr += this.tmpTratMed.Count;
                 this.iu = 1;
                 this.pg = cabCie10["Id_Per"] != "" ? 1 : 0;
 
@@ -539,11 +542,11 @@ namespace Polsolcom.Forms.Procesos
                 this.iu = 0;
                 this.pg = 0;
 
-                setAll<TextBox, string>(this, "Text", "");
-                setAll<Button, bool>(this, "Enabled", false);
+                General.setAll<TextBox, string>(this, "Text", "");
+                General.setAll<Button, bool>(this, "Enabled", false);
 
                 btnVerifica.Enabled = true;
-                cmbBus.SelectedValue = ((Usuario.id_area.Length > 3? Usuario.id_area.Substring(0, 3): Usuario.id_area) == Operativo.id_oper) ? Usuario.id_area : cmbBus.SelectedValue;
+                cmbBus.SelectedValue = ((Usuario.id_area.Length > 3 ? Usuario.id_area.Substring(0, 3) : Usuario.id_area) == Operativo.id_oper) ? Usuario.id_area : cmbBus.SelectedValue;
                 txtDigitador.Text = Usuario.usuario;
                 txtFechaIngreso.Text = EMPTY_DATE;
                 if (chkIdem.Checked)
@@ -564,7 +567,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (lv == 5)
             {
-                if (tmpDetVent.Count == 0)
+                if (this.tmpDetVent.Count == 0)
                 {
                     MessageBox.Show("El registro no tiene detalle de venta ... comuniquese con el administrador del sistema ... urgente !!!", "Advertencia");
                     return;
@@ -669,8 +672,8 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnVerifica_Click(object sender, EventArgs e)
         {
-            string xbs = cmbBus.SelectedValue.ToString();
-            string xtr = cmbTurno.SelectedValue.ToString().Substring(0, 1);
+            string xbs = cmbBus.SelectedValue != null ? cmbBus.SelectedValue.ToString() : "";
+            string xtr = cmbTurno.SelectedValue != null ? cmbTurno.SelectedValue.ToString().Substring(0, 1) : "";
             string xfa = txtFechaAten.Text;
             string xcm = cmbMedico.SelectedValue.ToString();
 
@@ -678,23 +681,29 @@ namespace Polsolcom.Forms.Procesos
             {
                 return;
             }
-
-            //frmConsulta.Show();
-            this.Hide();
             //
             string sql = "Select Serie, Nro_Ticket, Fecha_Atencion, SubString(TNCol,2, 7)CMP,B.Bus,C.Descripcion Consultorio, U.Descripcion Turno, CB.Digitador,DC.Cie10,DC.Procedimiento,CB.Nro_Historia,CI.Descripcion Diagnostico From Cab_Cie10 CB Inner Join(Select Id_Tipo, Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion = 'TURNOS' And Id_Tabla = '0'))U On CB.Turno = U.Id_Tipo Inner Join Tickets T On CB.Nro_Historia = T.Nro_Historia Inner Join Consultorios C On C.Id_Consultorio = T.Id_Consultorio Inner Join Buses B On CB.Id_Bus = B.Id_Bus Inner Join Personal P On CB.CMP = P.Id_Personal Left Join Det_Cie10 DC On CB.Nro_Historia = DC.Nro_Historia Left Join Cie10 CI On DC.Cie10 = CI.Cie10 Where CB.Id_Bus = '" + xbs + "' And CB.Turno = '" + xtr + "' And Fecha_Atencion = '" + xfa + "' ";
             sql += this.ptc(xbs, 0) == "T" ? "" : "And CB.CMP = '" + xcm + "' ";
             sql += "Order By Fecha_Ingreso";
             //
-            //Llenamos grilaConsulta
-            //VERIFICAR CODIGO PORQUE HAY QUE LLENAR OTRO FORMULARIO
+            List<Dictionary<string, string>> list = General.GetDictionaryList(sql);
+            frmVerificaCie frmVerificaCie10 = new frmVerificaCie(list);
+            frmVerificaCie10.FormClosed += new FormClosedEventHandler(frmVerificaCie_FormClosed);
+            frmVerificaCie10.Show();
+            this.Hide();
+        }
 
+        private void frmVerificaCie_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            txtNroDoc.Text = ((frmVerificaCie)sender).nroTicket;
+            this.processKeyDown();
+            this.Show();
         }
 
         private void chkIdem_CheckedChanged(object sender, EventArgs e)
         {
             txtFechaAten.Enabled = cmbTurno.Enabled = cmbMedico.Enabled = !chkIdem.Checked;
-            cmbBus.Enabled = !chkIdem.Checked && Usuario.id_area.Substring(0, 3) != Operativo.id_oper;
+            cmbBus.Enabled = !chkIdem.Checked && ((Usuario.id_area.Length > 2? Usuario.id_area.Substring(0, 3) : Usuario.id_area) != Operativo.id_oper);
             txtCuenta.Enabled = chkIdem.Checked;
         }
 
@@ -732,15 +741,10 @@ namespace Polsolcom.Forms.Procesos
         {
             if (this.ga == 0)
             {
-                ComboBox cb = new ComboBox();
-                grdDetCie10.Controls.Add(cb);
+                dgvDetCie10.Rows.Add(new[] { "", "", "" });
             }
 
-            //Agregamos de grdDetCie10
-
-
             this.dr++;
-
             if (dr > 0)
             {
                 btnQuitar.Enabled = btnGrabar.Enabled = true;
@@ -749,7 +753,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            //Quitamos de grdDetCie10
+            dgvDetCie10.Rows.RemoveAt(dgvDetCie10.CurrentCell.RowIndex);
 
             this.dr--;
 
@@ -759,13 +763,24 @@ namespace Polsolcom.Forms.Procesos
             }
 
             this.Refresh();
-
         }
 
         private void btnBCie10_Click(object sender, EventArgs e)
         {
+            frmCie10 frmCie10 = new frmCie10();
+            frmCie10.FormClosed += new FormClosedEventHandler(frmCie10_FormClosed);
+            frmCie10.Show();
             this.Hide();
-            //frmCie10.Show();
+        }
+
+        private void frmCie10_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (((frmCie10)sender).cie10.Length > 0)
+            {
+                this.dgvDetCie10.Rows[this.dgvDetCie10.CurrentCell.RowIndex].Cells[0].Value = ((frmCie10)sender).cie10;
+                this.dgvDetCie10.Rows[this.dgvDetCie10.CurrentCell.RowIndex].Cells[1].Value = ((frmCie10)sender).descripcion;
+            }
+            this.Show();
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -796,7 +811,118 @@ namespace Polsolcom.Forms.Procesos
             string ob = txtObservacion.Text;
             double df = (DateTime.Today - this.hi).TotalSeconds;
 
+            //Borramos tmpcie10
+            List<Dictionary<string, string>> lista = new List<Dictionary<string, string>>();
+            foreach (Dictionary<string, string> item in this.tmpCie10)
+            {
+                if (!(item["Nro_Historia"] == "" || (item["CIE10"] + item["Procedimiento"]).Length == 0))
+                {
+                    lista.Add(item);
+                }
+            }
+            this.tmpCie10 = lista;
+            int dn = lista.Count;
+            //
+            if (dn == 0 && this.ptc(bs, 1) != "LABORATORIO" && General.vtrls(Especialidad.esp) == 0)
+            {
+                if (MessageBox.Show("No ha agregado diagnostico alguno ... desea continuar ?", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    btnAgregar.Focus();
+                    return;
+                }
+            }
+            //
+            if (MessageBox.Show("Desea guardar los datos ... ?", "Confirmación de grabado", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                if (this.iu == 0)
+                {
+                    if (this.ptc(bs, 1) != "LABORATORIO")
+                    {
+                        Conexion.ExecuteNonQuery("Update Detalles Set Pagado = 'R' Where Nro_Historia = '" + this.nh + "'");
 
+                        for (int i = 0; i < this.tmpDetVent.Count; i++)
+                        {
+                            if (this.tmpDetVent[i]["Nro_Historia"] == this.nh)
+                            {
+                                this.tmpDetVent[i]["Pagado"] = "R";
+                            }
+                        }
+                    }
+
+                    string sql = "Exec AddCie10 '" + nh + "', '" + fa + "', '" + cm + "', '" + bs + "', '" + tr + "', '" + dg + "', '" + ei + "', '" + ec + "', '" + er + "', '" + ap + "', '" + af + "', '" + ae + "', '" + aq + "', '" + ao + "', '" + ps + "', '" + tl + "', '" + pa + "', '" + fc + "', '" + fr + "', '" + tm + "', '" + eg + "', '" + ob + "', '" + df + "'";
+                    Conexion.ExecuteNonQuery(sql);
+
+
+                    if (chkIdem.Checked)
+                    {
+                        float cuenta = int.Parse(txtCuenta.Text);
+                        txtCuenta.Text = (cuenta > 0 ? cuenta - 1 : 0).ToString();
+
+                        if (cuenta > 0)
+                        {
+                            chkIdem.Enabled = true;
+                            chkIdem.Checked = false;
+                            chkIdem_CheckedChanged(chkIdem, new EventArgs());
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (this.pg == 1)
+                    {
+                        MessageBox.Show("El registro ya fue pagado ... no se puede modificar ...", "Advertencia");
+                        return;
+                    }
+                    //
+                    if (Usuario.usuario != txtDigitador.Text)
+                    {
+                        if (MessageBox.Show("Está seguro de modificar datos ingresados por:\n" + txtDigitador.Text + "?", "Aviso al usuario", MessageBoxButtons.OKCancel) != DialogResult.OK)
+                        {
+                            return;
+                        }
+                    }
+                    //
+                    string sql1 = "Update Cab_Cie10 Set Fecha_Atencion = '" + fa + "', CMP = '" + cm + "', Id_Bus = '" + bs + "', Turno = '" + tr + "', Digitador = '" + dg + "', En_Ac_Ini = '" + ei + "', '+'En_Ac_Cur = '" + ec + "', En_Ac_Rel = '" + er + "', An_Per = '" + ap + "', An_Fam = '" + af + "', An_Epi = '" + ae + "', An_Qui = '" + aq + "', An_Otr = '" + ao + "', Ex_Cl_Ps = '" + ps + "', '+'Ex_Cl_Tl = '" + tl + "', Ex_Cl_PA = '" + pa + "', Ex_Cl_FC = '" + fc + "', Ex_Cl_FR = '" + fr + "', Ex_Cl_Tm = '" + tm + "', Ex_Cl_Eg = '" + eg + "', Observacion = '" + ob + "', '+'Fecha_Ingreso = '" + DateTime.Now + "', tsg = '" + df + "' Where Nro_Historia = '" + this.nh + "'";
+                    Conexion.ExecuteNonQuery(sql1);
+
+                    string sql2 = "Delete From Det_Cie10 Where Nro_Historia = '" + this.nh + "'";
+                    Conexion.ExecuteNonQuery(sql2);
+
+                    string sql3 = "Delete From tratmed Where nro_reg = '" + this.nh + "'";
+                    Conexion.ExecuteNonQuery(sql3);
+
+                    //Se debería poner en readonly columnas 5, 6 y 7 de grdDetalle
+                }
+                //
+                if (this.ptc(bs, 1) != "LABORATORIO")
+                {
+                    foreach (Dictionary<string, string> item in this.tmpCie10)
+                    {
+                        string sql3 = "Exec AddDetCie10 '" + this.nh + "', '" + item["CIE10"] + "', '" + item["Procedimiento"] + "'";
+                        Conexion.ExecuteNonQuery(sql3);
+                    }
+                }
+                //
+                foreach (Dictionary<string, string> item in this.tmpTratMed)
+                {
+                    string sql4 = "Insert Into tratmed Values('" + this.nh + "', '" + item["id_med"] + "', '" + item["cant"] + "', '" + item["dosis"] + "', '" + item["dias"] + "')";
+                    Conexion.ExecuteNonQuery(sql4);
+                }
+            }
+
+            this.hi = DateTime.Now;
+            this.pg = 0;
+            txtTi.Text = this.pct().ToString();
+            //
+            txtFechaIngreso.Text = DateTime.Now.ToString();
+            btnGrabar.Enabled = false;
+
+            if (this.Visible)
+            {
+                txtNroDoc.Text = "";
+                txtNroDoc.Focus();
+            }
         }
 
         private void cmbBus_Leave(object sender, EventArgs e)
@@ -894,7 +1020,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void tabIngresoConsulta_Click(object sender, EventArgs e)
         {
-            setAll<Button, bool>(this, "Enabled", false);
+            General.setAll<Button, bool>(this, "Enabled", false);
         }
 
         private void grdDetCie10_Enter(object sender, EventArgs e)
@@ -930,7 +1056,8 @@ namespace Polsolcom.Forms.Procesos
 
             if (pfec.Month != sfec.Month && pfec.Year != sfec.Year)
             {
-                if (MessageBox.Show("Dato ingresado no corresponde al mes y año en curso ... desea continuar ?", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+                if (MessageBox.Show("Dato ingresado no corresponde al mes y año en curso ... desea continuar ?", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
                     pobj.Text = EMPTY_DATE;
                     return;
                 }
@@ -971,6 +1098,50 @@ namespace Polsolcom.Forms.Procesos
             }
 
             this.Refresh();
+        }
+
+        private void dgvDetCie10_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void dgvDetCie10_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            // Only for a DatagridComboBoxColumn at ColumnIndex 0.
+            if (dgvDetCie10.CurrentCell.ColumnIndex == 0)
+            {
+                ComboBox combo = (ComboBox)e.Control;
+                if ((combo != null))
+                {
+                    // Remove an existing event-handler, if present, to avoid 
+                    // adding multiple handlers when the editing control is reused.
+                    combo.SelectionChangeCommitted -= new EventHandler(ComboBox_SelectionChangeCommitted);
+
+                    // Add the event handler. 
+                    combo.SelectionChangeCommitted += new EventHandler(ComboBox_SelectionChangeCommitted);
+                }
+            }
+        }
+
+        private void ComboBox_SelectionChangeCommitted(System.Object sender, System.EventArgs e)
+        {
+            ComboBox combo = (ComboBox)sender;
+            string description = (((DataRowView)combo.SelectedItem).Row["Descripcion"]).ToString();
+            dgvDetCie10.Rows[dgvDetCie10.CurrentCell.RowIndex].Cells[1].Value = description;
+            //MessageBox.Show("Row: " + dgvDetCie10.CurrentCell.RowIndex + ", Value: " + combo.SelectedItem);
+            dgvDetCie10.CurrentCell = dgvDetCie10.Rows[dgvDetCie10.CurrentCell.RowIndex].Cells[2];
+            dgvDetCie10.CurrentCell.Selected = true;
+            //Console.WriteLine("Row: {0}, Value: {1}", dgvDetCie10.CurrentCell.RowIndex, combo.SelectedItem);
+        }
+
+        private void dgvDetCie10_Validated(object sender, EventArgs e)
+        {
+            this.ga = 0;
+        }
+
+        private void grdTraMed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
         }
     }
 }
