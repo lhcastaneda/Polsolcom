@@ -642,7 +642,7 @@ namespace Polsolcom.Forms.Procesos
 				return;
 			}
 
-<<<<<<< HEAD
+
 			//agrega una fila
 			iGrid.Rows.Count = iGrid.Rows.Count + 1;
 			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDown;
@@ -652,8 +652,7 @@ namespace Polsolcom.Forms.Procesos
 			else
 				btnQuitar.Enabled = false;
 
-=======
->>>>>>> origin/master
+
 		}
 
 		private void btnQuitar_Click( object sender, EventArgs e )
@@ -1060,13 +1059,9 @@ namespace Polsolcom.Forms.Procesos
 				if( bTieneDocVenta == false )
 					return;
 
-<<<<<<< HEAD
 				//ComboProducto = LlenaProductos(itm.IdUbigeo);
 				iGDropDown = CargaProductos(itm.IdUbigeo);
-
-=======
 				ComboProducto = LlenaProductos(itm.IdUbigeo);
->>>>>>> origin/master
 				btnAgregar.Enabled = true;
 				cmbEspecialista.Focus();
 			}
@@ -1085,7 +1080,6 @@ namespace Polsolcom.Forms.Procesos
 			}
 			btnAgregar.Enabled = true;
 		}
-<<<<<<< HEAD
 
 		private void iGDropDown_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
 		{
@@ -1127,10 +1121,6 @@ namespace Polsolcom.Forms.Procesos
 				return "";
 
 		}
-
-=======
-				
->>>>>>> origin/master
 	}
 
 	public partial class Prod
