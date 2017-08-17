@@ -184,6 +184,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\RotationDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RotationDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\TipoDocumento.cs">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
     </Compile>
@@ -295,6 +300,12 @@
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmCie10.Designer.cs">
       <DependentUpon>frmCie10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmCapEspTur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmCapEspTur.Designer.cs">
+      <DependentUpon>frmCapEspTur.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Consultas\frmConsRotations.cs">
       <SubType>Form</SubType>
@@ -712,6 +723,9 @@
     <EmbeddedResource Include="Forms\Mantenimiento\frmCie10.resx">
       <DependentUpon>frmCie10.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmCapEspTur.resx">
+      <DependentUpon>frmCapEspTur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmConsRotations.resx">
       <DependentUpon>frmConsRotations.cs</DependentUpon>
     </EmbeddedResource>
@@ -1039,6 +1053,17 @@
     </None>
     <None Include="Dominio\Data\ProduccionDS.xss">
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\RotationDS.xsc">
+      <DependentUpon>RotationDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\RotationDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RotationDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\RotationDS.xss">
+      <DependentUpon>RotationDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\TipoDocumento.xsc">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>

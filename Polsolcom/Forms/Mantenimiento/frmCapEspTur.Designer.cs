@@ -107,9 +107,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 416);
             this.Controls.Add(this.grdSpeciality);
+            this.KeyPreview = true;
             this.Name = "frmCapEspTur";
             this.Text = "frmCapEspTur";
             this.Load += new System.EventHandler(this.frmCapEspTur_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCapEspTur_KeyDown);
             this.Validated += new System.EventHandler(this.frmCapEspTur_Validated);
             ((System.ComponentModel.ISupportInitialize)(this.grdSpeciality)).EndInit();
             this.ResumeLayout(false);

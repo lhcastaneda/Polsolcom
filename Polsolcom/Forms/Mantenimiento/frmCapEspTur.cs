@@ -33,22 +33,22 @@ namespace Polsolcom.Forms.Mantenimiento
 
                 this.items = General.GetDictionaryList(sql);
 
-                foreach (Dictionary<string, string> item in this.items)
+                foreach (Dictionary<string, string> _item in this.items)
                 {
                     DataGridViewRow dgvr = new DataGridViewRow();
                     //
-                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["Descripcion"] });
+                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = _item["Descripcion"] });
                     //
                     DataGridViewCheckBoxCell col2 = new DataGridViewCheckBoxCell();
-                    col2.Value = (item["C"] == "1");
+                    col2.Value = (_item["C"] == "1");
                     //
-                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["M"] });
+                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = _item["M"] });
                     //
-                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["T"] });
+                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = _item["T"] });
                     //
-                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["N"] });
+                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = _item["N"] });
                     //
-                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["A"] });
+                    dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = _item["A"] });
                     //
                     grdSpeciality.Rows.Add(dgvr);
                 }
@@ -155,6 +155,15 @@ namespace Polsolcom.Forms.Mantenimiento
 
             this.ca = false;
 
+        }
+
+        private void frmCapEspTur_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
         }
     }
 }
