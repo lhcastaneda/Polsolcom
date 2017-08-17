@@ -4,17 +4,11 @@ using Polsolcom.Dominio.Modelos;
 using Polsolcom.Forms.Mantenimiento;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Polsolcom.Forms
 {
-    public partial class frmConsultorios : Form
+	public partial class frmConsultorios : Form
     {
         int i = 0;
         List<Dictionary<string, string>> buses = new List<Dictionary<string, string>>();
@@ -314,7 +308,12 @@ namespace Polsolcom.Forms
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+			//LCC - falta agregar parametros
+            frmNewBus frmNewBus = new frmNewBus("","","");
+=======
             frmNewBus frmNewBus = new frmNewBus();
+>>>>>>> origin/master
             frmNewBus.Show();
             this.Hide();
             //
@@ -369,7 +368,12 @@ namespace Polsolcom.Forms
                     btnModificar.AccessibleDescription = "Grabar";
                 }
 
+<<<<<<< HEAD
+				//LCC - validar si es true or false
+                this.iu = true;
+=======
                 this.iu = 1;
+>>>>>>> origin/master
                 this.hab(true);
                 btnAgregar.Enabled = true;
                 btnQuitar.Enabled = lstBuses.Items.Count > 0;
@@ -400,8 +404,13 @@ namespace Polsolcom.Forms
                 return;
             }
 
+<<<<<<< HEAD
+            //LCC - falta agregar parametros 
+            frmNewBus frmNewBus = new frmNewBus("","","");
+=======
             //Cargar formulario
             frmNewBus frmNewBus = new frmNewBus();
+>>>>>>> origin/master
             frmNewBus.FormClosed += new FormClosedEventHandler(frmNewBus_FormClosed);
             frmNewBus.Show();
             this.Hide();
