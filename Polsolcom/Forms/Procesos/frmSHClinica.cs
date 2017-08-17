@@ -15,7 +15,7 @@ using System.Drawing;
 
 namespace Polsolcom.Forms.Procesos
 {
-	public partial class frmSHClinica : Form
+	public partial class frmSHClinica:Form
 	{
 		bool bTieneDocVenta = false;
 		string BUS = "";
@@ -35,7 +35,7 @@ namespace Polsolcom.Forms.Procesos
 			General.ttMensaje.IsBalloon = false;
 			FormateaGrids();
 			btnBuscarT.Enabled = true;
-			bTieneDocVenta = General.TieneDocVenta(Usuario.id_us,"");
+			bTieneDocVenta = General.TieneDocVenta(Usuario.id_us, "");
 			if( bTieneDocVenta == true )
 			{
 				General.LlenarRegistroVenta(Usuario.id_us, "");
@@ -44,10 +44,10 @@ namespace Polsolcom.Forms.Procesos
 			}
 			else
 			{
-				
+
 			}
 
-			General.LUbigeo("","DEPARTAMENTO", cmbDepartamento);
+			General.LUbigeo("", "DEPARTAMENTO", cmbDepartamento);
 			General.LUbigeo("", "PROVINCIA", cmbProvincia);
 			General.LUbigeo("", "DISTRITO", cmbDistrito);
 			txtDigitador.Text = Usuario.usuario;
@@ -59,18 +59,18 @@ namespace Polsolcom.Forms.Procesos
 			General.LlenaComboBox(cmbIGV, "IGV");
 
 			//llena combo especialidad
-			string vSQL = "SELECT DISTINCT Descripcion,Id_Consultorio AS IdUbigeo " + 
-						  "FROM Consultorios " + 
+			string vSQL = "SELECT DISTINCT Descripcion,Id_Consultorio AS IdUbigeo " +
+						  "FROM Consultorios " +
 						  "WHERE Id_Consultorio LIKE '" + Operativo.id_oper + "%' " +
-						  "AND Estado= '1' " + 
+						  "AND Estado= '1' " +
 						  "Order By 1";
 			General.LlenaComboBox(cmbEspecialidad, "SQL", vSQL);
 			Habilita(0);
 			btnAgregar.Enabled = false;
 			btnQuitar.Enabled = false;
-			
+
 		}
-		
+
 		private void FormateaGrids()
 		{
 			//iGDropDownList cmb = new iGDropDownList();
@@ -110,7 +110,7 @@ namespace Polsolcom.Forms.Procesos
 			//iGrid.ContextMenuStrip = new ContextMenuStrip();
 			//iGrid.ContextMenuStrip.Items.Add("Exportar");
 			//iGrid.ContextMenuStrip.Items.Add("Copiar");
-			
+
 
 		}
 
@@ -123,7 +123,7 @@ namespace Polsolcom.Forms.Procesos
 							"WHERE 1 = 1 " +
 							"AND Estado = '1' " +
 							"AND LEFT(Id_Producto,6) = '" + sCategoria.Trim() + "' ";
-			if(idProducto != "")
+			if( idProducto != "" )
 				sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
 			else
 				sQuery = sQuery + "ORDER BY 1";
@@ -143,9 +143,11 @@ namespace Polsolcom.Forms.Procesos
 					cmb.ValueMember = "id_producto";
 				}
 				catch( Exception ex )
-				{ MessageBox.Show(ex.Message); }
+				{
+					MessageBox.Show(ex.Message);
+				}
 			}
-			
+
 			return cmb;
 
 		}
@@ -169,10 +171,10 @@ namespace Polsolcom.Forms.Procesos
 
 			if( cmb.Items.Count == 1 )
 				cmb.Items[0].Selectable = true;
-			
+
 			return cmb;
 		}
-		
+
 		private string DevuelvePrecioProducto( string idProduct )
 		{
 			string sPrecio = "";
@@ -186,7 +188,7 @@ namespace Polsolcom.Forms.Procesos
 			sPrecio = sPrecio.Trim();
 			return sPrecio;
 		}
-		
+
 		protected override bool ProcessCmdKey( ref Message msg, Keys keyData )
 		{
 			bool result = false;
@@ -197,21 +199,21 @@ namespace Polsolcom.Forms.Procesos
 			{
 				result = true;
 			}
-			else if ( keyData == Keys.F4 )
+			else if( keyData == Keys.F4 )
 			{
 				result = true;
 			}
-			else if ( keyData == Keys.F5 )
+			else if( keyData == Keys.F5 )
 			{
 				result = true;
 			}
-			else if ( keyData == Keys.F6 )
+			else if( keyData == Keys.F6 )
 			{
 				result = true;
 			}
-			else if( keyData == Keys.Insert)
+			else if( keyData == Keys.Insert )
 			{
-				btnNuevo_Click(sender,e);
+				btnNuevo_Click(sender, e);
 				result = true;
 			}
 			else
@@ -240,7 +242,7 @@ namespace Polsolcom.Forms.Procesos
 						frmBuscar fr = new frmBuscar();
 						fr.ShowDialog();
 
-						if(fr.DialogResult != DialogResult.OK)
+						if( fr.DialogResult != DialogResult.OK )
 							return;
 						else
 							sIDPaciente = fr.lblIdPaciente.Text;
@@ -254,7 +256,7 @@ namespace Polsolcom.Forms.Procesos
 				else
 					Habilita(1);
 			}
-			else if ( btnNuevo.Text == "&Grabar Venta" )
+			else if( btnNuevo.Text == "&Grabar Venta" )
 			{
 				if( int.Parse(txtTotal.Text) == 0 )
 				{
@@ -264,7 +266,7 @@ namespace Polsolcom.Forms.Procesos
 						btnBuscar.Enabled = true;
 						btnBuscarT.Enabled = true;
 						ValidaDatosTicket("");
-						BloqueaControles(this,"D"); 
+						BloqueaControles(this, "D");
 					}
 					else
 						txtDNI.Focus();
@@ -277,7 +279,7 @@ namespace Polsolcom.Forms.Procesos
 					}
 
 				}
-			}			
+			}
 		}
 
 		private void frmSHClinica_KeyDown( object sender, KeyEventArgs e )
@@ -296,14 +298,14 @@ namespace Polsolcom.Forms.Procesos
 
 			}
 		}
-		
-		private void Habilita(int iOpcion)
+
+		private void Habilita( int iOpcion )
 		{
 			switch( iOpcion )
 			{
 				case 0:
 					LimpiaControles(this);
-					UbicaItemCombo(cmbTDoc,Talon.dventa);
+					UbicaItemCombo(cmbTDoc, Talon.dventa);
 					UbicaItemCombo(cmbMVen, "");
 					UbicaItemCombo(cmbInstitucion, TieneInstitucion());
 					txtSerie.Text = Talon.serie;
@@ -315,8 +317,8 @@ namespace Polsolcom.Forms.Procesos
 					btnNuevo.Text = "&Grabar Venta";
 					txtFechaEmision.Text = General.FechaServidor();
 					UbicaItemCombo(cmbDistrito, Operativo.id_distrito);
-					UbicaItemCombo(cmbProvincia, Operativo.id_distrito.Substring(0,4));
-					UbicaItemCombo(cmbDepartamento, Operativo.id_distrito.Substring(0,2));
+					UbicaItemCombo(cmbProvincia, Operativo.id_distrito.Substring(0, 4));
+					UbicaItemCombo(cmbDepartamento, Operativo.id_distrito.Substring(0, 2));
 					ValidaRangosDocsVenta();
 					txtDNI.Focus();
 					break;
@@ -338,9 +340,9 @@ namespace Polsolcom.Forms.Procesos
 			foreach( Control c in con.Controls )
 			{
 				if( c is TextBox )
-					( (TextBox)c ).Clear();
+					((TextBox)c).Clear();
 				else if( c is ComboBox )
-					( (ComboBox)c ).SelectedIndex = -1;
+					((ComboBox)c).SelectedIndex = -1;
 				else if( c is MaskedTextBox )
 					((MaskedTextBox)c).Clear();
 
@@ -352,7 +354,7 @@ namespace Polsolcom.Forms.Procesos
 
 		}
 
-		private void UbicaItemCombo(ComboBox cmb, string sValor)
+		private void UbicaItemCombo( ComboBox cmb, string sValor )
 		{
 			if( sValor == null )
 				sValor = "";
@@ -375,14 +377,14 @@ namespace Polsolcom.Forms.Procesos
 		private string TieneInstitucion()
 		{
 			string sRes = "";
-			string sQuery = "SELECT ISNULL(Id_Inst ,'') AS Id_Inst FROM Tickets " + 
-							"WHERE Nro_Historia In " + 
-							"(SELECT Max(Nro_Historia) " + 
+			string sQuery = "SELECT ISNULL(Id_Inst ,'') AS Id_Inst FROM Tickets " +
+							"WHERE Nro_Historia In " +
+							"(SELECT Max(Nro_Historia) " +
 							" FROM Tickets " +
-							" WHERE Fecha_Emision >= CONVERT(Datetime, '" + General.FechaServidor("YYYY-MM-DD") + "', 120) " + 
+							" WHERE Fecha_Emision >= CONVERT(Datetime, '" + General.FechaServidor("YYYY-MM-DD") + "', 120) " +
 							" And Digitador = '" + Usuario.id_us + "' " +
-							" And Id_Consultorio In " + 
-							" (SELECT Left(Id_producto, 6) " + 
+							" And Id_Consultorio In " +
+							" (SELECT Left(Id_producto, 6) " +
 							"  FROM ImpFicha WHERE Estado = '1'))";
 			sRes = General.TomaValor(sQuery);
 			return sRes;
@@ -395,7 +397,7 @@ namespace Polsolcom.Forms.Procesos
 			string sRes = "";
 			string sQuery = "";
 			bool Error = false;
-			
+
 			sQuery = "EXEC GenDocVen '" + F1 + "','" + F2 + "','" + Usuario.id_us + "','" + Operativo.id_oper + "','" + Talon.serie + "','" + Talon.dventa + "',''";
 			using( SqlCommand cmd = new SqlCommand(sQuery, Conexion.CNN) )
 			{
@@ -404,13 +406,13 @@ namespace Polsolcom.Forms.Procesos
 					if( dr.HasRows )
 					{
 						General.LlenaTalon(dr);
-						sRes = int.Parse(Talon.ncon) == 0 ? Talon.ninicial : Convert.ToString(int.Parse(Talon.ncon) + 1) ;
+						sRes = int.Parse(Talon.ncon) == 0 ? Talon.ninicial : Convert.ToString(int.Parse(Talon.ncon) + 1);
 					}
 					dr.Close();
 				}
 			}
-			
-			if( ( sRes == null || sRes == String.Empty || sRes == "" ) )
+
+			if( (sRes == null || sRes == String.Empty || sRes == "") )
 			{
 				MessageBox.Show("No tiene rango de documentos de venta ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 				Error = true;
@@ -424,7 +426,7 @@ namespace Polsolcom.Forms.Procesos
 			return Error;
 		}
 
-		private bool ValidaUsoTicket(string sSerie, string sInicial, string sDventa)
+		private bool ValidaUsoTicket( string sSerie, string sInicial, string sDventa )
 		{
 			int iCant = 0;
 			string sQuery = "";
@@ -435,7 +437,7 @@ namespace Polsolcom.Forms.Procesos
 					 "AND DVenta = '" + sDventa + "'" +
 					 "AND Nro_Ticket = '" + sInicial + "'";
 			iCant = int.Parse(General.TomaValor(sQuery));
-			
+
 			sQuery = "SELECT Nro_Historia,Nro_Ticket,CONVERT(VARCHAR(10),Fecha_Emision,103) AS Fecha," +
 					 "Id_Consultorio,Id_Paciente,Digitador,Anulado,ForPago,Descuento," +
 					 "Serie,CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " +
@@ -463,33 +465,33 @@ namespace Polsolcom.Forms.Procesos
 			return Error;
 		}
 
-		private void CargaDatosPaciente(int iTipo, string sPaciente, int iEstado = 0)
+		private void CargaDatosPaciente( int iTipo, string sPaciente, int iEstado = 0 )
 		{
 			string sSQL = "";
 
 			txtDigitador.Text = Usuario.usuario;
 			txtSerie.Text = Talon.serie;
 
-			if(iTipo == 0) //0: paciente existente
+			if( iTipo == 0 ) //0: paciente existente
 			{
 				sSQL = "SELECT id_paciente,nombre,ape_paterno,ape_materno,dni,edad," +
 						"CASE WHEN sexo = 'M' THEN 'MASCULINO' ELSE 'FEMENINO' END AS sexo," +
 						"telefono,direccion,asegurado,id_distrito,odoc,e_mail,nro_historia,fecha_nac " +
 						"FROM Pacientes P ";
-				if (iEstado==0)
+				if( iEstado == 0 )
 					sSQL = sSQL + "WHERE id_paciente = '" + sPaciente + "' ";
 				else
 					sSQL = sSQL + "WHERE dni = '" + sPaciente + "' ";
 
-				using(SqlCommand cmd = new SqlCommand( sSQL, Conexion.CNN ))
+				using( SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN) )
 				{
-					using(SqlDataReader dr = cmd.ExecuteReader())
+					using( SqlDataReader dr = cmd.ExecuteReader() )
 					{
-						if(dr.HasRows)
+						if( dr.HasRows )
 						{
 							Habilita(0);
 							dr.Read();
-							txtNHP.Text = (dr.GetValue(13).ToString().Length == 0? "0": dr.GetValue(13).ToString());
+							txtNHP.Text = (dr.GetValue(13).ToString().Length == 0 ? "0" : dr.GetValue(13).ToString());
 							NROHISTORIA = txtNHP.Text;
 							txtID.Text = dr.GetValue(0).ToString();
 							txtNombres.Text = dr.GetValue(1).ToString();
@@ -514,10 +516,10 @@ namespace Polsolcom.Forms.Procesos
 			}
 			else //1: paciente nuevo
 			{
-				sSQL = "SELECT P.Dni,P.Nombres,P.Ape_Pat,P.Ape_Mat,CONVERT(datetime, P.Fec_Nac,112) AS Fec_Nac, " + 
-						"DATEDIFF(YEAR, P.Fec_Nac, CONVERT(VARCHAR, GETDATE(), 112)) AS Edad," + 
-						" CASE WHEN sexo = 1 THEN 'MASCULINO' ELSE 'FEMENINO' END AS sexo,U.Id_Old " + 
-						" FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " + 
+				sSQL = "SELECT P.Dni,P.Nombres,P.Ape_Pat,P.Ape_Mat,CONVERT(datetime, P.Fec_Nac,112) AS Fec_Nac, " +
+						"DATEDIFF(YEAR, P.Fec_Nac, CONVERT(VARCHAR, GETDATE(), 112)) AS Edad," +
+						" CASE WHEN sexo = 1 THEN 'MASCULINO' ELSE 'FEMENINO' END AS sexo,U.Id_Old " +
+						" FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " +
 						"ON P.Ubigeo = U.Ubigeo " +
 						"WHERE DNI = '" + sPaciente + "' ";
 				using( SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN) )
@@ -541,7 +543,7 @@ namespace Polsolcom.Forms.Procesos
 							txtDNI.Text = dr.GetValue(0).ToString();
 							txtEdad.Text = dr.GetValue(5).ToString();
 							txtSexo.Text = dr.GetValue(6).ToString();
-							txtFecNac.Text = dr.GetValue(4).ToString().Substring(0,10);
+							txtFecNac.Text = dr.GetValue(4).ToString().Substring(0, 10);
 						}
 						dr.Close();
 					}
@@ -581,8 +583,8 @@ namespace Polsolcom.Forms.Procesos
 		private void cmbDepartamento_SelectedIndexChanged( object sender, EventArgs e )
 		{
 			Ubigeo itm = (Ubigeo)cmbDepartamento.SelectedItem;
-			
-			if( cmbDepartamento.SelectedIndex != -1)
+
+			if( cmbDepartamento.SelectedIndex != -1 )
 				General.LUbigeo(itm.IdUbigeo.Trim().Substring(0, 2), "PROVINCIA", cmbProvincia);
 		}
 
@@ -650,7 +652,7 @@ namespace Polsolcom.Forms.Procesos
 			//agrega una fila
 			iGrid.Rows.Count = iGrid.Rows.Count + 1;
 			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDown;
-			
+
 			if( iGrid.Rows.Count != 0 )
 				btnQuitar.Enabled = true;
 			else
@@ -680,20 +682,20 @@ namespace Polsolcom.Forms.Procesos
 				//agregar codigo para identificar BUS
 			}
 
-			sSQL = "SELECT Ape_Paterno,Ape_Materno,Nombre,DNI,ODoc,Fecha_Nac, " + 
-				   "Edad,Sexo,P.Direccion,DP.Distrito PDist, Nro_Ticket, " + 
-				   "Fecha_Emision, Serie, C.Descripcion Espec, Nom_Raz_Soc, " + 
-				   "I.Direccion + ', ' + DI.Distrito IDireccion " + 
-				   "FROM Tickets T INNER JOIN Pacientes P " + 
-				   "ON T.Id_Paciente = P.Id_Paciente " + 
-				   "INNER JOIN Consultorios C " + 
-			  	   "ON T.Id_Consultorio = C.Id_Consultorio " + 
-				   "LEFT JOIN Ubigeo2005 DP " + 
-				   "ON P.Id_Distrito = DP.Id_Old " + 
-				   "LEFT JOIN Institucion I " + 
-				   "ON T.Id_Inst = I.TInst + I.Id_Inst " + 
-				   "LEFT JOIN Ubigeo2005 DI " + 
-				   "ON I.Id_Distrito = DI.Id_Old " + 
+			sSQL = "SELECT Ape_Paterno,Ape_Materno,Nombre,DNI,ODoc,Fecha_Nac, " +
+				   "Edad,Sexo,P.Direccion,DP.Distrito PDist, Nro_Ticket, " +
+				   "Fecha_Emision, Serie, C.Descripcion Espec, Nom_Raz_Soc, " +
+				   "I.Direccion + ', ' + DI.Distrito IDireccion " +
+				   "FROM Tickets T INNER JOIN Pacientes P " +
+				   "ON T.Id_Paciente = P.Id_Paciente " +
+				   "INNER JOIN Consultorios C " +
+					 "ON T.Id_Consultorio = C.Id_Consultorio " +
+				   "LEFT JOIN Ubigeo2005 DP " +
+				   "ON P.Id_Distrito = DP.Id_Old " +
+				   "LEFT JOIN Institucion I " +
+				   "ON T.Id_Inst = I.TInst + I.Id_Inst " +
+				   "LEFT JOIN Ubigeo2005 DI " +
+				   "ON I.Id_Distrito = DI.Id_Old " +
 				   "WHERE T.Nro_Historia = '" + NROHISTORIA + "'";
 			using( SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN) )
 			{
@@ -702,7 +704,7 @@ namespace Polsolcom.Forms.Procesos
 					if( dr.HasRows )
 					{
 						dr.Read();
-						 
+
 					}
 					dr.Close();
 				}
@@ -723,12 +725,12 @@ namespace Polsolcom.Forms.Procesos
 			if( sNroHistoria == "" || sNroHistoria.Length == 0 )
 				return;
 
-			sSQL = "SELECT T.Nro_Historia, T.Nro_Ticket, T.Fecha_Emision, T.Id_Consultorio, T.Id_Paciente, " + 
-					"T.Digitador, T.Anulado, T.ForPago, T.Descuento, T.Serie, T.CMP, T.Id_Inst, T.Moneda, " + 
+			sSQL = "SELECT T.Nro_Historia, T.Nro_Ticket, T.Fecha_Emision, T.Id_Consultorio, T.Id_Paciente, " +
+					"T.Digitador, T.Anulado, T.ForPago, T.Descuento, T.Serie, T.CMP, T.Id_Inst, T.Moneda, " +
 					"T.Convenio, T.DVenta, T.Id_Bus, T.tsg, P.Nombre, P.Ape_Paterno, P.Ape_Materno, " +
 					"P.DNI, P.Fecha_Nac, P.Edad, CASE WHEN P.Sexo = 'M' THEN 'MASCULINO' ELSE 'FEMENINO' END AS sexo, " +
 					"P.Telefono, P.Direccion, P.Asegurado, P.Id_Distrito, " +
-					"P.ODoc, P.E_Mail, C.Descripcion, C.Estado, C.Turno, " + 
+					"P.ODoc, P.E_Mail, C.Descripcion, C.Estado, C.Turno, " +
 					"C.Tipo, C.Observacion, P.Nro_Historia " +
 					"FROM Tickets T INNER JOIN Pacientes P " +
 					"ON T.Id_Paciente = P.Id_paciente " +
@@ -750,7 +752,7 @@ namespace Polsolcom.Forms.Procesos
 							txtID.Text = dr.GetValue(4).ToString().Trim();
 							txtDigitador.Text = General.TradUser(dr.GetValue(5).ToString().Trim());
 							UbicaItemCombo(cmbMVen, dr.GetValue(7).ToString().Trim());
-							if( dr.GetValue(8).ToString().Trim() !="")
+							if( dr.GetValue(8).ToString().Trim() != "" )
 								if( dr.GetValue(8).ToString().Substring(0, 1) == "D" )
 								{
 									string ads = dr.GetValue(8).ToString().Substring(29, 9).Trim();
@@ -774,7 +776,9 @@ namespace Polsolcom.Forms.Procesos
 											txtAutoriza.Text = returns[0].Personal + " (S/. " + dr.GetValue(8).ToString().Substring(38, 8).Trim() + ")";
 										}
 										catch( Exception ex )
-										{ MessageBox.Show(ex.Message); }
+										{
+											MessageBox.Show(ex.Message);
+										}
 									}
 								}
 							txtSerie.Text = dr.GetValue(9).ToString().Trim();
@@ -811,22 +815,22 @@ namespace Polsolcom.Forms.Procesos
 
 			if( sNroHistoria != "" || sNroHistoria.Length != 0 )
 			{
-				sSQL = "SELECT Nro_Historia,Nro_Ticket,Fecha_Emision,Id_Consultorio, " + 
-						"Id_Paciente,Digitador,Anulado,ForPago,Descuento,Serie, " + 
-						"CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " + 
-						"FROM Tickets " + 
+				sSQL = "SELECT Nro_Historia,Nro_Ticket,Fecha_Emision,Id_Consultorio, " +
+						"Id_Paciente,Digitador,Anulado,ForPago,Descuento,Serie, " +
+						"CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " +
+						"FROM Tickets " +
 						"WHERE Nro_Historia = '" + sNroHistoria + "'";
 			}
 			else
 			{
-				sSQL = "SELECT Nro_Historia,Nro_Ticket,Fecha_Emision,Id_Consultorio," + 
-						"Id_Paciente,Digitador,Anulado,ForPago,Descuento,Serie," + 
-						"CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " + 
-						"FROM Tickets " + 
-						"WHERE Fecha_Emision IN " + 
-						"(SELECT MAX(Fecha_Emision) " + 
-						" FROM Tickets " + 
-						" WHERE Digitador = '" + Usuario.id_us + "' " + 
+				sSQL = "SELECT Nro_Historia,Nro_Ticket,Fecha_Emision,Id_Consultorio," +
+						"Id_Paciente,Digitador,Anulado,ForPago,Descuento,Serie," +
+						"CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " +
+						"FROM Tickets " +
+						"WHERE Fecha_Emision IN " +
+						"(SELECT MAX(Fecha_Emision) " +
+						" FROM Tickets " +
+						" WHERE Digitador = '" + Usuario.id_us + "' " +
 						" AND Fecha_Emision >= Convert(Varchar(10), GetDate(), 103)) " +
 						"AND Digitador = '" + Usuario.id_us + "' " +
 						"AND Fecha_Emision >= Convert(Varchar(10), GetDate(), 103)";
@@ -855,7 +859,7 @@ namespace Polsolcom.Forms.Procesos
 							UbicaItemCombo(cmbEspecialista, dr.GetValue(10).ToString().Trim());
 							txtAutoriza.Text = "";
 
-							if( dr.GetValue(8).ToString().Trim()!="")
+							if( dr.GetValue(8).ToString().Trim() != "" )
 								if( dr.GetValue(8).ToString().Trim().Substring(0, 1) == "D" )
 								{
 									string ads = dr.GetValue(8).ToString().Substring(29, 9).Trim();
@@ -880,7 +884,9 @@ namespace Polsolcom.Forms.Procesos
 
 										}
 										catch( Exception ex )
-										{ MessageBox.Show(ex.Message); }
+										{
+											MessageBox.Show(ex.Message);
+										}
 									}
 								}
 
@@ -894,7 +900,7 @@ namespace Polsolcom.Forms.Procesos
 							}
 
 							NROHISTORIA = dr.GetValue(0).ToString().Trim();
-							CargaDatosPaciente(1,"");
+							CargaDatosPaciente(1, "");
 
 						}
 					}
@@ -905,7 +911,7 @@ namespace Polsolcom.Forms.Procesos
 					dr.Close();
 				}
 			}
-			
+
 		}
 
 		private void CargaDetalleTicket( string sNHC, string sEspecialidad )
@@ -924,7 +930,7 @@ namespace Polsolcom.Forms.Procesos
 						  "FROM Detalles " +
 						  "WHERE Nro_Historia = '" + sNHC.ToString() + "'";
 			int iCant = int.Parse(General.TomaValor(vSQL));
-			
+
 			vSQL = "SELECT nro_historia,id_producto,monto,cantidad," +
 				   "pagado,dscto,resultado,conclusion " +
 				   "FROM Detalles " +
@@ -1060,11 +1066,11 @@ namespace Polsolcom.Forms.Procesos
 
 				//ComboProducto = LlenaProductos(itm.IdUbigeo);
 				iGDropDown = CargaProductos(itm.IdUbigeo);
-				
+
 				btnAgregar.Enabled = true;
 				cmbEspecialista.Focus();
 			}
-				
+
 		}
 
 		private void cmbEspecialista_SelectedIndexChanged( object sender, EventArgs e )
@@ -1098,8 +1104,8 @@ namespace Polsolcom.Forms.Procesos
 			}
 
 		}
-		
-		private string UbicaDuplicadoGrilla(string sDato)
+
+		private string UbicaDuplicadoGrilla( string sDato )
 		{
 			string sResultado = "";
 			int iDup = 0;
@@ -1120,28 +1126,67 @@ namespace Polsolcom.Forms.Procesos
 				return "";
 
 		}
-				
+
 	}
 
 	public partial class Prod
 	{
-		public string Id_Producto {get; set;}
-		public string Descripcion {get; set;}
-		public double Monto	{get; set;}
-		public string Tipo {get; set;}
-		public string Estado {get; set;}
-		public string TPEsp {get; set;}
+		public string Id_Producto
+		{
+			get; set;
+		}
+		public string Descripcion
+		{
+			get; set;
+		}
+		public double Monto
+		{
+			get; set;
+		}
+		public string Tipo
+		{
+			get; set;
+		}
+		public string Estado
+		{
+			get; set;
+		}
+		public string TPEsp
+		{
+			get; set;
+		}
 	}
 
 	public partial class Temporal
 	{
-		public string Ipr { get; set; }
-		public int Cant { get; set; }
-		public double Cost { get; set; }
-		public double SubT { get; set; }
-		public string Nrv { get; set; }
-		public string Npro { get; set; }
-		public string Tp { get; set; }
+		public string Ipr
+		{
+			get; set;
+		}
+		public int Cant
+		{
+			get; set;
+		}
+		public double Cost
+		{
+			get; set;
+		}
+		public double SubT
+		{
+			get; set;
+		}
+		public string Nrv
+		{
+			get; set;
+		}
+		public string Npro
+		{
+			get; set;
+		}
+		public string Tp
+		{
+			get; set;
+		}
 	}
 
 }

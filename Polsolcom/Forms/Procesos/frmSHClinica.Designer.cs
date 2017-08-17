@@ -951,10 +951,6 @@ namespace Polsolcom.Forms.Procesos
 			this.iGrid.TabIndex = 0;
 			this.iGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
-			// iGDropDown
-			// 
-			this.iGDropDown.SelectedItemChanged += new TenTec.Windows.iGridLib.iGSelectedItemChangedEventHandler(this.iGDropDown_SelectedItemChanged);
-			// 
 			// frmSHClinica
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1064,7 +1060,5 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.Label label28;
 		private TenTec.Windows.iGridLib.iGrid iGrid;
 		private TenTec.Windows.iGridLib.iGDropDownList iGDropDown;
-		private TenTec.Windows.iGridLib.iGCellStyleDesign iGCellStyleDesign1;
-		private TenTec.Windows.iGridLib.iGCellStyleDesign iGCellStyleDesign2;
 	}
 }
