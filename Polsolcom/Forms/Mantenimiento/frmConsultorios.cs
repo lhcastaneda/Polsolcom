@@ -4,17 +4,11 @@ using Polsolcom.Dominio.Modelos;
 using Polsolcom.Forms.Mantenimiento;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Polsolcom.Forms
 {
-    public partial class frmConsultorios : Form
+	public partial class frmConsultorios : Form
     {
         int i = 0;
         List<Dictionary<string, string>> busList = new List<Dictionary<string, string>>();

@@ -12,7 +12,6 @@ using Dapper;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Globalization;
 using static System.Windows.Forms.ListViewItem;
 
 namespace Polsolcom.Dominio.Helpers
@@ -1450,17 +1449,13 @@ namespace Polsolcom.Dominio.Helpers
             st = (st == "1" ? "ACTIVADO" : (st == "0" ? "DESACTIVADO" : "SEPARADO"));
             string ms = (nt == "Productos" ? vc + " de " : "Especialidad de ") + (nt == "Productos" ? ne : vc) + (st == "ACTIVADO" ? " " : " no ") + "vendan, ha sido " + st + ".";
 
+
             return msg(ms, 0);
 
         }
 
-        public static bool msg(string ms, int mm, string bw = "", string tw = "")
+        public static void UnselectListView(ListView listView)
         {
-            //Envia un mensaje a todos o algun usuario en la red local
-            return true;
-        }
-
-        public static void UnselectListView(ListView listView) {
             for (int i = 0; i < listView.Items.Count; i++)
             {
                 listView.Items[i].Selected = false;
@@ -1471,5 +1466,13 @@ namespace Polsolcom.Dominio.Helpers
         {
             return (np.Length > 0 ? (db == 1 ? "Exec " + np + " " : "Select " + np + "(") : (db == 1 ? "" : ")"));
         }
+
+        public static bool msg(string ms, int mm, string bw = "", string tw = "")
+        {
+            return true;
+            //Envia un mensaje a todos o algun usuario en la red local
+            //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
+        }
     }
 }
+	

@@ -1058,5 +1058,6 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.TextBox txtSon;
 		private System.Windows.Forms.Label label28;
 		private TenTec.Windows.iGridLib.iGrid iGrid;
+		private TenTec.Windows.iGridLib.iGDropDownList iGDropDown;
 	}
 }
