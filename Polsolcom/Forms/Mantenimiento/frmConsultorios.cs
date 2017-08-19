@@ -33,10 +33,11 @@ namespace Polsolcom.Forms
             }
 
             this.i = 0;
+            lstConsultorios.Select();
+            lstConsultorios.EnsureVisible(i);
             lstConsultorios.Items[i].Selected = true;
             lstConsultorios.Items[i].Focused = true;
             lstConsultorios.Items[i].EnsureVisible();
-            lstConsultorios.EnsureVisible(i);
             //this.ctb();
         }
 
@@ -49,10 +50,11 @@ namespace Polsolcom.Forms
             }
 
             this.i = mntspList.Count - 1;
+            lstConsultorios.Select();
+            lstConsultorios.EnsureVisible(i);
             lstConsultorios.Items[i].Selected = true;
             lstConsultorios.Items[i].Focused = true;
             lstConsultorios.Items[i].EnsureVisible();
-            lstConsultorios.EnsureVisible(i);
             //this.ctb();
         }
 
@@ -75,10 +77,11 @@ namespace Polsolcom.Forms
                 }
             }
 
+            lstConsultorios.Select();
+            lstConsultorios.EnsureVisible(i);
             lstConsultorios.Items[i].Selected = true;
             lstConsultorios.Items[i].Focused = true;
             lstConsultorios.Items[i].EnsureVisible();
-            lstConsultorios.EnsureVisible(i);
             //this.ctb();
         }
 
@@ -101,10 +104,12 @@ namespace Polsolcom.Forms
                 }
 
             }
+
+            lstConsultorios.Select();
+            lstConsultorios.EnsureVisible(i);
             lstConsultorios.Items[i].Selected = true;
             lstConsultorios.Items[i].Focused = true;
             lstConsultorios.Items[i].EnsureVisible();
-            lstConsultorios.EnsureVisible(i);
             //this.ctb();
         }
 
@@ -120,10 +125,16 @@ namespace Polsolcom.Forms
         public void cet(string md = "")
         {
             frmCapEspTur frmCapEspTur = new frmCapEspTur(md.Length > 0 ? this.ie: md);
+            frmCapEspTur.FormClosed += new FormClosedEventHandler(frmCapEspTur_FormClosed);
             frmCapEspTur.Show();
             this.Hide();
 
             this.les<string>(md.Length > 0? this.ie : md);
+        }
+
+        private void frmCapEspTur_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
         }
 
         public void ctb()
@@ -170,10 +181,10 @@ namespace Polsolcom.Forms
                     {
                         Dictionary<string, string> newItem = new Dictionary<string, string>();
                         newItem["c"] = (mc == "0" && mc != "1" ? "NO CONTINUO" : (mc == "1" && mc != "0" ? "CONTINUO" : ""));
-                        newItem["m"] = (mc.Length > 0 ? tr.Substring(2, 3) : "");
-                        newItem["t"] = (mc.Length > 0 ? tr.Substring(5, 3) : "");
-                        newItem["n"] = (mc.Length > 0 ? tr.Substring(8, 3) : "");
-                        newItem["a"] = (mc.Length > 0 ? tr.Substring(11, 3) : "");
+                        newItem["m"] = (mc.Length > 0 ? tr.Substring(1, 3) : "");
+                        newItem["t"] = (mc.Length > 0 ? tr.Substring(4, 3) : "");
+                        newItem["n"] = (mc.Length > 0 ? tr.Substring(7, 3) : "");
+                        newItem["a"] = (mc.Length > 0 ? tr.Substring(10, 3) : "");
                         tmptr.Add(newItem);
                     }
                 }
@@ -328,7 +339,6 @@ namespace Polsolcom.Forms
         {
             this.Show();
         }
-
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
@@ -525,8 +535,5 @@ namespace Polsolcom.Forms
 
         }
 
-        private void lstConsultorios_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-        }
     }
 }

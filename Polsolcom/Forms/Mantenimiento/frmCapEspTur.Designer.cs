@@ -51,54 +51,56 @@
             this.Column5,
             this.Column6});
             this.grdSpeciality.Location = new System.Drawing.Point(3, 1);
+            this.grdSpeciality.MultiSelect = false;
             this.grdSpeciality.Name = "grdSpeciality";
-            this.grdSpeciality.ReadOnly = true;
+            this.grdSpeciality.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSpeciality.Size = new System.Drawing.Size(596, 415);
             this.grdSpeciality.TabIndex = 0;
+            this.grdSpeciality.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.grdSpeciality_CellBeginEdit);
+            this.grdSpeciality.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSpeciality_CellEndEdit);
             this.grdSpeciality.SelectionChanged += new System.EventHandler(this.grdSpeciality_SelectionChanged);
-            this.grdSpeciality.Enter += new System.EventHandler(this.grdSpeciality_Enter);
-            this.grdSpeciality.Leave += new System.EventHandler(this.grdSpeciality_Leave);
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Nombre de la Especialidad";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column1.Width = 300;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Continuo";
             this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column2.Width = 50;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Mañana";
             this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column3.Width = 50;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Tarde";
             this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column4.Width = 50;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Noche";
             this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column5.Width = 50;
             // 
             // Column6
             // 
             this.Column6.HeaderText = "Madrugada";
             this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
+            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column6.Width = 50;
             // 
             // frmCapEspTur
@@ -110,9 +112,7 @@
             this.KeyPreview = true;
             this.Name = "frmCapEspTur";
             this.Text = "frmCapEspTur";
-            this.Load += new System.EventHandler(this.frmCapEspTur_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCapEspTur_KeyDown);
-            this.Validated += new System.EventHandler(this.frmCapEspTur_Validated);
             ((System.ComponentModel.ISupportInitialize)(this.grdSpeciality)).EndInit();
             this.ResumeLayout(false);
 

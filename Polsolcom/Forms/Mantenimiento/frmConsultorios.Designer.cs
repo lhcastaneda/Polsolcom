@@ -438,7 +438,6 @@
             this.lstConsultorios.TabIndex = 36;
             this.lstConsultorios.UseCompatibleStateImageBehavior = false;
             this.lstConsultorios.View = System.Windows.Forms.View.Details;
-            this.lstConsultorios.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lstConsultorios_ItemSelectionChanged);
             this.lstConsultorios.SelectedIndexChanged += new System.EventHandler(this.lstConsultorios_SelectedIndexChanged);
             this.lstConsultorios.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstConsultorios_KeyDown);
             // 
