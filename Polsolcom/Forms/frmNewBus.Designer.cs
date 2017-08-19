@@ -50,10 +50,25 @@
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.rotationTableAdapter = new Polsolcom.Dominio.Data.RotationDSTableAdapters.RotationTableAdapter();
+            this.modalidadDS = new Polsolcom.Dominio.Data.ModalidadDS();
+            this.modalidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.modalidadTableAdapter = new Polsolcom.Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter();
+            this.estadosDS = new Polsolcom.Dominio.Data.EstadosDS();
+            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estadosTableAdapter = new Polsolcom.Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter();
+            this.institucionesDS = new Polsolcom.Dominio.Data.InstitucionesDS();
+            this.institucionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.institucionTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rotationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotationDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.institucionesDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,7 +89,6 @@
             this.txtLastUpDate.Name = "txtLastUpDate";
             this.txtLastUpDate.Size = new System.Drawing.Size(207, 20);
             this.txtLastUpDate.TabIndex = 1;
-            this.txtLastUpDate.Text = "LastUpDate";
             this.txtLastUpDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCreation
@@ -85,7 +99,6 @@
             this.txtCreation.Name = "txtCreation";
             this.txtCreation.Size = new System.Drawing.Size(212, 20);
             this.txtCreation.TabIndex = 0;
-            this.txtCreation.Text = "Creation";
             this.txtCreation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel2
@@ -109,11 +122,14 @@
             // 
             // cmbEstado
             // 
+            this.cmbEstado.DataSource = this.estadosBindingSource;
+            this.cmbEstado.DisplayMember = "Descripcion";
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(333, 127);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(121, 21);
             this.cmbEstado.TabIndex = 11;
+            this.cmbEstado.ValueMember = "Id_Tipo";
             // 
             // label6
             // 
@@ -160,11 +176,14 @@
             // 
             // cmbTipo
             // 
+            this.cmbTipo.DataSource = this.modalidadBindingSource;
+            this.cmbTipo.DisplayMember = "Descripcion";
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Location = new System.Drawing.Point(14, 127);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(186, 21);
             this.cmbTipo.TabIndex = 7;
+            this.cmbTipo.ValueMember = "Id_Tipo";
             // 
             // label4
             // 
@@ -179,11 +198,14 @@
             // 
             // cmbEmpresa
             // 
+            this.cmbEmpresa.DataSource = this.institucionBindingSource;
+            this.cmbEmpresa.DisplayMember = "Nom_Raz_Soc";
             this.cmbEmpresa.FormattingEnabled = true;
             this.cmbEmpresa.Location = new System.Drawing.Point(14, 76);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(440, 21);
             this.cmbEmpresa.TabIndex = 5;
+            this.cmbEmpresa.ValueMember = "Id_Emp";
             // 
             // label3
             // 
@@ -202,6 +224,7 @@
             this.txtAlterno.Name = "txtAlterno";
             this.txtAlterno.Size = new System.Drawing.Size(215, 20);
             this.txtAlterno.TabIndex = 3;
+            this.txtAlterno.Leave += new System.EventHandler(this.txtAlterno_Leave);
             // 
             // txtBus
             // 
@@ -209,6 +232,7 @@
             this.txtBus.Name = "txtBus";
             this.txtBus.Size = new System.Drawing.Size(215, 20);
             this.txtBus.TabIndex = 2;
+            this.txtBus.Leave += new System.EventHandler(this.txtBus_Leave);
             // 
             // label2
             // 
@@ -252,10 +276,53 @@
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // rotationTableAdapter
             // 
             this.rotationTableAdapter.ClearBeforeFill = true;
+            // 
+            // modalidadDS
+            // 
+            this.modalidadDS.DataSetName = "ModalidadDS";
+            this.modalidadDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // modalidadBindingSource
+            // 
+            this.modalidadBindingSource.DataMember = "Modalidad";
+            this.modalidadBindingSource.DataSource = this.modalidadDS;
+            // 
+            // modalidadTableAdapter
+            // 
+            this.modalidadTableAdapter.ClearBeforeFill = true;
+            // 
+            // estadosDS
+            // 
+            this.estadosDS.DataSetName = "EstadosDS";
+            this.estadosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // estadosBindingSource
+            // 
+            this.estadosBindingSource.DataMember = "Estados";
+            this.estadosBindingSource.DataSource = this.estadosDS;
+            // 
+            // estadosTableAdapter
+            // 
+            this.estadosTableAdapter.ClearBeforeFill = true;
+            // 
+            // institucionesDS
+            // 
+            this.institucionesDS.DataSetName = "InstitucionesDS";
+            this.institucionesDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // institucionBindingSource
+            // 
+            this.institucionBindingSource.DataMember = "Institucion";
+            this.institucionBindingSource.DataSource = this.institucionesDS;
+            // 
+            // institucionTableAdapter
+            // 
+            this.institucionTableAdapter.ClearBeforeFill = true;
             // 
             // frmNewBus
             // 
@@ -271,12 +338,19 @@
             this.Name = "frmNewBus";
             this.Text = "Consultorios / Buses";
             this.Load += new System.EventHandler(this.frmNewBus_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNewBus_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rotationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotationDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.institucionesDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -304,5 +378,14 @@
         private Dominio.Data.RotationDS rotationDS;
         private System.Windows.Forms.BindingSource rotationBindingSource;
         private Dominio.Data.RotationDSTableAdapters.RotationTableAdapter rotationTableAdapter;
+        private Dominio.Data.ModalidadDS modalidadDS;
+        private System.Windows.Forms.BindingSource modalidadBindingSource;
+        private Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter modalidadTableAdapter;
+        private Dominio.Data.EstadosDS estadosDS;
+        private System.Windows.Forms.BindingSource estadosBindingSource;
+        private Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter estadosTableAdapter;
+        private Dominio.Data.InstitucionesDS institucionesDS;
+        private System.Windows.Forms.BindingSource institucionBindingSource;
+        private Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter institucionTableAdapter;
     }
 }
