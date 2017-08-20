@@ -16,7 +16,7 @@ using static System.Windows.Forms.ListViewItem;
 
 namespace Polsolcom.Dominio.Helpers
 {
-	public class Item
+    public class Item
     {
         public string Name { get; set; }
         public int Value { get; set; }
@@ -106,6 +106,7 @@ namespace Polsolcom.Dominio.Helpers
         public static Label lblLabel = new Label();
         public static List<TipoUsuario> lstTipoUsuario = new List<TipoUsuario>();
         public static int ODB = 0; //variable manejo de ventanas form fmrSHClinica 0: Paciente Existente, 1: Paciente Nuevo 
+        public static int TDB = 1; //variable manejo de ventanas form fmrSHClinica 0: Paciente Existente, 1: Paciente Nuevo 
 
         #region Cryptography
         public static string cryptgr(string cWWord, bool lflag, int nlevel)
@@ -1400,8 +1401,6 @@ namespace Polsolcom.Dominio.Helpers
 
         public static string bfc(string nf, string lp)
         {
-            int TDB = 1;
-
             if (nf == "Space")
             {
                 return (TDB == 1 ? "Space(" : "Repeat(' ',") + lp + ")";
@@ -1425,7 +1424,7 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        public static void chgst(string nt, string it, string st)
+        public static bool chgst(string nt, string it, string st)
         {
             string ne = "";
 
@@ -1451,31 +1450,29 @@ namespace Polsolcom.Dominio.Helpers
             string ms = (nt == "Productos" ? vc + " de " : "Especialidad de ") + (nt == "Productos" ? ne : vc) + (st == "ACTIVADO" ? " " : " no ") + "vendan, ha sido " + st + ".";
 
 
-            msg(ms, 0);
+            return msg(ms, 0);
 
         }
 
-		public static DialogResult msg( string ms, int mm, string bw = "", string tw = "" )
-		{
-            //Preguntar al sr Luis
-            if (mm == 0)
+        public static void UnselectListView(ListView listView)
+        {
+            for (int i = 0; i < listView.Items.Count; i++)
             {
+                listView.Items[i].Selected = false;
             }
-            else
-            {
+        }
 
-            }
+        public static string exsp(string np, int db)
+        {
+            return (np.Length > 0 ? (db == 1 ? "Exec " + np + " " : "Select " + np + "(") : (db == 1 ? "" : ")"));
+        }
 
-			return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
-		}
-
-		public static void UnselectListView( ListView listView )
-		{
-			for( int i = 0; i < listView.Items.Count; i++ )
-			{
-				listView.Items[i].Selected = false;
-			}
-		}
-	}
-	
+        public static bool msg(string ms, int mm, string bw = "", string tw = "")
+        {
+            return true;
+            //Envia un mensaje a todos o algun usuario en la red local
+            //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
+        }
+    }
 }
+	

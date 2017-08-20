@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.chkEstado = new System.Windows.Forms.CheckBox();
             this.cmbEst = new System.Windows.Forms.ComboBox();
+            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estadosDS = new Polsolcom.Dominio.Data.EstadosDS();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnInicio = new System.Windows.Forms.Button();
@@ -40,6 +43,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.modalidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.modalidadDS = new Polsolcom.Dominio.Data.ModalidadDS();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCreacion = new System.Windows.Forms.TextBox();
             this.txtLastUpdate = new System.Windows.Forms.TextBox();
@@ -61,20 +66,27 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.edtDescripcion = new System.Windows.Forms.TextBox();
             this.lstConsultorios = new System.Windows.Forms.ListView();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelEspecialidad = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.estadosTableAdapter = new Polsolcom.Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter();
+            this.modalidadTableAdapter = new Polsolcom.Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).BeginInit();
+            this.panelEspecialidad.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // chkEstado
             // 
             this.chkEstado.AutoSize = true;
+            this.chkEstado.Checked = true;
+            this.chkEstado.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEstado.Location = new System.Drawing.Point(16, 11);
             this.chkEstado.Name = "chkEstado";
             this.chkEstado.Size = new System.Drawing.Size(113, 17);
@@ -85,13 +97,27 @@
             // 
             // cmbEst
             // 
+            this.cmbEst.DataSource = this.estadosBindingSource;
+            this.cmbEst.DisplayMember = "Descripcion";
             this.cmbEst.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEst.Enabled = false;
             this.cmbEst.FormattingEnabled = true;
             this.cmbEst.Location = new System.Drawing.Point(133, 11);
             this.cmbEst.Name = "cmbEst";
             this.cmbEst.Size = new System.Drawing.Size(115, 21);
             this.cmbEst.TabIndex = 2;
+            this.cmbEst.ValueMember = "Id_Tipo";
             this.cmbEst.SelectionChangeCommitted += new System.EventHandler(this.cmbEst_SelectionChangeCommitted);
+            // 
+            // estadosBindingSource
+            // 
+            this.estadosBindingSource.DataMember = "Estados";
+            this.estadosBindingSource.DataSource = this.estadosDS;
+            // 
+            // estadosDS
+            // 
+            this.estadosDS.DataSetName = "EstadosDS";
+            this.estadosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -105,6 +131,7 @@
             // 
             // txtDescripcion
             // 
+            this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Location = new System.Drawing.Point(11, 25);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(263, 20);
@@ -172,19 +199,37 @@
             // 
             // cmbEstado
             // 
+            this.cmbEstado.DataSource = this.estadosBindingSource;
+            this.cmbEstado.DisplayMember = "Descripcion";
+            this.cmbEstado.Enabled = false;
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(11, 64);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(121, 21);
             this.cmbEstado.TabIndex = 12;
+            this.cmbEstado.ValueMember = "Id_Tipo";
             // 
             // cmbTipo
             // 
+            this.cmbTipo.DataSource = this.modalidadBindingSource;
+            this.cmbTipo.DisplayMember = "Descripcion";
+            this.cmbTipo.Enabled = false;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Location = new System.Drawing.Point(153, 64);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(121, 21);
             this.cmbTipo.TabIndex = 13;
+            this.cmbTipo.ValueMember = "Id_Tipo";
+            // 
+            // modalidadBindingSource
+            // 
+            this.modalidadBindingSource.DataMember = "Modalidad";
+            this.modalidadBindingSource.DataSource = this.modalidadDS;
+            // 
+            // modalidadDS
+            // 
+            this.modalidadDS.DataSetName = "ModalidadDS";
+            this.modalidadDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label5
             // 
@@ -198,17 +243,19 @@
             // 
             // txtCreacion
             // 
+            this.txtCreacion.Enabled = false;
             this.txtCreacion.Location = new System.Drawing.Point(9, 291);
             this.txtCreacion.Name = "txtCreacion";
-            this.txtCreacion.Size = new System.Drawing.Size(121, 20);
+            this.txtCreacion.Size = new System.Drawing.Size(130, 20);
             this.txtCreacion.TabIndex = 21;
             this.txtCreacion.Text = "CREATION";
             // 
             // txtLastUpdate
             // 
-            this.txtLastUpdate.Location = new System.Drawing.Point(155, 291);
+            this.txtLastUpdate.Enabled = false;
+            this.txtLastUpdate.Location = new System.Drawing.Point(141, 291);
             this.txtLastUpdate.Name = "txtLastUpdate";
-            this.txtLastUpdate.Size = new System.Drawing.Size(121, 20);
+            this.txtLastUpdate.Size = new System.Drawing.Size(135, 20);
             this.txtLastUpdate.TabIndex = 22;
             this.txtLastUpdate.Text = "LAST UPDATE";
             // 
@@ -265,6 +312,7 @@
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnModificar
             // 
@@ -337,40 +385,37 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
+            this.columnHeader9});
             this.lstBuses.FullRowSelect = true;
             this.lstBuses.Location = new System.Drawing.Point(6, 24);
+            this.lstBuses.MultiSelect = false;
             this.lstBuses.Name = "lstBuses";
             this.lstBuses.Size = new System.Drawing.Size(275, 102);
             this.lstBuses.TabIndex = 34;
             this.lstBuses.UseCompatibleStateImageBehavior = false;
             this.lstBuses.View = System.Windows.Forms.View.Details;
+            this.lstBuses.Enter += new System.EventHandler(this.lstBuses_Enter);
             this.lstBuses.Validated += new System.EventHandler(this.lstBuses_Validated);
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "";
+            this.columnHeader6.Text = "Consultorio";
+            this.columnHeader6.Width = 90;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "";
-            this.columnHeader7.Width = 50;
+            this.columnHeader7.Text = "Tur";
+            this.columnHeader7.Width = 30;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "";
-            this.columnHeader8.Width = 50;
+            this.columnHeader8.Text = "Fecha";
+            this.columnHeader8.Width = 70;
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "";
-            this.columnHeader9.Width = 50;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "";
-            this.columnHeader10.Width = 50;
+            this.columnHeader9.Text = "-";
+            this.columnHeader9.Width = 70;
             // 
             // edtDescripcion
             // 
@@ -385,7 +430,9 @@
             this.lstConsultorios.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader11,
             this.columnHeader12});
+            this.lstConsultorios.FullRowSelect = true;
             this.lstConsultorios.Location = new System.Drawing.Point(7, 39);
+            this.lstConsultorios.MultiSelect = false;
             this.lstConsultorios.Name = "lstConsultorios";
             this.lstConsultorios.Size = new System.Drawing.Size(263, 416);
             this.lstConsultorios.TabIndex = 36;
@@ -396,30 +443,31 @@
             // 
             // columnHeader11
             // 
-            this.columnHeader11.Text = "";
+            this.columnHeader11.Text = "Descripción";
+            this.columnHeader11.Width = 190;
             // 
             // columnHeader12
             // 
-            this.columnHeader12.Text = "";
+            this.columnHeader12.Text = "ID";
             // 
-            // panel1
+            // panelEspecialidad
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lstTurnos);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.edtDescripcion);
-            this.panel1.Controls.Add(this.txtDescripcion);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.cmbEstado);
-            this.panel1.Controls.Add(this.cmbTipo);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.txtCreacion);
-            this.panel1.Controls.Add(this.txtLastUpdate);
-            this.panel1.Location = new System.Drawing.Point(280, 7);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(286, 320);
-            this.panel1.TabIndex = 37;
+            this.panelEspecialidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelEspecialidad.Controls.Add(this.lstTurnos);
+            this.panelEspecialidad.Controls.Add(this.label2);
+            this.panelEspecialidad.Controls.Add(this.edtDescripcion);
+            this.panelEspecialidad.Controls.Add(this.txtDescripcion);
+            this.panelEspecialidad.Controls.Add(this.label3);
+            this.panelEspecialidad.Controls.Add(this.label4);
+            this.panelEspecialidad.Controls.Add(this.cmbEstado);
+            this.panelEspecialidad.Controls.Add(this.cmbTipo);
+            this.panelEspecialidad.Controls.Add(this.label5);
+            this.panelEspecialidad.Controls.Add(this.txtCreacion);
+            this.panelEspecialidad.Controls.Add(this.txtLastUpdate);
+            this.panelEspecialidad.Location = new System.Drawing.Point(280, 7);
+            this.panelEspecialidad.Name = "panelEspecialidad";
+            this.panelEspecialidad.Size = new System.Drawing.Size(286, 320);
+            this.panelEspecialidad.TabIndex = 37;
             // 
             // panel2
             // 
@@ -434,6 +482,14 @@
             this.panel2.Size = new System.Drawing.Size(287, 161);
             this.panel2.TabIndex = 38;
             // 
+            // estadosTableAdapter
+            // 
+            this.estadosTableAdapter.ClearBeforeFill = true;
+            // 
+            // modalidadTableAdapter
+            // 
+            this.modalidadTableAdapter.ClearBeforeFill = true;
+            // 
             // frmConsultorios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,7 +497,7 @@
             this.ClientSize = new System.Drawing.Size(572, 532);
             this.ControlBox = false;
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelEspecialidad);
             this.Controls.Add(this.lstConsultorios);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
@@ -458,8 +514,12 @@
             this.Text = "Especialidades y Consultorios";
             this.Load += new System.EventHandler(this.frmConsultorios_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConsultorios_KeyDown);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).EndInit();
+            this.panelEspecialidad.ResumeLayout(false);
+            this.panelEspecialidad.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -502,12 +562,17 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.TextBox edtDescripcion;
         private System.Windows.Forms.ListView lstConsultorios;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelEspecialidad;
         private System.Windows.Forms.Panel panel2;
+        private Dominio.Data.EstadosDS estadosDS;
+        private System.Windows.Forms.BindingSource estadosBindingSource;
+        private Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter estadosTableAdapter;
+        private Dominio.Data.ModalidadDS modalidadDS;
+        private System.Windows.Forms.BindingSource modalidadBindingSource;
+        private Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter modalidadTableAdapter;
     }
 }

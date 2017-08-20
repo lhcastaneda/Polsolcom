@@ -107,6 +107,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dominio\Data\BusesDS.cs">
+      <DependentUpon>BusesDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\BusesDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -165,6 +168,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\EstadosDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EstadosDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\InstitucionesDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstitucionesDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ModalidadDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModalidadDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\Operativos.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1009,6 +1027,39 @@
     </None>
     <None Include="Dominio\Data\EstadisticaPacientes.xss">
       <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\EstadosDS.xsc">
+      <DependentUpon>EstadosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\EstadosDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EstadosDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\EstadosDS.xss">
+      <DependentUpon>EstadosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\InstitucionesDS.xsc">
+      <DependentUpon>InstitucionesDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\InstitucionesDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InstitucionesDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\InstitucionesDS.xss">
+      <DependentUpon>InstitucionesDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ModalidadDS.xsc">
+      <DependentUpon>ModalidadDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ModalidadDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ModalidadDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\ModalidadDS.xss">
+      <DependentUpon>ModalidadDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\Operativos.xsc">
       <DependentUpon>Operativos.xsd</DependentUpon>
