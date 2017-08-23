@@ -72,7 +72,7 @@ namespace Polsolcom.Forms.Procesos
 
 		private void FormateaGrids()
 		{
-			iGDropDownList cmb = new iGDropDownList();
+			//iGDropDownList cmb = new iGDropDownList();
 			iGrid.RowHeader.Visible = false;
 			iGrid.DefaultRow.Height = 17;
 			iGrid.Cols.Count = 5;
@@ -80,7 +80,7 @@ namespace Polsolcom.Forms.Procesos
 			iGrid.Cols[0].Text = "Descripcion del Producto o Servicio";
 			iGrid.Cols[0].Width = 425;
 			iGrid.Cols[0].CellStyle.ImageAlign = iGContentAlignment.MiddleLeft;
-			iGrid.Cols[0].CellStyle.DropDownControl = cmb; //agrega el combobox
+			iGrid.Cols[0].CellStyle.DropDownControl = iGDropDownList; //agrega el combobox
 			iGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
 			iGrid.Cols[0].CellStyle.ValueType = typeof(string);
 			
@@ -644,7 +644,7 @@ namespace Polsolcom.Forms.Procesos
 			
 			//agrega una fila
 			iGrid.Rows.Count = iGrid.Rows.Count + 1;
-			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDown;
+			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDownList;
 
 			if( iGrid.Rows.Count != 0 )
 				btnQuitar.Enabled = true;
@@ -941,9 +941,9 @@ namespace Polsolcom.Forms.Procesos
 						foreach( iGRow row in iGrid.Rows )
 						{
 							dr.Read();
-							iGDropDownList cmb = CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
-							row.Cells[0].DropDownControl = cmb;
-							row.Cells[0].Value = cmb.Items[0].Value;
+							iGDropDownList = CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
+							row.Cells[0].DropDownControl = iGDropDownList;
+							row.Cells[0].Value = iGDropDownList.Items[0].Value;
 							row.Cells[1].Value = dr.GetValue(3).ToString();
 							row.Cells[2].Value = dr.GetValue(2).ToString(); //DevuelvePrecioProducto(dr.GetValue(1).ToString());
 							row.Cells[3].Value = (int.Parse(row.Cells[1].Value.ToString()) * double.Parse(row.Cells[2].Value.ToString())).ToString("#,###.#0");
@@ -1061,7 +1061,7 @@ namespace Polsolcom.Forms.Procesos
 				//ComboProducto = LlenaProductos(itm.IdUbigeo);
 				iGrid.Rows.Clear();
 				FormateaGrids();
-				iGDropDown = CargaProductos(itm.IdUbigeo);
+				iGDropDownList = CargaProductos(itm.IdUbigeo);
 				btnAgregar.Enabled = true;
 				cmbEspecialista.Focus();
 			}
@@ -1107,12 +1107,6 @@ namespace Polsolcom.Forms.Procesos
 		{
 			if( iFila == -1 )
 				return;
-
-
-		}
-
-		private void iGrid_TextBoxTextChanged( object sender, iGTextBoxTextChangedEventArgs e )
-		{
 
 
 		}
