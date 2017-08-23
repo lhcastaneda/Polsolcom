@@ -163,7 +163,7 @@ namespace Polsolcom.Forms.Procesos
 			if( idProducto != "" )
 				sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
 			else
-				sQuery = sQuery + "ORDER BY 1";
+				sQuery = sQuery + "ORDER BY 2";
 
 			Conexion.CMD.CommandText = sQuery;
 			cmb.Items.Clear();
@@ -641,8 +641,7 @@ namespace Polsolcom.Forms.Procesos
 				MessageBox.Show("Debe seleccionar un especialidad...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 				return;
 			}
-
-
+			
 			//agrega una fila
 			iGrid.Rows.Count = iGrid.Rows.Count + 1;
 			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDown;
@@ -1060,8 +1059,9 @@ namespace Polsolcom.Forms.Procesos
 					return;
 
 				//ComboProducto = LlenaProductos(itm.IdUbigeo);
+				iGrid.Rows.Clear();
+				FormateaGrids();
 				iGDropDown = CargaProductos(itm.IdUbigeo);
-				ComboProducto = LlenaProductos(itm.IdUbigeo);
 				btnAgregar.Enabled = true;
 				cmbEspecialista.Focus();
 			}
@@ -1081,25 +1081,6 @@ namespace Polsolcom.Forms.Procesos
 			btnAgregar.Enabled = true;
 		}
 
-		private void iGDropDown_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
-		{
-			string sProd = "";
-			string sIdxDuplicado = "";
-
-			if( iGrid.CurCell.RowIndex == -1 )
-				return;
-
-			if( iGrid.CurCell.ColIndex == 0 )
-				sProd = iGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
-
-			sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
-			if( sIdxDuplicado != "" )
-			{
-
-			}
-
-		}
-
 		private string UbicaDuplicadoGrilla( string sDato )
 		{
 			string sResultado = "";
@@ -1111,7 +1092,7 @@ namespace Polsolcom.Forms.Procesos
 				{
 					iDup = iDup + 1;
 					sResultado = i.ToString();
-					break;
+					//break;
 				}
 			}
 
@@ -1121,66 +1102,77 @@ namespace Polsolcom.Forms.Procesos
 				return "";
 
 		}
+
+		private void RemueveItemTicket(int iFila)
+		{
+			if( iFila == -1 )
+				return;
+
+
+		}
+
+		private void iGrid_TextBoxTextChanged( object sender, iGTextBoxTextChangedEventArgs e )
+		{
+
+
+		}
+
+		private void iGrid_CurCellChanged( object sender, EventArgs e )
+		{
+			string sProd = "";
+			string sIdxDuplicado = "";
+
+			if( cmbEspecialidad.SelectedIndex == -1 )
+				return;
+
+			if( cmbEspecialista.SelectedIndex == -1 )
+				return;
+
+			if( iGrid.CurCell.RowIndex == -1 )
+				return;
+
+			if( iGrid.Rows.Count < 2 )
+				return;
+			else
+			{
+				if( iGrid.CurCell.ColIndex == 0 )
+					if( iGrid.CurCell.AuxValue != null )
+						sProd = iGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
+					else
+					{
+						iGrid.CurCell.AuxValue = "";
+						return;
+					}
+						
+				sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
+				if( sIdxDuplicado != "" )
+				{
+					RemueveItemTicket(Int32.Parse(sIdxDuplicado));
+				}
+			}
+
+		}
 	}
 
 	public partial class Prod
 	{
-		public string Id_Producto
-		{
-			get; set;
-		}
-		public string Descripcion
-		{
-			get; set;
-		}
-		public double Monto
-		{
-			get; set;
-		}
-		public string Tipo
-		{
-			get; set;
-		}
-		public string Estado
-		{
-			get; set;
-		}
-		public string TPEsp
-		{
-			get; set;
-		}
+		public string Id_Producto {	get; set; }
+		public string Descripcion {	get; set; }
+		public double Monto { get; set; }
+		public string Tipo { get; set; }
+		public string Estado { get; set; }
+		public string TPEsp { get; set;	}
 	}
 
 	public partial class Temporal
 	{
-		public string Ipr
-		{
-			get; set;
-		}
-		public int Cant
-		{
-			get; set;
-		}
-		public double Cost
-		{
-			get; set;
-		}
-		public double SubT
-		{
-			get; set;
-		}
-		public string Nrv
-		{
-			get; set;
-		}
-		public string Npro
-		{
-			get; set;
-		}
-		public string Tp
-		{
-			get; set;
-		}
+		public string Ipr { get; set; }
+		public int Cant { get; set;	}
+		public double Cost { get; set; }
+		public double SubT { get; set; }
+		public string Nrv { get; set; }
+		public string Npro { get; set; }
+		public string Tp { get; set; }
 	}
 
 }

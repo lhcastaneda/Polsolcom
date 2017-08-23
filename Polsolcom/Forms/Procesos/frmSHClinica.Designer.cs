@@ -948,6 +948,8 @@ namespace Polsolcom.Forms.Procesos
 			this.iGrid.SelectionMode = TenTec.Windows.iGridLib.iGSelectionMode.None;
 			this.iGrid.Size = new System.Drawing.Size(594, 120);
 			this.iGrid.TabIndex = 0;
+			this.iGrid.TextBoxTextChanged += new TenTec.Windows.iGridLib.iGTextBoxTextChangedEventHandler(this.iGrid_TextBoxTextChanged);
+			this.iGrid.CurCellChanged += new System.EventHandler(this.iGrid_CurCellChanged);
 			this.iGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
 			// frmSHClinica
