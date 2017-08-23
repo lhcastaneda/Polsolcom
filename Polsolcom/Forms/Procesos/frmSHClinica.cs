@@ -1152,6 +1152,11 @@ namespace Polsolcom.Forms.Procesos
 			}
 
 		}
+
+		private void iGDropDownList_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
+		{
+
+		}
 	}
 
 	public partial class Prod

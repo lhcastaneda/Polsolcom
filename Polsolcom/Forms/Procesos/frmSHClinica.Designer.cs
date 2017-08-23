@@ -100,6 +100,7 @@ namespace Polsolcom.Forms.Procesos
 			this.txtSon = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
 			this.iGrid = new TenTec.Windows.iGridLib.iGrid();
+			this.iGDropDownList = new TenTec.Windows.iGridLib.iGDropDownList();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -952,6 +953,10 @@ namespace Polsolcom.Forms.Procesos
 			this.iGrid.CurCellChanged += new System.EventHandler(this.iGrid_CurCellChanged);
 			this.iGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
 			// 
+			// iGDropDownList
+			// 
+			this.iGDropDownList.SelectedItemChanged += new TenTec.Windows.iGridLib.iGSelectedItemChangedEventHandler(this.iGDropDownList_SelectedItemChanged);
+			// 
 			// frmSHClinica
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1061,5 +1066,6 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.Label label28;
 		private TenTec.Windows.iGridLib.iGrid iGrid;
 		private TenTec.Windows.iGridLib.iGDropDownList iGDropDown;
+		private TenTec.Windows.iGridLib.iGDropDownList iGDropDownList;
 	}
 }
