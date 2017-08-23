@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -75,7 +75,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Polsolcom.snk</AssemblyOriginatorKeyFile>
@@ -105,9 +105,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TenTec.Windows.iGridLib.iGrid.v5.0, Version=5.0.0.1, Culture=neutral, PublicKeyToken=9d47002745f2416c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\TenTec.Windows.iGridLib.iGrid.v5.0.dll</HintPath>
+    <Reference Include="TenTec.Windows.iGridLib.iGrid">
+      <HintPath>.\TenTec.Windows.iGridLib.iGrid.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -1270,8 +1269,7 @@
     <Content Include="Imagenes\US-dollar-icon.png" />
     <Content Include="Imagenes\web-layout-icon.png" />
     <Content Include="Resources\login.png" />
-    <Content Include="TenTec.Windows.iGridLib.iGrid.Design.v5.0.dll" />
-    <Content Include="tentec.windows.igridlib.igrid.v5.0.dll" />
+    <Content Include="TenTec.Windows.iGridLib.iGrid.dll" />
     <None Include="Imagenes\login.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1325,9 +1323,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="TenTec.Windows.iGridLib.iGrid.Design.v5.0.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

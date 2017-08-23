@@ -16,7 +16,7 @@ namespace Polsolcom.Forms
         public frmEspecialistas()
         {
             InitializeComponent();
-            lstBusMed.DataSource = General.TraerEspecialistas();
+            //lstBusMed.DataSource = General.TraerEspecialistas();
         }
 
         private void frmEspecialistas_Load(object sender, EventArgs e) { 

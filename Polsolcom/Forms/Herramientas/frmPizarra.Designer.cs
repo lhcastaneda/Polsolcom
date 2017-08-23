@@ -36,14 +36,12 @@
 			this.btnTimer = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.iGrid1 = new TenTec.Windows.iGridLib.iGrid();
-			((System.ComponentModel.ISupportInitialize)(this.iGrid1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btnAceptar
 			// 
 			this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAceptar.Location = new System.Drawing.Point(184, 366);
+			this.btnAceptar.Location = new System.Drawing.Point(183, 160);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(117, 29);
 			this.btnAceptar.TabIndex = 0;
@@ -53,7 +51,7 @@
 			// txtEditMensaj
 			// 
 			this.txtEditMensaj.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.txtEditMensaj.Location = new System.Drawing.Point(5, 230);
+			this.txtEditMensaj.Location = new System.Drawing.Point(4, 24);
 			this.txtEditMensaj.Multiline = true;
 			this.txtEditMensaj.Name = "txtEditMensaj";
 			this.txtEditMensaj.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -63,7 +61,7 @@
 			// txtMensaje
 			// 
 			this.txtMensaje.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.txtMensaje.Location = new System.Drawing.Point(4, 335);
+			this.txtMensaje.Location = new System.Drawing.Point(3, 129);
 			this.txtMensaje.Name = "txtMensaje";
 			this.txtMensaje.Size = new System.Drawing.Size(297, 20);
 			this.txtMensaje.TabIndex = 2;
@@ -74,7 +72,7 @@
 			// 
 			// btnTimer
 			// 
-			this.btnTimer.Location = new System.Drawing.Point(4, 361);
+			this.btnTimer.Location = new System.Drawing.Point(3, 155);
 			this.btnTimer.Name = "btnTimer";
 			this.btnTimer.Size = new System.Drawing.Size(57, 39);
 			this.btnTimer.TabIndex = 3;
@@ -85,7 +83,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-			this.label1.Location = new System.Drawing.Point(7, 213);
+			this.label1.Location = new System.Drawing.Point(6, 7);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(40, 13);
 			this.label1.TabIndex = 4;
@@ -96,24 +94,18 @@
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.DarkBlue;
-			this.label2.Location = new System.Drawing.Point(4, 319);
+			this.label2.Location = new System.Drawing.Point(3, 113);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(113, 13);
 			this.label2.TabIndex = 5;
 			this.label2.Text = "Título del Mensaje";
-			// 
-			// iGrid1
-			// 
-			this.iGrid1.Location = new System.Drawing.Point(0, 0);
-			this.iGrid1.Name = "iGrid1";
-			this.iGrid1.TabIndex = 0;
 			// 
 			// frmPizarra
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-			this.ClientSize = new System.Drawing.Size(328, 402);
+			this.ClientSize = new System.Drawing.Size(328, 199);
 			this.ControlBox = false;
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -121,10 +113,8 @@
 			this.Controls.Add(this.txtMensaje);
 			this.Controls.Add(this.txtEditMensaj);
 			this.Controls.Add(this.btnAceptar);
-			this.Controls.Add(this.iGrid1);
 			this.Name = "frmPizarra";
 			this.Text = "Editar Mensajes";
-			((System.ComponentModel.ISupportInitialize)(this.iGrid1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -139,6 +129,5 @@
         private System.Windows.Forms.Button btnTimer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-		private TenTec.Windows.iGridLib.iGrid iGrid1;
 	}
 }
