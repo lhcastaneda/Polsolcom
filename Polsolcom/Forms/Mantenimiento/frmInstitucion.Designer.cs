@@ -31,11 +31,20 @@
             this.txtDoc = new System.Windows.Forms.TextBox();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.lstInstitucion = new System.Windows.Forms.ListBox();
             this.pnlBuscar = new System.Windows.Forms.Panel();
+            this.lstInstitucion = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Doc = new System.Windows.Forms.Label();
             this.Estado = new System.Windows.Forms.Label();
             this.pnlInstitucion = new System.Windows.Forms.Panel();
+            this.cntUbigeo = new System.Windows.Forms.Panel();
+            this.cmbDistrito = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbmDepartamento = new System.Windows.Forms.ComboBox();
+            this.cmbProvincia = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.chkActiv = new System.Windows.Forms.CheckBox();
             this.txtLastUpdate = new System.Windows.Forms.TextBox();
             this.txtCreation = new System.Windows.Forms.TextBox();
@@ -57,17 +66,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cmbDistrito = new System.Windows.Forms.ComboBox();
-            this.cmbProvincia = new System.Windows.Forms.ComboBox();
-            this.cbmDepartamento = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtRuc = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNomRazSocial = new System.Windows.Forms.TextBox();
-            this.txtNumId = new System.Windows.Forms.TextBox();
-            this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.txtIdInst = new System.Windows.Forms.TextBox();
+            this.cmbTIns = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -79,6 +82,7 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.pnlBuscar.SuspendLayout();
             this.pnlInstitucion.SuspendLayout();
+            this.cntUbigeo.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDoc
@@ -105,23 +109,14 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(256, 20);
             this.txtBuscar.TabIndex = 2;
-            // 
-            // lstInstitucion
-            // 
-            this.lstInstitucion.FormattingEnabled = true;
-            this.lstInstitucion.Location = new System.Drawing.Point(17, 117);
-            this.lstInstitucion.Name = "lstInstitucion";
-            this.lstInstitucion.ScrollAlwaysVisible = true;
-            this.lstInstitucion.Size = new System.Drawing.Size(256, 290);
-            this.lstInstitucion.TabIndex = 3;
-            this.lstInstitucion.SelectedIndexChanged += new System.EventHandler(this.lstInstitucion_SelectedIndexChanged);
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // pnlBuscar
             // 
             this.pnlBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBuscar.Controls.Add(this.lstInstitucion);
             this.pnlBuscar.Controls.Add(this.Doc);
             this.pnlBuscar.Controls.Add(this.Estado);
-            this.pnlBuscar.Controls.Add(this.lstInstitucion);
             this.pnlBuscar.Controls.Add(this.txtBuscar);
             this.pnlBuscar.Controls.Add(this.txtDoc);
             this.pnlBuscar.Controls.Add(this.cmbEstado);
@@ -129,6 +124,20 @@
             this.pnlBuscar.Name = "pnlBuscar";
             this.pnlBuscar.Size = new System.Drawing.Size(290, 426);
             this.pnlBuscar.TabIndex = 4;
+            // 
+            // lstInstitucion
+            // 
+            this.lstInstitucion.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.lstInstitucion.FullRowSelect = true;
+            this.lstInstitucion.Location = new System.Drawing.Point(16, 107);
+            this.lstInstitucion.MultiSelect = false;
+            this.lstInstitucion.Name = "lstInstitucion";
+            this.lstInstitucion.Size = new System.Drawing.Size(256, 309);
+            this.lstInstitucion.TabIndex = 6;
+            this.lstInstitucion.UseCompatibleStateImageBehavior = false;
+            this.lstInstitucion.View = System.Windows.Forms.View.Details;
             // 
             // Doc
             // 
@@ -154,6 +163,7 @@
             // 
             // pnlInstitucion
             // 
+            this.pnlInstitucion.Controls.Add(this.cntUbigeo);
             this.pnlInstitucion.Controls.Add(this.chkActiv);
             this.pnlInstitucion.Controls.Add(this.txtLastUpdate);
             this.pnlInstitucion.Controls.Add(this.txtCreation);
@@ -175,17 +185,11 @@
             this.pnlInstitucion.Controls.Add(this.label11);
             this.pnlInstitucion.Controls.Add(this.label10);
             this.pnlInstitucion.Controls.Add(this.label9);
-            this.pnlInstitucion.Controls.Add(this.label8);
-            this.pnlInstitucion.Controls.Add(this.label7);
-            this.pnlInstitucion.Controls.Add(this.cmbDistrito);
-            this.pnlInstitucion.Controls.Add(this.cmbProvincia);
-            this.pnlInstitucion.Controls.Add(this.cbmDepartamento);
-            this.pnlInstitucion.Controls.Add(this.label6);
             this.pnlInstitucion.Controls.Add(this.txtRuc);
             this.pnlInstitucion.Controls.Add(this.label5);
             this.pnlInstitucion.Controls.Add(this.txtNomRazSocial);
-            this.pnlInstitucion.Controls.Add(this.txtNumId);
-            this.pnlInstitucion.Controls.Add(this.cmbTipo);
+            this.pnlInstitucion.Controls.Add(this.txtIdInst);
+            this.pnlInstitucion.Controls.Add(this.cmbTIns);
             this.pnlInstitucion.Controls.Add(this.label3);
             this.pnlInstitucion.Controls.Add(this.label2);
             this.pnlInstitucion.Controls.Add(this.label1);
@@ -193,6 +197,73 @@
             this.pnlInstitucion.Name = "pnlInstitucion";
             this.pnlInstitucion.Size = new System.Drawing.Size(583, 350);
             this.pnlInstitucion.TabIndex = 5;
+            // 
+            // cntUbigeo
+            // 
+            this.cntUbigeo.Controls.Add(this.cmbDistrito);
+            this.cntUbigeo.Controls.Add(this.label6);
+            this.cntUbigeo.Controls.Add(this.cbmDepartamento);
+            this.cntUbigeo.Controls.Add(this.cmbProvincia);
+            this.cntUbigeo.Controls.Add(this.label7);
+            this.cntUbigeo.Controls.Add(this.label8);
+            this.cntUbigeo.Location = new System.Drawing.Point(126, 54);
+            this.cntUbigeo.Name = "cntUbigeo";
+            this.cntUbigeo.Size = new System.Drawing.Size(434, 43);
+            this.cntUbigeo.TabIndex = 12;
+            // 
+            // cmbDistrito
+            // 
+            this.cmbDistrito.FormattingEnabled = true;
+            this.cmbDistrito.Location = new System.Drawing.Point(288, 17);
+            this.cmbDistrito.Name = "cmbDistrito";
+            this.cmbDistrito.Size = new System.Drawing.Size(133, 21);
+            this.cmbDistrito.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(11, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Departamento";
+            // 
+            // cbmDepartamento
+            // 
+            this.cbmDepartamento.FormattingEnabled = true;
+            this.cbmDepartamento.Location = new System.Drawing.Point(14, 17);
+            this.cbmDepartamento.Name = "cbmDepartamento";
+            this.cbmDepartamento.Size = new System.Drawing.Size(130, 21);
+            this.cbmDepartamento.TabIndex = 9;
+            // 
+            // cmbProvincia
+            // 
+            this.cmbProvincia.FormattingEnabled = true;
+            this.cmbProvincia.Location = new System.Drawing.Point(149, 17);
+            this.cmbProvincia.Name = "cmbProvincia";
+            this.cmbProvincia.Size = new System.Drawing.Size(132, 21);
+            this.cmbProvincia.TabIndex = 10;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(149, 2);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Provincia";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(288, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Distrito";
             // 
             // chkActiv
             // 
@@ -387,60 +458,6 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "Dirección (Av/calle/Urb./Mz/Lt/etc)";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(419, 54);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Distrito";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(272, 54);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Provincia";
-            // 
-            // cmbDistrito
-            // 
-            this.cmbDistrito.FormattingEnabled = true;
-            this.cmbDistrito.Location = new System.Drawing.Point(419, 73);
-            this.cmbDistrito.Name = "cmbDistrito";
-            this.cmbDistrito.Size = new System.Drawing.Size(141, 21);
-            this.cmbDistrito.TabIndex = 11;
-            // 
-            // cmbProvincia
-            // 
-            this.cmbProvincia.FormattingEnabled = true;
-            this.cmbProvincia.Location = new System.Drawing.Point(272, 72);
-            this.cmbProvincia.Name = "cmbProvincia";
-            this.cmbProvincia.Size = new System.Drawing.Size(141, 21);
-            this.cmbProvincia.TabIndex = 10;
-            // 
-            // cbmDepartamento
-            // 
-            this.cbmDepartamento.FormattingEnabled = true;
-            this.cbmDepartamento.Location = new System.Drawing.Point(125, 73);
-            this.cbmDepartamento.Name = "cbmDepartamento";
-            this.cbmDepartamento.Size = new System.Drawing.Size(141, 21);
-            this.cbmDepartamento.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(122, 57);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Departamento";
-            // 
             // txtRuc
             // 
             this.txtRuc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -467,21 +484,21 @@
             this.txtNomRazSocial.Size = new System.Drawing.Size(288, 20);
             this.txtNomRazSocial.TabIndex = 5;
             // 
-            // txtNumId
+            // txtIdInst
             // 
-            this.txtNumId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNumId.Location = new System.Drawing.Point(159, 31);
-            this.txtNumId.Name = "txtNumId";
-            this.txtNumId.Size = new System.Drawing.Size(107, 20);
-            this.txtNumId.TabIndex = 4;
+            this.txtIdInst.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtIdInst.Location = new System.Drawing.Point(159, 31);
+            this.txtIdInst.Name = "txtIdInst";
+            this.txtIdInst.Size = new System.Drawing.Size(107, 20);
+            this.txtIdInst.TabIndex = 4;
             // 
-            // cmbTipo
+            // cmbTIns
             // 
-            this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(16, 30);
-            this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(137, 21);
-            this.cmbTipo.TabIndex = 3;
+            this.cmbTIns.FormattingEnabled = true;
+            this.cmbTIns.Location = new System.Drawing.Point(16, 30);
+            this.cmbTIns.Name = "cmbTIns";
+            this.cmbTIns.Size = new System.Drawing.Size(137, 21);
+            this.cmbTIns.TabIndex = 3;
             // 
             // label3
             // 
@@ -523,6 +540,7 @@
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGrabar.UseVisualStyleBackColor = true;
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // btnCancelar
             // 
@@ -578,6 +596,7 @@
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // frmInstitucion
             // 
@@ -597,11 +616,14 @@
             this.KeyPreview = true;
             this.Name = "frmInstitucion";
             this.Text = "Registro de Empresas e Instituciones";
+            this.Load += new System.EventHandler(this.frmInstitucion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInstitucion_KeyDown);
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
             this.pnlInstitucion.ResumeLayout(false);
             this.pnlInstitucion.PerformLayout();
+            this.cntUbigeo.ResumeLayout(false);
+            this.cntUbigeo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -612,14 +634,13 @@
         private System.Windows.Forms.TextBox txtDoc;
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.ListBox lstInstitucion;
         private System.Windows.Forms.Panel pnlBuscar;
         private System.Windows.Forms.Panel pnlInstitucion;
         private System.Windows.Forms.TextBox txtNomRazSocial;
-        private System.Windows.Forms.TextBox txtNumId;
+        private System.Windows.Forms.TextBox txtIdInst;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.ComboBox cmbTIns;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -658,5 +679,9 @@
         private System.Windows.Forms.Label Doc;
         private System.Windows.Forms.Label Estado;
         private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.ListView lstInstitucion;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Panel cntUbigeo;
     }
 }
