@@ -72,7 +72,7 @@ namespace Polsolcom.Forms.Procesos
 
 		private void FormateaGrids()
 		{
-			iGDropDownList cmb = new iGDropDownList();
+			//iGDropDownList cmb = new iGDropDownList();
 			iGrid.RowHeader.Visible = false;
 			iGrid.DefaultRow.Height = 17;
 			iGrid.Cols.Count = 5;
@@ -80,7 +80,7 @@ namespace Polsolcom.Forms.Procesos
 			iGrid.Cols[0].Text = "Descripcion del Producto o Servicio";
 			iGrid.Cols[0].Width = 425;
 			iGrid.Cols[0].CellStyle.ImageAlign = iGContentAlignment.MiddleLeft;
-			iGrid.Cols[0].CellStyle.DropDownControl = cmb; //agrega el combobox
+			iGrid.Cols[0].CellStyle.DropDownControl = iGDropDownList; //agrega el combobox
 			iGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
 			iGrid.Cols[0].CellStyle.ValueType = typeof(string);
 			
@@ -163,7 +163,7 @@ namespace Polsolcom.Forms.Procesos
 			if( idProducto != "" )
 				sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
 			else
-				sQuery = sQuery + "ORDER BY 1";
+				sQuery = sQuery + "ORDER BY 2";
 
 			Conexion.CMD.CommandText = sQuery;
 			cmb.Items.Clear();
@@ -641,11 +641,10 @@ namespace Polsolcom.Forms.Procesos
 				MessageBox.Show("Debe seleccionar un especialidad...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 				return;
 			}
-
-
+			
 			//agrega una fila
 			iGrid.Rows.Count = iGrid.Rows.Count + 1;
-			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDown;
+			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDownList;
 
 			if( iGrid.Rows.Count != 0 )
 				btnQuitar.Enabled = true;
@@ -942,9 +941,9 @@ namespace Polsolcom.Forms.Procesos
 						foreach( iGRow row in iGrid.Rows )
 						{
 							dr.Read();
-							iGDropDownList cmb = CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
-							row.Cells[0].DropDownControl = cmb;
-							row.Cells[0].Value = cmb.Items[0].Value;
+							iGDropDownList = CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
+							row.Cells[0].DropDownControl = iGDropDownList;
+							row.Cells[0].Value = iGDropDownList.Items[0].Value;
 							row.Cells[1].Value = dr.GetValue(3).ToString();
 							row.Cells[2].Value = dr.GetValue(2).ToString(); //DevuelvePrecioProducto(dr.GetValue(1).ToString());
 							row.Cells[3].Value = (int.Parse(row.Cells[1].Value.ToString()) * double.Parse(row.Cells[2].Value.ToString())).ToString("#,###.#0");
@@ -1060,8 +1059,9 @@ namespace Polsolcom.Forms.Procesos
 					return;
 
 				//ComboProducto = LlenaProductos(itm.IdUbigeo);
-				iGDropDown = CargaProductos(itm.IdUbigeo);
-				ComboProducto = LlenaProductos(itm.IdUbigeo);
+				iGrid.Rows.Clear();
+				FormateaGrids();
+				iGDropDownList = CargaProductos(itm.IdUbigeo);
 				btnAgregar.Enabled = true;
 				cmbEspecialista.Focus();
 			}
@@ -1081,25 +1081,6 @@ namespace Polsolcom.Forms.Procesos
 			btnAgregar.Enabled = true;
 		}
 
-		private void iGDropDown_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
-		{
-			string sProd = "";
-			string sIdxDuplicado = "";
-
-			if( iGrid.CurCell.RowIndex == -1 )
-				return;
-
-			if( iGrid.CurCell.ColIndex == 0 )
-				sProd = iGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
-
-			sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
-			if( sIdxDuplicado != "" )
-			{
-
-			}
-
-		}
-
 		private string UbicaDuplicadoGrilla( string sDato )
 		{
 			string sResultado = "";
@@ -1111,7 +1092,7 @@ namespace Polsolcom.Forms.Procesos
 				{
 					iDup = iDup + 1;
 					sResultado = i.ToString();
-					break;
+					//break;
 				}
 			}
 
@@ -1121,66 +1102,76 @@ namespace Polsolcom.Forms.Procesos
 				return "";
 
 		}
+
+		private void RemueveItemTicket(int iFila)
+		{
+			if( iFila == -1 )
+				return;
+
+
+		}
+
+		private void iGrid_CurCellChanged( object sender, EventArgs e )
+		{
+			string sProd = "";
+			string sIdxDuplicado = "";
+
+			if( cmbEspecialidad.SelectedIndex == -1 )
+				return;
+
+			if( cmbEspecialista.SelectedIndex == -1 )
+				return;
+
+			if( iGrid.CurCell.RowIndex == -1 )
+				return;
+
+			if( iGrid.Rows.Count < 2 )
+				return;
+			else
+			{
+				if( iGrid.CurCell.ColIndex == 0 )
+					if( iGrid.CurCell.AuxValue != null )
+						sProd = iGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
+					else
+					{
+						iGrid.CurCell.AuxValue = "";
+						return;
+					}
+						
+				sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
+				if( sIdxDuplicado != "" )
+				{
+					RemueveItemTicket(Int32.Parse(sIdxDuplicado));
+				}
+			}
+
+		}
+
+		private void iGDropDownList_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
+		{
+
+		}
 	}
 
 	public partial class Prod
 	{
-		public string Id_Producto
-		{
-			get; set;
-		}
-		public string Descripcion
-		{
-			get; set;
-		}
-		public double Monto
-		{
-			get; set;
-		}
-		public string Tipo
-		{
-			get; set;
-		}
-		public string Estado
-		{
-			get; set;
-		}
-		public string TPEsp
-		{
-			get; set;
-		}
+		public string Id_Producto {	get; set; }
+		public string Descripcion {	get; set; }
+		public double Monto { get; set; }
+		public string Tipo { get; set; }
+		public string Estado { get; set; }
+		public string TPEsp { get; set;	}
 	}
 
 	public partial class Temporal
 	{
-		public string Ipr
-		{
-			get; set;
-		}
-		public int Cant
-		{
-			get; set;
-		}
-		public double Cost
-		{
-			get; set;
-		}
-		public double SubT
-		{
-			get; set;
-		}
-		public string Nrv
-		{
-			get; set;
-		}
-		public string Npro
-		{
-			get; set;
-		}
-		public string Tp
-		{
-			get; set;
-		}
+		public string Ipr { get; set; }
+		public int Cant { get; set;	}
+		public double Cost { get; set; }
+		public double SubT { get; set; }
+		public string Nrv { get; set; }
+		public string Npro { get; set; }
+		public string Tp { get; set; }
 	}
 
 }

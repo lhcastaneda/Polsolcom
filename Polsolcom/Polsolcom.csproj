@@ -59,19 +59,26 @@
     <ManifestCertificateThumbprint>7E7EB32F37781C96EED21A3CA11B52EDE7B52E65</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Polsolcom_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Polsolcom.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -98,11 +105,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TenTec.Windows.iGridLib.iGrid.Design.v5.0">
-      <HintPath>.\TenTec.Windows.iGridLib.iGrid.Design.v5.0.dll</HintPath>
-    </Reference>
-    <Reference Include="tentec.windows.igridlib.igrid.v5.0">
-      <HintPath>.\tentec.windows.igridlib.igrid.v5.0.dll</HintPath>
+    <Reference Include="TenTec.Windows.iGridLib.iGrid">
+      <HintPath>.\TenTec.Windows.iGridLib.iGrid.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -1161,7 +1165,7 @@
       <DependentUpon>TurnosDS.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Polsolcom_TemporaryKey.pfx" />
+    <None Include="Polsolcom.snk" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1265,7 +1269,7 @@
     <Content Include="Imagenes\US-dollar-icon.png" />
     <Content Include="Imagenes\web-layout-icon.png" />
     <Content Include="Resources\login.png" />
-    <Content Include="tentec.windows.igridlib.igrid.v5.0.dll" />
+    <Content Include="TenTec.Windows.iGridLib.iGrid.dll" />
     <None Include="Imagenes\login.png" />
   </ItemGroup>
   <ItemGroup>

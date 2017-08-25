@@ -100,6 +100,7 @@ namespace Polsolcom.Forms.Procesos
 			this.txtSon = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
 			this.iGrid = new TenTec.Windows.iGridLib.iGrid();
+			this.iGDropDownList = new TenTec.Windows.iGridLib.iGDropDownList();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -939,7 +940,8 @@ namespace Polsolcom.Forms.Procesos
 			// iGrid
 			// 
 			this.iGrid.BorderStyle = TenTec.Windows.iGridLib.iGBorderStyle.None;
-			this.iGrid.CreateRowCellStyleDynamically = false;
+			this.iGrid.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.iGrid.Header.Height = 19;
 			this.iGrid.Location = new System.Drawing.Point(5, 237);
 			this.iGrid.Name = "iGrid";
 			this.iGrid.PressedMouseMoveMode = TenTec.Windows.iGridLib.iGPressedMouseMoveMode.Normal;
@@ -948,7 +950,18 @@ namespace Polsolcom.Forms.Procesos
 			this.iGrid.SelectionMode = TenTec.Windows.iGridLib.iGSelectionMode.None;
 			this.iGrid.Size = new System.Drawing.Size(594, 120);
 			this.iGrid.TabIndex = 0;
+			this.iGrid.TreeCol = null;
+			this.iGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
+			this.iGrid.CurCellChanged += new System.EventHandler(this.iGrid_CurCellChanged);
 			this.iGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
+			// 
+			// iGDropDownList
+			// 
+			this.iGDropDownList.BackColor = System.Drawing.Color.Empty;
+			this.iGDropDownList.ForeColor = System.Drawing.Color.Empty;
+			this.iGDropDownList.SelItemBackColor = System.Drawing.Color.Empty;
+			this.iGDropDownList.SelItemForeColor = System.Drawing.Color.Empty;
+			this.iGDropDownList.SelectedItemChanged += new TenTec.Windows.iGridLib.iGSelectedItemChangedEventHandler(this.iGDropDownList_SelectedItemChanged);
 			// 
 			// frmSHClinica
 			// 
@@ -1058,6 +1071,6 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.TextBox txtSon;
 		private System.Windows.Forms.Label label28;
 		private TenTec.Windows.iGridLib.iGrid iGrid;
-		private TenTec.Windows.iGridLib.iGDropDownList iGDropDown;
+		private TenTec.Windows.iGridLib.iGDropDownList iGDropDownList;
 	}
 }
