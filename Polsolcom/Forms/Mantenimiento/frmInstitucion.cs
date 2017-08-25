@@ -1,4 +1,5 @@
-﻿using Polsolcom.Dominio.Helpers;
+﻿using Polsolcom.Dominio.Connection;
+using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Modelos;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Polsolcom.Forms
 {
     public partial class frmInstitucion : Form
     {
+        bool lnew = false;
         int index = 0;
         List<Dictionary<string, string>> RepInst = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> ModTrans = new List<Dictionary<string, string>>();
@@ -26,8 +28,6 @@ namespace Polsolcom.Forms
 
         public void busins(string sins, string sdoc, string lest, string sopc)
         {
-            lstInstitucion.Items.Clear();
-
             string sql = "Select * From Institucion Where Nom_Raz_Soc Like '%" + sins + "%' And RUC Like '" + sdoc + "%' And Estado Like '" + lest + "%' Order By Nom_Raz_soc";
             this.InstitucionList = General.GetDictionaryList(sql);
 
@@ -44,6 +44,7 @@ namespace Polsolcom.Forms
 
             lstInstitucion.Items[this.index].Selected = true;
             lstInstitucion_SelectedIndexChanged(lstInstitucion, new EventArgs());
+            this.Refresh();
         }
 
         public void clears()
@@ -83,18 +84,91 @@ namespace Polsolcom.Forms
                 return false;
             }
 
-            if (cmbRepresent.SelectedIndex != -1 && txtRepresent.Text.Length > 0)
+            if (cmbRepresentante.SelectedIndex != -1 && txtRepresentante.Text.Length > 0)
             {
                 MessageBox.Show("Verifique representante ... solo debe ingresarse una vez ...", "Advertencia");
                 return false;
             }
+
+            string xrc = txtRuc.Text;
+            if (xrc.Length < 11)
+            {
+                MessageBox.Show("Cantidad de digitos en RUC incorrecta ...", "Advertencia");
+                txtRuc.Focus();
+                return false;
+            }
+
+            if (this.lnew && !chkStatus.Checked)
+            {
+                MessageBox.Show("Estado del nuevo registro debe ser activo ...", "Advertencia");
+                chkStatus.Focus();
+                return false;
+            }
+
+            string sql = "Select TInst + Id_Inst Id_Inst, Nom_Raz_Soc, Ruc From Institucion Where RUC = '" + xrc + "'";
+            Dictionary<string, string> xruc = General.GetDictionary(sql);
+
+            string xrz = (xruc == null ? "" : xruc["Nom_Raz_Soc"]);
+            string xid = (xruc == null ? "" : xruc["Id_Inst"]);
+            xrc = (xruc == null ? "" : xruc["Ruc"]);
+
+            if (xrz.Length > 0)
+            {
+                string xmsg = "R.U.C. (" + xrc + ") pertenece a (" + xrz + "),\nverifique por favor ...";
+
+                if (this.lnew == false)
+                {
+                    if (xid != cmbTIns.SelectedValue.ToString() + txtIdInst.Text)
+                    {
+                        MessageBox.Show(xmsg, "Advertencia");
+                        txtRuc.Focus();
+                        return false;
+                    }
+                }
+                else {
+                    MessageBox.Show(xmsg, "Advertencia");
+                    txtRuc.Focus();
+                    return false;
+                }
+            }
+
+            xrz = txtNomRazSocial.Text;
+            string sql2 = "Select TInst + Id_Inst Id_Inst, Nom_Raz_Soc, Ruc From Institucion Where Nom_Raz_Soc = '" + xrz + "'";
+            Dictionary<string, string> xins = General.GetDictionary(sql2);
+
+            xrz = (xruc == null ? "" : xins["Nom_Raz_Soc"]);
+            xid = (xruc == null ? "" : xins["Id_Inst"]);
+            xrc = (xruc == null ? "" : xins["Ruc"]);
+
+            if (xrz.Length > 0)
+            {
+                string xmsg = "(" + xrz + ") ya esta registrado con Id (" + xid + ") \ny RUC " + xrc + ", verifique por favor ...";
+
+                if (lnew == false)
+                {
+                    if (xid != cmbTIns.SelectedValue.ToString() + txtIdInst.Text)
+                    {
+                        MessageBox.Show(xmsg, "Advertencia");
+                        txtNomRazSocial.Focus();
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(xmsg, "Advertencia");
+                    txtNomRazSocial.Focus();
+                    return false;
+                }
+            }
+
+            this.Refresh();
 
             return true;
         }
 
         private void txtDoc_TextChanged(object sender, EventArgs e)
         {
-
+            txtBuscar_TextChanged(txtBuscar, new EventArgs());
         }
 
         private void frmInstitucion_KeyDown(object sender, KeyEventArgs e)
@@ -108,7 +182,12 @@ namespace Polsolcom.Forms
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-
+            this.lnew = true;
+            this.habil(true);
+            this.clears();
+            chkStatus.Checked = true;
+            cmbTIns.Focus();
+            this.Refresh();
         }
 
         private void frmInstitucion_Load(object sender, EventArgs e)
@@ -124,21 +203,103 @@ namespace Polsolcom.Forms
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-
+            string estado = cmbEstado.SelectedIndex != -1 ? cmbEstado.SelectedValue.ToString() : "";
+            this.busins(txtBuscar.Text, txtDoc.Text, estado, "");
         }
 
         private void lstInstitucion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Change");
+            this.index = General.GetSelectedIndex(lstInstitucion);
+
+            cmbTIns.SelectedValue = this.InstitucionList[this.index]["TInst"];
+            txtIdInst.Text = this.InstitucionList[this.index]["Id_Inst"];
+            txtNomRazSocial.Text = this.InstitucionList[this.index]["Nom_Raz_Soc"];
+            txtRuc.Text = this.InstitucionList[this.index]["RUC"];
+            cmbDepartamento.SelectedValue = this.InstitucionList[this.index]["Id_Distrito"].Substring(0, 2);
+            cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
+            cmbProvincia.SelectedValue = this.InstitucionList[this.index]["Id_Distrito"].Substring(0, 4);
+            cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
+            cmbDistrito.SelectedValue = this.InstitucionList[this.index]["Id_Distrito"];
+            txtDireccion.Text = this.InstitucionList[this.index]["Direccion"];
+            txtTelefono.Text = this.InstitucionList[this.index]["Telefono"];
+            txtCelular.Text = this.InstitucionList[this.index]["Celular"];
+            cmbRepresentante.SelectedValue = this.InstitucionList[this.index]["Id_Represent"];
+            txtRepresentante.Text = this.InstitucionList[this.index]["Representante"];
+            cmbCargo.SelectedValue = this.InstitucionList[this.index]["Id_Cargo"];
+            cmbModTrans.SelectedValue = this.InstitucionList[this.index]["Mod_Trans"];
+            txtEmail.Text = this.InstitucionList[this.index]["Email"];
+            txtObservacion.Text = this.InstitucionList[this.index]["Observacion"];
+            txtCreation.Text = General.TradUser(this.InstitucionList[this.index]["Us_Ing"]) + " - " + this.InstitucionList[this.index]["Fec_Ing"];
+            txtLastUpdate.Text = General.TradUser(this.InstitucionList[this.index]["Us_Mod"]) + " - " + this.InstitucionList[this.index]["Fec_Mod"];
+            chkStatus.Checked = this.InstitucionList[this.index]["Estado"] == "1";
+            this.Refresh();
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
+            string nom = txtNomRazSocial.Text;
+            string ruc = txtRuc.Text;
+            string dis = cmbDistrito.SelectedValue.ToString();
+            string drc = txtDireccion.Text;
+            string fon = txtTelefono.Text;
+            string cel = txtCelular.Text;
+            string irp = cmbRepresentante.SelectedValue.ToString();
+            string rep = txtRepresentante.Text;
+            string car = cmbCargo.SelectedValue.ToString();
+            string mtr = cmbModTrans.SelectedValue.ToString();
+            string ema = txtEmail.Text;
+            string obs = txtObservacion.Text;
+            string est = chkStatus.Checked ? "1" : "0";
+            string idi = cmbTIns.SelectedValue.ToString();
+
+            this.validar();
+
+            string sql = "";
+            if (this.lnew)
+            {
+                sql = "Declare @res Varchar(7) Set @res=(Select Cast(Count(Id_Inst)+1 As Varchar(7)) From Institucion Where TInst= '" + idi + "') Insert Into Institucion Values ('" + idi + "', @res, '" + nom + "', '" + ruc + "', '" + drc + "', '" + dis + "', '" + fon + "', '" + cel + "', '" + irp + "', '" + rep + "', '" + car + "', '" + mtr + "', '" + ema + "', '" + obs + "', '" + est + "', GetDate(), '" + Usuario.id_us + "', GetDate(), '" + Usuario.id_us + "')";
+            }
+            else
+            {
+                idi = idi + txtIdInst.Text;
+                sql = "Update Institucion Set Nom_Raz_Soc = '" + nom + "', RUC = '" + ruc + "', Direccion = '" + drc + "', Id_Distrito = '" + dis + "', Telefono = '" + fon + "', Celular = '" + cel + "', Id_Represent = '" + irp + "', Representante = '" + rep + "', Id_Cargo = '" + car + "', Mod_Trans = '" + mtr + "', Email = '" + ema + "', Observacion = '" + obs + "', Estado = '" + est + "', Fec_Mod = GetDate(), Us_Mod = '" + Usuario.id_us + "' Where TInst + Id_Inst = '" + idi + "'";
+            }
+
+            Conexion.ExecuteNonQuery(sql);
+            this.busins("", "", "", ruc);
+            this.habil(false);
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            this.habil(true);
+            this.lnew = cmbTIns.Enabled = false;
+            txtNomRazSocial.Focus();
+
+            this.Refresh();
+        }
+
+        private void cmbEstado_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            txtBuscar_TextChanged(txtBuscar, new EventArgs());
+        }
+
+        private void cmbDepartamento_SelectionChangeCommitted(object sender, EventArgs e)
+        {
 
         }
 
+        private void cmbProvincia_SelectionChangeCommitted(object sender, EventArgs e)
+        {
 
+        }
 
-
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.habil(true);
+            lstInstitucion_SelectedIndexChanged(lstInstitucion, new EventArgs());
+            this.lnew = false;
+            this.Refresh();
+        }
     }
 }

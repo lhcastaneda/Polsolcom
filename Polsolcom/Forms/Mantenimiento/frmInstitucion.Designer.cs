@@ -41,28 +41,28 @@
             this.cntUbigeo = new System.Windows.Forms.Panel();
             this.cmbDistrito = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cbmDepartamento = new System.Windows.Forms.ComboBox();
+            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
             this.cmbProvincia = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.chkActiv = new System.Windows.Forms.CheckBox();
+            this.chkStatus = new System.Windows.Forms.CheckBox();
             this.txtLastUpdate = new System.Windows.Forms.TextBox();
             this.txtCreation = new System.Windows.Forms.TextBox();
-            this.txtObserv = new System.Windows.Forms.TextBox();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.cmbModTrans = new System.Windows.Forms.ComboBox();
-            this.txtRepresent = new System.Windows.Forms.TextBox();
+            this.txtRepresentante = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cmbCargo = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.cmbRepresent = new System.Windows.Forms.ComboBox();
+            this.cmbRepresentante = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtCel = new System.Windows.Forms.TextBox();
-            this.txtTel = new System.Windows.Forms.TextBox();
-            this.txtDirecc = new System.Windows.Forms.TextBox();
+            this.txtCelular = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -101,6 +101,7 @@
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(122, 21);
             this.cmbEstado.TabIndex = 1;
+            this.cmbEstado.SelectionChangeCommitted += new System.EventHandler(this.cmbEstado_SelectionChangeCommitted);
             // 
             // txtBuscar
             // 
@@ -138,6 +139,7 @@
             this.lstInstitucion.TabIndex = 6;
             this.lstInstitucion.UseCompatibleStateImageBehavior = false;
             this.lstInstitucion.View = System.Windows.Forms.View.Details;
+            this.lstInstitucion.SelectedIndexChanged += new System.EventHandler(this.lstInstitucion_SelectedIndexChanged);
             // 
             // Doc
             // 
@@ -164,24 +166,24 @@
             // pnlInstitucion
             // 
             this.pnlInstitucion.Controls.Add(this.cntUbigeo);
-            this.pnlInstitucion.Controls.Add(this.chkActiv);
+            this.pnlInstitucion.Controls.Add(this.chkStatus);
             this.pnlInstitucion.Controls.Add(this.txtLastUpdate);
             this.pnlInstitucion.Controls.Add(this.txtCreation);
-            this.pnlInstitucion.Controls.Add(this.txtObserv);
+            this.pnlInstitucion.Controls.Add(this.txtObservacion);
             this.pnlInstitucion.Controls.Add(this.label17);
             this.pnlInstitucion.Controls.Add(this.txtEmail);
             this.pnlInstitucion.Controls.Add(this.label16);
             this.pnlInstitucion.Controls.Add(this.label15);
             this.pnlInstitucion.Controls.Add(this.cmbModTrans);
-            this.pnlInstitucion.Controls.Add(this.txtRepresent);
+            this.pnlInstitucion.Controls.Add(this.txtRepresentante);
             this.pnlInstitucion.Controls.Add(this.label14);
             this.pnlInstitucion.Controls.Add(this.cmbCargo);
             this.pnlInstitucion.Controls.Add(this.label13);
-            this.pnlInstitucion.Controls.Add(this.cmbRepresent);
+            this.pnlInstitucion.Controls.Add(this.cmbRepresentante);
             this.pnlInstitucion.Controls.Add(this.label12);
-            this.pnlInstitucion.Controls.Add(this.txtCel);
-            this.pnlInstitucion.Controls.Add(this.txtTel);
-            this.pnlInstitucion.Controls.Add(this.txtDirecc);
+            this.pnlInstitucion.Controls.Add(this.txtCelular);
+            this.pnlInstitucion.Controls.Add(this.txtTelefono);
+            this.pnlInstitucion.Controls.Add(this.txtDireccion);
             this.pnlInstitucion.Controls.Add(this.label11);
             this.pnlInstitucion.Controls.Add(this.label10);
             this.pnlInstitucion.Controls.Add(this.label9);
@@ -202,7 +204,7 @@
             // 
             this.cntUbigeo.Controls.Add(this.cmbDistrito);
             this.cntUbigeo.Controls.Add(this.label6);
-            this.cntUbigeo.Controls.Add(this.cbmDepartamento);
+            this.cntUbigeo.Controls.Add(this.cmbDepartamento);
             this.cntUbigeo.Controls.Add(this.cmbProvincia);
             this.cntUbigeo.Controls.Add(this.label7);
             this.cntUbigeo.Controls.Add(this.label8);
@@ -229,13 +231,14 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Departamento";
             // 
-            // cbmDepartamento
+            // cmbDepartamento
             // 
-            this.cbmDepartamento.FormattingEnabled = true;
-            this.cbmDepartamento.Location = new System.Drawing.Point(14, 17);
-            this.cbmDepartamento.Name = "cbmDepartamento";
-            this.cbmDepartamento.Size = new System.Drawing.Size(130, 21);
-            this.cbmDepartamento.TabIndex = 9;
+            this.cmbDepartamento.FormattingEnabled = true;
+            this.cmbDepartamento.Location = new System.Drawing.Point(14, 17);
+            this.cmbDepartamento.Name = "cmbDepartamento";
+            this.cmbDepartamento.Size = new System.Drawing.Size(130, 21);
+            this.cmbDepartamento.TabIndex = 9;
+            this.cmbDepartamento.SelectionChangeCommitted += new System.EventHandler(this.cmbDepartamento_SelectionChangeCommitted);
             // 
             // cmbProvincia
             // 
@@ -244,6 +247,7 @@
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(132, 21);
             this.cmbProvincia.TabIndex = 10;
+            this.cmbProvincia.SelectionChangeCommitted += new System.EventHandler(this.cmbProvincia_SelectionChangeCommitted);
             // 
             // label7
             // 
@@ -265,24 +269,25 @@
             this.label8.TabIndex = 13;
             this.label8.Text = "Distrito";
             // 
-            // chkActiv
+            // chkStatus
             // 
-            this.chkActiv.AutoSize = true;
-            this.chkActiv.Enabled = false;
-            this.chkActiv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkActiv.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkActiv.Location = new System.Drawing.Point(458, 315);
-            this.chkActiv.Name = "chkActiv";
-            this.chkActiv.Size = new System.Drawing.Size(104, 19);
-            this.chkActiv.TabIndex = 34;
-            this.chkActiv.Text = "En Acti&vidad";
-            this.chkActiv.UseVisualStyleBackColor = true;
+            this.chkStatus.AutoSize = true;
+            this.chkStatus.Enabled = false;
+            this.chkStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkStatus.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkStatus.Location = new System.Drawing.Point(458, 315);
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Size = new System.Drawing.Size(104, 19);
+            this.chkStatus.TabIndex = 34;
+            this.chkStatus.Text = "En Acti&vidad";
+            this.chkStatus.UseVisualStyleBackColor = true;
             // 
             // txtLastUpdate
             // 
             this.txtLastUpdate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLastUpdate.Location = new System.Drawing.Point(218, 312);
             this.txtLastUpdate.Name = "txtLastUpdate";
+            this.txtLastUpdate.ReadOnly = true;
             this.txtLastUpdate.Size = new System.Drawing.Size(171, 20);
             this.txtLastUpdate.TabIndex = 33;
             // 
@@ -291,18 +296,19 @@
             this.txtCreation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCreation.Location = new System.Drawing.Point(15, 313);
             this.txtCreation.Name = "txtCreation";
+            this.txtCreation.ReadOnly = true;
             this.txtCreation.Size = new System.Drawing.Size(193, 20);
             this.txtCreation.TabIndex = 32;
             // 
-            // txtObserv
+            // txtObservacion
             // 
-            this.txtObserv.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtObserv.Location = new System.Drawing.Point(265, 254);
-            this.txtObserv.Multiline = true;
-            this.txtObserv.Name = "txtObserv";
-            this.txtObserv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObserv.Size = new System.Drawing.Size(295, 53);
-            this.txtObserv.TabIndex = 31;
+            this.txtObservacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtObservacion.Location = new System.Drawing.Point(265, 254);
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtObservacion.Size = new System.Drawing.Size(295, 53);
+            this.txtObservacion.TabIndex = 31;
             // 
             // label17
             // 
@@ -352,13 +358,13 @@
             this.cmbModTrans.Size = new System.Drawing.Size(286, 21);
             this.cmbModTrans.TabIndex = 26;
             // 
-            // txtRepresent
+            // txtRepresentante
             // 
-            this.txtRepresent.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRepresent.Location = new System.Drawing.Point(272, 162);
-            this.txtRepresent.Name = "txtRepresent";
-            this.txtRepresent.Size = new System.Drawing.Size(288, 20);
-            this.txtRepresent.TabIndex = 25;
+            this.txtRepresentante.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtRepresentante.Location = new System.Drawing.Point(272, 162);
+            this.txtRepresentante.Name = "txtRepresentante";
+            this.txtRepresentante.Size = new System.Drawing.Size(288, 20);
+            this.txtRepresentante.TabIndex = 25;
             // 
             // label14
             // 
@@ -388,13 +394,13 @@
             this.label13.TabIndex = 22;
             this.label13.Text = "Representante No Registrado";
             // 
-            // cmbRepresent
+            // cmbRepresentante
             // 
-            this.cmbRepresent.FormattingEnabled = true;
-            this.cmbRepresent.Location = new System.Drawing.Point(16, 161);
-            this.cmbRepresent.Name = "cmbRepresent";
-            this.cmbRepresent.Size = new System.Drawing.Size(247, 21);
-            this.cmbRepresent.TabIndex = 21;
+            this.cmbRepresentante.FormattingEnabled = true;
+            this.cmbRepresentante.Location = new System.Drawing.Point(16, 161);
+            this.cmbRepresentante.Name = "cmbRepresentante";
+            this.cmbRepresentante.Size = new System.Drawing.Size(247, 21);
+            this.cmbRepresentante.TabIndex = 21;
             // 
             // label12
             // 
@@ -406,27 +412,27 @@
             this.label12.TabIndex = 20;
             this.label12.Text = "Representante Registrado";
             // 
-            // txtCel
+            // txtCelular
             // 
-            this.txtCel.Location = new System.Drawing.Point(422, 117);
-            this.txtCel.Name = "txtCel";
-            this.txtCel.Size = new System.Drawing.Size(136, 20);
-            this.txtCel.TabIndex = 19;
+            this.txtCelular.Location = new System.Drawing.Point(422, 117);
+            this.txtCelular.Name = "txtCelular";
+            this.txtCelular.Size = new System.Drawing.Size(136, 20);
+            this.txtCelular.TabIndex = 19;
             // 
-            // txtTel
+            // txtTelefono
             // 
-            this.txtTel.Location = new System.Drawing.Point(316, 117);
-            this.txtTel.Name = "txtTel";
-            this.txtTel.Size = new System.Drawing.Size(100, 20);
-            this.txtTel.TabIndex = 18;
+            this.txtTelefono.Location = new System.Drawing.Point(316, 117);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefono.TabIndex = 18;
             // 
-            // txtDirecc
+            // txtDireccion
             // 
-            this.txtDirecc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDirecc.Location = new System.Drawing.Point(16, 117);
-            this.txtDirecc.Name = "txtDirecc";
-            this.txtDirecc.Size = new System.Drawing.Size(291, 20);
-            this.txtDirecc.TabIndex = 17;
+            this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDireccion.Location = new System.Drawing.Point(16, 117);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(291, 20);
+            this.txtDireccion.TabIndex = 17;
             // 
             // label11
             // 
@@ -552,6 +558,7 @@
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnEditar
             // 
@@ -563,6 +570,7 @@
             this.btnEditar.Text = "&Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnImprimir
             // 
@@ -650,29 +658,29 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbDistrito;
         private System.Windows.Forms.ComboBox cmbProvincia;
-        private System.Windows.Forms.ComboBox cbmDepartamento;
+        private System.Windows.Forms.ComboBox cmbDepartamento;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtRuc;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox chkActiv;
+        private System.Windows.Forms.CheckBox chkStatus;
         private System.Windows.Forms.TextBox txtLastUpdate;
         private System.Windows.Forms.TextBox txtCreation;
-        private System.Windows.Forms.TextBox txtObserv;
+        private System.Windows.Forms.TextBox txtObservacion;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cmbModTrans;
-        private System.Windows.Forms.TextBox txtRepresent;
+        private System.Windows.Forms.TextBox txtRepresentante;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cmbCargo;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cmbRepresent;
+        private System.Windows.Forms.ComboBox cmbRepresentante;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtCel;
-        private System.Windows.Forms.TextBox txtTel;
-        private System.Windows.Forms.TextBox txtDirecc;
+        private System.Windows.Forms.TextBox txtCelular;
+        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
