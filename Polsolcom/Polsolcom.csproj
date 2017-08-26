@@ -124,6 +124,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CajerosDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\CargoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CargoDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\Cie10DS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -164,6 +169,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CProductosDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\DepartamentosDS.cs">
+      <DependentUpon>DepartamentosDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\DepartamentosDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1004,6 +1012,17 @@
     </None>
     <None Include="Dominio\Data\CajerosDS.xss">
       <DependentUpon>CajerosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\CargoDS.xsc">
+      <DependentUpon>CargoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\CargoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CargoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\CargoDS.xss">
+      <DependentUpon>CargoDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\Cie10DS.xsc">
       <DependentUpon>Cie10DS.xsd</DependentUpon>

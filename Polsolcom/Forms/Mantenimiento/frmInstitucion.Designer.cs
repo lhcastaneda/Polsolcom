@@ -96,6 +96,9 @@
             this.departamentosTableAdapter = new Polsolcom.Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter();
             this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
+            this.cargoDS = new Polsolcom.Dominio.Data.CargoDS();
+            this.cargosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cargosTableAdapter = new Polsolcom.Dominio.Data.CargoDSTableAdapters.CargosTableAdapter();
             this.pnlBuscar.SuspendLayout();
             this.pnlInstitucion.SuspendLayout();
             this.cntUbigeo.SuspendLayout();
@@ -109,6 +112,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.modTransDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cargosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDoc
@@ -456,11 +461,14 @@
             // 
             // cmbCargo
             // 
+            this.cmbCargo.DataSource = this.cargosBindingSource;
+            this.cmbCargo.DisplayMember = "Descripcion";
             this.cmbCargo.FormattingEnabled = true;
             this.cmbCargo.Location = new System.Drawing.Point(16, 205);
             this.cmbCargo.Name = "cmbCargo";
             this.cmbCargo.Size = new System.Drawing.Size(247, 21);
             this.cmbCargo.TabIndex = 23;
+            this.cmbCargo.ValueMember = "Id_Tipo";
             // 
             // label13
             // 
@@ -717,6 +725,20 @@
             // 
             this.distritoTableAdapter.ClearBeforeFill = true;
             // 
+            // cargoDS
+            // 
+            this.cargoDS.DataSetName = "CargoDS";
+            this.cargoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // cargosBindingSource
+            // 
+            this.cargosBindingSource.DataMember = "Cargos";
+            this.cargosBindingSource.DataSource = this.cargoDS;
+            // 
+            // cargosTableAdapter
+            // 
+            this.cargosTableAdapter.ClearBeforeFill = true;
+            // 
             // frmInstitucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -753,6 +775,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.modTransDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cargosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -827,5 +851,8 @@
         private System.Windows.Forms.BindingSource distritoBindingSource;
         private Dominio.Data.DistritoDS distritoDS;
         private Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter distritoTableAdapter;
+        private Dominio.Data.CargoDS cargoDS;
+        private System.Windows.Forms.BindingSource cargosBindingSource;
+        private Dominio.Data.CargoDSTableAdapters.CargosTableAdapter cargosTableAdapter;
     }
 }

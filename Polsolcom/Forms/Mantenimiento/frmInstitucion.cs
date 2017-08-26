@@ -190,6 +190,8 @@ namespace Polsolcom.Forms
 
         private void frmInstitucion_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cargoDS.Cargos' table. You can move, or remove it, as needed.
+            this.cargosTableAdapter.Fill(this.cargoDS.Cargos);
             // TODO: This line of code loads data into the 'departamentosDS.Departamentos' table. You can move, or remove it, as needed.
             this.departamentosTableAdapter.Fill(this.departamentosDS.Departamentos);
             // TODO: This line of code loads data into the 'representanteDS.Representante' table. You can move, or remove it, as needed.
