@@ -37,27 +37,46 @@ namespace Polsolcom.Forms
             }
             else
             {
-                this.index = this.InstitucionList.FindIndex(x => x["Nom_Raz_Soc"] == sopc);
+                this.index = this.InstitucionList.FindIndex(x => x["RUC"] == sopc);
             }
 
-            lstInstitucion.Items[this.index].Selected = true;
-            lstInstitucion_SelectedIndexChanged(lstInstitucion, new EventArgs());
+            if (this.InstitucionList.Count > 0)
+            {
+                lstInstitucion.Select();
+                lstInstitucion.EnsureVisible(this.index);
+                lstInstitucion.Items[this.index].Selected = true;
+                lstInstitucion.Items[this.index].Focused = true;
+                lstInstitucion.Items[this.index].EnsureVisible();
+                lstInstitucion_SelectedIndexChanged(lstInstitucion, new EventArgs());
+                btnEditar.Enabled = true;
+            }
+            else {
+                this.clears();
+                btnEditar.Enabled = false;
+            }
+
             this.Refresh();
         }
 
         public void clears()
         {
-            General.setAll<TextBox, string>(this, "Text", "");
-            General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
-            General.setAll<CheckBox, bool>(this, "Checked", false);
+            this.provinciasTableAdapter.Fill(this.provinciasDS.Provincias, "");
+            this.distritoTableAdapter.Fill(this.distritoDS.Distrito, "");
+
+            General.setAll<TextBox, string>(cntInstitucion, "Text", "");
+            General.setAll<MaskedTextBox, string>(cntInstitucion, "Text", "");
+            General.setAll<ComboBox, int>(cntInstitucion, "SelectedIndex", -1);
+            General.setAll<CheckBox, bool>(cntInstitucion, "Checked", false);
+            General.setAll<ComboBox, int>(cntUbigeo, "SelectedIndex", -1);
             this.Refresh();
         }
 
         public void habil(bool lest)
         {
-            General.setAll<TextBox, bool>(this, "Enabled", lest);
-            General.setAll<ComboBox, bool>(this, "Enabled", lest);
-            General.setAll<CheckBox, bool>(this, "Enabled", lest);
+            General.setAll<TextBox, bool>(cntInstitucion, "Enabled", lest);
+            General.setAll<MaskedTextBox, bool>(cntInstitucion, "Enabled", lest);
+            General.setAll<ComboBox, bool>(cntInstitucion, "Enabled", lest);
+            General.setAll<CheckBox, bool>(cntInstitucion, "Enabled", lest);
             General.setAll<Button, bool>(this, "Enabled", !lest);
             General.setAll<ComboBox, bool>(cntUbigeo, "Enabled", lest);
 
@@ -76,7 +95,7 @@ namespace Polsolcom.Forms
                 return false;
             }
 
-            if (cmbTIns.SelectedValue.ToString() == "T" || cmbModTrans.SelectedIndex == -1)
+            if (cmbTIns.SelectedValue.ToString() == "T" && cmbModTrans.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione modalidad de transporte ...", "Advertencia");
                 return false;
@@ -190,6 +209,10 @@ namespace Polsolcom.Forms
 
         private void frmInstitucion_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'estadosDS.Estados' table. You can move, or remove it, as needed.
+            this.estadosTableAdapter.Fill(this.estadosDS.Estados);
+            // TODO: This line of code loads data into the 'tipoInstitucionDS.TipoInstitucion' table. You can move, or remove it, as needed.
+            this.tipoInstitucionTableAdapter.Fill(this.tipoInstitucionDS.TipoInstitucion);
             // TODO: This line of code loads data into the 'cargoDS.Cargos' table. You can move, or remove it, as needed.
             this.cargosTableAdapter.Fill(this.cargoDS.Cargos);
             // TODO: This line of code loads data into the 'departamentosDS.Departamentos' table. You can move, or remove it, as needed.
@@ -199,6 +222,7 @@ namespace Polsolcom.Forms
             // TODO: This line of code loads data into the 'modTransDS.ModTrans' table. You can move, or remove it, as needed.
             this.modTransTableAdapter.Fill(this.modTransDS.ModTrans);
 
+            cmbEstado.SelectedIndex = -1;
             txtBuscar_TextChanged(txtBuscar, new EventArgs());
         }
 
@@ -240,35 +264,37 @@ namespace Polsolcom.Forms
         {
             string nom = txtNomRazSocial.Text;
             string ruc = txtRuc.Text;
-            string dis = cmbDistrito.SelectedValue.ToString();
+            string dis = cmbDistrito.SelectedIndex != -1 ? cmbDistrito.SelectedValue.ToString() : "";
             string drc = txtDireccion.Text;
             string fon = txtTelefono.Text;
             string cel = txtCelular.Text;
-            string irp = cmbRepresentante.SelectedValue.ToString();
+            string irp = cmbRepresentante.SelectedIndex != -1 ? cmbRepresentante.SelectedValue.ToString() : "";
             string rep = txtRepresentante.Text;
-            string car = cmbCargo.SelectedValue.ToString();
-            string mtr = cmbModTrans.SelectedValue.ToString();
+            string car = cmbCargo.SelectedIndex != -1 ? cmbCargo.SelectedValue.ToString() : "";
+            string mtr = cmbModTrans.SelectedIndex != -1 ? cmbModTrans.SelectedValue.ToString() : "";
             string ema = txtEmail.Text;
             string obs = txtObservacion.Text;
             string est = chkStatus.Checked ? "1" : "0";
-            string idi = cmbTIns.SelectedValue.ToString();
+            string idi = cmbTIns.SelectedIndex != -1 ? cmbTIns.SelectedValue.ToString() : "";
 
-            this.validar();
-
-            string sql = "";
-            if (this.lnew)
+            if (this.validar())
             {
-                sql = "Declare @res Varchar(7) Set @res=(Select Cast(Count(Id_Inst)+1 As Varchar(7)) From Institucion Where TInst= '" + idi + "') Insert Into Institucion Values ('" + idi + "', @res, '" + nom + "', '" + ruc + "', '" + drc + "', '" + dis + "', '" + fon + "', '" + cel + "', '" + irp + "', '" + rep + "', '" + car + "', '" + mtr + "', '" + ema + "', '" + obs + "', '" + est + "', GetDate(), '" + Usuario.id_us + "', GetDate(), '" + Usuario.id_us + "')";
-            }
-            else
-            {
-                idi = idi + txtIdInst.Text;
-                sql = "Update Institucion Set Nom_Raz_Soc = '" + nom + "', RUC = '" + ruc + "', Direccion = '" + drc + "', Id_Distrito = '" + dis + "', Telefono = '" + fon + "', Celular = '" + cel + "', Id_Represent = '" + irp + "', Representante = '" + rep + "', Id_Cargo = '" + car + "', Mod_Trans = '" + mtr + "', Email = '" + ema + "', Observacion = '" + obs + "', Estado = '" + est + "', Fec_Mod = GetDate(), Us_Mod = '" + Usuario.id_us + "' Where TInst + Id_Inst = '" + idi + "'";
-            }
+                string sql = "";
+                if (this.lnew)
+                {
+                    sql = "Declare @res Varchar(7) Set @res=(Select Cast(Count(Id_Inst)+1 As Varchar(7)) From Institucion Where TInst= '" + idi + "') Insert Into Institucion Values ('" + idi + "', @res, '" + nom + "', '" + ruc + "', '" + drc + "', '" + dis + "', '" + fon + "', '" + cel + "', '" + irp + "', '" + rep + "', '" + car + "', '" + mtr + "', '" + ema + "', '" + obs + "', '" + est + "', GetDate(), '" + Usuario.id_us + "', GetDate(), '" + Usuario.id_us + "')";
+                }
+                else
+                {
+                    idi = idi + txtIdInst.Text;
+                    sql = "Update Institucion Set Nom_Raz_Soc = '" + nom + "', RUC = '" + ruc + "', Direccion = '" + drc + "', Id_Distrito = '" + dis + "', Telefono = '" + fon + "', Celular = '" + cel + "', Id_Represent = '" + irp + "', Representante = '" + rep + "', Id_Cargo = '" + car + "', Mod_Trans = '" + mtr + "', Email = '" + ema + "', Observacion = '" + obs + "', Estado = '" + est + "', Fec_Mod = GetDate(), Us_Mod = '" + Usuario.id_us + "' Where TInst + Id_Inst = '" + idi + "'";
+                }
 
-            Conexion.ExecuteNonQuery(sql);
-            this.busins("", "", "", ruc);
-            this.habil(false);
+                Conexion.ExecuteNonQuery(sql);
+                this.busins("", "", "", ruc);
+                this.habil(false);
+            }
+        
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -288,19 +314,26 @@ namespace Polsolcom.Forms
         private void cmbDepartamento_SelectionChangeCommitted(object sender, EventArgs e)
         {
             this.provinciasTableAdapter.Fill(this.provinciasDS.Provincias, cmbDepartamento.SelectedValue.ToString());
-
+            cmbProvincia.SelectedIndex = -1;
         }
 
         private void cmbProvincia_SelectionChangeCommitted(object sender, EventArgs e)
         {
             this.distritoTableAdapter.Fill(this.distritoDS.Distrito, cmbProvincia.SelectedValue.ToString());
+            cmbDistrito.SelectedIndex = -1;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.habil(true);
+            this.habil(false);
             lstInstitucion_SelectedIndexChanged(lstInstitucion, new EventArgs());
             this.lnew = false;
+
+            lstInstitucion.Select();
+            lstInstitucion.EnsureVisible(this.index);
+            lstInstitucion.Items[this.index].Selected = true;
+            lstInstitucion.Items[this.index].Focused = true;
+            lstInstitucion.Items[this.index].EnsureVisible();
             this.Refresh();
         }
     }

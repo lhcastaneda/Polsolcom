@@ -255,6 +255,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\TipoInstitucionDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\TipoProductoDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1232,6 +1237,17 @@
     </None>
     <None Include="Dominio\Data\TipoDocumento.xss">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoInstitucionDS.xsc">
+      <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TipoInstitucionDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TipoInstitucionDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\TipoInstitucionDS.xss">
+      <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\TipoProductoDS.xsc">
       <DependentUpon>TipoProductoDS.xsd</DependentUpon>

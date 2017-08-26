@@ -786,7 +786,7 @@ namespace Polsolcom.Dominio.Data.ModTransDSTableAdapters {
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
-SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Id_Tipo";
+SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -815,7 +815,7 @@ WHERE     (Id_Tabla IN
                           (SELECT     Id_Tipo
                             FROM          TablaTipo AS TablaTipo_1
                             WHERE      (Descripcion = 'MODALIDAD_TRANSPORTE') AND (Id_Tabla = '0')))
-ORDER BY Id_Tipo";
+ORDER BY Descripcion";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

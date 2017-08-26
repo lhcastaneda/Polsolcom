@@ -38,7 +38,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Doc = new System.Windows.Forms.Label();
             this.Estado = new System.Windows.Forms.Label();
-            this.pnlInstitucion = new System.Windows.Forms.Panel();
+            this.cntInstitucion = new System.Windows.Forms.Panel();
+            this.txtRuc = new System.Windows.Forms.MaskedTextBox();
             this.cntUbigeo = new System.Windows.Forms.Panel();
             this.cmbDistrito = new System.Windows.Forms.ComboBox();
             this.distritoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -66,6 +67,8 @@
             this.txtRepresentante = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cmbCargo = new System.Windows.Forms.ComboBox();
+            this.cargosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cargoDS = new Polsolcom.Dominio.Data.CargoDS();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbRepresentante = new System.Windows.Forms.ComboBox();
             this.representanteBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -77,11 +80,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtRuc = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNomRazSocial = new System.Windows.Forms.TextBox();
             this.txtIdInst = new System.Windows.Forms.TextBox();
             this.cmbTIns = new System.Windows.Forms.ComboBox();
+            this.tipoInstitucionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tipoInstitucionDS = new Polsolcom.Dominio.Data.TipoInstitucionDS();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -96,11 +100,13 @@
             this.departamentosTableAdapter = new Polsolcom.Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter();
             this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
-            this.cargoDS = new Polsolcom.Dominio.Data.CargoDS();
-            this.cargosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cargosTableAdapter = new Polsolcom.Dominio.Data.CargoDSTableAdapters.CargosTableAdapter();
+            this.tipoInstitucionTableAdapter = new Polsolcom.Dominio.Data.TipoInstitucionDSTableAdapters.TipoInstitucionTableAdapter();
+            this.estadosDS = new Polsolcom.Dominio.Data.EstadosDS();
+            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estadosTableAdapter = new Polsolcom.Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter();
             this.pnlBuscar.SuspendLayout();
-            this.pnlInstitucion.SuspendLayout();
+            this.cntInstitucion.SuspendLayout();
             this.cntUbigeo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.distritoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.distritoDS)).BeginInit();
@@ -110,10 +116,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.provinciasDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modTransBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modTransDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cargosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cargosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDoc
@@ -127,11 +137,14 @@
             // 
             // cmbEstado
             // 
+            this.cmbEstado.DataSource = this.estadosBindingSource;
+            this.cmbEstado.DisplayMember = "Descripcion";
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(151, 27);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(122, 21);
             this.cmbEstado.TabIndex = 1;
+            this.cmbEstado.ValueMember = "Id_Tipo";
             this.cmbEstado.SelectionChangeCommitted += new System.EventHandler(this.cmbEstado_SelectionChangeCommitted);
             // 
             // txtBuscar
@@ -172,6 +185,16 @@
             this.lstInstitucion.View = System.Windows.Forms.View.Details;
             this.lstInstitucion.SelectedIndexChanged += new System.EventHandler(this.lstInstitucion_SelectedIndexChanged);
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Descripcion";
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "RUC";
+            this.columnHeader2.Width = 70;
+            // 
             // Doc
             // 
             this.Doc.AutoSize = true;
@@ -194,42 +217,51 @@
             this.Estado.TabIndex = 4;
             this.Estado.Text = "Estado";
             // 
-            // pnlInstitucion
+            // cntInstitucion
             // 
-            this.pnlInstitucion.Controls.Add(this.cntUbigeo);
-            this.pnlInstitucion.Controls.Add(this.chkStatus);
-            this.pnlInstitucion.Controls.Add(this.txtLastUpdate);
-            this.pnlInstitucion.Controls.Add(this.txtCreation);
-            this.pnlInstitucion.Controls.Add(this.txtObservacion);
-            this.pnlInstitucion.Controls.Add(this.label17);
-            this.pnlInstitucion.Controls.Add(this.txtEmail);
-            this.pnlInstitucion.Controls.Add(this.label16);
-            this.pnlInstitucion.Controls.Add(this.label15);
-            this.pnlInstitucion.Controls.Add(this.cmbModTrans);
-            this.pnlInstitucion.Controls.Add(this.txtRepresentante);
-            this.pnlInstitucion.Controls.Add(this.label14);
-            this.pnlInstitucion.Controls.Add(this.cmbCargo);
-            this.pnlInstitucion.Controls.Add(this.label13);
-            this.pnlInstitucion.Controls.Add(this.cmbRepresentante);
-            this.pnlInstitucion.Controls.Add(this.label12);
-            this.pnlInstitucion.Controls.Add(this.txtCelular);
-            this.pnlInstitucion.Controls.Add(this.txtTelefono);
-            this.pnlInstitucion.Controls.Add(this.txtDireccion);
-            this.pnlInstitucion.Controls.Add(this.label11);
-            this.pnlInstitucion.Controls.Add(this.label10);
-            this.pnlInstitucion.Controls.Add(this.label9);
-            this.pnlInstitucion.Controls.Add(this.txtRuc);
-            this.pnlInstitucion.Controls.Add(this.label5);
-            this.pnlInstitucion.Controls.Add(this.txtNomRazSocial);
-            this.pnlInstitucion.Controls.Add(this.txtIdInst);
-            this.pnlInstitucion.Controls.Add(this.cmbTIns);
-            this.pnlInstitucion.Controls.Add(this.label3);
-            this.pnlInstitucion.Controls.Add(this.label2);
-            this.pnlInstitucion.Controls.Add(this.label1);
-            this.pnlInstitucion.Location = new System.Drawing.Point(310, 41);
-            this.pnlInstitucion.Name = "pnlInstitucion";
-            this.pnlInstitucion.Size = new System.Drawing.Size(583, 350);
-            this.pnlInstitucion.TabIndex = 5;
+            this.cntInstitucion.Controls.Add(this.txtRuc);
+            this.cntInstitucion.Controls.Add(this.cntUbigeo);
+            this.cntInstitucion.Controls.Add(this.chkStatus);
+            this.cntInstitucion.Controls.Add(this.txtLastUpdate);
+            this.cntInstitucion.Controls.Add(this.txtCreation);
+            this.cntInstitucion.Controls.Add(this.txtObservacion);
+            this.cntInstitucion.Controls.Add(this.label17);
+            this.cntInstitucion.Controls.Add(this.txtEmail);
+            this.cntInstitucion.Controls.Add(this.label16);
+            this.cntInstitucion.Controls.Add(this.label15);
+            this.cntInstitucion.Controls.Add(this.cmbModTrans);
+            this.cntInstitucion.Controls.Add(this.txtRepresentante);
+            this.cntInstitucion.Controls.Add(this.label14);
+            this.cntInstitucion.Controls.Add(this.cmbCargo);
+            this.cntInstitucion.Controls.Add(this.label13);
+            this.cntInstitucion.Controls.Add(this.cmbRepresentante);
+            this.cntInstitucion.Controls.Add(this.label12);
+            this.cntInstitucion.Controls.Add(this.txtCelular);
+            this.cntInstitucion.Controls.Add(this.txtTelefono);
+            this.cntInstitucion.Controls.Add(this.txtDireccion);
+            this.cntInstitucion.Controls.Add(this.label11);
+            this.cntInstitucion.Controls.Add(this.label10);
+            this.cntInstitucion.Controls.Add(this.label9);
+            this.cntInstitucion.Controls.Add(this.label5);
+            this.cntInstitucion.Controls.Add(this.txtNomRazSocial);
+            this.cntInstitucion.Controls.Add(this.txtIdInst);
+            this.cntInstitucion.Controls.Add(this.cmbTIns);
+            this.cntInstitucion.Controls.Add(this.label3);
+            this.cntInstitucion.Controls.Add(this.label2);
+            this.cntInstitucion.Controls.Add(this.label1);
+            this.cntInstitucion.Location = new System.Drawing.Point(310, 41);
+            this.cntInstitucion.Name = "cntInstitucion";
+            this.cntInstitucion.Size = new System.Drawing.Size(583, 350);
+            this.cntInstitucion.TabIndex = 5;
+            // 
+            // txtRuc
+            // 
+            this.txtRuc.Enabled = false;
+            this.txtRuc.Location = new System.Drawing.Point(18, 73);
+            this.txtRuc.Mask = "99999999999";
+            this.txtRuc.Name = "txtRuc";
+            this.txtRuc.Size = new System.Drawing.Size(110, 20);
+            this.txtRuc.TabIndex = 35;
             // 
             // cntUbigeo
             // 
@@ -248,6 +280,7 @@
             // 
             this.cmbDistrito.DataSource = this.distritoBindingSource;
             this.cmbDistrito.DisplayMember = "Distrito";
+            this.cmbDistrito.Enabled = false;
             this.cmbDistrito.FormattingEnabled = true;
             this.cmbDistrito.Location = new System.Drawing.Point(288, 17);
             this.cmbDistrito.Name = "cmbDistrito";
@@ -279,6 +312,7 @@
             // 
             this.cmbDepartamento.DataSource = this.departamentosBindingSource;
             this.cmbDepartamento.DisplayMember = "Departamento";
+            this.cmbDepartamento.Enabled = false;
             this.cmbDepartamento.FormattingEnabled = true;
             this.cmbDepartamento.Location = new System.Drawing.Point(14, 17);
             this.cmbDepartamento.Name = "cmbDepartamento";
@@ -301,6 +335,7 @@
             // 
             this.cmbProvincia.DataSource = this.provinciasBindingSource;
             this.cmbProvincia.DisplayMember = "Provincia";
+            this.cmbProvincia.Enabled = false;
             this.cmbProvincia.FormattingEnabled = true;
             this.cmbProvincia.Location = new System.Drawing.Point(149, 17);
             this.cmbProvincia.Name = "cmbProvincia";
@@ -373,6 +408,7 @@
             // txtObservacion
             // 
             this.txtObservacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtObservacion.Enabled = false;
             this.txtObservacion.Location = new System.Drawing.Point(265, 254);
             this.txtObservacion.Multiline = true;
             this.txtObservacion.Name = "txtObservacion";
@@ -393,6 +429,7 @@
             // txtEmail
             // 
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEmail.Enabled = false;
             this.txtEmail.Location = new System.Drawing.Point(16, 254);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
@@ -424,6 +461,7 @@
             // 
             this.cmbModTrans.DataSource = this.modTransBindingSource;
             this.cmbModTrans.DisplayMember = "Descripcion";
+            this.cmbModTrans.Enabled = false;
             this.cmbModTrans.FormattingEnabled = true;
             this.cmbModTrans.Location = new System.Drawing.Point(272, 205);
             this.cmbModTrans.Name = "cmbModTrans";
@@ -444,6 +482,7 @@
             // txtRepresentante
             // 
             this.txtRepresentante.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtRepresentante.Enabled = false;
             this.txtRepresentante.Location = new System.Drawing.Point(272, 162);
             this.txtRepresentante.Name = "txtRepresentante";
             this.txtRepresentante.Size = new System.Drawing.Size(288, 20);
@@ -463,12 +502,23 @@
             // 
             this.cmbCargo.DataSource = this.cargosBindingSource;
             this.cmbCargo.DisplayMember = "Descripcion";
+            this.cmbCargo.Enabled = false;
             this.cmbCargo.FormattingEnabled = true;
             this.cmbCargo.Location = new System.Drawing.Point(16, 205);
             this.cmbCargo.Name = "cmbCargo";
             this.cmbCargo.Size = new System.Drawing.Size(247, 21);
             this.cmbCargo.TabIndex = 23;
             this.cmbCargo.ValueMember = "Id_Tipo";
+            // 
+            // cargosBindingSource
+            // 
+            this.cargosBindingSource.DataMember = "Cargos";
+            this.cargosBindingSource.DataSource = this.cargoDS;
+            // 
+            // cargoDS
+            // 
+            this.cargoDS.DataSetName = "CargoDS";
+            this.cargoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label13
             // 
@@ -484,6 +534,7 @@
             // 
             this.cmbRepresentante.DataSource = this.representanteBindingSource;
             this.cmbRepresentante.DisplayMember = "Descripcion";
+            this.cmbRepresentante.Enabled = false;
             this.cmbRepresentante.FormattingEnabled = true;
             this.cmbRepresentante.Location = new System.Drawing.Point(16, 161);
             this.cmbRepresentante.Name = "cmbRepresentante";
@@ -513,6 +564,7 @@
             // 
             // txtCelular
             // 
+            this.txtCelular.Enabled = false;
             this.txtCelular.Location = new System.Drawing.Point(422, 117);
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(136, 20);
@@ -520,6 +572,7 @@
             // 
             // txtTelefono
             // 
+            this.txtTelefono.Enabled = false;
             this.txtTelefono.Location = new System.Drawing.Point(316, 117);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(100, 20);
@@ -528,6 +581,7 @@
             // txtDireccion
             // 
             this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDireccion.Enabled = false;
             this.txtDireccion.Location = new System.Drawing.Point(16, 117);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(291, 20);
@@ -563,14 +617,6 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "Dirección (Av/calle/Urb./Mz/Lt/etc)";
             // 
-            // txtRuc
-            // 
-            this.txtRuc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRuc.Location = new System.Drawing.Point(16, 73);
-            this.txtRuc.Name = "txtRuc";
-            this.txtRuc.Size = new System.Drawing.Size(103, 20);
-            this.txtRuc.TabIndex = 7;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -584,6 +630,7 @@
             // txtNomRazSocial
             // 
             this.txtNomRazSocial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNomRazSocial.Enabled = false;
             this.txtNomRazSocial.Location = new System.Drawing.Point(272, 30);
             this.txtNomRazSocial.Name = "txtNomRazSocial";
             this.txtNomRazSocial.Size = new System.Drawing.Size(288, 20);
@@ -592,6 +639,7 @@
             // txtIdInst
             // 
             this.txtIdInst.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtIdInst.Enabled = false;
             this.txtIdInst.Location = new System.Drawing.Point(159, 31);
             this.txtIdInst.Name = "txtIdInst";
             this.txtIdInst.Size = new System.Drawing.Size(107, 20);
@@ -599,11 +647,25 @@
             // 
             // cmbTIns
             // 
+            this.cmbTIns.DataSource = this.tipoInstitucionBindingSource;
+            this.cmbTIns.DisplayMember = "Descripcion";
+            this.cmbTIns.Enabled = false;
             this.cmbTIns.FormattingEnabled = true;
             this.cmbTIns.Location = new System.Drawing.Point(16, 30);
             this.cmbTIns.Name = "cmbTIns";
             this.cmbTIns.Size = new System.Drawing.Size(137, 21);
             this.cmbTIns.TabIndex = 3;
+            this.cmbTIns.ValueMember = "Id_Tipo";
+            // 
+            // tipoInstitucionBindingSource
+            // 
+            this.tipoInstitucionBindingSource.DataMember = "TipoInstitucion";
+            this.tipoInstitucionBindingSource.DataSource = this.tipoInstitucionDS;
+            // 
+            // tipoInstitucionDS
+            // 
+            this.tipoInstitucionDS.DataSetName = "TipoInstitucionDS";
+            this.tipoInstitucionDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label3
             // 
@@ -637,6 +699,7 @@
             // 
             // btnGrabar
             // 
+            this.btnGrabar.Enabled = false;
             this.btnGrabar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGrabar.Location = new System.Drawing.Point(432, 404);
             this.btnGrabar.Name = "btnGrabar";
@@ -649,6 +712,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Enabled = false;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(540, 404);
             this.btnCancelar.Name = "btnCancelar";
@@ -725,19 +789,27 @@
             // 
             this.distritoTableAdapter.ClearBeforeFill = true;
             // 
-            // cargoDS
-            // 
-            this.cargoDS.DataSetName = "CargoDS";
-            this.cargoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cargosBindingSource
-            // 
-            this.cargosBindingSource.DataMember = "Cargos";
-            this.cargosBindingSource.DataSource = this.cargoDS;
-            // 
             // cargosTableAdapter
             // 
             this.cargosTableAdapter.ClearBeforeFill = true;
+            // 
+            // tipoInstitucionTableAdapter
+            // 
+            this.tipoInstitucionTableAdapter.ClearBeforeFill = true;
+            // 
+            // estadosDS
+            // 
+            this.estadosDS.DataSetName = "EstadosDS";
+            this.estadosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // estadosBindingSource
+            // 
+            this.estadosBindingSource.DataMember = "Estados";
+            this.estadosBindingSource.DataSource = this.estadosDS;
+            // 
+            // estadosTableAdapter
+            // 
+            this.estadosTableAdapter.ClearBeforeFill = true;
             // 
             // frmInstitucion
             // 
@@ -751,7 +823,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.pnlInstitucion);
+            this.Controls.Add(this.cntInstitucion);
             this.Controls.Add(this.pnlBuscar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
@@ -761,8 +833,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInstitucion_KeyDown);
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
-            this.pnlInstitucion.ResumeLayout(false);
-            this.pnlInstitucion.PerformLayout();
+            this.cntInstitucion.ResumeLayout(false);
+            this.cntInstitucion.PerformLayout();
             this.cntUbigeo.ResumeLayout(false);
             this.cntUbigeo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.distritoBindingSource)).EndInit();
@@ -773,10 +845,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.provinciasDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modTransBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modTransDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cargosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cargosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -788,7 +864,7 @@
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Panel pnlBuscar;
-        private System.Windows.Forms.Panel pnlInstitucion;
+        private System.Windows.Forms.Panel cntInstitucion;
         private System.Windows.Forms.TextBox txtNomRazSocial;
         private System.Windows.Forms.TextBox txtIdInst;
         private System.Windows.Forms.Button btnGrabar;
@@ -805,7 +881,6 @@
         private System.Windows.Forms.ComboBox cmbProvincia;
         private System.Windows.Forms.ComboBox cmbDepartamento;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtRuc;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkStatus;
@@ -854,5 +929,12 @@
         private Dominio.Data.CargoDS cargoDS;
         private System.Windows.Forms.BindingSource cargosBindingSource;
         private Dominio.Data.CargoDSTableAdapters.CargosTableAdapter cargosTableAdapter;
+        private Dominio.Data.TipoInstitucionDS tipoInstitucionDS;
+        private System.Windows.Forms.BindingSource tipoInstitucionBindingSource;
+        private Dominio.Data.TipoInstitucionDSTableAdapters.TipoInstitucionTableAdapter tipoInstitucionTableAdapter;
+        private System.Windows.Forms.MaskedTextBox txtRuc;
+        private Dominio.Data.EstadosDS estadosDS;
+        private System.Windows.Forms.BindingSource estadosBindingSource;
+        private Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter estadosTableAdapter;
     }
 }
