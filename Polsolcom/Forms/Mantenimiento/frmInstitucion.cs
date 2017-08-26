@@ -17,8 +17,6 @@ namespace Polsolcom.Forms
     {
         bool lnew = false;
         int index = 0;
-        List<Dictionary<string, string>> RepInst = new List<Dictionary<string, string>>();
-        List<Dictionary<string, string>> ModTrans = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> InstitucionList = new List<Dictionary<string, string>>();
 
         public frmInstitucion()
@@ -192,11 +190,12 @@ namespace Polsolcom.Forms
 
         private void frmInstitucion_Load(object sender, EventArgs e)
         {
-            string sql1 = "Select Ape_Paterno + ' ' + Ape_Materno + ', ' + Nombres Descripcion, Id_Personal From Personal Order By 1";
-            this.RepInst = General.GetDictionaryList(sql1);
-
-            string sql2 = "Select Descripcion,Id_Tipo From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion = 'MODALIDAD_TRANSPORTE' And Id_Tabla='0') Order By 2";
-            this.ModTrans = General.GetDictionaryList(sql2);
+            // TODO: This line of code loads data into the 'departamentosDS.Departamentos' table. You can move, or remove it, as needed.
+            this.departamentosTableAdapter.Fill(this.departamentosDS.Departamentos);
+            // TODO: This line of code loads data into the 'representanteDS.Representante' table. You can move, or remove it, as needed.
+            this.representanteTableAdapter.Fill(this.representanteDS.Representante);
+            // TODO: This line of code loads data into the 'modTransDS.ModTrans' table. You can move, or remove it, as needed.
+            this.modTransTableAdapter.Fill(this.modTransDS.ModTrans);
 
             txtBuscar_TextChanged(txtBuscar, new EventArgs());
         }
@@ -286,12 +285,13 @@ namespace Polsolcom.Forms
 
         private void cmbDepartamento_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            this.provinciasTableAdapter.Fill(this.provinciasDS.Provincias, cmbDepartamento.SelectedValue.ToString());
 
         }
 
         private void cmbProvincia_SelectionChangeCommitted(object sender, EventArgs e)
         {
-
+            this.distritoTableAdapter.Fill(this.distritoDS.Distrito, cmbProvincia.SelectedValue.ToString());
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
