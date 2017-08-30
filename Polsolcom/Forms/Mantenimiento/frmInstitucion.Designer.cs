@@ -102,9 +102,9 @@
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
             this.cargosTableAdapter = new Polsolcom.Dominio.Data.CargoDSTableAdapters.CargosTableAdapter();
             this.tipoInstitucionTableAdapter = new Polsolcom.Dominio.Data.TipoInstitucionDSTableAdapters.TipoInstitucionTableAdapter();
-            this.estadosDS = new Polsolcom.Dominio.Data.EstadosDS();
-            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.estadosTableAdapter = new Polsolcom.Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter();
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
+            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
             this.pnlBuscar.SuspendLayout();
             this.cntInstitucion.SuspendLayout();
             this.cntUbigeo.SuspendLayout();
@@ -122,8 +122,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.representanteDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDoc
@@ -137,7 +137,7 @@
             // 
             // cmbEstado
             // 
-            this.cmbEstado.DataSource = this.estadosBindingSource;
+            this.cmbEstado.DataSource = this.estadoRegistroBindingSource;
             this.cmbEstado.DisplayMember = "Descripcion";
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(151, 27);
@@ -797,19 +797,19 @@
             // 
             this.tipoInstitucionTableAdapter.ClearBeforeFill = true;
             // 
-            // estadosDS
+            // tablaTipoDS
             // 
-            this.estadosDS.DataSetName = "EstadosDS";
-            this.estadosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // estadosBindingSource
+            // estadoRegistroBindingSource
             // 
-            this.estadosBindingSource.DataMember = "Estados";
-            this.estadosBindingSource.DataSource = this.estadosDS;
+            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
+            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
             // 
-            // estadosTableAdapter
+            // estadoRegistroTableAdapter
             // 
-            this.estadosTableAdapter.ClearBeforeFill = true;
+            this.estadoRegistroTableAdapter.ClearBeforeFill = true;
             // 
             // frmInstitucion
             // 
@@ -851,8 +851,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.representanteDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -933,8 +933,8 @@
         private System.Windows.Forms.BindingSource tipoInstitucionBindingSource;
         private Dominio.Data.TipoInstitucionDSTableAdapters.TipoInstitucionTableAdapter tipoInstitucionTableAdapter;
         private System.Windows.Forms.MaskedTextBox txtRuc;
-        private Dominio.Data.EstadosDS estadosDS;
-        private System.Windows.Forms.BindingSource estadosBindingSource;
-        private Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter estadosTableAdapter;
+        private Dominio.Data.TablaTipoDS tablaTipoDS;
+        private System.Windows.Forms.BindingSource estadoRegistroBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter estadoRegistroTableAdapter;
     }
 }

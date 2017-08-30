@@ -191,11 +191,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Data\EstadosDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EstadosDS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dominio\Data\InstitucionesDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -222,6 +217,11 @@
     <Compile Include="Dominio\Data\ParteDiario.cs">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\PersonalDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonalDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\PlantillasDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -246,6 +246,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RotationDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\TablaTipoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TablaTipoDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\TipoDocumento.cs">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
@@ -1106,17 +1111,6 @@
     <None Include="Dominio\Data\EstadisticaPacientes.xss">
       <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
     </None>
-    <None Include="Dominio\Data\EstadosDS.xsc">
-      <DependentUpon>EstadosDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\EstadosDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EstadosDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\EstadosDS.xss">
-      <DependentUpon>EstadosDS.xsd</DependentUpon>
-    </None>
     <None Include="Dominio\Data\InstitucionesDS.xsc">
       <DependentUpon>InstitucionesDS.xsd</DependentUpon>
     </None>
@@ -1172,6 +1166,17 @@
     <None Include="Dominio\Data\ParteDiario.xss">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </None>
+    <None Include="Dominio\Data\PersonalDS.xsc">
+      <DependentUpon>PersonalDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\PersonalDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PersonalDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\PersonalDS.xss">
+      <DependentUpon>PersonalDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\PlantillasDS.xsc">
       <DependentUpon>PlantillasDS.xsd</DependentUpon>
     </None>
@@ -1226,6 +1231,17 @@
     </None>
     <None Include="Dominio\Data\RotationDS.xss">
       <DependentUpon>RotationDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TablaTipoDS.xsc">
+      <DependentUpon>TablaTipoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TablaTipoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TablaTipoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\TablaTipoDS.xss">
+      <DependentUpon>TablaTipoDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\TipoDocumento.xsc">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>

@@ -1473,6 +1473,7 @@ namespace Polsolcom.Dominio.Helpers
             //Envia un mensaje a todos o algun usuario en la red local
             //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
         }
+
     }
 }
 	
