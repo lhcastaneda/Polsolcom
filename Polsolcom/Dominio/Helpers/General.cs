@@ -102,6 +102,7 @@ namespace Polsolcom.Dominio.Helpers
 
     public static class General
     {
+        public static string emptyDate = "  /  /";
         public static ToolTip ttMensaje = new ToolTip();
         public static Label lblLabel = new Label();
         public static List<TipoUsuario> lstTipoUsuario = new List<TipoUsuario>();
@@ -1472,6 +1473,19 @@ namespace Polsolcom.Dominio.Helpers
             return true;
             //Envia un mensaje a todos o algun usuario en la red local
             //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
+        }
+
+        public static int getYearUntilNow(string date)
+        {
+            DateTime bday = DateTime.Parse(date);
+            DateTime now = DateTime.Today;
+            int age = now.Year - bday.Year;
+            if (bday > now.AddYears(-age))
+            {
+                age--;
+            }
+
+            return age;
         }
 
     }
