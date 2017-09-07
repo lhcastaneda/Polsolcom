@@ -97,6 +97,7 @@
             this.KeyPreview = true;
             this.Name = "frmPersonalDet";
             this.Text = "frmPersonalDet";
+            this.Load += new System.EventHandler(this.frmPersonalDet_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPersonalDet_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);

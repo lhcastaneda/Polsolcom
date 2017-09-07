@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Polsolcom.Forms.Mantenimiento
+namespace Polsolcom.Forms
 {
     public partial class frmPersonal : Form
     {
@@ -27,7 +28,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
         public frmPersonal()
         {
-
+       
         }
 
         public void busper(string sper, string sdoc, string lest, string sopc = "")
@@ -178,7 +179,7 @@ namespace Polsolcom.Forms.Mantenimiento
             }
 
             string xrc = txtRuc.Text;
-            if (xrc.Length < 11)
+            if(xrc.Length < 11)
             {
                 MessageBox.Show("Cantidad de digitos en R.U.C. incorrecta ...", "Advertencia");
                 txtRuc.Focus();
@@ -315,6 +316,11 @@ namespace Polsolcom.Forms.Mantenimiento
             txtBuscar_TextChanged(txtBuscar, new EventArgs());
         }
 
+        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.habil(false);
@@ -343,15 +349,14 @@ namespace Polsolcom.Forms.Mantenimiento
                 frmSeekPac 
                 */
             }
-            else
-            {
+            else {
                 txtNombres.Focus();
             }
 
             this.Refresh();
         }
 
-
+  
         private void btnEditar_Click(object sender, EventArgs e)
         {
             this.habil(true);
@@ -447,10 +452,14 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            string estado = cmbEstado.SelectedIndex == -1 ? "" : cmbEstado.SelectedValue.ToString();
+            string estado = cmbEstado.SelectedIndex == -1? "": cmbEstado.SelectedValue.ToString();
             this.busper(txtBuscar.Text, txtDoc.Text, cmbEstado.SelectedValue.ToString());
         }
 
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void btnOtrosDatos_Click(object sender, EventArgs e)
         {
@@ -644,7 +653,7 @@ namespace Polsolcom.Forms.Mantenimiento
             string em = txtEmail.Text;
             string ob = txtObservacion.Text;
             string es = chkStatus.Checked ? "1" : "0";
-            string dc = chkDscto.Checked ? "S" : "";
+            string dc = chkDscto.Checked? "S": "";
             string ip = txtIdPersonal.Text;
             string us = Usuario.id_us;
 
@@ -669,4 +678,6 @@ namespace Polsolcom.Forms.Mantenimiento
             this.habil(false);
         }
     }
+
 }
+

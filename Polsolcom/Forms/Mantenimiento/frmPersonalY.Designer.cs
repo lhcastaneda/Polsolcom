@@ -1,4 +1,4 @@
-﻿namespace Polsolcom.Forms.Mantenimiento
+﻿namespace Polsolcom.Forms
 {
     partial class frmPersonal
     {
@@ -29,8 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.profesionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lstPersonal = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.txtDoc = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pnlDatos = new System.Windows.Forms.Panel();
             this.cntUbigeo = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.cmbDepartamento = new System.Windows.Forms.ComboBox();
@@ -67,41 +75,24 @@
             this.cargosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cargoDS = new Polsolcom.Dominio.Data.CargoDS();
             this.cmbArea = new System.Windows.Forms.ComboBox();
-            this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
-            this.cmbProfesion = new System.Windows.Forms.ComboBox();
-            this.departamentosTableAdapter = new Polsolcom.Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter();
-            this.departamentosDS = new Polsolcom.Dominio.Data.DepartamentosDS();
-            this.cargosTableAdapter = new Polsolcom.Dominio.Data.CargoDSTableAdapters.CargosTableAdapter();
-            this.areaTrabajoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.AreaTrabajoTableAdapter();
-            this.areaTrabajoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gradoInstruccionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.GradoInstruccionTableAdapter();
-            this.estadoCivilTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoCivilTableAdapter();
-            this.modalidadContatacionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.ModalidadContatacionTableAdapter();
             this.label26 = new System.Windows.Forms.Label();
-            this.profesionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.ProfesionTableAdapter();
-            this.btnOtrosDatos = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGrabar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
-            this.modalidadContatacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.estadoCivilBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gradoInstruccionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
-            this.btnImprimir = new System.Windows.Forms.Button();
+            this.cmbProfesion = new System.Windows.Forms.ComboBox();
+            this.profesionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.label25 = new System.Windows.Forms.Label();
             this.cmbGrado = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cmbModCont = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.gradoInstruccionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.cmbEstadoCivil = new System.Windows.Forms.ComboBox();
+            this.estadoCivilBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbModCont = new System.Windows.Forms.ComboBox();
+            this.modalidadContatacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.pnlDatos = new System.Windows.Forms.Panel();
             this.txtCelular = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -125,16 +116,25 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lstPersonal = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.cmbEstado = new System.Windows.Forms.ComboBox();
-            this.txtDoc = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.profesionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnGrabar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnOtrosDatos = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.profesionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.ProfesionTableAdapter();
+            this.modalidadContatacionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.ModalidadContatacionTableAdapter();
+            this.estadoCivilTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoCivilTableAdapter();
+            this.gradoInstruccionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.GradoInstruccionTableAdapter();
+            this.areaTrabajoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.areaTrabajoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.AreaTrabajoTableAdapter();
+            this.cargosTableAdapter = new Polsolcom.Dominio.Data.CargoDSTableAdapters.CargosTableAdapter();
+            this.departamentosDS = new Polsolcom.Dominio.Data.DepartamentosDS();
+            this.departamentosTableAdapter = new Polsolcom.Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter();
+            this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
+            this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
+            this.panel1.SuspendLayout();
+            this.pnlDatos.SuspendLayout();
             this.cntUbigeo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.provinciasBindingSource)).BeginInit();
@@ -145,24 +145,166 @@
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cargosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.areaTrabajoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modalidadContatacionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadoCivilBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profesionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gradoInstruccionBindingSource)).BeginInit();
-            this.pnlDatos.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoCivilBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadContatacionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areaTrabajoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).BeginInit();
             this.SuspendLayout();
             // 
-            // profesionBindingSource
+            // panel1
             // 
-            this.profesionBindingSource.DataMember = "Profesion";
-            this.profesionBindingSource.DataSource = this.tablaTipoDS;
+            this.panel1.Controls.Add(this.lstPersonal);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.txtBuscar);
+            this.panel1.Controls.Add(this.cmbEstado);
+            this.panel1.Controls.Add(this.txtDoc);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(13, 13);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(204, 446);
+            this.panel1.TabIndex = 0;
             // 
-            // tablaTipoDS
+            // lstPersonal
             // 
-            this.tablaTipoDS.DataSetName = "TablaTipoDS";
-            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.lstPersonal.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lstPersonal.FullRowSelect = true;
+            this.lstPersonal.Location = new System.Drawing.Point(5, 106);
+            this.lstPersonal.Name = "lstPersonal";
+            this.lstPersonal.Size = new System.Drawing.Size(194, 336);
+            this.lstPersonal.TabIndex = 7;
+            this.lstPersonal.UseCompatibleStateImageBehavior = false;
+            this.lstPersonal.View = System.Windows.Forms.View.Details;
+            this.lstPersonal.SelectedIndexChanged += new System.EventHandler(this.lstPersonal_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Personal";
+            this.columnHeader1.Width = 190;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Búsqueda";
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(3, 81);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(196, 20);
+            this.txtBuscar.TabIndex = 5;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            // 
+            // cmbEstado
+            // 
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Location = new System.Drawing.Point(78, 34);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(121, 21);
+            this.cmbEstado.TabIndex = 3;
+            this.cmbEstado.SelectionChangeCommitted += new System.EventHandler(this.cmbEstado_SelectionChangeCommitted);
+            // 
+            // txtDoc
+            // 
+            this.txtDoc.Location = new System.Drawing.Point(3, 35);
+            this.txtDoc.Name = "txtDoc";
+            this.txtDoc.Size = new System.Drawing.Size(69, 20);
+            this.txtDoc.TabIndex = 2;
+            this.txtDoc.TextChanged += new System.EventHandler(this.txtDoc_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(75, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Estado";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Doc.";
+            // 
+            // pnlDatos
+            // 
+            this.pnlDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlDatos.Controls.Add(this.cntUbigeo);
+            this.pnlDatos.Controls.Add(this.opgSexo);
+            this.pnlDatos.Controls.Add(this.txtFechaNac);
+            this.pnlDatos.Controls.Add(this.txtFechaCes);
+            this.pnlDatos.Controls.Add(this.txtFechaIng);
+            this.pnlDatos.Controls.Add(this.label31);
+            this.pnlDatos.Controls.Add(this.txtIdPersonal);
+            this.pnlDatos.Controls.Add(this.lblDNI);
+            this.pnlDatos.Controls.Add(this.picFoto);
+            this.pnlDatos.Controls.Add(this.btnCurriculum);
+            this.pnlDatos.Controls.Add(this.btnFoto);
+            this.pnlDatos.Controls.Add(this.chkStatus);
+            this.pnlDatos.Controls.Add(this.chkDscto);
+            this.pnlDatos.Controls.Add(this.lblVitae);
+            this.pnlDatos.Controls.Add(this.txtObservacion);
+            this.pnlDatos.Controls.Add(this.txtEmail);
+            this.pnlDatos.Controls.Add(this.label29);
+            this.pnlDatos.Controls.Add(this.label28);
+            this.pnlDatos.Controls.Add(this.label27);
+            this.pnlDatos.Controls.Add(this.cmbCargo);
+            this.pnlDatos.Controls.Add(this.cmbArea);
+            this.pnlDatos.Controls.Add(this.label26);
+            this.pnlDatos.Controls.Add(this.cmbProfesion);
+            this.pnlDatos.Controls.Add(this.label25);
+            this.pnlDatos.Controls.Add(this.cmbGrado);
+            this.pnlDatos.Controls.Add(this.label24);
+            this.pnlDatos.Controls.Add(this.label23);
+            this.pnlDatos.Controls.Add(this.label22);
+            this.pnlDatos.Controls.Add(this.label21);
+            this.pnlDatos.Controls.Add(this.label20);
+            this.pnlDatos.Controls.Add(this.cmbEstadoCivil);
+            this.pnlDatos.Controls.Add(this.cmbModCont);
+            this.pnlDatos.Controls.Add(this.label19);
+            this.pnlDatos.Controls.Add(this.label18);
+            this.pnlDatos.Controls.Add(this.txtCelular);
+            this.pnlDatos.Controls.Add(this.txtTelefono);
+            this.pnlDatos.Controls.Add(this.txtDireccion);
+            this.pnlDatos.Controls.Add(this.label17);
+            this.pnlDatos.Controls.Add(this.label13);
+            this.pnlDatos.Controls.Add(this.txtRne);
+            this.pnlDatos.Controls.Add(this.txtNCol);
+            this.pnlDatos.Controls.Add(this.label12);
+            this.pnlDatos.Controls.Add(this.label11);
+            this.pnlDatos.Controls.Add(this.cmbTCol);
+            this.pnlDatos.Controls.Add(this.txtRuc);
+            this.pnlDatos.Controls.Add(this.label10);
+            this.pnlDatos.Controls.Add(this.txtDni);
+            this.pnlDatos.Controls.Add(this.label9);
+            this.pnlDatos.Controls.Add(this.txtEdad);
+            this.pnlDatos.Controls.Add(this.label8);
+            this.pnlDatos.Controls.Add(this.label7);
+            this.pnlDatos.Controls.Add(this.label6);
+            this.pnlDatos.Controls.Add(this.txtMaterno);
+            this.pnlDatos.Controls.Add(this.txtPaterno);
+            this.pnlDatos.Controls.Add(this.label4);
+            this.pnlDatos.Controls.Add(this.txtNombres);
+            this.pnlDatos.Controls.Add(this.label3);
+            this.pnlDatos.Location = new System.Drawing.Point(223, 13);
+            this.pnlDatos.Name = "pnlDatos";
+            this.pnlDatos.Size = new System.Drawing.Size(773, 381);
+            this.pnlDatos.TabIndex = 1;
             // 
             // cntUbigeo
             // 
@@ -372,6 +514,7 @@
             this.picFoto.Size = new System.Drawing.Size(189, 247);
             this.picFoto.TabIndex = 57;
             this.picFoto.TabStop = false;
+            this.picFoto.Click += new System.EventHandler(this.picFoto_Click);
             // 
             // btnCurriculum
             // 
@@ -523,10 +666,18 @@
             this.cmbArea.Size = new System.Drawing.Size(280, 21);
             this.cmbArea.TabIndex = 45;
             this.cmbArea.Tag = "UserData";
+            this.cmbArea.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
             // 
-            // distritoTableAdapter
+            // label26
             // 
-            this.distritoTableAdapter.ClearBeforeFill = true;
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label26.Location = new System.Drawing.Point(3, 253);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(98, 13);
+            this.label26.TabIndex = 44;
+            this.label26.Text = "Área de Trabajo";
             // 
             // cmbProfesion
             // 
@@ -541,148 +692,15 @@
             this.cmbProfesion.Tag = "UserData";
             this.cmbProfesion.ValueMember = "Id_Tipo";
             // 
-            // departamentosTableAdapter
+            // profesionBindingSource
             // 
-            this.departamentosTableAdapter.ClearBeforeFill = true;
+            this.profesionBindingSource.DataMember = "Profesion";
+            this.profesionBindingSource.DataSource = this.tablaTipoDS;
             // 
-            // departamentosDS
+            // tablaTipoDS
             // 
-            this.departamentosDS.DataSetName = "DepartamentosDS";
-            this.departamentosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cargosTableAdapter
-            // 
-            this.cargosTableAdapter.ClearBeforeFill = true;
-            // 
-            // areaTrabajoTableAdapter
-            // 
-            this.areaTrabajoTableAdapter.ClearBeforeFill = true;
-            // 
-            // areaTrabajoBindingSource
-            // 
-            this.areaTrabajoBindingSource.DataMember = "AreaTrabajo";
-            this.areaTrabajoBindingSource.DataSource = this.tablaTipoDS;
-            // 
-            // gradoInstruccionTableAdapter
-            // 
-            this.gradoInstruccionTableAdapter.ClearBeforeFill = true;
-            // 
-            // estadoCivilTableAdapter
-            // 
-            this.estadoCivilTableAdapter.ClearBeforeFill = true;
-            // 
-            // modalidadContatacionTableAdapter
-            // 
-            this.modalidadContatacionTableAdapter.ClearBeforeFill = true;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label26.Location = new System.Drawing.Point(3, 253);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(98, 13);
-            this.label26.TabIndex = 44;
-            this.label26.Text = "Área de Trabajo";
-            // 
-            // profesionTableAdapter
-            // 
-            this.profesionTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnOtrosDatos
-            // 
-            this.btnOtrosDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOtrosDatos.Location = new System.Drawing.Point(724, 406);
-            this.btnOtrosDatos.Name = "btnOtrosDatos";
-            this.btnOtrosDatos.Size = new System.Drawing.Size(108, 38);
-            this.btnOtrosDatos.TabIndex = 14;
-            this.btnOtrosDatos.Text = "&Otros\r\nDatos";
-            this.btnOtrosDatos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOtrosDatos.UseVisualStyleBackColor = true;
-            this.btnOtrosDatos.Click += new System.EventHandler(this.btnOtrosDatos_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(610, 406);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(108, 38);
-            this.btnEditar.TabIndex = 13;
-            this.btnEditar.Text = "&Editar";
-            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Enabled = false;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCancelar.Location = new System.Drawing.Point(496, 406);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(108, 38);
-            this.btnCancelar.TabIndex = 12;
-            this.btnCancelar.Text = "&Cancelar";
-            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnGrabar
-            // 
-            this.btnGrabar.Enabled = false;
-            this.btnGrabar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrabar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnGrabar.Location = new System.Drawing.Point(382, 406);
-            this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(108, 38);
-            this.btnGrabar.TabIndex = 11;
-            this.btnGrabar.Text = "&Grabar";
-            this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGrabar.UseVisualStyleBackColor = true;
-            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(268, 406);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(108, 38);
-            this.btnNuevo.TabIndex = 10;
-            this.btnNuevo.Text = "&Nuevo";
-            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // modalidadContatacionBindingSource
-            // 
-            this.modalidadContatacionBindingSource.DataMember = "ModalidadContatacion";
-            this.modalidadContatacionBindingSource.DataSource = this.tablaTipoDS;
-            // 
-            // estadoCivilBindingSource
-            // 
-            this.estadoCivilBindingSource.DataMember = "EstadoCivil";
-            this.estadoCivilBindingSource.DataSource = this.tablaTipoDS;
-            // 
-            // gradoInstruccionBindingSource
-            // 
-            this.gradoInstruccionBindingSource.DataMember = "GradoInstruccion";
-            this.gradoInstruccionBindingSource.DataSource = this.tablaTipoDS;
-            // 
-            // provinciasTableAdapter
-            // 
-            this.provinciasTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.Location = new System.Drawing.Point(838, 406);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(108, 38);
-            this.btnImprimir.TabIndex = 15;
-            this.btnImprimir.Text = "&Imprimir";
-            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label25
             // 
@@ -708,39 +726,10 @@
             this.cmbGrado.Tag = "UserData";
             this.cmbGrado.ValueMember = "Id_Tipo";
             // 
-            // label22
+            // gradoInstruccionBindingSource
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label22.Location = new System.Drawing.Point(212, 173);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(111, 13);
-            this.label22.TabIndex = 38;
-            this.label22.Text = "Mod. Contratación";
-            // 
-            // cmbModCont
-            // 
-            this.cmbModCont.DataSource = this.modalidadContatacionBindingSource;
-            this.cmbModCont.DisplayMember = "Descripcion";
-            this.cmbModCont.Enabled = false;
-            this.cmbModCont.FormattingEnabled = true;
-            this.cmbModCont.Location = new System.Drawing.Point(208, 190);
-            this.cmbModCont.Name = "cmbModCont";
-            this.cmbModCont.Size = new System.Drawing.Size(160, 21);
-            this.cmbModCont.TabIndex = 34;
-            this.cmbModCont.Tag = "UserData";
-            this.cmbModCont.ValueMember = "Id_Tipo";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Doc.";
+            this.gradoInstruccionBindingSource.DataMember = "GradoInstruccion";
+            this.gradoInstruccionBindingSource.DataSource = this.tablaTipoDS;
             // 
             // label24
             // 
@@ -763,6 +752,17 @@
             this.label23.Size = new System.Drawing.Size(74, 13);
             this.label23.TabIndex = 39;
             this.label23.Text = "Estado Civil";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label22.Location = new System.Drawing.Point(212, 173);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(111, 13);
+            this.label22.TabIndex = 38;
+            this.label22.Text = "Mod. Contratación";
             // 
             // label21
             // 
@@ -799,6 +799,29 @@
             this.cmbEstadoCivil.Tag = "UserData";
             this.cmbEstadoCivil.ValueMember = "Id_Tipo";
             // 
+            // estadoCivilBindingSource
+            // 
+            this.estadoCivilBindingSource.DataMember = "EstadoCivil";
+            this.estadoCivilBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // cmbModCont
+            // 
+            this.cmbModCont.DataSource = this.modalidadContatacionBindingSource;
+            this.cmbModCont.DisplayMember = "Descripcion";
+            this.cmbModCont.Enabled = false;
+            this.cmbModCont.FormattingEnabled = true;
+            this.cmbModCont.Location = new System.Drawing.Point(208, 190);
+            this.cmbModCont.Name = "cmbModCont";
+            this.cmbModCont.Size = new System.Drawing.Size(160, 21);
+            this.cmbModCont.TabIndex = 34;
+            this.cmbModCont.Tag = "UserData";
+            this.cmbModCont.ValueMember = "Id_Tipo";
+            // 
+            // modalidadContatacionBindingSource
+            // 
+            this.modalidadContatacionBindingSource.DataMember = "ModalidadContatacion";
+            this.modalidadContatacionBindingSource.DataSource = this.tablaTipoDS;
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -820,71 +843,6 @@
             this.label18.Size = new System.Drawing.Size(57, 13);
             this.label18.TabIndex = 30;
             this.label18.Text = "Teléfono";
-            // 
-            // pnlDatos
-            // 
-            this.pnlDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlDatos.Controls.Add(this.cntUbigeo);
-            this.pnlDatos.Controls.Add(this.opgSexo);
-            this.pnlDatos.Controls.Add(this.txtFechaNac);
-            this.pnlDatos.Controls.Add(this.txtFechaCes);
-            this.pnlDatos.Controls.Add(this.txtFechaIng);
-            this.pnlDatos.Controls.Add(this.label31);
-            this.pnlDatos.Controls.Add(this.txtIdPersonal);
-            this.pnlDatos.Controls.Add(this.lblDNI);
-            this.pnlDatos.Controls.Add(this.picFoto);
-            this.pnlDatos.Controls.Add(this.btnCurriculum);
-            this.pnlDatos.Controls.Add(this.btnFoto);
-            this.pnlDatos.Controls.Add(this.chkStatus);
-            this.pnlDatos.Controls.Add(this.chkDscto);
-            this.pnlDatos.Controls.Add(this.lblVitae);
-            this.pnlDatos.Controls.Add(this.txtObservacion);
-            this.pnlDatos.Controls.Add(this.txtEmail);
-            this.pnlDatos.Controls.Add(this.label29);
-            this.pnlDatos.Controls.Add(this.label28);
-            this.pnlDatos.Controls.Add(this.label27);
-            this.pnlDatos.Controls.Add(this.cmbCargo);
-            this.pnlDatos.Controls.Add(this.cmbArea);
-            this.pnlDatos.Controls.Add(this.label26);
-            this.pnlDatos.Controls.Add(this.cmbProfesion);
-            this.pnlDatos.Controls.Add(this.label25);
-            this.pnlDatos.Controls.Add(this.cmbGrado);
-            this.pnlDatos.Controls.Add(this.label24);
-            this.pnlDatos.Controls.Add(this.label23);
-            this.pnlDatos.Controls.Add(this.label22);
-            this.pnlDatos.Controls.Add(this.label21);
-            this.pnlDatos.Controls.Add(this.label20);
-            this.pnlDatos.Controls.Add(this.cmbEstadoCivil);
-            this.pnlDatos.Controls.Add(this.cmbModCont);
-            this.pnlDatos.Controls.Add(this.label19);
-            this.pnlDatos.Controls.Add(this.label18);
-            this.pnlDatos.Controls.Add(this.txtCelular);
-            this.pnlDatos.Controls.Add(this.txtTelefono);
-            this.pnlDatos.Controls.Add(this.txtDireccion);
-            this.pnlDatos.Controls.Add(this.label17);
-            this.pnlDatos.Controls.Add(this.label13);
-            this.pnlDatos.Controls.Add(this.txtRne);
-            this.pnlDatos.Controls.Add(this.txtNCol);
-            this.pnlDatos.Controls.Add(this.label12);
-            this.pnlDatos.Controls.Add(this.label11);
-            this.pnlDatos.Controls.Add(this.cmbTCol);
-            this.pnlDatos.Controls.Add(this.txtRuc);
-            this.pnlDatos.Controls.Add(this.label10);
-            this.pnlDatos.Controls.Add(this.txtDni);
-            this.pnlDatos.Controls.Add(this.label9);
-            this.pnlDatos.Controls.Add(this.txtEdad);
-            this.pnlDatos.Controls.Add(this.label8);
-            this.pnlDatos.Controls.Add(this.label7);
-            this.pnlDatos.Controls.Add(this.label6);
-            this.pnlDatos.Controls.Add(this.txtMaterno);
-            this.pnlDatos.Controls.Add(this.txtPaterno);
-            this.pnlDatos.Controls.Add(this.label4);
-            this.pnlDatos.Controls.Add(this.txtNombres);
-            this.pnlDatos.Controls.Add(this.label3);
-            this.pnlDatos.Location = new System.Drawing.Point(216, 7);
-            this.pnlDatos.Name = "pnlDatos";
-            this.pnlDatos.Size = new System.Drawing.Size(773, 381);
-            this.pnlDatos.TabIndex = 9;
             // 
             // txtCelular
             // 
@@ -1117,102 +1075,151 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Nombres";
             // 
-            // panel1
+            // btnNuevo
             // 
-            this.panel1.Controls.Add(this.lstPersonal);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.txtBuscar);
-            this.panel1.Controls.Add(this.cmbEstado);
-            this.panel1.Controls.Add(this.txtDoc);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(6, 7);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(204, 446);
-            this.panel1.TabIndex = 8;
+            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.Location = new System.Drawing.Point(275, 412);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(108, 38);
+            this.btnNuevo.TabIndex = 2;
+            this.btnNuevo.Text = "&Nuevo";
+            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // lstPersonal
+            // btnGrabar
             // 
-            this.lstPersonal.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
-            this.lstPersonal.FullRowSelect = true;
-            this.lstPersonal.Location = new System.Drawing.Point(5, 106);
-            this.lstPersonal.Name = "lstPersonal";
-            this.lstPersonal.Size = new System.Drawing.Size(194, 336);
-            this.lstPersonal.TabIndex = 7;
-            this.lstPersonal.UseCompatibleStateImageBehavior = false;
-            this.lstPersonal.View = System.Windows.Forms.View.Details;
-            this.lstPersonal.SelectedIndexChanged += new System.EventHandler(this.lstPersonal_SelectedIndexChanged);
+            this.btnGrabar.Enabled = false;
+            this.btnGrabar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrabar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnGrabar.Location = new System.Drawing.Point(389, 412);
+            this.btnGrabar.Name = "btnGrabar";
+            this.btnGrabar.Size = new System.Drawing.Size(108, 38);
+            this.btnGrabar.TabIndex = 3;
+            this.btnGrabar.Text = "&Grabar";
+            this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGrabar.UseVisualStyleBackColor = true;
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
-            // columnHeader1
+            // btnCancelar
             // 
-            this.columnHeader1.Text = "Personal";
-            this.columnHeader1.Width = 190;
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCancelar.Location = new System.Drawing.Point(503, 412);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(108, 38);
+            this.btnCancelar.TabIndex = 4;
+            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // label5
+            // btnEditar
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Búsqueda";
+            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.Location = new System.Drawing.Point(617, 412);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(108, 38);
+            this.btnEditar.TabIndex = 5;
+            this.btnEditar.Text = "&Editar";
+            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // txtBuscar
+            // btnOtrosDatos
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(3, 81);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(196, 20);
-            this.txtBuscar.TabIndex = 5;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            this.btnOtrosDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOtrosDatos.Location = new System.Drawing.Point(731, 412);
+            this.btnOtrosDatos.Name = "btnOtrosDatos";
+            this.btnOtrosDatos.Size = new System.Drawing.Size(108, 38);
+            this.btnOtrosDatos.TabIndex = 6;
+            this.btnOtrosDatos.Text = "&Otros\r\nDatos";
+            this.btnOtrosDatos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOtrosDatos.UseVisualStyleBackColor = true;
+            this.btnOtrosDatos.Click += new System.EventHandler(this.btnOtrosDatos_Click);
             // 
-            // cmbEstado
+            // btnImprimir
             // 
-            this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Location = new System.Drawing.Point(78, 34);
-            this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(121, 21);
-            this.cmbEstado.TabIndex = 3;
-            this.cmbEstado.SelectionChangeCommitted += new System.EventHandler(this.cmbEstado_SelectionChangeCommitted);
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Location = new System.Drawing.Point(845, 412);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(108, 38);
+            this.btnImprimir.TabIndex = 7;
+            this.btnImprimir.Text = "&Imprimir";
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.UseVisualStyleBackColor = true;
             // 
-            // txtDoc
+            // profesionTableAdapter
             // 
-            this.txtDoc.Location = new System.Drawing.Point(3, 35);
-            this.txtDoc.Name = "txtDoc";
-            this.txtDoc.Size = new System.Drawing.Size(69, 20);
-            this.txtDoc.TabIndex = 2;
-            this.txtDoc.TextChanged += new System.EventHandler(this.txtDoc_TextChanged);
+            this.profesionTableAdapter.ClearBeforeFill = true;
             // 
-            // label2
+            // modalidadContatacionTableAdapter
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(75, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Estado";
+            this.modalidadContatacionTableAdapter.ClearBeforeFill = true;
+            // 
+            // estadoCivilTableAdapter
+            // 
+            this.estadoCivilTableAdapter.ClearBeforeFill = true;
+            // 
+            // gradoInstruccionTableAdapter
+            // 
+            this.gradoInstruccionTableAdapter.ClearBeforeFill = true;
+            // 
+            // areaTrabajoBindingSource
+            // 
+            this.areaTrabajoBindingSource.DataMember = "AreaTrabajo";
+            this.areaTrabajoBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // areaTrabajoTableAdapter
+            // 
+            this.areaTrabajoTableAdapter.ClearBeforeFill = true;
+            // 
+            // cargosTableAdapter
+            // 
+            this.cargosTableAdapter.ClearBeforeFill = true;
+            // 
+            // departamentosDS
+            // 
+            this.departamentosDS.DataSetName = "DepartamentosDS";
+            this.departamentosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // departamentosTableAdapter
+            // 
+            this.departamentosTableAdapter.ClearBeforeFill = true;
+            // 
+            // provinciasTableAdapter
+            // 
+            this.provinciasTableAdapter.ClearBeforeFill = true;
+            // 
+            // distritoTableAdapter
+            // 
+            this.distritoTableAdapter.ClearBeforeFill = true;
             // 
             // frmPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 452);
+            this.ClientSize = new System.Drawing.Size(1004, 478);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnOtrosDatos);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.pnlDatos);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "frmPersonal";
-            this.Text = "frmPersonalX";
+            this.Text = "Registro del Personal";
             this.Load += new System.EventHandler(this.frmPersonal_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPersonal_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.profesionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.pnlDatos.ResumeLayout(false);
+            this.pnlDatos.PerformLayout();
             this.cntUbigeo.ResumeLayout(false);
             this.cntUbigeo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosBindingSource)).EndInit();
@@ -1225,45 +1232,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cargosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.areaTrabajoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modalidadContatacionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadoCivilBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profesionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gradoInstruccionBindingSource)).EndInit();
-            this.pnlDatos.ResumeLayout(false);
-            this.pnlDatos.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoCivilBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modalidadContatacionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areaTrabajoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.BindingSource profesionBindingSource;
-        private Dominio.Data.TablaTipoDS tablaTipoDS;
-        private System.Windows.Forms.Panel cntUbigeo;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox cmbDepartamento;
-        private System.Windows.Forms.BindingSource departamentosBindingSource;
-        private System.Windows.Forms.ComboBox cmbProvincia;
-        private System.Windows.Forms.BindingSource provinciasBindingSource;
-        private Dominio.Data.ProvinciasDS provinciasDS;
-        private System.Windows.Forms.ComboBox cmbDistrito;
-        private System.Windows.Forms.BindingSource distritoBindingSource;
-        private Dominio.Data.DistritoDS distritoDS;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Panel opgSexo;
-        private System.Windows.Forms.RadioButton rbMasculino;
-        private System.Windows.Forms.RadioButton rbFemenino;
-        private System.Windows.Forms.MaskedTextBox txtFechaNac;
-        private System.Windows.Forms.MaskedTextBox txtFechaCes;
-        private System.Windows.Forms.MaskedTextBox txtFechaIng;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox txtIdPersonal;
-        private System.Windows.Forms.Label lblDNI;
-        private System.Windows.Forms.PictureBox picFoto;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.TextBox txtDoc;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlDatos;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtMaterno;
+        private System.Windows.Forms.TextBox txtPaterno;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtNombres;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCurriculum;
         private System.Windows.Forms.Button btnFoto;
         private System.Windows.Forms.CheckBox chkStatus;
@@ -1275,48 +1271,30 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cmbCargo;
-        private System.Windows.Forms.BindingSource cargosBindingSource;
-        private Dominio.Data.CargoDS cargoDS;
         private System.Windows.Forms.ComboBox cmbArea;
-        private Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter distritoTableAdapter;
-        private System.Windows.Forms.ComboBox cmbProfesion;
-        private Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter departamentosTableAdapter;
-        private Dominio.Data.DepartamentosDS departamentosDS;
-        private Dominio.Data.CargoDSTableAdapters.CargosTableAdapter cargosTableAdapter;
-        private Dominio.Data.TablaTipoDSTableAdapters.AreaTrabajoTableAdapter areaTrabajoTableAdapter;
-        private System.Windows.Forms.BindingSource areaTrabajoBindingSource;
-        private Dominio.Data.TablaTipoDSTableAdapters.GradoInstruccionTableAdapter gradoInstruccionTableAdapter;
-        private Dominio.Data.TablaTipoDSTableAdapters.EstadoCivilTableAdapter estadoCivilTableAdapter;
-        private Dominio.Data.TablaTipoDSTableAdapters.ModalidadContatacionTableAdapter modalidadContatacionTableAdapter;
         private System.Windows.Forms.Label label26;
-        private Dominio.Data.TablaTipoDSTableAdapters.ProfesionTableAdapter profesionTableAdapter;
-        private System.Windows.Forms.Button btnOtrosDatos;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnGrabar;
-        private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.BindingSource modalidadContatacionBindingSource;
-        private System.Windows.Forms.BindingSource estadoCivilBindingSource;
-        private System.Windows.Forms.BindingSource gradoInstruccionBindingSource;
-        private Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter provinciasTableAdapter;
-        private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.ComboBox cmbProfesion;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ComboBox cmbGrado;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.ComboBox cmbModCont;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox cmbEstadoCivil;
+        private System.Windows.Forms.ComboBox cmbModCont;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Panel pnlDatos;
         private System.Windows.Forms.TextBox txtCelular;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cmbDistrito;
+        private System.Windows.Forms.ComboBox cmbProvincia;
+        private System.Windows.Forms.ComboBox cmbDepartamento;
+        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtRne;
         private System.Windows.Forms.TextBox txtNCol;
@@ -1329,20 +1307,47 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtEdad;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtMaterno;
-        private System.Windows.Forms.TextBox txtPaterno;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtNombres;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox txtIdPersonal;
+        private System.Windows.Forms.Label lblDNI;
+        private System.Windows.Forms.PictureBox picFoto;
+        private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnGrabar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnOtrosDatos;
+        private System.Windows.Forms.Button btnImprimir;
+        private Dominio.Data.TablaTipoDS tablaTipoDS;
+        private System.Windows.Forms.BindingSource profesionBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.ProfesionTableAdapter profesionTableAdapter;
+        private System.Windows.Forms.BindingSource modalidadContatacionBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.ModalidadContatacionTableAdapter modalidadContatacionTableAdapter;
+        private System.Windows.Forms.BindingSource estadoCivilBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.EstadoCivilTableAdapter estadoCivilTableAdapter;
+        private System.Windows.Forms.BindingSource gradoInstruccionBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.GradoInstruccionTableAdapter gradoInstruccionTableAdapter;
+        private System.Windows.Forms.BindingSource areaTrabajoBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.AreaTrabajoTableAdapter areaTrabajoTableAdapter;
+        private Dominio.Data.CargoDS cargoDS;
+        private System.Windows.Forms.BindingSource cargosBindingSource;
+        private Dominio.Data.CargoDSTableAdapters.CargosTableAdapter cargosTableAdapter;
         private System.Windows.Forms.ListView lstPersonal;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.ComboBox cmbEstado;
-        private System.Windows.Forms.TextBox txtDoc;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MaskedTextBox txtFechaNac;
+        private System.Windows.Forms.MaskedTextBox txtFechaCes;
+        private System.Windows.Forms.MaskedTextBox txtFechaIng;
+        private System.Windows.Forms.Panel opgSexo;
+        private System.Windows.Forms.RadioButton rbMasculino;
+        private System.Windows.Forms.RadioButton rbFemenino;
+        private System.Windows.Forms.Panel cntUbigeo;
+        private Dominio.Data.DepartamentosDS departamentosDS;
+        private System.Windows.Forms.BindingSource departamentosBindingSource;
+        private Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter departamentosTableAdapter;
+        private System.Windows.Forms.BindingSource provinciasBindingSource;
+        private Dominio.Data.ProvinciasDS provinciasDS;
+        private System.Windows.Forms.BindingSource distritoBindingSource;
+        private Dominio.Data.DistritoDS distritoDS;
+        private Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter provinciasTableAdapter;
+        private Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter distritoTableAdapter;
     }
 }

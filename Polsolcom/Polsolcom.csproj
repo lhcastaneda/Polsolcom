@@ -453,6 +453,18 @@
     <Compile Include="Forms\frmMantImpFicha.Designer.cs">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Mantenimiento\frmPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmPersonal.Designer.cs">
+      <DependentUpon>frmPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmSeekPac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mantenimiento\frmSeekPac.Designer.cs">
+      <DependentUpon>frmSeekPac.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Procesos\frmIngresoCie10.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -639,11 +651,11 @@
     <Compile Include="Forms\Herramientas\frmOperativo.Designer.cs">
       <DependentUpon>frmOperativo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Mantenimiento\frmPersonal.cs">
+    <Compile Include="Forms\Mantenimiento\frmPersonalY.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Mantenimiento\frmPersonal.Designer.cs">
-      <DependentUpon>frmPersonal.cs</DependentUpon>
+    <Compile Include="Forms\Mantenimiento\frmPersonalY.Designer.cs">
+      <DependentUpon>frmPersonalY.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Consultas\frmSpecialAnnulment.cs">
       <SubType>Form</SubType>
@@ -842,6 +854,12 @@
     <EmbeddedResource Include="Forms\frmMantImpFicha.resx">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmPersonal.resx">
+      <DependentUpon>frmPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmSeekPac.resx">
+      <DependentUpon>frmSeekPac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmIngresoCie10.resx">
       <DependentUpon>frmIngresoCie10.cs</DependentUpon>
     </EmbeddedResource>
@@ -872,8 +890,8 @@
     <EmbeddedResource Include="Forms\Mantenimiento\frmPerPago.resx">
       <DependentUpon>frmPerPago.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Mantenimiento\frmPersonal.resx">
-      <DependentUpon>frmPersonal.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmPersonalY.resx">
+      <DependentUpon>frmPersonalY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmPersonalDet.resx">
       <DependentUpon>frmPersonalDet.cs</DependentUpon>
