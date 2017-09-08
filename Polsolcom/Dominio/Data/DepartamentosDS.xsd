@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DepartamentosDS" targetNamespace="http://tempuri.org/DepartamentosDS.xsd" xmlns:mstns="http://tempuri.org/DepartamentosDS.xsd" xmlns="http://tempuri.org/DepartamentosDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PolsolcomConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PolsolcomConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Polsolcom.Properties.Settings.GlobalReference.Default.PolsolcomConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DepartamentosTableAdapter" GeneratorDataComponentClassName="DepartamentosTableAdapter" Name="Departamentos" UserDataComponentName="DepartamentosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.Ubigeo2005" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select distinct SUBSTRING(Id_Old, 1, 2) as Id_Old, Departamento from Ubigeo2005 order by Departamento</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Departamento" DataSetColumn="Departamento" />
+              <Mapping SourceColumn="Id_Old" DataSetColumn="Id_Old" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DepartamentosDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DepartamentosDS" msprop:Generator_UserDSName="DepartamentosDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Departamentos" msprop:Generator_TableClassName="DepartamentosDataTable" msprop:Generator_TableVarName="tableDepartamentos" msprop:Generator_TablePropName="Departamentos" msprop:Generator_RowDeletingName="DepartamentosRowDeleting" msprop:Generator_RowChangingName="DepartamentosRowChanging" msprop:Generator_RowEvHandlerName="DepartamentosRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartamentosRowDeleted" msprop:Generator_UserTableName="Departamentos" msprop:Generator_RowChangedName="DepartamentosRowChanged" msprop:Generator_RowEvArgName="DepartamentosRowChangeEvent" msprop:Generator_RowClassName="DepartamentosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Departamento" msprop:Generator_ColumnVarNameInTable="columnDepartamento" msprop:Generator_ColumnPropNameInRow="Departamento" msprop:Generator_ColumnPropNameInTable="DepartamentoColumn" msprop:Generator_UserColumnName="Departamento">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Old" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnId_Old" msprop:Generator_ColumnPropNameInRow="Id_Old" msprop:Generator_ColumnPropNameInTable="Id_OldColumn" msprop:Generator_UserColumnName="Id_Old" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

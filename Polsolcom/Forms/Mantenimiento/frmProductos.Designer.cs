@@ -37,26 +37,26 @@
             this.lstConsultorios = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlBusqueda = new System.Windows.Forms.Panel();
-            this.txtCritBusqueda = new System.Windows.Forms.TextBox();
+            this.txtCriterio = new System.Windows.Forms.TextBox();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtIdProd = new System.Windows.Forms.TextBox();
+            this.txtIdProducto = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbNomConsultorio = new System.Windows.Forms.ComboBox();
-            this.cmbTipProd = new System.Windows.Forms.ComboBox();
+            this.cmbConsultorio = new System.Windows.Forms.ComboBox();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbTipEspecial = new System.Windows.Forms.ComboBox();
+            this.cmbTPEsp = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtNomProd = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtMonto = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
-            this.gdvProductos = new System.Windows.Forms.DataGridView();
+            this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.cNomProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,7 +66,7 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pnlBusqueda.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -84,6 +84,7 @@
             this.btnInicio.Text = "&Inicio";
             this.btnInicio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // btnAnterior
             // 
@@ -157,19 +158,20 @@
             // 
             this.pnlBusqueda.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pnlBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlBusqueda.Controls.Add(this.txtCritBusqueda);
+            this.pnlBusqueda.Controls.Add(this.txtCriterio);
             this.pnlBusqueda.Controls.Add(this.label1);
             this.pnlBusqueda.Location = new System.Drawing.Point(15, 14);
             this.pnlBusqueda.Name = "pnlBusqueda";
             this.pnlBusqueda.Size = new System.Drawing.Size(563, 57);
             this.pnlBusqueda.TabIndex = 7;
             // 
-            // txtCritBusqueda
+            // txtCriterio
             // 
-            this.txtCritBusqueda.Location = new System.Drawing.Point(10, 26);
-            this.txtCritBusqueda.Name = "txtCritBusqueda";
-            this.txtCritBusqueda.Size = new System.Drawing.Size(546, 20);
-            this.txtCritBusqueda.TabIndex = 7;
+            this.txtCriterio.Location = new System.Drawing.Point(10, 26);
+            this.txtCriterio.Name = "txtCriterio";
+            this.txtCriterio.Size = new System.Drawing.Size(546, 20);
+            this.txtCriterio.TabIndex = 7;
+            this.txtCriterio.TextChanged += new System.EventHandler(this.txtCriterio_TextChanged);
             // 
             // btnNuevo
             // 
@@ -226,12 +228,12 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "ID Producto";
             // 
-            // txtIdProd
+            // txtIdProducto
             // 
-            this.txtIdProd.Location = new System.Drawing.Point(11, 343);
-            this.txtIdProd.Name = "txtIdProd";
-            this.txtIdProd.Size = new System.Drawing.Size(100, 20);
-            this.txtIdProd.TabIndex = 13;
+            this.txtIdProducto.Location = new System.Drawing.Point(11, 343);
+            this.txtIdProducto.Name = "txtIdProducto";
+            this.txtIdProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtIdProducto.TabIndex = 13;
             // 
             // label3
             // 
@@ -244,23 +246,23 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Nombre del Consultorio";
             // 
-            // cmbNomConsultorio
+            // cmbConsultorio
             // 
-            this.cmbNomConsultorio.Enabled = false;
-            this.cmbNomConsultorio.FormattingEnabled = true;
-            this.cmbNomConsultorio.Location = new System.Drawing.Point(117, 342);
-            this.cmbNomConsultorio.Name = "cmbNomConsultorio";
-            this.cmbNomConsultorio.Size = new System.Drawing.Size(330, 21);
-            this.cmbNomConsultorio.TabIndex = 15;
+            this.cmbConsultorio.Enabled = false;
+            this.cmbConsultorio.FormattingEnabled = true;
+            this.cmbConsultorio.Location = new System.Drawing.Point(117, 342);
+            this.cmbConsultorio.Name = "cmbConsultorio";
+            this.cmbConsultorio.Size = new System.Drawing.Size(330, 21);
+            this.cmbConsultorio.TabIndex = 15;
             // 
-            // cmbTipProd
+            // cmbTipo
             // 
-            this.cmbTipProd.Enabled = false;
-            this.cmbTipProd.FormattingEnabled = true;
-            this.cmbTipProd.Location = new System.Drawing.Point(453, 343);
-            this.cmbTipProd.Name = "cmbTipProd";
-            this.cmbTipProd.Size = new System.Drawing.Size(190, 21);
-            this.cmbTipProd.TabIndex = 16;
+            this.cmbTipo.Enabled = false;
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Location = new System.Drawing.Point(453, 343);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(190, 21);
+            this.cmbTipo.TabIndex = 16;
             // 
             // label4
             // 
@@ -284,14 +286,14 @@
             this.label5.TabIndex = 18;
             this.label5.Text = "Tipo Especial";
             // 
-            // cmbTipEspecial
+            // cmbTPEsp
             // 
-            this.cmbTipEspecial.Enabled = false;
-            this.cmbTipEspecial.FormattingEnabled = true;
-            this.cmbTipEspecial.Location = new System.Drawing.Point(650, 343);
-            this.cmbTipEspecial.Name = "cmbTipEspecial";
-            this.cmbTipEspecial.Size = new System.Drawing.Size(190, 21);
-            this.cmbTipEspecial.TabIndex = 19;
+            this.cmbTPEsp.Enabled = false;
+            this.cmbTPEsp.FormattingEnabled = true;
+            this.cmbTPEsp.Location = new System.Drawing.Point(650, 343);
+            this.cmbTPEsp.Name = "cmbTPEsp";
+            this.cmbTPEsp.Size = new System.Drawing.Size(190, 21);
+            this.cmbTPEsp.TabIndex = 19;
             // 
             // label6
             // 
@@ -304,12 +306,12 @@
             this.label6.TabIndex = 20;
             this.label6.Text = "Nombre del Producto";
             // 
-            // txtNomProd
+            // txtDescripcion
             // 
-            this.txtNomProd.Location = new System.Drawing.Point(11, 394);
-            this.txtNomProd.Name = "txtNomProd";
-            this.txtNomProd.Size = new System.Drawing.Size(436, 20);
-            this.txtNomProd.TabIndex = 21;
+            this.txtDescripcion.Location = new System.Drawing.Point(11, 394);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(436, 20);
+            this.txtDescripcion.TabIndex = 21;
             // 
             // label7
             // 
@@ -322,12 +324,12 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "Precio";
             // 
-            // txtPrecio
+            // txtMonto
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(453, 394);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(190, 20);
-            this.txtPrecio.TabIndex = 23;
+            this.txtMonto.Location = new System.Drawing.Point(453, 394);
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.Size = new System.Drawing.Size(190, 20);
+            this.txtMonto.TabIndex = 23;
             // 
             // label8
             // 
@@ -349,19 +351,23 @@
             this.cmbEstado.Size = new System.Drawing.Size(188, 21);
             this.cmbEstado.TabIndex = 25;
             // 
-            // gdvProductos
+            // dgvProductos
             // 
-            this.gdvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gdvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvProductos.AllowUserToAddRows = false;
+            this.dgvProductos.AllowUserToDeleteRows = false;
+            this.dgvProductos.AllowUserToOrderColumns = true;
+            this.dgvProductos.AllowUserToResizeColumns = false;
+            this.dgvProductos.AllowUserToResizeRows = false;
+            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cNomProd,
             this.cTipo,
             this.cPrecio,
             this.cEstat});
-            this.gdvProductos.Location = new System.Drawing.Point(286, 100);
-            this.gdvProductos.Name = "gdvProductos";
-            this.gdvProductos.Size = new System.Drawing.Size(554, 212);
-            this.gdvProductos.TabIndex = 26;
-            this.gdvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gdvProductos_CellContentClick);
+            this.dgvProductos.Location = new System.Drawing.Point(286, 100);
+            this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.Size = new System.Drawing.Size(554, 212);
+            this.dgvProductos.TabIndex = 26;
             // 
             // cNomProd
             // 
@@ -438,20 +444,20 @@
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox8);
-            this.Controls.Add(this.gdvProductos);
+            this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtPrecio);
+            this.Controls.Add(this.txtMonto);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtNomProd);
+            this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.cmbTipEspecial);
+            this.Controls.Add(this.cmbTPEsp);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.cmbTipProd);
-            this.Controls.Add(this.cmbNomConsultorio);
+            this.Controls.Add(this.cmbTipo);
+            this.Controls.Add(this.cmbConsultorio);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtIdProd);
+            this.Controls.Add(this.txtIdProducto);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnEliminar);
@@ -472,7 +478,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmProductos_KeyDown);
             this.pnlBusqueda.ResumeLayout(false);
             this.pnlBusqueda.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -492,26 +498,26 @@
         private System.Windows.Forms.ListBox lstConsultorios;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlBusqueda;
-        private System.Windows.Forms.TextBox txtCritBusqueda;
+        private System.Windows.Forms.TextBox txtCriterio;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtIdProd;
+        private System.Windows.Forms.TextBox txtIdProducto;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbNomConsultorio;
-        private System.Windows.Forms.ComboBox cmbTipProd;
+        private System.Windows.Forms.ComboBox cmbConsultorio;
+        private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbTipEspecial;
+        private System.Windows.Forms.ComboBox cmbTPEsp;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtNomProd;
+        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtMonto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cmbEstado;
-        private System.Windows.Forms.DataGridView gdvProductos;
+        private System.Windows.Forms.DataGridView dgvProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNomProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn cTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cPrecio;

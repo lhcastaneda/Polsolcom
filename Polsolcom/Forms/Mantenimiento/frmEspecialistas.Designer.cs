@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,28 +43,51 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.cmbEstBus = new System.Windows.Forms.ComboBox();
+            this.cmbEstList = new System.Windows.Forms.ComboBox();
+            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.cmbPersonal = new System.Windows.Forms.ComboBox();
-            this.cmbTipColeg = new System.Windows.Forms.ComboBox();
-            this.txtNColeg = new System.Windows.Forms.TextBox();
-            this.txtNRC = new System.Windows.Forms.TextBox();
+            this.personalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.personalDS = new Polsolcom.Dominio.Data.PersonalDS();
+            this.cmbTCol = new System.Windows.Forms.ComboBox();
+            this.tipoColegiaturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
+            this.especialidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbConsultorio = new System.Windows.Forms.ComboBox();
+            this.busesByIdEspBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.busesDS = new Polsolcom.Dominio.Data.BusesDS();
             this.label14 = new System.Windows.Forms.Label();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.lstEspecialista = new System.Windows.Forms.ListView();
+            this.lstBusMed = new System.Windows.Forms.ListView();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.edtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtObs = new System.Windows.Forms.TextBox();
             this.txtLastUpDate = new System.Windows.Forms.TextBox();
             this.txtCreacion = new System.Windows.Forms.TextBox();
             this.pnlEspec = new System.Windows.Forms.Panel();
+            this.busesByIdEspTableAdapter = new Polsolcom.Dominio.Data.BusesDSTableAdapters.BusesByIdEspTableAdapter();
+            this.personalTableAdapter = new Polsolcom.Dominio.Data.PersonalDSTableAdapters.PersonalTableAdapter();
+            this.especialidadTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter();
+            this.tipoColegiaturaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TipoColegiaturaTableAdapter();
+            this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
+            this.txtNCol = new System.Windows.Forms.MaskedTextBox();
+            this.txtRNE = new System.Windows.Forms.MaskedTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personalBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personalDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoColegiaturaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesByIdEspBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesDS)).BeginInit();
             this.pnlEspec.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,14 +153,17 @@
             this.txtEspecialista.Name = "txtEspecialista";
             this.txtEspecialista.Size = new System.Drawing.Size(210, 20);
             this.txtEspecialista.TabIndex = 6;
+            this.txtEspecialista.TextChanged += new System.EventHandler(this.txtEspecialista_TextChanged);
             // 
             // txtNCP
             // 
             this.txtNCP.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNCP.Location = new System.Drawing.Point(224, 25);
+            this.txtNCP.MaxLength = 6;
             this.txtNCP.Name = "txtNCP";
             this.txtNCP.Size = new System.Drawing.Size(74, 20);
             this.txtNCP.TabIndex = 7;
+            this.txtNCP.TextChanged += new System.EventHandler(this.txtNCP_TextChanged);
             // 
             // txtEspecialidad
             // 
@@ -145,6 +172,7 @@
             this.txtEspecialidad.Name = "txtEspecialidad";
             this.txtEspecialidad.Size = new System.Drawing.Size(187, 20);
             this.txtEspecialidad.TabIndex = 8;
+            this.txtEspecialidad.TextChanged += new System.EventHandler(this.txtEspecialidad_TextChanged);
             // 
             // txtConsultorio
             // 
@@ -153,6 +181,7 @@
             this.txtConsultorio.Name = "txtConsultorio";
             this.txtConsultorio.Size = new System.Drawing.Size(185, 20);
             this.txtConsultorio.TabIndex = 9;
+            this.txtConsultorio.TextChanged += new System.EventHandler(this.txtConsultorio_TextChanged);
             // 
             // label7
             // 
@@ -204,55 +233,81 @@
             this.label11.TabIndex = 16;
             this.label11.Text = "Estado";
             // 
-            // cmbEstBus
+            // cmbEstList
             // 
-            this.cmbEstBus.FormattingEnabled = true;
-            this.cmbEstBus.Location = new System.Drawing.Point(684, 24);
-            this.cmbEstBus.Name = "cmbEstBus";
-            this.cmbEstBus.Size = new System.Drawing.Size(117, 21);
-            this.cmbEstBus.TabIndex = 17;
+            this.cmbEstList.DataSource = this.estadoRegistroBindingSource;
+            this.cmbEstList.DisplayMember = "Descripcion";
+            this.cmbEstList.FormattingEnabled = true;
+            this.cmbEstList.Location = new System.Drawing.Point(684, 24);
+            this.cmbEstList.Name = "cmbEstList";
+            this.cmbEstList.Size = new System.Drawing.Size(117, 21);
+            this.cmbEstList.TabIndex = 17;
+            this.cmbEstList.ValueMember = "Id_Tipo";
+            this.cmbEstList.SelectionChangeCommitted += new System.EventHandler(this.cmbEstList_SelectionChangeCommitted);
+            // 
+            // estadoRegistroBindingSource
+            // 
+            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
+            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // tablaTipoDS
+            // 
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // cmbPersonal
             // 
+            this.cmbPersonal.DataSource = this.personalBindingSource;
+            this.cmbPersonal.DisplayMember = "Descripcion";
+            this.cmbPersonal.Enabled = false;
             this.cmbPersonal.FormattingEnabled = true;
             this.cmbPersonal.Location = new System.Drawing.Point(5, 23);
             this.cmbPersonal.Name = "cmbPersonal";
             this.cmbPersonal.Size = new System.Drawing.Size(460, 21);
             this.cmbPersonal.TabIndex = 18;
+            this.cmbPersonal.ValueMember = "Id_Personal";
+            this.cmbPersonal.SelectionChangeCommitted += new System.EventHandler(this.cmbPersonal_SelectionChangeCommitted);
             // 
-            // cmbTipColeg
+            // personalBindingSource
             // 
-            this.cmbTipColeg.BackColor = System.Drawing.SystemColors.Window;
-            this.cmbTipColeg.FormattingEnabled = true;
-            this.cmbTipColeg.Location = new System.Drawing.Point(5, 67);
-            this.cmbTipColeg.Name = "cmbTipColeg";
-            this.cmbTipColeg.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cmbTipColeg.Size = new System.Drawing.Size(142, 21);
-            this.cmbTipColeg.TabIndex = 19;
+            this.personalBindingSource.DataMember = "Personal";
+            this.personalBindingSource.DataSource = this.personalDS;
             // 
-            // txtNColeg
+            // personalDS
             // 
-            this.txtNColeg.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNColeg.Location = new System.Drawing.Point(153, 67);
-            this.txtNColeg.Name = "txtNColeg";
-            this.txtNColeg.Size = new System.Drawing.Size(80, 20);
-            this.txtNColeg.TabIndex = 20;
+            this.personalDS.DataSetName = "PersonalDS";
+            this.personalDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // txtNRC
+            // cmbTCol
             // 
-            this.txtNRC.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNRC.Location = new System.Drawing.Point(241, 67);
-            this.txtNRC.Name = "txtNRC";
-            this.txtNRC.Size = new System.Drawing.Size(82, 20);
-            this.txtNRC.TabIndex = 21;
+            this.cmbTCol.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbTCol.DataSource = this.tipoColegiaturaBindingSource;
+            this.cmbTCol.DisplayMember = "Descripcion";
+            this.cmbTCol.Enabled = false;
+            this.cmbTCol.FormattingEnabled = true;
+            this.cmbTCol.Location = new System.Drawing.Point(5, 67);
+            this.cmbTCol.Name = "cmbTCol";
+            this.cmbTCol.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cmbTCol.Size = new System.Drawing.Size(142, 21);
+            this.cmbTCol.TabIndex = 19;
+            this.cmbTCol.ValueMember = "Id_Tipo";
+            // 
+            // tipoColegiaturaBindingSource
+            // 
+            this.tipoColegiaturaBindingSource.DataMember = "TipoColegiatura";
+            this.tipoColegiaturaBindingSource.DataSource = this.tablaTipoDS;
             // 
             // cmbEstado
             // 
+            this.cmbEstado.DataSource = this.estadoRegistroBindingSource;
+            this.cmbEstado.DisplayMember = "Descripcion";
+            this.cmbEstado.Enabled = false;
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(328, 66);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(137, 21);
             this.cmbEstado.TabIndex = 22;
+            this.cmbEstado.ValueMember = "Id_Tipo";
             // 
             // label12
             // 
@@ -266,11 +321,26 @@
             // 
             // cmbEspecialidad
             // 
+            this.cmbEspecialidad.DataSource = this.especialidadBindingSource;
+            this.cmbEspecialidad.DisplayMember = "Descripcion";
+            this.cmbEspecialidad.Enabled = false;
             this.cmbEspecialidad.FormattingEnabled = true;
             this.cmbEspecialidad.Location = new System.Drawing.Point(5, 110);
             this.cmbEspecialidad.Name = "cmbEspecialidad";
             this.cmbEspecialidad.Size = new System.Drawing.Size(290, 21);
             this.cmbEspecialidad.TabIndex = 24;
+            this.cmbEspecialidad.ValueMember = "Id_Consultorio";
+            this.cmbEspecialidad.SelectionChangeCommitted += new System.EventHandler(this.cmbEspecialidad_SelectionChangeCommitted);
+            // 
+            // especialidadBindingSource
+            // 
+            this.especialidadBindingSource.DataMember = "Especialidad";
+            this.especialidadBindingSource.DataSource = this.consultoriosDS;
+            // 
+            // consultoriosDS
+            // 
+            this.consultoriosDS.DataSetName = "ConsultoriosDS";
+            this.consultoriosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label13
             // 
@@ -284,11 +354,25 @@
             // 
             // cmbConsultorio
             // 
+            this.cmbConsultorio.DataSource = this.busesByIdEspBindingSource;
+            this.cmbConsultorio.DisplayMember = "Bus";
+            this.cmbConsultorio.Enabled = false;
             this.cmbConsultorio.FormattingEnabled = true;
             this.cmbConsultorio.Location = new System.Drawing.Point(299, 110);
             this.cmbConsultorio.Name = "cmbConsultorio";
             this.cmbConsultorio.Size = new System.Drawing.Size(165, 21);
             this.cmbConsultorio.TabIndex = 26;
+            this.cmbConsultorio.ValueMember = "Id_Bus";
+            // 
+            // busesByIdEspBindingSource
+            // 
+            this.busesByIdEspBindingSource.DataMember = "BusesByIdEsp";
+            this.busesByIdEspBindingSource.DataSource = this.busesDS;
+            // 
+            // busesDS
+            // 
+            this.busesDS.DataSetName = "BusesDS";
+            this.busesDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label14
             // 
@@ -309,9 +393,11 @@
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnGrabar
             // 
+            this.btnGrabar.Enabled = false;
             this.btnGrabar.Location = new System.Drawing.Point(475, 327);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(94, 32);
@@ -319,9 +405,11 @@
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGrabar.UseVisualStyleBackColor = true;
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Enabled = false;
             this.btnCancelar.Location = new System.Drawing.Point(575, 327);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(91, 32);
@@ -329,6 +417,7 @@
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnEditar
             // 
@@ -339,20 +428,23 @@
             this.btnEditar.Text = "&Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // lstEspecialista
+            // lstBusMed
             // 
-            this.lstEspecialista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstBusMed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader11,
             this.columnHeader12});
-            this.lstEspecialista.FullRowSelect = true;
-            this.lstEspecialista.Location = new System.Drawing.Point(8, 55);
-            this.lstEspecialista.MultiSelect = false;
-            this.lstEspecialista.Name = "lstEspecialista";
-            this.lstEspecialista.Size = new System.Drawing.Size(314, 308);
-            this.lstEspecialista.TabIndex = 37;
-            this.lstEspecialista.UseCompatibleStateImageBehavior = false;
-            this.lstEspecialista.View = System.Windows.Forms.View.Details;
+            this.lstBusMed.FullRowSelect = true;
+            this.lstBusMed.HideSelection = false;
+            this.lstBusMed.Location = new System.Drawing.Point(8, 55);
+            this.lstBusMed.MultiSelect = false;
+            this.lstBusMed.Name = "lstBusMed";
+            this.lstBusMed.Size = new System.Drawing.Size(314, 308);
+            this.lstBusMed.TabIndex = 37;
+            this.lstBusMed.UseCompatibleStateImageBehavior = false;
+            this.lstBusMed.View = System.Windows.Forms.View.Details;
+            this.lstBusMed.SelectedIndexChanged += new System.EventHandler(this.lstBusMed_SelectedIndexChanged);
             // 
             // columnHeader11
             // 
@@ -361,16 +453,17 @@
             // 
             // columnHeader12
             // 
-            this.columnHeader12.Text = "Especialista";
+            this.columnHeader12.Text = "Especialidad";
             this.columnHeader12.Width = 100;
             // 
-            // edtDescripcion
+            // txtObs
             // 
-            this.edtDescripcion.Location = new System.Drawing.Point(5, 154);
-            this.edtDescripcion.Multiline = true;
-            this.edtDescripcion.Name = "edtDescripcion";
-            this.edtDescripcion.Size = new System.Drawing.Size(461, 67);
-            this.edtDescripcion.TabIndex = 38;
+            this.txtObs.Enabled = false;
+            this.txtObs.Location = new System.Drawing.Point(5, 154);
+            this.txtObs.Multiline = true;
+            this.txtObs.Name = "txtObs";
+            this.txtObs.Size = new System.Drawing.Size(461, 67);
+            this.txtObs.TabIndex = 38;
             // 
             // txtLastUpDate
             // 
@@ -397,18 +490,18 @@
             // pnlEspec
             // 
             this.pnlEspec.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlEspec.Controls.Add(this.txtRNE);
+            this.pnlEspec.Controls.Add(this.txtNCol);
             this.pnlEspec.Controls.Add(this.label7);
             this.pnlEspec.Controls.Add(this.txtLastUpDate);
             this.pnlEspec.Controls.Add(this.label8);
             this.pnlEspec.Controls.Add(this.txtCreacion);
             this.pnlEspec.Controls.Add(this.label9);
-            this.pnlEspec.Controls.Add(this.edtDescripcion);
+            this.pnlEspec.Controls.Add(this.txtObs);
             this.pnlEspec.Controls.Add(this.label10);
             this.pnlEspec.Controls.Add(this.label11);
             this.pnlEspec.Controls.Add(this.cmbPersonal);
-            this.pnlEspec.Controls.Add(this.cmbTipColeg);
-            this.pnlEspec.Controls.Add(this.txtNColeg);
-            this.pnlEspec.Controls.Add(this.txtNRC);
+            this.pnlEspec.Controls.Add(this.cmbTCol);
             this.pnlEspec.Controls.Add(this.label14);
             this.pnlEspec.Controls.Add(this.cmbEstado);
             this.pnlEspec.Controls.Add(this.cmbConsultorio);
@@ -420,6 +513,44 @@
             this.pnlEspec.Size = new System.Drawing.Size(472, 261);
             this.pnlEspec.TabIndex = 41;
             // 
+            // busesByIdEspTableAdapter
+            // 
+            this.busesByIdEspTableAdapter.ClearBeforeFill = true;
+            // 
+            // personalTableAdapter
+            // 
+            this.personalTableAdapter.ClearBeforeFill = true;
+            // 
+            // especialidadTableAdapter
+            // 
+            this.especialidadTableAdapter.ClearBeforeFill = true;
+            // 
+            // tipoColegiaturaTableAdapter
+            // 
+            this.tipoColegiaturaTableAdapter.ClearBeforeFill = true;
+            // 
+            // estadoRegistroTableAdapter
+            // 
+            this.estadoRegistroTableAdapter.ClearBeforeFill = true;
+            // 
+            // txtNCol
+            // 
+            this.txtNCol.Enabled = false;
+            this.txtNCol.Location = new System.Drawing.Point(153, 66);
+            this.txtNCol.Mask = "999999";
+            this.txtNCol.Name = "txtNCol";
+            this.txtNCol.Size = new System.Drawing.Size(80, 20);
+            this.txtNCol.TabIndex = 41;
+            // 
+            // txtRNE
+            // 
+            this.txtRNE.Enabled = false;
+            this.txtRNE.Location = new System.Drawing.Point(239, 66);
+            this.txtRNE.Mask = "999999";
+            this.txtRNE.Name = "txtRNE";
+            this.txtRNE.Size = new System.Drawing.Size(80, 20);
+            this.txtRNE.TabIndex = 42;
+            // 
             // frmEspecialistas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,12 +558,12 @@
             this.ClientSize = new System.Drawing.Size(815, 374);
             this.ControlBox = false;
             this.Controls.Add(this.pnlEspec);
-            this.Controls.Add(this.lstEspecialista);
+            this.Controls.Add(this.lstBusMed);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.cmbEstBus);
+            this.Controls.Add(this.cmbEstList);
             this.Controls.Add(this.txtConsultorio);
             this.Controls.Add(this.txtEspecialidad);
             this.Controls.Add(this.txtNCP);
@@ -448,6 +579,15 @@
             this.Text = "Registro de Especialistas por Consultorio";
             this.Load += new System.EventHandler(this.frmEspecialistas_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEspecialistas_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personalBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personalDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoColegiaturaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesByIdEspBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.busesDS)).EndInit();
             this.pnlEspec.ResumeLayout(false);
             this.pnlEspec.PerformLayout();
             this.ResumeLayout(false);
@@ -470,11 +610,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cmbEstBus;
+        private System.Windows.Forms.ComboBox cmbEstList;
         private System.Windows.Forms.ComboBox cmbPersonal;
-        private System.Windows.Forms.ComboBox cmbTipColeg;
-        private System.Windows.Forms.TextBox txtNColeg;
-        private System.Windows.Forms.TextBox txtNRC;
+        private System.Windows.Forms.ComboBox cmbTCol;
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbEspecialidad;
@@ -485,12 +623,28 @@
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.ListView lstEspecialista;
+        private System.Windows.Forms.ListView lstBusMed;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.TextBox edtDescripcion;
+        private System.Windows.Forms.TextBox txtObs;
         private System.Windows.Forms.TextBox txtLastUpDate;
         private System.Windows.Forms.TextBox txtCreacion;
         private System.Windows.Forms.Panel pnlEspec;
+        private System.Windows.Forms.BindingSource busesByIdEspBindingSource;
+        private Dominio.Data.BusesDS busesDS;
+        private Dominio.Data.BusesDSTableAdapters.BusesByIdEspTableAdapter busesByIdEspTableAdapter;
+        private Dominio.Data.PersonalDS personalDS;
+        private System.Windows.Forms.BindingSource personalBindingSource;
+        private Dominio.Data.PersonalDSTableAdapters.PersonalTableAdapter personalTableAdapter;
+        private System.Windows.Forms.BindingSource especialidadBindingSource;
+        private Dominio.Data.ConsultoriosDS consultoriosDS;
+        private Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter especialidadTableAdapter;
+        private Dominio.Data.TablaTipoDS tablaTipoDS;
+        private System.Windows.Forms.BindingSource tipoColegiaturaBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.TipoColegiaturaTableAdapter tipoColegiaturaTableAdapter;
+        private System.Windows.Forms.BindingSource estadoRegistroBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter estadoRegistroTableAdapter;
+        private System.Windows.Forms.MaskedTextBox txtRNE;
+        private System.Windows.Forms.MaskedTextBox txtNCol;
     }
 }
