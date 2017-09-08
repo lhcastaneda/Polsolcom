@@ -25,5 +25,10 @@ namespace Polsolcom.Forms
                 this.Close();
             }
         }
+
+        private void frmPersonalDet_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

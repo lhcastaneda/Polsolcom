@@ -480,10 +480,10 @@ namespace Polsolcom.Forms
 
         private void frmConsultorios_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'tablaTipoDS.EstadoRegistro' table. You can move, or remove it, as needed.
+            this.estadoRegistroTableAdapter.Fill(this.tablaTipoDS.EstadoRegistro);
             // TODO: This line of code loads data into the 'modalidadDS.Modalidad' table. You can move, or remove it, as needed.
             this.modalidadTableAdapter.Fill(this.modalidadDS.Modalidad);
-            // TODO: This line of code loads data into the 'estadosDS.Estados' table. You can move, or remove it, as needed.
-            this.estadosTableAdapter.Fill(this.estadosDS.Estados);
             cmbEst.SelectedIndex = -1;
             this.les<string>("");
             btnInicio_Click(btnInicio, new EventArgs());

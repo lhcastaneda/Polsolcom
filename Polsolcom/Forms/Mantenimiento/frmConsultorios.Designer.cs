@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.chkEstado = new System.Windows.Forms.CheckBox();
             this.cmbEst = new System.Windows.Forms.ComboBox();
-            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.estadosDS = new Polsolcom.Dominio.Data.EstadosDS();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnInicio = new System.Windows.Forms.Button();
@@ -72,14 +70,16 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelEspecialidad = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.estadosTableAdapter = new Polsolcom.Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter();
             this.modalidadTableAdapter = new Polsolcom.Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).BeginInit();
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
+            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).BeginInit();
             this.panelEspecialidad.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // chkEstado
@@ -97,8 +97,6 @@
             // 
             // cmbEst
             // 
-            this.cmbEst.DataSource = this.estadosBindingSource;
-            this.cmbEst.DisplayMember = "Descripcion";
             this.cmbEst.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEst.Enabled = false;
             this.cmbEst.FormattingEnabled = true;
@@ -108,16 +106,6 @@
             this.cmbEst.TabIndex = 2;
             this.cmbEst.ValueMember = "Id_Tipo";
             this.cmbEst.SelectionChangeCommitted += new System.EventHandler(this.cmbEst_SelectionChangeCommitted);
-            // 
-            // estadosBindingSource
-            // 
-            this.estadosBindingSource.DataMember = "Estados";
-            this.estadosBindingSource.DataSource = this.estadosDS;
-            // 
-            // estadosDS
-            // 
-            this.estadosDS.DataSetName = "EstadosDS";
-            this.estadosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -199,7 +187,7 @@
             // 
             // cmbEstado
             // 
-            this.cmbEstado.DataSource = this.estadosBindingSource;
+            this.cmbEstado.DataSource = this.estadoRegistroBindingSource;
             this.cmbEstado.DisplayMember = "Descripcion";
             this.cmbEstado.Enabled = false;
             this.cmbEstado.FormattingEnabled = true;
@@ -482,13 +470,23 @@
             this.panel2.Size = new System.Drawing.Size(287, 161);
             this.panel2.TabIndex = 38;
             // 
-            // estadosTableAdapter
-            // 
-            this.estadosTableAdapter.ClearBeforeFill = true;
-            // 
             // modalidadTableAdapter
             // 
             this.modalidadTableAdapter.ClearBeforeFill = true;
+            // 
+            // tablaTipoDS
+            // 
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // estadoRegistroBindingSource
+            // 
+            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
+            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // estadoRegistroTableAdapter
+            // 
+            this.estadoRegistroTableAdapter.ClearBeforeFill = true;
             // 
             // frmConsultorios
             // 
@@ -514,14 +512,14 @@
             this.Text = "Especialidades y Consultorios";
             this.Load += new System.EventHandler(this.frmConsultorios_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConsultorios_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).EndInit();
             this.panelEspecialidad.ResumeLayout(false);
             this.panelEspecialidad.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -568,11 +566,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Panel panelEspecialidad;
         private System.Windows.Forms.Panel panel2;
-        private Dominio.Data.EstadosDS estadosDS;
-        private System.Windows.Forms.BindingSource estadosBindingSource;
-        private Dominio.Data.EstadosDSTableAdapters.EstadosTableAdapter estadosTableAdapter;
         private Dominio.Data.ModalidadDS modalidadDS;
         private System.Windows.Forms.BindingSource modalidadBindingSource;
         private Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter modalidadTableAdapter;
+        private Dominio.Data.TablaTipoDS tablaTipoDS;
+        private System.Windows.Forms.BindingSource estadoRegistroBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter estadoRegistroTableAdapter;
     }
 }

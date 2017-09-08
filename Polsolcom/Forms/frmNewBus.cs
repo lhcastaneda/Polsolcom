@@ -31,10 +31,10 @@ namespace Polsolcom.Forms
 
         private void frmNewBus_Load(object sender, EventArgs ev)
         {
+            // TODO: This line of code loads data into the 'tablaTipoDS.EstadoRegistro' table. You can move, or remove it, as needed.
+            this.estadoRegistroTableAdapter.Fill(this.tablaTipoDS.EstadoRegistro);
             // TODO: This line of code loads data into the 'institucionesDS.Institucion' table. You can move, or remove it, as needed.
             this.institucionTableAdapter.Fill(this.institucionesDS.Institucion);
-            // TODO: This line of code loads data into the 'estadosDS.Estados' table. You can move, or remove it, as needed.
-            this.estadosTableAdapter.Fill(this.estadosDS.Estados);
             // TODO: This line of code loads data into the 'modalidadDS.Modalidad' table. You can move, or remove it, as needed.
             this.modalidadTableAdapter.Fill(this.modalidadDS.Modalidad);
             // TODO: This line of code loads data into the 'rotationDS.Rotation' table. You can move, or remove it, as needed.
