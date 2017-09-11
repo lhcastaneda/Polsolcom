@@ -247,13 +247,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RotationDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Data\TablaTipoDS.Designer.cs">
+    <Compile Include="Dominio\Data\TablaTipoDS1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dominio\Data\TipoDocumento.cs">
-      <DependentUpon>TipoDocumento.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\TipoDocumento.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -264,11 +261,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dominio\Data\TipoProductoDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\tmpEspecialistaDS.cs">
       <DependentUpon>tmpEspecialistaDS.xsd</DependentUpon>
@@ -1085,6 +1077,17 @@
     <None Include="Dominio\Data\Consolidado.xss">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </None>
+    <None Include="Dominio\Data\TablaTipoDS.xsc">
+      <DependentUpon>TablaTipoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\TablaTipoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TablaTipoDS1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\TablaTipoDS.xss">
+      <DependentUpon>TablaTipoDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\CProductosDS.xsc">
       <DependentUpon>CProductosDS.xsd</DependentUpon>
     </None>
@@ -1250,17 +1253,6 @@
     <None Include="Dominio\Data\RotationDS.xss">
       <DependentUpon>RotationDS.xsd</DependentUpon>
     </None>
-    <None Include="Dominio\Data\TablaTipoDS.xsc">
-      <DependentUpon>TablaTipoDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\TablaTipoDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TablaTipoDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\TablaTipoDS.xss">
-      <DependentUpon>TablaTipoDS.xsd</DependentUpon>
-    </None>
     <None Include="Dominio\Data\TipoDocumento.xsc">
       <DependentUpon>TipoDocumento.xsd</DependentUpon>
     </None>
@@ -1282,17 +1274,6 @@
     </None>
     <None Include="Dominio\Data\TipoInstitucionDS.xss">
       <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\TipoProductoDS.xsc">
-      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\TipoProductoDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TipoProductoDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\TipoProductoDS.xss">
-      <DependentUpon>TipoProductoDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\tmpEspecialistaDS.xsc">
       <DependentUpon>tmpEspecialistaDS.xsd</DependentUpon>
