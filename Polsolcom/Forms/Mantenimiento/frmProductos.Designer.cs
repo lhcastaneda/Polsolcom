@@ -58,15 +58,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtMonto = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvProductos = new System.Windows.Forms.DataGridView();
-            this.cNomProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cEstat = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -79,6 +74,11 @@
             this.tipoSubProductoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TipoSubProductoTableAdapter();
             this.especialidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.especialidadTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter();
+            this.cNomProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cEstat = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nudMonto = new System.Windows.Forms.NumericUpDown();
             this.pnlBusqueda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
@@ -92,6 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMonto)).BeginInit();
             this.SuspendLayout();
             // 
             // btnInicio
@@ -381,14 +382,6 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "Precio";
             // 
-            // txtMonto
-            // 
-            this.txtMonto.Enabled = false;
-            this.txtMonto.Location = new System.Drawing.Point(453, 394);
-            this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(190, 20);
-            this.txtMonto.TabIndex = 23;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -438,34 +431,6 @@
             this.dgvProductos.TabIndex = 26;
             this.dgvProductos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellEnter);
             this.dgvProductos.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvProductos_CurrentCellDirtyStateChanged);
-            // 
-            // cNomProd
-            // 
-            this.cNomProd.HeaderText = "Nombre del Producto";
-            this.cNomProd.Name = "cNomProd";
-            this.cNomProd.ReadOnly = true;
-            this.cNomProd.Width = 280;
-            // 
-            // cTipo
-            // 
-            this.cTipo.HeaderText = "Tipo";
-            this.cTipo.Name = "cTipo";
-            this.cTipo.ReadOnly = true;
-            // 
-            // cPrecio
-            // 
-            this.cPrecio.HeaderText = "Precio";
-            this.cPrecio.Name = "cPrecio";
-            this.cPrecio.ReadOnly = true;
-            this.cPrecio.Width = 80;
-            // 
-            // cEstat
-            // 
-            this.cEstat.HeaderText = "Estado";
-            this.cEstat.Name = "cEstat";
-            this.cEstat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cEstat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cEstat.Width = 60;
             // 
             // pictureBox8
             // 
@@ -552,12 +517,57 @@
             // 
             this.especialidadTableAdapter.ClearBeforeFill = true;
             // 
+            // cNomProd
+            // 
+            this.cNomProd.HeaderText = "Nombre del Producto";
+            this.cNomProd.Name = "cNomProd";
+            this.cNomProd.ReadOnly = true;
+            this.cNomProd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cNomProd.Width = 280;
+            // 
+            // cTipo
+            // 
+            this.cTipo.HeaderText = "Tipo";
+            this.cTipo.Name = "cTipo";
+            this.cTipo.ReadOnly = true;
+            this.cTipo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // cPrecio
+            // 
+            this.cPrecio.HeaderText = "Precio";
+            this.cPrecio.Name = "cPrecio";
+            this.cPrecio.ReadOnly = true;
+            this.cPrecio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cPrecio.Width = 80;
+            // 
+            // cEstat
+            // 
+            this.cEstat.HeaderText = "Estado";
+            this.cEstat.Name = "cEstat";
+            this.cEstat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cEstat.Width = 60;
+            // 
+            // nudMonto
+            // 
+            this.nudMonto.DecimalPlaces = 2;
+            this.nudMonto.Enabled = false;
+            this.nudMonto.Location = new System.Drawing.Point(458, 393);
+            this.nudMonto.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.nudMonto.Name = "nudMonto";
+            this.nudMonto.Size = new System.Drawing.Size(188, 20);
+            this.nudMonto.TabIndex = 40;
+            // 
             // frmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(858, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.nudMonto);
             this.Controls.Add(this.lstCons);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox6);
@@ -566,7 +576,6 @@
             this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtMonto);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label6);
@@ -608,6 +617,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMonto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -638,7 +648,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtMonto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.DataGridView dgvProductos;
@@ -664,5 +673,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cPrecio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn cEstat;
+        private System.Windows.Forms.NumericUpDown nudMonto;
     }
 }

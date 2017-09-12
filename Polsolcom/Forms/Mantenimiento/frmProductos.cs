@@ -18,7 +18,6 @@ namespace Polsolcom.Forms
         int i = 0;
         int j = 0;
         int cip = 0;
-        List<Dictionary<string, string>> product = new List<Dictionary<string, string>> ();
         List<Dictionary<string, string>> especList = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> productList = new List<Dictionary<string, string>>();
 
@@ -29,34 +28,27 @@ namespace Polsolcom.Forms
 
         public void capTab()
         {
-            txtIdProducto.Text = this.product[this.j]["Id_Producto"];
-            cmbConsultorio.SelectedValue = this.product[this.j]["Id_Producto"].Substring(0, 6);
-            txtDescripcion.Text = this.product[this.j]["Descripcion"];
-            txtMonto.Text = this.product[this.j]["Monto"];
-            cmbTipo.SelectedValue = this.product[this.j]["Tipo"];
-            cmbEstado.SelectedValue = this.product[this.j]["Estado"];
-            cmbTPEsp.SelectedValue = this.product[this.j]["TPEsp"];
+            txtIdProducto.Text = this.productList[this.j]["Id_Producto"];
+            cmbConsultorio.SelectedValue = this.productList[this.j]["Id_Producto"].Substring(0, 6);
+            txtDescripcion.Text = this.productList[this.j]["Descripcion"];
+            nudMonto.Value = decimal.Parse(this.productList[this.j]["Monto"]);
+            cmbTipo.SelectedValue = this.productList[this.j]["Tipo"];
+            cmbEstado.SelectedValue = this.productList[this.j]["Estado"];
+            cmbTPEsp.SelectedValue = this.productList[this.j]["TPEsp"];
         }
 
-        public void carData(bool xcr)
+        public void carData()
         {
             string io = Operativo.id_oper;
 
+            string sql = "Select P.Id_Producto, P.Descripcion, Left(P.Id_Producto, 6) as Consultorio, CAST(P.Monto AS DECIMAL(10,2)) as Monto, P.Tipo, P.Estado, P.TPEsp, T.Descripcion As DescripcionTipo " +
+                "From Productos P Inner Join (Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In(Select Id_Tipo " +
+                "From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_PRODUCTO' And Id_Tabla='0'))T On P.Tipo=T.Id_Tipo " +
+                "Where SubString(Id_Producto,1,3)='" + io + "' Order By Id_Producto";
 
-            string sql = "Select * From Productos Where SubString(Id_Producto,1,3)='" + io + "' Order By Id_Producto";
-            this.product = General.GetDictionaryList(sql);
+            this.productList = General.GetDictionaryList(sql);
 
-            if (!xcr)
-            {
-                string sql2 = "Select P.Descripcion As Producto,T.Descripcion As Tipo, Monto,Cast(Estado As Int)As Estado,Id_Producto " +
-                    "From Productos P Inner Join (Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In(Select Id_Tipo " +
-                    "From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_PRODUCTO' And Id_Tabla='0'))T On P.Tipo=T.Id_Tipo " +
-                    "Where SubString(Id_Producto,1,3)='" + io + "' Order By Id_Producto";
-
-                this.productList = General.GetDictionaryList(sql2);
-
-                this.fillDataGridView();
-            }
+            this.fillDataGridView();
         }
 
         public void fillDataGridView()
@@ -67,9 +59,9 @@ namespace Polsolcom.Forms
             {
                 DataGridViewRow dgvr = new DataGridViewRow();
                 //
-                dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["Producto"] });
+                dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["Descripcion"] });
                 //
-                dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["Tipo"] });
+                dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["DescripcionTipo"] });
                 //
                 dgvr.Cells.Add(new DataGridViewTextBoxCell { Value = item["Monto"] });
                 //
@@ -93,6 +85,7 @@ namespace Polsolcom.Forms
         {
             dgvProductos.Enabled = true;
             General.setAll<TextBox, bool>(this, "Enabled", false);
+            General.setAll<NumericUpDown, bool>(this, "Enabled", false);
             General.setAll<ComboBox, bool>(this, "Enabled", false);
             General.setAll<Button, bool>(this, "Enabled", true);
 
@@ -105,7 +98,7 @@ namespace Polsolcom.Forms
         {
             dgvProductos.Enabled = false;
             txtDescripcion.Enabled = true;
-            txtMonto.Enabled = true;
+            nudMonto.Enabled = true;
             txtCriterio.Enabled = false;
             General.setAll<ComboBox, bool>(this,"Enabled", true);
             General.setAll<Button, bool>(this, "Enabled", false);
@@ -120,7 +113,7 @@ namespace Polsolcom.Forms
             {
                 General.setAll<TextBox, string>(this, "Text", "");
                 General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
-                txtMonto.Text = "0.00";
+                nudMonto.Value = 0.00M;
                 btnNuevo.Enabled = true;
                 cmbConsultorio.Enabled = true;
                 cmbConsultorio.Focus();
@@ -136,12 +129,11 @@ namespace Polsolcom.Forms
             General.FillListView(lstCons, this.especList, new[] { "Descripcion" });
         }
 
-        public void ubica(string idp, int xmd)
+        public void ubica(string idp)
         {
-            bool nmd = xmd == 0 ? false : true;
-            this.carData(nmd);
+            this.carData();
 
-            this.j = this.product.FindIndex(x => x["Id_Producto"] == idp);
+            this.j = this.productList.FindIndex(x => x["Id_Producto"] == idp);
             this.capTab();
         }
 
@@ -157,7 +149,7 @@ namespace Polsolcom.Forms
 
             int c = Conexion.ExecuteScalar<int>(sql);
 
-            if (cmbConsultorio.SelectedIndex == -1 || txtDescripcion.Text.Length == 0 || cmbEstado.SelectedIndex == -1 || cmbTipo.SelectedIndex == -1 || float.Parse(txtMonto.Text) == 0f) {
+            if (cmbConsultorio.SelectedIndex == -1 || txtDescripcion.Text.Length == 0 || cmbEstado.SelectedIndex == -1 || cmbTipo.SelectedIndex == -1 || nudMonto.Value == 0.00M) {
                 MessageBox.Show("Faltan datos para guardar ...", "Advertencia");
                 return false;
             }
@@ -182,7 +174,7 @@ namespace Polsolcom.Forms
             this.estadoRegistroTableAdapter.Fill(this.tablaTipoDS.EstadoRegistro);
             this.Text = "Productos del " + Operativo.mod_oper + " " + Operativo.descripcion + " ...";
             this.les();
-            this.carData(false);
+            this.carData();
             btnInicio_Click(btnInicio, new EventArgs());
         }
 
@@ -201,7 +193,7 @@ namespace Polsolcom.Forms
             string idc = chkCons.Checked ? "" : this.especList[this.i]["Id_Consultorio"];
             string des = txtCriterio.Text;
 
-            string sql = "Select P.Descripcion As Producto,T.Descripcion As Tipo,Monto,Cast(Estado As Int)As Estado,Id_Producto " + 
+            string sql = "Select P.Id_Producto, P.Descripcion, Left(P.Id_Producto, 6) as Consultorio, CAST(P.Monto AS DECIMAL(10,2)) as Monto, P.Tipo, P.Estado, P.TPEsp, T.Descripcion As DescripcionTipo " +
                 "From Productos P Inner Join (Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In(Select Id_Tipo " + 
                 "From TablaTipo Where Descripcion='TIPO_PRODUCTO' And Id_Tabla='0'))T On P.Tipo=T.Id_Tipo Where Left" +
                 "(Id_Producto,3)='" + Operativo.id_oper + "' And P.Descripcion Like '%" + des +"%' And Left(Id_Producto,6) Like '%" + idc + "%' " + 
@@ -233,7 +225,7 @@ namespace Polsolcom.Forms
                     }
 
                     string np = txtDescripcion.Text;
-                    string pr = Math.Round(decimal.Parse(txtMonto.Text)).ToString();
+                    string pr = nudMonto.Value.ToString();
                     string ie = cmbConsultorio.SelectedIndex == -1 ? "" : cmbConsultorio.SelectedValue.ToString();
                     string tp = cmbTipo.SelectedIndex == -1 ? "" : cmbTipo.SelectedValue.ToString();
                     string st = cmbEstado.SelectedIndex == -1 ? "" : cmbEstado.SelectedValue.ToString();
@@ -252,7 +244,7 @@ namespace Polsolcom.Forms
                     btnAnterior_Click(btnAnterior, new EventArgs());
                 }
 
-                this.ubica(txtIdProducto.Text, 0);
+                this.ubica(txtIdProducto.Text);
                 this.cip = 0;
                 btnNuevo.Text = "&Nuevo";
                 this.deshabilita();
@@ -283,7 +275,7 @@ namespace Polsolcom.Forms
                         if (this.cip > 0)
                         {
                             string np = txtDescripcion.Text;
-                            string pr = Math.Round(decimal.Parse(txtMonto.Text)).ToString();
+                            string pr = nudMonto.Value.ToString();
                             string ie = cmbConsultorio.SelectedIndex == -1 ? "" : cmbConsultorio.SelectedValue.ToString();
                             string tp = cmbTipo.SelectedIndex == -1 ? "" : cmbTipo.SelectedValue.ToString();
                             string st = cmbEstado.SelectedIndex == -1 ? "" : cmbEstado.SelectedValue.ToString();
@@ -305,7 +297,7 @@ namespace Polsolcom.Forms
                         }
                     }
 
-                    this.ubica(txtIdProducto.Text, 0);
+                    this.ubica(txtIdProducto.Text);
                     btnModificar.Text = "&Modificar";
                     this.deshabilita();
                     this.cip = 0;
@@ -333,7 +325,7 @@ namespace Polsolcom.Forms
                     string sql2 = "Delete From Productos Where LTrim(RTrim(Id_Producto))='" + ip + "'";
                     int affected = Conexion.ExecuteNonQuery(sql2);
 
-                    this.carData(false);
+                    this.carData();
 
                     txtCriterio_TextChanged(txtCriterio, new EventArgs());
                 }
@@ -457,7 +449,6 @@ namespace Polsolcom.Forms
                 General.chgst("Productos", ip, st);
 
                 this.productList[this.j]["Estado"] = st;
-                this.product[this.j]["Estado"] = st;
 
                 this.capTab();
 
