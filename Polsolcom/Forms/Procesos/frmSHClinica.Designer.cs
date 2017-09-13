@@ -29,6 +29,22 @@ namespace Polsolcom.Forms.Procesos
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSHClinica));
+			TenTec.Windows.iGridLib.iGColPattern iGColPattern1 = new TenTec.Windows.iGridLib.iGColPattern();
+			TenTec.Windows.iGridLib.iGColPattern iGColPattern2 = new TenTec.Windows.iGridLib.iGColPattern();
+			TenTec.Windows.iGridLib.iGColPattern iGColPattern3 = new TenTec.Windows.iGridLib.iGColPattern();
+			TenTec.Windows.iGridLib.iGColPattern iGColPattern4 = new TenTec.Windows.iGridLib.iGColPattern();
+			TenTec.Windows.iGridLib.iGColPattern iGColPattern5 = new TenTec.Windows.iGridLib.iGColPattern();
+			this.iGridCol0CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
+			this.iGDDL = new TenTec.Windows.iGridLib.iGDropDownList();
+			this.iGridCol0ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
+			this.iGridCol1CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
+			this.iGridCol1ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
+			this.iGridCol2CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
+			this.iGridCol2ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
+			this.iGridCol3CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
+			this.iGridCol3ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
+			this.iGridCol4CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
+			this.iGridCol4ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txtDigitador = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -99,13 +115,28 @@ namespace Polsolcom.Forms.Procesos
 			this.txtAutoriza = new System.Windows.Forms.TextBox();
 			this.txtSon = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
-			this.iGrid = new TenTec.Windows.iGridLib.iGrid();
-			this.iGDropDownList = new TenTec.Windows.iGridLib.iGDropDownList();
+			this.fGrid = new TenTec.Windows.iGridLib.iGrid();
+			this.iGrid1DefaultCellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
+			this.iGrid1DefaultColHdrStyle = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
+			this.iGrid1RowTextColCellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.iGrid)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.fGrid)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// iGridCol0CellStyle
+			// 
+			this.iGridCol0CellStyle.DropDownControl = this.iGDDL;
+			this.iGridCol0CellStyle.EmptyStringAs = TenTec.Windows.iGridLib.iGEmptyStringAs.EmptyString;
+			// 
+			// iGDDL
+			// 
+			this.iGDDL.BackColor = System.Drawing.Color.Empty;
+			this.iGDDL.ForeColor = System.Drawing.Color.Empty;
+			this.iGDDL.SelItemBackColor = System.Drawing.Color.Empty;
+			this.iGDDL.SelItemForeColor = System.Drawing.Color.Empty;
+			this.iGDDL.SelectedItemChanged += new TenTec.Windows.iGridLib.iGSelectedItemChangedEventHandler(this.iGDDL_SelectedItemChanged);
 			// 
 			// groupBox1
 			// 
@@ -937,31 +968,37 @@ namespace Polsolcom.Forms.Procesos
 			this.label28.Text = "[Ins] Nuevo Paciente   [F3] Buscar Paciente   [F4] Buscar Venta   [F5] Recargar V" +
     "enta   [F6] Grabar";
 			// 
-			// iGrid
+			// fGrid
 			// 
-			this.iGrid.BorderStyle = TenTec.Windows.iGridLib.iGBorderStyle.None;
-			this.iGrid.ForeColor = System.Drawing.SystemColors.WindowText;
-			this.iGrid.Header.Height = 19;
-			this.iGrid.Location = new System.Drawing.Point(5, 237);
-			this.iGrid.Name = "iGrid";
-			this.iGrid.PressedMouseMoveMode = TenTec.Windows.iGridLib.iGPressedMouseMoveMode.Normal;
-			this.iGrid.RowMode = true;
-			this.iGrid.RowTextVisible = true;
-			this.iGrid.SelectionMode = TenTec.Windows.iGridLib.iGSelectionMode.None;
-			this.iGrid.Size = new System.Drawing.Size(594, 120);
-			this.iGrid.TabIndex = 0;
-			this.iGrid.TreeCol = null;
-			this.iGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
-			this.iGrid.CurCellChanged += new System.EventHandler(this.iGrid_CurCellChanged);
-			this.iGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
-			// 
-			// iGDropDownList
-			// 
-			this.iGDropDownList.BackColor = System.Drawing.Color.Empty;
-			this.iGDropDownList.ForeColor = System.Drawing.Color.Empty;
-			this.iGDropDownList.SelItemBackColor = System.Drawing.Color.Empty;
-			this.iGDropDownList.SelItemForeColor = System.Drawing.Color.Empty;
-			this.iGDropDownList.SelectedItemChanged += new TenTec.Windows.iGridLib.iGSelectedItemChangedEventHandler(this.iGDropDownList_SelectedItemChanged);
+			iGColPattern1.CellStyle = this.iGridCol0CellStyle;
+			iGColPattern1.ColHdrStyle = this.iGridCol0ColHdrStyle1;
+			iGColPattern2.CellStyle = this.iGridCol1CellStyle;
+			iGColPattern2.ColHdrStyle = this.iGridCol1ColHdrStyle1;
+			iGColPattern3.CellStyle = this.iGridCol2CellStyle;
+			iGColPattern3.ColHdrStyle = this.iGridCol2ColHdrStyle1;
+			iGColPattern4.CellStyle = this.iGridCol3CellStyle;
+			iGColPattern4.ColHdrStyle = this.iGridCol3ColHdrStyle1;
+			iGColPattern5.CellStyle = this.iGridCol4CellStyle;
+			iGColPattern5.ColHdrStyle = this.iGridCol4ColHdrStyle1;
+			this.fGrid.Cols.AddRange(new TenTec.Windows.iGridLib.iGColPattern[] {
+            iGColPattern1,
+            iGColPattern2,
+            iGColPattern3,
+            iGColPattern4,
+            iGColPattern5});
+			this.fGrid.DefaultCol.CellStyle = this.iGrid1DefaultCellStyle;
+			this.fGrid.DefaultCol.ColHdrStyle = this.iGrid1DefaultColHdrStyle;
+			this.fGrid.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.fGrid.Header.Height = 19;
+			this.fGrid.Location = new System.Drawing.Point(6, 236);
+			this.fGrid.Name = "fGrid";
+			this.fGrid.RowTextCol.CellStyle = this.iGrid1RowTextColCellStyle;
+			this.fGrid.Size = new System.Drawing.Size(591, 121);
+			this.fGrid.TabIndex = 48;
+			this.fGrid.TreeCol = null;
+			this.fGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
+			this.fGrid.SelectionChanged += new System.EventHandler(this.fGrid_SelectionChanged);
+			this.fGrid.CellClick += new TenTec.Windows.iGridLib.iGCellClickEventHandler(this.fGrid_CellClick);
 			// 
 			// frmSHClinica
 			// 
@@ -970,6 +1007,7 @@ namespace Polsolcom.Forms.Procesos
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.ClientSize = new System.Drawing.Size(718, 425);
 			this.ControlBox = false;
+			this.Controls.Add(this.fGrid);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.label28);
 			this.Controls.Add(this.txtSon);
@@ -979,7 +1017,6 @@ namespace Polsolcom.Forms.Procesos
 			this.Controls.Add(this.txtNeto);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox3);
-			this.Controls.Add(this.iGrid);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.KeyPreview = true;
 			this.Name = "frmSHClinica";
@@ -992,7 +1029,7 @@ namespace Polsolcom.Forms.Procesos
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.iGrid)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1070,7 +1107,20 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.TextBox txtAutoriza;
 		private System.Windows.Forms.TextBox txtSon;
 		private System.Windows.Forms.Label label28;
-		private TenTec.Windows.iGridLib.iGrid iGrid;
-		private TenTec.Windows.iGridLib.iGDropDownList iGDropDownList;
+		private TenTec.Windows.iGridLib.iGDropDownList iGDDL;
+		private TenTec.Windows.iGridLib.iGrid fGrid;
+		private TenTec.Windows.iGridLib.iGCellStyle iGrid1DefaultCellStyle;
+		private TenTec.Windows.iGridLib.iGColHdrStyle iGrid1DefaultColHdrStyle;
+		private TenTec.Windows.iGridLib.iGCellStyle iGrid1RowTextColCellStyle;
+		private TenTec.Windows.iGridLib.iGCellStyle iGridCol0CellStyle;
+		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol0ColHdrStyle1;
+		private TenTec.Windows.iGridLib.iGCellStyle iGridCol1CellStyle;
+		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol1ColHdrStyle1;
+		private TenTec.Windows.iGridLib.iGCellStyle iGridCol2CellStyle;
+		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol2ColHdrStyle1;
+		private TenTec.Windows.iGridLib.iGCellStyle iGridCol3CellStyle;
+		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol3ColHdrStyle1;
+		private TenTec.Windows.iGridLib.iGCellStyle iGridCol4CellStyle;
+		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol4ColHdrStyle1;
 	}
 }

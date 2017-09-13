@@ -8,10 +8,9 @@ using System.Windows.Forms;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
-using System.Linq;
-using TenTec.Windows.iGridLib;
 using System.Collections.Generic;
 using System.Drawing;
+using TenTec.Windows.iGridLib;
 
 namespace Polsolcom.Forms.Procesos
 {
@@ -73,89 +72,51 @@ namespace Polsolcom.Forms.Procesos
 		private void FormateaGrids()
 		{
 			//iGDropDownList cmb = new iGDropDownList();
-			iGrid.RowHeader.Visible = false;
-			iGrid.DefaultRow.Height = 17;
-			iGrid.Cols.Count = 5;
+			fGrid.RowHeader.Visible = false;
+			fGrid.DefaultRow.Height = 17;
+			//iGrid.Cols.Count = 5;
 			//producto
-			iGrid.Cols[0].Text = "Descripcion del Producto o Servicio";
-			iGrid.Cols[0].Width = 425;
-			iGrid.Cols[0].CellStyle.ImageAlign = iGContentAlignment.MiddleLeft;
-			iGrid.Cols[0].CellStyle.DropDownControl = iGDropDownList; //agrega el combobox
-			iGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
-			iGrid.Cols[0].CellStyle.ValueType = typeof(string);
-			
+			fGrid.Cols[0].Text = "Descripcion del Producto o Servicio";
+			fGrid.Cols[0].Width = 425;
+			fGrid.Cols[0].CellStyle.ImageAlign = iGContentAlignment.MiddleLeft;
+			//iGrid.Cols[0].CellStyle.DropDownControl = iGDropDownList; //agrega el combobox
+			fGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
+			fGrid.Cols[0].CellStyle.ValueType = typeof(string);
+
 			//cantidad
-			iGrid.Cols[1].Text = "Cant.";
-			iGrid.Cols[1].Width = 40;
-			iGrid.Cols[1].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			iGrid.Cols[1].CellStyle.ReadOnly = iGBool.False;
+			fGrid.Cols[1].Text = "Cant.";
+			fGrid.Cols[1].Width = 40;
+			fGrid.Cols[1].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
+			fGrid.Cols[1].CellStyle.ReadOnly = iGBool.False;
 			//precio
-			iGrid.Cols[2].Text = "Precio";
-			iGrid.Cols[2].Width = 50;
-			iGrid.Cols[2].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
-			iGrid.Cols[2].CellStyle.FormatString = "{0:#,#}";
-			iGrid.Cols[2].CellStyle.ReadOnly = iGBool.True;
+			fGrid.Cols[2].Text = "Precio";
+			fGrid.Cols[2].Width = 50;
+			fGrid.Cols[2].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
+			fGrid.Cols[2].CellStyle.FormatString = "{0:#,#}";
+			fGrid.Cols[2].CellStyle.ReadOnly = iGBool.True;
 			//sub total
-			iGrid.Cols[3].Text = "Sub Total";
-			iGrid.Cols[3].Width = 60;
-			iGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
-			iGrid.Cols[3].CellStyle.FormatString = "{0:#,#}";
-			iGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
+			fGrid.Cols[3].Text = "Sub Total";
+			fGrid.Cols[3].Width = 60;
+			fGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
+			fGrid.Cols[3].CellStyle.FormatString = "{0:#,#}";
+			fGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
 			//id
-			iGrid.Cols[4].Text = "ID";
-			iGrid.Cols[4].Width = 1;
-			iGrid.Cols[4].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			iGrid.Cols[4].CellStyle.ReadOnly = iGBool.True;
+			fGrid.Cols[4].Text = "ID";
+			fGrid.Cols[4].Width = 1;
+			fGrid.Cols[4].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
+			fGrid.Cols[4].CellStyle.ReadOnly = iGBool.True;
 			// Popup menu de la grid
 			//iGrid.ContextMenuStrip = new ContextMenuStrip();
 			//iGrid.ContextMenuStrip.Items.Add("Exportar");
 			//iGrid.ContextMenuStrip.Items.Add("Copiar");
 
-
 		}
 
-		private DataGridViewComboBoxCell LlenaProductos( string sCategoria, string idProducto = "" )
+		private void CargaProductos( string sCategoria, string idProducto = "" )
 		{
-			DataGridViewComboBoxCell cmb = new DataGridViewComboBoxCell();
-
-			string sQuery = "SELECT descripcion,CAST(SubString(Id_Producto,4,5) AS INT) AS Id_Producto " +
-							"FROM Productos " +
-							"WHERE 1 = 1 " +
-							"AND Estado = '1' " +
-							"AND LEFT(Id_Producto,6) = '" + sCategoria.Trim() + "' ";
-			if( idProducto != "" )
-				sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
-			else
-				sQuery = sQuery + "ORDER BY 1";
-
-			cmb.DataSource = null;
-			cmb.Items.Clear();
-
-			using( IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString) )
-			{
-				try
-				{
-					if( db.State == ConnectionState.Closed )
-						db.Open();
-
-					cmb.DataSource = db.Query<Prod>(sQuery).ToList();
-					cmb.DisplayMember = "descripcion";
-					cmb.ValueMember = "id_producto";
-				}
-				catch( Exception ex )
-				{
-					MessageBox.Show(ex.Message);
-				}
-			}
-
-			return cmb;
-
-		}
-
-		private iGDropDownList CargaProductos( string sCategoria, string idProducto = "" )
-		{
-			iGDropDownList cmb = new iGDropDownList();
-			string sQuery = "SELECT CAST(SubString(Id_Producto,4,5) AS INT) AS Id,Descripcion " +
+			//iGDropDownList cmb = new iGDropDownList();
+			//string sQuery = "SELECT CAST(SubString(Id_Producto,4,5) AS INT) AS Id,Descripcion " +
+			string sQuery = "SELECT Id_Producto AS Id, Descripcion " +
 							"FROM Productos " +
 							"WHERE 1 = 1 " +
 							"AND Estado = '1' " +
@@ -166,13 +127,18 @@ namespace Polsolcom.Forms.Procesos
 				sQuery = sQuery + "ORDER BY 2";
 
 			Conexion.CMD.CommandText = sQuery;
-			cmb.Items.Clear();
-			cmb.FillWithData(Conexion.CMD, "Id", "Descripcion");
 
-			if( cmb.Items.Count == 1 )
-				cmb.Items[0].Selectable = true;
+			iGDDL.Items.Clear();
+			iGDDL.FillWithData(Conexion.CMD, "Id", "Descripcion");
 
-			return cmb;
+			//cmb.Items.Clear();
+			//cmb.FillWithData(Conexion.CMD, "Id", "Descripcion");
+
+
+			if( iGDDL.Items.Count == 1 )
+				iGDDL.Items[0].Selectable = true;
+
+			//return cmb;
 		}
 
 		private string DevuelvePrecioProducto( string idProduct )
@@ -349,7 +315,7 @@ namespace Polsolcom.Forms.Procesos
 				if( c.HasChildren )
 					LimpiaControles(c);
 			}
-			iGrid.Rows.Clear();
+			fGrid.Rows.Clear();
 			FormateaGrids();
 
 		}
@@ -643,10 +609,10 @@ namespace Polsolcom.Forms.Procesos
 			}
 			
 			//agrega una fila
-			iGrid.Rows.Count = iGrid.Rows.Count + 1;
-			iGrid.Cells[iGrid.Rows.Count - 1, 0].DropDownControl = iGDropDownList;
+			fGrid.Rows.Count = fGrid.Rows.Count + 1;
+			fGrid.Cells[fGrid.Rows.Count - 1, 0].DropDownControl = iGDDL;
 
-			if( iGrid.Rows.Count != 0 )
+			if( fGrid.Rows.Count != 0 )
 				btnQuitar.Enabled = true;
 			else
 				btnQuitar.Enabled = false;
@@ -910,8 +876,9 @@ namespace Polsolcom.Forms.Procesos
 
 		private void CargaDetalleTicket( string sNHC, string sEspecialidad )
 		{
+			iGDropDownList cmb = new iGDropDownList();
 			double dTotal = 0;
-			iGrid.Rows.Clear();
+			fGrid.Rows.Clear();
 			FormateaGrids();
 
 			if( sNHC.Trim() == "" )
@@ -935,22 +902,23 @@ namespace Polsolcom.Forms.Procesos
 				{
 					if( dr.HasRows )
 					{
-						iGrid.BeginUpdate();
-						iGrid.Rows.Count = iCant;
+						fGrid.BeginUpdate();
+						fGrid.Rows.Count = iCant;
 
-						foreach( iGRow row in iGrid.Rows )
+						foreach( iGRow row in fGrid.Rows )
 						{
 							dr.Read();
-							iGDropDownList = CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
-							row.Cells[0].DropDownControl = iGDropDownList;
-							row.Cells[0].Value = iGDropDownList.Items[0].Value;
+							//cmb = CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
+							CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
+							row.Cells[0].DropDownControl = iGDDL;
+							row.Cells[0].Value = iGDDL.Items[0].Value;
 							row.Cells[1].Value = dr.GetValue(3).ToString();
 							row.Cells[2].Value = dr.GetValue(2).ToString(); //DevuelvePrecioProducto(dr.GetValue(1).ToString());
 							row.Cells[3].Value = (int.Parse(row.Cells[1].Value.ToString()) * double.Parse(row.Cells[2].Value.ToString())).ToString("#,###.#0");
 							row.Cells[4].Value = dr.GetValue(1).ToString();
 							dTotal = dTotal + double.Parse(row.Cells[3].Value.ToString());
 						}
-						iGrid.EndUpdate();
+						fGrid.EndUpdate();
 						txtNeto.Text = dTotal.ToString("#,###.#0");
 						txtTotal.Text = dTotal.ToString("#,###.#0");
 						txtSon.Text = General.NumeroTexto(dTotal.ToString("#.#0"));
@@ -999,11 +967,11 @@ namespace Polsolcom.Forms.Procesos
 
 			if( FLAG == "" )
 			{
-				iGrid.Enabled = false;
-				iGrid.BackColor = Color.White;
+				fGrid.Enabled = false;
+				fGrid.BackColor = Color.White;
 			}
 			else
-				iGrid.Enabled = true;
+				fGrid.Enabled = true;
 		}
 
 		private void txtTelefono_KeyPress( object sender, KeyPressEventArgs e )
@@ -1058,10 +1026,9 @@ namespace Polsolcom.Forms.Procesos
 				if( bTieneDocVenta == false )
 					return;
 
-				//ComboProducto = LlenaProductos(itm.IdUbigeo);
-				iGrid.Rows.Clear();
+				fGrid.Rows.Clear();
 				FormateaGrids();
-				iGDropDownList = CargaProductos(itm.IdUbigeo);
+				CargaProductos(itm.IdUbigeo);
 				btnAgregar.Enabled = true;
 				cmbEspecialista.Focus();
 			}
@@ -1086,9 +1053,9 @@ namespace Polsolcom.Forms.Procesos
 			string sResultado = "";
 			int iDup = 0;
 
-			for( int i = 0; i < iGrid.Rows.Count; i++ )
+			for( int i = 0; i < fGrid.Rows.Count; i++ )
 			{
-				if( sDato == iGrid.Cells[i, 0].AuxValue.ToString().Trim().ToUpper() )
+				if( sDato == fGrid.Cells[i, 0].AuxValue.ToString().Trim().ToUpper() )
 				{
 					iDup = iDup + 1;
 					sResultado = i.ToString();
@@ -1103,18 +1070,27 @@ namespace Polsolcom.Forms.Procesos
 
 		}
 
-		private void RemueveItemTicket(int iFila)
+		private bool RemueveItemTicket(int iFila)
 		{
+			bool bRemovido = false;
 			if( iFila == -1 )
-				return;
+				return bRemovido;
 
+			int cCant = fGrid.Rows.Count;
+			fGrid.Rows.RemoveAt(iFila);
 
+			if( fGrid.Rows.Count != cCant )
+				bRemovido = true;
+
+			return bRemovido;
 		}
 
-		private void iGrid_CurCellChanged( object sender, EventArgs e )
+		private void iGDDL_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
 		{
 			string sProd = "";
-			string sIdxDuplicado = "";
+
+			if( e.SelectedItem == null )
+				return;			
 
 			if( cmbEspecialidad.SelectedIndex == -1 )
 				return;
@@ -1122,33 +1098,66 @@ namespace Polsolcom.Forms.Procesos
 			if( cmbEspecialista.SelectedIndex == -1 )
 				return;
 
-			if( iGrid.CurCell.RowIndex == -1 )
+			if( fGrid.CurCell.RowIndex == -1 )
 				return;
 
-			if( iGrid.Rows.Count < 2 )
-				return;
-			else
-			{
-				if( iGrid.CurCell.ColIndex == 0 )
-					if( iGrid.CurCell.AuxValue != null )
-						sProd = iGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
-					else
-					{
-						iGrid.CurCell.AuxValue = "";
-						return;
-					}
-						
-				sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
-				if( sIdxDuplicado != "" )
-				{
-					RemueveItemTicket(Int32.Parse(sIdxDuplicado));
-				}
-			}
+			if( fGrid.CurCell.ColIndex == 0 )
+				if( fGrid.CurCell.AuxValue != null )
+					sProd = fGrid.CurCell.Value.ToString().Trim().ToUpper();
+
+			if( sProd != "" )
+				fGrid.Cells[fGrid.CurCell.RowIndex, 2].Value = DevuelvePrecioProducto(sProd);
+
+
+	
+
 
 		}
 
-		private void iGDropDownList_SelectedItemChanged( object sender, iGSelectedItemChangedEventArgs e )
+		private void fGrid_SelectionChanged( object sender, EventArgs e )
 		{
+			
+		}
+
+		private void fGrid_CellClick( object sender, iGCellClickEventArgs e )
+		{
+
+			/*
+
+
+			if( fGrid.Rows.Count < 2 )
+				return;
+			else
+			{
+				if( fGrid.CurCell.ColIndex == 0 )
+					if( fGrid.CurCell.AuxValue != null )
+						sProd = fGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
+					else
+					{
+						fGrid.CurCell.AuxValue = "";
+						return;
+					}
+
+				if( sProd == "" )
+					return;
+
+				sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
+				bool bRemovido = false;
+				if( sIdxDuplicado != "" )
+				{
+					MessageBox.Show("No puede seleccionar el mismo producto mas de 1 vez...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					bRemovido = RemueveItemTicket(Int32.Parse(sIdxDuplicado));
+				}
+
+				if( bRemovido == true )
+				{
+					fGrid.CurCell = fGrid.Cells[0, 0];
+					btnAgregar.Focus();
+				}
+			}
+
+
+			*/
 
 		}
 	}

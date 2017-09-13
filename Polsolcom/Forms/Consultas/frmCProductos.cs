@@ -30,9 +30,10 @@ namespace Polsolcom.Forms
 
         private void frmTarProducts_Load(object sender, EventArgs e)
         {
-			//debe pasarse un datareader a la funcion
+            // TODO: This line of code loads data into the 'tablaTipoDS.TipoProducto' table. You can move, or remove it, as needed.
+            this.tipoProductoTableAdapter.Fill(this.tablaTipoDS.TipoProducto);
+            //debe pasarse un datareader a la funcion
             this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
-            this.tablaTipoTableAdapter.Fill(this.tipoProductoDS.TablaTipo);
 
             cmbEspecialidad.SelectedIndex = -1;
             cmbTipo.SelectedIndex = -1;

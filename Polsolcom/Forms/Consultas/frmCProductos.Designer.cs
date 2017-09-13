@@ -39,8 +39,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
-            this.tablaTipoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tipoProductoDS = new Polsolcom.Dominio.Data.TipoProductoDS();
+            this.tipoProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.txtIdProd = new System.Windows.Forms.TextBox();
             this.txtPrec = new System.Windows.Forms.TextBox();
             this.txtProd = new System.Windows.Forms.TextBox();
@@ -49,22 +49,27 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
-            this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoProductoDSTableAdapters.TablaTipoTableAdapter();
             this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.tipoProductoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TipoProductoTableAdapter();
+            this.tipoProductoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // fGrid
             // 
+            this.fGrid.ForeColor = System.Drawing.SystemColors.WindowText;
             this.fGrid.Location = new System.Drawing.Point(6, 140);
             this.fGrid.Name = "fGrid";
             this.fGrid.ReadOnly = true;
             this.fGrid.Size = new System.Drawing.Size(570, 176);
             this.fGrid.TabIndex = 0;
+            this.fGrid.TreeCol = null;
+            this.fGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
             // 
             // label1
             // 
@@ -145,7 +150,7 @@
             // 
             // cmbTipo
             // 
-            this.cmbTipo.DataSource = this.tablaTipoBindingSource;
+            this.cmbTipo.DataSource = this.tipoProductoBindingSource1;
             this.cmbTipo.DisplayMember = "Descripcion";
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Location = new System.Drawing.Point(120, 88);
@@ -155,15 +160,15 @@
             this.cmbTipo.ValueMember = "Id_Tipo";
             this.cmbTipo.SelectedValueChanged += new System.EventHandler(this.cmbTipo_SelectedValueChanged);
             // 
-            // tablaTipoBindingSource
+            // tipoProductoBindingSource
             // 
-            this.tablaTipoBindingSource.DataMember = "TablaTipo";
-            this.tablaTipoBindingSource.DataSource = this.tipoProductoDS;
+            this.tipoProductoBindingSource.DataMember = "TipoProducto";
+            this.tipoProductoBindingSource.DataSource = this.tablaTipoDS;
             // 
-            // tipoProductoDS
+            // tablaTipoDS
             // 
-            this.tipoProductoDS.DataSetName = "TipoProductoDS";
-            this.tipoProductoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtIdProd
             // 
@@ -240,10 +245,6 @@
             // 
             this.consultoriosTableAdapter.ClearBeforeFill = true;
             // 
-            // tablaTipoTableAdapter
-            // 
-            this.tablaTipoTableAdapter.ClearBeforeFill = true;
-            // 
             // txtObservacion
             // 
             this.txtObservacion.Location = new System.Drawing.Point(9, 33);
@@ -252,6 +253,15 @@
             this.txtObservacion.ReadOnly = true;
             this.txtObservacion.Size = new System.Drawing.Size(395, 49);
             this.txtObservacion.TabIndex = 18;
+            // 
+            // tipoProductoTableAdapter
+            // 
+            this.tipoProductoTableAdapter.ClearBeforeFill = true;
+            // 
+            // tipoProductoBindingSource1
+            // 
+            this.tipoProductoBindingSource1.DataMember = "TipoProducto";
+            this.tipoProductoBindingSource1.DataSource = this.tablaTipoDS;
             // 
             // frmCProductos
             // 
@@ -284,8 +294,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,11 +320,12 @@
         private System.Windows.Forms.Label label8;
         private Dominio.Data.ConsultoriosDS consultoriosDS;
         private Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter consultoriosTableAdapter;
-        private Dominio.Data.TipoProductoDS tipoProductoDS;
-        private Dominio.Data.TipoProductoDSTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter;
-        private System.Windows.Forms.BindingSource tablaTipoBindingSource;
         private System.Windows.Forms.BindingSource consultoriosBindingSource;
         private TenTec.Windows.iGridLib.iGrid fGrid;
         private System.Windows.Forms.TextBox txtObservacion;
+        private Dominio.Data.TablaTipoDS tablaTipoDS;
+        private System.Windows.Forms.BindingSource tipoProductoBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.TipoProductoTableAdapter tipoProductoTableAdapter;
+        private System.Windows.Forms.BindingSource tipoProductoBindingSource1;
     }
 }
