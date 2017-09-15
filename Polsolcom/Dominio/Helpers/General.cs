@@ -1475,19 +1475,45 @@ namespace Polsolcom.Dominio.Helpers
             //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
         }
 
-        public static int getYearUntilNow(string date)
-        {
-            DateTime bday = DateTime.Parse(date);
-            DateTime now = DateTime.Today;
-            int age = now.Year - bday.Year;
-            if (bday > now.AddYears(-age))
-            {
-                age--;
-            }
+       
 
+        public static void valObj(TextBox obj, string txt)
+        {
+            if (obj.Text.Length == 0)
+            {
+                if (txt.Contains("paterno") || txt.Contains("materno"))
+                {
+                    if (MessageBox.Show("Falta " + txt + " ... desea guardar asi ... ?\npara ello de Click en 'Si' y vuelva a guardar ... ", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        obj.Text = ".";
+                        return;
+                    }
+                }
+
+                MessageBox.Show("Dato necesario, ingrese " + txt + " ...", "Advertencia");
+                obj.Focus();
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene los años desde una fecha hasta ahora
+        /// </summary>
+        /// <param name="date">Fecha de inicio</param>
+        /// <returns>Cantidad de años</returns>
+        public static int getYearUntilNow(DateTime date)
+        {
+            DateTime now = DateTime.Today;
+            int age = now.Year - date.Year;
+            if (date > now.AddYears(-age)) age--;
             return age;
         }
 
+        public static int getYearUntilNow(string date)
+        {
+            return General.getYearUntilNow(DateTime.Parse(date));
+        }
+     
     }
 }
 	

@@ -19,6 +19,8 @@ namespace Polsolcom.Forms.Mantenimiento
 
         List<Dictionary<string, string>> r0 = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> r1 = new List<Dictionary<string, string>>();
+        List<Dictionary<string, string>> pacs = new List<Dictionary<string, string>>();
+        List<Dictionary<string, string>> xpacs = new List<Dictionary<string, string>>();
 
         public frmSeekPac(int df)
         {
@@ -72,7 +74,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
                 if (nd == "0")
                 {
-                    if(MessageBox.Show("DNI " + dd + " pertenece a " + dp + " (" + di + ")" + ", verificar y corregir datos ...", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show("DNI " + dd + " pertenece a " + dp + " (" + di + ")" + ", verificar y corregir datos ...", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         txtDoc.Focus();
                         return false;
@@ -83,7 +85,7 @@ namespace Polsolcom.Forms.Mantenimiento
             return true;
         }
 
-        public void fil(string lp)
+        public void fil(string lp = null)
         {
             string xp = lp;
             string pt = txtApePat.Text;
@@ -136,7 +138,8 @@ namespace Polsolcom.Forms.Mantenimiento
                 txtApePat.Enabled = txtApeMat.Enabled = txtNom.Enabled = txtDni.Enabled = txtIdPac.Enabled = txtNroHist.Enabled = lstPacientes.Enabled = !ls;
                 txtNombre.Focus();
             }
-            else {
+            else
+            {
                 this.df = 1;
                 txtApePat.Focus();
             }
@@ -225,16 +228,28 @@ namespace Polsolcom.Forms.Mantenimiento
                     return false;
                 }
 
-                if(cmbTDoc.SelectedIndex == -1 && txtX NOT.EMPTY(.txtodoc.value)).OR. ( .NOT.EMPTY(.cmbtdoc.value).AND.EMPTY(.txtodoc.value))
-          MESSAGEBOX('El tipo y numero de otro documento son complementarios ... corrija ...', 48, 'Advertencia')
-          .cmbtdoc.setfocus
-          RETURN TO cancel
-       ENDIF
+                if ((cmbTDoc.SelectedIndex == -1 && txtODoc.Text.Length > 0) || (cmbTDoc.SelectedIndex != -1 && txtODoc.Text.Length == 0))
+                {
+                    MessageBox.Show("El tipo y numero de otro documento son complementarios ... corrija ...", "Advertencia");
+                    cmbTDoc.Focus();
+                    return false;
+                }
+
+                General.valObj(txtNombre, "nombres");
+                General.valObj(txtApePaterno, "apellido paterno");
+                General.valObj(txtApeMaterno, "apellido materno");
+                General.valObj(txtSexo, "genero o sexo");
+                General.valObj(txtEdad, "edad");
+
             }
+
+            return true;
         }
 
         private void frmSeekPac_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'departamentosDS.Departamentos' table. You can move, or remove it, as needed.
+            this.departamentosTableAdapter.Fill(this.departamentosDS.Departamentos);
             if (this.df == -1)
             {
                 this.KeyPreview = false;
@@ -307,7 +322,35 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void lstPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int i = General.GetSelectedIndex(lstPacientes);
 
+            if (lstPacientes.Items.Count > 0)
+            {
+                txtApePaterno.Text = (this.df == 0 ? this.pacs[i]["Ape_Paterno"] : this.pacs[i]["Ape_Pat"]);
+                txtApeMaterno.Text = (this.df == 0 ? this.pacs[i]["Ape_Materno"] : this.pacs[i]["Ape_Mat"]);
+                txtNombre.Text = (this.df == 0 ? this.pacs[i]["Nombre"] : this.pacs[i]["Nombre"]);
+                txtSexo.Text = (this.df == 0 ? this.pacs[i]["Sexo"] : (this.pacs[i]["Sexo"] == "1" ? "M" : "F"));
+                txtDoc.Text = this.pacs[i]["DNI"];
+                txtFechaNac.Text = (this.df == 0 ? (this.pacs[i]["Fecha_Nac"].Length == 0 ? General.emptyDate : this.pacs[i]["Fecha_Nac"]) : this.pacs[i]["Fecha_Nac"]);
+                txtEdad.Text = (this.df == 0 ? (this.pacs[i]["Fecha_Nac"].Length == 0 ? this.pacs[i]["Edad"] : General.getYearUntilNow(this.pacs[i]["Fecha_Nac"]).ToString()) : General.getYearUntilNow(this.pacs[i]["Fecha_Nac"]).ToString());
+
+                cmbDepartamento.SelectedValue = (this.df == 0 ? this.pacs[i]["Id_Distrito"].Substring(0, 2) : this.pacs[i]["Id_Old"].Substring(0, 2));
+                cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
+                cmbProvincia.SelectedValue = (this.df == 0 ? this.pacs[i]["Id_Distrito"].Substring(0, 4) : this.pacs[i]["Id_Old"].Substring(0, 4));
+                cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
+                cmbDistrito.SelectedValue = (this.df == 0 ? this.pacs[i]["Id_Distrito"] : this.pacs[i]["Id_Old"]);
+
+                if (this.df == 0)
+                {
+                    txtIdPaciente.Text = this.pacs[i]["Id_Paciente"];
+                    txtDireccion.Text = this.pacs[i]["Direccion"];
+                    txtTelefono.Text = this.pacs[i]["Telefono"];
+                    cmbTDoc.SelectedValue = this.pacs[i]["ODoc"].Substring(0, 1);
+                    txtODoc.Text = this.pacs[i]["ODoc"].Substring(1, 19);
+                    txtAsegurado.Text = this.pacs[i]["Asegurado"];
+                    txtEmail.Text = this.pacs[i]["E_Mail"];
+                }
+            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -333,6 +376,97 @@ namespace Polsolcom.Forms.Mantenimiento
         private void btnAnular_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbDepartamento_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string departamento = cmbDepartamento.SelectedIndex == -1 ? "" : cmbDepartamento.SelectedValue.ToString();
+            this.provinciasTableAdapter.Fill(this.provinciasDS.Provincias, departamento);
+        }
+
+        private void cmbProvincia_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string provincia = cmbProvincia.SelectedIndex == -1 ? "" : cmbProvincia.SelectedValue.ToString();
+            this.distritoTableAdapter.Fill(this.distritoDS.Distrito, provincia);
+        }
+
+        private void txtNom_TextChanged(object sender, EventArgs e)
+        {
+            if (this.df == 0 || txtNom.Text.Length > 0)
+            {
+                this.fil();
+            }
+        }
+
+        private void txtApeMat_TextChanged(object sender, EventArgs e)
+        {
+            if (this.df == 0)
+            {
+                this.fil();
+            }
+        }
+
+        private void txtApePat_TextChanged(object sender, EventArgs e)
+        {
+            if (this.df == 0)
+            {
+                this.fil();
+            }
+        }
+
+        private void txtDni_TextChanged(object sender, EventArgs e)
+        {
+            if (this.df == 0 || (this.df == 1 && txtDni.Text.Length == 8))
+            {
+                this.fil();
+            }
+        }
+
+        private void lstPacientes_KeyDown(object sender, KeyEventArgs e)
+        {
+            int i = General.GetSelectedIndex(lstPacientes);
+
+            if (e.KeyCode == Keys.Enter && lstPacientes.Items.Count == 0)
+            {
+                string ip = this.df == 0 ? this.pacs[i]["Id_Paciente"] : this.pacs[i]["DNI"];
+
+                if (this.df == 0)
+                {
+                    this.xpacs = this.pacs.FindAll(x => x["Id_Paciente"] == ip);
+                }
+                else
+                {
+                    this.xpacs = this.pacs.FindAll(x => x["DNI"] == ip);
+                }
+            }
+
+            if (e.KeyCode == Keys.Tab && this.df == 1)
+            {
+                txtEdad.Focus();
+            }
+        }
+
+        private void txtEdad_Leave(object sender, EventArgs e)
+        {
+            if (txtEdad.Text.Length == 0)
+            {
+                MessageBox.Show("Ingrese la edad del Paciente ...", "Advertencia ...");
+                return;
+            }
+
+            if (int.Parse(txtEdad.Text) < 0)
+            {
+                MessageBox.Show("Corregir los datos ... la edad no puede ser un número negativo ...", "Advertencia ...");
+                return;
+            }
+
+            if (int.Parse(txtEdad.Text) > 100)
+            {
+                if (MessageBox.Show("Verifique los datos ... la edad del paciente es mayor a 100 años ?", "Advertencia ...", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    return;
+                }
+            }
         }
     }
 }
