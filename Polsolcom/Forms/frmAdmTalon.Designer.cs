@@ -365,6 +365,7 @@
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNuevo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Name = "frmAdmTalon";
             this.Text = "Administracion de Talonarios de Documentos de Ventas";
             this.Load += new System.EventHandler(this.frmAdmCounterfoil_Load);

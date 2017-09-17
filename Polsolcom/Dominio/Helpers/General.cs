@@ -1131,7 +1131,7 @@ namespace Polsolcom.Dominio.Helpers
                     return "";
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.ape_pat+' '+P.Ape_Mat+' '+P.Nombres,P.Ubigeo,P.DNI,Id_Old,'','' " +
+                        "P.ape_pat+' '+P.Ape_Mat+' '+P.Nombres As Paciente,P.Ubigeo,P.DNI,Id_Old,'','', P.Direccion, U.Distrito As FullDireccion " +
                         "FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " +
                         "ON P.Ubigeo=U.Ubigeo WHERE 1 = 1 ";
 
@@ -1151,7 +1151,7 @@ namespace Polsolcom.Dominio.Helpers
             }
             else
             {
-                if (sDNI.Length < 8 && sIdPaciente.Length < 4 && sNroHistoria.Length == 0)
+                /*if (sDNI.Length < 8 && sIdPaciente.Length < 4 && sNroHistoria.Length == 0)
                 {
                     if (sApPaterno == "")
                         sApPaterno = "A";
@@ -1161,13 +1161,13 @@ namespace Polsolcom.Dominio.Helpers
 
                     if (sNombres == "")
                         sNombres = "A";
-                }
+                }*/
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.Ape_Paterno, P.Ape_Materno, P.Nombre, P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente, P.Id_Paciente, P.DNI, P.Id_Distrito, P.Asegurado, P.Nro_Historia, P.Fecha_Nac, P.Edad, P.Sexo ";
+                        "P.Ape_Paterno, P.Ape_Materno, P.Nombre, P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente, P.Id_Paciente, P.DNI, P.Id_Distrito, P.Asegurado, P.Nro_Historia, P.Fecha_Nac, P.Edad, P.Sexo, P.Telefono, P.ODoc, P.E_Mail ";
 
                 if (Num1 == 2)
-                    sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito ";
+                    sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito, P.Direccion, CASE WHEN U.Distrito IS NULL THEN P.Direccion ELSE P.Direccion + ' - ' + U.Distrito END As FullDireccion ";
 
                 sVSQL = sVSQL + " FROM Pacientes P ";
 
@@ -1421,6 +1421,11 @@ namespace Polsolcom.Dominio.Helpers
                     Type t = subControl.GetType();
                     PropertyInfo p = t.GetProperty(property);
                     p.SetValue(subControl, value);
+                }
+
+                if (subControl is Panel || subControl is GroupBox)
+                {
+                    General.setAll<A, B>(subControl, property, value);
                 }
             }
         }

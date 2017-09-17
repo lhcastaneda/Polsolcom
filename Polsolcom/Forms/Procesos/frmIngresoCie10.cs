@@ -47,10 +47,9 @@ namespace Polsolcom.Forms.Procesos
         {
             InitializeComponent();
 
-            this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
             this.consultoriosTableAdapter.Fill(this.consultoriosDS.Consultorios, Operativo.id_oper);
             this.busesTableAdapter.Fill(this.busesDS.Buses, Operativo.id_oper);
-            this.tablaTipoTableAdapter1.Fill(this.turnosDS.TablaTipo);
+            this.turnoTableAdapter.Fill(this.tablaTipoDS.Turno);
 
             //ce = General.vtrls(Especialidad.esp);
             //ca = Especialidad.esp.Length > 0 ? 1 : 0;
@@ -70,6 +69,10 @@ namespace Polsolcom.Forms.Procesos
 
         private void frmIngresoCie10_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'tablaTipoDS.Turno' table. You can move, or remove it, as needed.
+            this.turnoTableAdapter.Fill(this.tablaTipoDS.Turno);
+            // TODO: This line of code loads data into the 'tablaTipoDS.DocVenta' table. You can move, or remove it, as needed.
+            this.docVentaTableAdapter.Fill(this.tablaTipoDS.DocVenta);
             // TODO: This line of code loads data into the 'cie10DS.CIE10' table. You can move, or remove it, as needed.
             this.cIE10TableAdapter.Fill(this.cie10DS.CIE10);
             // TODO: This line of code loads data into the 'turnosDS.TablaTipo' table. You can move, or remove it, as needed.

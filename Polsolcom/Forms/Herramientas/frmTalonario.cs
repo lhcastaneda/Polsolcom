@@ -24,9 +24,8 @@ namespace Polsolcom.Forms
 
         private void frmTalonario_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'tipoDocumento.TablaTipo' table. You can move, or remove it, as needed.
-            this.tablaTipoTableAdapter.Fill(this.tipoDocumento.TablaTipo);
-            
+            // TODO: This line of code loads data into the 'tablaTipoDS.DocVenta' table. You can move, or remove it, as needed.
+            this.docVentaTableAdapter.Fill(this.tablaTipoDS.DocVenta);            
             //Conexion.CNN = Conexion.ConectaBD();
             //Conexion.CMD.Connection = Conexion.CNN;
             

@@ -252,11 +252,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Data\TipoDocumento.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TipoDocumento.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dominio\Data\TipoInstitucionDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -269,14 +264,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>tmpEspecialistaDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dominio\Data\TurnosDS.cs">
-      <DependentUpon>TurnosDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dominio\Data\TurnosDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TurnosDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Helpers\Serie.cs" />
     <Compile Include="Dominio\Modelos\Consultorio.cs" />
@@ -1253,17 +1240,6 @@
     <None Include="Dominio\Data\RotationDS.xss">
       <DependentUpon>RotationDS.xsd</DependentUpon>
     </None>
-    <None Include="Dominio\Data\TipoDocumento.xsc">
-      <DependentUpon>TipoDocumento.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\TipoDocumento.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TipoDocumento.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\TipoDocumento.xss">
-      <DependentUpon>TipoDocumento.xsd</DependentUpon>
-    </None>
     <None Include="Dominio\Data\TipoInstitucionDS.xsc">
       <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
     </None>
@@ -1285,17 +1261,6 @@
     </None>
     <None Include="Dominio\Data\tmpEspecialistaDS.xss">
       <DependentUpon>tmpEspecialistaDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\TurnosDS.xsc">
-      <DependentUpon>TurnosDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\TurnosDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TurnosDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\TurnosDS.xss">
-      <DependentUpon>TurnosDS.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Polsolcom.snk" />
