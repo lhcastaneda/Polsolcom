@@ -252,11 +252,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Data\TipoInstitucionDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dominio\Data\tmpEspecialistaDS.cs">
       <DependentUpon>tmpEspecialistaDS.xsd</DependentUpon>
     </Compile>
@@ -431,12 +426,6 @@
     </Compile>
     <Compile Include="Forms\frmMantImpFicha.Designer.cs">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Mantenimiento\frmPersonal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Mantenimiento\frmPersonal.Designer.cs">
-      <DependentUpon>frmPersonal.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmSeekPac.cs">
       <SubType>Form</SubType>
@@ -630,11 +619,11 @@
     <Compile Include="Forms\Herramientas\frmOperativo.Designer.cs">
       <DependentUpon>frmOperativo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Mantenimiento\frmPersonalY.cs">
+    <Compile Include="Forms\Mantenimiento\frmPersonal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Mantenimiento\frmPersonalY.Designer.cs">
-      <DependentUpon>frmPersonalY.cs</DependentUpon>
+    <Compile Include="Forms\Mantenimiento\frmPersonal.Designer.cs">
+      <DependentUpon>frmPersonal.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Consultas\frmSpecialAnnulment.cs">
       <SubType>Form</SubType>
@@ -833,9 +822,6 @@
     <EmbeddedResource Include="Forms\frmMantImpFicha.resx">
       <DependentUpon>frmMantImpFicha.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Mantenimiento\frmPersonal.resx">
-      <DependentUpon>frmPersonal.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmSeekPac.resx">
       <DependentUpon>frmSeekPac.cs</DependentUpon>
     </EmbeddedResource>
@@ -869,8 +855,8 @@
     <EmbeddedResource Include="Forms\Mantenimiento\frmPerPago.resx">
       <DependentUpon>frmPerPago.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Mantenimiento\frmPersonalY.resx">
-      <DependentUpon>frmPersonalY.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Mantenimiento\frmPersonal.resx">
+      <DependentUpon>frmPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmPersonalDet.resx">
       <DependentUpon>frmPersonalDet.cs</DependentUpon>
@@ -1239,17 +1225,6 @@
     </None>
     <None Include="Dominio\Data\RotationDS.xss">
       <DependentUpon>RotationDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\TipoInstitucionDS.xsc">
-      <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\TipoInstitucionDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TipoInstitucionDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\TipoInstitucionDS.xss">
-      <DependentUpon>TipoInstitucionDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\tmpEspecialistaDS.xsc">
       <DependentUpon>tmpEspecialistaDS.xsd</DependentUpon>

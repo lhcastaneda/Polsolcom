@@ -52,6 +52,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.cmbTDoc = new System.Windows.Forms.ComboBox();
+            this.docIdentidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.label28 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.departamentosBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -95,9 +97,9 @@
             this.departamentosTableAdapter = new Polsolcom.Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter();
             this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
-            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
-            this.docIdentidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.docIdentidadTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocIdentidadTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.docIdentidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.provinciasBindingSource)).BeginInit();
@@ -111,8 +113,6 @@
             this.grpDNI.SuspendLayout();
             this.grpIdPac.SuspendLayout();
             this.grpNroPac.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.docIdentidadBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lstPacientes
@@ -356,6 +356,16 @@
             this.cmbTDoc.Tag = "UserData";
             this.cmbTDoc.ValueMember = "Id_Tipo";
             this.cmbTDoc.SelectionChangeCommitted += new System.EventHandler(this.cmbTDoc_SelectionChangeCommitted);
+            // 
+            // docIdentidadBindingSource
+            // 
+            this.docIdentidadBindingSource.DataMember = "DocIdentidad";
+            this.docIdentidadBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // tablaTipoDS
+            // 
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label28
             // 
@@ -794,16 +804,6 @@
             // 
             this.distritoTableAdapter.ClearBeforeFill = true;
             // 
-            // tablaTipoDS
-            // 
-            this.tablaTipoDS.DataSetName = "TablaTipoDS";
-            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // docIdentidadBindingSource
-            // 
-            this.docIdentidadBindingSource.DataMember = "DocIdentidad";
-            this.docIdentidadBindingSource.DataSource = this.tablaTipoDS;
-            // 
             // docIdentidadTableAdapter
             // 
             this.docIdentidadTableAdapter.ClearBeforeFill = true;
@@ -826,6 +826,8 @@
             this.Text = "Búsqueda de Pacientes ....";
             this.Load += new System.EventHandler(this.frmSeekPac_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSeekPac_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.docIdentidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.provinciasBindingSource)).EndInit();
@@ -846,8 +848,6 @@
             this.grpIdPac.PerformLayout();
             this.grpNroPac.ResumeLayout(false);
             this.grpNroPac.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.docIdentidadBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

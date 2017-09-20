@@ -1412,7 +1412,7 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        public static void setAll<A, B>(Control control, string property, B value)
+        public static void setAll<A, B>(Control control, string property, B value, bool recursive = true)
         {
             foreach (Control subControl in control.Controls)
             {
@@ -1423,7 +1423,7 @@ namespace Polsolcom.Dominio.Helpers
                     p.SetValue(subControl, value);
                 }
 
-                if (subControl is Panel || subControl is GroupBox)
+                if (recursive && (subControl is Panel || subControl is GroupBox))
                 {
                     General.setAll<A, B>(subControl, property, value);
                 }

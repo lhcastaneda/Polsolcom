@@ -19,14 +19,19 @@ namespace Polsolcom.Forms.Mantenimiento
         int df = 0;
 
         List<Dictionary<string, string>> pacs = new List<Dictionary<string, string>>();
-        List<Dictionary<string, string>> xpacs = new List<Dictionary<string, string>>();
         Dictionary<string, string> anul = new Dictionary<string, string>();
+
+        public Dictionary<string, string> xPac = new Dictionary<string, string>();
 
         public frmSeekPac()
         {
             InitializeComponent();
+        }
 
-            //this.df = df;
+        public frmSeekPac(int df)
+        {
+            InitializeComponent();
+            this.df = df;
         }
 
         public void clr()
@@ -250,23 +255,23 @@ namespace Polsolcom.Forms.Mantenimiento
             // TODO: This line of code loads data into the 'departamentosDS.Departamentos' table. You can move, or remove it, as needed.
             this.departamentosTableAdapter.Fill(this.departamentosDS.Departamentos);
             cmbDepartamento.SelectedIndex = -1;
-            if (this.df == -1)
+
+            if (this.df == 1)
             {
                 this.KeyPreview = false;
 
-                if (this.df == 1)
-                {
-                    txtIdPac.Visible = false;
-                    txtNroHist.Visible = false;
-                }
+                grpIdPac.Visible = false;
+                grpNroPac.Visible = false;
+                pnlDatos.Visible = false;
+                this.Height = 257;
 
                 General.setAll<Button, bool>(this, "Enabled", false);
-                this.Text = "Mantenimiento del registro " + this.Text;
+                this.Text = "Mantenimiento del registro de Pacientes";
             }
             else
             {
                 this.hab(false, false);
-                this.Text = "Búsqueda " + this.Text;
+                this.Text = "Búsqueda de paciente";
             }
         }
 
@@ -358,6 +363,7 @@ namespace Polsolcom.Forms.Mantenimiento
       
                     txtAsegurado.Text = this.pacs[i]["Asegurado"];
                     txtEmail.Text = this.pacs[i]["E_Mail"];
+                    //06254799 ABAD ALCALA ADA
                 }
             }
         }
@@ -626,11 +632,11 @@ namespace Polsolcom.Forms.Mantenimiento
 
                 if (this.df == 0)
                 {
-                    this.xpacs = this.pacs.FindAll(x => x["Id_Paciente"] == ip);
+                    this.xPac = this.pacs.Find(x => x["Id_Paciente"] == ip);
                 }
                 else
                 {
-                    this.xpacs = this.pacs.FindAll(x => x["DNI"] == ip);
+                    this.xPac = this.pacs.Find(x => x["DNI"] == ip);
                 }
             }
 
