@@ -1131,15 +1131,15 @@ namespace Polsolcom.Dominio.Helpers
                     return "";
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.ape_pat+' '+P.Ape_Mat+' '+P.Nombres As Paciente,P.Ubigeo,P.DNI,Id_Old,'','', P.Direccion, U.Distrito As FullDireccion " +
+                        "P.*, P.ape_pat+' '+P.Ape_Mat+' '+P.Nombres As Paciente,U.Id_Old, '' As Direccion, U.Distrito As FullDireccion " +
                         "FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " +
                         "ON P.Ubigeo=U.Ubigeo WHERE 1 = 1 ";
 
                 if (sApPaterno != "")
-                    sVSQL = sVSQL + "AND Ape_Pat = '" + sApPaterno + "' ";
+                    sVSQL = sVSQL + "AND Ape_Pat LIKE '" + sApPaterno + "%' ";
 
                 if (sApMaterno != "")
-                    sVSQL = sVSQL + "AND Ape_Mat = '" + sApMaterno + "' ";
+                    sVSQL = sVSQL + "AND Ape_Mat LIKE '" + sApMaterno + "%' ";
 
                 if (sNombres != "")
                     sVSQL = sVSQL + "AND Nombres LIKE '" + sNombres + "%' ";

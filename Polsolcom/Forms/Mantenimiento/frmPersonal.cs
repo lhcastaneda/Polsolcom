@@ -4,15 +4,10 @@ using Polsolcom.Dominio.Modelos;
 using Polsolcom.Forms.Mantenimiento;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Word;
 
 namespace Polsolcom.Forms
 {
@@ -38,17 +33,23 @@ namespace Polsolcom.Forms
             this.personalList = General.GetDictionaryList(sql);
             General.FillListView(lstPersonal, this.personalList, new[] { "Fullname", "DNI" });
 
-            if (sopc.Length > 0)
+            if (lstPersonal.Items.Count > 0)
             {
-                this.i = this.personalList.FindIndex(x => x["DNI"] == sopc);
-            }
+                if (sopc.Length > 0)
+                {
+                    this.i = this.personalList.FindIndex(x => x["DNI"] == sopc);
+                }
+                else {
+                    this.i = 0;
+                }
 
-            lstPersonal.EnsureVisible(this.i);
-            lstPersonal.Items[this.i].Selected = true;
-            lstPersonal.Items[this.i].Focused = true;
-            lstPersonal.Items[this.i].EnsureVisible();
-            lstPersonal.Select();
-            lstPersonal_SelectedIndexChanged(lstPersonal, new EventArgs());
+                lstPersonal.EnsureVisible(this.i);
+                lstPersonal.Items[this.i].Selected = true;
+                lstPersonal.Items[this.i].Focused = true;
+                lstPersonal.Items[this.i].EnsureVisible();
+                //lstPersonal.Select();
+                lstPersonal_SelectedIndexChanged(lstPersonal, new EventArgs());
+            }
 
             btnFoto.Enabled = lstPersonal.Items.Count > 0;
             btnCurriculum.Enabled = lstPersonal.Items.Count > 0;
@@ -57,6 +58,7 @@ namespace Polsolcom.Forms
         public void clears()
         {
             General.setAll<TextBox, string>(this, "Text", "");
+            General.setAll <MaskedTextBox, string>(this, "Text", "");
             General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
 
             picFoto.Image = null;
@@ -72,7 +74,7 @@ namespace Polsolcom.Forms
             General.setAll<MaskedTextBox, bool>(this, "Enabled", lest);
             General.setAll<ComboBox, bool>(this, "Enabled", lest);
             General.setAll<RadioButton, bool>(opgSexo, "Enabled", lest);
-            General.setAll<CheckBox, bool>(this, "Enabled", lest);
+            General.setAll<System.Windows.Controls.CheckBox, bool>(this, "Enabled", lest);
             General.setAll<Button, bool>(this, "Enabled", !lest);
             txtIdPersonal.Enabled = false;
 
@@ -87,7 +89,7 @@ namespace Polsolcom.Forms
             txtPaterno.Text = this.xPac["Ape_Pat"];
             txtMaterno.Text = this.xPac["Ape_Mat"];
             txtDni.Text = this.xPac["DNI"];
-            txtFechaNac.Text = this.xPac["Fecha_Nac"];
+            txtFechaNac.Text = this.xPac["Fec_Nac"];
             if (this.xPac["Sexo"] == "1")
             {
                 rbMasculino.Checked = true;
@@ -138,7 +140,7 @@ namespace Polsolcom.Forms
             string xip = "";
 
             string xdi = txtDni.Text;
-            if (xdi.Length < 8)
+            if (xdi.Length > 0 && xdi.Length < 8)
             {
                 MessageBox.Show("Cantidad de digitos en DNI incorrecta ...", "Advertencia");
                 txtDni.Focus();
@@ -176,7 +178,7 @@ namespace Polsolcom.Forms
             }
 
             string xrc = txtRuc.Text;
-            if(xrc.Length < 11)
+            if(xrc.Length > 0 && xrc.Length < 11)
             {
                 MessageBox.Show("Cantidad de digitos en R.U.C. incorrecta ...", "Advertencia");
                 txtRuc.Focus();
@@ -217,7 +219,7 @@ namespace Polsolcom.Forms
             string xap = txtPaterno.Text;
             string xam = txtMaterno.Text;
 
-            string sql = "Select Id_Personal,Nombres,Ape_Paterno,Ape_Materno,DNI From Personal Where Nombres='" + xno + " And Ape_Paterno='" + xap + "' And Ape_Materno='" + xam + "'";
+            string sql = "Select Id_Personal,Nombres,Ape_Paterno,Ape_Materno,DNI From Personal Where Nombres='" + xno + "' And Ape_Paterno='" + xap + "' And Ape_Materno='" + xam + "'";
             Dictionary<string, string> xper = General.GetDictionary(sql);
 
             xdp = (xper == null ? "" : xper["Nombres"] + " " + xper["Ape_Paterno"] + " " + xper["Ape_Materno"]);
@@ -318,6 +320,7 @@ namespace Polsolcom.Forms
             if (Directory.Exists(_rut))
             {
                 picFoto.Image = Image.FromFile(@_rut);
+                lblVitae.Text = _rut;
             }
 
             txtBuscar_TextChanged(txtBuscar, new EventArgs());
@@ -368,10 +371,14 @@ namespace Polsolcom.Forms
         private void frmSeekPac_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.xPac = ((frmSeekPac)sender).xPac;
-            this.updbal();
-            this.Show();
-        }
 
+            this.Show();
+
+            if (this.xPac != null)
+            {
+                this.updbal();
+            }
+        }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -399,12 +406,14 @@ namespace Polsolcom.Forms
                 txtNombres.Text = personalList[this.i]["Nombres"];
                 txtPaterno.Text = personalList[this.i]["Ape_Paterno"];
                 txtMaterno.Text = personalList[this.i]["Ape_Materno"];
-                if (personalList[this.i]["Ape_Materno"] == "M")
+                if (personalList[this.i]["Sexo"] == "M")
                 {
                     rbMasculino.Checked = true;
+                    rbFemenino.Checked = false;
                 }
                 else
                 {
+                    rbMasculino.Checked = false;
                     rbFemenino.Checked = true;
                 }
 
@@ -465,7 +474,8 @@ namespace Polsolcom.Forms
 
         private void txtDoc_TextChanged(object sender, EventArgs e)
         {
-            txtBuscar_TextChanged(txtBuscar, new EventArgs());
+            string estado = cmbEstado.SelectedIndex == -1 ? "" : cmbEstado.SelectedValue.ToString();
+            this.busper(txtBuscar.Text, txtDoc.Text, estado);
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -572,11 +582,11 @@ namespace Polsolcom.Forms
                 }
                 else
                 {
-                    if (!File.Exists(openFileDialog.FileName))
+                    if (File.Exists(openFileDialog.FileName))
                     {
                         if (MessageBox.Show("Se copiara el archivo seleccionado a la carpeta predeterminada de fotos, desea continuar ... ?", "Aviso", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
-                            System.IO.File.Copy(openFileDialog.FileName, Path.Combine(this.pthfoto, openFileDialog.SafeFileName));
+                            System.IO.File.Copy(openFileDialog.FileName, Path.Combine(this.pthfoto, openFileDialog.SafeFileName), true);
                         }
                     }
                     else
@@ -584,6 +594,8 @@ namespace Polsolcom.Forms
                         return;
                     }
                 }
+
+                lblVitae.Text = openFileDialog.FileName;
             }
         }
 
@@ -613,11 +625,11 @@ namespace Polsolcom.Forms
                 }
                 else
                 {
-                    if (!File.Exists(openFileDialog.FileName))
+                    if (File.Exists(openFileDialog.FileName))
                     {
                         if (MessageBox.Show("Se copiara el archivo seleccionado a la carpeta predeterminada de fotos, desea continuar ... ?", "Aviso", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
-                            System.IO.File.Copy(openFileDialog.FileName, Path.Combine(this.pthfoto, openFileDialog.SafeFileName));
+                            System.IO.File.Copy(openFileDialog.FileName, Path.Combine(this.pthfoto, openFileDialog.SafeFileName), true);
                         }
                     }
                     else
@@ -632,7 +644,8 @@ namespace Polsolcom.Forms
 
         private void cmbEstado_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            txtBuscar_TextChanged(txtBuscar, new EventArgs());
+            string estado = cmbEstado.SelectedIndex == -1 ? "" : cmbEstado.SelectedValue.ToString();
+            this.busper(txtBuscar.Text, txtDoc.Text, estado);
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -657,17 +670,17 @@ namespace Polsolcom.Forms
             string tc = (cmbTCol.SelectedIndex == -1 ? "" : cmbTCol.SelectedValue.ToString()) + txtNCol.Text;
             string re = txtRne.Text;
             string dr = txtDireccion.Text;
-            string ds = cmbDistrito.Text;
+            string ds = (cmbDistrito.SelectedIndex == -1 ? "" : cmbDistrito.SelectedValue.ToString());
             string tf = txtTelefono.Text;
             string cl = txtCelular.Text;
-            string mc = cmbModCont.Text;
+            string mc = (cmbModCont.SelectedIndex == -1 ? "" : cmbModCont.SelectedValue.ToString());
             string ec = (cmbEstadoCivil.SelectedIndex == -1 ? "" : cmbEstadoCivil.SelectedValue.ToString());
             string gi = (cmbGrado.SelectedIndex == -1 ? "" : cmbGrado.SelectedValue.ToString());
             string pr = (cmbProfesion.SelectedIndex == -1 ? "" : cmbProfesion.SelectedValue.ToString());
             string ar = (cmbArea.SelectedIndex == -1 ? "" : cmbArea.SelectedValue.ToString());
             string cr = (cmbCargo.SelectedIndex == -1 ? "" : cmbCargo.SelectedValue.ToString());
             string fi = txtFechaIng.Text;
-            string fc = txtFechaCes.Text.Length == 0 ? "" : txtFechaCes.Text;
+            string fc = txtFechaCes.Text == General.emptyDate ? "" : txtFechaCes.Text;
             string em = txtEmail.Text;
             string ob = txtObservacion.Text;
             string es = chkStatus.Checked ? "1" : "0";
@@ -675,25 +688,48 @@ namespace Polsolcom.Forms
             string ip = txtIdPersonal.Text;
             string us = Usuario.id_us;
 
-            this.validar();
-
-            string sql = "";
-            if (this.lnew)
+            if (this.validar())
             {
-                sql = "Declare @rs Varchar(7) " +
-                    "Exec MaxValor 'Id_Personal','Personal','4',@ret=@rs Output " +
-                    "Exec GenUniCod @rs,@ret=@rs Output " +
-                    "Set @rs=?Oper+@rs " +
-                    "Insert Into Personal Values (@rs,'" + nm + "','" + ap + "','" + am + "','" + di + "','" + rc + "','" + sx + "','" + fn + "','" + tc + "','" + re + "','" + dr + "','" + ds + "','" + tf + "','" + cl + "','" + mc + "','" + ec + "','" + gi + "','" + pr + "','" + ar + "','" + cr + "','" + fi + "','" + fc + "','" + em + "','" + ob + "','" + dc + "','" + es + "','','','','','','',Null,'','','','','','','" + us + "',GetDate(),'" + us + "',GetDate())";
-            }
-            else
-            {
-                sql = "Update Personal Set Nombres='" + nm + "',Ape_Paterno='" + ap + "',Ape_Materno='" + am + "',DNI='" + di + "',RUC='" + rc + "',Sexo='" + sx + "',Fec_Nac='" + fn + "', TNCol='" + tc + "',RNE='" + re + "',Direccion='" + dr + "',Id_Distrito='" + ds + "',Telefono='" + tf + "',Celular='" + cl + "',Mod_Cont='" + mc + "',Est_Civil='" + ec + "',' + 'Id_GInst='" + gi + "',Id_Profesion='" + pr + "',Id_Area='" + ar + "',Id_Cargo='" + cr + "',Fec_Ing='" + fi + "',Fec_Ces='" + fc + "',Email='" + em + "',Observacion='" + ob + "',' + 'Dscto='" + dc + "',Estado='" + es + "',Us_Mod='" + us + "',Fec_Mod=GetDate() Where Id_Personal='" + ip + "'";
-            }
+                string sql = "";
+                if (this.lnew)
+                {
+                    sql = "Declare @rs Varchar(7) " +
+                        "Exec MaxValor 'Id_Personal','Personal','4',@ret=@rs Output " +
+                        "Exec GenUniCod @rs,@ret=@rs Output " +
+                        "Set @rs='" + Operativo.id_oper + "' + @rs " +
+                        "Insert Into Personal Values (@rs,'" + nm + "','" + ap + "','" + am + "','" + di + "','" + rc + "','" + sx + "','" + fn + "','" + tc + "','" + re + "','" + dr + "','" + ds + "','" + tf + "','" + cl + "','" + mc + "','" + ec + "','" + gi + "','" + pr + "','" + ar + "','" + cr + "','" + fi + "'," + (fc.Length > 0 ? "'" + fc + "'": "NULL") + ",'" + em + "','" + ob + "','" + dc + "','" + es + "','','','','','','',Null,'','','','','','','" + us + "',GetDate(),'" + us + "',GetDate())";
+                }
+                else
+                {
+                    sql = "Update Personal Set Nombres='" + nm + "',Ape_Paterno='" + ap + "',Ape_Materno='" + am + "',DNI='" + di + "',RUC='" + rc + "',Sexo='" + sx + "',Fec_Nac='" + fn + "', TNCol='" + tc + "',RNE='" + re + "',Direccion='" + dr + "',Id_Distrito='" + ds + "',Telefono='" + tf + "',Celular='" + cl + "',Mod_Cont='" + mc + "',Est_Civil='" + ec + "', Id_GInst='" + gi + "',Id_Profesion='" + pr + "',Id_Area='" + ar + "',Id_Cargo='" + cr + "',Fec_Ing='" + fi + "',Fec_Ces=" + (fc.Length > 0 ? "'" + fc + "'" : "NULL") + ",Email='" + em + "',Observacion='" + ob + "', Dscto='" + dc + "',Estado='" + es + "',Us_Mod='" + us + "',Fec_Mod=GetDate() Where Id_Personal='" + ip + "'";
+                }
 
-            Conexion.ExecuteNonQuery(sql);
-            this.busper("", "", "", di);
-            this.habil(false);
+                Conexion.ExecuteNonQuery(sql);
+
+                MessageBox.Show("Datos guardados correctamente");
+
+                this.busper("", "", "", di);
+                this.habil(false);
+            }
+        }
+
+        private void txtDoc_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void lblVitae_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string target = lblVitae.Text;
+
+            if (!File.Exists(target))
+            {
+                MessageBox.Show("Archivo no existe en carpeta predeterminada", "Aviso");
+            }
+            else {
+                Microsoft.Office.Interop.Word.Application ap = new Microsoft.Office.Interop.Word.Application();
+                Document document = ap.Documents.Open(@target);
+            }
         }
     }
 

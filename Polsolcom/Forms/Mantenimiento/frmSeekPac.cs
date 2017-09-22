@@ -258,8 +258,6 @@ namespace Polsolcom.Forms.Mantenimiento
 
             if (this.df == 1)
             {
-                this.KeyPreview = false;
-
                 grpIdPac.Visible = false;
                 grpNroPac.Visible = false;
                 pnlDatos.Visible = false;
@@ -327,26 +325,27 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void lstPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int i = General.GetSelectedIndex(lstPacientes);
 
-            if (lstPacientes.Items.Count > 0)
+            if (this.df == 0)
             {
-                txtApePaterno.Text = (this.df == 0 ? this.pacs[i]["Ape_Paterno"] : this.pacs[i]["Ape_Pat"]);
-                txtApeMaterno.Text = (this.df == 0 ? this.pacs[i]["Ape_Materno"] : this.pacs[i]["Ape_Mat"]);
-                txtNombre.Text = (this.df == 0 ? this.pacs[i]["Nombre"] : this.pacs[i]["Nombre"]);
-                txtSexo.Text = (this.df == 0 ? this.pacs[i]["Sexo"] : (this.pacs[i]["Sexo"] == "1" ? "M" : "F"));
-                txtDoc.Text = this.pacs[i]["DNI"];
-                txtFechaNac.Text = (this.df == 0 ? (this.pacs[i]["Fecha_Nac"].Length == 0 ? General.emptyDate : this.pacs[i]["Fecha_Nac"]) : this.pacs[i]["Fecha_Nac"]);
-                txtEdad.Text = (this.df == 0 ? (this.pacs[i]["Fecha_Nac"].Length == 0 ? this.pacs[i]["Edad"] : General.getYearUntilNow(this.pacs[i]["Fecha_Nac"]).ToString()) : General.getYearUntilNow(this.pacs[i]["Fecha_Nac"]).ToString());
+                int i = General.GetSelectedIndex(lstPacientes);
 
-                cmbDepartamento.SelectedValue = (this.df == 0 ? this.pacs[i]["Id_Distrito"].Substring(0, 2) : this.pacs[i]["Id_Old"].Substring(0, 2));
-                cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
-                cmbProvincia.SelectedValue = (this.df == 0 ? this.pacs[i]["Id_Distrito"].Substring(0, 4) : this.pacs[i]["Id_Old"].Substring(0, 4));
-                cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
-                cmbDistrito.SelectedValue = (this.df == 0 ? this.pacs[i]["Id_Distrito"] : this.pacs[i]["Id_Old"]);
-
-                if (this.df == 0)
+                if (lstPacientes.Items.Count > 0)
                 {
+                    txtApePaterno.Text = this.pacs[i]["Ape_Paterno"];
+                    txtApeMaterno.Text = this.pacs[i]["Ape_Materno"];
+                    txtNombre.Text = this.pacs[i]["Nombre"];
+                    txtSexo.Text = this.pacs[i]["Sexo"];
+                    txtDoc.Text = this.pacs[i]["DNI"];
+                    txtFechaNac.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? General.emptyDate : this.pacs[i]["Fecha_Nac"];
+                    txtEdad.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? this.pacs[i]["Edad"] : General.getYearUntilNow(this.pacs[i]["Fecha_Nac"]).ToString();
+
+                    cmbDepartamento.SelectedValue = this.pacs[i]["Id_Distrito"].Substring(0, 2);
+                    cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
+                    cmbProvincia.SelectedValue = this.pacs[i]["Id_Distrito"].Substring(0, 4);
+                    cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
+                    cmbDistrito.SelectedValue = this.pacs[i]["Id_Distrito"];
+
                     txtIdPaciente.Text = this.pacs[i]["Id_Paciente"];
                     txtDireccion.Text = this.pacs[i]["Direccion"];
                     txtTelefono.Text = this.pacs[i]["Telefono"];
@@ -360,10 +359,9 @@ namespace Polsolcom.Forms.Mantenimiento
                         cmbTDoc.SelectedIndex = -1;
                         txtODoc.Text = "";
                     }
-      
+
                     txtAsegurado.Text = this.pacs[i]["Asegurado"];
                     txtEmail.Text = this.pacs[i]["E_Mail"];
-                    //06254799 ABAD ALCALA ADA
                 }
             }
         }
@@ -592,7 +590,8 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtNom_TextChanged(object sender, EventArgs e)
         {
-            if (this.df == 0 || txtNom.Text.Length > 0)
+            //if (this.df == 0 || txtNom.Text.Length > 0)
+            if (txtNom.Text.Length > 0)
             {
                 this.fil();
             }
@@ -600,7 +599,8 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtApeMat_TextChanged(object sender, EventArgs e)
         {
-            if (this.df == 0)
+            //if (this.df == 0)
+            if (txtApeMat.Text.Length > 0)
             {
                 this.fil();
             }
@@ -608,7 +608,8 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtApePat_TextChanged(object sender, EventArgs e)
         {
-            if (this.df == 0)
+            //if (this.df == 0)
+            if (txtApePat.Text.Length > 0)
             {
                 this.fil();
             }
@@ -616,7 +617,8 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtDni_TextChanged(object sender, EventArgs e)
         {
-            if (this.df == 0 || (this.df == 1 && txtDni.Text.Length == 8))
+            //if (this.df == 0 || (this.df == 1 && txtDni.Text.Length == 8))
+            if (txtDni.Text.Length == 8)
             {
                 this.fil();
             }
@@ -626,7 +628,7 @@ namespace Polsolcom.Forms.Mantenimiento
         {
             int i = General.GetSelectedIndex(lstPacientes);
 
-            if (e.KeyCode == Keys.Enter && lstPacientes.Items.Count == 0)
+            if (e.KeyCode == Keys.Enter && lstPacientes.Items.Count > 0)
             {
                 string ip = this.df == 0 ? this.pacs[i]["Id_Paciente"] : this.pacs[i]["DNI"];
 
@@ -637,6 +639,7 @@ namespace Polsolcom.Forms.Mantenimiento
                 else
                 {
                     this.xPac = this.pacs.Find(x => x["DNI"] == ip);
+                    this.Close();
                 }
             }
 
@@ -695,7 +698,7 @@ namespace Polsolcom.Forms.Mantenimiento
             if (txtFechaNac.Text != General.emptyDate)
             {
                 DateTime fechaNac = DateTime.Today;
-                
+
                 bool validDate = DateTime.TryParse(txtFechaNac.Text, out fechaNac);
 
                 if (!validDate || fechaNac.CompareTo(DateTime.Today) > 0 || fechaNac.Year < 1900)
@@ -729,7 +732,8 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtNroHist_TextChanged(object sender, EventArgs e)
         {
-            if (this.df == 0)
+            //if (this.df == 0)
+            if (txtNroHist.Text.Length > 0)
             {
                 this.fil();
             }
