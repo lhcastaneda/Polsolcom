@@ -34,6 +34,7 @@
             Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties3 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
             this.tabPersonal = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtFechaUltima = new System.Windows.Forms.MaskedTextBox();
             this.btnGrupo = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.cmbGrupo = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
@@ -47,20 +48,19 @@
             this.optRegular = new System.Windows.Forms.RadioButton();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.dtpFechaUltima = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.txtTipoMusica = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtHobby = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtInstrumento = new System.Windows.Forms.TextBox();
+            this.txtInstrumental = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtAficcion = new System.Windows.Forms.TextBox();
+            this.txtAficion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtDiagnostico = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.adtOtrasAlt = new System.Windows.Forms.TextBox();
+            this.edtOtrasAlt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.edtCentro = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -68,13 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.edtProyeccion = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.grdFamiliares = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pnlDatosFam = new System.Windows.Forms.Panel();
@@ -97,12 +90,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnQuitar2 = new System.Windows.Forms.Button();
             this.btnAgregar2 = new System.Windows.Forms.Button();
-            this.grdEstudios = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlEstudios = new System.Windows.Forms.Panel();
             this.txtNroTitulo = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -119,6 +106,8 @@
             this.label28 = new System.Windows.Forms.Label();
             this.txtCentro = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnQuitar3 = new System.Windows.Forms.Button();
+            this.btnAgregar3 = new System.Windows.Forms.Button();
             this.pnlExpLaboral = new System.Windows.Forms.Panel();
             this.txtHasta = new System.Windows.Forms.TextBox();
             this.txtDesde = new System.Windows.Forms.TextBox();
@@ -128,26 +117,34 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.txtCentroLaboral = new System.Windows.Forms.TextBox();
-            this.btnQuitar3 = new System.Windows.Forms.Button();
-            this.btnAgregar3 = new System.Windows.Forms.Button();
-            this.grdExpLaboral = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lstFam = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lstEst = new System.Windows.Forms.ListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lstExp = new System.Windows.Forms.ListView();
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPersonal.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.pnlOpciones2.SuspendLayout();
             this.pnlOpciones1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdFamiliares)).BeginInit();
             this.pnlDatosFam.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdEstudios)).BeginInit();
             this.pnlEstudios.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.pnlExpLaboral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdExpLaboral)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPersonal
@@ -164,6 +161,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtFechaUltima);
             this.tabPage1.Controls.Add(this.btnGrupo);
             this.tabPage1.Controls.Add(this.btnGrabar);
             this.tabPage1.Controls.Add(this.cmbGrupo);
@@ -172,20 +170,19 @@
             this.tabPage1.Controls.Add(this.pnlOpciones1);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.dtpFechaUltima);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.txtTipoMusica);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.txtHobby);
             this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.txtInstrumento);
+            this.tabPage1.Controls.Add(this.txtInstrumental);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.txtAficcion);
+            this.tabPage1.Controls.Add(this.txtAficion);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.txtDiagnostico);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.adtOtrasAlt);
+            this.tabPage1.Controls.Add(this.edtOtrasAlt);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.edtCentro);
             this.tabPage1.Controls.Add(this.label2);
@@ -199,6 +196,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Otros Datos";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtFechaUltima
+            // 
+            this.txtFechaUltima.Location = new System.Drawing.Point(248, 121);
+            this.txtFechaUltima.Mask = "00/00/0000";
+            this.txtFechaUltima.Name = "txtFechaUltima";
+            this.txtFechaUltima.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaUltima.TabIndex = 29;
+            this.txtFechaUltima.ValidatingType = typeof(System.DateTime);
             // 
             // btnGrupo
             // 
@@ -217,6 +223,7 @@
             this.btnGrabar.TabIndex = 27;
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.UseVisualStyleBackColor = true;
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // cmbGrupo
             // 
@@ -336,14 +343,6 @@
             this.label11.TabIndex = 21;
             this.label11.Text = "Estado de salud";
             // 
-            // dtpFechaUltima
-            // 
-            this.dtpFechaUltima.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaUltima.Location = new System.Drawing.Point(249, 121);
-            this.dtpFechaUltima.Name = "dtpFechaUltima";
-            this.dtpFechaUltima.Size = new System.Drawing.Size(97, 20);
-            this.dtpFechaUltima.TabIndex = 20;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -393,12 +392,12 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Instrumento musical que practica";
             // 
-            // txtInstrumento
+            // txtInstrumental
             // 
-            this.txtInstrumento.Location = new System.Drawing.Point(360, 168);
-            this.txtInstrumento.Name = "txtInstrumento";
-            this.txtInstrumento.Size = new System.Drawing.Size(391, 20);
-            this.txtInstrumento.TabIndex = 14;
+            this.txtInstrumental.Location = new System.Drawing.Point(360, 168);
+            this.txtInstrumental.Name = "txtInstrumental";
+            this.txtInstrumental.Size = new System.Drawing.Size(391, 20);
+            this.txtInstrumental.TabIndex = 14;
             // 
             // label7
             // 
@@ -411,12 +410,12 @@
             this.label7.TabIndex = 13;
             this.label7.Text = "Afición o deporte que practica";
             // 
-            // txtAficcion
+            // txtAficion
             // 
-            this.txtAficcion.Location = new System.Drawing.Point(13, 170);
-            this.txtAficcion.Name = "txtAficcion";
-            this.txtAficcion.Size = new System.Drawing.Size(334, 20);
-            this.txtAficcion.TabIndex = 12;
+            this.txtAficion.Location = new System.Drawing.Point(13, 170);
+            this.txtAficion.Name = "txtAficion";
+            this.txtAficion.Size = new System.Drawing.Size(334, 20);
+            this.txtAficion.TabIndex = 12;
             // 
             // label6
             // 
@@ -458,14 +457,14 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Otra alternativas";
             // 
-            // adtOtrasAlt
+            // edtOtrasAlt
             // 
-            this.adtOtrasAlt.Location = new System.Drawing.Point(573, 24);
-            this.adtOtrasAlt.Multiline = true;
-            this.adtOtrasAlt.Name = "adtOtrasAlt";
-            this.adtOtrasAlt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.adtOtrasAlt.Size = new System.Drawing.Size(182, 73);
-            this.adtOtrasAlt.TabIndex = 6;
+            this.edtOtrasAlt.Location = new System.Drawing.Point(573, 24);
+            this.edtOtrasAlt.Multiline = true;
+            this.edtOtrasAlt.Name = "edtOtrasAlt";
+            this.edtOtrasAlt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.edtOtrasAlt.Size = new System.Drawing.Size(182, 73);
+            this.edtOtrasAlt.TabIndex = 6;
             // 
             // label3
             // 
@@ -529,7 +528,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.grdFamiliares);
+            this.tabPage2.Controls.Add(this.lstFam);
             this.tabPage2.Controls.Add(this.btnQuitar);
             this.tabPage2.Controls.Add(this.btnAgregar);
             this.tabPage2.Controls.Add(this.pnlDatosFam);
@@ -540,55 +539,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Familiares";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // grdFamiliares
-            // 
-            this.grdFamiliares.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdFamiliares.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6});
-            this.grdFamiliares.Location = new System.Drawing.Point(14, 64);
-            this.grdFamiliares.Name = "grdFamiliares";
-            this.grdFamiliares.Size = new System.Drawing.Size(863, 179);
-            this.grdFamiliares.TabIndex = 31;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Parentesco";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 120;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Ape. Paterno";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Ape. Materno";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Nombres";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "DNI";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Fecha Nac.";
-            this.Column6.Name = "Column6";
             // 
             // btnQuitar
             // 
@@ -787,9 +737,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.lstEst);
             this.tabPage3.Controls.Add(this.btnQuitar2);
             this.tabPage3.Controls.Add(this.btnAgregar2);
-            this.tabPage3.Controls.Add(this.grdEstudios);
             this.tabPage3.Controls.Add(this.pnlEstudios);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -816,48 +766,6 @@
             this.btnAgregar2.TabIndex = 33;
             this.btnAgregar2.Text = "&Agregar";
             this.btnAgregar2.UseVisualStyleBackColor = true;
-            // 
-            // grdEstudios
-            // 
-            this.grdEstudios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdEstudios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.grdEstudios.Location = new System.Drawing.Point(6, 62);
-            this.grdEstudios.Name = "grdEstudios";
-            this.grdEstudios.Size = new System.Drawing.Size(794, 179);
-            this.grdEstudios.TabIndex = 32;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Centro de Estudios";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Del";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Al";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Especialidad";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Título";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 150;
             // 
             // pnlEstudios
             // 
@@ -1012,9 +920,9 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.lstExp);
             this.tabPage4.Controls.Add(this.btnQuitar3);
             this.tabPage4.Controls.Add(this.btnAgregar3);
-            this.tabPage4.Controls.Add(this.grdExpLaboral);
             this.tabPage4.Controls.Add(this.pnlExpLaboral);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -1023,6 +931,24 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Experiencia Laboral";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnQuitar3
+            // 
+            this.btnQuitar3.Location = new System.Drawing.Point(808, 93);
+            this.btnQuitar3.Name = "btnQuitar3";
+            this.btnQuitar3.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitar3.TabIndex = 37;
+            this.btnQuitar3.Text = "&Quitar";
+            this.btnQuitar3.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregar3
+            // 
+            this.btnAgregar3.Location = new System.Drawing.Point(808, 67);
+            this.btnAgregar3.Name = "btnAgregar3";
+            this.btnAgregar3.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar3.TabIndex = 36;
+            this.btnAgregar3.Text = "&Agregar";
+            this.btnAgregar3.UseVisualStyleBackColor = true;
             // 
             // pnlExpLaboral
             // 
@@ -1111,58 +1037,125 @@
             this.txtCentroLaboral.Size = new System.Drawing.Size(344, 20);
             this.txtCentroLaboral.TabIndex = 3;
             // 
-            // btnQuitar3
+            // lstFam
             // 
-            this.btnQuitar3.Location = new System.Drawing.Point(808, 93);
-            this.btnQuitar3.Name = "btnQuitar3";
-            this.btnQuitar3.Size = new System.Drawing.Size(75, 23);
-            this.btnQuitar3.TabIndex = 37;
-            this.btnQuitar3.Text = "&Quitar";
-            this.btnQuitar3.UseVisualStyleBackColor = true;
+            this.lstFam.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lstFam.Location = new System.Drawing.Point(7, 61);
+            this.lstFam.Name = "lstFam";
+            this.lstFam.Size = new System.Drawing.Size(873, 191);
+            this.lstFam.TabIndex = 31;
+            this.lstFam.UseCompatibleStateImageBehavior = false;
+            this.lstFam.View = System.Windows.Forms.View.Details;
             // 
-            // btnAgregar3
+            // columnHeader1
             // 
-            this.btnAgregar3.Location = new System.Drawing.Point(808, 67);
-            this.btnAgregar3.Name = "btnAgregar3";
-            this.btnAgregar3.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar3.TabIndex = 36;
-            this.btnAgregar3.Text = "&Agregar";
-            this.btnAgregar3.UseVisualStyleBackColor = true;
+            this.columnHeader1.Text = "Parentesco";
+            this.columnHeader1.Width = 150;
             // 
-            // grdExpLaboral
+            // columnHeader2
             // 
-            this.grdExpLaboral.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdExpLaboral.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8});
-            this.grdExpLaboral.Location = new System.Drawing.Point(3, 68);
-            this.grdExpLaboral.Name = "grdExpLaboral";
-            this.grdExpLaboral.Size = new System.Drawing.Size(801, 179);
-            this.grdExpLaboral.TabIndex = 35;
+            this.columnHeader2.Text = "Ape Paterno";
+            this.columnHeader2.Width = 150;
             // 
-            // dataGridViewTextBoxColumn6
+            // columnHeader3
             // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Centro de Estudios";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 280;
+            this.columnHeader3.Text = "Ape Materno";
+            this.columnHeader3.Width = 150;
             // 
-            // dataGridViewTextBoxColumn9
+            // columnHeader4
             // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Especialidad";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Width = 280;
+            this.columnHeader4.Text = "Nombres";
+            this.columnHeader4.Width = 200;
             // 
-            // dataGridViewTextBoxColumn7
+            // columnHeader5
             // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Del";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.columnHeader5.Text = "DNI";
+            this.columnHeader5.Width = 100;
             // 
-            // dataGridViewTextBoxColumn8
+            // columnHeader6
             // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Al";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.columnHeader6.Text = "Fec. Nac.";
+            this.columnHeader6.Width = 100;
+            // 
+            // lstEst
+            // 
+            this.lstEst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11});
+            this.lstEst.Location = new System.Drawing.Point(4, 60);
+            this.lstEst.Name = "lstEst";
+            this.lstEst.Size = new System.Drawing.Size(873, 191);
+            this.lstEst.TabIndex = 35;
+            this.lstEst.UseCompatibleStateImageBehavior = false;
+            this.lstEst.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Centro de Estudio";
+            this.columnHeader7.Width = 220;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Del";
+            this.columnHeader8.Width = 100;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Al";
+            this.columnHeader9.Width = 100;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Especialidad";
+            this.columnHeader10.Width = 220;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Titulo";
+            this.columnHeader11.Width = 220;
+            // 
+            // lstExp
+            // 
+            this.lstExp.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15});
+            this.lstExp.Location = new System.Drawing.Point(5, 62);
+            this.lstExp.Name = "lstExp";
+            this.lstExp.Size = new System.Drawing.Size(796, 191);
+            this.lstExp.TabIndex = 38;
+            this.lstExp.UseCompatibleStateImageBehavior = false;
+            this.lstExp.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Centro de Trabajo";
+            this.columnHeader12.Width = 290;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Cargo";
+            this.columnHeader13.Width = 290;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Desde";
+            this.columnHeader14.Width = 100;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Hasta";
+            this.columnHeader15.Width = 100;
             // 
             // frmPersonalDet
             // 
@@ -1184,17 +1177,14 @@
             this.pnlOpciones1.ResumeLayout(false);
             this.pnlOpciones1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdFamiliares)).EndInit();
             this.pnlDatosFam.ResumeLayout(false);
             this.pnlDatosFam.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdEstudios)).EndInit();
             this.pnlEstudios.ResumeLayout(false);
             this.pnlEstudios.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.pnlExpLaboral.ResumeLayout(false);
             this.pnlExpLaboral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdExpLaboral)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1211,14 +1201,14 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtHobby;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtInstrumento;
+        private System.Windows.Forms.TextBox txtInstrumental;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtAficcion;
+        private System.Windows.Forms.TextBox txtAficion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtDiagnostico;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox adtOtrasAlt;
+        private System.Windows.Forms.TextBox edtOtrasAlt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox edtCentro;
         private System.Windows.Forms.Label label2;
@@ -1236,7 +1226,6 @@
         private System.Windows.Forms.RadioButton optRegular;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.DateTimePicker dtpFechaUltima;
         private System.Windows.Forms.Panel pnlDatosFam;
         private System.Windows.Forms.DateTimePicker dtpFechNac;
         private Dominio.Controls.CheckBoxComboBox cmbSexo;
@@ -1256,23 +1245,10 @@
         private System.Windows.Forms.TextBox txtMaterno;
         private System.Windows.Forms.Button btnGrupo;
         private System.Windows.Forms.Button btnGrabar;
-        private System.Windows.Forms.DataGridView grdFamiliares;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnQuitar2;
         private System.Windows.Forms.Button btnAgregar2;
-        private System.Windows.Forms.DataGridView grdEstudios;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.Panel pnlEstudios;
         private System.Windows.Forms.TextBox txtNroTitulo;
         private System.Windows.Forms.Label label22;
@@ -1290,11 +1266,6 @@
         private System.Windows.Forms.TextBox txtCentro;
         private System.Windows.Forms.Button btnQuitar3;
         private System.Windows.Forms.Button btnAgregar3;
-        private System.Windows.Forms.DataGridView grdExpLaboral;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.Panel pnlExpLaboral;
         private System.Windows.Forms.TextBox txtHasta;
         private System.Windows.Forms.TextBox txtDesde;
@@ -1304,5 +1275,24 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox txtCentroLaboral;
+        private System.Windows.Forms.MaskedTextBox txtFechaUltima;
+        private System.Windows.Forms.ListView lstFam;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ListView lstEst;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ListView lstExp;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
     }
 }
