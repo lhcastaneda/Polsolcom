@@ -1516,7 +1516,15 @@ namespace Polsolcom.Dominio.Helpers
 
         public static int getYearUntilNow(string date)
         {
-            return General.getYearUntilNow(DateTime.Parse(date));
+            DateTime datetime = new DateTime();
+            bool valid = DateTime.TryParse(date, out datetime);
+
+            if (!valid)
+            {
+                throw new Exception("Fecha inválida");
+            }
+
+            return General.getYearUntilNow(datetime);
         }
      
     }

@@ -68,6 +68,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.edtProyeccion = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lstFam = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pnlDatosFam = new System.Windows.Forms.Panel();
@@ -76,7 +83,6 @@
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.txtMaterno = new System.Windows.Forms.TextBox();
-            this.dtpFechNac = new System.Windows.Forms.DateTimePicker();
             this.cmbSexo = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -88,14 +94,18 @@
             this.cmbParent = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
             this.txtPaterno = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lstEst = new System.Windows.Forms.ListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnQuitar2 = new System.Windows.Forms.Button();
             this.btnAgregar2 = new System.Windows.Forms.Button();
             this.pnlEstudios = new System.Windows.Forms.Panel();
             this.txtNroTitulo = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.txtTitulo = new System.Windows.Forms.TextBox();
-            this.txtEstAl = new System.Windows.Forms.TextBox();
-            this.txtEstDel = new System.Windows.Forms.TextBox();
             this.txtEspecialidad = new System.Windows.Forms.TextBox();
             this.cmbNivel = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -106,35 +116,25 @@
             this.label28 = new System.Windows.Forms.Label();
             this.txtCentro = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lstExp = new System.Windows.Forms.ListView();
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnQuitar3 = new System.Windows.Forms.Button();
             this.btnAgregar3 = new System.Windows.Forms.Button();
             this.pnlExpLaboral = new System.Windows.Forms.Panel();
-            this.txtHasta = new System.Windows.Forms.TextBox();
-            this.txtDesde = new System.Windows.Forms.TextBox();
             this.txtCargo = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.txtCentroLaboral = new System.Windows.Forms.TextBox();
-            this.lstFam = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lstEst = new System.Windows.Forms.ListView();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lstExp = new System.Windows.Forms.ListView();
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtFechaNac = new System.Windows.Forms.MaskedTextBox();
+            this.txtEstDel = new System.Windows.Forms.MaskedTextBox();
+            this.txtEstAl = new System.Windows.Forms.MaskedTextBox();
+            this.txtDesde = new System.Windows.Forms.MaskedTextBox();
+            this.txtHasta = new System.Windows.Forms.MaskedTextBox();
             this.tabPersonal.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.pnlOpciones2.SuspendLayout();
@@ -214,6 +214,7 @@
             this.btnGrupo.TabIndex = 28;
             this.btnGrupo.Text = "&Cerrar";
             this.btnGrupo.UseVisualStyleBackColor = true;
+            this.btnGrupo.Click += new System.EventHandler(this.btnGrupo_Click);
             // 
             // btnGrabar
             // 
@@ -540,6 +541,52 @@
             this.tabPage2.Text = "Familiares";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lstFam
+            // 
+            this.lstFam.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lstFam.Location = new System.Drawing.Point(7, 61);
+            this.lstFam.Name = "lstFam";
+            this.lstFam.Size = new System.Drawing.Size(873, 191);
+            this.lstFam.TabIndex = 31;
+            this.lstFam.UseCompatibleStateImageBehavior = false;
+            this.lstFam.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Parentesco";
+            this.columnHeader1.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Ape Paterno";
+            this.columnHeader2.Width = 150;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Ape Materno";
+            this.columnHeader3.Width = 150;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Nombres";
+            this.columnHeader4.Width = 200;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "DNI";
+            this.columnHeader5.Width = 100;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Fec. Nac.";
+            this.columnHeader6.Width = 100;
+            // 
             // btnQuitar
             // 
             this.btnQuitar.Location = new System.Drawing.Point(805, 32);
@@ -548,6 +595,7 @@
             this.btnQuitar.TabIndex = 30;
             this.btnQuitar.Text = "&Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // btnAgregar
             // 
@@ -557,15 +605,16 @@
             this.btnAgregar.TabIndex = 29;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // pnlDatosFam
             // 
+            this.pnlDatosFam.Controls.Add(this.txtFechaNac);
             this.pnlDatosFam.Controls.Add(this.label21);
             this.pnlDatosFam.Controls.Add(this.txtEdad);
             this.pnlDatosFam.Controls.Add(this.txtDNI);
             this.pnlDatosFam.Controls.Add(this.txtNombres);
             this.pnlDatosFam.Controls.Add(this.txtMaterno);
-            this.pnlDatosFam.Controls.Add(this.dtpFechNac);
             this.pnlDatosFam.Controls.Add(this.cmbSexo);
             this.pnlDatosFam.Controls.Add(this.label20);
             this.pnlDatosFam.Controls.Add(this.label19);
@@ -620,14 +669,6 @@
             this.txtMaterno.Size = new System.Drawing.Size(100, 20);
             this.txtMaterno.TabIndex = 12;
             this.txtMaterno.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
-            // 
-            // dtpFechNac
-            // 
-            this.dtpFechNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechNac.Location = new System.Drawing.Point(643, 21);
-            this.dtpFechNac.Name = "dtpFechNac";
-            this.dtpFechNac.Size = new System.Drawing.Size(96, 20);
-            this.dtpFechNac.TabIndex = 11;
             // 
             // cmbSexo
             // 
@@ -749,6 +790,47 @@
             this.tabPage3.Text = "Estudios Realizados";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // lstEst
+            // 
+            this.lstEst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11});
+            this.lstEst.Location = new System.Drawing.Point(4, 60);
+            this.lstEst.Name = "lstEst";
+            this.lstEst.Size = new System.Drawing.Size(793, 191);
+            this.lstEst.TabIndex = 35;
+            this.lstEst.UseCompatibleStateImageBehavior = false;
+            this.lstEst.View = System.Windows.Forms.View.Details;
+            this.lstEst.SelectedIndexChanged += new System.EventHandler(this.lstEst_SelectedIndexChanged);
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Centro de Estudio";
+            this.columnHeader7.Width = 200;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Del";
+            this.columnHeader8.Width = 90;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Al";
+            this.columnHeader9.Width = 90;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Especialidad";
+            this.columnHeader10.Width = 200;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Titulo";
+            this.columnHeader11.Width = 200;
+            // 
             // btnQuitar2
             // 
             this.btnQuitar2.Location = new System.Drawing.Point(805, 87);
@@ -757,6 +839,7 @@
             this.btnQuitar2.TabIndex = 34;
             this.btnQuitar2.Text = "&Quitar";
             this.btnQuitar2.UseVisualStyleBackColor = true;
+            this.btnQuitar2.Click += new System.EventHandler(this.btnQuitar2_Click);
             // 
             // btnAgregar2
             // 
@@ -766,14 +849,15 @@
             this.btnAgregar2.TabIndex = 33;
             this.btnAgregar2.Text = "&Agregar";
             this.btnAgregar2.UseVisualStyleBackColor = true;
+            this.btnAgregar2.Click += new System.EventHandler(this.btnAgregar2_Click);
             // 
             // pnlEstudios
             // 
+            this.pnlEstudios.Controls.Add(this.txtEstAl);
+            this.pnlEstudios.Controls.Add(this.txtEstDel);
             this.pnlEstudios.Controls.Add(this.txtNroTitulo);
             this.pnlEstudios.Controls.Add(this.label22);
             this.pnlEstudios.Controls.Add(this.txtTitulo);
-            this.pnlEstudios.Controls.Add(this.txtEstAl);
-            this.pnlEstudios.Controls.Add(this.txtEstDel);
             this.pnlEstudios.Controls.Add(this.txtEspecialidad);
             this.pnlEstudios.Controls.Add(this.cmbNivel);
             this.pnlEstudios.Controls.Add(this.label23);
@@ -812,20 +896,6 @@
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(116, 20);
             this.txtTitulo.TabIndex = 15;
-            // 
-            // txtEstAl
-            // 
-            this.txtEstAl.Location = new System.Drawing.Point(573, 22);
-            this.txtEstAl.Name = "txtEstAl";
-            this.txtEstAl.Size = new System.Drawing.Size(83, 20);
-            this.txtEstAl.TabIndex = 14;
-            // 
-            // txtEstDel
-            // 
-            this.txtEstDel.Location = new System.Drawing.Point(484, 21);
-            this.txtEstDel.Name = "txtEstDel";
-            this.txtEstDel.Size = new System.Drawing.Size(83, 20);
-            this.txtEstDel.TabIndex = 13;
             // 
             // txtEspecialidad
             // 
@@ -932,6 +1002,40 @@
             this.tabPage4.Text = "Experiencia Laboral";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // lstExp
+            // 
+            this.lstExp.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15});
+            this.lstExp.Location = new System.Drawing.Point(5, 62);
+            this.lstExp.Name = "lstExp";
+            this.lstExp.Size = new System.Drawing.Size(796, 191);
+            this.lstExp.TabIndex = 38;
+            this.lstExp.UseCompatibleStateImageBehavior = false;
+            this.lstExp.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Centro de Trabajo";
+            this.columnHeader12.Width = 290;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Cargo";
+            this.columnHeader13.Width = 290;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Desde";
+            this.columnHeader14.Width = 100;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Hasta";
+            this.columnHeader15.Width = 100;
+            // 
             // btnQuitar3
             // 
             this.btnQuitar3.Location = new System.Drawing.Point(808, 93);
@@ -940,6 +1044,7 @@
             this.btnQuitar3.TabIndex = 37;
             this.btnQuitar3.Text = "&Quitar";
             this.btnQuitar3.UseVisualStyleBackColor = true;
+            this.btnQuitar3.Click += new System.EventHandler(this.btnQuitar3_Click);
             // 
             // btnAgregar3
             // 
@@ -949,12 +1054,13 @@
             this.btnAgregar3.TabIndex = 36;
             this.btnAgregar3.Text = "&Agregar";
             this.btnAgregar3.UseVisualStyleBackColor = true;
+            this.btnAgregar3.Click += new System.EventHandler(this.btnAgregar3_Click);
             // 
             // pnlExpLaboral
             // 
             this.pnlExpLaboral.Controls.Add(this.txtHasta);
-            this.pnlExpLaboral.Controls.Add(this.txtDesde);
             this.pnlExpLaboral.Controls.Add(this.txtCargo);
+            this.pnlExpLaboral.Controls.Add(this.txtDesde);
             this.pnlExpLaboral.Controls.Add(this.label31);
             this.pnlExpLaboral.Controls.Add(this.label33);
             this.pnlExpLaboral.Controls.Add(this.label34);
@@ -964,20 +1070,6 @@
             this.pnlExpLaboral.Name = "pnlExpLaboral";
             this.pnlExpLaboral.Size = new System.Drawing.Size(879, 52);
             this.pnlExpLaboral.TabIndex = 2;
-            // 
-            // txtHasta
-            // 
-            this.txtHasta.Location = new System.Drawing.Point(778, 20);
-            this.txtHasta.Name = "txtHasta";
-            this.txtHasta.Size = new System.Drawing.Size(92, 20);
-            this.txtHasta.TabIndex = 14;
-            // 
-            // txtDesde
-            // 
-            this.txtDesde.Location = new System.Drawing.Point(678, 20);
-            this.txtDesde.Name = "txtDesde";
-            this.txtDesde.Size = new System.Drawing.Size(92, 20);
-            this.txtDesde.TabIndex = 13;
             // 
             // txtCargo
             // 
@@ -1037,125 +1129,51 @@
             this.txtCentroLaboral.Size = new System.Drawing.Size(344, 20);
             this.txtCentroLaboral.TabIndex = 3;
             // 
-            // lstFam
+            // txtFechaNac
             // 
-            this.lstFam.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
-            this.lstFam.Location = new System.Drawing.Point(7, 61);
-            this.lstFam.Name = "lstFam";
-            this.lstFam.Size = new System.Drawing.Size(873, 191);
-            this.lstFam.TabIndex = 31;
-            this.lstFam.UseCompatibleStateImageBehavior = false;
-            this.lstFam.View = System.Windows.Forms.View.Details;
+            this.txtFechaNac.Location = new System.Drawing.Point(640, 21);
+            this.txtFechaNac.Mask = "00/00/0000";
+            this.txtFechaNac.Name = "txtFechaNac";
+            this.txtFechaNac.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaNac.TabIndex = 32;
+            this.txtFechaNac.ValidatingType = typeof(System.DateTime);
+            this.txtFechaNac.Leave += new System.EventHandler(this.txtFechaNac_Leave);
             // 
-            // columnHeader1
+            // txtEstDel
             // 
-            this.columnHeader1.Text = "Parentesco";
-            this.columnHeader1.Width = 150;
+            this.txtEstDel.Location = new System.Drawing.Point(481, 21);
+            this.txtEstDel.Mask = "00/00/0000";
+            this.txtEstDel.Name = "txtEstDel";
+            this.txtEstDel.Size = new System.Drawing.Size(86, 20);
+            this.txtEstDel.TabIndex = 17;
+            this.txtEstDel.ValidatingType = typeof(System.DateTime);
             // 
-            // columnHeader2
+            // txtEstAl
             // 
-            this.columnHeader2.Text = "Ape Paterno";
-            this.columnHeader2.Width = 150;
+            this.txtEstAl.Location = new System.Drawing.Point(571, 21);
+            this.txtEstAl.Mask = "00/00/0000";
+            this.txtEstAl.Name = "txtEstAl";
+            this.txtEstAl.Size = new System.Drawing.Size(84, 20);
+            this.txtEstAl.TabIndex = 18;
+            this.txtEstAl.ValidatingType = typeof(System.DateTime);
             // 
-            // columnHeader3
+            // txtDesde
             // 
-            this.columnHeader3.Text = "Ape Materno";
-            this.columnHeader3.Width = 150;
+            this.txtDesde.Location = new System.Drawing.Point(672, 20);
+            this.txtDesde.Mask = "00/00/0000";
+            this.txtDesde.Name = "txtDesde";
+            this.txtDesde.Size = new System.Drawing.Size(103, 20);
+            this.txtDesde.TabIndex = 39;
+            this.txtDesde.ValidatingType = typeof(System.DateTime);
             // 
-            // columnHeader4
+            // txtHasta
             // 
-            this.columnHeader4.Text = "Nombres";
-            this.columnHeader4.Width = 200;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "DNI";
-            this.columnHeader5.Width = 100;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Fec. Nac.";
-            this.columnHeader6.Width = 100;
-            // 
-            // lstEst
-            // 
-            this.lstEst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11});
-            this.lstEst.Location = new System.Drawing.Point(4, 60);
-            this.lstEst.Name = "lstEst";
-            this.lstEst.Size = new System.Drawing.Size(873, 191);
-            this.lstEst.TabIndex = 35;
-            this.lstEst.UseCompatibleStateImageBehavior = false;
-            this.lstEst.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Centro de Estudio";
-            this.columnHeader7.Width = 220;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Del";
-            this.columnHeader8.Width = 100;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Al";
-            this.columnHeader9.Width = 100;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Especialidad";
-            this.columnHeader10.Width = 220;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Titulo";
-            this.columnHeader11.Width = 220;
-            // 
-            // lstExp
-            // 
-            this.lstExp.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15});
-            this.lstExp.Location = new System.Drawing.Point(5, 62);
-            this.lstExp.Name = "lstExp";
-            this.lstExp.Size = new System.Drawing.Size(796, 191);
-            this.lstExp.TabIndex = 38;
-            this.lstExp.UseCompatibleStateImageBehavior = false;
-            this.lstExp.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Centro de Trabajo";
-            this.columnHeader12.Width = 290;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Cargo";
-            this.columnHeader13.Width = 290;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "Desde";
-            this.columnHeader14.Width = 100;
-            // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "Hasta";
-            this.columnHeader15.Width = 100;
+            this.txtHasta.Location = new System.Drawing.Point(778, 20);
+            this.txtHasta.Mask = "00/00/0000";
+            this.txtHasta.Name = "txtHasta";
+            this.txtHasta.Size = new System.Drawing.Size(97, 20);
+            this.txtHasta.TabIndex = 40;
+            this.txtHasta.ValidatingType = typeof(System.DateTime);
             // 
             // frmPersonalDet
             // 
@@ -1227,7 +1245,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel pnlDatosFam;
-        private System.Windows.Forms.DateTimePicker dtpFechNac;
         private Dominio.Controls.CheckBoxComboBox cmbSexo;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
@@ -1253,8 +1270,6 @@
         private System.Windows.Forms.TextBox txtNroTitulo;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtTitulo;
-        private System.Windows.Forms.TextBox txtEstAl;
-        private System.Windows.Forms.TextBox txtEstDel;
         private System.Windows.Forms.TextBox txtEspecialidad;
         private Dominio.Controls.CheckBoxComboBox cmbNivel;
         private System.Windows.Forms.Label label23;
@@ -1267,8 +1282,6 @@
         private System.Windows.Forms.Button btnQuitar3;
         private System.Windows.Forms.Button btnAgregar3;
         private System.Windows.Forms.Panel pnlExpLaboral;
-        private System.Windows.Forms.TextBox txtHasta;
-        private System.Windows.Forms.TextBox txtDesde;
         private System.Windows.Forms.TextBox txtCargo;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label33;
@@ -1294,5 +1307,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.MaskedTextBox txtFechaNac;
+        private System.Windows.Forms.MaskedTextBox txtEstAl;
+        private System.Windows.Forms.MaskedTextBox txtEstDel;
+        private System.Windows.Forms.MaskedTextBox txtHasta;
+        private System.Windows.Forms.MaskedTextBox txtDesde;
     }
 }

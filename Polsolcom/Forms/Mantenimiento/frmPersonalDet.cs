@@ -158,5 +158,192 @@ namespace Polsolcom.Forms
 
 
         }
+
+        private void btnGrupo_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void txtFechaNac_Leave(object sender, EventArgs e)
+        {
+            txtEdad.Text = General.getYearUntilNow(txtFechaNac.Text).ToString();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            string ip = this.id_personal;
+            string pr = cmbParent.SelectedIndex == -1 ? "" : cmbParent.SelectedItem.ToString();
+            string ap = txtPaterno.Text;
+            string am = txtMaterno.Text;
+            string nm = txtNombres.Text;
+            string sx = cmbSexo.SelectedIndex == -1 ? "" : cmbSexo.SelectedItem.ToString();
+            string di = txtDNI.Text;
+            string fn = txtFechaNac.Text == General.emptyDate ? "" : txtFechaNac.Text;
+            string us = Usuario.id_us;
+
+            if (pr.Length == 0 || ap.Length == 0 || am.Length == 0 || nm.Length == 0 || fn.Length == 0 || sx.Length == 0)
+            {
+                MessageBox.Show("Faltan datos para anexar este registro", "Aviso");
+                return;
+            }
+
+            if (MessageBox.Show("Seguro de añadir este registro al personal", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+
+            string sql = "Insert Into Fam_Personal Values('" + ip + "','" + pr + "','" + ap + "','" + am + "','" + nm + "','" + fn + "','" + sx + "','" + di + "','" + us + "',GetDate(),'" + us + "',GetDate())";
+            Conexion.ExecuteNonQuery(sql);
+
+            General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
+            General.setAll<TextBox, string>(this, "Text", "");
+            General.setAll<MaskedTextBox, string>(this, "Text", General.emptyDate);
+
+            this.rechargeFam();
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            if (lstFam.Items.Count > 0)
+            {
+                int i = General.GetSelectedIndex(lstFam);
+
+                string ip = this.id_personal + this.familia[i]["Id_Parent"] + this.familia[i]["Ape_Paterno"] + this.familia[i]["Ape_Materno"] + this.familia[i]["Nombres"];
+
+                string sql = "Delete From Fam_Personal Where Id_Personal+Id_Parent+Ape_Paterno+Ape_Materno+Nombres='" + ip + "'";
+
+                if (MessageBox.Show("Esta seguro de eliminar el registro actual", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+
+                Conexion.ExecuteNonQuery(sql);
+
+                this.rechargeFam();
+            }
+            else
+            {
+                MessageBox.Show("No hay qué eliminar", "Aviso");
+            }
+        }
+
+        private void lstEst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnQuitar2_Click(object sender, EventArgs e)
+        {
+            if (lstEst.Items.Count > 0)
+            {
+                int i = General.GetSelectedIndex(lstEst);
+
+                string ip = this.id_personal + this.estudios[i]["Training_Center"] + this.estudios[i]["Speciality"] + this.estudios[i]["Title_Degree"];
+
+                string sql = "Delete From Est_Personal Where Id_Personal+Training_Center+Speciality+Title_Degree='" + ip + "'";
+
+                if (MessageBox.Show("Esta seguro de eliminar el registro actual", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+
+                Conexion.ExecuteNonQuery(sql);
+
+                this.rechargeEst();
+            }
+            else
+            {
+                MessageBox.Show("No hay qué eliminar", "Aviso");
+            }
+        }
+
+        private void btnAgregar2_Click(object sender, EventArgs e)
+        {
+            string ip = this.id_personal;
+            string ce = txtCentro.Text;
+            string fi = txtEstDel.Text == General.emptyDate ? "" : txtEstDel.Text;
+            string fc = txtEstAl.Text == General.emptyDate ? "" : txtEstAl.Text;
+            string nt = txtNroTitulo.Text;
+            string es = txtEspecialidad.Text;
+            string nv = cmbNivel.SelectedIndex == -1 ? "" : cmbNivel.SelectedItem.ToString();
+            string tt = txtTitulo.Text;
+            string us = Usuario.id_us;
+
+            if (ce.Length == 0 || fi.Length == 0 || fc.Length == 0)
+            {
+                MessageBox.Show("Ingrese el centro de estudios y las fechas ...", "Aviso");
+                return;
+            }
+
+            if (MessageBox.Show("Seguro de añadir este registro al personal", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+
+            string sql = "Insert Into Est_Personal Values('" + ip + "','" + nv + "','" + es + "','" + ce + "','" + fi + "','" + fc + "','" + tt + "','" + nt + "','" + us + "',GetDate(),'" + us + "',GetDate())";
+            Conexion.ExecuteNonQuery(sql);
+
+            General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
+            General.setAll<TextBox, string>(this, "Text", "");
+            General.setAll<MaskedTextBox, string>(this, "Text", General.emptyDate);
+
+            this.rechargeEst();
+        }
+
+        private void btnQuitar3_Click(object sender, EventArgs e)
+        {
+            if (lstExp.Items.Count > 0)
+            {
+                int i = General.GetSelectedIndex(lstEst);
+
+                string ip = this.id_personal + this.experiencia[i]["Name_Entity"] + this.experiencia[i]["End_Position"];
+
+                string sql = "Delete From Exp_Personal Where Id_Personal+Name_Entity+End_Position='" + ip + "'";
+
+                if (MessageBox.Show("Esta seguro de eliminar el registro actual", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+
+                Conexion.ExecuteNonQuery(sql);
+
+                this.rechargeExp();
+            }
+            else
+            {
+                MessageBox.Show("No hay qué eliminar", "Aviso");
+            }
+        }
+
+        private void btnAgregar3_Click(object sender, EventArgs e)
+        {
+            string ip = this.id_personal;
+            string cn = txtCentroLaboral.Text;
+            string cr = txtCargo.Text;
+            string fi = txtDesde.Text == General.emptyDate ? "" : txtDesde.Text;
+            string fc = txtHasta.Text == General.emptyDate ? "" : txtHasta.Text;
+            string us = Usuario.id_us;
+
+            if (cn.Length == 0 || cr.Length == 0 || fi.Length == 0 || fc.Length == 0)
+            {
+                MessageBox.Show("Faltan datos para anexar registro", "Aviso");
+                return;
+            }
+
+            if (MessageBox.Show("Seguro de añadir este registro al personal", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+
+            string sql = "Insert Into Exp_Personal Values('" + ip + "','" + cn + "','" + cr + "','" + fi + "','" + fc + "','" + us + "',GetDate(),'" + us + "',GetDate())";
+            Conexion.ExecuteNonQuery(sql);
+
+            General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
+            General.setAll<TextBox, string>(this, "Text", "");
+            General.setAll<MaskedTextBox, string>(this, "Text", General.emptyDate);
+
+            this.rechargeExp();
+        }
     }
 }
