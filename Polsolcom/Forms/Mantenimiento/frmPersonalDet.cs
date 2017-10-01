@@ -38,11 +38,24 @@ namespace Polsolcom.Forms
 
         private void frmPersonalDet_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'grupoSanguineo._GrupoSanguineo' table. You can move, or remove it, as needed.
+            this.grupoSanguineoTableAdapter.Fill(this.grupoSanguineo._GrupoSanguineo);
+            cmbGrupo.SelectedIndex = -1;
+            // TODO: This line of code loads data into the 'tablaTipoDS.Genero' table. You can move, or remove it, as needed.
+            this.generoTableAdapter.Fill(this.tablaTipoDS.Genero);
+            cmbSexo.SelectedIndex = -1;
+            // TODO: This line of code loads data into the 'tablaTipoDS.NivelEstudios' table. You can move, or remove it, as needed.
+            this.nivelEstudiosTableAdapter.Fill(this.tablaTipoDS.NivelEstudios);
+            cmbNivel.SelectedIndex = -1;
+            // TODO: This line of code loads data into the 'tablaTipoDS.Parentesco' table. You can move, or remove it, as needed.
+            this.parentescoTableAdapter.Fill(this.tablaTipoDS.Parentesco);
+            cmbParent.SelectedIndex = -1;
+            //
             this.rechargeFam();
             this.rechargeEst();
             this.rechargeExp();
 
-            string sql = "Select Proyeccion,Capacitacion,Centro_Capac,Otras_Capac,Salud,Ult_Eva_Med,Ult_Diagnostico," + "Grp_Sang,Afi_Dep,Instr_Musical,Canta,Tipo_Musica,Hobby From Personal Where Id_Personal='" + this.id_personal + "'";
+            string sql = "Select Proyeccion,Capacitacion,Centro_Capac,Otras_Capac,Salud,Ult_Eva_Med,Ult_Diagnostico,Grp_Sang,Afi_Dep,Instr_Musical,Canta,Tipo_Musica,Hobby From Personal Where Id_Personal='" + this.id_personal + "'";
             Dictionary<string, string> datos = General.GetDictionary(sql);
 
             edtProyeccion.Text = datos["Proyeccion"];
@@ -61,7 +74,7 @@ namespace Polsolcom.Forms
                     optRegular.Checked = true;
                     break;
             }
-            txtFechaUltima.Text = datos["Ult_Eva_med"].Length == 0 ? General.emptyDate : datos["Ult_Eva_med"];
+            txtFechaUltima.Text = datos["Ult_Eva_Med"].Length == 0 ? General.emptyDate : datos["Ult_Eva_Med"];
             cmbGrupo.SelectedValue = datos["Grp_Sang"];
             txtDiagnostico.Text = datos["Ult_Diagnostico"];
             txtAficion.Text = datos["Afi_Dep"];
@@ -121,11 +134,11 @@ namespace Polsolcom.Forms
             string cc = edtCentro.Text;
             string oa = edtOtrasAlt.Text;
             string es = "";
-            if (optBueno.Checked)
+            if (optMuyBueno.Checked)
             {
                 es = "M";
             }
-            if (optMuyBueno.Checked)
+            if (optBueno.Checked)
             {
                 es = "B";
             }
@@ -133,7 +146,7 @@ namespace Polsolcom.Forms
             {
                 es = "R";
             }
-            string ue = txtFechaUltima.Text;
+            string ue = txtFechaUltima.Text == General.emptyDate ? "": txtFechaUltima.Text;
             string ud = txtDiagnostico.Text;
             string gs = cmbGrupo.SelectedIndex == -1 ? "" : cmbGrupo.SelectedValue.ToString();
             string ad = txtAficion.Text;
@@ -151,11 +164,13 @@ namespace Polsolcom.Forms
             string hb = txtHobby.Text;
             string us = Usuario.id_us;
 
-            string sql = "Update Personal Set Proyeccion = '" + pr + "', Capacitacion = '" + cp + "', Centro_Capac = '" + cc + "', Otras_Capac = '" + oa + "', Salud = '" + es + "', " + "Ult_Diagnostico = '" + ud + "', Grp_Sang = '" + gs + "', Afi_Dep = '" + ad + "', Instr_Musical = '" + im + "', Canta = '" + cn + "', Tipo_Musica = '" + tm + "', Hobby = '" + hb + "',";
-            sql += txtFechaUltima.Text.Length > 0 ? "Ult_Eva_Med='" + ue + "'" : "";
-            sql += "Us_Mod='" + us + "',Fec_Mod=GetDate() Where Id_Personal='" + ip + "'";
+            string sql = "Update Personal Set Proyeccion = '" + pr + "', Capacitacion = '" + cp + "', Centro_Capac = '" + cc + "', Otras_Capac = '" + oa + "', Salud = '" + es + "', " + "Ult_Diagnostico = '" + ud + "', Grp_Sang = '" + gs + "', Afi_Dep = '" + ad + "', Instr_Musical = '" + im + "', Canta = '" + cn + "', Tipo_Musica = '" + tm + "', Hobby = '" + hb + "', ";
+            sql += txtFechaUltima.Text.Length > 0 ? "Ult_Eva_Med='" + ue + "', " : ", ";
+            sql += "Us_Mod='" + us + "', Fec_Mod=GetDate() Where Id_Personal='" + ip + "'";
             Conexion.ExecuteNonQuery(sql);
 
+            this.DialogResult = DialogResult.OK;
+            this.Close();
 
         }
 
@@ -173,11 +188,11 @@ namespace Polsolcom.Forms
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string ip = this.id_personal;
-            string pr = cmbParent.SelectedIndex == -1 ? "" : cmbParent.SelectedItem.ToString();
+            string pr = cmbParent.SelectedIndex == -1 ? "" : cmbParent.SelectedValue.ToString();
             string ap = txtPaterno.Text;
             string am = txtMaterno.Text;
             string nm = txtNombres.Text;
-            string sx = cmbSexo.SelectedIndex == -1 ? "" : cmbSexo.SelectedItem.ToString();
+            string sx = cmbSexo.SelectedIndex == -1 ? "" : cmbSexo.SelectedValue.ToString();
             string di = txtDNI.Text;
             string fn = txtFechaNac.Text == General.emptyDate ? "" : txtFechaNac.Text;
             string us = Usuario.id_us;
@@ -198,7 +213,7 @@ namespace Polsolcom.Forms
 
             General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
             General.setAll<TextBox, string>(this, "Text", "");
-            General.setAll<MaskedTextBox, string>(this, "Text", General.emptyDate);
+            General.setAll<MaskedTextBox, string>(this, "Text", "");
 
             this.rechargeFam();
         }
@@ -266,7 +281,7 @@ namespace Polsolcom.Forms
             string fc = txtEstAl.Text == General.emptyDate ? "" : txtEstAl.Text;
             string nt = txtNroTitulo.Text;
             string es = txtEspecialidad.Text;
-            string nv = cmbNivel.SelectedIndex == -1 ? "" : cmbNivel.SelectedItem.ToString();
+            string nv = cmbNivel.SelectedIndex == -1 ? "" : cmbNivel.SelectedValue.ToString();
             string tt = txtTitulo.Text;
             string us = Usuario.id_us;
 
@@ -286,7 +301,7 @@ namespace Polsolcom.Forms
 
             General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
             General.setAll<TextBox, string>(this, "Text", "");
-            General.setAll<MaskedTextBox, string>(this, "Text", General.emptyDate);
+            General.setAll<MaskedTextBox, string>(this, "Text", "");
 
             this.rechargeEst();
         }
@@ -295,7 +310,7 @@ namespace Polsolcom.Forms
         {
             if (lstExp.Items.Count > 0)
             {
-                int i = General.GetSelectedIndex(lstEst);
+                int i = General.GetSelectedIndex(lstExp);
 
                 string ip = this.id_personal + this.experiencia[i]["Name_Entity"] + this.experiencia[i]["End_Position"];
 
@@ -341,7 +356,7 @@ namespace Polsolcom.Forms
 
             General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
             General.setAll<TextBox, string>(this, "Text", "");
-            General.setAll<MaskedTextBox, string>(this, "Text", General.emptyDate);
+            General.setAll<MaskedTextBox, string>(this, "Text", "");
 
             this.rechargeExp();
         }

@@ -486,7 +486,9 @@ namespace Polsolcom.Forms
 
         private void btnOtrosDatos_Click(object sender, EventArgs e)
         {
-            frmPersonalDet frmPersonalDet = new frmPersonalDet();
+            string id = txtIdPersonal.Text;
+
+            frmPersonalDet frmPersonalDet = new frmPersonalDet(id);
             frmPersonalDet.FormClosed += new FormClosedEventHandler(frmPersonalDet_FormClosed);
             frmPersonalDet.Show();
             this.Hide();

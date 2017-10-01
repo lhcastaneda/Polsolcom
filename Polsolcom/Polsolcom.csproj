@@ -195,6 +195,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\GrupoSanguineo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GrupoSanguineo.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\InstitucionesDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1054,13 +1059,23 @@
     <None Include="Dominio\Data\Consolidado.xss">
       <DependentUpon>Consolidado.xsd</DependentUpon>
     </None>
+    <None Include="Dominio\Data\GrupoSanguineo.xsc">
+      <DependentUpon>GrupoSanguineo.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\GrupoSanguineo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GrupoSanguineo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\GrupoSanguineo.xss">
+      <DependentUpon>GrupoSanguineo.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\TablaTipoDS.xsc">
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\TablaTipoDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TablaTipoDS1.Designer.cs</LastGenOutput>
     </None>
     <None Include="Dominio\Data\TablaTipoDS.xss">
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>

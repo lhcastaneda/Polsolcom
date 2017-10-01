@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties5 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
-            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties1 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
-            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties2 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
-            Polsolcom.Dominio.Controls.CheckBoxProperties checkBoxProperties3 = new Polsolcom.Dominio.Controls.CheckBoxProperties();
+            this.components = new System.ComponentModel.Container();
             this.tabPersonal = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtFechaUltima = new System.Windows.Forms.MaskedTextBox();
             this.btnGrupo = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
-            this.cmbGrupo = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
+            this.cmbGrupo = new System.Windows.Forms.ComboBox();
+            this.grupoSanguineoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.grupoSanguineo = new Polsolcom.Dominio.Data.GrupoSanguineo();
             this.label13 = new System.Windows.Forms.Label();
             this.pnlOpciones2 = new System.Windows.Forms.Panel();
             this.optSi = new System.Windows.Forms.RadioButton();
@@ -78,12 +77,14 @@
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pnlDatosFam = new System.Windows.Forms.Panel();
+            this.txtFechaNac = new System.Windows.Forms.MaskedTextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.txtEdad = new System.Windows.Forms.TextBox();
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.txtMaterno = new System.Windows.Forms.TextBox();
-            this.cmbSexo = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
+            this.cmbSexo = new System.Windows.Forms.ComboBox();
+            this.generoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -91,7 +92,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.cmbParent = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
+            this.cmbParent = new System.Windows.Forms.ComboBox();
+            this.parentescoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtPaterno = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lstEst = new System.Windows.Forms.ListView();
@@ -103,11 +105,14 @@
             this.btnQuitar2 = new System.Windows.Forms.Button();
             this.btnAgregar2 = new System.Windows.Forms.Button();
             this.pnlEstudios = new System.Windows.Forms.Panel();
+            this.txtEstAl = new System.Windows.Forms.MaskedTextBox();
+            this.txtEstDel = new System.Windows.Forms.MaskedTextBox();
             this.txtNroTitulo = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.txtTitulo = new System.Windows.Forms.TextBox();
             this.txtEspecialidad = new System.Windows.Forms.TextBox();
-            this.cmbNivel = new Polsolcom.Dominio.Controls.CheckBoxComboBox();
+            this.cmbNivel = new System.Windows.Forms.ComboBox();
+            this.nivelEstudiosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -124,25 +129,33 @@
             this.btnQuitar3 = new System.Windows.Forms.Button();
             this.btnAgregar3 = new System.Windows.Forms.Button();
             this.pnlExpLaboral = new System.Windows.Forms.Panel();
+            this.txtHasta = new System.Windows.Forms.MaskedTextBox();
             this.txtCargo = new System.Windows.Forms.TextBox();
+            this.txtDesde = new System.Windows.Forms.MaskedTextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.txtCentroLaboral = new System.Windows.Forms.TextBox();
-            this.txtFechaNac = new System.Windows.Forms.MaskedTextBox();
-            this.txtEstDel = new System.Windows.Forms.MaskedTextBox();
-            this.txtEstAl = new System.Windows.Forms.MaskedTextBox();
-            this.txtDesde = new System.Windows.Forms.MaskedTextBox();
-            this.txtHasta = new System.Windows.Forms.MaskedTextBox();
+            this.parentescoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.ParentescoTableAdapter();
+            this.nivelEstudiosTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.NivelEstudiosTableAdapter();
+            this.generoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.GeneroTableAdapter();
+            this.grupoSanguineoTableAdapter = new Polsolcom.Dominio.Data.GrupoSanguineoTableAdapters.GrupoSanguineoTableAdapter();
+            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
             this.tabPersonal.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grupoSanguineoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grupoSanguineo)).BeginInit();
             this.pnlOpciones2.SuspendLayout();
             this.pnlOpciones1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.pnlDatosFam.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.parentescoBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.pnlEstudios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nivelEstudiosBindingSource)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.pnlExpLaboral.SuspendLayout();
             this.SuspendLayout();
@@ -228,14 +241,24 @@
             // 
             // cmbGrupo
             // 
-            checkBoxProperties5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbGrupo.CheckBoxProperties = checkBoxProperties5;
-            this.cmbGrupo.DisplayMemberSingleItem = "";
+            this.cmbGrupo.DataSource = this.grupoSanguineoBindingSource;
+            this.cmbGrupo.DisplayMember = "GS";
             this.cmbGrupo.FormattingEnabled = true;
             this.cmbGrupo.Location = new System.Drawing.Point(647, 121);
             this.cmbGrupo.Name = "cmbGrupo";
             this.cmbGrupo.Size = new System.Drawing.Size(105, 21);
             this.cmbGrupo.TabIndex = 26;
+            this.cmbGrupo.ValueMember = "GS";
+            // 
+            // grupoSanguineoBindingSource
+            // 
+            this.grupoSanguineoBindingSource.DataMember = "GrupoSanguineo";
+            this.grupoSanguineoBindingSource.DataSource = this.grupoSanguineo;
+            // 
+            // grupoSanguineo
+            // 
+            this.grupoSanguineo.DataSetName = "GrupoSanguineo";
+            this.grupoSanguineo.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label13
             // 
@@ -550,7 +573,9 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
+            this.lstFam.FullRowSelect = true;
             this.lstFam.Location = new System.Drawing.Point(7, 61);
+            this.lstFam.MultiSelect = false;
             this.lstFam.Name = "lstFam";
             this.lstFam.Size = new System.Drawing.Size(873, 191);
             this.lstFam.TabIndex = 31;
@@ -609,10 +634,10 @@
             // 
             // pnlDatosFam
             // 
+            this.pnlDatosFam.Controls.Add(this.txtDNI);
             this.pnlDatosFam.Controls.Add(this.txtFechaNac);
             this.pnlDatosFam.Controls.Add(this.label21);
             this.pnlDatosFam.Controls.Add(this.txtEdad);
-            this.pnlDatosFam.Controls.Add(this.txtDNI);
             this.pnlDatosFam.Controls.Add(this.txtNombres);
             this.pnlDatosFam.Controls.Add(this.txtMaterno);
             this.pnlDatosFam.Controls.Add(this.cmbSexo);
@@ -629,6 +654,16 @@
             this.pnlDatosFam.Name = "pnlDatosFam";
             this.pnlDatosFam.Size = new System.Drawing.Size(800, 52);
             this.pnlDatosFam.TabIndex = 0;
+            // 
+            // txtFechaNac
+            // 
+            this.txtFechaNac.Location = new System.Drawing.Point(640, 21);
+            this.txtFechaNac.Mask = "00/00/0000";
+            this.txtFechaNac.Name = "txtFechaNac";
+            this.txtFechaNac.Size = new System.Drawing.Size(100, 20);
+            this.txtFechaNac.TabIndex = 32;
+            this.txtFechaNac.ValidatingType = typeof(System.DateTime);
+            this.txtFechaNac.Leave += new System.EventHandler(this.txtFechaNac_Leave);
             // 
             // label21
             // 
@@ -648,13 +683,6 @@
             this.txtEdad.Size = new System.Drawing.Size(45, 20);
             this.txtEdad.TabIndex = 15;
             // 
-            // txtDNI
-            // 
-            this.txtDNI.Location = new System.Drawing.Point(538, 21);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(100, 20);
-            this.txtDNI.TabIndex = 14;
-            // 
             // txtNombres
             // 
             this.txtNombres.Location = new System.Drawing.Point(336, 21);
@@ -672,14 +700,24 @@
             // 
             // cmbSexo
             // 
-            checkBoxProperties1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbSexo.CheckBoxProperties = checkBoxProperties1;
-            this.cmbSexo.DisplayMemberSingleItem = "";
+            this.cmbSexo.DataSource = this.generoBindingSource;
+            this.cmbSexo.DisplayMember = "Descripcion";
             this.cmbSexo.FormattingEnabled = true;
             this.cmbSexo.Location = new System.Drawing.Point(441, 21);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(93, 21);
             this.cmbSexo.TabIndex = 10;
+            this.cmbSexo.ValueMember = "Id_Tipo";
+            // 
+            // generoBindingSource
+            // 
+            this.generoBindingSource.DataMember = "Genero";
+            this.generoBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // tablaTipoDS
+            // 
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label20
             // 
@@ -760,14 +798,19 @@
             // 
             // cmbParent
             // 
-            checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbParent.CheckBoxProperties = checkBoxProperties2;
-            this.cmbParent.DisplayMemberSingleItem = "";
+            this.cmbParent.DataSource = this.parentescoBindingSource;
+            this.cmbParent.DisplayMember = "Descripcion";
             this.cmbParent.FormattingEnabled = true;
             this.cmbParent.Location = new System.Drawing.Point(6, 21);
             this.cmbParent.Name = "cmbParent";
             this.cmbParent.Size = new System.Drawing.Size(114, 21);
             this.cmbParent.TabIndex = 2;
+            this.cmbParent.ValueMember = "Id_Tipo";
+            // 
+            // parentescoBindingSource
+            // 
+            this.parentescoBindingSource.DataMember = "Parentesco";
+            this.parentescoBindingSource.DataSource = this.tablaTipoDS;
             // 
             // txtPaterno
             // 
@@ -798,7 +841,9 @@
             this.columnHeader9,
             this.columnHeader10,
             this.columnHeader11});
+            this.lstEst.FullRowSelect = true;
             this.lstEst.Location = new System.Drawing.Point(4, 60);
+            this.lstEst.MultiSelect = false;
             this.lstEst.Name = "lstEst";
             this.lstEst.Size = new System.Drawing.Size(793, 191);
             this.lstEst.TabIndex = 35;
@@ -872,6 +917,24 @@
             this.pnlEstudios.Size = new System.Drawing.Size(879, 52);
             this.pnlEstudios.TabIndex = 1;
             // 
+            // txtEstAl
+            // 
+            this.txtEstAl.Location = new System.Drawing.Point(571, 21);
+            this.txtEstAl.Mask = "00/00/0000";
+            this.txtEstAl.Name = "txtEstAl";
+            this.txtEstAl.Size = new System.Drawing.Size(84, 20);
+            this.txtEstAl.TabIndex = 18;
+            this.txtEstAl.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtEstDel
+            // 
+            this.txtEstDel.Location = new System.Drawing.Point(481, 21);
+            this.txtEstDel.Mask = "00/00/0000";
+            this.txtEstDel.Name = "txtEstDel";
+            this.txtEstDel.Size = new System.Drawing.Size(86, 20);
+            this.txtEstDel.TabIndex = 17;
+            this.txtEstDel.ValidatingType = typeof(System.DateTime);
+            // 
             // txtNroTitulo
             // 
             this.txtNroTitulo.Location = new System.Drawing.Point(780, 21);
@@ -906,14 +969,19 @@
             // 
             // cmbNivel
             // 
-            checkBoxProperties3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmbNivel.CheckBoxProperties = checkBoxProperties3;
-            this.cmbNivel.DisplayMemberSingleItem = "";
+            this.cmbNivel.DataSource = this.nivelEstudiosBindingSource;
+            this.cmbNivel.DisplayMember = "Descripcion";
             this.cmbNivel.FormattingEnabled = true;
             this.cmbNivel.Location = new System.Drawing.Point(209, 21);
             this.cmbNivel.Name = "cmbNivel";
             this.cmbNivel.Size = new System.Drawing.Size(112, 21);
             this.cmbNivel.TabIndex = 10;
+            this.cmbNivel.ValueMember = "Id_Tipo";
+            // 
+            // nivelEstudiosBindingSource
+            // 
+            this.nivelEstudiosBindingSource.DataMember = "NivelEstudios";
+            this.nivelEstudiosBindingSource.DataSource = this.tablaTipoDS;
             // 
             // label23
             // 
@@ -1009,7 +1077,9 @@
             this.columnHeader13,
             this.columnHeader14,
             this.columnHeader15});
+            this.lstExp.FullRowSelect = true;
             this.lstExp.Location = new System.Drawing.Point(5, 62);
+            this.lstExp.MultiSelect = false;
             this.lstExp.Name = "lstExp";
             this.lstExp.Size = new System.Drawing.Size(796, 191);
             this.lstExp.TabIndex = 38;
@@ -1071,12 +1141,30 @@
             this.pnlExpLaboral.Size = new System.Drawing.Size(879, 52);
             this.pnlExpLaboral.TabIndex = 2;
             // 
+            // txtHasta
+            // 
+            this.txtHasta.Location = new System.Drawing.Point(778, 20);
+            this.txtHasta.Mask = "00/00/0000";
+            this.txtHasta.Name = "txtHasta";
+            this.txtHasta.Size = new System.Drawing.Size(97, 20);
+            this.txtHasta.TabIndex = 40;
+            this.txtHasta.ValidatingType = typeof(System.DateTime);
+            // 
             // txtCargo
             // 
             this.txtCargo.Location = new System.Drawing.Point(363, 20);
             this.txtCargo.Name = "txtCargo";
             this.txtCargo.Size = new System.Drawing.Size(306, 20);
             this.txtCargo.TabIndex = 12;
+            // 
+            // txtDesde
+            // 
+            this.txtDesde.Location = new System.Drawing.Point(672, 20);
+            this.txtDesde.Mask = "00/00/0000";
+            this.txtDesde.Name = "txtDesde";
+            this.txtDesde.Size = new System.Drawing.Size(103, 20);
+            this.txtDesde.TabIndex = 39;
+            this.txtDesde.ValidatingType = typeof(System.DateTime);
             // 
             // label31
             // 
@@ -1118,9 +1206,9 @@
             this.label35.ForeColor = System.Drawing.Color.DarkBlue;
             this.label35.Location = new System.Drawing.Point(12, 5);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(114, 13);
+            this.label35.Size = new System.Drawing.Size(118, 13);
             this.label35.TabIndex = 4;
-            this.label35.Text = "Centro de Estudios";
+            this.label35.Text = "Centro de tRABAJO";
             // 
             // txtCentroLaboral
             // 
@@ -1129,51 +1217,30 @@
             this.txtCentroLaboral.Size = new System.Drawing.Size(344, 20);
             this.txtCentroLaboral.TabIndex = 3;
             // 
-            // txtFechaNac
+            // parentescoTableAdapter
             // 
-            this.txtFechaNac.Location = new System.Drawing.Point(640, 21);
-            this.txtFechaNac.Mask = "00/00/0000";
-            this.txtFechaNac.Name = "txtFechaNac";
-            this.txtFechaNac.Size = new System.Drawing.Size(100, 20);
-            this.txtFechaNac.TabIndex = 32;
-            this.txtFechaNac.ValidatingType = typeof(System.DateTime);
-            this.txtFechaNac.Leave += new System.EventHandler(this.txtFechaNac_Leave);
+            this.parentescoTableAdapter.ClearBeforeFill = true;
             // 
-            // txtEstDel
+            // nivelEstudiosTableAdapter
             // 
-            this.txtEstDel.Location = new System.Drawing.Point(481, 21);
-            this.txtEstDel.Mask = "00/00/0000";
-            this.txtEstDel.Name = "txtEstDel";
-            this.txtEstDel.Size = new System.Drawing.Size(86, 20);
-            this.txtEstDel.TabIndex = 17;
-            this.txtEstDel.ValidatingType = typeof(System.DateTime);
+            this.nivelEstudiosTableAdapter.ClearBeforeFill = true;
             // 
-            // txtEstAl
+            // generoTableAdapter
             // 
-            this.txtEstAl.Location = new System.Drawing.Point(571, 21);
-            this.txtEstAl.Mask = "00/00/0000";
-            this.txtEstAl.Name = "txtEstAl";
-            this.txtEstAl.Size = new System.Drawing.Size(84, 20);
-            this.txtEstAl.TabIndex = 18;
-            this.txtEstAl.ValidatingType = typeof(System.DateTime);
+            this.generoTableAdapter.ClearBeforeFill = true;
             // 
-            // txtDesde
+            // grupoSanguineoTableAdapter
             // 
-            this.txtDesde.Location = new System.Drawing.Point(672, 20);
-            this.txtDesde.Mask = "00/00/0000";
-            this.txtDesde.Name = "txtDesde";
-            this.txtDesde.Size = new System.Drawing.Size(103, 20);
-            this.txtDesde.TabIndex = 39;
-            this.txtDesde.ValidatingType = typeof(System.DateTime);
+            this.grupoSanguineoTableAdapter.ClearBeforeFill = true;
             // 
-            // txtHasta
+            // txtDNI
             // 
-            this.txtHasta.Location = new System.Drawing.Point(778, 20);
-            this.txtHasta.Mask = "00/00/0000";
-            this.txtHasta.Name = "txtHasta";
-            this.txtHasta.Size = new System.Drawing.Size(97, 20);
-            this.txtHasta.TabIndex = 40;
-            this.txtHasta.ValidatingType = typeof(System.DateTime);
+            this.txtDNI.Location = new System.Drawing.Point(536, 21);
+            this.txtDNI.Mask = "99999999";
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(100, 20);
+            this.txtDNI.TabIndex = 33;
+            this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // frmPersonalDet
             // 
@@ -1190,6 +1257,8 @@
             this.tabPersonal.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grupoSanguineoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grupoSanguineo)).EndInit();
             this.pnlOpciones2.ResumeLayout(false);
             this.pnlOpciones2.PerformLayout();
             this.pnlOpciones1.ResumeLayout(false);
@@ -1197,9 +1266,13 @@
             this.tabPage2.ResumeLayout(false);
             this.pnlDatosFam.ResumeLayout(false);
             this.pnlDatosFam.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.parentescoBindingSource)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.pnlEstudios.ResumeLayout(false);
             this.pnlEstudios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nivelEstudiosBindingSource)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.pnlExpLaboral.ResumeLayout(false);
             this.pnlExpLaboral.PerformLayout();
@@ -1233,7 +1306,7 @@
         private System.Windows.Forms.TextBox edtCapacitacion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox edtProyeccion;
-        private Dominio.Controls.CheckBoxComboBox cmbGrupo;
+        private System.Windows.Forms.ComboBox cmbGrupo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel pnlOpciones2;
         private System.Windows.Forms.RadioButton optSi;
@@ -1245,7 +1318,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel pnlDatosFam;
-        private Dominio.Controls.CheckBoxComboBox cmbSexo;
+        private System.Windows.Forms.ComboBox cmbSexo;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
@@ -1253,11 +1326,10 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private Dominio.Controls.CheckBoxComboBox cmbParent;
+        private System.Windows.Forms.ComboBox cmbParent;
         private System.Windows.Forms.TextBox txtPaterno;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtEdad;
-        private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtNombres;
         private System.Windows.Forms.TextBox txtMaterno;
         private System.Windows.Forms.Button btnGrupo;
@@ -1271,7 +1343,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.TextBox txtEspecialidad;
-        private Dominio.Controls.CheckBoxComboBox cmbNivel;
+        private System.Windows.Forms.ComboBox cmbNivel;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
@@ -1312,5 +1384,16 @@
         private System.Windows.Forms.MaskedTextBox txtEstDel;
         private System.Windows.Forms.MaskedTextBox txtHasta;
         private System.Windows.Forms.MaskedTextBox txtDesde;
+        private Dominio.Data.TablaTipoDS tablaTipoDS;
+        private System.Windows.Forms.BindingSource parentescoBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.ParentescoTableAdapter parentescoTableAdapter;
+        private System.Windows.Forms.BindingSource nivelEstudiosBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.NivelEstudiosTableAdapter nivelEstudiosTableAdapter;
+        private System.Windows.Forms.BindingSource generoBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.GeneroTableAdapter generoTableAdapter;
+        private Dominio.Data.GrupoSanguineo grupoSanguineo;
+        private System.Windows.Forms.BindingSource grupoSanguineoBindingSource;
+        private Dominio.Data.GrupoSanguineoTableAdapters.GrupoSanguineoTableAdapter grupoSanguineoTableAdapter;
+        private System.Windows.Forms.MaskedTextBox txtDNI;
     }
 }
