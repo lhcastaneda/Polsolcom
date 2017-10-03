@@ -187,14 +187,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DistritosDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Data\EstadisticaPacientes.cs">
-      <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dominio\Data\EstadisticaPacientes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dominio\Data\GrupoSanguineo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +237,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProvinciasDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ReportsDS.cs">
+      <DependentUpon>ReportsDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\ReportsDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportsDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\RepresentanteDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -326,6 +326,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptProduccion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptTalon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTalon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\frmAdmTalon.cs">
@@ -765,6 +771,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptProduccion.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptTalon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTalon.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>
     </EmbeddedResource>
@@ -1070,6 +1080,17 @@
     <None Include="Dominio\Data\GrupoSanguineo.xss">
       <DependentUpon>GrupoSanguineo.xsd</DependentUpon>
     </None>
+    <None Include="Dominio\Data\ReportsDS.xsc">
+      <DependentUpon>ReportsDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ReportsDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportsDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\ReportsDS.xss">
+      <DependentUpon>ReportsDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\TablaTipoDS.xsc">
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>
     </None>
@@ -1112,17 +1133,6 @@
     </None>
     <None Include="Dominio\Data\DistritosDS.xss">
       <DependentUpon>DistritosDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\EstadisticaPacientes.xsc">
-      <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\EstadisticaPacientes.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EstadisticaPacientes.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\EstadisticaPacientes.xss">
-      <DependentUpon>EstadisticaPacientes.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\InstitucionesDS.xsc">
       <DependentUpon>InstitucionesDS.xsd</DependentUpon>
