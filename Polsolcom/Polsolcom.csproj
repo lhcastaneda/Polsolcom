@@ -334,10 +334,10 @@
       <DependentUpon>rptTalon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\frmAdmTalon.cs">
+    <Compile Include="Forms\Mantenimiento\frmAdmTalon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmAdmTalon.Designer.cs">
+    <Compile Include="Forms\Mantenimiento\frmAdmTalon.Designer.cs">
       <DependentUpon>frmAdmTalon.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Herramientas\frmBuscar.cs">
@@ -778,7 +778,7 @@
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmAdmTalon.resx">
+    <EmbeddedResource Include="Forms\Mantenimiento\frmAdmTalon.resx">
       <DependentUpon>frmAdmTalon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Herramientas\frmBuscar.resx">
