@@ -708,7 +708,7 @@ namespace Polsolcom.Forms.Mantenimiento
                     return;
                 }
 
-                txtEdad.Text = General.getYearUntilNow(fechaNac).ToString();
+                txtEdad.Text = General.getYearsUntilNow(fechaNac).ToString();
             }
         }
 

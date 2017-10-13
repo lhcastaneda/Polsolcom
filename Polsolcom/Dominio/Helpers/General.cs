@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.ListViewItem;
+using System.IO;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -385,39 +386,27 @@ namespace Polsolcom.Dominio.Helpers
             return sValor;
         }
 
-        public static bool TieneDocVenta(string idUsuario, string DVenta)
+        public static Dictionary<string, string> rdvo(string pu, string pd)
         {
-            bool bExisteDoc = false;
-            string vSQL = "SELECT T.DVenta,T.Serie,S.Autoriz " +
+            string sql = "SELECT T.DVenta,T.Serie,S.Autoriz " +
                           "FROM Talon T INNER JOIN Serie S " +
                           "ON T.Id_Oper = S.Id_Oper " +
                           "AND T.DVenta = S.Id_TDoc " +
                           "AND T.Serie = S.Serie " +
                           "WHERE CONVERT(VARCHAR(10),Fecha,103) = ( SELECT CONVERT(VARCHAR(10), GETDATE(), 103) FROM dual) " +
-                          "AND Usuario = '" + idUsuario.Trim() + "' " +
+                          "AND Usuario = '" + pu.Trim() + "' " +
                           "AND NCon <> '' ";
-            if (DVenta.Trim() == "")
-                vSQL = vSQL + "AND TDef = '' ";
+            if (pd.Trim() == "")
+                sql = sql + "AND TDef = '' ";
             else
-                vSQL = vSQL + "AND DVenta = '" + DVenta.Trim() + "'";
+                sql = sql + "AND DVenta = '" + pd.Trim() + "'";
 
-            using (SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN))
-            {
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                            bExisteDoc = true;
-                    }
-                    dr.Close();
-                }
-            }
+            Dictionary<string, string> rdvopen = General.GetDictionary(sql);
 
-            if (bExisteDoc == false)
+            if (rdvopen == null)
                 MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 
-            return bExisteDoc;
+            return rdvopen;
         }
 
         public static void ReseteaSesion()
@@ -1506,7 +1495,7 @@ namespace Polsolcom.Dominio.Helpers
         /// </summary>
         /// <param name="date">Fecha de inicio</param>
         /// <returns>Cantidad de años</returns>
-        public static int getYearUntilNow(DateTime date)
+        public static int getYearsUntilNow(DateTime date)
         {
             DateTime now = DateTime.Today;
             int age = now.Year - date.Year;
@@ -1524,7 +1513,65 @@ namespace Polsolcom.Dominio.Helpers
                 throw new Exception("Fecha inválida");
             }
 
-            return General.getYearUntilNow(datetime);
+            return General.getYearsUntilNow(datetime);
+        }
+
+        /// <summary>
+        /// Obtiene la cantidad de días desde una fecha hasta hoy
+        /// </summary>
+        /// <param name="date">Fecha de inicio</param>
+        /// <returns>Cantidad de días</returns>
+        public static int getDaysUntilNow(DateTime date)
+        {
+            DateTime now = DateTime.Today;
+            return (int)(now - date).TotalDays;
+        }
+
+        public static int getDaysUntilNow(string date)
+        {
+            DateTime datetime = new DateTime();
+            bool valid = DateTime.TryParse(date, out datetime);
+
+            if (!valid)
+            {
+                throw new Exception("Fecha inválida");
+            }
+
+            return General.getDaysUntilNow(datetime);
+        }
+
+        public static string cnum(string lp)
+        {
+            int num = 0;
+            bool result = int.TryParse(lp, out num);
+
+            return result ? num.ToString() : lp;
+        }
+
+        public static void matxt(string ie, string cval)
+        {
+            string sql = "Select descripcion,val_abr From tablatipo Where descripcion Like '%" + ie + "%'";
+            Dictionary<string, string> vsr = General.GetDictionary(sql);
+
+            if (vsr != null)
+            {
+                string fp = vsr["Descripcion"];
+                string cs = vsr["Val_Abr"];
+                cval = (cs == "TAB" ? cval : cval.Replace("\t", cs));
+                string fa = DateTime.Today.ToShortDateString();
+
+                int c = Conexion.ExecuteScalar<int>("Select Count(*)As c From Tickets Where Id_Consultorio='" + ie + "' And Fecha_Emision>='" + fa + "'");
+
+                if (c == 1)
+                {
+                    File.Delete(fp);
+                }
+
+                if (!File.Exists(fp))
+                {
+                    File.WriteAllText(@fp, cval);
+                }
+            }
         }
      
     }
