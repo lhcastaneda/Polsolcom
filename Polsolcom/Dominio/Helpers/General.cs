@@ -1445,7 +1445,7 @@ namespace Polsolcom.Dominio.Helpers
             string ms = (nt == "Productos" ? vc + " de " : "Especialidad de ") + (nt == "Productos" ? ne : vc) + (st == "ACTIVADO" ? " " : " no ") + "vendan, ha sido " + st + ".";
 
 
-            return msg(ms, 0);
+            return msg(ms, "", false);
 
         }
 
@@ -1462,8 +1462,12 @@ namespace Polsolcom.Dominio.Helpers
             return (np.Length > 0 ? (db == 1 ? "Exec " + np + " " : "Select " + np + "(") : (db == 1 ? "" : ")"));
         }
 
-        public static bool msg(string ms, int mm, string bw = "", string tw = "")
+        public static bool msg(string ms, string tw = "", bool mm = true)
         {
+            if (mm)
+            {
+                MessageBox.Show(ms, tw);
+            }
             return true;
             //Envia un mensaje a todos o algun usuario en la red local
             //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
@@ -1572,8 +1576,7 @@ namespace Polsolcom.Dominio.Helpers
                     File.WriteAllText(@fp, cval);
                 }
             }
-        }
-     
+        }     
     }
 }
 	

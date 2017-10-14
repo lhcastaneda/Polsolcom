@@ -50,6 +50,23 @@ SELECT TInst + Id_Inst AS Id_Emp, Nom_Raz_Soc, Id_Inst, TInst FROM Institucion W
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InstitucionLiteTableAdapter" GeneratorDataComponentClassName="InstitucionLiteTableAdapter" Name="InstitucionLite" UserDataComponentName="InstitucionLiteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.Institucion" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select Nom_Raz_Soc,TInst+Id_Inst CInst From Institucion Where Estado='1' And TInst In ('T','M') Order By 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Nom_Raz_Soc" DataSetColumn="Nom_Raz_Soc" />
+              <Mapping SourceColumn="CInst" DataSetColumn="CInst" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -86,6 +103,26 @@ SELECT TInst + Id_Inst AS Id_Emp, Nom_Raz_Soc, Id_Inst, TInst FROM Institucion W
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="InstitucionLite" msprop:Generator_TableClassName="InstitucionLiteDataTable" msprop:Generator_TableVarName="tableInstitucionLite" msprop:Generator_RowChangedName="InstitucionLiteRowChanged" msprop:Generator_TablePropName="InstitucionLite" msprop:Generator_RowDeletingName="InstitucionLiteRowDeleting" msprop:Generator_RowChangingName="InstitucionLiteRowChanging" msprop:Generator_RowEvHandlerName="InstitucionLiteRowChangeEventHandler" msprop:Generator_RowDeletedName="InstitucionLiteRowDeleted" msprop:Generator_RowClassName="InstitucionLiteRow" msprop:Generator_UserTableName="InstitucionLite" msprop:Generator_RowEvArgName="InstitucionLiteRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nom_Raz_Soc" msprop:Generator_ColumnVarNameInTable="columnNom_Raz_Soc" msprop:Generator_ColumnPropNameInRow="Nom_Raz_Soc" msprop:Generator_ColumnPropNameInTable="Nom_Raz_SocColumn" msprop:Generator_UserColumnName="Nom_Raz_Soc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CInst" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCInst" msprop:Generator_ColumnPropNameInRow="CInst" msprop:Generator_ColumnPropNameInTable="CInstColumn" msprop:Generator_UserColumnName="CInst" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

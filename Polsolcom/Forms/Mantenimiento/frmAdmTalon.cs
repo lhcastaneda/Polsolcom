@@ -21,7 +21,7 @@ namespace Polsolcom.Forms
     {
         public List<Dictionary<string, string>> usTal = new List<Dictionary<string, string>>();
         public List<Dictionary<string, string>> rangos = new List<Dictionary<string, string>>();
-        public int index = 0;
+        public int index = -1;
         ReportDocument rpt = new ReportDocument();
 
         public frmAdmTalon()

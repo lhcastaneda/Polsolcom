@@ -197,6 +197,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InstitucionesDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\MedicosDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedicosDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\ModalidadDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -340,16 +345,16 @@
     <Compile Include="Forms\Mantenimiento\frmAdmTalon.Designer.cs">
       <DependentUpon>frmAdmTalon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Herramientas\frmBuscar.cs">
+    <Compile Include="Forms\Procesos\frmBuscar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Herramientas\frmBuscar.Designer.cs">
+    <Compile Include="Forms\Procesos\frmBuscar.Designer.cs">
       <DependentUpon>frmBuscar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Herramientas\frmBuscaT.cs">
+    <Compile Include="Forms\Procesos\frmBuscaT.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Herramientas\frmBuscaT.Designer.cs">
+    <Compile Include="Forms\Procesos\frmBuscaT.Designer.cs">
       <DependentUpon>frmBuscaT.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmCie10.cs">
@@ -781,10 +786,10 @@
     <EmbeddedResource Include="Forms\Mantenimiento\frmAdmTalon.resx">
       <DependentUpon>frmAdmTalon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Herramientas\frmBuscar.resx">
+    <EmbeddedResource Include="Forms\Procesos\frmBuscar.resx">
       <DependentUpon>frmBuscar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Herramientas\frmBuscaT.resx">
+    <EmbeddedResource Include="Forms\Procesos\frmBuscaT.resx">
       <DependentUpon>frmBuscaT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmCie10.resx">
@@ -1079,6 +1084,17 @@
     </None>
     <None Include="Dominio\Data\GrupoSanguineo.xss">
       <DependentUpon>GrupoSanguineo.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\MedicosDS.xsc">
+      <DependentUpon>MedicosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\MedicosDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MedicosDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\MedicosDS.xss">
+      <DependentUpon>MedicosDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\ReportsDS.xsc">
       <DependentUpon>ReportsDS.xsd</DependentUpon>

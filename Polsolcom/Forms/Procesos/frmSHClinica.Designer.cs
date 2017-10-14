@@ -30,24 +30,7 @@ namespace Polsolcom.Forms.Procesos
 		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSHClinica));
-            TenTec.Windows.iGridLib.iGColPattern iGColPattern26 = new TenTec.Windows.iGridLib.iGColPattern();
-            TenTec.Windows.iGridLib.iGColPattern iGColPattern27 = new TenTec.Windows.iGridLib.iGColPattern();
-            TenTec.Windows.iGridLib.iGColPattern iGColPattern28 = new TenTec.Windows.iGridLib.iGColPattern();
-            TenTec.Windows.iGridLib.iGColPattern iGColPattern29 = new TenTec.Windows.iGridLib.iGColPattern();
-            TenTec.Windows.iGridLib.iGColPattern iGColPattern30 = new TenTec.Windows.iGridLib.iGColPattern();
-            this.iGridCol0CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
-            this.iGDDL = new TenTec.Windows.iGridLib.iGDropDownList();
-            this.iGridCol0ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
-            this.iGridCol1CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
-            this.iGridCol1ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
-            this.iGridCol2CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
-            this.iGridCol2ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
-            this.iGridCol3CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
-            this.iGridCol3ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
-            this.iGridCol4CellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
-            this.iGridCol4ColHdrStyle1 = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtDigitador = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,9 +41,10 @@ namespace Polsolcom.Forms.Procesos
             this.label1 = new System.Windows.Forms.Label();
             this.cmbIGV = new System.Windows.Forms.ComboBox();
             this.cmbTDoc = new System.Windows.Forms.ComboBox();
+            this.docVentaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.txtNHP = new System.Windows.Forms.TextBox();
             this.txtNroTicket = new System.Windows.Forms.TextBox();
-            this.txtSerie = new System.Windows.Forms.TextBox();
             this.cmbMVen = new System.Windows.Forms.ComboBox();
             this.txtFechaEmision = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -75,8 +59,10 @@ namespace Polsolcom.Forms.Procesos
             this.btnInst = new System.Windows.Forms.Button();
             this.chkInst = new System.Windows.Forms.CheckBox();
             this.cmbMedico = new System.Windows.Forms.ComboBox();
+            this.medicosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.medicosDS = new Polsolcom.Dominio.Data.MedicosDS();
             this.cmbInstitucion = new System.Windows.Forms.ComboBox();
-            this.institucionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.institucionLiteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.institucionesDS = new Polsolcom.Dominio.Data.InstitucionesDS();
             this.label27 = new System.Windows.Forms.Label();
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
@@ -121,16 +107,13 @@ namespace Polsolcom.Forms.Procesos
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.institucionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtNeto = new System.Windows.Forms.TextBox();
             this.txtIGV = new System.Windows.Forms.TextBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtAutoriza = new System.Windows.Forms.TextBox();
             this.txtSon = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.fGrid = new TenTec.Windows.iGridLib.iGrid();
-            this.iGrid1DefaultCellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
-            this.iGrid1DefaultColHdrStyle = new TenTec.Windows.iGridLib.iGColHdrStyle(true);
-            this.iGrid1RowTextColCellStyle = new TenTec.Windows.iGridLib.iGCellStyle(true);
             this.departamentosTableAdapter = new Polsolcom.Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter();
             this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
@@ -141,10 +124,20 @@ namespace Polsolcom.Forms.Procesos
             this.grddetalleC4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.institucionTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter();
             this.consultoriosSHClinicaTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter();
+            this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
+            this.medicosTableAdapter = new Polsolcom.Dominio.Data.MedicosDSTableAdapters.MedicosTableAdapter();
+            this.institucionLiteTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionLiteTableAdapter();
+            this.lblSerie = new System.Windows.Forms.Label();
+            this.lblDigitador = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.institucionLiteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionesDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosSHClinicaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
@@ -154,27 +147,16 @@ namespace Polsolcom.Forms.Procesos
             ((System.ComponentModel.ISupportInitialize)(this.provinciasDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).BeginInit();
             this.SuspendLayout();
-            // 
-            // iGridCol0CellStyle
-            // 
-            this.iGridCol0CellStyle.DropDownControl = this.iGDDL;
-            this.iGridCol0CellStyle.EmptyStringAs = TenTec.Windows.iGridLib.iGEmptyStringAs.EmptyString;
-            // 
-            // iGDDL
-            // 
-            this.iGDDL.BackColor = System.Drawing.Color.Empty;
-            this.iGDDL.ForeColor = System.Drawing.Color.Empty;
-            this.iGDDL.SelItemBackColor = System.Drawing.Color.Empty;
-            this.iGDDL.SelItemForeColor = System.Drawing.Color.Empty;
-            this.iGDDL.SelectedItemChanged += new TenTec.Windows.iGridLib.iGSelectedItemChangedEventHandler(this.iGDDL_SelectedItemChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.txtDigitador);
+            this.groupBox1.Controls.Add(this.label26);
+            this.groupBox1.Controls.Add(this.lblDigitador);
+            this.groupBox1.Controls.Add(this.lblSerie);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -187,7 +169,6 @@ namespace Polsolcom.Forms.Procesos
             this.groupBox1.Controls.Add(this.cmbTDoc);
             this.groupBox1.Controls.Add(this.txtNHP);
             this.groupBox1.Controls.Add(this.txtNroTicket);
-            this.groupBox1.Controls.Add(this.txtSerie);
             this.groupBox1.Controls.Add(this.cmbMVen);
             this.groupBox1.Controls.Add(this.txtFechaEmision);
             this.groupBox1.Location = new System.Drawing.Point(4, -3);
@@ -195,17 +176,6 @@ namespace Polsolcom.Forms.Procesos
             this.groupBox1.Size = new System.Drawing.Size(596, 49);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            // 
-            // txtDigitador
-            // 
-            this.txtDigitador.BackColor = System.Drawing.Color.Gold;
-            this.txtDigitador.Location = new System.Drawing.Point(368, 24);
-            this.txtDigitador.Name = "txtDigitador";
-            this.txtDigitador.ReadOnly = true;
-            this.txtDigitador.Size = new System.Drawing.Size(90, 20);
-            this.txtDigitador.TabIndex = 5;
-            this.txtDigitador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtDigitador.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // label8
             // 
@@ -290,28 +260,40 @@ namespace Polsolcom.Forms.Procesos
             // cmbIGV
             // 
             this.cmbIGV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbIGV.Enabled = false;
             this.cmbIGV.FormattingEnabled = true;
             this.cmbIGV.Location = new System.Drawing.Point(541, 24);
             this.cmbIGV.Name = "cmbIGV";
             this.cmbIGV.Size = new System.Drawing.Size(50, 21);
-            this.cmbIGV.Sorted = true;
             this.cmbIGV.TabIndex = 7;
             this.cmbIGV.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // cmbTDoc
             // 
+            this.cmbTDoc.DataSource = this.docVentaBindingSource;
+            this.cmbTDoc.DisplayMember = "Descripcion";
             this.cmbTDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTDoc.Enabled = false;
             this.cmbTDoc.FormattingEnabled = true;
             this.cmbTDoc.Location = new System.Drawing.Point(168, 24);
             this.cmbTDoc.Name = "cmbTDoc";
             this.cmbTDoc.Size = new System.Drawing.Size(83, 21);
-            this.cmbTDoc.Sorted = true;
             this.cmbTDoc.TabIndex = 2;
+            this.cmbTDoc.ValueMember = "Id_Tipo";
             this.cmbTDoc.Leave += new System.EventHandler(this.cmbTDoc_Leave);
+            // 
+            // docVentaBindingSource
+            // 
+            this.docVentaBindingSource.DataMember = "DocVenta";
+            this.docVentaBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // tablaTipoDS
+            // 
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtNHP
             // 
-            this.txtNHP.BackColor = System.Drawing.SystemColors.Window;
             this.txtNHP.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNHP.Location = new System.Drawing.Point(458, 24);
             this.txtNHP.Name = "txtNHP";
@@ -324,10 +306,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // txtNroTicket
             // 
-            this.txtNroTicket.BackColor = System.Drawing.SystemColors.Window;
             this.txtNroTicket.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNroTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNroTicket.ForeColor = System.Drawing.Color.Navy;
             this.txtNroTicket.Location = new System.Drawing.Point(294, 24);
             this.txtNroTicket.Name = "txtNroTicket";
             this.txtNroTicket.ReadOnly = true;
@@ -338,25 +317,14 @@ namespace Polsolcom.Forms.Procesos
             this.txtNroTicket.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroTicket_KeyDown);
             this.txtNroTicket.Leave += new System.EventHandler(this.txtNroTicket_Leave);
             // 
-            // txtSerie
-            // 
-            this.txtSerie.BackColor = System.Drawing.Color.Gold;
-            this.txtSerie.Location = new System.Drawing.Point(252, 24);
-            this.txtSerie.Name = "txtSerie";
-            this.txtSerie.ReadOnly = true;
-            this.txtSerie.Size = new System.Drawing.Size(42, 20);
-            this.txtSerie.TabIndex = 3;
-            this.txtSerie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSerie.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
-            // 
             // cmbMVen
             // 
             this.cmbMVen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMVen.Enabled = false;
             this.cmbMVen.FormattingEnabled = true;
             this.cmbMVen.Location = new System.Drawing.Point(88, 24);
             this.cmbMVen.Name = "cmbMVen";
             this.cmbMVen.Size = new System.Drawing.Size(78, 21);
-            this.cmbMVen.Sorted = true;
             this.cmbMVen.TabIndex = 1;
             this.cmbMVen.Leave += new System.EventHandler(this.cmbMVen_Leave);
             // 
@@ -365,6 +333,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtFechaEmision.Location = new System.Drawing.Point(4, 24);
             this.txtFechaEmision.Mask = "00/00/0000";
             this.txtFechaEmision.Name = "txtFechaEmision";
+            this.txtFechaEmision.ReadOnly = true;
             this.txtFechaEmision.Size = new System.Drawing.Size(83, 20);
             this.txtFechaEmision.TabIndex = 0;
             this.txtFechaEmision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -396,7 +365,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(110, 39);
             this.btnImprimir.TabIndex = 33;
-            this.btnImprimir.Text = "&Imprimir Venta";
+            this.btnImprimir.Text = "&Imprimir Ven";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
@@ -444,7 +413,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnDuplica.Name = "btnDuplica";
             this.btnDuplica.Size = new System.Drawing.Size(110, 39);
             this.btnDuplica.TabIndex = 29;
-            this.btnDuplica.Text = "&Duplica Venta";
+            this.btnDuplica.Text = "&Duplica Ven";
             this.btnDuplica.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDuplica.UseVisualStyleBackColor = true;
             this.btnDuplica.Click += new System.EventHandler(this.btnDuplica_Click);
@@ -452,7 +421,6 @@ namespace Polsolcom.Forms.Procesos
             // 
             // btnBuscat
             // 
-            this.btnBuscat.Enabled = false;
             this.btnBuscat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscat.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscat.Image")));
             this.btnBuscat.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -460,7 +428,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnBuscat.Name = "btnBuscat";
             this.btnBuscat.Size = new System.Drawing.Size(110, 39);
             this.btnBuscat.TabIndex = 30;
-            this.btnBuscat.Text = "Buscar &Venta";
+            this.btnBuscat.Text = "&Buscar Ven";
             this.btnBuscat.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscat.UseVisualStyleBackColor = true;
             this.btnBuscat.Click += new System.EventHandler(this.btnBuscat_Click);
@@ -468,7 +436,6 @@ namespace Polsolcom.Forms.Procesos
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Enabled = false;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -476,7 +443,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(110, 39);
             this.btnBuscar.TabIndex = 28;
-            this.btnBuscar.Text = "&Buscar Paciente";
+            this.btnBuscar.Text = "&Buscar Pac";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -484,7 +451,6 @@ namespace Polsolcom.Forms.Procesos
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Enabled = false;
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -492,7 +458,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(110, 39);
             this.btnNuevo.TabIndex = 27;
-            this.btnNuevo.Text = "&Nuevo Paciente";
+            this.btnNuevo.Text = "&Nuevo Pac";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
@@ -549,6 +515,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // btnInst
             // 
+            this.btnInst.Enabled = false;
             this.btnInst.Location = new System.Drawing.Point(187, 151);
             this.btnInst.Name = "btnInst";
             this.btnInst.Size = new System.Drawing.Size(41, 20);
@@ -560,6 +527,7 @@ namespace Polsolcom.Forms.Procesos
             // chkInst
             // 
             this.chkInst.AutoSize = true;
+            this.chkInst.Enabled = false;
             this.chkInst.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkInst.Location = new System.Drawing.Point(2, 154);
             this.chkInst.Name = "chkInst";
@@ -571,33 +539,47 @@ namespace Polsolcom.Forms.Procesos
             // 
             // cmbMedico
             // 
+            this.cmbMedico.DataSource = this.medicosBindingSource;
+            this.cmbMedico.DisplayMember = "Medico";
             this.cmbMedico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMedico.Enabled = false;
             this.cmbMedico.FormattingEnabled = true;
             this.cmbMedico.Location = new System.Drawing.Point(229, 170);
             this.cmbMedico.Name = "cmbMedico";
             this.cmbMedico.Size = new System.Drawing.Size(363, 21);
-            this.cmbMedico.Sorted = true;
             this.cmbMedico.TabIndex = 26;
+            this.cmbMedico.ValueMember = "Id_Personal";
             this.cmbMedico.SelectionChangeCommitted += new System.EventHandler(this.cmbMedico_SelectionChangeCommitted);
             this.cmbMedico.Leave += new System.EventHandler(this.cmbMedico_Leave);
             // 
+            // medicosBindingSource
+            // 
+            this.medicosBindingSource.DataMember = "Medicos";
+            this.medicosBindingSource.DataSource = this.medicosDS;
+            // 
+            // medicosDS
+            // 
+            this.medicosDS.DataSetName = "MedicosDS";
+            this.medicosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // cmbInstitucion
             // 
-            this.cmbInstitucion.DataSource = this.institucionBindingSource;
+            this.cmbInstitucion.DataSource = this.institucionLiteBindingSource;
             this.cmbInstitucion.DisplayMember = "Nom_Raz_Soc";
             this.cmbInstitucion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInstitucion.Enabled = false;
             this.cmbInstitucion.FormattingEnabled = true;
             this.cmbInstitucion.Location = new System.Drawing.Point(3, 170);
             this.cmbInstitucion.Name = "cmbInstitucion";
             this.cmbInstitucion.Size = new System.Drawing.Size(222, 21);
             this.cmbInstitucion.TabIndex = 25;
-            this.cmbInstitucion.ValueMember = "Id_Inst";
+            this.cmbInstitucion.ValueMember = "CInst";
             this.cmbInstitucion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbInstitucion_KeyDown);
             // 
-            // institucionBindingSource
+            // institucionLiteBindingSource
             // 
-            this.institucionBindingSource.DataMember = "Institucion";
-            this.institucionBindingSource.DataSource = this.institucionesDS;
+            this.institucionLiteBindingSource.DataMember = "InstitucionLite";
+            this.institucionLiteBindingSource.DataSource = this.institucionesDS;
             // 
             // institucionesDS
             // 
@@ -619,6 +601,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbEspecialidad.DataSource = this.consultoriosSHClinicaBindingSource;
             this.cmbEspecialidad.DisplayMember = "Descripcion";
             this.cmbEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEspecialidad.Enabled = false;
             this.cmbEspecialidad.FormattingEnabled = true;
             this.cmbEspecialidad.Location = new System.Drawing.Point(303, 135);
             this.cmbEspecialidad.Name = "cmbEspecialidad";
@@ -642,6 +625,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtEmail.Location = new System.Drawing.Point(5, 135);
             this.txtEmail.Name = "txtEmail";
+            this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(295, 20);
             this.txtEmail.TabIndex = 23;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
@@ -675,6 +659,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtAsegurado.Location = new System.Drawing.Point(568, 97);
             this.txtAsegurado.MaxLength = 1;
             this.txtAsegurado.Name = "txtAsegurado";
+            this.txtAsegurado.ReadOnly = true;
             this.txtAsegurado.Size = new System.Drawing.Size(24, 20);
             this.txtAsegurado.TabIndex = 22;
             this.txtAsegurado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -687,6 +672,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtODoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtODoc.Location = new System.Drawing.Point(445, 97);
             this.txtODoc.Name = "txtODoc";
+            this.txtODoc.ReadOnly = true;
             this.txtODoc.Size = new System.Drawing.Size(122, 20);
             this.txtODoc.TabIndex = 21;
             this.txtODoc.DoubleClick += new System.EventHandler(this.txtODoc_DoubleClick);
@@ -697,6 +683,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtTelefono.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTelefono.Location = new System.Drawing.Point(280, 97);
             this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.ReadOnly = true;
             this.txtTelefono.Size = new System.Drawing.Size(164, 20);
             this.txtTelefono.TabIndex = 20;
             this.txtTelefono.DoubleClick += new System.EventHandler(this.txtTelefono_DoubleClick);
@@ -707,6 +694,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbDistrito.DataSource = this.distritoBindingSource;
             this.cmbDistrito.DisplayMember = "Distrito";
             this.cmbDistrito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDistrito.Enabled = false;
             this.cmbDistrito.FormattingEnabled = true;
             this.cmbDistrito.Location = new System.Drawing.Point(141, 97);
             this.cmbDistrito.Name = "cmbDistrito";
@@ -731,6 +719,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbProvincia.DataSource = this.provinciasBindingSource;
             this.cmbProvincia.DisplayMember = "Provincia";
             this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProvincia.Enabled = false;
             this.cmbProvincia.FormattingEnabled = true;
             this.cmbProvincia.Location = new System.Drawing.Point(5, 97);
             this.cmbProvincia.Name = "cmbProvincia";
@@ -806,6 +795,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbDepartamento.DataSource = this.departamentosBindingSource;
             this.cmbDepartamento.DisplayMember = "Departamento";
             this.cmbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDepartamento.Enabled = false;
             this.cmbDepartamento.FormattingEnabled = true;
             this.cmbDepartamento.Location = new System.Drawing.Point(458, 59);
             this.cmbDepartamento.Name = "cmbDepartamento";
@@ -831,6 +821,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDireccion.Location = new System.Drawing.Point(134, 59);
             this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.ReadOnly = true;
             this.txtDireccion.Size = new System.Drawing.Size(321, 20);
             this.txtDireccion.TabIndex = 16;
             this.txtDireccion.TextChanged += new System.EventHandler(this.txtDireccion_TextChanged);
@@ -842,6 +833,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtEdad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEdad.Location = new System.Drawing.Point(89, 59);
             this.txtEdad.Name = "txtEdad";
+            this.txtEdad.ReadOnly = true;
             this.txtEdad.Size = new System.Drawing.Size(43, 20);
             this.txtEdad.TabIndex = 15;
             this.txtEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -854,6 +846,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtFechaNac.Location = new System.Drawing.Point(4, 59);
             this.txtFechaNac.Mask = "00/00/0000";
             this.txtFechaNac.Name = "txtFechaNac";
+            this.txtFechaNac.ReadOnly = true;
             this.txtFechaNac.Size = new System.Drawing.Size(83, 20);
             this.txtFechaNac.TabIndex = 14;
             this.txtFechaNac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -907,6 +900,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtDNI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDNI.Location = new System.Drawing.Point(80, 23);
             this.txtDNI.Name = "txtDNI";
+            this.txtDNI.ReadOnly = true;
             this.txtDNI.Size = new System.Drawing.Size(66, 20);
             this.txtDNI.TabIndex = 9;
             this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -919,6 +913,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtSexo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSexo.Location = new System.Drawing.Point(510, 23);
             this.txtSexo.Name = "txtSexo";
+            this.txtSexo.ReadOnly = true;
             this.txtSexo.Size = new System.Drawing.Size(80, 20);
             this.txtSexo.TabIndex = 13;
             this.txtSexo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -931,6 +926,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtApeMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApeMaterno.Location = new System.Drawing.Point(394, 23);
             this.txtApeMaterno.Name = "txtApeMaterno";
+            this.txtApeMaterno.ReadOnly = true;
             this.txtApeMaterno.Size = new System.Drawing.Size(115, 20);
             this.txtApeMaterno.TabIndex = 12;
             this.txtApeMaterno.TextChanged += new System.EventHandler(this.txtApeMaterno_TextChanged);
@@ -940,6 +936,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtApePaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApePaterno.Location = new System.Drawing.Point(277, 23);
             this.txtApePaterno.Name = "txtApePaterno";
+            this.txtApePaterno.ReadOnly = true;
             this.txtApePaterno.Size = new System.Drawing.Size(115, 20);
             this.txtApePaterno.TabIndex = 11;
             this.txtApePaterno.TextChanged += new System.EventHandler(this.txtApePaterno_TextChanged);
@@ -949,13 +946,13 @@ namespace Polsolcom.Forms.Procesos
             this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Location = new System.Drawing.Point(148, 23);
             this.txtNombre.Name = "txtNombre";
+            this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(127, 20);
             this.txtNombre.TabIndex = 10;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtIdPaciente
             // 
-            this.txtIdPaciente.BackColor = System.Drawing.SystemColors.Window;
             this.txtIdPaciente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIdPaciente.Location = new System.Drawing.Point(4, 23);
             this.txtIdPaciente.Name = "txtIdPaciente";
@@ -1025,42 +1022,46 @@ namespace Polsolcom.Forms.Procesos
             this.label9.TabIndex = 12;
             this.label9.Text = "ID Paciente";
             // 
+            // institucionBindingSource
+            // 
+            this.institucionBindingSource.DataMember = "Institucion";
+            this.institucionBindingSource.DataSource = this.institucionesDS;
+            // 
             // txtNeto
             // 
-            this.txtNeto.BackColor = System.Drawing.SystemColors.Window;
             this.txtNeto.Location = new System.Drawing.Point(523, 360);
             this.txtNeto.Name = "txtNeto";
             this.txtNeto.ReadOnly = true;
             this.txtNeto.Size = new System.Drawing.Size(76, 20);
             this.txtNeto.TabIndex = 36;
+            this.txtNeto.Text = "0.00";
             this.txtNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNeto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // txtIGV
             // 
-            this.txtIGV.BackColor = System.Drawing.SystemColors.Window;
             this.txtIGV.Location = new System.Drawing.Point(523, 381);
             this.txtIGV.Name = "txtIGV";
             this.txtIGV.ReadOnly = true;
             this.txtIGV.Size = new System.Drawing.Size(76, 20);
             this.txtIGV.TabIndex = 37;
+            this.txtIGV.Text = "0.00";
             this.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtIGV.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // txtTotal
             // 
-            this.txtTotal.BackColor = System.Drawing.SystemColors.Window;
             this.txtTotal.Location = new System.Drawing.Point(523, 402);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(76, 20);
             this.txtTotal.TabIndex = 38;
+            this.txtTotal.Text = "0.00";
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTotal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // txtAutoriza
             // 
-            this.txtAutoriza.BackColor = System.Drawing.SystemColors.Window;
             this.txtAutoriza.Location = new System.Drawing.Point(5, 360);
             this.txtAutoriza.Name = "txtAutoriza";
             this.txtAutoriza.ReadOnly = true;
@@ -1070,7 +1071,6 @@ namespace Polsolcom.Forms.Procesos
             // 
             // txtSon
             // 
-            this.txtSon.BackColor = System.Drawing.SystemColors.Window;
             this.txtSon.Location = new System.Drawing.Point(5, 381);
             this.txtSon.Name = "txtSon";
             this.txtSon.ReadOnly = true;
@@ -1088,37 +1088,6 @@ namespace Polsolcom.Forms.Procesos
             this.label28.TabIndex = 47;
             this.label28.Text = "[Ins] Nuevo Paciente   [F3] Buscar Paciente   [F4] Buscar Venta   [F5] Recargar V" +
     "enta   [F6] Grabar";
-            // 
-            // fGrid
-            // 
-            iGColPattern26.CellStyle = this.iGridCol0CellStyle;
-            iGColPattern26.ColHdrStyle = this.iGridCol0ColHdrStyle1;
-            iGColPattern27.CellStyle = this.iGridCol1CellStyle;
-            iGColPattern27.ColHdrStyle = this.iGridCol1ColHdrStyle1;
-            iGColPattern28.CellStyle = this.iGridCol2CellStyle;
-            iGColPattern28.ColHdrStyle = this.iGridCol2ColHdrStyle1;
-            iGColPattern29.CellStyle = this.iGridCol3CellStyle;
-            iGColPattern29.ColHdrStyle = this.iGridCol3ColHdrStyle1;
-            iGColPattern30.CellStyle = this.iGridCol4CellStyle;
-            iGColPattern30.ColHdrStyle = this.iGridCol4ColHdrStyle1;
-            this.fGrid.Cols.AddRange(new TenTec.Windows.iGridLib.iGColPattern[] {
-            iGColPattern26,
-            iGColPattern27,
-            iGColPattern28,
-            iGColPattern29,
-            iGColPattern30});
-            this.fGrid.DefaultCol.CellStyle = this.iGrid1DefaultCellStyle;
-            this.fGrid.DefaultCol.ColHdrStyle = this.iGrid1DefaultColHdrStyle;
-            this.fGrid.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.fGrid.Location = new System.Drawing.Point(6, 236);
-            this.fGrid.Name = "fGrid";
-            this.fGrid.RowTextCol.CellStyle = this.iGrid1RowTextColCellStyle;
-            this.fGrid.Size = new System.Drawing.Size(591, 121);
-            this.fGrid.TabIndex = 48;
-            this.fGrid.TreeCol = null;
-            this.fGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
-            this.fGrid.SelectionChanged += new System.EventHandler(this.fGrid_SelectionChanged);
-            this.fGrid.CellClick += new TenTec.Windows.iGridLib.iGCellClickEventHandler(this.fGrid_CellClick);
             // 
             // departamentosTableAdapter
             // 
@@ -1146,11 +1115,11 @@ namespace Polsolcom.Forms.Procesos
             this.grddetalleC2,
             this.grddetalleC3,
             this.grddetalleC4});
-            this.grdDetalle.Location = new System.Drawing.Point(29, 254);
+            this.grdDetalle.Location = new System.Drawing.Point(6, 238);
             this.grdDetalle.Name = "grdDetalle";
             this.grdDetalle.RowHeadersVisible = false;
             this.grdDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDetalle.Size = new System.Drawing.Size(570, 119);
+            this.grdDetalle.Size = new System.Drawing.Size(590, 119);
             this.grdDetalle.TabIndex = 49;
             this.grdDetalle.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellEndEdit);
             this.grdDetalle.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellLeave);
@@ -1188,6 +1157,43 @@ namespace Polsolcom.Forms.Procesos
             // 
             this.consultoriosSHClinicaTableAdapter.ClearBeforeFill = true;
             // 
+            // docVentaTableAdapter
+            // 
+            this.docVentaTableAdapter.ClearBeforeFill = true;
+            // 
+            // medicosTableAdapter
+            // 
+            this.medicosTableAdapter.ClearBeforeFill = true;
+            // 
+            // institucionLiteTableAdapter
+            // 
+            this.institucionLiteTableAdapter.ClearBeforeFill = true;
+            // 
+            // lblSerie
+            // 
+            this.lblSerie.Location = new System.Drawing.Point(253, 23);
+            this.lblSerie.Name = "lblSerie";
+            this.lblSerie.Size = new System.Drawing.Size(35, 16);
+            this.lblSerie.TabIndex = 19;
+            this.lblSerie.Text = "...";
+            // 
+            // lblDigitador
+            // 
+            this.lblDigitador.Location = new System.Drawing.Point(375, 27);
+            this.lblDigitador.Name = "lblDigitador";
+            this.lblDigitador.Size = new System.Drawing.Size(78, 16);
+            this.lblDigitador.TabIndex = 20;
+            this.lblDigitador.Text = "...";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(134, 44);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(41, 13);
+            this.label26.TabIndex = 21;
+            this.label26.Text = "label26";
+            // 
             // frmSHClinica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1196,7 +1202,6 @@ namespace Polsolcom.Forms.Procesos
             this.ClientSize = new System.Drawing.Size(718, 425);
             this.ControlBox = false;
             this.Controls.Add(this.grdDetalle);
-            this.Controls.Add(this.fGrid);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.txtSon);
@@ -1215,10 +1220,14 @@ namespace Polsolcom.Forms.Procesos
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.institucionLiteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionesDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosSHClinicaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
@@ -1228,7 +1237,7 @@ namespace Polsolcom.Forms.Procesos
             ((System.ComponentModel.ISupportInitialize)(this.provinciasDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1243,9 +1252,7 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.ComboBox cmbIGV;
 		private System.Windows.Forms.ComboBox cmbTDoc;
 		private System.Windows.Forms.TextBox txtNHP;
-		private System.Windows.Forms.TextBox txtDigitador;
 		private System.Windows.Forms.TextBox txtNroTicket;
-		private System.Windows.Forms.TextBox txtSerie;
 		private System.Windows.Forms.ComboBox cmbMVen;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label7;
@@ -1306,21 +1313,6 @@ namespace Polsolcom.Forms.Procesos
 		private System.Windows.Forms.TextBox txtAutoriza;
 		private System.Windows.Forms.TextBox txtSon;
 		private System.Windows.Forms.Label label28;
-		private TenTec.Windows.iGridLib.iGDropDownList iGDDL;
-		private TenTec.Windows.iGridLib.iGrid fGrid;
-		private TenTec.Windows.iGridLib.iGCellStyle iGrid1DefaultCellStyle;
-		private TenTec.Windows.iGridLib.iGColHdrStyle iGrid1DefaultColHdrStyle;
-		private TenTec.Windows.iGridLib.iGCellStyle iGrid1RowTextColCellStyle;
-		private TenTec.Windows.iGridLib.iGCellStyle iGridCol0CellStyle;
-		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol0ColHdrStyle1;
-		private TenTec.Windows.iGridLib.iGCellStyle iGridCol1CellStyle;
-		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol1ColHdrStyle1;
-		private TenTec.Windows.iGridLib.iGCellStyle iGridCol2CellStyle;
-		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol2ColHdrStyle1;
-		private TenTec.Windows.iGridLib.iGCellStyle iGridCol3CellStyle;
-		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol3ColHdrStyle1;
-		private TenTec.Windows.iGridLib.iGCellStyle iGridCol4CellStyle;
-		private TenTec.Windows.iGridLib.iGColHdrStyle iGridCol4ColHdrStyle1;
         private Dominio.Data.DepartamentosDS departamentosDS;
         private System.Windows.Forms.BindingSource departamentosBindingSource;
         private Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter departamentosTableAdapter;
@@ -1343,5 +1335,16 @@ namespace Polsolcom.Forms.Procesos
         private Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter consultoriosSHClinicaTableAdapter;
         private System.Windows.Forms.CheckBox chkInst;
         private System.Windows.Forms.Button btnInst;
+        private Dominio.Data.TablaTipoDS tablaTipoDS;
+        private System.Windows.Forms.BindingSource docVentaBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter docVentaTableAdapter;
+        private Dominio.Data.MedicosDS medicosDS;
+        private System.Windows.Forms.BindingSource medicosBindingSource;
+        private Dominio.Data.MedicosDSTableAdapters.MedicosTableAdapter medicosTableAdapter;
+        private System.Windows.Forms.BindingSource institucionLiteBindingSource;
+        private Dominio.Data.InstitucionesDSTableAdapters.InstitucionLiteTableAdapter institucionLiteTableAdapter;
+        private System.Windows.Forms.Label lblDigitador;
+        private System.Windows.Forms.Label lblSerie;
+        private System.Windows.Forms.Label label26;
     }
 }

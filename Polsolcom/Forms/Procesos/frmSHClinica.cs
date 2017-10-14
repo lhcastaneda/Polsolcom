@@ -25,12 +25,8 @@ namespace Polsolcom.Forms.Procesos
         string noc = "";
         string BUS = "";
         string hi = "";
-        bool bTieneDocVenta = false;
-        string NROHISTORIA = "";
         Dictionary<string, string> rdvopen = new Dictionary<string, string>();
         Dictionary<string, string> bpac = new Dictionary<string, string>();
-        List<Dictionary<string, string>> cper = new List<Dictionary<string, string>>();
-        List<Dictionary<string, string>> cins = new List<Dictionary<string, string>>();
         List<Dictionary<string, string>> tmpd = new List<Dictionary<string, string>>();
         Dictionary<string, string> igv = new Dictionary<string, string>();
         Dictionary<string, string> cesp = new Dictionary<string, string>();
@@ -67,7 +63,7 @@ namespace Polsolcom.Forms.Procesos
             string fi = txtFechaEmision.Text;
             string ff = DateTime.Parse(txtFechaEmision.Text).AddDays(1).ToShortDateString();
             string dv = cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString();
-            string sr = txtSerie.Text;
+            string sr = lblSerie.Text;
             string cn = txtNroTicket.Text;
             string iu = Usuario.id_us;
             string io = Operativo.id_oper;
@@ -78,7 +74,7 @@ namespace Polsolcom.Forms.Procesos
 
             string sql = "Exec GenDocVen '" + fi + "','" + ff + "','" + iu + "','" + io + "','" + sr + "','" + dv + "','" + cn + "'";
             Conexion.ExecuteNonQuery(sql);
-            General.matxt(es, ip2 + "\t" + dp + "\t" + fn + "\t" + (sr + "-" + cn) + "\t" + this.cper[i]["Medico"].Trim().Replace(",", "") + "\t" + fi);
+            General.matxt(es, ip2 + "\t" + dp + "\t" + fn + "\t" + (sr + "-" + cn) + "\t" + cmbMedico.SelectedValue.ToString().Trim().Replace(",", "") + "\t" + fi);
         }
 
         public void arp()
@@ -103,7 +99,7 @@ namespace Polsolcom.Forms.Procesos
             string es = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
             string us = Usuario.id_us;
             string op = Operativo.id_oper;
-            string sr = txtSerie.Text;
+            string sr = lblSerie.Text;
             string om = cmbMedico.SelectedIndex == -1 ? "" : cmbMedico.SelectedValue.ToString();
             string it = cmbInstitucion.SelectedIndex == -1 ? "" : cmbInstitucion.SelectedValue.ToString();
             string fp = cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString();
@@ -127,7 +123,7 @@ namespace Polsolcom.Forms.Procesos
             string es = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
             string ip = txtIdPaciente.Text;
             string us = Usuario.id_us;
-            string sr = txtSerie.Text;
+            string sr = lblSerie.Text;
             string om = cmbMedico.SelectedIndex == -1 ? "" : cmbMedico.SelectedValue.ToString();
             string it = cmbInstitucion.SelectedIndex == -1 ? "" : cmbInstitucion.SelectedValue.ToString();
             string fp = cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString();
@@ -290,9 +286,9 @@ namespace Polsolcom.Forms.Procesos
                 txtFechaEmision.Text = tick[i]["Fecha_Emision"];
                 cmbMVen.SelectedValue = tick[i]["Forpago"];
                 cmbTDoc.SelectedValue = tick[i]["DVenta"];
-                txtSerie.Text = tick[i]["Serie"];
+                lblSerie.Text = tick[i]["Serie"];
                 txtNroTicket.Text = tick[i]["Nro_Ticket"];
-                txtDigitador.Text = General.TradUser(tick[i]["Digitador"]);
+                lblDigitador.Text = General.TradUser(tick[i]["Digitador"]);
                 txtIdPaciente.Text = tick[i]["Id_Paciente"];
                 cmbEspecialidad.SelectedValue = tick[i]["Id_Consultorio"];
                 cmbInstitucion.SelectedValue = tick[i]["Id_Inst"];
@@ -321,9 +317,10 @@ namespace Polsolcom.Forms.Procesos
 
                 foreach (Dictionary<string, string> idet in cdet)
                 {
+                    Dictionary<string, string> producto = this.productos.Find(x => x["Id_Producto"] == idet["Id_Producto"]);
+
                     Dictionary<string, string> item = new Dictionary<string, string>();
                     item["Nrv"] = idet["Nro_Historia"];
-                    Dictionary<string, string> producto = this.productos.Find(x => x["Id_Producto"] == idet["Id_Producto"]);
                     item["Npro"] = producto["Descripcion"];
                     item["Tp"] = producto["Tipo"];
                     item["Cant"] = idet["Cantidad"];
@@ -440,10 +437,10 @@ namespace Polsolcom.Forms.Procesos
         public void deh()
         {
             this.odb = 0;
-            General.setAll<TextBox, bool>(this, "Enabled", false);
+            General.setAll<TextBox, bool>(this, "ReadOnly", true);
             General.setAll<ComboBox, bool>(this, "Enabled", false);
             General.setAll<Button, bool>(this, "Enabled", true);
-            txtEmail.Enabled = false;
+            txtEmail.ReadOnly = true;
 
             chkInst.Enabled = btnInst.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = false;
 
@@ -463,7 +460,7 @@ namespace Polsolcom.Forms.Procesos
             string ff = txtFechaEmision.Text == General.emptyDate ? "" : DateTime.Parse(txtFechaEmision.Text).AddDays(1).ToShortDateString();
             string iu = Usuario.id_us;
             string io = Operativo.id_oper;
-            string sr = txtSerie.Text;
+            string sr = lblSerie.Text;
             string dv = cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString();
 
             string sql = "Exec GenDocVen '" + fi + "','" + ff + "','" + iu + "','" + io + "','" + sr + "','" + dv + "',''";
@@ -473,7 +470,8 @@ namespace Polsolcom.Forms.Procesos
 
             if (n == -1)
             {
-                General.msg("No tiene rango de documentos de venta", 1, "Advertencia");
+                General.msg("No tiene rango de documentos de venta", "Advertencia");
+                this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
             else
@@ -543,13 +541,12 @@ namespace Polsolcom.Forms.Procesos
                 case 0:
                     General.setAll<TextBox, string>(this, "Text", "");
                     General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
-                    General.setAll<TextBox, bool>(this, "Enabled", true);
+                    General.setAll<TextBox, bool>(this, "ReadOnly", false);
                     General.setAll<ComboBox, bool>(this, "Enabled", true);
                     General.setAll<Button, bool>(this, "Enabled", false);
 
-                    cmbInstitucion.Enabled = false;
-                    txtNHP.Enabled = txtEmail.Enabled = true;
-                    txtFechaEmision.Enabled = txtIdPaciente.Enabled = txtNroTicket.Enabled = txtNeto.Enabled = txtIGV.Enabled = txtTotal.Enabled = false;
+                    cmbInstitucion.Enabled = txtNHP.ReadOnly = txtEmail.ReadOnly = false;
+                    txtFechaEmision.ReadOnly = txtIdPaciente.ReadOnly = txtNroTicket.ReadOnly = txtNeto.ReadOnly = txtIGV.ReadOnly = txtTotal.ReadOnly = true;
 
                     this.uvt();
 
@@ -558,13 +555,17 @@ namespace Polsolcom.Forms.Procesos
 
                     if (General.rdvo(Usuario.id_us, "") == null)
                     {
-                        this.Close();
                         this.DialogResult = DialogResult.Cancel;
+                        this.Close();
                     }
 
-                    cmbTDoc.Text = this.rdvopen["DVenta"];
-                    txtSerie.Text = this.rdvopen["Serie"];
-                    txtDigitador.Text = Usuario.usuario;
+                    if (this.rdvopen != null)
+                    {
+                        cmbTDoc.SelectedValue = this.rdvopen["DVenta"];
+                        lblSerie.Text = this.rdvopen["Serie"];
+                    }
+
+                    lblDigitador.Text = Usuario.usuario;
                     txtEmail.Text = "";
 
                     break;
@@ -760,39 +761,91 @@ namespace Polsolcom.Forms.Procesos
             return true;
         }
 
+        public bool exigep()
+        {
+            if (txtNombre.Text.Length == 0)
+            {
+                MessageBox.Show("Dato necesario, ingrese nombre", "Advertencia");
+                txtNombre.Focus();
+                return false;
+            }
+
+            if (txtApePaterno.Text.Length == 0 && txtApePaterno.Text.Length == 0)
+            {
+                MessageBox.Show("Los apellidos son necesarios ... ingrese al menos uno ... ", "Advertencia");
+                txtApePaterno.Focus();
+                return false;
+            }
+
+            if (txtApePaterno.Text.Length == 0)
+            {
+                if (MessageBox.Show("Falta apellido paterno...desea guardar asi... ?\tpara ello de Click en 'Si' y vuelva a guardar ...", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    txtApePaterno.Focus();
+                }
+                else
+                {
+                    txtApePaterno.Text = "";
+                }
+                return false;
+            }
+
+            if (txtApeMaterno.Text.Length == 0)
+            {
+                if (MessageBox.Show("Falta apellido materno...desea guardar asi... ?\tpara ello de Click en 'Si' y vuelva a guardar ...", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    txtApeMaterno.Focus();
+                }
+                else
+                {
+                    txtApeMaterno.Text = "";
+                }
+                return false;
+            }
+
+            if (txtSexo.Text.Length == 0)
+            {
+                MessageBox.Show("Dato necesario, ingrese sexo", "Advertencia");
+                txtSexo.Focus();
+                return false;
+            }
+
+            if (txtEdad.Text.Length == 0)
+            {
+                MessageBox.Show("Dato necesario, ingrese edad", "Advertencia");
+                txtEdad.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
         private void frmSHClinica_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'institucionesDS.Institucion' table. You can move, or remove it, as needed.
-            this.institucionTableAdapter.Fill(this.institucionesDS.Institucion);
+            // TODO: This line of code loads data into the 'institucionesDS.InstitucionLite' table. You can move, or remove it, as needed.
+            this.institucionLiteTableAdapter.Fill(this.institucionesDS.InstitucionLite);
+            cmbInstitucion.SelectedIndex = -1;
+            // TODO: This line of code loads data into the 'medicosDS.Medicos' table. You can move, or remove it, as needed.
+            this.medicosTableAdapter.Fill(this.medicosDS.Medicos);
+            cmbMedico.SelectedIndex = -1;
+            // TODO: This line of code loads data into the 'tablaTipoDS.DocVenta' table. You can move, or remove it, as needed.
+            this.docVentaTableAdapter.Fill(this.tablaTipoDS.DocVenta);
+            cmbTDoc.SelectedIndex = -1;
             // TODO: This line of code loads data into the 'departamentosDS.Departamentos' table. You can move, or remove it, as needed.
             this.departamentosTableAdapter.Fill(this.departamentosDS.Departamentos);
             cmbDepartamento.SelectedIndex = -1;
 
-            //General.ttMensaje.InitialDelay = 0;
-            //General.ttMensaje.IsBalloon = false;
-            //FormateaGrids();
-            //btnBuscarT.Enabled = true;
             this.rdvopen = General.rdvo(Usuario.id_us, "");
 
-            if (this.rdvopen != null)
-            {
-                return;
-            }
-
-            string sql = "Select Ape_Paterno+' '+Ape_Materno+', '+Nombres Medico,Id_Personal From Personal Where TNCol<>'' Union Select Descripcion,Id_Tipo From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion='VAR_EXTRAS' And Id_Tabla='0') Order By 1";
-            this.cper = General.GetDictionaryList(sql);
-
-            string sql2 = "Select Nom_Raz_Soc,TInst+Id_Inst CInst From Institucion Where Estado='1' And TInst In ('T','M') Order By 1";
-            this.cins = General.GetDictionaryList(sql2);
+            //Llenar detalle
 
             grdDetalle.Rows.Clear();
-            txtDigitador.Text = Usuario.usuario;
-            txtSerie.Text = this.rdvopen["Serie"];
+            lblDigitador.Text = Usuario.usuario;
+            lblSerie.Text = this.rdvopen["Serie"];
 
             this.les();
-
             /*
-            .frmbuscar.hide
+             .frmbuscar.hide
             .frmbuscat.hide
             .frmbuscai.hide
             WITH .frmmessage
@@ -800,115 +853,8 @@ namespace Polsolcom.Forms.Procesos
                .width = frmmain.width-3
                .top = frmmain.height-frmmain.stbar.height-.height-1
                .txtmessage.width = .width-8
-            ENDWITH 
+            ENDWITH
             */
-
-            /*
-            if ( bTieneDocVenta == true )
-			{
-				General.LlenarRegistroVenta(Usuario.id_us, "");
-				btnNuevo.Enabled = true;
-				btnBuscar.Enabled = true;
-			}
-			else
-			{
-
-			}
-
-			General.LUbigeo("", "DEPARTAMENTO", cmbDepartamento);
-			General.LUbigeo("", "PROVINCIA", cmbProvincia);
-			General.LUbigeo("", "DISTRITO", cmbDistrito);
-			txtDigitador.Text = Usuario.usuario;
-
-			General.LlenaComboBox(cmbEspecialista, "MEDICO");
-			General.LlenaComboBox(cmbInstitucion, "INSTITUCION");
-			General.LlenaComboBox(cmbMVen, "FORMA_PAGO");
-			General.LlenaComboBox(cmbTDoc, "DOC_VENTA");
-			General.LlenaComboBox(cmbIGV, "IGV");
-
-			//llena combo especialidad
-			string vSQL = "SELECT DISTINCT Descripcion,Id_Consultorio AS IdUbigeo " +
-						  "FROM Consultorios " +
-						  "WHERE Id_Consultorio LIKE '" + Operativo.id_oper + "%' " +
-						  "AND Estado= '1' " +
-						  "Order By 1";
-			General.LlenaComboBox(cmbEspecialidad, "SQL", vSQL);
-			Habilita(0);
-			btnAgregar.Enabled = false;
-			btnQuitar.Enabled = false;
-            */
-        }
-
-        private void FormateaGrids()
-        {
-            //iGDropDownList cmb = new iGDropDownList();
-            fGrid.RowHeader.Visible = false;
-            fGrid.DefaultRow.Height = 17;
-            //iGrid.Cols.Count = 5;
-            //producto
-            fGrid.Cols[0].Text = "Descripcion del Producto o Servicio";
-            fGrid.Cols[0].Width = 425;
-            fGrid.Cols[0].CellStyle.ImageAlign = iGContentAlignment.MiddleLeft;
-            //iGrid.Cols[0].CellStyle.DropDownControl = iGDropDownList; //agrega el combobox
-            fGrid.Cols[0].CellStyle.TypeFlags = iGCellTypeFlags.NoTextEdit;
-            fGrid.Cols[0].CellStyle.ValueType = typeof(string);
-
-            //cantidad
-            fGrid.Cols[1].Text = "Cant.";
-            fGrid.Cols[1].Width = 40;
-            fGrid.Cols[1].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-            fGrid.Cols[1].CellStyle.ReadOnly = iGBool.False;
-            //precio
-            fGrid.Cols[2].Text = "Precio";
-            fGrid.Cols[2].Width = 50;
-            fGrid.Cols[2].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
-            fGrid.Cols[2].CellStyle.FormatString = "{0:#,#}";
-            fGrid.Cols[2].CellStyle.ReadOnly = iGBool.True;
-            //sub total
-            fGrid.Cols[3].Text = "Sub Total";
-            fGrid.Cols[3].Width = 60;
-            fGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleRight;
-            fGrid.Cols[3].CellStyle.FormatString = "{0:#,#}";
-            fGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
-            //id
-            fGrid.Cols[4].Text = "ID";
-            fGrid.Cols[4].Width = 1;
-            fGrid.Cols[4].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-            fGrid.Cols[4].CellStyle.ReadOnly = iGBool.True;
-            // Popup menu de la grid
-            //iGrid.ContextMenuStrip = new ContextMenuStrip();
-            //iGrid.ContextMenuStrip.Items.Add("Exportar");
-            //iGrid.ContextMenuStrip.Items.Add("Copiar");
-
-        }
-
-        private void CargaProductos(string sCategoria, string idProducto = "")
-        {
-            //iGDropDownList cmb = new iGDropDownList();
-            //string sQuery = "SELECT CAST(SubString(Id_Producto,4,5) AS INT) AS Id,Descripcion " +
-            string sQuery = "SELECT Id_Producto AS Id, Descripcion " +
-                            "FROM Productos " +
-                            "WHERE 1 = 1 " +
-                            "AND Estado = '1' " +
-                            "AND LEFT(Id_Producto,6) = '" + sCategoria.Trim() + "' ";
-            if (idProducto != "")
-                sQuery = sQuery + "AND Id_Producto = '" + idProducto + "' ";
-            else
-                sQuery = sQuery + "ORDER BY 2";
-
-            Conexion.CMD.CommandText = sQuery;
-
-            iGDDL.Items.Clear();
-            iGDDL.FillWithData(Conexion.CMD, "Id", "Descripcion");
-
-            //cmb.Items.Clear();
-            //cmb.FillWithData(Conexion.CMD, "Id", "Descripcion");
-
-
-            if (iGDDL.Items.Count == 1)
-                iGDDL.Items[0].Selectable = true;
-
-            //return cmb;
         }
 
         private string DevuelvePrecioProducto(string idProduct)
@@ -960,60 +906,66 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            string sIDPaciente = "";
-
-            if (btnNuevo.Text == "&Nuevo Paciente")
+            if (btnNuevo.Text == "&Nuevo Pac")
             {
-                btnBuscar.Enabled = false;
-                General.ODB = 1;  //1: Nuevo Paciente, 0: Paciente Existente
-                int iCant = 0;
+                this.hi = DateTime.Today.ToShortDateString();
+                int x = Conexion.ExecuteScalar<int>("SELECT Count(Name) AS C FROM master.dbo.sysdatabases WHERE Name = 'DNI'");
 
-                string vSQL = "SELECT Count(Name) AS C FROM master.dbo.sysdatabases WHERE Name = 'DNI'";
-                iCant = int.Parse(General.TomaValor(vSQL));
-                if (iCant > 0)
+                if (x > 0)
                     if (MessageBox.Show("Desea realizar busqueda en base de datos general...?", "Busqueda Pacientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
-                        Habilita(1);
+                    {
+                        this.hab(1);
+                    }
                     else
                     {
-                        frmBuscar fr = new frmBuscar();
-                        fr.ShowDialog();
-
-                        if (fr.DialogResult != DialogResult.OK)
-                            return;
-                        else
-                            sIDPaciente = fr.lblIdPaciente.Text;
-
-                        CargaDatosPaciente(General.ODB, sIDPaciente);
-                        btnBuscar.Enabled = false;
-                        btnDuplica.Enabled = false;
-                        btnBuscat.Enabled = false;
-                        txtDireccion.Focus();
+                        /*
+                        .frmbuscar.setall('Value', '', 'TextBox')
+                        .odb = 1
+                        .frmhistoria.hide
+                        .frmbuscar.show
+                        .frmbuscar.cmdaceptar.enabled = .F.
+                         */
                     }
                 else
-                    Habilita(1);
+                {
+                    this.hab(1);
+                }
             }
-            else if (btnNuevo.Text == "&Grabar Venta")
+            else
             {
-                if (int.Parse(txtTotal.Text) == 0)
+                if (decimal.Parse(txtTotal.Text) == 0)
                 {
                     if (MessageBox.Show("No ha agregado productos, desea hacerlo...?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     {
-                        btnNuevo.Text = "&Nuevo Paciente";
-                        btnBuscar.Enabled = true;
-                        btnBuscat.Enabled = true;
-                        ValidaDatosTicket("");
-                        BloqueaControles(this, "D");
+                        this.cdv("0");
+                        btnNuevo.Text = "&Nuevo Pac";
+                        this.deh();
                     }
                     else
-                        txtDNI.Focus();
+                    {
+                        txtNombre.Focus();
+                    }
                 }
                 else
                 {
                     if (MessageBox.Show("Desea guardar los cambios...?", "Mensaje al Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-
+                        if (this.exigep())
+                        {
+                            this.vrv();
+                            this.hom();
+                            this.ddi();
+                            this.arp();
+                            btnDuplica.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        this.cdv("0");
                     }
 
+                    btnNuevo.Text = "&Nuevo Pac";
+                    this.deh();
                 }
             }
         }
@@ -1075,61 +1027,6 @@ namespace Polsolcom.Forms.Procesos
             }
         }
 
-        private void Habilita(int iOpcion)
-        {
-            switch (iOpcion)
-            {
-                case 0:
-                    LimpiaControles(this);
-                    UbicaItemCombo(cmbTDoc, Talon.dventa);
-                    UbicaItemCombo(cmbMVen, "");
-                    UbicaItemCombo(cmbInstitucion, TieneInstitucion());
-                    txtSerie.Text = Talon.serie;
-                    txtDigitador.Text = Usuario.usuario;
-                    txtDNI.Focus();
-                    break;
-                case 1:
-                    Habilita(0);
-                    btnNuevo.Text = "&Grabar Venta";
-                    txtFechaEmision.Text = General.FechaServidor();
-                    UbicaItemCombo(cmbDistrito, Operativo.id_distrito);
-                    UbicaItemCombo(cmbProvincia, Operativo.id_distrito.Substring(0, 4));
-                    UbicaItemCombo(cmbDepartamento, Operativo.id_distrito.Substring(0, 2));
-                    ValidaRangosDocsVenta();
-                    txtDNI.Focus();
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-            }
-        }
-
-        private void LimpiaControles(Control con)
-        {
-            foreach (Control c in con.Controls)
-            {
-                if (c is TextBox)
-                    ((TextBox)c).Clear();
-                else if (c is ComboBox)
-                    ((ComboBox)c).SelectedIndex = -1;
-                else if (c is MaskedTextBox)
-                    ((MaskedTextBox)c).Clear();
-
-                if (c.HasChildren)
-                    LimpiaControles(c);
-            }
-            fGrid.Rows.Clear();
-            FormateaGrids();
-
-        }
-
         private void UbicaItemCombo(ComboBox cmb, string sValor)
         {
             if (sValor == null)
@@ -1159,184 +1056,80 @@ namespace Polsolcom.Forms.Procesos
             return sRes;
         }
 
-        private bool ValidaRangosDocsVenta()
-        {
-            string F1 = General.FechaServidor();
-            string F2 = Convert.ToDateTime(F1).AddDays(1).ToString("dd/MM/yyyy");
-            string sRes = "";
-            string sQuery = "";
-            bool Error = false;
-
-            sQuery = "EXEC GenDocVen '" + F1 + "','" + F2 + "','" + Usuario.id_us + "','" + Operativo.id_oper + "','" + Talon.serie + "','" + Talon.dventa + "',''";
-            using (SqlCommand cmd = new SqlCommand(sQuery, Conexion.CNN))
-            {
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        General.LlenaTalon(dr);
-                        sRes = int.Parse(Talon.ncon) == 0 ? Talon.ninicial : Convert.ToString(int.Parse(Talon.ncon) + 1);
-                    }
-                    dr.Close();
-                }
-            }
-
-            if ((sRes == null || sRes == String.Empty || sRes == ""))
-            {
-                MessageBox.Show("No tiene rango de documentos de venta ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                Error = true;
-            }
-            else
-            {
-                Error = ValidaUsoTicket(Talon.serie, Talon.ninicial, Talon.dventa);
-                if (Error == false)
-                    txtNroTicket.Text = Talon.ninicial;
-            }
-            return Error;
-        }
-
-        private bool ValidaUsoTicket(string sSerie, string sInicial, string sDventa)
-        {
-            int iCant = 0;
-            string sQuery = "";
-            bool Error = false;
-
-            sQuery = "SELECT COUNT(*) AS C FROM Tickets " +
-                     "WHERE Serie = '" + sSerie + "' " +
-                     "AND DVenta = '" + sDventa + "'" +
-                     "AND Nro_Ticket = '" + sInicial + "'";
-            iCant = int.Parse(General.TomaValor(sQuery));
-
-            sQuery = "SELECT Nro_Historia,Nro_Ticket,CONVERT(VARCHAR(10),Fecha_Emision,103) AS Fecha," +
-                     "Id_Consultorio,Id_Paciente,Digitador,Anulado,ForPago,Descuento," +
-                     "Serie,CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " +
-                     "FROM Tickets " +
-                     "WHERE Serie = '" + sSerie + "' " +
-                     "AND DVenta = '" + sDventa + "'" +
-                     "AND Nro_Ticket = '" + sInicial + "'";
-            using (SqlCommand cmd = new SqlCommand(sQuery, Conexion.CNN))
-            {
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        dr.Read();
-                        if (iCant > 0)
-                        {
-                            MessageBox.Show("El recibo N° " + dr.GetValue(9).ToString() + "-" + dr.GetValue(1).ToString() + " ya fue emitido por " + General.TradUser(dr.GetValue(5).ToString()) + (char)13 + " en fecha del " + dr.GetValue(2).ToString() + ", comuniquese con el administrador del" + (char)13 + "sistema de manera inmediata. Es de urgencia !!!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            txtNroTicket.Text = "";
-                            Error = true;
-                        }
-                    }
-                    dr.Close();
-                }
-            }
-            return Error;
-        }
-
-        private void CargaDatosPaciente(int iTipo, string sPaciente, int iEstado = 0)
-        {
-            string sSQL = "";
-
-            txtDigitador.Text = Usuario.usuario;
-            txtSerie.Text = Talon.serie;
-
-            if (iTipo == 0) //0: paciente existente
-            {
-                sSQL = "SELECT id_paciente,nombre,ape_paterno,ape_materno,dni,edad," +
-                        "CASE WHEN sexo = 'M' THEN 'MASCULINO' ELSE 'FEMENINO' END AS sexo," +
-                        "telefono,direccion,asegurado,id_distrito,odoc,e_mail,nro_historia,fecha_nac " +
-                        "FROM Pacientes P ";
-                if (iEstado == 0)
-                    sSQL = sSQL + "WHERE id_paciente = '" + sPaciente + "' ";
-                else
-                    sSQL = sSQL + "WHERE dni = '" + sPaciente + "' ";
-
-                using (SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN))
-                {
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        if (dr.HasRows)
-                        {
-                            Habilita(0);
-                            dr.Read();
-                            txtNHP.Text = (dr.GetValue(13).ToString().Length == 0 ? "0" : dr.GetValue(13).ToString());
-                            NROHISTORIA = txtNHP.Text;
-                            txtIdPaciente.Text = dr.GetValue(0).ToString();
-                            txtNombre.Text = dr.GetValue(1).ToString();
-                            txtApePaterno.Text = dr.GetValue(2).ToString();
-                            txtApeMaterno.Text = dr.GetValue(3).ToString();
-                            txtDNI.Text = dr.GetValue(4).ToString();
-                            txtEdad.Text = dr.GetValue(5).ToString();
-                            txtSexo.Text = dr.GetValue(6).ToString();
-                            txtTelefono.Text = dr.GetValue(7).ToString();
-                            txtDireccion.Text = dr.GetValue(8).ToString();
-                            txtAsegurado.Text = dr.GetValue(9).ToString();
-                            UbicaItemCombo(cmbDepartamento, dr.GetValue(10).ToString().Substring(0, 2));
-                            UbicaItemCombo(cmbProvincia, dr.GetValue(10).ToString().Substring(0, 4));
-                            UbicaItemCombo(cmbDistrito, dr.GetValue(10).ToString());
-                            txtODoc.Text = dr.GetValue(11).ToString();
-                            txtEmail.Text = dr.GetValue(12).ToString();
-                            txtFechaNac.Text = dr.GetValue(14).ToString();
-                        }
-                        dr.Close();
-                    }
-                }
-            }
-            else //1: paciente nuevo
-            {
-                sSQL = "SELECT P.Dni,P.Nombres,P.Ape_Pat,P.Ape_Mat,CONVERT(datetime, P.Fec_Nac,112) AS Fec_Nac, " +
-                        "DATEDIFF(YEAR, P.Fec_Nac, CONVERT(VARCHAR, GETDATE(), 112)) AS Edad," +
-                        " CASE WHEN sexo = 1 THEN 'MASCULINO' ELSE 'FEMENINO' END AS sexo,U.Id_Old " +
-                        " FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " +
-                        "ON P.Ubigeo = U.Ubigeo " +
-                        "WHERE DNI = '" + sPaciente + "' ";
-                using (SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN))
-                {
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        if (dr.HasRows)
-                        {
-                            dr.Read();
-                            Habilita(0);
-                            btnNuevo.Text = "&Grabar Venta";
-                            txtFechaEmision.Text = General.FechaServidor();
-                            txtNHP.Text = "0";
-                            NROHISTORIA = txtNHP.Text;
-                            UbicaItemCombo(cmbDepartamento, dr.GetValue(7).ToString().Substring(0, 2));
-                            UbicaItemCombo(cmbProvincia, dr.GetValue(7).ToString().Substring(0, 4));
-                            UbicaItemCombo(cmbDistrito, dr.GetValue(7).ToString());
-                            txtNombre.Text = dr.GetValue(1).ToString();
-                            txtApePaterno.Text = dr.GetValue(2).ToString();
-                            txtApeMaterno.Text = dr.GetValue(3).ToString();
-                            txtDNI.Text = dr.GetValue(0).ToString();
-                            txtEdad.Text = dr.GetValue(5).ToString();
-                            txtSexo.Text = dr.GetValue(6).ToString();
-                            txtFechaNac.Text = dr.GetValue(4).ToString().Substring(0, 10);
-                        }
-                        dr.Close();
-                    }
-                }
-            }
-            ValidaRangosDocsVenta();
-        }
-
         private void txtDNI_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled == true)
             {
-                txtDNI.Enabled = true;
+                txtDNI.ReadOnly = false;
             }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (btnBuscar.Text == "&Busca Pac")
+            {
+                this.hi = DateTime.Today.ToShortDateString();
+                btnBuscar.Text = "&Grabar";
+                /*
+                 *.frmhistoria.hide
+               .frmbuscar.show
+               .odb = 0
+               .frmbuscar.setall('Value', '', 'TextBox')
+                */
+                this.bpa();
+            }
+            else
+            {
+                if (decimal.Parse(txtTotal.Text) == 0)
+                {
+                    if (MessageBox.Show("No ha agregado productos ... desea hacerlo ?", "Mensaje al usuario", MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        this.cdv("0");
+                        btnBuscar.Text = "&Busca Pac";
+                        this.deh();
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("Desea guardar los cambios ... ?", "Mensaje al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        this.vrv();
+                        this.vdp();
+                        this.arv();
+                    }
+                    else
+                    {
+                        this.cdv("0");
+                    }
 
+                    btnBuscar.Text = "&Busca Pac";
+                    this.deh();
+                }
+            }
         }
 
         private void btnDuplica_Click(object sender, EventArgs e)
         {
+            this.hi = DateTime.Today.ToShortDateString();
 
+            txtFechaEmision.Text = this.hi;
+            lblDigitador.Text = Usuario.usuario;
+            lblSerie.Text = this.rdvopen["Serie"];
+            cmbTDoc.SelectedValue = rdvopen["DVenta"];
+            cmbMVen.SelectedIndex = cmbEspecialidad.SelectedIndex = cmbMedico.SelectedIndex = -1;
+            txtAutoriza.Text = "";
+
+            btnBuscar.Text = "&Grabar";
+            General.setAll<ComboBox, bool>(this, "Enabled", true);
+            General.setAll<Button, bool>(this, "Enabled", false);
+            btnBuscar.Enabled = true;
+            cmbInstitucion.Enabled = false;
+
+            txtNeto.Text = txtIGV.Text = txtTotal.Text = "0.00";
+            cmbEspecialidad.Focus();
+
+            this.gdv();
+            this.uvt();
         }
 
         private void btnBuscat_Click(object sender, EventArgs e)
@@ -1353,41 +1146,41 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (bTieneDocVenta == false)
-                return;
-
             if (cmbEspecialidad.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe seleccionar una especialidad...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                return;
+                btnAgregar.Enabled = false;
+                cmbEspecialidad.Focus();
+                MessageBox.Show("Seleccionar una especialidad...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
             }
-
-            if (cmbMedico.SelectedIndex == -1)
-            {
-                MessageBox.Show("Debe seleccionar un especialidad...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                return;
-            }
-
-            //agrega una fila
-            fGrid.Rows.Count = fGrid.Rows.Count + 1;
-            fGrid.Cells[fGrid.Rows.Count - 1, 0].DropDownControl = iGDDL;
-
-            if (fGrid.Rows.Count != 0)
-                btnQuitar.Enabled = true;
             else
-                btnQuitar.Enabled = false;
+            {
+                grddetalleC1.ReadOnly = grddetalleC2.ReadOnly = false;
+                grddetalleC3.ReadOnly = this.cesp["Descripcion"] != "FARMACIA";
+                Dictionary<string, string> item = new Dictionary<string, string>();
+                item["Nrv"] = this.nrv;
+                item["Npro"] = "";
+                item["Tp"] = "";
+                item["Cant"] = "";
+                item["Cost"] = "";
 
-
+                this.tmpd.Add(item);
+                grdDetalle.Rows.Add(new[] { "", "", "", "" });
+                btnQuitar.Enabled = true;
+            }
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
+            int index = grdDetalle.CurrentCell.RowIndex;
 
+            this.tmpd.RemoveAt(index);
+            grdDetalle.Rows.RemoveAt(index);
+            this.ctv();
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            string sSQL = "";
+            /*string sSQL = "";
 
             Ubigeo oEspecialidad = (Ubigeo)cmbEspecialidad.SelectedItem;
 
@@ -1429,309 +1222,7 @@ namespace Polsolcom.Forms.Procesos
                     dr.Close();
                 }
             }
-
-
-
-
-
-
-
-        }
-
-        private void CargaDatosHistoria(string sNroHistoria)
-        {
-            string sSQL = "";
-
-            if (sNroHistoria == "" || sNroHistoria.Length == 0)
-                return;
-
-            sSQL = "SELECT T.Nro_Historia, T.Nro_Ticket, T.Fecha_Emision, T.Id_Consultorio, T.Id_Paciente, " +
-                    "T.Digitador, T.Anulado, T.ForPago, T.Descuento, T.Serie, T.CMP, T.Id_Inst, T.Moneda, " +
-                    "T.Convenio, T.DVenta, T.Id_Bus, T.tsg, P.Nombre, P.Ape_Paterno, P.Ape_Materno, " +
-                    "P.DNI, P.Fecha_Nac, P.Edad, CASE WHEN P.Sexo = 'M' THEN 'MASCULINO' ELSE 'FEMENINO' END AS sexo, " +
-                    "P.Telefono, P.Direccion, P.Asegurado, P.Id_Distrito, " +
-                    "P.ODoc, P.E_Mail, C.Descripcion, C.Estado, C.Turno, " +
-                    "C.Tipo, C.Observacion, P.Nro_Historia " +
-                    "FROM Tickets T INNER JOIN Pacientes P " +
-                    "ON T.Id_Paciente = P.Id_paciente " +
-                    "INNER JOIN Consultorios C " +
-                    "ON T.Id_Consultorio = C.Id_Consultorio " +
-                    "WHERE T.Nro_Historia = '" + sNroHistoria + "'";
-            using (SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN))
-            {
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            txtNHP.Text = dr.GetValue(35).ToString().Trim();
-                            txtNroTicket.Text = dr.GetValue(1).ToString().Trim();
-                            txtFechaEmision.Text = dr.GetValue(2).ToString().Trim();
-                            UbicaItemCombo(cmbEspecialidad, dr.GetValue(3).ToString().Trim());
-                            txtIdPaciente.Text = dr.GetValue(4).ToString().Trim();
-                            txtDigitador.Text = General.TradUser(dr.GetValue(5).ToString().Trim());
-                            UbicaItemCombo(cmbMVen, dr.GetValue(7).ToString().Trim());
-                            if (dr.GetValue(8).ToString().Trim() != "")
-                                if (dr.GetValue(8).ToString().Substring(0, 1) == "D")
-                                {
-                                    string ads = dr.GetValue(8).ToString().Substring(29, 9).Trim();
-
-                                    sSQL = "Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Personal,Id_Personal " +
-                                            "From Personal " +
-                                            "Where Id_Personal = '" + ads.Trim() + "' " +
-                                            "Union All " +
-                                            "Select Nom_Raz_Soc Personal,TInst + Id_Inst Id_Personal " +
-                                            "  From Institucion " +
-                                            "  Where TInst + Id_Inst = '" + ads.Trim() + "' ";
-
-                                    using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString))
-                                    {
-                                        try
-                                        {
-                                            if (db.State == ConnectionState.Closed)
-                                                db.Open();
-
-                                            dynamic returns = db.Query<dynamic>(sSQL);
-                                            txtAutoriza.Text = returns[0].Personal + " (S/. " + dr.GetValue(8).ToString().Substring(38, 8).Trim() + ")";
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            MessageBox.Show(ex.Message);
-                                        }
-                                    }
-                                }
-                            txtSerie.Text = dr.GetValue(9).ToString().Trim();
-                            UbicaItemCombo(cmbMedico, dr.GetValue(10).ToString().Trim());
-                            UbicaItemCombo(cmbInstitucion, dr.GetValue(11).ToString().Trim());
-                            UbicaItemCombo(cmbTDoc, dr.GetValue(14).ToString().Trim());
-                            txtNombre.Text = dr.GetValue(17).ToString();
-                            txtApePaterno.Text = dr.GetValue(18).ToString();
-                            txtApeMaterno.Text = dr.GetValue(19).ToString();
-                            txtDNI.Text = dr.GetValue(20).ToString();
-                            txtFechaNac.Text = dr.GetValue(21).ToString();
-                            txtEdad.Text = dr.GetValue(22).ToString();
-                            txtSexo.Text = dr.GetValue(23).ToString();
-                            txtTelefono.Text = dr.GetValue(24).ToString();
-                            txtDireccion.Text = dr.GetValue(25).ToString();
-                            txtAsegurado.Text = dr.GetValue(26).ToString();
-                            UbicaItemCombo(cmbDepartamento, dr.GetValue(27).ToString().Substring(0, 2));
-                            UbicaItemCombo(cmbProvincia, dr.GetValue(27).ToString().Substring(0, 4));
-                            UbicaItemCombo(cmbDistrito, dr.GetValue(27).ToString());
-                            txtODoc.Text = dr.GetValue(28).ToString();
-                            txtEmail.Text = dr.GetValue(29).ToString();
-                            //carga detalle
-                            CargaDetalleTicket(sNroHistoria, dr.GetValue(3).ToString().Trim());
-                        }
-                    }
-                    dr.Close();
-                }
-            }
-        }
-
-        private void ValidaDatosTicket(string sNroHistoria)
-        {
-            string sSQL = "";
-
-            if (sNroHistoria != "" || sNroHistoria.Length != 0)
-            {
-                sSQL = "SELECT Nro_Historia,Nro_Ticket,Fecha_Emision,Id_Consultorio, " +
-                        "Id_Paciente,Digitador,Anulado,ForPago,Descuento,Serie, " +
-                        "CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " +
-                        "FROM Tickets " +
-                        "WHERE Nro_Historia = '" + sNroHistoria + "'";
-            }
-            else
-            {
-                sSQL = "SELECT Nro_Historia,Nro_Ticket,Fecha_Emision,Id_Consultorio," +
-                        "Id_Paciente,Digitador,Anulado,ForPago,Descuento,Serie," +
-                        "CMP,Id_Inst,Moneda,Convenio,DVenta,Id_Bus,tsg " +
-                        "FROM Tickets " +
-                        "WHERE Fecha_Emision IN " +
-                        "(SELECT MAX(Fecha_Emision) " +
-                        " FROM Tickets " +
-                        " WHERE Digitador = '" + Usuario.id_us + "' " +
-                        " AND Fecha_Emision >= Convert(Varchar(10), GetDate(), 103)) " +
-                        "AND Digitador = '" + Usuario.id_us + "' " +
-                        "AND Fecha_Emision >= Convert(Varchar(10), GetDate(), 103)";
-            }
-
-            if (sSQL == "")
-                return;
-
-            using (SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN))
-            {
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            txtFechaEmision.Text = dr.GetValue(2).ToString().Trim();
-                            UbicaItemCombo(cmbTDoc, dr.GetValue(14).ToString().Trim());
-                            UbicaItemCombo(cmbMVen, dr.GetValue(7).ToString().Trim());
-                            txtSerie.Text = dr.GetValue(9).ToString().Trim();
-                            txtNroTicket.Text = dr.GetValue(1).ToString().Trim();
-                            txtDigitador.Text = General.TradUser(dr.GetValue(5).ToString().Trim());
-                            txtIdPaciente.Text = dr.GetValue(4).ToString().Trim();
-                            UbicaItemCombo(cmbEspecialidad, dr.GetValue(3).ToString().Trim()); //validar si llena los productos
-                            UbicaItemCombo(cmbInstitucion, dr.GetValue(11).ToString().Trim());
-                            UbicaItemCombo(cmbMedico, dr.GetValue(10).ToString().Trim());
-                            txtAutoriza.Text = "";
-
-                            if (dr.GetValue(8).ToString().Trim() != "")
-                                if (dr.GetValue(8).ToString().Trim().Substring(0, 1) == "D")
-                                {
-                                    string ads = dr.GetValue(8).ToString().Substring(29, 9).Trim();
-
-                                    sSQL = "Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Personal,Id_Personal " +
-                                            "From Personal " +
-                                            "Where Id_Personal = '" + ads.Trim() + "' " +
-                                            "Union All " +
-                                            "Select Nom_Raz_Soc Personal,TInst + Id_Inst Id_Personal " +
-                                            "  From Institucion " +
-                                            "  Where TInst + Id_Inst = '" + ads.Trim() + "' ";
-
-                                    using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString))
-                                    {
-                                        try
-                                        {
-                                            if (db.State == ConnectionState.Closed)
-                                                db.Open();
-
-                                            dynamic returns = db.Query<dynamic>(sSQL);
-                                            txtAutoriza.Text = returns[0].Personal + " (S/. " + dr.GetValue(8).ToString().Substring(38, 8).Trim();
-
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            MessageBox.Show(ex.Message);
-                                        }
-                                    }
-                                }
-
-                            txtNHP.Text = dr.GetValue(0).ToString().Trim();
-                            CargaDetalleTicket(dr.GetValue(0).ToString().Trim(), dr.GetValue(3).ToString().Trim());
-
-                            if (dr.GetString(15).Trim() != "")
-                            {
-                                string vSql = "SELECT Bus FROM buses WHERE id_bus = '" + dr.GetValue(15).ToString().Trim() + "'";
-                                BUS = General.TomaValor(vSql);
-                            }
-
-                            NROHISTORIA = dr.GetValue(0).ToString().Trim();
-                            CargaDatosPaciente(1, "");
-
-                        }
-                    }
-                    else
-                    {
-
-                    }
-                    dr.Close();
-                }
-            }
-
-        }
-
-        private void CargaDetalleTicket(string sNHC, string sEspecialidad)
-        {
-            iGDropDownList cmb = new iGDropDownList();
-            double dTotal = 0;
-            fGrid.Rows.Clear();
-            FormateaGrids();
-
-            if (sNHC.Trim() == "")
-                return;
-
-            if (sEspecialidad.Trim() == "")
-                return;
-
-            string vSQL = "SELECT COUNT(*) AS cant " +
-                          "FROM Detalles " +
-                          "WHERE Nro_Historia = '" + sNHC.ToString() + "'";
-            int iCant = int.Parse(General.TomaValor(vSQL));
-
-            vSQL = "SELECT nro_historia,id_producto,monto,cantidad," +
-                   "pagado,dscto,resultado,conclusion " +
-                   "FROM Detalles " +
-                   "WHERE Nro_Historia = '" + sNHC.ToString() + "'";
-            using (SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN))
-            {
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        fGrid.BeginUpdate();
-                        fGrid.Rows.Count = iCant;
-
-                        foreach (iGRow row in fGrid.Rows)
-                        {
-                            dr.Read();
-                            //cmb = CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
-                            CargaProductos(sEspecialidad, dr.GetValue(1).ToString());
-                            row.Cells[0].DropDownControl = iGDDL;
-                            row.Cells[0].Value = iGDDL.Items[0].Value;
-                            row.Cells[1].Value = dr.GetValue(3).ToString();
-                            row.Cells[2].Value = dr.GetValue(2).ToString(); //DevuelvePrecioProducto(dr.GetValue(1).ToString());
-                            row.Cells[3].Value = (int.Parse(row.Cells[1].Value.ToString()) * double.Parse(row.Cells[2].Value.ToString())).ToString("#,###.#0");
-                            row.Cells[4].Value = dr.GetValue(1).ToString();
-                            dTotal = dTotal + double.Parse(row.Cells[3].Value.ToString());
-                        }
-                        fGrid.EndUpdate();
-                        txtNeto.Text = dTotal.ToString("#,###.#0");
-                        txtTotal.Text = dTotal.ToString("#,###.#0");
-                        txtSon.Text = General.NumeroTexto(dTotal.ToString("#.#0"));
-                    }
-                    dr.Close();
-                }
-            }
-        }
-
-        private void BloqueaControles(Control con, string FLAG = "")
-        {
-            //para bloquear dejar en blanco la segunda variable
-            //para desbloquear segunda variable no debe estar en blanco
-
-            foreach (Control c in con.Controls)
-            {
-                if (c is TextBox)
-                    if (FLAG == "")
-                    {
-                        ((TextBox)c).ReadOnly = true;
-                        if (((TextBox)c).BackColor != Color.Gold)
-                            ((TextBox)c).BackColor = Color.White;
-                    }
-                    else
-                        ((TextBox)c).ReadOnly = false;
-                else if (c is ComboBox)
-                    if (FLAG == "")
-                    {
-                        ((ComboBox)c).Enabled = false;
-                        ((ComboBox)c).BackColor = Color.White;
-                    }
-                    else
-                        ((ComboBox)c).Enabled = true;
-                else if (c is MaskedTextBox)
-                    if (FLAG == "")
-                    {
-                        ((MaskedTextBox)c).ReadOnly = true;
-                        ((MaskedTextBox)c).BackColor = Color.White;
-                    }
-                    else
-                        ((MaskedTextBox)c).ReadOnly = false;
-
-                if (c.HasChildren)
-                    BloqueaControles(c);
-            }
-
-            if (FLAG == "")
-            {
-                fGrid.Enabled = false;
-                fGrid.BackColor = Color.White;
-            }
-            else
-                fGrid.Enabled = true;
+            */
         }
 
         private void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1749,124 +1240,11 @@ namespace Polsolcom.Forms.Procesos
             }
         }
 
-        private string UbicaDuplicadoGrilla(string sDato)
-        {
-            string sResultado = "";
-            int iDup = 0;
-
-            for (int i = 0; i < fGrid.Rows.Count; i++)
-            {
-                if (sDato == fGrid.Cells[i, 0].AuxValue.ToString().Trim().ToUpper())
-                {
-                    iDup = iDup + 1;
-                    sResultado = i.ToString();
-                    //break;
-                }
-            }
-
-            if (iDup > 1)
-                return sResultado;
-            else
-                return "";
-
-        }
-
-        private bool RemueveItemTicket(int iFila)
-        {
-            bool bRemovido = false;
-            if (iFila == -1)
-                return bRemovido;
-
-            int cCant = fGrid.Rows.Count;
-            fGrid.Rows.RemoveAt(iFila);
-
-            if (fGrid.Rows.Count != cCant)
-                bRemovido = true;
-
-            return bRemovido;
-        }
-
-        private void iGDDL_SelectedItemChanged(object sender, iGSelectedItemChangedEventArgs e)
-        {
-            string sProd = "";
-
-            if (e.SelectedItem == null)
-                return;
-
-            if (cmbEspecialidad.SelectedIndex == -1)
-                return;
-
-            if (cmbMedico.SelectedIndex == -1)
-                return;
-
-            if (fGrid.CurCell.RowIndex == -1)
-                return;
-
-            if (fGrid.CurCell.ColIndex == 0)
-                if (fGrid.CurCell.AuxValue != null)
-                    sProd = fGrid.CurCell.Value.ToString().Trim().ToUpper();
-
-            if (sProd != "")
-                fGrid.Cells[fGrid.CurCell.RowIndex, 2].Value = DevuelvePrecioProducto(sProd);
-
-
-
-
-
-        }
-
-        private void fGrid_SelectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fGrid_CellClick(object sender, iGCellClickEventArgs e)
-        {
-
-            /*
-
-
-			if( fGrid.Rows.Count < 2 )
-				return;
-			else
-			{
-				if( fGrid.CurCell.ColIndex == 0 )
-					if( fGrid.CurCell.AuxValue != null )
-						sProd = fGrid.CurCell.AuxValue.ToString().Trim().ToUpper();
-					else
-					{
-						fGrid.CurCell.AuxValue = "";
-						return;
-					}
-
-				if( sProd == "" )
-					return;
-
-				sIdxDuplicado = UbicaDuplicadoGrilla(sProd);
-				bool bRemovido = false;
-				if( sIdxDuplicado != "" )
-				{
-					MessageBox.Show("No puede seleccionar el mismo producto mas de 1 vez...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					bRemovido = RemueveItemTicket(Int32.Parse(sIdxDuplicado));
-				}
-
-				if( bRemovido == true )
-				{
-					fGrid.CurCell = fGrid.Cells[0, 0];
-					btnAgregar.Focus();
-				}
-			}
-
-
-			*/
-
-        }
-
         private void txtDireccion_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtDireccion.Enabled = true;
+                txtDireccion.ReadOnly = false;
             }
         }
 
@@ -1887,15 +1265,15 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtDireccion.Enabled = true;
+                txtDireccion.ReadOnly = false;
             }
         }
 
         private void txtNroTicket_DoubleClick(object sender, EventArgs e)
         {
-            if (txtNroTicket.Enabled == false)
+            if (txtNroTicket.ReadOnly)
             {
-                txtNroTicket.Enabled = true;
+                txtNroTicket.ReadOnly = false;
                 cmbEspecialidad.SelectedIndex = -1;
                 cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
                 btnAgregar.Enabled = false;
@@ -1927,7 +1305,7 @@ namespace Polsolcom.Forms.Procesos
                     }
                     else
                     {
-                        this.nrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString()) + txtSerie.Text + txtNroTicket.Text;
+                        this.nrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString()) + lblSerie.Text + txtNroTicket.Text;
                     }
                 }
 
@@ -1972,7 +1350,7 @@ namespace Polsolcom.Forms.Procesos
                     if (cs >= ts)
                     {
                         ms = "Ha llegado al limite de" + ms;
-                        General.msg(ms, 1, "48", "Aviso al usuario");
+                        General.msg(ms, "Aviso al usuario");
                         General.chgst("Consultoios", ie, "0");
                         cmbEspecialidad.SelectedIndex = -1;
                         return;
@@ -1983,7 +1361,7 @@ namespace Polsolcom.Forms.Procesos
 
                         if (ms.Contains("Solo"))
                         {
-                            General.msg(ms, 1, "48", "Aviso al usuario");
+                            General.msg(ms, "Aviso al usuario");
                         }
                     }
                 }
@@ -2019,9 +1397,9 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1)
             {
-                if (txtNroTicket.Enabled == false && (btnNuevo.Text == "&Grabar" || btnBuscar.Text == "&Grabar"))
+                if (txtNroTicket.ReadOnly && (btnNuevo.Text == "&Grabar" || btnBuscar.Text == "&Grabar"))
                 {
-                    txtNroTicket.Enabled = true;
+                    txtNroTicket.ReadOnly = false;
                     cmbEspecialidad.SelectedIndex = -1;
                     cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
                     btnAgregar.Enabled = false;
@@ -2034,11 +1412,11 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtNroTicket_Leave(object sender, EventArgs e)
         {
-            if (txtNroTicket.Enabled && txtNroTicket.Text.Length > 0)
+            if (txtNroTicket.ReadOnly == false && txtNroTicket.Text.Length > 0)
             {
                 if (Usuario.tipo == "A")
                 {
-                    this.vdv(txtSerie.Text, txtNroTicket.Text/*, (cmbTDoc.SelectedIndex == 1 ? "" : cmbTDoc.SelectedValue.ToString())*/, (cmbMVen.SelectedIndex == 1 ? "" : cmbMVen.SelectedValue.ToString()));
+                    this.vdv(lblSerie.Text, txtNroTicket.Text/*, (cmbTDoc.SelectedIndex == 1 ? "" : cmbTDoc.SelectedValue.ToString())*/, (cmbMVen.SelectedIndex == 1 ? "" : cmbMVen.SelectedValue.ToString()));
                 }
                 else
                 {
@@ -2062,7 +1440,7 @@ namespace Polsolcom.Forms.Procesos
 
                     if (xn > 0)
                     {
-                        this.vdv(txtSerie.Text, txtNroTicket.Text, cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString());
+                        this.vdv(lblSerie.Text, txtNroTicket.Text, cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString());
                     }
                     else
                     {
@@ -2077,7 +1455,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (Usuario.tipo == "A")
             {
-                txtFechaEmision.Enabled = true;
+                txtFechaEmision.ReadOnly = false;
             }
         }
 
@@ -2136,17 +1514,19 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtDNI.Enabled = true;
+                txtDNI.ReadOnly = false;
             }
         }
 
         private void txtDNI_Leave(object sender, EventArgs e)
         {
-            int dni = txtDNI.Text.Length;
-
-            if (dni < 8)
+            if (txtDNI.ReadOnly == false)
             {
-                MessageBox.Show("Longitud de DNI no valida ... dato debe contener 8 digitos ... verifique", "Advertencia");
+                if (txtDNI.Text.Length < 8 && this.DialogResult != DialogResult.Cancel)
+                {
+                    MessageBox.Show("Longitud de DNI no valida ... dato debe contener 8 digitos ... verifique", "Advertencia");
+                    txtDNI.Focus();
+                }
             }
         }
 
@@ -2154,7 +1534,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtFechaNac.Enabled = true;
+                txtFechaNac.ReadOnly = false;
             }
         }
 
@@ -2162,13 +1542,13 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtFechaNac.Enabled = true;
+                txtFechaNac.ReadOnly = false;
             }
         }
 
         private void txtFechaNac_Leave(object sender, EventArgs e)
         {
-            if (txtFechaNac.Enabled && txtFechaNac.Text != General.emptyDate)
+            if (txtFechaNac.ReadOnly == false && txtFechaNac.Text != General.emptyDate)
             {
                 DateTime date = DateTime.Parse(txtFechaNac.Text);
                 if (date.CompareTo(DateTime.Today) > 0 || date.Year < 1900)
@@ -2185,7 +1565,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtEdad.Enabled = true;
+                txtEdad.ReadOnly = false;
             }
         }
 
@@ -2193,28 +1573,31 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtEdad.Enabled = true;
+                txtEdad.ReadOnly = false;
             }
         }
 
         private void txtEdad_Leave(object sender, EventArgs e)
         {
-            if (txtEdad.Text.Length == 0)
+            if (txtEdad.ReadOnly == false)
             {
-                MessageBox.Show("Ingrese la edad del Paciente...", "Advertencia...");
-                return;
-            }
+                if (txtEdad.Text.Length == 0)
+                {
+                    MessageBox.Show("Ingrese la edad del Paciente...", "Advertencia...");
+                    return;
+                }
 
-            if (int.Parse(txtEdad.Text) < 0)
-            {
-                MessageBox.Show("Corregir los datos ... la edad no puede ser un número negativo ...", "Advertencia...");
-                return;
-            }
+                if (int.Parse(txtEdad.Text) < 0)
+                {
+                    MessageBox.Show("Corregir los datos ... la edad no puede ser un número negativo ...", "Advertencia...");
+                    return;
+                }
 
-            if (int.Parse(txtEdad.Text) > 100)
-            {
-                MessageBox.Show("Verifique los datos ... la edad del paciente es mayor a 100 años?", "Advertencia...");
-                return;
+                if (int.Parse(txtEdad.Text) > 100)
+                {
+                    MessageBox.Show("Verifique los datos ... la edad del paciente es mayor a 100 años?", "Advertencia...");
+                    return;
+                }
             }
         }
 
@@ -2222,7 +1605,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtSexo.Enabled = true;
+                txtSexo.ReadOnly = false;
             }
         }
 
@@ -2230,17 +1613,20 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtSexo.Enabled = true;
+                txtSexo.ReadOnly = false;
             }
         }
 
         private void txtSexo_Leave(object sender, EventArgs e)
         {
-            string sex = txtSexo.Text;
-
-            if (sex == "" || (sex != "M" && sex != "F"))
+            if (txtSexo.ReadOnly == false)
             {
-                MessageBox.Show("Dato no valido ingrese solo F ó M ...", "Advertencia ...");
+                string sex = txtSexo.Text;
+
+                if (sex == "" || (sex != "M" && sex != "F"))
+                {
+                    MessageBox.Show("Dato no valido ingrese solo F ó M ...", "Advertencia ...");
+                }
             }
         }
 
@@ -2248,7 +1634,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtTelefono.Enabled = true;
+                txtTelefono.ReadOnly = false;
             }
         }
 
@@ -2256,7 +1642,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtTelefono.Enabled = true;
+                txtTelefono.ReadOnly = false;
             }
         }
 
@@ -2264,7 +1650,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtAsegurado.Enabled = true;
+                txtAsegurado.ReadOnly = false;
             }
         }
 
@@ -2272,18 +1658,20 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtAsegurado.Enabled = true;
+                txtAsegurado.ReadOnly = false;
             }
         }
 
         private void txtAsegurado_Leave(object sender, EventArgs e)
         {
-            string seg = txtAsegurado.Text.ToUpper();
-
-            if (seg != "S" && seg != "")
+            if (txtAsegurado.ReadOnly == false)
             {
-                MessageBox.Show("Dato no valido ingrese vacio ó S ...", "Advertencia ...");
+                string seg = txtAsegurado.Text.ToUpper();
 
+                if (seg != "S" && seg != "")
+                {
+                    MessageBox.Show("Dato no valido ingrese vacio ó S ...", "Advertencia ...");
+                }
             }
         }
 
@@ -2339,8 +1727,12 @@ namespace Polsolcom.Forms.Procesos
 
         private void cmbDepartamento_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            this.provinciasTableAdapter.Fill(this.provinciasDS.Provincias, cmbDepartamento.SelectedValue.ToString());
-            cmbProvincia.SelectedIndex = -1;
+            if (cmbDepartamento.SelectedIndex != -1)
+            {
+                this.provinciasTableAdapter.Fill(this.provinciasDS.Provincias, cmbDepartamento.SelectedValue.ToString());
+                cmbProvincia.SelectedIndex = -1;
+                cmbDistrito.SelectedIndex = -1;
+            }
         }
 
         private void cmbDepartamento_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -2366,8 +1758,11 @@ namespace Polsolcom.Forms.Procesos
 
         private void cmbProvincia_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            this.distritoTableAdapter.Fill(this.distritoDS.Distrito, cmbProvincia.SelectedValue.ToString());
-            cmbDistrito.SelectedIndex = -1;
+            if (cmbProvincia.SelectedIndex != -1)
+            {
+                this.distritoTableAdapter.Fill(this.distritoDS.Distrito, cmbProvincia.SelectedValue.ToString());
+                cmbDistrito.SelectedIndex = -1;
+            }
         }
 
         private void cmbProvincia_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -2395,7 +1790,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtODoc.Enabled = true;
+                txtODoc.ReadOnly = false;
             }
         }
 
@@ -2403,7 +1798,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtODoc.Enabled = true;
+                txtODoc.ReadOnly = false;
             }
         }
 
@@ -2436,15 +1831,15 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtNHP_DoubleClick(object sender, EventArgs e)
         {
-            if (btnBuscar.Text == "&Grabar" && !txtNHP.Enabled)
+            if (btnBuscar.Text == "&Grabar" && txtNHP.ReadOnly)
             {
-                txtNHP.Enabled = true;
+                txtNHP.ReadOnly = false;
             }
         }
 
         private void txtNHP_Leave(object sender, EventArgs e)
         {
-            if (txtNHP.Text.Length > 0 && txtNHP.Enabled)
+            if (txtNHP.Text.Length > 0 && txtNHP.ReadOnly == false)
             {
                 string nh = txtNHP.Text;
                 string sql = "Select Ape_Paterno+' '+Ape_materno+' '+Nombre pac,Nro_Historia nh From Pacientes Where Nro_Historia='" + nh + "'";
@@ -2460,7 +1855,7 @@ namespace Polsolcom.Forms.Procesos
                 if (btnBuscar.Text == "&Grabar")
                 {
                     string ip = txtIdPaciente.Text;
-                    string sql2 = "Update Pacientes Set Nro_Historia='" + nh  + "' Where Id_Paciente='" + ip + "'";
+                    string sql2 = "Update Pacientes Set Nro_Historia='" + nh + "' Where Id_Paciente='" + ip + "'";
                     Conexion.ExecuteNonQuery(sql2);
                     MessageBox.Show("Operación ejecutada con éxito");
                 }
@@ -2471,7 +1866,7 @@ namespace Polsolcom.Forms.Procesos
         {
             string mv = cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString();
             string serie = Conexion.ExecuteScalar<string>("Select Serie From Talon Where Fecha=(Select Max(Fecha) From Talon Where MVenta='" + mv + "') And MVenta='" + mv + "'");
-            txtSerie.Text = serie;
+            lblSerie.Text = serie;
         }
 
         private void cmbMVen_Leave(object sender, EventArgs e)
@@ -2544,28 +1939,25 @@ namespace Polsolcom.Forms.Procesos
 
         private void ComboBox_SelectionChangeCommitted(System.Object sender, System.EventArgs e)
         {
-            int i = grdDetalle.CurrentCell.RowIndex;
-
-            ComboBox combo = (ComboBox)sender;
-            int j = combo.SelectedIndex;
-            DataRow row = ((DataRowView)combo.SelectedItem).Row;
-
-            this.tmpd[j]["Ipr"] = row["Id_Producto"].ToString();
-            this.tmpd[j]["Npro"] = row["Descripcion"].ToString();
-            this.tmpd[j]["Npro"] = "1";
-            this.tmpd[j]["Cost"] = row["Monto"].ToString();
-            this.tmpd[j]["TP"] = row["Tipo"].ToString();
-
-            int r = this.tmpd.FindIndex(x => x["Ipr"] == row["Id_Producto"].ToString());
-
-            if (r > -1)
-            {
-                MessageBox.Show("Producto ya fue agregado, solo incremente la cantidad ...", "Advertencia");
-                this.tmpd.RemoveAt(j);
-                grdDetalle.Rows[i].Cells[1].Selected = true;
-            }
-
-            this.ctv();
+            /*
+             WITH thisformset
+               REPLACE tmpd.ipr WITH ALLTRIM(productos.id_producto)
+               REPLACE tmpd.npro WITH ALLTRIM(productos.descripcion)
+               REPLACE tmpd.cant WITH 1
+               REPLACE tmpd.cost WITH productos.monto
+               REPLACE tmpd.tp WITH ALLTRIM(productos.tipo)
+               n = RECNO()
+               COUNT FOR ALLTRIM(tmpd.ipr)=ALLTRIM(productos.id_producto) TO r
+               IF r>1
+                  MESSAGEBOX('Producto ya fue agregado, solo incremente la cantidad ...', 48, 'Advertencia')
+                  SELECT tmpd
+                  GOTO n
+                  DELETE
+                  .frmhistoria.grddetalle.column2.text1.setfocus
+               ENDIF
+               .ctv
+            ENDWITH
+             */
         }
 
         private void grdDetalle_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -2594,7 +1986,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtEmail.Enabled = true;
+                txtEmail.ReadOnly = false;
             }
         }
 
@@ -2614,8 +2006,13 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
             {
-                txtEmail.Enabled = true;
+                txtEmail.ReadOnly = false;
             }
+        }
+
+        private void txtDNI_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
