@@ -104,6 +104,8 @@ namespace Polsolcom.Dominio.Helpers
     public static class General
     {
         public static string emptyDate = "  /  /";
+        public static string emptyDateTime = "  /  /       :";
+        public static string dateTimeFormat = "dd/MM/yyyy hh:mm tt";
         public static ToolTip ttMensaje = new ToolTip();
         public static Label lblLabel = new Label();
         public static List<TipoUsuario> lstTipoUsuario = new List<TipoUsuario>();
@@ -1339,12 +1341,12 @@ namespace Polsolcom.Dominio.Helpers
         {
             foreach (ListViewItem item in listView.SelectedItems)
             {
-                return ConvertToDictionary(item);
+                return General.ConvertToDictionary(item);
             }
 
             if (listView.Items.Count > 0 && returnFirst)
             {
-                return ConvertToDictionary(listView.Items[0]);
+                return General.ConvertToDictionary(listView.Items[0]);
             }
             else
             {
@@ -1576,7 +1578,93 @@ namespace Polsolcom.Dominio.Helpers
                     File.WriteAllText(@fp, cval);
                 }
             }
-        }     
+        }
+
+        public static Dictionary<string, string> GetDictionary(ComboBox combobox, int index)
+        {
+            DataRowView vrow = (DataRowView)combobox.Items[index];
+            DataRow row = vrow.Row;
+            return row.Table.Columns
+              .Cast<DataColumn>()
+              .ToDictionary(c => c.ColumnName, c => row[c].ToString());
+        }
+
+        public static Dictionary<string, string> GetDictionary(DataGridView dataGridView, int index)
+        {
+            Dictionary<string, string> item = new Dictionary<string, string>();
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                item[column.Name] = dataGridView.Rows[index].Cells[column.Name].Value.ToString();
+            }
+            return item;
+        }
+
+        public static Dictionary<string, string> GetSelectedDictionary(ComboBox combobox)
+        {
+            int index = combobox.SelectedIndex;
+            return General.GetDictionary(combobox, index);
+        }
+
+        public static Dictionary<string, string> GetSelectedDictionary(DataGridView dataGridView)
+        {
+            int index = dataGridView.CurrentCell.RowIndex;
+            return General.GetDictionary(dataGridView, index);
+        }
+
+        public static List<Dictionary<string, string>> GetDictionaryList(ComboBox combobox)
+        {
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+
+            for (int i = 0; i < combobox.Items.Count; i++)
+            {
+                list.Add(General.GetDictionary(combobox, i));
+            }
+
+            return list;
+        }
+
+        public static List<Dictionary<string, string>> GetDictionaryList(DataGridView dataGridView)
+        {
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                list.Add(General.GetDictionary(dataGridView, i));
+            }
+
+            return list;
+        }
+
+        //https://stackoverflow.com/questions/3025361/c-sharp-datetime-to-yyyymmddhhmmss-format
+        public static string FormatDate(DateTime dateTime)
+        {
+            return String.Format("{0:MM/dd/yyyy}", dateTime);
+        }
+
+        public static string FormatDateTime(DateTime dateTime)
+        {
+            string sdate = String.Format("{0:G}", dateTime);
+            return sdate.Replace(".", "");
+        }
+
+        public static void RemoveAll(DataGridView dataGridView, Predicate<DataRow> predicate)
+        {
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                DataRow row = ((DataRowView)dataGridView.Rows[i].DataBoundItem).Row;
+                if (predicate(row))
+                {
+                    dataGridView.Rows.RemoveAt(i);
+                    i--; // this just got messy. But you see my point.
+                }
+            }
+        }
+
+        public static Dictionary<string, string> GetIGV()
+        {
+            string sql = "Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From " + "TablaTipo Where LTrim(RTrim(Descripcion)) Like '%IGV%' And LTrim(RTrim(Id_Tabla))='0') And Val_Abr='1' Order By 2";
+            return General.GetDictionary(sql);
+        }
     }
 }
 	

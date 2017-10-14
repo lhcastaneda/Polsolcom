@@ -19,7 +19,7 @@ namespace Polsolcom.Forms.Procesos
         Keys lastKey;
         string cad = "";
         int odb = 0;
-        string nrv = "";
+        string xnrv = "";
         int nhp = 0;
         string nrc = "";
         string noc = "";
@@ -27,41 +27,42 @@ namespace Polsolcom.Forms.Procesos
         string hi = "";
         Dictionary<string, string> rdvopen = new Dictionary<string, string>();
         Dictionary<string, string> bpac = new Dictionary<string, string>();
-        List<Dictionary<string, string>> tmpd = new List<Dictionary<string, string>>();
         Dictionary<string, string> igv = new Dictionary<string, string>();
-        Dictionary<string, string> cesp = new Dictionary<string, string>();
-        Dictionary<string, string> dventa = new Dictionary<string, string>();
-        List<Dictionary<string, string>> productos = new List<Dictionary<string, string>>();
 
         public frmSHClinica()
         {
             InitializeComponent();
+
+            Cancel:
+            return;
         }
 
         public void adv()
         {
             int i = grdDetalle.CurrentCell.RowIndex;
 
-            this.tmpd.RemoveAll(x => x["Ipr"].Length == 0);
+            General.RemoveAll(grdDetalle, x => x["Ipr"].ToString().Length == 0);
+            //this.tmpd.RemoveAll(x => x["Ipr"].Length == 0);
             //Llenar datagrid view???
 
-            foreach (Dictionary<string, string> item in this.tmpd)
+            foreach (Dictionary<string, string> item in General.GetDictionaryList(grdDetalle))
             {
-                if (item["Nrv"] == this.nrv)
+                if (item["Nrv"] == this.xnrv)
                 {
-                    string nh = this.nrv;
+                    string nh = this.xnrv;
                     string ip = item["Ipr"];
                     string pr = Decimal.Parse(item["Cost"]).ToString();
                     string can = item["Cant"];
                     Conexion.ExecuteNonQuery("Exec AddDetalle '" + nh + "','" + ip + "','" + pr + "','" + can + "'");
                 }
 
-                this.cdv(this.nrv);
+                this.cdv(this.xnrv);
                 this.tsg();
             }
 
-            string fi = txtFechaEmision.Text;
-            string ff = DateTime.Parse(txtFechaEmision.Text).AddDays(1).ToShortDateString();
+            DateTime fe = DateTime.Parse(txtFechaEmision.Text);
+            string fi = fe.ToShortDateString();
+            string ff = fe.AddDays(1).ToShortDateString();
             string dv = cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString();
             string sr = lblSerie.Text;
             string cn = txtNroTicket.Text;
@@ -79,7 +80,7 @@ namespace Polsolcom.Forms.Procesos
 
         public void arp()
         {
-            string nh = this.nrv;
+            string nh = this.xnrv;
 
             string nm = txtNombre.Text;
             string ap = txtApePaterno.Text;
@@ -116,7 +117,7 @@ namespace Polsolcom.Forms.Procesos
 
         public void arv()
         {
-            string nh = this.nrv;
+            string nh = this.xnrv;
 
             string nd = txtNroTicket.Text;
             string fe = txtFechaEmision.Text;
@@ -262,7 +263,7 @@ namespace Polsolcom.Forms.Procesos
         public void cdv(string lr)
         {
             string nr = lr;
-            this.tmpd.Clear();
+            grdDetalle.Rows.Clear();
 
             string sql = "";
 
@@ -284,7 +285,7 @@ namespace Polsolcom.Forms.Procesos
             {
                 int i = tick.Count - 1;
                 txtFechaEmision.Text = tick[i]["Fecha_Emision"];
-                cmbMVen.SelectedValue = tick[i]["Forpago"];
+                cmbMVen.SelectedValue = tick[i]["ForPago"];
                 cmbTDoc.SelectedValue = tick[i]["DVenta"];
                 lblSerie.Text = tick[i]["Serie"];
                 txtNroTicket.Text = tick[i]["Nro_Ticket"];
@@ -294,7 +295,7 @@ namespace Polsolcom.Forms.Procesos
                 cmbInstitucion.SelectedValue = tick[i]["Id_Inst"];
                 cmbMedico.SelectedValue = tick[i]["CMP"];
                 txtAutoriza.Text = "";
-                if (tick[i]["Descuento"].Substring(0, 1) == "D")
+                if (tick[i]["Descuento"].Length > 0 && tick[i]["Descuento"].Substring(0, 1) == "D")
                 {
                     string ads = tick[i]["Descuento"].Substring(29, 9);
                     string sql2 = "Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Personal," +
@@ -304,29 +305,20 @@ namespace Polsolcom.Forms.Procesos
                     txtAutoriza.Text = fmd["Personal"] + " (S/. " + tick[i]["Descuento"].Substring(38, 8) + ")";
                 }
 
-                nr = tick[i]["Nro_historia"];
-                //.grddetalle.column1.cmbproducto.rowsource = ''
+                nr = tick[i]["Nro_Historia"];
 
                 string ne = tick[i]["Id_Consultorio"];
-                string sql3 = "Select * From Productos Where Left(Id_Producto,6)='" + ne + "'";
-                this.productos = General.GetDictionaryList(sql3);
-                //.grddetalle.column1.cmbproducto.rowsource = 'Allt(Productos.Descripcion),Id_Producto'
+                string sql3 = "Select * From Productos Where Left(Id_Producto,6)='" + ne + "' And Estado='1'";
+                //Llenamos productos
+                this.productosTableAdapter.Fill(this.productosDS.Productos, ne);
+                List<Dictionary<string, string>> productos = General.GetDictionaryList(sql3);
 
                 string sql4 = "Select * From Detalles Where Nro_Historia='" + nr + "'";
                 List<Dictionary<string, string>> cdet = General.GetDictionaryList(sql4);
-
                 foreach (Dictionary<string, string> idet in cdet)
                 {
-                    Dictionary<string, string> producto = this.productos.Find(x => x["Id_Producto"] == idet["Id_Producto"]);
-
-                    Dictionary<string, string> item = new Dictionary<string, string>();
-                    item["Nrv"] = idet["Nro_Historia"];
-                    item["Npro"] = producto["Descripcion"];
-                    item["Tp"] = producto["Tipo"];
-                    item["Cant"] = idet["Cantidad"];
-                    item["Cost"] = idet["Monto"];
-
-                    this.tmpd.Add(item);
+                    Dictionary<string, string> producto = productos.Find(x => x["Id_Producto"] == idet["Id_Producto"]);
+                    grdDetalle.Rows.Add(new[] { idet["Nro_Historia"], producto["Id_Producto"], producto["Descripcion"], producto["Tipo"], idet["Cantidad"], idet["Monto"], (int.Parse(idet["Cantidad"]) * decimal.Parse(idet["Monto"])).ToString() });
                 }
 
                 string ic = tick[i]["Id_Bus"];
@@ -336,18 +328,14 @@ namespace Polsolcom.Forms.Procesos
                     this.nrc = Conexion.ExecuteScalar<string>("Select Bus From Buses Where Id_Bus='" + ic + "'");
                 }
 
-                this.nrv = tick[i]["Nro_historia"];
+                this.xnrv = tick[i]["Nro_Historia"];
                 this.cpa(1, "");
                 this.ctv();
-
-                /*
-                 * SELECT tmpd
-       GOTO TOP
-                 */
             }
             else
             {
-                General.setAll<TextBox, string>(this, "Text", "");
+                General.setAll<TextBox, string>(groupBoxMain, "Text", "");
+                General.setAll<MaskedTextBox, string>(groupBoxMain, "Text", "");
             }
         }
 
@@ -355,7 +343,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (ncur.Length == 0)
             {
-                string sql = "Select * From Pacientes Where Id_Paciente='" + (txtIdPaciente.Text) + "'";
+                string sql = "Select * From Pacientes Where Id_Paciente='" + txtIdPaciente.Text + "'";
                 this.bpac = General.GetDictionary(sql);
             }
 
@@ -363,52 +351,57 @@ namespace Polsolcom.Forms.Procesos
             {
                 this.hab(0);
                 btnBuscar.Enabled = true;
-                txtFechaEmision.Text = DateTime.Today.ToShortDateString();
+                txtFechaEmision.Text = DateTime.Today.ToString(General.dateTimeFormat);
                 cmbEspecialidad.Focus();
             }
 
-            this.nhp = bpac["Nro_historia"].Length == 0 ? 0 : int.Parse(bpac["Nro_historia"]);
+            this.nhp = bpac["Nro_Historia"].Length == 0 ? 0 : int.Parse(bpac["Nro_Historia"]);
 
-            txtNHP.Text = bpac["Nro_historia"];
+            txtNHP.Text = bpac["Nro_Historia"];
             txtNombre.Text = bpac["Nombre"];
-            txtApePaterno.Text = bpac["Ape_paterno"];
-            txtApeMaterno.Text = bpac["Ape_materno"];
-            txtDNI.Text = bpac["Dni"];
-            txtODoc.Text = bpac["Odoc"];
-            txtFechaNac.Text = bpac["Fecha_nac"].Length == 0 ? General.emptyDate : bpac["Fecha_nac"];
-            txtEdad.Text = bpac["Fecha_nac"].Length == 0 ? bpac["Edad"] : General.getYearUntilNow(txtFechaNac.Text).ToString();
+            txtApePaterno.Text = bpac["Ape_Paterno"];
+            txtApeMaterno.Text = bpac["Ape_Materno"];
+            txtDNI.Text = bpac["DNI"];
+            txtODoc.Text = bpac["ODoc"];
+            txtFechaNac.Text = bpac["Fecha_Nac"].Length == 0 ? General.emptyDate : bpac["Fecha_Nac"];
+            txtEdad.Text = bpac["Fecha_Nac"].Length == 0 ? bpac["Edad"] : General.getYearUntilNow(txtFechaNac.Text).ToString();
             txtSexo.Text = bpac["Sexo"];
             txtTelefono.Text = bpac["Telefono"];
             txtDireccion.Text = bpac["Direccion"];
             txtAsegurado.Text = bpac["Asegurado"];
-            cmbDepartamento.SelectedValue = bpac["Id_distrito"].Substring(0, 2);
-            //cmbDepartamento_SelectionChangedCommited(cmbDepartamento, new EventArgs());
-            cmbProvincia.SelectedValue = bpac["Id_distrito"].Substring(0, 4);
-            //cmbProvincia_SelectionChangedCommited(cmbProvincia, new EventArgs());
-            cmbDistrito.SelectedValue = bpac["Id_distrito"];
-            txtEmail.Text = bpac["E_mail"];
+            cmbDepartamento.SelectedValue = bpac["Id_Distrito"].Length > 0? bpac["Id_Distrito"].Substring(0, 2): "";
+            cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
+            cmbProvincia.SelectedValue = bpac["Id_Distrito"].Length > 0 ? bpac["Id_Distrito"].Substring(0, 4) : "";
+            cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
+            cmbDistrito.SelectedValue = bpac["Id_Distrito"];
+            txtEmail.Text = bpac["E_Mail"];
         }
 
         public void ctv()
         {
+            Dictionary<string, string> cesp = General.GetSelectedDictionary(cmbEspecialidad);
+            Dictionary<string, string> dventa = General.GetSelectedDictionary(cmbTDoc);
+
             txtTotal.Text = "0.00";
 
-            for (int i = 0; i < this.tmpd.Count; i++)
+            for (int i = 0; i < grdDetalle.Rows.Count; i++)
             {
-                if (this.tmpd[i]["Nrv"] == this.nrv)
+                Dictionary<string, string> item = General.GetDictionary(grdDetalle, i);
+
+                if (item["Nrv"] == this.xnrv)
                 {
-                    if (this.cesp["Descripcion"] == "FARMACIA")
+                    if (cesp["Descripcion"] == "FARMACIA")
                     {
-                        this.tmpd[i]["Subt"] = this.tmpd[i]["Cost"];
+                        item["Subtotal"] = item["Precio"];
                     }
                     else
                     {
-                        this.tmpd[i]["Subt"] = (decimal.Parse(this.tmpd[i]["Cant"]) * decimal.Parse(this.tmpd[i]["Cost"])).ToString();
+                        item["Subtotal"] = (int.Parse(item["Cantidad"]) * decimal.Parse(item["Precio"])).ToString();
                     }
 
-                    txtTotal.Text = (decimal.Parse(txtTotal.Text) + decimal.Parse(this.tmpd[i]["Subt"])).ToString();
-                    txtNeto.Text = this.dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(this.igv["Descripcion"]), 2).ToString() : "0.00";
-                    txtIGV.Text = this.dventa["Descripcion"] == "FACTURA" ? (Decimal.Parse(txtTotal.Text) - decimal.Parse(txtNeto.Text)).ToString() : "0.00";
+                    txtTotal.Text = (decimal.Parse(txtTotal.Text) + decimal.Parse(item["Subtotal"])).ToString();
+                    txtNeto.Text = dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(this.igv["Descripcion"]), 2).ToString() : "0.00";
+                    txtIGV.Text = dventa["Descripcion"] == "FACTURA" ? (Decimal.Parse(txtTotal.Text) - decimal.Parse(txtNeto.Text)).ToString() : "0.00";
                     txtSon.Text = General.NumeroTexto(txtTotal.Text);
                 }
             }
@@ -437,8 +430,9 @@ namespace Polsolcom.Forms.Procesos
         public void deh()
         {
             this.odb = 0;
-            General.setAll<TextBox, bool>(this, "ReadOnly", true);
-            General.setAll<ComboBox, bool>(this, "Enabled", false);
+            General.setAll<TextBox, bool>(groupBoxMain, "ReadOnly", true);
+            General.setAll<MaskedTextBox, bool>(groupBoxMain, "ReadOnly", true);
+            General.setAll<ComboBox, bool>(groupBoxMain, "Enabled", false);
             General.setAll<Button, bool>(this, "Enabled", true);
             txtEmail.ReadOnly = true;
 
@@ -456,8 +450,10 @@ namespace Polsolcom.Forms.Procesos
         {
             this.les();
 
-            string fi = txtFechaEmision.Text == General.emptyDate ? "" : txtFechaEmision.Text;
-            string ff = txtFechaEmision.Text == General.emptyDate ? "" : DateTime.Parse(txtFechaEmision.Text).AddDays(1).ToShortDateString();
+            DateTime fe = new DateTime();
+            bool result = DateTime.TryParse(txtFechaEmision.Text, out fe);
+            string fi = !result ? "" : fe.ToShortDateString();
+            string ff = !result ? "" : fe.AddDays(1).ToShortDateString();
             string iu = Usuario.id_us;
             string io = Operativo.id_oper;
             string sr = lblSerie.Text;
@@ -476,7 +472,7 @@ namespace Polsolcom.Forms.Procesos
             }
             else
             {
-                this.vdv(sr, n.ToString(), dv);
+                if (!this.vdv(sr, n.ToString(), dv)) return;
                 txtNroTicket.Text = n.ToString();
             }
         }
@@ -497,19 +493,21 @@ namespace Polsolcom.Forms.Procesos
 
                 if (c > 0)
                 {
-                    foreach (Dictionary<string, string> item in this.tmpd)
-                    {
-                        /*
-                         DIMENSION a1(1)
-                         SELECT tipo FROM Productos WHERE id_producto=tmpd.ipr INTO ARRAY a1
-                         IF a1(1)='C'
-                            tp = 'C'
-                            EXIT
-                         ELSE
-                            tp = '*'
-                         ENDIF
-                         */
-                    }
+
+
+                    /*foreach (Producto item in this.productos)
+                {
+                     DIMENSION a1(1)
+                     SELECT tipo FROM Productos WHERE id_producto=tmpd.ipr INTO ARRAY a1
+                     IF a1(1)='C'
+                        tp = 'C'
+                        EXIT
+                     ELSE
+                        tp = '*'
+                     ENDIF
+                       }
+                     */
+
 
                     string ip = txtIdPaciente.Text;
                     string uo = Operativo.uni_org;
@@ -539,13 +537,15 @@ namespace Polsolcom.Forms.Procesos
             switch (xmd)
             {
                 case 0:
-                    General.setAll<TextBox, string>(this, "Text", "");
-                    General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
-                    General.setAll<TextBox, bool>(this, "ReadOnly", false);
-                    General.setAll<ComboBox, bool>(this, "Enabled", true);
+                    General.setAll<TextBox, string>(groupBoxMain, "Text", "");
+                    General.setAll<MaskedTextBox, string>(groupBoxMain, "Text", "");
+                    General.setAll<ComboBox, int>(groupBoxMain, "SelectedIndex", -1);
+                    General.setAll<TextBox, bool>(groupBoxMain, "ReadOnly", false);
+                    General.setAll<MaskedTextBox, bool>(groupBoxMain, "ReadOnly", false);
+                    General.setAll<ComboBox, bool>(groupBoxMain, "Enabled", true);
                     General.setAll<Button, bool>(this, "Enabled", false);
 
-                    cmbInstitucion.Enabled = txtNHP.ReadOnly = txtEmail.ReadOnly = false;
+                    cmbInstitucion.Enabled = /*txtNHP.ReadOnly = */txtEmail.ReadOnly = false;
                     txtFechaEmision.ReadOnly = txtIdPaciente.ReadOnly = txtNroTicket.ReadOnly = txtNeto.ReadOnly = txtIGV.ReadOnly = txtTotal.ReadOnly = true;
 
                     this.uvt();
@@ -574,7 +574,7 @@ namespace Polsolcom.Forms.Procesos
                     this.hab(0);
                     btnNuevo.Enabled = true;
                     btnNuevo.Text = "&Grabar";
-                    txtFechaEmision.Text = DateTime.Today.ToShortDateString();
+                    txtFechaEmision.Text = DateTime.Now.ToString(General.dateTimeFormat);
 
                     cmbDepartamento.SelectedValue = Operativo.id_distrito.Substring(0, 2);
                     cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
@@ -584,7 +584,7 @@ namespace Polsolcom.Forms.Procesos
 
                     this.gdv();
 
-                    this.tmpd.Clear();
+                    grdDetalle.Rows.Clear();
 
                     this.odb = 0;
 
@@ -639,7 +639,9 @@ namespace Polsolcom.Forms.Procesos
 
         public void les()
         {
-            //LLenar con DATASET ConsultoriosDS
+            this.consultoriosSHClinicaTableAdapter.Fill(this.consultoriosDS.ConsultoriosSHClinica, Operativo.id_oper);
+            cmbEspecialidad.SelectedIndex = -1;
+
         }
 
         public void msg(string op)
@@ -664,7 +666,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (this.hi.Length > 0)
             {
-                string nr = this.nrv;
+                string nr = this.xnrv;
                 string df = General.getDaysUntilNow(this.hi).ToString();
                 string sql = "Update Tickets Set tsg='" + df + "' Where Nro_Historia='" + nr + "'";
                 Conexion.ExecuteNonQuery(sql);
@@ -704,7 +706,7 @@ namespace Polsolcom.Forms.Procesos
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
             sql += (txtODoc.Text != pacient["Odoc"] ? "ODoc='" + txtODoc.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtFechaNac.Text != pacient["Fecha_nac"] && txtFechaNac.Text.Length > 0 ? "Fecha_Nac='" + txtFechaNac.Text + "'" : "");
+            sql += (txtFechaNac.Text != pacient["Fecha_Nac"] && txtFechaNac.Text.Length > 0 ? "Fecha_Nac='" + txtFechaNac.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
             sql += (txtEdad.Text != pacient["Edad"] ? "Edad='" + txtEdad.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
@@ -716,7 +718,7 @@ namespace Polsolcom.Forms.Procesos
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
             sql += (txtAsegurado.Text != pacient["Asegurado"] ? "Asegurado='" + txtAsegurado.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (cmbDistrito.SelectedValue.ToString() != pacient["Id_distrito"] ? "Id_Distrito='" + cmbDistrito.SelectedValue.ToString() + "'" : "");
+            sql += (cmbDistrito.SelectedValue.ToString() != pacient["Id_Distrito"] ? "Id_Distrito='" + cmbDistrito.SelectedValue.ToString() + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
             sql += (txtEmail.Text != pacient["E_mail"] ? "E_Mail='" + txtEmail.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? sql.Substring(0, sql.Length - 1) : sql) + (sql.Contains("=") ? " Where Id_Paciente='" + ip + "'" : "");
@@ -822,6 +824,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void frmSHClinica_Load(object sender, EventArgs e)
         {
+            this.igv = General.GetIGV();
             // TODO: This line of code loads data into the 'institucionesDS.InstitucionLite' table. You can move, or remove it, as needed.
             this.institucionLiteTableAdapter.Fill(this.institucionesDS.InstitucionLite);
             cmbInstitucion.SelectedIndex = -1;
@@ -930,6 +933,8 @@ namespace Polsolcom.Forms.Procesos
                 {
                     this.hab(1);
                 }
+
+                txtDNI.Focus();
             }
             else
             {
@@ -950,14 +955,13 @@ namespace Polsolcom.Forms.Procesos
                 {
                     if (MessageBox.Show("Desea guardar los cambios...?", "Mensaje al Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        if (this.exigep())
-                        {
-                            this.vrv();
-                            this.hom();
-                            this.ddi();
-                            this.arp();
-                            btnDuplica.Enabled = true;
-                        }
+                        if (!this.exigep()) return;
+                        if (!this.vrv()) return;
+                        if (!this.hom()) return;
+                        this.ddi();
+                        this.arp();
+                        btnDuplica.Enabled = true;
+
                     }
                     else
                     {
@@ -993,9 +997,9 @@ namespace Polsolcom.Forms.Procesos
                 btnBuscat_Click(btnBuscat, new EventArgs());
             }
 
-            if (e.KeyCode == Keys.F5 && this.nrv != "")
+            if (e.KeyCode == Keys.F5 && this.xnrv != "")
             {
-                this.cdv(this.nrv);
+                this.cdv(this.xnrv);
             }
 
             if (e.KeyCode == Keys.F6)
@@ -1093,7 +1097,7 @@ namespace Polsolcom.Forms.Procesos
                 {
                     if (MessageBox.Show("Desea guardar los cambios ... ?", "Mensaje al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        this.vrv();
+                        if (!this.vrv()) return;
                         this.vdp();
                         this.arv();
                     }
@@ -1110,7 +1114,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnDuplica_Click(object sender, EventArgs e)
         {
-            this.hi = DateTime.Today.ToShortDateString();
+            this.hi = DateTime.Now.ToString(General.dateTimeFormat);
 
             txtFechaEmision.Text = this.hi;
             lblDigitador.Text = Usuario.usuario;
@@ -1120,7 +1124,7 @@ namespace Polsolcom.Forms.Procesos
             txtAutoriza.Text = "";
 
             btnBuscar.Text = "&Grabar";
-            General.setAll<ComboBox, bool>(this, "Enabled", true);
+            General.setAll<ComboBox, bool>(groupBoxMain, "Enabled", true);
             General.setAll<Button, bool>(this, "Enabled", false);
             btnBuscar.Enabled = true;
             cmbInstitucion.Enabled = false;
@@ -1154,17 +1158,11 @@ namespace Polsolcom.Forms.Procesos
             }
             else
             {
-                grddetalleC1.ReadOnly = grddetalleC2.ReadOnly = false;
-                grddetalleC3.ReadOnly = this.cesp["Descripcion"] != "FARMACIA";
-                Dictionary<string, string> item = new Dictionary<string, string>();
-                item["Nrv"] = this.nrv;
-                item["Npro"] = "";
-                item["Tp"] = "";
-                item["Cant"] = "";
-                item["Cost"] = "";
+                Dictionary<string, string> cesp = General.GetSelectedDictionary(cmbEspecialidad);
 
-                this.tmpd.Add(item);
-                grdDetalle.Rows.Add(new[] { "", "", "", "" });
+                Id.ReadOnly = Cantidad.ReadOnly = false;
+                Precio.ReadOnly = cesp["Descripcion"] != "FARMACIA";
+                grdDetalle.Rows.Add(new string[] { this.xnrv, "", "", "", "0", "0", "0" });
                 btnQuitar.Enabled = true;
             }
         }
@@ -1172,8 +1170,6 @@ namespace Polsolcom.Forms.Procesos
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             int index = grdDetalle.CurrentCell.RowIndex;
-
-            this.tmpd.RemoveAt(index);
             grdDetalle.Rows.RemoveAt(index);
             this.ctv();
         }
@@ -1278,7 +1274,7 @@ namespace Polsolcom.Forms.Procesos
                 cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
                 btnAgregar.Enabled = false;
                 btnQuitar.Enabled = false;
-                this.tmpd.Clear();
+                grdDetalle.Rows.Clear();
             }
         }
 
@@ -1288,13 +1284,15 @@ namespace Polsolcom.Forms.Procesos
 
             if (ie.Length > 0 && cmbEspecialidad.Enabled)
             {
-                if (Usuario.tipo == "A" && this.cesp["Descripcion"] == "FARMACIA")
+                Dictionary<string, string> cesp = General.GetSelectedDictionary(cmbEspecialidad);
+
+                if (Usuario.tipo == "A" && cesp["Descripcion"] == "FARMACIA")
                 {
                     int c = Conexion.ExecuteScalar<int>("Select ISULL(Max(Cast(Nro_Ticket As Int)), 0) C From Tickets Where Id_Consultorio In (Select Id_Consultorio From " +
 "Consultorios Where Descripcion Like '%FARMACIA%' And Left(Id_Consultorio,3)='" + Operativo.id_oper + "')");
 
-                    this.nrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (c + 1).ToString();
-                    txtNroTicket.Text = this.nrv.Substring(9, 19);
+                    this.xnrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (c + 1).ToString();
+                    txtNroTicket.Text = this.xnrv.Substring(9, 19);
                 }
                 else
                 {
@@ -1305,7 +1303,7 @@ namespace Polsolcom.Forms.Procesos
                     }
                     else
                     {
-                        this.nrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString()) + lblSerie.Text + txtNroTicket.Text;
+                        this.xnrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString()) + lblSerie.Text + txtNroTicket.Text;
                     }
                 }
 
@@ -1313,7 +1311,7 @@ namespace Polsolcom.Forms.Procesos
                 string tr = "";
                 string fi = "";
 
-                if (this.cesp["C"] != "")
+                if (cesp["C"] != "")
                 {
                     if (fe.Hour >= 7 && fe.Hour <= 13)
                     {
@@ -1339,12 +1337,12 @@ namespace Polsolcom.Forms.Procesos
                         fi = "2";
                     }
 
-                    fi = (this.cesp["C"] == "0" ? DateTime.Parse(fe.ToShortDateString() + " " + fi).ToLongDateString() : fe.ToShortDateString());
-                    int cs = Conexion.ExecuteScalar<int>("Select Case When Sum(Cantidad) Is Null Then 0 Else Sum(Cantidad) End cs " +
+                    fi = (cesp["C"] == "0" ? General.FormatDateTime(DateTime.Parse(fe.ToShortDateString() + " " + fi)) : General.FormatDateTime(fe));
+                    string sql2 = "Select Case When Sum(Cantidad) Is Null Then 0 Else Sum(Cantidad) End cs " +
                         "From Tickets T Inner Join Detalles D On T.Nro_Historia=D.Nro_Historia " +
-                        "Where Fecha_Emision Between '" + fi + "' And '" + fe + "' And Id_Consultorio='" + ie + "' And Anulado=''");
-
-                    int ts = this.cesp["C"] == "0" ? int.Parse(tr) : (int.Parse(this.cesp["M"]) + int.Parse(this.cesp["T"]) + int.Parse(this.cesp["N"]) + int.Parse(this.cesp["A"]));
+                        "Where Fecha_Emision Between '" + fi + "' And '" + General.FormatDateTime(fe) + "' And Id_Consultorio='" + ie + "' And Anulado=''";
+                    int cs = Conexion.ExecuteScalar<int>(sql2);
+                    int ts = cesp["C"] == "0" ? int.Parse(cesp[tr]) : (int.Parse(cesp["M"]) + int.Parse(cesp["T"]) + int.Parse(cesp["N"]) + int.Parse(cesp["A"]));
                     string ms = " ventas para esta especialidad, " + "\t" + "segun los criterios por turno establecidos ...";
 
                     if (cs >= ts)
@@ -1366,26 +1364,17 @@ namespace Polsolcom.Forms.Procesos
                     }
                 }
 
-                //Llenar combobox de productos
-                /*
-                 *  WITH .grddetalle.column1.cmbproducto
-          .rowsource = ''
-          closecursor('Productos')
-          scad = "Select * From Productos Where Left(Id_Producto,6)=?ie And Estado='1' Order By 2"
-          ejecuta(nconnect, scad, 'Productos')
-          SELECT productos
-          .rowsource = 'Allt(Productos.Descripcion),Id_Producto'
-       ENDWITH
-                 */
+                //Llenamos productos
+                this.productosTableAdapter.Fill(this.productosDS.Productos, ie);
 
-                this.tmpd.Clear();
+                grdDetalle.Rows.Clear();
 
                 txtTotal.Text = "0.00";
-                chkInst.Enabled = this.cesp["Tipo"] == "C";
-                chkInst.Checked = this.cesp["Tipo"] == "C";
-                btnInst.Enabled = this.cesp["Tipo"] == "C";
-                cmbInstitucion.Enabled = this.cesp["Tipo"] == "C";
-                if (this.cesp["Tipo"] == "C")
+                chkInst.Enabled = cesp["Tipo"] == "C";
+                chkInst.Checked = cesp["Tipo"] == "C";
+                btnInst.Enabled = cesp["Tipo"] == "C";
+                cmbInstitucion.Enabled = cesp["Tipo"] == "C";
+                if (cesp["Tipo"] == "C")
                 {
                     cmbInstitucion.SelectedIndex = -1;
                 }
@@ -1405,7 +1394,7 @@ namespace Polsolcom.Forms.Procesos
                     btnAgregar.Enabled = false;
                     btnQuitar.Enabled = false;
 
-                    this.tmpd.Clear();
+                    grdDetalle.Rows.Clear();
                 }
             }
         }
@@ -1416,12 +1405,13 @@ namespace Polsolcom.Forms.Procesos
             {
                 if (Usuario.tipo == "A")
                 {
-                    this.vdv(lblSerie.Text, txtNroTicket.Text/*, (cmbTDoc.SelectedIndex == 1 ? "" : cmbTDoc.SelectedValue.ToString())*/, (cmbMVen.SelectedIndex == 1 ? "" : cmbMVen.SelectedValue.ToString()));
+                    if (!this.vdv(lblSerie.Text, txtNroTicket.Text/*, (cmbTDoc.SelectedIndex == 1 ? "" : cmbTDoc.SelectedValue.ToString())*/, (cmbMVen.SelectedIndex == 1 ? "" : cmbMVen.SelectedValue.ToString()))) return;
                 }
                 else
                 {
-                    string fi = txtFechaEmision.Text;
-                    string ff = DateTime.Parse(txtFechaEmision.Text).AddDays(1).ToShortDateString();
+                    DateTime fe = DateTime.Parse(txtFechaEmision.Text);
+                    string fi = fe.ToShortDateString();
+                    string ff = fe.AddDays(1).ToShortDateString();
                     string sql = "Select * From Talon Where Fecha Between '" + fi + "' And '" + ff + "' And Usuario='" + Usuario.id_us + "' And Id_Oper='" + Operativo.id_oper + "' Order By 2";
                     List<Dictionary<string, string>> talones = General.GetDictionaryList(sql);
 
@@ -1440,7 +1430,7 @@ namespace Polsolcom.Forms.Procesos
 
                     if (xn > 0)
                     {
-                        this.vdv(lblSerie.Text, txtNroTicket.Text, cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString());
+                        if (!this.vdv(lblSerie.Text, txtNroTicket.Text, cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString())) return;
                     }
                     else
                     {
@@ -1464,7 +1454,7 @@ namespace Polsolcom.Forms.Procesos
             if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
             {
                 this.cad = txtNombre.Text;
-                txtNombre.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
+                txtNombre.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
                 txtNombre.Select();
             }
 
@@ -1481,7 +1471,7 @@ namespace Polsolcom.Forms.Procesos
             if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
             {
                 this.cad = txtApePaterno.Text;
-                txtApePaterno.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
+                txtApePaterno.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
                 txtApePaterno.Select();
             }
 
@@ -1498,7 +1488,7 @@ namespace Polsolcom.Forms.Procesos
             if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
             {
                 this.cad = txtApeMaterno.Text;
-                txtApeMaterno.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
+                txtApeMaterno.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
                 txtApeMaterno.Select();
             }
 
@@ -1554,6 +1544,7 @@ namespace Polsolcom.Forms.Procesos
                 if (date.CompareTo(DateTime.Today) > 0 || date.Year < 1900)
                 {
                     MessageBox.Show("Fecha de nacimiento erronea ... corrija los datos ...", "Advertencia");
+                    txtFechaNac.Focus();
                     return;
                 }
 
@@ -1584,18 +1575,21 @@ namespace Polsolcom.Forms.Procesos
                 if (txtEdad.Text.Length == 0)
                 {
                     MessageBox.Show("Ingrese la edad del Paciente...", "Advertencia...");
+                    txtEdad.Focus();
                     return;
                 }
 
                 if (int.Parse(txtEdad.Text) < 0)
                 {
                     MessageBox.Show("Corregir los datos ... la edad no puede ser un número negativo ...", "Advertencia...");
+                    txtEdad.Focus();
                     return;
                 }
 
                 if (int.Parse(txtEdad.Text) > 100)
                 {
                     MessageBox.Show("Verifique los datos ... la edad del paciente es mayor a 100 años?", "Advertencia...");
+                    txtEdad.Focus();
                     return;
                 }
             }
@@ -1626,6 +1620,7 @@ namespace Polsolcom.Forms.Procesos
                 if (sex == "" || (sex != "M" && sex != "F"))
                 {
                     MessageBox.Show("Dato no valido ingrese solo F ó M ...", "Advertencia ...");
+                    txtSexo.Focus();
                 }
             }
         }
@@ -1671,6 +1666,7 @@ namespace Polsolcom.Forms.Procesos
                 if (seg != "S" && seg != "")
                 {
                     MessageBox.Show("Dato no valido ingrese vacio ó S ...", "Advertencia ...");
+                    txtAsegurado.Focus();
                 }
             }
         }
@@ -1881,14 +1877,13 @@ namespace Polsolcom.Forms.Procesos
 
         private void grdDetalle_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-
             int i = grdDetalle.CurrentCell.RowIndex;
+            int j = grdDetalle.CurrentCell.ColumnIndex;
+            string columnName = grdDetalle.Columns[j].Name;
 
-            switch (grdDetalle.CurrentCell.ColumnIndex)
+            switch (columnName)
             {
-                case 0:
-                    break;
-                case 1:
+                case "Cantidad":
                     TextBox textBox = (TextBox)grdDetalle.EditingControl;
 
                     if (textBox.Enabled)
@@ -1907,78 +1902,70 @@ namespace Polsolcom.Forms.Procesos
                         }
                     }
                     break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
             }
-
         }
 
         private void grdDetalle_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            // Only for a DatagridComboBoxColumn at ColumnIndex 0.
-            if (grdDetalle.CurrentCell.ColumnIndex == 0)
+            int i = grdDetalle.CurrentCell.RowIndex;
+            int j = grdDetalle.CurrentCell.ColumnIndex;
+            string columnName = grdDetalle.Columns[j].Name;
+
+            // Only for a DatagridComboBoxColumn at ColumnIndex 2.
+            if (columnName == "Id")
             {
                 ComboBox combo = (ComboBox)e.Control;
                 if ((combo != null))
                 {
                     // Remove an existing event-handler, if present, to avoid 
                     // adding multiple handlers when the editing control is reused.
-                    combo.SelectionChangeCommitted -= new EventHandler(ComboBox_SelectionChangeCommitted);
+                    combo.SelectionChangeCommitted -= new EventHandler(cmbProducto_SelectionChangeCommitted);
 
                     // Add the event handler. 
-                    combo.SelectionChangeCommitted += new EventHandler(ComboBox_SelectionChangeCommitted);
+                    combo.SelectionChangeCommitted += new EventHandler(cmbProducto_SelectionChangeCommitted);
                 }
             }
         }
 
-        private void ComboBox_SelectionChangeCommitted(System.Object sender, System.EventArgs e)
+        private void cmbProducto_SelectionChangeCommitted(System.Object sender, System.EventArgs e)
         {
-            /*
-             WITH thisformset
-               REPLACE tmpd.ipr WITH ALLTRIM(productos.id_producto)
-               REPLACE tmpd.npro WITH ALLTRIM(productos.descripcion)
-               REPLACE tmpd.cant WITH 1
-               REPLACE tmpd.cost WITH productos.monto
-               REPLACE tmpd.tp WITH ALLTRIM(productos.tipo)
-               n = RECNO()
-               COUNT FOR ALLTRIM(tmpd.ipr)=ALLTRIM(productos.id_producto) TO r
-               IF r>1
-                  MESSAGEBOX('Producto ya fue agregado, solo incremente la cantidad ...', 48, 'Advertencia')
-                  SELECT tmpd
-                  GOTO n
-                  DELETE
-                  .frmhistoria.grddetalle.column2.text1.setfocus
-               ENDIF
-               .ctv
-            ENDWITH
-             */
+            if (grdDetalle.CurrentCell.ReadOnly == false)
+            {
+                ComboBox cmbProducto = (ComboBox)grdDetalle.EditingControl;
+
+                int i = grdDetalle.CurrentCell.RowIndex;
+                int j = cmbProducto.SelectedIndex;
+
+                List<Dictionary<string, string>> productos = General.GetDictionaryList((ComboBox)grdDetalle.EditingControl);
+
+                grdDetalle.Rows[i].Cells["Id"].Value = productos[j]["Id_Producto"];
+                grdDetalle.Rows[i].Cells["Descripcion"].Value = productos[j]["Descripcion"];
+                grdDetalle.Rows[i].Cells["Tipo"].Value = productos[j]["Tipo"];
+                grdDetalle.Rows[i].Cells["Cantidad"].Value = 1;
+                grdDetalle.Rows[i].Cells["Precio"].Value = productos[j]["Monto"];
+                grdDetalle.Rows[i].Cells["SubTotal"].Value = (int.Parse(grdDetalle.Rows[i].Cells["Cantidad"].Value.ToString()) * decimal.Parse(productos[j]["Monto"])).ToString();
+
+                int r = General.GetDictionaryList(grdDetalle).FindAll(x => x["Id"] == productos[j]["Id_Producto"]).Count;
+
+                if (r > 1)
+                {
+                    MessageBox.Show("Producto ya fue agregado, solo incremente la cantidad ...", "Advertencia");
+                    grdDetalle.Rows.RemoveAt(i);
+                }
+
+                this.ctv();
+            }
         }
 
         private void grdDetalle_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             int i = grdDetalle.CurrentCell.RowIndex;
+            int j = grdDetalle.CurrentCell.ColumnIndex;
+            string columnName = grdDetalle.Columns[j].Name;
 
-            switch (grdDetalle.CurrentCell.ColumnIndex)
+            if (columnName == "Id")
             {
-                case 0:
-                    break;
-                case 1:
-                    this.ctv();
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
+                this.ctv();
             }
         }
 

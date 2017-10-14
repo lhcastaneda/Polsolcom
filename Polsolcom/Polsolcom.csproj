@@ -238,6 +238,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\ProductosDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductosDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\ProvinciasDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1095,6 +1100,17 @@
     </None>
     <None Include="Dominio\Data\MedicosDS.xss">
       <DependentUpon>MedicosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ProductosDS.xsc">
+      <DependentUpon>ProductosDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\ProductosDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductosDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\ProductosDS.xss">
+      <DependentUpon>ProductosDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\ReportsDS.xsc">
       <DependentUpon>ReportsDS.xsd</DependentUpon>

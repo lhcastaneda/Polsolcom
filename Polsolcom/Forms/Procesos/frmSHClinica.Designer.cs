@@ -1,36 +1,38 @@
 namespace Polsolcom.Forms.Procesos
 {
-	partial class frmSHClinica
-	{
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class frmSHClinica
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose( bool disposing )
-		{
-			if ( disposing && (components != null) )
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSHClinica));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblDigitador = new System.Windows.Forms.Label();
+            this.lblSerie = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -55,7 +57,9 @@ namespace Polsolcom.Forms.Procesos
             this.btnBuscat = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBoxMain = new System.Windows.Forms.GroupBox();
+            this.txtEdad = new System.Windows.Forms.MaskedTextBox();
+            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
             this.btnInst = new System.Windows.Forms.Button();
             this.chkInst = new System.Windows.Forms.CheckBox();
             this.cmbMedico = new System.Windows.Forms.ComboBox();
@@ -89,13 +93,11 @@ namespace Polsolcom.Forms.Procesos
             this.departamentosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.departamentosDS = new Polsolcom.Dominio.Data.DepartamentosDS();
             this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtEdad = new System.Windows.Forms.TextBox();
             this.txtFechaNac = new System.Windows.Forms.MaskedTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtSexo = new System.Windows.Forms.TextBox();
             this.txtApeMaterno = new System.Windows.Forms.TextBox();
             this.txtApePaterno = new System.Windows.Forms.TextBox();
@@ -118,23 +120,26 @@ namespace Polsolcom.Forms.Procesos
             this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
             this.grdDetalle = new System.Windows.Forms.DataGridView();
-            this.grddetalleC1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.grddetalleC2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grddetalleC3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grddetalleC4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productosDS = new Polsolcom.Dominio.Data.ProductosDS();
             this.institucionTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter();
-            this.consultoriosSHClinicaTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter();
             this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
             this.medicosTableAdapter = new Polsolcom.Dominio.Data.MedicosDSTableAdapters.MedicosTableAdapter();
             this.institucionLiteTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionLiteTableAdapter();
-            this.lblSerie = new System.Windows.Forms.Label();
-            this.lblDigitador = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
+            this.consultoriosSHClinicaTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter();
+            this.productosTableAdapter = new Polsolcom.Dominio.Data.ProductosDSTableAdapters.ProductosTableAdapter();
+            this.Nrv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBoxMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionLiteBindingSource)).BeginInit();
@@ -149,12 +154,13 @@ namespace Polsolcom.Forms.Procesos
             ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productosDS)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.lblDigitador);
             this.groupBox1.Controls.Add(this.lblSerie);
             this.groupBox1.Controls.Add(this.label8);
@@ -177,6 +183,22 @@ namespace Polsolcom.Forms.Procesos
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // lblDigitador
+            // 
+            this.lblDigitador.Location = new System.Drawing.Point(375, 27);
+            this.lblDigitador.Name = "lblDigitador";
+            this.lblDigitador.Size = new System.Drawing.Size(78, 16);
+            this.lblDigitador.TabIndex = 13;
+            this.lblDigitador.Text = "...";
+            // 
+            // lblSerie
+            // 
+            this.lblSerie.Location = new System.Drawing.Point(253, 23);
+            this.lblSerie.Name = "lblSerie";
+            this.lblSerie.Size = new System.Drawing.Size(35, 16);
+            this.lblSerie.TabIndex = 11;
+            this.lblSerie.Text = "...";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -184,7 +206,7 @@ namespace Polsolcom.Forms.Procesos
             this.label8.Location = new System.Drawing.Point(550, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 13);
-            this.label8.TabIndex = 18;
+            this.label8.TabIndex = 7;
             this.label8.Text = "IGV";
             // 
             // label7
@@ -194,7 +216,7 @@ namespace Polsolcom.Forms.Procesos
             this.label7.Location = new System.Drawing.Point(465, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 13);
-            this.label7.TabIndex = 17;
+            this.label7.TabIndex = 6;
             this.label7.Text = "N° Historia";
             // 
             // label6
@@ -204,7 +226,7 @@ namespace Polsolcom.Forms.Procesos
             this.label6.Location = new System.Drawing.Point(389, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
-            this.label6.TabIndex = 16;
+            this.label6.TabIndex = 5;
             this.label6.Text = "Cajero";
             // 
             // label5
@@ -214,7 +236,7 @@ namespace Polsolcom.Forms.Procesos
             this.label5.Location = new System.Drawing.Point(292, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 15;
+            this.label5.TabIndex = 4;
             this.label5.Text = "N° Doc Ven";
             // 
             // label4
@@ -224,7 +246,7 @@ namespace Polsolcom.Forms.Procesos
             this.label4.Location = new System.Drawing.Point(254, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
-            this.label4.TabIndex = 14;
+            this.label4.TabIndex = 3;
             this.label4.Text = "Serie";
             // 
             // label3
@@ -234,17 +256,17 @@ namespace Polsolcom.Forms.Procesos
             this.label3.Location = new System.Drawing.Point(173, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 13;
+            this.label3.TabIndex = 2;
             this.label3.Text = "Doc. Venta";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(91, 9);
+            this.label2.Location = new System.Drawing.Point(95, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
-            this.label2.TabIndex = 12;
+            this.label2.TabIndex = 1;
             this.label2.Text = "Mod. Venta";
             // 
             // label1
@@ -254,7 +276,7 @@ namespace Polsolcom.Forms.Procesos
             this.label1.Location = new System.Drawing.Point(-2, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
-            this.label1.TabIndex = 11;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Fecha Emision";
             // 
             // cmbIGV
@@ -265,7 +287,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbIGV.Location = new System.Drawing.Point(541, 24);
             this.cmbIGV.Name = "cmbIGV";
             this.cmbIGV.Size = new System.Drawing.Size(50, 21);
-            this.cmbIGV.TabIndex = 7;
+            this.cmbIGV.TabIndex = 15;
             this.cmbIGV.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // cmbTDoc
@@ -278,7 +300,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbTDoc.Location = new System.Drawing.Point(168, 24);
             this.cmbTDoc.Name = "cmbTDoc";
             this.cmbTDoc.Size = new System.Drawing.Size(83, 21);
-            this.cmbTDoc.TabIndex = 2;
+            this.cmbTDoc.TabIndex = 10;
             this.cmbTDoc.ValueMember = "Id_Tipo";
             this.cmbTDoc.Leave += new System.EventHandler(this.cmbTDoc_Leave);
             // 
@@ -299,7 +321,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtNHP.Name = "txtNHP";
             this.txtNHP.ReadOnly = true;
             this.txtNHP.Size = new System.Drawing.Size(81, 20);
-            this.txtNHP.TabIndex = 6;
+            this.txtNHP.TabIndex = 14;
             this.txtNHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNHP.DoubleClick += new System.EventHandler(this.txtNHP_DoubleClick);
             this.txtNHP.Leave += new System.EventHandler(this.txtNHP_Leave);
@@ -311,7 +333,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtNroTicket.Name = "txtNroTicket";
             this.txtNroTicket.ReadOnly = true;
             this.txtNroTicket.Size = new System.Drawing.Size(73, 20);
-            this.txtNroTicket.TabIndex = 4;
+            this.txtNroTicket.TabIndex = 12;
             this.txtNroTicket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNroTicket.DoubleClick += new System.EventHandler(this.txtNroTicket_DoubleClick);
             this.txtNroTicket.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroTicket_KeyDown);
@@ -322,22 +344,21 @@ namespace Polsolcom.Forms.Procesos
             this.cmbMVen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMVen.Enabled = false;
             this.cmbMVen.FormattingEnabled = true;
-            this.cmbMVen.Location = new System.Drawing.Point(88, 24);
+            this.cmbMVen.Location = new System.Drawing.Point(98, 24);
             this.cmbMVen.Name = "cmbMVen";
-            this.cmbMVen.Size = new System.Drawing.Size(78, 21);
-            this.cmbMVen.TabIndex = 1;
+            this.cmbMVen.Size = new System.Drawing.Size(68, 21);
+            this.cmbMVen.TabIndex = 9;
             this.cmbMVen.Leave += new System.EventHandler(this.cmbMVen_Leave);
             // 
             // txtFechaEmision
             // 
             this.txtFechaEmision.Location = new System.Drawing.Point(4, 24);
-            this.txtFechaEmision.Mask = "00/00/0000";
+            this.txtFechaEmision.Mask = "00/00/0000 90:00 aa";
             this.txtFechaEmision.Name = "txtFechaEmision";
             this.txtFechaEmision.ReadOnly = true;
-            this.txtFechaEmision.Size = new System.Drawing.Size(83, 20);
-            this.txtFechaEmision.TabIndex = 0;
+            this.txtFechaEmision.Size = new System.Drawing.Size(91, 20);
+            this.txtFechaEmision.TabIndex = 8;
             this.txtFechaEmision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtFechaEmision.ValidatingType = typeof(System.DateTime);
             this.txtFechaEmision.DoubleClick += new System.EventHandler(this.txtFechaEmision_DoubleClick);
             // 
             // groupBox2
@@ -352,7 +373,7 @@ namespace Polsolcom.Forms.Procesos
             this.groupBox2.Location = new System.Drawing.Point(602, -3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(112, 425);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             // 
             // btnImprimir
@@ -364,7 +385,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnImprimir.Location = new System.Drawing.Point(3, 381);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(110, 39);
-            this.btnImprimir.TabIndex = 33;
+            this.btnImprimir.TabIndex = 6;
             this.btnImprimir.Text = "&Imprimir Ven";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnImprimir.UseVisualStyleBackColor = true;
@@ -380,7 +401,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnQuitar.Location = new System.Drawing.Point(3, 305);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(110, 39);
-            this.btnQuitar.TabIndex = 32;
+            this.btnQuitar.TabIndex = 5;
             this.btnQuitar.Text = "&Quitar";
             this.btnQuitar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnQuitar.UseVisualStyleBackColor = true;
@@ -396,7 +417,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnAgregar.Location = new System.Drawing.Point(3, 263);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(110, 39);
-            this.btnAgregar.TabIndex = 31;
+            this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -412,7 +433,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnDuplica.Location = new System.Drawing.Point(3, 96);
             this.btnDuplica.Name = "btnDuplica";
             this.btnDuplica.Size = new System.Drawing.Size(110, 39);
-            this.btnDuplica.TabIndex = 29;
+            this.btnDuplica.TabIndex = 2;
             this.btnDuplica.Text = "&Duplica Ven";
             this.btnDuplica.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDuplica.UseVisualStyleBackColor = true;
@@ -427,7 +448,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnBuscat.Location = new System.Drawing.Point(3, 138);
             this.btnBuscat.Name = "btnBuscat";
             this.btnBuscat.Size = new System.Drawing.Size(110, 39);
-            this.btnBuscat.TabIndex = 30;
+            this.btnBuscat.TabIndex = 3;
             this.btnBuscat.Text = "&Buscar Ven";
             this.btnBuscat.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscat.UseVisualStyleBackColor = true;
@@ -442,7 +463,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnBuscar.Location = new System.Drawing.Point(3, 54);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(110, 39);
-            this.btnBuscar.TabIndex = 28;
+            this.btnBuscar.TabIndex = 1;
             this.btnBuscar.Text = "&Buscar Pac";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -457,61 +478,85 @@ namespace Polsolcom.Forms.Procesos
             this.btnNuevo.Location = new System.Drawing.Point(3, 12);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(110, 39);
-            this.btnNuevo.TabIndex = 27;
+            this.btnNuevo.TabIndex = 0;
             this.btnNuevo.Text = "&Nuevo Pac";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             this.btnNuevo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
-            // groupBox3
+            // groupBoxMain
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.groupBox3.Controls.Add(this.btnInst);
-            this.groupBox3.Controls.Add(this.chkInst);
-            this.groupBox3.Controls.Add(this.cmbMedico);
-            this.groupBox3.Controls.Add(this.cmbInstitucion);
-            this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Controls.Add(this.cmbEspecialidad);
-            this.groupBox3.Controls.Add(this.txtEmail);
-            this.groupBox3.Controls.Add(this.label25);
-            this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.txtAsegurado);
-            this.groupBox3.Controls.Add(this.txtODoc);
-            this.groupBox3.Controls.Add(this.txtTelefono);
-            this.groupBox3.Controls.Add(this.cmbDistrito);
-            this.groupBox3.Controls.Add(this.cmbProvincia);
-            this.groupBox3.Controls.Add(this.label23);
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Controls.Add(this.cmbDepartamento);
-            this.groupBox3.Controls.Add(this.txtDireccion);
-            this.groupBox3.Controls.Add(this.txtEdad);
-            this.groupBox3.Controls.Add(this.txtFechaNac);
-            this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.txtDNI);
-            this.groupBox3.Controls.Add(this.txtSexo);
-            this.groupBox3.Controls.Add(this.txtApeMaterno);
-            this.groupBox3.Controls.Add(this.txtApePaterno);
-            this.groupBox3.Controls.Add(this.txtNombre);
-            this.groupBox3.Controls.Add(this.txtIdPaciente);
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(4, 41);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(596, 195);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
+            this.groupBoxMain.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBoxMain.Controls.Add(this.txtEdad);
+            this.groupBoxMain.Controls.Add(this.txtDNI);
+            this.groupBoxMain.Controls.Add(this.btnInst);
+            this.groupBoxMain.Controls.Add(this.chkInst);
+            this.groupBoxMain.Controls.Add(this.cmbMedico);
+            this.groupBoxMain.Controls.Add(this.cmbInstitucion);
+            this.groupBoxMain.Controls.Add(this.label27);
+            this.groupBoxMain.Controls.Add(this.cmbEspecialidad);
+            this.groupBoxMain.Controls.Add(this.txtEmail);
+            this.groupBoxMain.Controls.Add(this.label25);
+            this.groupBoxMain.Controls.Add(this.label24);
+            this.groupBoxMain.Controls.Add(this.txtAsegurado);
+            this.groupBoxMain.Controls.Add(this.txtODoc);
+            this.groupBoxMain.Controls.Add(this.txtTelefono);
+            this.groupBoxMain.Controls.Add(this.cmbDistrito);
+            this.groupBoxMain.Controls.Add(this.cmbProvincia);
+            this.groupBoxMain.Controls.Add(this.label23);
+            this.groupBoxMain.Controls.Add(this.label22);
+            this.groupBoxMain.Controls.Add(this.label21);
+            this.groupBoxMain.Controls.Add(this.label20);
+            this.groupBoxMain.Controls.Add(this.label19);
+            this.groupBoxMain.Controls.Add(this.cmbDepartamento);
+            this.groupBoxMain.Controls.Add(this.txtDireccion);
+            this.groupBoxMain.Controls.Add(this.txtFechaNac);
+            this.groupBoxMain.Controls.Add(this.label18);
+            this.groupBoxMain.Controls.Add(this.label17);
+            this.groupBoxMain.Controls.Add(this.label16);
+            this.groupBoxMain.Controls.Add(this.label15);
+            this.groupBoxMain.Controls.Add(this.txtSexo);
+            this.groupBoxMain.Controls.Add(this.txtApeMaterno);
+            this.groupBoxMain.Controls.Add(this.txtApePaterno);
+            this.groupBoxMain.Controls.Add(this.txtNombre);
+            this.groupBoxMain.Controls.Add(this.txtIdPaciente);
+            this.groupBoxMain.Controls.Add(this.label14);
+            this.groupBoxMain.Controls.Add(this.label13);
+            this.groupBoxMain.Controls.Add(this.label12);
+            this.groupBoxMain.Controls.Add(this.label11);
+            this.groupBoxMain.Controls.Add(this.label10);
+            this.groupBoxMain.Controls.Add(this.label9);
+            this.groupBoxMain.Location = new System.Drawing.Point(4, 41);
+            this.groupBoxMain.Name = "groupBoxMain";
+            this.groupBoxMain.Size = new System.Drawing.Size(596, 195);
+            this.groupBoxMain.TabIndex = 1;
+            this.groupBoxMain.TabStop = false;
+            // 
+            // txtEdad
+            // 
+            this.txtEdad.Location = new System.Drawing.Point(91, 59);
+            this.txtEdad.Mask = "999";
+            this.txtEdad.Name = "txtEdad";
+            this.txtEdad.ReadOnly = true;
+            this.txtEdad.Size = new System.Drawing.Size(38, 20);
+            this.txtEdad.TabIndex = 17;
+            this.txtEdad.DoubleClick += new System.EventHandler(this.txtEdad_DoubleClick);
+            this.txtEdad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEdad_KeyDown);
+            this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
+            // 
+            // txtDNI
+            // 
+            this.txtDNI.Location = new System.Drawing.Point(81, 23);
+            this.txtDNI.Mask = "99999999";
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.ReadOnly = true;
+            this.txtDNI.Size = new System.Drawing.Size(66, 20);
+            this.txtDNI.TabIndex = 7;
+            this.txtDNI.DoubleClick += new System.EventHandler(this.txtDNI_DoubleClick);
+            this.txtDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDNI_KeyDown);
+            this.txtDNI.Leave += new System.EventHandler(this.txtDNI_Leave);
             // 
             // btnInst
             // 
@@ -519,7 +564,7 @@ namespace Polsolcom.Forms.Procesos
             this.btnInst.Location = new System.Drawing.Point(187, 151);
             this.btnInst.Name = "btnInst";
             this.btnInst.Size = new System.Drawing.Size(41, 20);
-            this.btnInst.TabIndex = 49;
+            this.btnInst.TabIndex = 35;
             this.btnInst.Text = "...";
             this.btnInst.UseVisualStyleBackColor = true;
             this.btnInst.Click += new System.EventHandler(this.btnInst_Click);
@@ -532,7 +577,7 @@ namespace Polsolcom.Forms.Procesos
             this.chkInst.Location = new System.Drawing.Point(2, 154);
             this.chkInst.Name = "chkInst";
             this.chkInst.Size = new System.Drawing.Size(147, 17);
-            this.chkInst.TabIndex = 48;
+            this.chkInst.TabIndex = 34;
             this.chkInst.Text = "Institución o empresa";
             this.chkInst.UseVisualStyleBackColor = true;
             this.chkInst.CheckedChanged += new System.EventHandler(this.chkInst_CheckedChanged);
@@ -547,7 +592,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbMedico.Location = new System.Drawing.Point(229, 170);
             this.cmbMedico.Name = "cmbMedico";
             this.cmbMedico.Size = new System.Drawing.Size(363, 21);
-            this.cmbMedico.TabIndex = 26;
+            this.cmbMedico.TabIndex = 38;
             this.cmbMedico.ValueMember = "Id_Personal";
             this.cmbMedico.SelectionChangeCommitted += new System.EventHandler(this.cmbMedico_SelectionChangeCommitted);
             this.cmbMedico.Leave += new System.EventHandler(this.cmbMedico_Leave);
@@ -572,7 +617,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbInstitucion.Location = new System.Drawing.Point(3, 170);
             this.cmbInstitucion.Name = "cmbInstitucion";
             this.cmbInstitucion.Size = new System.Drawing.Size(222, 21);
-            this.cmbInstitucion.TabIndex = 25;
+            this.cmbInstitucion.TabIndex = 37;
             this.cmbInstitucion.ValueMember = "CInst";
             this.cmbInstitucion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbInstitucion_KeyDown);
             // 
@@ -593,7 +638,7 @@ namespace Polsolcom.Forms.Procesos
             this.label27.Location = new System.Drawing.Point(313, 157);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(217, 13);
-            this.label27.TabIndex = 47;
+            this.label27.TabIndex = 36;
             this.label27.Text = "Especialista de la Orden de Atencion";
             // 
             // cmbEspecialidad
@@ -606,7 +651,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbEspecialidad.Location = new System.Drawing.Point(303, 135);
             this.cmbEspecialidad.Name = "cmbEspecialidad";
             this.cmbEspecialidad.Size = new System.Drawing.Size(288, 21);
-            this.cmbEspecialidad.TabIndex = 24;
+            this.cmbEspecialidad.TabIndex = 33;
             this.cmbEspecialidad.ValueMember = "Id_Consultorio";
             this.cmbEspecialidad.SelectionChangeCommitted += new System.EventHandler(this.cmbEspecialidad_SelectionChangeCommitted);
             // 
@@ -627,7 +672,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(295, 20);
-            this.txtEmail.TabIndex = 23;
+            this.txtEmail.TabIndex = 32;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             this.txtEmail.DoubleClick += new System.EventHandler(this.txtEmail_DoubleClick);
             this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
@@ -640,7 +685,7 @@ namespace Polsolcom.Forms.Procesos
             this.label25.Location = new System.Drawing.Point(408, 121);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(79, 13);
-            this.label25.TabIndex = 43;
+            this.label25.TabIndex = 31;
             this.label25.Text = "Especialidad";
             // 
             // label24
@@ -650,7 +695,7 @@ namespace Polsolcom.Forms.Procesos
             this.label24.Location = new System.Drawing.Point(74, 121);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(158, 13);
-            this.label24.TabIndex = 42;
+            this.label24.TabIndex = 30;
             this.label24.Text = "Correo Electronico (E-mail)";
             // 
             // txtAsegurado
@@ -661,7 +706,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtAsegurado.Name = "txtAsegurado";
             this.txtAsegurado.ReadOnly = true;
             this.txtAsegurado.Size = new System.Drawing.Size(24, 20);
-            this.txtAsegurado.TabIndex = 22;
+            this.txtAsegurado.TabIndex = 29;
             this.txtAsegurado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAsegurado.DoubleClick += new System.EventHandler(this.txtAsegurado_DoubleClick);
             this.txtAsegurado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAsegurado_KeyDown);
@@ -674,7 +719,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtODoc.Name = "txtODoc";
             this.txtODoc.ReadOnly = true;
             this.txtODoc.Size = new System.Drawing.Size(122, 20);
-            this.txtODoc.TabIndex = 21;
+            this.txtODoc.TabIndex = 28;
             this.txtODoc.DoubleClick += new System.EventHandler(this.txtODoc_DoubleClick);
             this.txtODoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtODoc_KeyDown);
             // 
@@ -685,7 +730,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.ReadOnly = true;
             this.txtTelefono.Size = new System.Drawing.Size(164, 20);
-            this.txtTelefono.TabIndex = 20;
+            this.txtTelefono.TabIndex = 27;
             this.txtTelefono.DoubleClick += new System.EventHandler(this.txtTelefono_DoubleClick);
             this.txtTelefono.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTelefono_KeyDown);
             // 
@@ -699,7 +744,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbDistrito.Location = new System.Drawing.Point(141, 97);
             this.cmbDistrito.Name = "cmbDistrito";
             this.cmbDistrito.Size = new System.Drawing.Size(136, 21);
-            this.cmbDistrito.TabIndex = 19;
+            this.cmbDistrito.TabIndex = 26;
             this.cmbDistrito.ValueMember = "Id_Old";
             this.cmbDistrito.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDistrito_KeyDown);
             this.cmbDistrito.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cmbDistrito_MouseDoubleClick);
@@ -724,7 +769,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbProvincia.Location = new System.Drawing.Point(5, 97);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(133, 21);
-            this.cmbProvincia.TabIndex = 18;
+            this.cmbProvincia.TabIndex = 25;
             this.cmbProvincia.ValueMember = "Id_Old";
             this.cmbProvincia.SelectionChangeCommitted += new System.EventHandler(this.cmbProvincia_SelectionChangeCommitted);
             this.cmbProvincia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbProvincia_KeyDown);
@@ -747,7 +792,7 @@ namespace Polsolcom.Forms.Procesos
             this.label23.Location = new System.Drawing.Point(565, 83);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(28, 13);
-            this.label23.TabIndex = 36;
+            this.label23.TabIndex = 24;
             this.label23.Text = "Asg";
             // 
             // label22
@@ -757,7 +802,7 @@ namespace Polsolcom.Forms.Procesos
             this.label22.Location = new System.Drawing.Point(480, 83);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(62, 13);
-            this.label22.TabIndex = 35;
+            this.label22.TabIndex = 23;
             this.label22.Text = "Otro Doc.";
             // 
             // label21
@@ -767,7 +812,7 @@ namespace Polsolcom.Forms.Procesos
             this.label21.Location = new System.Drawing.Point(291, 83);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(137, 13);
-            this.label21.TabIndex = 34;
+            this.label21.TabIndex = 22;
             this.label21.Text = "Telefono (Tel1/Tel2...)";
             // 
             // label20
@@ -777,7 +822,7 @@ namespace Polsolcom.Forms.Procesos
             this.label20.Location = new System.Drawing.Point(184, 83);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(47, 13);
-            this.label20.TabIndex = 33;
+            this.label20.TabIndex = 21;
             this.label20.Text = "Distrito";
             // 
             // label19
@@ -787,7 +832,7 @@ namespace Polsolcom.Forms.Procesos
             this.label19.Location = new System.Drawing.Point(45, 83);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(60, 13);
-            this.label19.TabIndex = 32;
+            this.label19.TabIndex = 20;
             this.label19.Text = "Provincia";
             // 
             // cmbDepartamento
@@ -800,7 +845,7 @@ namespace Polsolcom.Forms.Procesos
             this.cmbDepartamento.Location = new System.Drawing.Point(458, 59);
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(133, 21);
-            this.cmbDepartamento.TabIndex = 17;
+            this.cmbDepartamento.TabIndex = 19;
             this.cmbDepartamento.ValueMember = "Id_Old";
             this.cmbDepartamento.SelectionChangeCommitted += new System.EventHandler(this.cmbDepartamento_SelectionChangeCommitted);
             this.cmbDepartamento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDepartamento_KeyDown);
@@ -823,23 +868,10 @@ namespace Polsolcom.Forms.Procesos
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.ReadOnly = true;
             this.txtDireccion.Size = new System.Drawing.Size(321, 20);
-            this.txtDireccion.TabIndex = 16;
+            this.txtDireccion.TabIndex = 18;
             this.txtDireccion.TextChanged += new System.EventHandler(this.txtDireccion_TextChanged);
             this.txtDireccion.DoubleClick += new System.EventHandler(this.txtDireccion_DoubleClick);
             this.txtDireccion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDireccion_KeyDown);
-            // 
-            // txtEdad
-            // 
-            this.txtEdad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtEdad.Location = new System.Drawing.Point(89, 59);
-            this.txtEdad.Name = "txtEdad";
-            this.txtEdad.ReadOnly = true;
-            this.txtEdad.Size = new System.Drawing.Size(43, 20);
-            this.txtEdad.TabIndex = 15;
-            this.txtEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtEdad.DoubleClick += new System.EventHandler(this.txtEdad_DoubleClick);
-            this.txtEdad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEdad_KeyDown);
-            this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
             // 
             // txtFechaNac
             // 
@@ -848,7 +880,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtFechaNac.Name = "txtFechaNac";
             this.txtFechaNac.ReadOnly = true;
             this.txtFechaNac.Size = new System.Drawing.Size(83, 20);
-            this.txtFechaNac.TabIndex = 14;
+            this.txtFechaNac.TabIndex = 16;
             this.txtFechaNac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtFechaNac.ValidatingType = typeof(System.DateTime);
             this.txtFechaNac.DoubleClick += new System.EventHandler(this.txtFechaNac_DoubleClick);
@@ -862,7 +894,7 @@ namespace Polsolcom.Forms.Procesos
             this.label18.Location = new System.Drawing.Point(480, 45);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(86, 13);
-            this.label18.TabIndex = 27;
+            this.label18.TabIndex = 15;
             this.label18.Text = "Departamento";
             // 
             // label17
@@ -872,7 +904,7 @@ namespace Polsolcom.Forms.Procesos
             this.label17.Location = new System.Drawing.Point(162, 45);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(260, 13);
-            this.label17.TabIndex = 26;
+            this.label17.TabIndex = 14;
             this.label17.Text = "Direccion (Av, Calle, Urbanizacion, Mz, Lte.)";
             // 
             // label16
@@ -882,7 +914,7 @@ namespace Polsolcom.Forms.Procesos
             this.label16.Location = new System.Drawing.Point(91, 45);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(36, 13);
-            this.label16.TabIndex = 25;
+            this.label16.TabIndex = 13;
             this.label16.Text = "Edad";
             // 
             // label15
@@ -892,30 +924,17 @@ namespace Polsolcom.Forms.Procesos
             this.label15.Location = new System.Drawing.Point(9, 45);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(73, 13);
-            this.label15.TabIndex = 24;
+            this.label15.TabIndex = 12;
             this.label15.Text = "Fecha Nac.";
-            // 
-            // txtDNI
-            // 
-            this.txtDNI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDNI.Location = new System.Drawing.Point(80, 23);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.ReadOnly = true;
-            this.txtDNI.Size = new System.Drawing.Size(66, 20);
-            this.txtDNI.TabIndex = 9;
-            this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtDNI.DoubleClick += new System.EventHandler(this.txtDNI_DoubleClick);
-            this.txtDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDNI_KeyDown);
-            this.txtDNI.Leave += new System.EventHandler(this.txtDNI_Leave);
             // 
             // txtSexo
             // 
             this.txtSexo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSexo.Location = new System.Drawing.Point(510, 23);
+            this.txtSexo.Location = new System.Drawing.Point(539, 23);
             this.txtSexo.Name = "txtSexo";
             this.txtSexo.ReadOnly = true;
-            this.txtSexo.Size = new System.Drawing.Size(80, 20);
-            this.txtSexo.TabIndex = 13;
+            this.txtSexo.Size = new System.Drawing.Size(51, 20);
+            this.txtSexo.TabIndex = 11;
             this.txtSexo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSexo.DoubleClick += new System.EventHandler(this.txtSexo_DoubleClick);
             this.txtSexo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSexo_KeyDown);
@@ -924,21 +943,21 @@ namespace Polsolcom.Forms.Procesos
             // txtApeMaterno
             // 
             this.txtApeMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtApeMaterno.Location = new System.Drawing.Point(394, 23);
+            this.txtApeMaterno.Location = new System.Drawing.Point(410, 23);
             this.txtApeMaterno.Name = "txtApeMaterno";
             this.txtApeMaterno.ReadOnly = true;
-            this.txtApeMaterno.Size = new System.Drawing.Size(115, 20);
-            this.txtApeMaterno.TabIndex = 12;
+            this.txtApeMaterno.Size = new System.Drawing.Size(125, 20);
+            this.txtApeMaterno.TabIndex = 10;
             this.txtApeMaterno.TextChanged += new System.EventHandler(this.txtApeMaterno_TextChanged);
             // 
             // txtApePaterno
             // 
             this.txtApePaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtApePaterno.Location = new System.Drawing.Point(277, 23);
+            this.txtApePaterno.Location = new System.Drawing.Point(283, 23);
             this.txtApePaterno.Name = "txtApePaterno";
             this.txtApePaterno.ReadOnly = true;
-            this.txtApePaterno.Size = new System.Drawing.Size(115, 20);
-            this.txtApePaterno.TabIndex = 11;
+            this.txtApePaterno.Size = new System.Drawing.Size(122, 20);
+            this.txtApePaterno.TabIndex = 9;
             this.txtApePaterno.TextChanged += new System.EventHandler(this.txtApePaterno_TextChanged);
             // 
             // txtNombre
@@ -947,8 +966,8 @@ namespace Polsolcom.Forms.Procesos
             this.txtNombre.Location = new System.Drawing.Point(148, 23);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.ReadOnly = true;
-            this.txtNombre.Size = new System.Drawing.Size(127, 20);
-            this.txtNombre.TabIndex = 10;
+            this.txtNombre.Size = new System.Drawing.Size(132, 20);
+            this.txtNombre.TabIndex = 8;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtIdPaciente
@@ -958,7 +977,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtIdPaciente.Name = "txtIdPaciente";
             this.txtIdPaciente.ReadOnly = true;
             this.txtIdPaciente.Size = new System.Drawing.Size(74, 20);
-            this.txtIdPaciente.TabIndex = 8;
+            this.txtIdPaciente.TabIndex = 6;
             this.txtIdPaciente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIdPaciente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
@@ -969,7 +988,7 @@ namespace Polsolcom.Forms.Procesos
             this.label14.Location = new System.Drawing.Point(92, 9);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(41, 13);
-            this.label14.TabIndex = 17;
+            this.label14.TabIndex = 1;
             this.label14.Text = "D.N.I.";
             // 
             // label13
@@ -979,7 +998,7 @@ namespace Polsolcom.Forms.Procesos
             this.label13.Location = new System.Drawing.Point(531, 9);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 13);
-            this.label13.TabIndex = 16;
+            this.label13.TabIndex = 5;
             this.label13.Text = "Sexo";
             // 
             // label12
@@ -989,7 +1008,7 @@ namespace Polsolcom.Forms.Procesos
             this.label12.Location = new System.Drawing.Point(423, 9);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(73, 13);
-            this.label12.TabIndex = 15;
+            this.label12.TabIndex = 4;
             this.label12.Text = "AP Materno";
             // 
             // label11
@@ -999,7 +1018,7 @@ namespace Polsolcom.Forms.Procesos
             this.label11.Location = new System.Drawing.Point(303, 9);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(71, 13);
-            this.label11.TabIndex = 14;
+            this.label11.TabIndex = 3;
             this.label11.Text = "AP Paterno";
             // 
             // label10
@@ -1009,7 +1028,7 @@ namespace Polsolcom.Forms.Procesos
             this.label10.Location = new System.Drawing.Point(177, 9);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(56, 13);
-            this.label10.TabIndex = 13;
+            this.label10.TabIndex = 2;
             this.label10.Text = "Nombres";
             // 
             // label9
@@ -1019,7 +1038,7 @@ namespace Polsolcom.Forms.Procesos
             this.label9.Location = new System.Drawing.Point(4, 9);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 13);
-            this.label9.TabIndex = 12;
+            this.label9.TabIndex = 0;
             this.label9.Text = "ID Paciente";
             // 
             // institucionBindingSource
@@ -1033,7 +1052,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtNeto.Name = "txtNeto";
             this.txtNeto.ReadOnly = true;
             this.txtNeto.Size = new System.Drawing.Size(76, 20);
-            this.txtNeto.TabIndex = 36;
+            this.txtNeto.TabIndex = 6;
             this.txtNeto.Text = "0.00";
             this.txtNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNeto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
@@ -1044,7 +1063,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtIGV.Name = "txtIGV";
             this.txtIGV.ReadOnly = true;
             this.txtIGV.Size = new System.Drawing.Size(76, 20);
-            this.txtIGV.TabIndex = 37;
+            this.txtIGV.TabIndex = 7;
             this.txtIGV.Text = "0.00";
             this.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtIGV.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
@@ -1055,7 +1074,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(76, 20);
-            this.txtTotal.TabIndex = 38;
+            this.txtTotal.TabIndex = 8;
             this.txtTotal.Text = "0.00";
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTotal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
@@ -1066,7 +1085,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtAutoriza.Name = "txtAutoriza";
             this.txtAutoriza.ReadOnly = true;
             this.txtAutoriza.Size = new System.Drawing.Size(515, 20);
-            this.txtAutoriza.TabIndex = 34;
+            this.txtAutoriza.TabIndex = 3;
             this.txtAutoriza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // txtSon
@@ -1075,7 +1094,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtSon.Name = "txtSon";
             this.txtSon.ReadOnly = true;
             this.txtSon.Size = new System.Drawing.Size(515, 20);
-            this.txtSon.TabIndex = 35;
+            this.txtSon.TabIndex = 4;
             this.txtSon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // label28
@@ -1085,7 +1104,7 @@ namespace Polsolcom.Forms.Procesos
             this.label28.Location = new System.Drawing.Point(10, 406);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(507, 12);
-            this.label28.TabIndex = 47;
+            this.label28.TabIndex = 5;
             this.label28.Text = "[Ins] Nuevo Paciente   [F3] Buscar Paciente   [F4] Buscar Venta   [F5] Recargar V" +
     "enta   [F6] Grabar";
             // 
@@ -1111,51 +1130,36 @@ namespace Polsolcom.Forms.Procesos
             this.grdDetalle.AllowUserToResizeRows = false;
             this.grdDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.grddetalleC1,
-            this.grddetalleC2,
-            this.grddetalleC3,
-            this.grddetalleC4});
+            this.Nrv,
+            this.Id,
+            this.Descripcion,
+            this.Tipo,
+            this.Cantidad,
+            this.Precio,
+            this.SubTotal});
             this.grdDetalle.Location = new System.Drawing.Point(6, 238);
             this.grdDetalle.Name = "grdDetalle";
             this.grdDetalle.RowHeadersVisible = false;
             this.grdDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDetalle.Size = new System.Drawing.Size(590, 119);
-            this.grdDetalle.TabIndex = 49;
+            this.grdDetalle.TabIndex = 2;
             this.grdDetalle.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellEndEdit);
             this.grdDetalle.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellLeave);
             this.grdDetalle.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetalle_EditingControlShowing);
             // 
-            // grddetalleC1
+            // productosBindingSource
             // 
-            this.grddetalleC1.HeaderText = "Descripción del producto o servicio";
-            this.grddetalleC1.Name = "grddetalleC1";
-            this.grddetalleC1.Width = 350;
+            this.productosBindingSource.DataMember = "Productos";
+            this.productosBindingSource.DataSource = this.productosDS;
             // 
-            // grddetalleC2
+            // productosDS
             // 
-            this.grddetalleC2.HeaderText = "Cant.";
-            this.grddetalleC2.Name = "grddetalleC2";
-            this.grddetalleC2.Width = 70;
-            // 
-            // grddetalleC3
-            // 
-            this.grddetalleC3.HeaderText = "Precio";
-            this.grddetalleC3.Name = "grddetalleC3";
-            this.grddetalleC3.Width = 70;
-            // 
-            // grddetalleC4
-            // 
-            this.grddetalleC4.HeaderText = "SubTotal";
-            this.grddetalleC4.Name = "grddetalleC4";
-            this.grddetalleC4.Width = 70;
+            this.productosDS.DataSetName = "ProductosDS";
+            this.productosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // institucionTableAdapter
             // 
             this.institucionTableAdapter.ClearBeforeFill = true;
-            // 
-            // consultoriosSHClinicaTableAdapter
-            // 
-            this.consultoriosSHClinicaTableAdapter.ClearBeforeFill = true;
             // 
             // docVentaTableAdapter
             // 
@@ -1169,30 +1173,65 @@ namespace Polsolcom.Forms.Procesos
             // 
             this.institucionLiteTableAdapter.ClearBeforeFill = true;
             // 
-            // lblSerie
+            // consultoriosSHClinicaTableAdapter
             // 
-            this.lblSerie.Location = new System.Drawing.Point(253, 23);
-            this.lblSerie.Name = "lblSerie";
-            this.lblSerie.Size = new System.Drawing.Size(35, 16);
-            this.lblSerie.TabIndex = 19;
-            this.lblSerie.Text = "...";
+            this.consultoriosSHClinicaTableAdapter.ClearBeforeFill = true;
             // 
-            // lblDigitador
+            // productosTableAdapter
             // 
-            this.lblDigitador.Location = new System.Drawing.Point(375, 27);
-            this.lblDigitador.Name = "lblDigitador";
-            this.lblDigitador.Size = new System.Drawing.Size(78, 16);
-            this.lblDigitador.TabIndex = 20;
-            this.lblDigitador.Text = "...";
+            this.productosTableAdapter.ClearBeforeFill = true;
             // 
-            // label26
+            // Nrv
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(134, 44);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(41, 13);
-            this.label26.TabIndex = 21;
-            this.label26.Text = "label26";
+            this.Nrv.HeaderText = "NRV";
+            this.Nrv.Name = "Nrv";
+            this.Nrv.ReadOnly = true;
+            this.Nrv.Visible = false;
+            // 
+            // Id
+            // 
+            this.Id.DataSource = this.productosBindingSource;
+            this.Id.DisplayMember = "Descripcion";
+            this.Id.HeaderText = "Descripción del producto o servicio";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.ValueMember = "Id_Producto";
+            this.Id.Width = 350;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "ID";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Visible = false;
+            // 
+            // Tipo
+            // 
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            this.Tipo.Visible = false;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cant.";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 70;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Width = 70;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.HeaderText = "SubTotal";
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 70;
             // 
             // frmSHClinica
             // 
@@ -1210,7 +1249,7 @@ namespace Polsolcom.Forms.Procesos
             this.Controls.Add(this.txtIGV);
             this.Controls.Add(this.txtNeto);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBoxMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmSHClinica";
@@ -1223,8 +1262,8 @@ namespace Polsolcom.Forms.Procesos
             ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBoxMain.ResumeLayout(false);
+            this.groupBoxMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionLiteBindingSource)).EndInit();
@@ -1239,80 +1278,80 @@ namespace Polsolcom.Forms.Procesos
             ((System.ComponentModel.ISupportInitialize)(this.departamentosDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productosDS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
 
-		#endregion
+        #endregion
 
-		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.MaskedTextBox txtFechaEmision;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.ComboBox cmbIGV;
-		private System.Windows.Forms.ComboBox cmbTDoc;
-		private System.Windows.Forms.TextBox txtNHP;
-		private System.Windows.Forms.TextBox txtNroTicket;
-		private System.Windows.Forms.ComboBox cmbMVen;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.Button btnNuevo;
-		private System.Windows.Forms.Button btnBuscar;
-		private System.Windows.Forms.Button btnImprimir;
-		private System.Windows.Forms.Button btnQuitar;
-		private System.Windows.Forms.Button btnAgregar;
-		private System.Windows.Forms.Button btnDuplica;
-		private System.Windows.Forms.Button btnBuscat;
-		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.TextBox txtIdPaciente;
-		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.Label label13;
-		private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.TextBox txtDNI;
-		private System.Windows.Forms.TextBox txtSexo;
-		private System.Windows.Forms.TextBox txtApeMaterno;
-		private System.Windows.Forms.TextBox txtApePaterno;
-		private System.Windows.Forms.TextBox txtNombre;
-		private System.Windows.Forms.ComboBox cmbDepartamento;
-		private System.Windows.Forms.TextBox txtDireccion;
-		private System.Windows.Forms.TextBox txtEdad;
-		private System.Windows.Forms.MaskedTextBox txtFechaNac;
-		private System.Windows.Forms.Label label18;
-		private System.Windows.Forms.Label label17;
-		private System.Windows.Forms.Label label16;
-		private System.Windows.Forms.Label label15;
-		private System.Windows.Forms.TextBox txtAsegurado;
-		private System.Windows.Forms.TextBox txtODoc;
-		private System.Windows.Forms.TextBox txtTelefono;
-		private System.Windows.Forms.ComboBox cmbDistrito;
-		private System.Windows.Forms.ComboBox cmbProvincia;
-		private System.Windows.Forms.Label label23;
-		private System.Windows.Forms.Label label22;
-		private System.Windows.Forms.Label label21;
-		private System.Windows.Forms.Label label20;
-		private System.Windows.Forms.Label label19;
-		private System.Windows.Forms.Label label25;
-		private System.Windows.Forms.Label label24;
-		private System.Windows.Forms.ComboBox cmbEspecialidad;
-		private System.Windows.Forms.TextBox txtEmail;
-		private System.Windows.Forms.ComboBox cmbMedico;
-		private System.Windows.Forms.ComboBox cmbInstitucion;
-		private System.Windows.Forms.Label label27;
-		private System.Windows.Forms.TextBox txtNeto;
-		private System.Windows.Forms.TextBox txtIGV;
-		private System.Windows.Forms.TextBox txtTotal;
-		private System.Windows.Forms.TextBox txtAutoriza;
-		private System.Windows.Forms.TextBox txtSon;
-		private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.MaskedTextBox txtFechaEmision;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbIGV;
+        private System.Windows.Forms.ComboBox cmbTDoc;
+        private System.Windows.Forms.TextBox txtNHP;
+        private System.Windows.Forms.TextBox txtNroTicket;
+        private System.Windows.Forms.ComboBox cmbMVen;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Button btnQuitar;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnDuplica;
+        private System.Windows.Forms.Button btnBuscat;
+        private System.Windows.Forms.GroupBox groupBoxMain;
+        private System.Windows.Forms.TextBox txtIdPaciente;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtSexo;
+        private System.Windows.Forms.TextBox txtApeMaterno;
+        private System.Windows.Forms.TextBox txtApePaterno;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.ComboBox cmbDepartamento;
+        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.MaskedTextBox txtFechaNac;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtAsegurado;
+        private System.Windows.Forms.TextBox txtODoc;
+        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.ComboBox cmbDistrito;
+        private System.Windows.Forms.ComboBox cmbProvincia;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox cmbEspecialidad;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.ComboBox cmbMedico;
+        private System.Windows.Forms.ComboBox cmbInstitucion;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtNeto;
+        private System.Windows.Forms.TextBox txtIGV;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.TextBox txtAutoriza;
+        private System.Windows.Forms.TextBox txtSon;
+        private System.Windows.Forms.Label label28;
         private Dominio.Data.DepartamentosDS departamentosDS;
         private System.Windows.Forms.BindingSource departamentosBindingSource;
         private Dominio.Data.DepartamentosDSTableAdapters.DepartamentosTableAdapter departamentosTableAdapter;
@@ -1323,16 +1362,9 @@ namespace Polsolcom.Forms.Procesos
         private Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter provinciasTableAdapter;
         private Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter distritoTableAdapter;
         private System.Windows.Forms.DataGridView grdDetalle;
-        private System.Windows.Forms.DataGridViewComboBoxColumn grddetalleC1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grddetalleC2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grddetalleC3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grddetalleC4;
         private Dominio.Data.InstitucionesDS institucionesDS;
         private System.Windows.Forms.BindingSource institucionBindingSource;
         private Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter institucionTableAdapter;
-        private System.Windows.Forms.BindingSource consultoriosSHClinicaBindingSource;
-        private Dominio.Data.ConsultoriosDS consultoriosDS;
-        private Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter consultoriosSHClinicaTableAdapter;
         private System.Windows.Forms.CheckBox chkInst;
         private System.Windows.Forms.Button btnInst;
         private Dominio.Data.TablaTipoDS tablaTipoDS;
@@ -1345,6 +1377,20 @@ namespace Polsolcom.Forms.Procesos
         private Dominio.Data.InstitucionesDSTableAdapters.InstitucionLiteTableAdapter institucionLiteTableAdapter;
         private System.Windows.Forms.Label lblDigitador;
         private System.Windows.Forms.Label lblSerie;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.BindingSource consultoriosSHClinicaBindingSource;
+        private Dominio.Data.ConsultoriosDS consultoriosDS;
+        private Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter consultoriosSHClinicaTableAdapter;
+        private System.Windows.Forms.MaskedTextBox txtEdad;
+        private System.Windows.Forms.MaskedTextBox txtDNI;
+        private System.Windows.Forms.BindingSource productosBindingSource;
+        private Dominio.Data.ProductosDS productosDS;
+        private Dominio.Data.ProductosDSTableAdapters.ProductosTableAdapter productosTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nrv;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
     }
 }
