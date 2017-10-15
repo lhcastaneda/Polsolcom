@@ -1647,12 +1647,12 @@ namespace Polsolcom.Dominio.Helpers
             return sdate.Replace(".", "");
         }
 
-        public static void RemoveAll(DataGridView dataGridView, Predicate<DataRow> predicate)
+        public static void RemoveAll(DataGridView dataGridView, Predicate<Dictionary<string, string>> predicate)
         {
             for (int i = 0; i < dataGridView.Rows.Count; i++)
             {
-                DataRow row = ((DataRowView)dataGridView.Rows[i].DataBoundItem).Row;
-                if (predicate(row))
+                Dictionary<string, string> item = General.GetDictionary(dataGridView, i);
+                if (predicate(item))
                 {
                     dataGridView.Rows.RemoveAt(i);
                     i--; // this just got messy. But you see my point.

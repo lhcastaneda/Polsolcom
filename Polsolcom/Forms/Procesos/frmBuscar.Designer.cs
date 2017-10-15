@@ -1,55 +1,59 @@
-namespace Polsolcom.Forms.Herramientas
+namespace Polsolcom.Forms.Procesos
 {
-	partial class frmBuscar
-	{
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class frmBuscar
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose( bool disposing )
-		{
-			if ( disposing && (components != null) )
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblIdPaciente = new System.Windows.Forms.Label();
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtNombres = new System.Windows.Forms.TextBox();
-            this.txtAPMaterno = new System.Windows.Forms.TextBox();
-            this.txtAPPaterno = new System.Windows.Forms.TextBox();
+            this.txtApeMaterno = new System.Windows.Forms.TextBox();
+            this.txtApePaterno = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.fGrid = new TenTec.Windows.iGridLib.iGrid();
+            this.lstBuscar = new System.Windows.Forms.ListView();
+            this.Nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DNI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblIdPaciente);
             this.groupBox1.Controls.Add(this.txtDNI);
+            this.groupBox1.Controls.Add(this.lblIdPaciente);
             this.groupBox1.Controls.Add(this.txtNombres);
-            this.groupBox1.Controls.Add(this.txtAPMaterno);
-            this.groupBox1.Controls.Add(this.txtAPPaterno);
+            this.groupBox1.Controls.Add(this.txtApeMaterno);
+            this.groupBox1.Controls.Add(this.txtApePaterno);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -68,20 +72,6 @@ namespace Polsolcom.Forms.Herramientas
             this.lblIdPaciente.Size = new System.Drawing.Size(0, 13);
             this.lblIdPaciente.TabIndex = 1;
             // 
-            // txtDNI
-            // 
-            this.txtDNI.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDNI.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtDNI.Location = new System.Drawing.Point(7, 25);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(93, 20);
-            this.txtDNI.TabIndex = 1;
-            this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtDNI.TextChanged += new System.EventHandler(this.txtDNI_TextChanged);
-            this.txtDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
-            this.txtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNI_KeyPress);
-            // 
             // txtNombres
             // 
             this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -94,29 +84,29 @@ namespace Polsolcom.Forms.Herramientas
             this.txtNombres.TextChanged += new System.EventHandler(this.txtNombres_TextChanged);
             this.txtNombres.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNombres_KeyDown);
             // 
-            // txtAPMaterno
+            // txtApeMaterno
             // 
-            this.txtAPMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAPMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAPMaterno.Location = new System.Drawing.Point(251, 25);
-            this.txtAPMaterno.Name = "txtAPMaterno";
-            this.txtAPMaterno.Size = new System.Drawing.Size(145, 20);
-            this.txtAPMaterno.TabIndex = 3;
-            this.txtAPMaterno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAPMaterno.TextChanged += new System.EventHandler(this.txtAPMaterno_TextChanged);
-            this.txtAPMaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
+            this.txtApeMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtApeMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApeMaterno.Location = new System.Drawing.Point(251, 25);
+            this.txtApeMaterno.Name = "txtApeMaterno";
+            this.txtApeMaterno.Size = new System.Drawing.Size(145, 20);
+            this.txtApeMaterno.TabIndex = 3;
+            this.txtApeMaterno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtApeMaterno.TextChanged += new System.EventHandler(this.txtApeMaterno_TextChanged);
+            this.txtApeMaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
             // 
-            // txtAPPaterno
+            // txtApePaterno
             // 
-            this.txtAPPaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAPPaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAPPaterno.Location = new System.Drawing.Point(104, 25);
-            this.txtAPPaterno.Name = "txtAPPaterno";
-            this.txtAPPaterno.Size = new System.Drawing.Size(145, 20);
-            this.txtAPPaterno.TabIndex = 2;
-            this.txtAPPaterno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAPPaterno.TextChanged += new System.EventHandler(this.txtAPPaterno_TextChanged);
-            this.txtAPPaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
+            this.txtApePaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtApePaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApePaterno.Location = new System.Drawing.Point(104, 25);
+            this.txtApePaterno.Name = "txtApePaterno";
+            this.txtApePaterno.Size = new System.Drawing.Size(145, 20);
+            this.txtApePaterno.TabIndex = 2;
+            this.txtApePaterno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtApePaterno.TextChanged += new System.EventHandler(this.txtApePaterno_TextChanged);
+            this.txtApePaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
             // 
             // label4
             // 
@@ -162,14 +152,68 @@ namespace Polsolcom.Forms.Herramientas
             this.label1.TabIndex = 0;
             this.label1.Text = "Apellido Paterno";
             // 
-            // fGrid
+            // lstBuscar
             // 
-            this.fGrid.Location = new System.Drawing.Point(0, 50);
-            this.fGrid.Name = "fGrid";
-            this.fGrid.Size = new System.Drawing.Size(550, 200);
-            this.fGrid.TabIndex = 0;
-            this.fGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
-            this.fGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fGrid_MouseDoubleClick);
+            this.lstBuscar.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Nombre,
+            this.Id,
+            this.DNI});
+            this.lstBuscar.FullRowSelect = true;
+            this.lstBuscar.Location = new System.Drawing.Point(4, 49);
+            this.lstBuscar.MultiSelect = false;
+            this.lstBuscar.Name = "lstBuscar";
+            this.lstBuscar.Size = new System.Drawing.Size(548, 168);
+            this.lstBuscar.TabIndex = 1;
+            this.lstBuscar.UseCompatibleStateImageBehavior = false;
+            this.lstBuscar.View = System.Windows.Forms.View.Details;
+            this.lstBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstBuscar_KeyDown);
+            this.lstBuscar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstBuscar_MouseDoubleClick);
+            // 
+            // Nombre
+            // 
+            this.Nombre.Text = "Apellidos y Nombres";
+            this.Nombre.Width = 330;
+            // 
+            // Id
+            // 
+            this.Id.Text = "Id Paciente";
+            this.Id.Width = 100;
+            // 
+            // DNI
+            // 
+            this.DNI.Text = "DNI";
+            this.DNI.Width = 100;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Enabled = false;
+            this.btnAceptar.Location = new System.Drawing.Point(393, 221);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 2;
+            this.btnAceptar.Text = "&Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.Location = new System.Drawing.Point(474, 221);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // txtDNI
+            // 
+            this.txtDNI.Location = new System.Drawing.Point(4, 25);
+            this.txtDNI.Mask = "99999999";
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(96, 20);
+            this.txtDNI.TabIndex = 5;
+            this.txtDNI.TextChanged += new System.EventHandler(this.txtDNI_TextChanged);
             // 
             // frmBuscar
             // 
@@ -177,8 +221,10 @@ namespace Polsolcom.Forms.Herramientas
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 250);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.lstBuscar);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.fGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmBuscar";
@@ -188,23 +234,27 @@ namespace Polsolcom.Forms.Herramientas
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
             this.ResumeLayout(false);
 
-		}
+        }
 
-		#endregion
+        #endregion
 
-		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.TextBox txtDNI;
-		private System.Windows.Forms.TextBox txtNombres;
-		private System.Windows.Forms.TextBox txtAPMaterno;
-		private System.Windows.Forms.TextBox txtAPPaterno;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
-		private TenTec.Windows.iGridLib.iGrid fGrid;
-		public System.Windows.Forms.Label lblIdPaciente;
-	}
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtNombres;
+        private System.Windows.Forms.TextBox txtApeMaterno;
+        private System.Windows.Forms.TextBox txtApePaterno;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lblIdPaciente;
+        private System.Windows.Forms.ListView lstBuscar;
+        private System.Windows.Forms.ColumnHeader Nombre;
+        private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ColumnHeader DNI;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.MaskedTextBox txtDNI;
+    }
 }

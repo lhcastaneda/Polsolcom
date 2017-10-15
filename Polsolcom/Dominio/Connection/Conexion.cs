@@ -25,7 +25,7 @@ namespace Polsolcom.Dominio.Connection
             }
             else
             {
-                connetionString = "Server=" + strServer + ";Database=Polsolcom;Integrated Security=SSPI;Connect Timeout=15;MultipleActiveResultSets=true;";
+                connetionString = "Server=" + strServer + ";Database=DesPolsolcom;Integrated Security=SSPI;Connect Timeout=15;MultipleActiveResultSets=true;";
                 CNN = new SqlConnection();
                 CMD = new SqlCommand();
 

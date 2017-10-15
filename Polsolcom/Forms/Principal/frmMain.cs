@@ -142,7 +142,7 @@ namespace Polsolcom.Forms
             {
 				CloseReason c = new CloseReason();
 				FormClosingEventArgs a = new FormClosingEventArgs(c, false);
-				frmMain_FormClosing( sender, a );
+                this.ConfirmClose();
 			}
             else if ( clickedItem.Name == "closesession" )
             {
@@ -304,16 +304,16 @@ namespace Polsolcom.Forms
 			toolStripStatusF1.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 		}
 
-		private void frmMain_FormClosing( object sender, FormClosingEventArgs e )
-		{
-			if( MessageBox.Show( "Desea Salir del Sistema...?", "Ventana Principal", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == DialogResult.Yes )
-				Application.Exit();
-			else
-			{
-				this.DialogResult = DialogResult.Cancel;
-				return;
-			}
-		}
+        public void ConfirmClose()
+        {
+            if (MessageBox.Show("Desea Salir del Sistema...?", "Ventana Principal", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                Application.Exit();
+            else
+            {
+                this.DialogResult = DialogResult.Cancel;
+                return;
+            }
+        }
 	}
 
 }

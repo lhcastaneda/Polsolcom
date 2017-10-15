@@ -120,21 +120,21 @@ namespace Polsolcom.Forms.Procesos
             this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
             this.grdDetalle = new System.Windows.Forms.DataGridView();
+            this.Nrv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productosDS = new Polsolcom.Dominio.Data.ProductosDS();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.institucionTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter();
             this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
             this.medicosTableAdapter = new Polsolcom.Dominio.Data.MedicosDSTableAdapters.MedicosTableAdapter();
             this.institucionLiteTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionLiteTableAdapter();
             this.consultoriosSHClinicaTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter();
             this.productosTableAdapter = new Polsolcom.Dominio.Data.ProductosDSTableAdapters.ProductosTableAdapter();
-            this.Nrv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
@@ -464,11 +464,10 @@ namespace Polsolcom.Forms.Procesos
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(110, 39);
             this.btnBuscar.TabIndex = 1;
-            this.btnBuscar.Text = "&Buscar Pac";
+            this.btnBuscar.Text = "&Busca Pac";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            this.btnBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // btnNuevo
             // 
@@ -1147,40 +1146,6 @@ namespace Polsolcom.Forms.Procesos
             this.grdDetalle.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellLeave);
             this.grdDetalle.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetalle_EditingControlShowing);
             // 
-            // productosBindingSource
-            // 
-            this.productosBindingSource.DataMember = "Productos";
-            this.productosBindingSource.DataSource = this.productosDS;
-            // 
-            // productosDS
-            // 
-            this.productosDS.DataSetName = "ProductosDS";
-            this.productosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // institucionTableAdapter
-            // 
-            this.institucionTableAdapter.ClearBeforeFill = true;
-            // 
-            // docVentaTableAdapter
-            // 
-            this.docVentaTableAdapter.ClearBeforeFill = true;
-            // 
-            // medicosTableAdapter
-            // 
-            this.medicosTableAdapter.ClearBeforeFill = true;
-            // 
-            // institucionLiteTableAdapter
-            // 
-            this.institucionLiteTableAdapter.ClearBeforeFill = true;
-            // 
-            // consultoriosSHClinicaTableAdapter
-            // 
-            this.consultoriosSHClinicaTableAdapter.ClearBeforeFill = true;
-            // 
-            // productosTableAdapter
-            // 
-            this.productosTableAdapter.ClearBeforeFill = true;
-            // 
             // Nrv
             // 
             this.Nrv.HeaderText = "NRV";
@@ -1198,9 +1163,19 @@ namespace Polsolcom.Forms.Procesos
             this.Id.ValueMember = "Id_Producto";
             this.Id.Width = 350;
             // 
+            // productosBindingSource
+            // 
+            this.productosBindingSource.DataMember = "Productos";
+            this.productosBindingSource.DataSource = this.productosDS;
+            // 
+            // productosDS
+            // 
+            this.productosDS.DataSetName = "ProductosDS";
+            this.productosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // Descripcion
             // 
-            this.Descripcion.HeaderText = "ID";
+            this.Descripcion.HeaderText = "Descripcion";
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
             this.Descripcion.Visible = false;
@@ -1232,6 +1207,30 @@ namespace Polsolcom.Forms.Procesos
             this.SubTotal.Name = "SubTotal";
             this.SubTotal.ReadOnly = true;
             this.SubTotal.Width = 70;
+            // 
+            // institucionTableAdapter
+            // 
+            this.institucionTableAdapter.ClearBeforeFill = true;
+            // 
+            // docVentaTableAdapter
+            // 
+            this.docVentaTableAdapter.ClearBeforeFill = true;
+            // 
+            // medicosTableAdapter
+            // 
+            this.medicosTableAdapter.ClearBeforeFill = true;
+            // 
+            // institucionLiteTableAdapter
+            // 
+            this.institucionLiteTableAdapter.ClearBeforeFill = true;
+            // 
+            // consultoriosSHClinicaTableAdapter
+            // 
+            this.consultoriosSHClinicaTableAdapter.ClearBeforeFill = true;
+            // 
+            // productosTableAdapter
+            // 
+            this.productosTableAdapter.ClearBeforeFill = true;
             // 
             // frmSHClinica
             // 

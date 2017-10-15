@@ -1,23 +1,41 @@
 ﻿using Polsolcom.Dominio.Connection;
 using Polsolcom.Dominio.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using TenTec.Windows.iGridLib;
+using Polsolcom.Forms.Procesos;
+using static Polsolcom.Forms.Procesos.frmSHClinica;
 
-namespace Polsolcom.Forms.Herramientas
+namespace Polsolcom.Forms.Procesos
 {
 	public partial class frmBuscar : Form
 	{
-		public frmBuscar()
+        public CpaDelegate CpaCallback;
+        public Dictionary<string, string> bpac = new Dictionary<string, string>();
+        List<Dictionary<string, string>> bpacs = new List<Dictionary<string, string>>();
+
+        public frmBuscar()
 		{
 			InitializeComponent();
 		}
 
-		private void frmBuscar_Load( object sender, EventArgs e )
+        public void bpa()
+        {
+            lstBuscar.Items.Clear();
+            string sql = General.DevuelveQueryPaciente(txtApeMaterno.Text, txtApeMaterno.Text, txtNombres.Text, txtDNI.Text, "", "", 1, General.ODB);
+            General.FillListView(lstBuscar, this.bpacs, new[] { "Paciente", "Id_Paciente", "DNI" });
+
+            btnAceptar.Enabled = true;
+        }
+
+        private void frmBuscar_Load( object sender, EventArgs e )
 		{
-			Text = Text + "Conexion a BD general: " + (General.ODB == 0? "OFF" : "ON");
+			this.Text = this.Text + "Conexion a BD general: " + (General.ODB == 0? "OFF" : "ON");
+            General.setAll<TextBox, string>(this, "Text", "");
+            this.bpa();
 		}
 
 		private void frmBuscar_KeyDown( object sender, KeyEventArgs e )
@@ -28,52 +46,7 @@ namespace Polsolcom.Forms.Herramientas
 				Close();
 			}
 		}
-
-		private void FormateaGrilla()
-		{
-			fGrid.RowHeader.Visible = false;
-			fGrid.RowMode = true;
-			fGrid.SelectionMode = iGSelectionMode.One;
-			fGrid.DefaultRow.Height = 20;
-			fGrid.Cols.Count = 6;
-
-			fGrid.Cols[0].Text = "Apellidos y Nombres";
-			fGrid.Cols[0].Width = 320;
-			fGrid.Cols[0].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[0].CellStyle.TextAlign = iGContentAlignment.MiddleLeft;
-			fGrid.Cols[0].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[1].Text = "ID Paciente";
-			fGrid.Cols[1].Width = 100;
-			fGrid.Cols[1].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[1].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[1].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[2].Text = "DNI";
-			fGrid.Cols[2].Width = 100;
-			fGrid.Cols[2].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[2].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[2].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[3].Text = "Id_Old";
-			fGrid.Cols[3].Width = 1;
-			fGrid.Cols[3].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[4].Text = "Id_Asegurado";
-			fGrid.Cols[4].Width = 1;
-			fGrid.Cols[4].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[4].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[4].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[5].Text = "Nro_Historia";
-			fGrid.Cols[5].Width = 1;
-			fGrid.Cols[5].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[5].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[5].CellStyle.ReadOnly = iGBool.True;
-		}
-
+        /*
 		private void CargaGrilla()
 		{
 			string vSQL = "";
@@ -102,30 +75,32 @@ namespace Polsolcom.Forms.Herramientas
 			Cursor.Current = Cursors.Default;
 			FormateaGrilla();
 		}
-
-		private void txtAPPaterno_TextChanged( object sender, EventArgs e )
+        */
+		private void txtApePaterno_TextChanged( object sender, EventArgs e )
 		{
-			if( General.ODB == 0 )
-				CargaGrilla();
+            this.bpa();
 		}
 
-		private void txtAPMaterno_TextChanged( object sender, EventArgs e )
+		private void txtApeMaterno_TextChanged( object sender, EventArgs e )
 		{
-			if( General.ODB == 0 )
-				CargaGrilla();
-		}
+            this.bpa();
+        }
 
-		private void txtNombres_TextChanged( object sender, EventArgs e )
+        private void txtNombres_TextChanged( object sender, EventArgs e )
 		{
-			if( General.ODB == 0 || txtNombres.Text != "" )
-				CargaGrilla();
+            if (txtNombres.Text.Length > 0)
+            {
+                this.bpa();
+            }
 		}
 
 		private void txtDNI_TextChanged( object sender, EventArgs e )
 		{
-			if( txtDNI.Text.Length == 8 )
-				CargaGrilla();
-		}
+            if (txtDNI.Text.Length > 8)
+            {
+                this.bpa();
+            }
+        }
 
 		private void txtDNI_KeyPress( object sender, KeyPressEventArgs e )
 		{
@@ -141,38 +116,53 @@ namespace Polsolcom.Forms.Herramientas
 				Close();
 			}
 			else if( e.KeyCode == Keys.Enter )
-			{
-				if( General.ODB == 0 || ( txtAPPaterno.Text != "" && txtAPMaterno.Text != "" && txtNombres.Text == "") )
-					CargaGrilla();
+            { 
 			}
 		}
 
-		private void fGrid_MouseDoubleClick( object sender, MouseEventArgs e )
-		{
-			if( fGrid.Rows.Count != 0 )
-			{
-				if( General.ODB == 0 )
-				{
-					if(fGrid.Cells[fGrid.CurRow.Index, 4].Text == "A")
-					{
-						MessageBox.Show( "El registro esta anulado, consulte con el administrador del sistema...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1 );
-						General.ODB = 0;
-						lblIdPaciente.Text = "";
-						DialogResult = DialogResult.Cancel;
-						return;
-					}
-					lblIdPaciente.Text = fGrid.Cells[fGrid.CurRow.Index, 1].Text;
-					DialogResult = DialogResult.OK;
-					Close();
-				}
-				else
-				{
-					General.ODB = 1;
-					lblIdPaciente.Text = fGrid.Cells[fGrid.CurRow.Index, 2].Text;
-					DialogResult = DialogResult.OK;
-					Close();
-				}
-			}
-		}
-	}
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            int index = General.GetSelectedIndex(lstBuscar);
+            this.bpac = this.bpacs[index];
+
+            if (lstBuscar.Items.Count > 0)
+            {
+                if (General.ODB == 0)
+                {
+                    if (this.bpac["Asegurado"] == "A")
+                    {
+                        MessageBox.Show("El registro esta anulado, consulte con el administrador del sistema ...", "Advertencia");
+                        btnCancelar_Click(btnCancelar, new EventArgs());
+                        return;
+                    }
+
+                    CpaCallback(0, false);
+                }
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lstBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F1:
+                    txtApePaterno.Focus();
+                    return;
+                case Keys.Enter:
+                    btnAceptar_Click(btnAceptar, new EventArgs());
+                    break;
+            }
+        }
+
+        private void lstBuscar_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            btnAceptar_Click(btnAceptar, new EventArgs());
+        }
+    }
 }
