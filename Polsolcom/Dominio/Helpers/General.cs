@@ -1122,7 +1122,7 @@ namespace Polsolcom.Dominio.Helpers
                     return "";
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.*, P.ape_pat+' '+P.Ape_Mat+' '+P.Nombres As Paciente,U.Id_Old, '' As Direccion, U.Distrito As FullDireccion " +
+                        "P.*, ISNULL(P.Ape_Pat, '') +' '+P.Ape_Mat+' '+P.Nombres As Paciente,U.Id_Old, '' As Direccion, U.Distrito As FullDireccion " +
                         "FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " +
                         "ON P.Ubigeo=U.Ubigeo WHERE 1 = 1 ";
 
@@ -1496,11 +1496,6 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        /// <summary>
-        /// Obtiene los años desde una fecha hasta ahora
-        /// </summary>
-        /// <param name="date">Fecha de inicio</param>
-        /// <returns>Cantidad de años</returns>
         public static int getYearsUntilNow(DateTime date)
         {
             DateTime now = DateTime.Today;
@@ -1509,7 +1504,7 @@ namespace Polsolcom.Dominio.Helpers
             return age;
         }
 
-        public static int getYearUntilNow(string date)
+        public static int getYearsUntilNow(string date)
         {
             DateTime datetime = new DateTime();
             bool valid = DateTime.TryParse(date, out datetime);
@@ -1582,11 +1577,18 @@ namespace Polsolcom.Dominio.Helpers
 
         public static Dictionary<string, string> GetDictionary(ComboBox combobox, int index)
         {
-            DataRowView vrow = (DataRowView)combobox.Items[index];
-            DataRow row = vrow.Row;
-            return row.Table.Columns
-              .Cast<DataColumn>()
-              .ToDictionary(c => c.ColumnName, c => row[c].ToString());
+            if (combobox.Items.Count > 0 && index > -1)
+            {
+                DataRowView vrow = (DataRowView)combobox.Items[index];
+                DataRow row = vrow.Row;
+                return row.Table.Columns
+                  .Cast<DataColumn>()
+                  .ToDictionary(c => c.ColumnName, c => row[c].ToString());
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static Dictionary<string, string> GetDictionary(DataGridView dataGridView, int index)

@@ -17,10 +17,11 @@ namespace Polsolcom.Forms.Procesos
     public partial class frmSHClinica : Form
     {
         public delegate bool CpaDelegate(int spro, bool reload);
+        public delegate bool HabDelegate(int xmd);
+        public delegate void BusDelegate(Dictionary<string, string> bpac, int odb = 0);
 
         Keys lastKey;
         string cad = "";
-        int odb = 0;
         string xnrv = "";
         int nhp = 0;
         string nrc = "";
@@ -332,7 +333,7 @@ namespace Polsolcom.Forms.Procesos
                 cmbEspecialidad.Focus();
             }
 
-            this.nhp = this.bpac["Nro_Historia"].Length == 0 ? 0 : int.Parse(bpac["Nro_Historia"]);
+            this.nhp = this.bpac["Nro_Historia"].Length == 0 ? 0 : int.Parse(this.bpac["Nro_Historia"]);
 
             txtNHP.Text = this.bpac["Nro_Historia"];
             txtNombre.Text = this.bpac["Nombre"];
@@ -341,7 +342,7 @@ namespace Polsolcom.Forms.Procesos
             txtDNI.Text = this.bpac["DNI"];
             txtODoc.Text = this.bpac["ODoc"];
             txtFechaNac.Text = this.bpac["Fecha_Nac"].Length == 0 ? General.emptyDate : bpac["Fecha_Nac"];
-            txtEdad.Text = this.bpac["Fecha_Nac"].Length == 0 ? this.bpac["Edad"] : General.getYearUntilNow(txtFechaNac.Text).ToString();
+            txtEdad.Text = this.bpac["Fecha_Nac"].Length == 0 ? this.bpac["Edad"] : General.getYearsUntilNow(txtFechaNac.Text).ToString();
             txtSexo.Text = this.bpac["Sexo"];
             txtTelefono.Text = this.bpac["Telefono"];
             txtDireccion.Text = this.bpac["Direccion"];
@@ -409,7 +410,6 @@ namespace Polsolcom.Forms.Procesos
 
         public void deh()
         {
-            this.odb = 0;
             General.setAll<TextBox, bool>(groupBoxMain, "ReadOnly", true);
             General.setAll<MaskedTextBox, bool>(groupBoxMain, "ReadOnly", true);
             General.setAll<ComboBox, bool>(groupBoxMain, "Enabled", false);
@@ -567,13 +567,15 @@ namespace Polsolcom.Forms.Procesos
                     if (!this.gdv()) return false;
 
                     grdDetalle.Rows.Clear();
-
-                    this.odb = 0;
-
                     break;
             }
 
             return true;
+        }
+
+        public void bus(Dictionary<string, string> xpac, int odb)
+        {
+            this.bpac = xpac;
         }
 
         public bool hom()
@@ -905,13 +907,13 @@ namespace Polsolcom.Forms.Procesos
                     }
                     else
                     {
-                        /*
-                        .frmbuscar.setall('Value', '', 'TextBox')
-                        .odb = 1
-                        .frmhistoria.hide
-                        .frmbuscar.show
-                        .frmbuscar.cmdaceptar.enabled = .F.
-                         */
+                        frmBuscar frmBuscar = new frmBuscar(1);
+                        frmBuscar.CpaCallback += new CpaDelegate(this.cpa);
+                        frmBuscar.HabCallback += new HabDelegate(this.hab);
+                        frmBuscar.BusCallback += new BusDelegate(this.bus);
+                        frmBuscar.FormClosed += new FormClosedEventHandler(frmBuscar_FormClosed);
+                        frmBuscar.Show();
+                        this.Hide();
                     }
                 else
                 {
@@ -1059,8 +1061,10 @@ namespace Polsolcom.Forms.Procesos
                 this.hi = DateTime.Today.ToShortDateString();
                 btnBuscar.Text = "&Grabar";
 
-                frmBuscar frmBuscar = new frmBuscar();
+                frmBuscar frmBuscar = new frmBuscar(0);
                 frmBuscar.CpaCallback += new CpaDelegate(this.cpa);
+                frmBuscar.HabCallback += new HabDelegate(this.hab);
+                frmBuscar.BusCallback += new BusDelegate(this.bus);
                 frmBuscar.FormClosed += new FormClosedEventHandler(frmBuscar_FormClosed);
                 frmBuscar.Show();
                 this.Hide();
@@ -1097,13 +1101,51 @@ namespace Polsolcom.Forms.Procesos
 
         private void frmBuscar_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.bpac = ((frmBuscar)sender).bpac;
-            txtIdPaciente.Text = this.bpac["Id_Paciente"];
+            if (((frmBuscar)sender).DialogResult == DialogResult.OK)
+            {
+                if (((frmBuscar)sender).odb == 0)
+                {
+                    txtIdPaciente.Text = this.bpac["Id_Paciente"];
+                }
+                else
+                {
+                    btnNuevo.Enabled = true;
+                    btnNuevo.Text = "&Grabar";
+                    txtFechaEmision.Text = DateTime.Now.ToString(General.dateTimeFormat);
+                    cmbDepartamento.SelectedValue = this.bpac["Id_Old"].Length > 0 ? this.bpac["Id_Old"].Substring(0, 2) : "";
+                    cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
+                    cmbProvincia.SelectedValue = this.bpac["Id_Old"].Length > 0 ? this.bpac["Id_Old"].Substring(0, 4) : "";
+                    cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
+                    cmbDistrito.SelectedValue = this.bpac["Id_Old"];
+                    txtSexo.Text = this.bpac["Sexo"] == "1" ? "M" : "F";
+                    txtNombre.Text = this.bpac["Nombres"];
+                    txtApePaterno.Text = this.bpac["Ape_Pat"];
+                    txtApeMaterno.Text = this.bpac["Ape_Mat"];
+                    txtDNI.Text = this.bpac["DNI"];
+                    //La fecha es un número, por lo tanto es indescifrable
+                    //txtFechaNac.Text = DateTime.Parse(this.bpac["Fec_Nac"]).ToShortDateString();
+                    //txtEdad.Text = General.getYearsUntilNow(this.bpac["Fec_Nac"]).ToString();
+                    txtDireccion.Focus();
+                }
+
+                lblDigitador.Text = Usuario.usuario;
+                lblSerie.Text = this.rdvopen["Serie"];
+                grdDetalle.Rows.Clear();
+                this.gdv();
+            }
+            else
+            {
+                btnBuscar.Text = "&Busca Pac";
+            }
+
             this.Show();
+            txtDNI.Focus();
         }
 
         private void btnDuplica_Click(object sender, EventArgs e)
         {
+            grdDetalle.Rows.Clear();
+
             this.hi = DateTime.Now.ToString(General.dateTimeFormat);
 
             txtFechaEmision.Text = this.hi;

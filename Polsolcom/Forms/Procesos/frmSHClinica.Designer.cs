@@ -977,8 +977,6 @@ namespace Polsolcom.Forms.Procesos
             this.txtIdPaciente.ReadOnly = true;
             this.txtIdPaciente.Size = new System.Drawing.Size(74, 20);
             this.txtIdPaciente.TabIndex = 6;
-            this.txtIdPaciente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtIdPaciente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             // 
             // label14
             // 

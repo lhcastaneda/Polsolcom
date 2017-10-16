@@ -420,7 +420,7 @@ namespace Polsolcom.Forms
                 txtDni.Text = personalList[this.i]["DNI"];
                 txtRuc.Text = personalList[this.i]["RUC"];
                 txtFechaNac.Text = personalList[this.i]["Fec_Nac"];
-                txtEdad.Text = General.getYearUntilNow(txtFechaNac.Text).ToString();
+                txtEdad.Text = General.getYearsUntilNow(txtFechaNac.Text).ToString();
                 cmbTCol.SelectedValue = personalList[this.i]["TNCol"].Substring(0, 1);
                 txtNCol.Text = personalList[this.i]["TNCol"].Length > 8 ? personalList[this.i]["TNCol"].Substring(1, 7) : personalList[this.i]["TNCol"].Substring(1);
                 txtRne.Text = personalList[this.i]["RNE"];
@@ -539,7 +539,7 @@ namespace Polsolcom.Forms
 
         private void txtFechaNac_Leave(object sender, EventArgs e)
         {
-            txtEdad.Text = General.getYearUntilNow(txtFechaNac.Text).ToString();
+            txtEdad.Text = General.getYearsUntilNow(txtFechaNac.Text).ToString();
         }
 
         private void txtFechaCes_Leave(object sender, EventArgs e)

@@ -14,28 +14,45 @@ namespace Polsolcom.Forms.Procesos
 	public partial class frmBuscar : Form
 	{
         public CpaDelegate CpaCallback;
+        public HabDelegate HabCallback;
+        public BusDelegate BusCallback;
         public Dictionary<string, string> bpac = new Dictionary<string, string>();
         List<Dictionary<string, string>> bpacs = new List<Dictionary<string, string>>();
+        public int odb;
 
-        public frmBuscar()
+        public frmBuscar(int odb)
 		{
 			InitializeComponent();
+            this.odb = odb;
 		}
 
         public void bpa()
         {
-            lstBuscar.Items.Clear();
-            string sql = General.DevuelveQueryPaciente(txtApeMaterno.Text, txtApeMaterno.Text, txtNombres.Text, txtDNI.Text, "", "", 1, General.ODB);
-            General.FillListView(lstBuscar, this.bpacs, new[] { "Paciente", "Id_Paciente", "DNI" });
+            string sql = General.DevuelveQueryPaciente(txtApePaterno.Text, txtApeMaterno.Text, txtNombres.Text, txtDNI.Text, "", "", 2, this.odb);
+            this.bpacs = General.GetDictionaryList(sql);
+
+            if (this.odb == 0)
+            {
+                General.FillListView(lstBuscar, this.bpacs, new[] { "Paciente", "Id_Paciente", "DNI" });
+            }
+            else
+            {
+                General.FillListView(lstBuscar, this.bpacs, new[] { "Paciente", "Ubigeo", "DNI" });
+            }
 
             btnAceptar.Enabled = true;
         }
 
         private void frmBuscar_Load( object sender, EventArgs e )
 		{
-			this.Text = this.Text + "Conexion a BD general: " + (General.ODB == 0? "OFF" : "ON");
+			this.Text = this.Text + "Conexion a BD general: " + (this.odb == 0? "OFF" : "ON");
             General.setAll<TextBox, string>(this, "Text", "");
             this.bpa();
+
+            if (this.odb == 1)
+            {
+                btnAceptar.Enabled = false;
+            }
 		}
 
 		private void frmBuscar_KeyDown( object sender, KeyEventArgs e )
@@ -46,49 +63,26 @@ namespace Polsolcom.Forms.Procesos
 				Close();
 			}
 		}
-        /*
-		private void CargaGrilla()
-		{
-			string vSQL = "";
-			DataSet dt = new DataSet();
-
-			vSQL = General.DevuelveQueryPaciente(txtAPPaterno.Text.ToString(),txtAPMaterno.Text.ToString(),txtNombres.Text.ToString(),txtDNI.Text.ToString(),"","",1,General.ODB);
-
-			if( vSQL == "" )
-				return;
-
-			Cursor.Current = Cursors.WaitCursor;
-			Conexion.CMD.CommandText = vSQL;
-			using( SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD) )
-			{
-				dt.Clear();
-				da.Fill(dt);
-				da.Dispose();
-			}
-
-			fGrid.Rows.Clear();
-			using( IDataReader dr = dt.CreateDataReader() )
-			{
-				fGrid.FillWithData(dr);
-				dr.Close();
-			}
-			Cursor.Current = Cursors.Default;
-			FormateaGrilla();
-		}
-        */
+       
 		private void txtApePaterno_TextChanged( object sender, EventArgs e )
 		{
-            this.bpa();
-		}
+            if (this.odb == 0)
+            {
+                this.bpa();
+            }
+        }
 
 		private void txtApeMaterno_TextChanged( object sender, EventArgs e )
 		{
-            this.bpa();
+            if (this.odb == 0)
+            {
+                this.bpa();
+            }
         }
 
         private void txtNombres_TextChanged( object sender, EventArgs e )
 		{
-            if (txtNombres.Text.Length > 0)
+            if (this.odb == 0 || txtNombres.Text.Length > 0)
             {
                 this.bpa();
             }
@@ -120,15 +114,11 @@ namespace Polsolcom.Forms.Procesos
 			}
 		}
 
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            int index = General.GetSelectedIndex(lstBuscar);
-            this.bpac = this.bpacs[index];
-
             if (lstBuscar.Items.Count > 0)
             {
-                if (General.ODB == 0)
+                if (this.odb == 0)
                 {
                     if (this.bpac["Asegurado"] == "A")
                     {
@@ -137,14 +127,28 @@ namespace Polsolcom.Forms.Procesos
                         return;
                     }
 
+                    BusCallback(this.bpac, 0);
                     CpaCallback(0, false);
                 }
+                else
+                {
+                    BusCallback(this.bpac, 1);
+                    HabCallback(0);
+                }
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                btnCancelar_Click(btnCancelar, new EventArgs());
             }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         private void lstBuscar_KeyDown(object sender, KeyEventArgs e)
@@ -163,6 +167,12 @@ namespace Polsolcom.Forms.Procesos
         private void lstBuscar_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             btnAceptar_Click(btnAceptar, new EventArgs());
+        }
+
+        private void lstBuscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = General.GetSelectedIndex(lstBuscar);
+            this.bpac = this.bpacs[index];
         }
     }
 }

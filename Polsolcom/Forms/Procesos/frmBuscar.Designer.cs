@@ -29,6 +29,7 @@ namespace Polsolcom.Forms.Procesos
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
             this.lblIdPaciente = new System.Windows.Forms.Label();
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.txtApeMaterno = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@ namespace Polsolcom.Forms.Procesos
             this.DNI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,13 +64,22 @@ namespace Polsolcom.Forms.Procesos
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtDNI
+            // 
+            this.txtDNI.Location = new System.Drawing.Point(4, 25);
+            this.txtDNI.Mask = "99999999";
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(96, 20);
+            this.txtDNI.TabIndex = 5;
+            this.txtDNI.TextChanged += new System.EventHandler(this.txtDNI_TextChanged);
+            // 
             // lblIdPaciente
             // 
             this.lblIdPaciente.AutoSize = true;
             this.lblIdPaciente.Location = new System.Drawing.Point(403, 7);
             this.lblIdPaciente.Name = "lblIdPaciente";
             this.lblIdPaciente.Size = new System.Drawing.Size(0, 13);
-            this.lblIdPaciente.TabIndex = 1;
+            this.lblIdPaciente.TabIndex = 3;
             // 
             // txtNombres
             // 
@@ -79,7 +88,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtNombres.Location = new System.Drawing.Point(398, 25);
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(145, 20);
-            this.txtNombres.TabIndex = 4;
+            this.txtNombres.TabIndex = 8;
             this.txtNombres.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNombres.TextChanged += new System.EventHandler(this.txtNombres_TextChanged);
             this.txtNombres.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNombres_KeyDown);
@@ -91,7 +100,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtApeMaterno.Location = new System.Drawing.Point(251, 25);
             this.txtApeMaterno.Name = "txtApeMaterno";
             this.txtApeMaterno.Size = new System.Drawing.Size(145, 20);
-            this.txtApeMaterno.TabIndex = 3;
+            this.txtApeMaterno.TabIndex = 7;
             this.txtApeMaterno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtApeMaterno.TextChanged += new System.EventHandler(this.txtApeMaterno_TextChanged);
             this.txtApeMaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
@@ -103,7 +112,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtApePaterno.Location = new System.Drawing.Point(104, 25);
             this.txtApePaterno.Name = "txtApePaterno";
             this.txtApePaterno.Size = new System.Drawing.Size(145, 20);
-            this.txtApePaterno.TabIndex = 2;
+            this.txtApePaterno.TabIndex = 6;
             this.txtApePaterno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtApePaterno.TextChanged += new System.EventHandler(this.txtApePaterno_TextChanged);
             this.txtApePaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
@@ -116,7 +125,7 @@ namespace Polsolcom.Forms.Procesos
             this.label4.Location = new System.Drawing.Point(33, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 0;
             this.label4.Text = "D.N.I.";
             // 
             // label3
@@ -127,7 +136,7 @@ namespace Polsolcom.Forms.Procesos
             this.label3.Location = new System.Drawing.Point(440, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 4;
             this.label3.Text = "Nombres";
             // 
             // label2
@@ -138,7 +147,7 @@ namespace Polsolcom.Forms.Procesos
             this.label2.Location = new System.Drawing.Point(270, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(102, 13);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Apellido Materno";
             // 
             // label1
@@ -149,7 +158,7 @@ namespace Polsolcom.Forms.Procesos
             this.label1.Location = new System.Drawing.Point(126, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 1;
             this.label1.Text = "Apellido Paterno";
             // 
             // lstBuscar
@@ -166,6 +175,7 @@ namespace Polsolcom.Forms.Procesos
             this.lstBuscar.TabIndex = 1;
             this.lstBuscar.UseCompatibleStateImageBehavior = false;
             this.lstBuscar.View = System.Windows.Forms.View.Details;
+            this.lstBuscar.SelectedIndexChanged += new System.EventHandler(this.lstBuscar_SelectedIndexChanged);
             this.lstBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstBuscar_KeyDown);
             this.lstBuscar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstBuscar_MouseDoubleClick);
             // 
@@ -197,7 +207,6 @@ namespace Polsolcom.Forms.Procesos
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Enabled = false;
             this.btnCancelar.Location = new System.Drawing.Point(474, 221);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
@@ -205,15 +214,6 @@ namespace Polsolcom.Forms.Procesos
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // txtDNI
-            // 
-            this.txtDNI.Location = new System.Drawing.Point(4, 25);
-            this.txtDNI.Mask = "99999999";
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(96, 20);
-            this.txtDNI.TabIndex = 5;
-            this.txtDNI.TextChanged += new System.EventHandler(this.txtDNI_TextChanged);
             // 
             // frmBuscar
             // 

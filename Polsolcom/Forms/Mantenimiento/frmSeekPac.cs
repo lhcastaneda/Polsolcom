@@ -338,7 +338,7 @@ namespace Polsolcom.Forms.Mantenimiento
                     txtSexo.Text = this.pacs[i]["Sexo"];
                     txtDoc.Text = this.pacs[i]["DNI"];
                     txtFechaNac.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? General.emptyDate : this.pacs[i]["Fecha_Nac"];
-                    txtEdad.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? this.pacs[i]["Edad"] : General.getYearUntilNow(this.pacs[i]["Fecha_Nac"]).ToString();
+                    txtEdad.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? this.pacs[i]["Edad"] : General.getYearsUntilNow(this.pacs[i]["Fecha_Nac"]).ToString();
 
                     cmbDepartamento.SelectedValue = this.pacs[i]["Id_Distrito"].Substring(0, 2);
                     cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());

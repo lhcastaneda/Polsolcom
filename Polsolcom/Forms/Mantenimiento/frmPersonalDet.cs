@@ -182,7 +182,7 @@ namespace Polsolcom.Forms
 
         private void txtFechaNac_Leave(object sender, EventArgs e)
         {
-            txtEdad.Text = General.getYearUntilNow(txtFechaNac.Text).ToString();
+            txtEdad.Text = General.getYearsUntilNow(txtFechaNac.Text).ToString();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

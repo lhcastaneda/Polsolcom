@@ -12,6 +12,9 @@ namespace Polsolcom.Forms
 {
 	public partial class frmMain : Form
     {        
+        public bool confirm = true;
+        public bool closed = false;
+
         public Form RefToLogin { get; set;}
         string vSQL = "";
         List<ItemMenus> list = new List<ItemMenus>();
@@ -23,6 +26,9 @@ namespace Polsolcom.Forms
 
         private void frmMain_Load( object sender, EventArgs e )
         {
+            this.confirm = true;
+            this.closed = false;
+
 			Text = Text + " " + Usuario.descripcion;
 			CargaDatosDefecto();
 			CargaMenuUsuario();
@@ -32,13 +38,7 @@ namespace Polsolcom.Forms
         {
             if ( e.KeyCode == Keys.Escape )
             {
-                if ( MessageBox.Show("Desea Salir del Sistema...?", "Ventana Principal", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes )
-                    Application.Exit();
-                else
-                {
-                    this.DialogResult = DialogResult.Cancel;
-                    return;
-                }
+                this.Close();
             }
         }
 
@@ -142,7 +142,7 @@ namespace Polsolcom.Forms
             {
 				CloseReason c = new CloseReason();
 				FormClosingEventArgs a = new FormClosingEventArgs(c, false);
-                this.ConfirmClose();
+                this.Close();
 			}
             else if ( clickedItem.Name == "closesession" )
             {
@@ -153,6 +153,7 @@ namespace Polsolcom.Forms
                     this.RefToLogin.Text = "finsesion";
                     this.RefToLogin.Activate();
                     this.RefToLogin.Show();
+                    this.confirm = false;
                     this.Close();
                 }
                 else
@@ -304,16 +305,25 @@ namespace Polsolcom.Forms
 			toolStripStatusF1.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 		}
 
-        public void ConfirmClose()
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (MessageBox.Show("Desea Salir del Sistema...?", "Ventana Principal", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-                Application.Exit();
-            else
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.confirm && !this.closed)
             {
-                this.DialogResult = DialogResult.Cancel;
-                return;
+                if (MessageBox.Show("Desea Salir del Sistema...?", "Ventana Principal", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    this.closed = true;
+                    Application.Exit();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
-	}
-
+    }
 }
