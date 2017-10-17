@@ -61,7 +61,7 @@ namespace Polsolcom.Forms
 
             General.FillListView(lstRangos, this.rangos, new[] { "Us", "Fecha", "TDVen", "Serie", "NInicial", "NFinal", "NCon", "Operativo" });
             //
-            if (this.index > -1)
+            if (lstRangos.Items.Count > 0 && this.index > -1)
             {
                 lstRangos.Select();
                 lstRangos.EnsureVisible(this.index);

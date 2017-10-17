@@ -2,326 +2,255 @@
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Modelos;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using TenTec.Windows.iGridLib;
 
-namespace Polsolcom.Forms.Herramientas
+namespace Polsolcom.Forms.Procesos
 {
 	public partial class frmBuscaT:Form
 	{
-		private static string vIDSerie = "";
-		private static string vDventa = "";
-		private static string vIDEspecialidad = "";
+        List<Dictionary<string, string>> busts = new List<Dictionary<string, string>>();
+        public Dictionary<string, string> bust = new Dictionary<string, string>();
 
-		public frmBuscaT()
+
+        public frmBuscaT()
 		{
 			InitializeComponent();
 		}
 
-		private void FormateaGrilla()
+        public void bdv(string scon, string sapa, string sama, string snom, string stik, string sser)
+        {
+            if (sapa.Length == 0 && sama.Length == 0 && snom.Length == 0 && stik.Length == 0 && scon.Length == 0 && sser.Length == 0)
+            {
+                sapa = "AB";
+                sama = snom = "A";
+            }
+
+            if (sapa.Length == 0 && sama.Length == 0 && snom.Length >= 1)
+            {
+                sapa = sama = "A";
+            }
+
+            if (sapa.Length == 0 && snom.Length == 0 && sama.Length >= 1)
+            {
+                sapa = snom = "A";
+            }
+
+            if (sama.Length == 0 && snom.Length == 0 && sapa.Length >= 1)
+            {
+                sama = snom = "A";
+            }
+
+            int lap = sapa.Length;
+            int lam = sama.Length;
+            int lnm = snom.Length;
+            int ltk = stik.Length;
+            int lsr = sser.Length;
+            int lcn = scon.Length;
+
+            string sql = "Select Top 50 Descripcion As Consultorio,P.Ape_Paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente," +
+                "T.Serie+'-'+T.Nro_Ticket As Ticket,T.Id_Paciente,T.Fecha_Emision,T.Nro_Historia,T.Anulado " +
+                "From Tickets T Inner Join Pacientes P On T.Id_Paciente=P.Id_paciente Inner Join Consultorios C On T.Id_Consultorio=" +
+                "C.Id_Consultorio Where ";
+
+            if (lap > 0)
+            {
+                sql += "P.Ape_Paterno Like '" + sapa + "%' ";
+            }
+
+            if (lam > 0)
+            {
+                if (sql.Contains("Like"))
+                {
+                    sql += "And P.Ape_Materno Like '" + sama + "%' ";
+                }
+                else
+                {
+                    sql += "P.Ape_Materno Like '" + sama + "%' ";
+                }
+            }
+            if (lnm > 0)
+            {
+                if (sql.Contains("Like"))
+                {
+                    sql += "And P.Nombre Like '" + snom + "%' ";
+                }
+                else
+                {
+                    sql += "P.Nombre Like '" + snom + "%' ";
+                }
+            }
+            if (lsr > 0)
+            {
+                if (sql.Contains("Like"))
+                {
+                    sql += "And T.DVenta Like '' And T.Serie Like '" + sser + "' ";
+                }
+                else
+                {
+                    sql += "T.DVenta Like '' And T.Serie Like '" + sser + "' ";
+                }
+            }
+            if (ltk > 0)
+            {
+                if (sql.Contains("Like"))
+                {
+                    sql += "And T.Nro_Ticket Like '" + stik + "%' ";
+                }
+                else
+                {
+                    sql += "T.Nro_Ticket Like '" + stik + "%' ";
+                }
+            }
+            if (lcn > 0)
+            {
+                if (sql.Contains("Like"))
+                {
+                    sql += "And C.Id_Consultorio='" + scon + "' ";
+                }
+                else
+                {
+                    sql += "C.Id_Consultorio='" + scon + "' ";
+                }
+            }
+            sql += "And Left(T.Nro_Historia,3)='" + Operativo.id_oper + "' Order By 2";
+
+            this.busts = General.GetDictionaryList(sql);
+            General.FillListView(lstBuscar, this.busts, new[] { "Consultorio", "Paciente", "Ticket", "Id_Paciente", "Fecha_Emision" });
+        }
+
+        private void frmBuscaT_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                btnCancelar_Click(btnCancelar, new EventArgs());
+            }
+        }
+
+        private void frmBuscaT_Load(object sender, System.EventArgs e)
+        {
+            especialidadTableAdapter.Fill(consultoriosDS.Especialidad, Operativo.id_oper);
+            cmbEspecialidad.SelectedIndex = -1;
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            int i = General.GetSelectedIndex(lstBuscar, false);
+
+            if (i > -1)
+            {
+                if (lstBuscar.Items.Count > 0)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    btnCancelar_Click(btnCancelar, new EventArgs());
+                }
+            }
+        }
+
+   		private void txtApePaterno_KeyDown( object sender, KeyEventArgs e )
 		{
-			fGrid.RowHeader.Visible = false;
-			fGrid.RowMode = true;
-			fGrid.SelectionMode = iGSelectionMode.One;
-			fGrid.DefaultRow.Height = 23;
-			fGrid.Cols.Count = 8;
-
-			fGrid.Cols[0].Text = "Consultorio";
-			fGrid.Cols[0].Width = 210;
-			fGrid.Cols[0].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[0].CellStyle.TextAlign = iGContentAlignment.MiddleLeft;
-			fGrid.Cols[0].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[1].Text = "Paciente";
-			fGrid.Cols[1].Width = 150;
-			fGrid.Cols[1].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[1].CellStyle.TextAlign = iGContentAlignment.MiddleLeft;
-			fGrid.Cols[1].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[2].Text = "N° Recibo";
-			fGrid.Cols[2].Width = 65;
-			fGrid.Cols[2].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[2].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[2].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[3].Text = "ID Paciente";
-			fGrid.Cols[3].Width = 75;
-			fGrid.Cols[3].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[3].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[3].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[4].Text = "Fecha";
-			fGrid.Cols[4].Width = 60;
-			fGrid.Cols[4].ColHdrStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[4].CellStyle.TextAlign = iGContentAlignment.MiddleCenter;
-			fGrid.Cols[4].CellStyle.ReadOnly = iGBool.True;
-
-			fGrid.Cols[5].Text = "N° Historia";
-			fGrid.Cols[5].Width = 1;
-
-			fGrid.Cols[6].Text = "Anulado";
-			fGrid.Cols[6].Width = 1;
-
-			fGrid.Cols[7].Text = "DNI";
-			fGrid.Cols[7].Width = 1;
-
-		}
-
-		private void CargaTickets()
-		{
-			int iCont = 0;
-			DataSet dt = new DataSet();
-
-			if( txtApePaterno.Text.Trim() != "" )
-				iCont = iCont + 1;
-
-			if( txtApeMaterno.Text.Trim() != "" )
-				iCont = iCont + 1;
-
-			if( txtNombres.Text.Trim() != "" )
-				iCont = iCont + 1;
-
-			if( vIDSerie != "" || vDventa != "" || vIDEspecialidad != "" )
-				if( txtFechaEmision.Text.Trim() == "")
-				{
-					MessageBox.Show("Para la seleccion de serie, documento o especialidad"+(char)13 + "es necesario ingresar una fecha...", "Ingresar Fecha", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-					return;
-				}
-
-			/*
-			if( iCont > 0 && iCont < 3 )
-			{
-				MessageBox.Show("Debe ingresar la combinacion de nombre, apellido paterno" + (char)13 + "y apellido materno para ejecutar la consulta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-				return;
-			}
-			*/
-
-			string sQuery = "SELECT Descripcion AS Consultorio, " + 
-						"P.Ape_Paterno + ' ' + P.Ape_Materno + ' ' + P.Nombre AS Paciente," + 
-						"T.Serie + '-' + T.Nro_Ticket AS Ticket, T.Id_Paciente," +
-						"CONVERT(VARCHAR(10),T.Fecha_Emision,103),T.Nro_Historia,T.Anulado,P.DNI " + 
-						"FROM Tickets T INNER JOIN Pacientes P " + 
-						"ON T.Id_Paciente = P.Id_paciente " + 
-						"INNER JOIN Consultorios C " + 
-						"ON T.Id_Consultorio = C.Id_Consultorio " + 
-						"WHERE 1 = 1 " +
-						"AND LEFT(T.Nro_Historia,3) = '" + Operativo.id_oper + "' ";
-
-			if( txtDNI.Text.Length == 8 )
-				sQuery = sQuery + "AND P.DNI = '" + txtDNI.Text.Trim() + "' ";
-
-			if( txtFechaEmision.Text.Trim().Length == 10 )
-				sQuery = sQuery + "AND CONVERT(VARCHAR(10),T.Fecha_Emision,103) = '" + txtFechaEmision.Text.Trim() + "' ";
-
-			if( vIDSerie != "" )
-				sQuery = sQuery + "AND T.Serie = '" + vIDSerie + "' ";
-
-			if( vDventa != "" )
-				sQuery = sQuery + "AND T.DVenta = '" + vDventa + "' ";
-
-			if( vIDEspecialidad != "" )
-				sQuery = sQuery + "AND C.Id_Consultorio = '" + vIDEspecialidad + "' ";
-
-			if( txtApePaterno.Text.Trim() != "" )
-				sQuery = sQuery + "AND P.Ape_Paterno LIKE '" + txtApePaterno.Text.Trim() + "%' ";
-
-			if( txtApeMaterno.Text.Trim() != "" )
-				sQuery = sQuery + "AND P.Ape_Materno LIKE '" + txtApeMaterno.Text.Trim() + "%' ";
-
-			if( txtNombres.Text.Trim() != "" )
-				sQuery = sQuery + "AND P.Nombre LIKE '" + txtNombres.Text.Trim() + "%' ";
-
-
-			/*
-			if( iCont >= 3 )
-			{
-				sQuery = sQuery + "AND P.Ape_Paterno LIKE '" + txtApePaterno.Text.Trim() + "%' ";
-				sQuery = sQuery + "AND P.Ape_Materno LIKE '" + txtApeMaterno.Text.Trim() + "%' ";
-				sQuery = sQuery + "AND P.Nombre LIKE '" + txtNombres.Text.Trim() + "%' ";
-			}
-			*/
-
-			sQuery = sQuery + "ORDER BY T.Fecha_Emision DESC ";
-			Cursor.Current = Cursors.WaitCursor;
-			Conexion.CMD.CommandText = sQuery;
-			using( SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD) )
-			{
-				dt.Clear();
-				da.Fill(dt);
-				da.Dispose();
-			}
-
-			fGrid.Rows.Clear();
-			using( IDataReader dr = dt.CreateDataReader() )
-			{
-				fGrid.FillWithData(dr);
-				dr.Close();
-			}
-			Cursor.Current = Cursors.Default;
-			FormateaGrilla();
-
-		}
-
-		private void frmBuscaT_KeyDown( object sender, KeyEventArgs e )
-		{
-			if( e.KeyCode == Keys.Escape )
-			{
-				DialogResult = DialogResult.Cancel;
-				Close();
-			}
-		}
-
-		private void frmBuscaT_Load( object sender, System.EventArgs e )
-		{
-			txtFechaEmision.Mask = "00/00/0000";
-			txtFechaEmision.ValidatingType = typeof(System.DateTime);
-
-			General.LlenaComboBox(cmbTDoc, "DOC_VENTA");
-			General.LlenaComboBox(cmbSerie, "SERIE");
-			//llena combo especialidad
-			string vSQL = "SELECT DISTINCT Descripcion,Id_Consultorio AS IdUbigeo " +
-						  "FROM Consultorios " +
-						  "WHERE Id_Consultorio LIKE '" + Operativo.id_oper + "%' " +
-						  "AND Estado= '1' " +
-						  "Order By 1";
-			General.LlenaComboBox(cmbEspecialidad, "SQL", vSQL);
-			vIDSerie = "";
-			vDventa = "";
-			vIDEspecialidad = "";
-			FormateaGrilla();
-
-	}
-
-		private void txtDNI_KeyPress( object sender, KeyPressEventArgs e )
-		{
-			if( !Char.IsDigit(e.KeyChar) && e.KeyChar != 8 )
-				e.Handled = true;
-		}
-
-		private void txtDNI_TextChanged( object sender, System.EventArgs e )
-		{
-			if( txtDNI.Text.Length == 8 )
-				CargaTickets();
-		}
-
-		private void btnBuscarT_Click( object sender, EventArgs e )
-		{
-			CargaTickets();
-		}
-
-		private void txtFechaEmision_KeyDown( object sender, KeyEventArgs e )
-		{
-			if( e.KeyCode == Keys.Escape )
-			{
-				DialogResult = DialogResult.Cancel;
-				Close();
-			}
-
 			if( e.KeyCode == Keys.Enter )
 			{
-				if( txtFechaEmision.Text.Trim().Length == 10 )
-					CargaTickets();
-				else
-					return;
-
-				e.Handled = true;
-			}
-		}
-
-		private void txtFechaEmision_TypeValidationCompleted( object sender, TypeValidationEventArgs e )
-		{
-			if( txtFechaEmision.Text.Trim() == "/  /" )
-				return;
-
-			if( !e.IsValidInput )
-			{
-				MessageBox.Show("Fecha (dd/MM/aaaa) invalida...", "Ingresar Fecha", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-				return;
-			}
-
-		}
-
-		private void cmbSerie_SelectedIndexChanged( object sender, EventArgs e )
-		{
-			if( cmbSerie.SelectedIndex == -1 )
-				return;
-
-			Ubigeo itm = (Ubigeo)cmbSerie.SelectedItem;
-			vIDSerie = itm.IdUbigeo.Trim();
-		}
-
-		private void cmbTDoc_SelectedIndexChanged( object sender, EventArgs e )
-		{
-			if( cmbTDoc.SelectedIndex == -1 )
-				return;
-
-			Ubigeo itm = (Ubigeo)cmbTDoc.SelectedItem;
-			vDventa = itm.IdUbigeo.Trim();
-		}
-
-		private void cmbEspecialidad_SelectedIndexChanged( object sender, EventArgs e )
-		{
-			if( cmbEspecialidad.SelectedIndex == -1 )
-				return;
-
-			Ubigeo itm = (Ubigeo)cmbEspecialidad.SelectedItem;
-			vIDEspecialidad = itm.IdUbigeo.Trim();
-		}
-
-		private void fGrid_MouseDoubleClick( object sender, MouseEventArgs e )
-		{
-			if( fGrid.Rows.Count != 0 )
-			{
-				if( fGrid.CurRow.Index != -1 )
-				{
-					lblTicket.Text = fGrid.Cells[fGrid.CurRow.Index, 5].Text;
-					DialogResult = DialogResult.OK;
-					Close();
-				}
-	
-			}
-		}
-
-		private void txtNombres_TextChanged( object sender, EventArgs e )
-		{
-			if( txtNombres.Text.Trim() == "" )
-				return;
-
-			CargaTickets();
-		}
-
-		private void txtApePaterno_KeyDown( object sender, KeyEventArgs e )
-		{
-			if( e.KeyCode == Keys.Escape )
-			{
-				DialogResult = DialogResult.Cancel;
-				Close();
-			}
-			else if( e.KeyCode == Keys.Enter )
-			{
-				if( txtApePaterno.Text.Trim() == "" )
-					return;
-
-				CargaTickets();
+                cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
 			}
 		}
 
 		private void txtApeMaterno_KeyDown( object sender, KeyEventArgs e )
 		{
-			if( e.KeyCode == Keys.Escape )
-			{
-				DialogResult = DialogResult.Cancel;
-				Close();
-			}
-			else if( e.KeyCode == Keys.Enter )
-			{
-				if( txtApeMaterno.Text.Trim() == "" )
-					return;
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
+            }
+        }
 
-				CargaTickets();
-			}
-		}
-	}
+        private void txtNroTicket_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
+            }
+        }
+
+        private void cmbEspecialidad_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string especialidad = cmbEspecialidad.SelectedIndex == -1 ? "": cmbEspecialidad.SelectedValue.ToString();
+
+            this.bdv(especialidad, txtApePaterno.Text, txtApeMaterno.Text, txtNombres.Text, txtNroTicket.Text, txtSerie.Text);
+        }
+
+        private void cmbEspecialidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    cmbEspecialidad.SelectedIndex = -1;
+                    break;
+                case Keys.Enter:
+                    cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
+                    break;
+            }
+        }
+
+        private void lstBuscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = General.GetSelectedIndex(lstBuscar);
+            this.bust = this.busts[i];
+
+            txtFechaEmision.Text = this.bust["Fecha_Emision"];
+
+            if (this.bust["Anulado"] == "S")
+            {
+                lblEstado.Text = "ANULADO";
+            }
+
+            if (this.bust["Anulado"] != "S" && this.bust["Anulado"] != "")
+            {
+                lblEstado.Text = "EXTORNO";
+            }
+
+            if (this.bust["Anulado"] == "")
+            {
+                lblEstado.Text = "";
+            }
+        }
+
+        private void lstBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F1:
+                    cmbEspecialidad.Focus();
+                    break;
+                case Keys.Enter:
+                    btnAceptar_Click(btnAceptar, new EventArgs());
+                    break;
+            }
+        }
+
+        private void lstBuscar_DoubleClick(object sender, EventArgs e)
+        {
+            btnAceptar_Click(btnAceptar, new EventArgs());
+        }
+
+        private void txtNombres_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+    }
 }

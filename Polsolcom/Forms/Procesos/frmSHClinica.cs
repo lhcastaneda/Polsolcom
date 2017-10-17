@@ -1,16 +1,9 @@
-﻿using Dapper;
-using Polsolcom.Forms.Herramientas;
-using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System;
 using System.Windows.Forms;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
 using System.Collections.Generic;
-using System.Drawing;
-using TenTec.Windows.iGridLib;
 
 namespace Polsolcom.Forms.Procesos
 {
@@ -25,12 +18,12 @@ namespace Polsolcom.Forms.Procesos
         string xnrv = "";
         int nhp = 0;
         string nrc = "";
-        string noc = "";
-        string BUS = "";
         string hi = "";
         Dictionary<string, string> rdvopen = new Dictionary<string, string>();
         Dictionary<string, string> bpac = new Dictionary<string, string>();
         Dictionary<string, string> igv = new Dictionary<string, string>();
+
+        frmMessage frmMessage = new frmMessage();
 
         public frmSHClinica()
         {
@@ -108,7 +101,7 @@ namespace Polsolcom.Forms.Procesos
             Conexion.ExecuteNonQuery(sql);
 
             txtIdPaciente.Text = Conexion.ExecuteScalar<string>("Select Id_Paciente From Tickets Where Nro_Historia='" + nh + "'");
-            this.noc = "NUEVO";
+            //this.noc = "NUEVO";
             this.adv();
             this.ghp();
         }
@@ -130,110 +123,8 @@ namespace Polsolcom.Forms.Procesos
 
             string sql = "Exec AddTicket '" + nh + "','" + nd + "','" + fe + "','" + es + "','" + ip + "','" + us + "','" + sr + "','" + om + "','" + it + "','" + fp + "','" + dv + "'";
             Conexion.ExecuteNonQuery(sql);
-            this.noc = "CONTINUADOR";
+            //this.noc = "CONTINUADOR";
             this.adv();
-        }
-
-        public void bdv(string scon, string sapa, string sama, string snom, string stik, string sser)
-        {
-            //.frmbuscat.grdbtick.recordsource = ''
-            if (sapa.Length == 0 && sama.Length == 0 && snom.Length == 0 && stik.Length == 0 && scon.Length == 0 && sser.Length == 0)
-            {
-                sapa = "AB";
-                sama = snom = "A";
-            }
-
-            if (sapa.Length == 0 && sama.Length == 0 && snom.Length >= 1)
-            {
-                sapa = sama = "A";
-            }
-
-            if (sapa.Length == 0 && snom.Length == 0 && sama.Length >= 1)
-            {
-                sapa = snom = "A";
-            }
-
-            if (sama.Length == 0 && snom.Length == 0 && sapa.Length >= 1)
-            {
-                sama = snom = "A";
-            }
-
-            int lap = sapa.Length;
-            int lam = sama.Length;
-            int lnm = snom.Length;
-            int ltk = stik.Length;
-            int lsr = sser.Length;
-            int lcn = scon.Length;
-
-            string sql = "Select Top 50 Descripcion As Consultorio,P.Ape_Paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente," +
-                "T.Serie+'-'+T.Nro_Ticket As Ticket,T.Id_Paciente,T.Fecha_Emision,T.Nro_Historia,T.Anulado " +
-                "From Tickets T Inner Join Pacientes P On T.Id_Paciente=P.Id_paciente Inner Join Consultorios C On T.Id_Consultorio=" +
-                "C.Id_Consultorio Where ";
-
-            if (lap > 0)
-            {
-                sql += "P.Ape_Paterno Like '" + sapa + "%' ";
-            }
-
-            if (lam > 0)
-            {
-                if (sql.Contains("Like"))
-                {
-                    sql += "And P.Ape_Materno Like '" + sama + "%' ";
-                }
-                else
-                {
-                    sql += "P.Ape_Materno Like '" + sama + "%' ";
-                }
-            }
-            if (lnm > 0)
-            {
-                if (sql.Contains("Like"))
-                {
-                    sql += "And P.Nombre Like '" + snom + "%' ";
-                }
-                else
-                {
-                    sql += "P.Nombre Like '" + snom + "%' ";
-                }
-            }
-            if (lsr > 0)
-            {
-                if (sql.Contains("Like"))
-                {
-                    sql += "And T.DVenta Like '' And T.Serie Like '" + sser + "' ";
-                }
-                else
-                {
-                    sql += "T.DVenta Like '' And T.Serie Like '" + sser + "' ";
-                }
-            }
-            if (ltk > 0)
-            {
-                if (sql.Contains("Like"))
-                {
-                    sql += "And T.Nro_Ticket Like '" + stik + "%' ";
-                }
-                else
-                {
-                    sql += "T.Nro_Ticket Like '" + stik + "%' ";
-                }
-            }
-            if (lcn > 0)
-            {
-                if (sql.Contains("Like"))
-                {
-                    sql += "And C.Id_Consultorio='" + scon + "' ";
-                }
-                else
-                {
-                    sql += "C.Id_Consultorio='" + scon + "' ";
-                }
-            }
-            sql += "And Left(T.Nro_Historia,3)='" + Operativo.id_oper + "' Order By 2";
-
-            List<Dictionary<string, string>> bust = General.GetDictionaryList(sql);
-            //.frmbuscat.grdbtick.recordsource = 'Bust'
         }
 
         public bool cdv(string lr)
@@ -635,17 +526,16 @@ namespace Polsolcom.Forms.Procesos
             switch (op)
             {
                 case "P":
-                    //.frmmessage.txtmessage.value = ALLTRIM(.frmhistoria.txtnombre.value)+' '+ALLTRIM(.frmhistoria.txtape_paterno.value)+' '+ALLTRIM(.frmhistoria.txtape_materno.value)
-
+                    frmMessage.lblMessage.Text = txtNombre.Text + " " + txtApePaterno.Text + " " + txtApeMaterno.Text;
                     break;
                 case "D":
-                    //.frmmessage.txtmessage.value = ALLTRIM(.frmhistoria.txtdireccion.value)
+                    frmMessage.lblMessage.Text = txtDireccion.Text;
                     break;
                 case "E":
-                    //.frmmessage.txtmessage.value = ALLTRIM(.frmhistoria.txtemail.value)
+                    frmMessage.lblMessage.Text = txtEmail.Text;
                     break;
             }
-            //.frmmessage.txtmessage.selstart = LEN(.frmmessage.txtmessage.value)
+            frmMessage.Show();
         }
 
         public void tsg()
@@ -833,17 +723,6 @@ namespace Polsolcom.Forms.Procesos
             lblSerie.Text = this.rdvopen["Serie"];
 
             this.les();
-            /*
-             .frmbuscar.hide
-            .frmbuscat.hide
-            .frmbuscai.hide
-            WITH .frmmessage
-               .left = 1
-               .width = frmmain.width-3
-               .top = frmmain.height-frmmain.stbar.height-.height-1
-               .txtmessage.width = .width-8
-            ENDWITH
-            */
         }
 
         private string DevuelvePrecioProducto(string idProduct)
@@ -1170,14 +1049,25 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnBuscat_Click(object sender, EventArgs e)
         {
-            /*
-             * thisformset.frmhistoria.hide
-                .show
-                .cmbespecialidad.rowsource = 'Allt(cesp.Descripcion),Id_Consultorio'
-                .setall('Value', '', 'TextBox')
-                .setall('Value', '', 'ComboBox')
-                .txtserie.setfocus
-                */
+            General.setAll<TextBox, string>(groupBoxMain, "Text", "");
+            General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
+
+            frmBuscaT frmBuscaT = new frmBuscaT();
+            frmBuscaT.FormClosed += new FormClosedEventHandler(frmBuscat_FormClosed);
+            frmBuscaT.Show();
+            this.Hide();
+        }
+
+        private void frmBuscat_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (((frmBuscaT)sender).DialogResult == DialogResult.OK)
+            {
+                Dictionary<string, string> bust = ((frmBuscaT)sender).bust;
+                this.cdv(bust["Nro_Historia"]);
+                btnDuplica.Enabled = btnImprimir.Enabled = true;
+            }
+
+            this.Show();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -1283,7 +1173,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (this.lastKey == Keys.F12)
             {
-                //frmmessage.txtmessage.setfocus
+                frmMessage.lblMessage.Focus();
                 this.cad = txtDireccion.Text;
                 txtDireccion.Text = (cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1));
             }
@@ -1496,7 +1386,7 @@ namespace Polsolcom.Forms.Procesos
 
             if (this.lastKey == Keys.F12)
             {
-                //.frmmessage.txtmessage.setfocus
+                frmMessage.lblMessage.Focus();
             }
 
             this.msg("P");
@@ -1513,7 +1403,7 @@ namespace Polsolcom.Forms.Procesos
 
             if (this.lastKey == Keys.F12)
             {
-                //.frmmessage.txtmessage.setfocus
+                frmMessage.lblMessage.Focus();
             }
 
             this.msg("P");
@@ -1530,7 +1420,7 @@ namespace Polsolcom.Forms.Procesos
 
             if (this.lastKey == Keys.F12)
             {
-                //.frmmessage.txtmessage.setfocus
+                frmMessage.lblMessage.Focus();
             }
 
             this.msg("P");
@@ -1851,14 +1741,22 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnInst_Click(object sender, EventArgs e)
         {
-            //Cargar frmbuscai
-            /*
-             *  .show
-    .cmbtinst.value = 'T'
-    .txtcriterio.value = ''
-    .txtcriterio.interactivechange
-    .txtcriterio.setfocus
-             */
+            frmBuscaI frmBuscaI = new frmBuscaI();
+            frmBuscaI.FormClosed += new FormClosedEventHandler(frmBuscai_FormClosed);
+            frmBuscaI.Show();
+            this.Hide();
+        }
+
+        private void frmBuscai_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (((frmBuscaI)sender).DialogResult == DialogResult.OK)
+            {
+                Dictionary<string, string> binst = ((frmBuscaI)sender).binst;
+                cmbInstitucion.SelectedValue = binst["IdI"];
+            }
+
+            cmbMedico.Focus();
+            this.Show();
         }
 
         private void txtNHP_DoubleClick(object sender, EventArgs e)
@@ -1947,17 +1845,12 @@ namespace Polsolcom.Forms.Procesos
             int j = grdDetalle.CurrentCell.ColumnIndex;
             string columnName = grdDetalle.Columns[j].Name;
 
-            // Only for a DatagridComboBoxColumn at ColumnIndex 2.
             if (columnName == "Id")
             {
                 ComboBox combo = (ComboBox)e.Control;
                 if ((combo != null))
                 {
-                    // Remove an existing event-handler, if present, to avoid 
-                    // adding multiple handlers when the editing control is reused.
                     combo.SelectionChangeCommitted -= new EventHandler(cmbProducto_SelectionChangeCommitted);
-
-                    // Add the event handler. 
                     combo.SelectionChangeCommitted += new EventHandler(cmbProducto_SelectionChangeCommitted);
                 }
             }
@@ -2017,7 +1910,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (this.lastKey == Keys.F12)
             {
-                //.frmmessage.txtmessage.setfocus
+                frmMessage.lblMessage.Focus();
                 this.cad = txtEmail.Text;
                 txtEmail.Text = this.cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
             }

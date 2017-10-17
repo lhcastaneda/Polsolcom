@@ -350,6 +350,12 @@
     <Compile Include="Forms\Mantenimiento\frmAdmTalon.Designer.cs">
       <DependentUpon>frmAdmTalon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Procesos\frmBuscaI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmBuscaI.Designer.cs">
+      <DependentUpon>frmBuscaI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Procesos\frmBuscar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -463,6 +469,12 @@
     </Compile>
     <Compile Include="Forms\Procesos\frmIngresoCie10.Designer.cs">
       <DependentUpon>frmIngresoCie10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Procesos\frmMessage.Designer.cs">
+      <DependentUpon>frmMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Procesos\frmMntVentas.cs">
       <SubType>Form</SubType>
@@ -791,6 +803,9 @@
     <EmbeddedResource Include="Forms\Mantenimiento\frmAdmTalon.resx">
       <DependentUpon>frmAdmTalon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmBuscaI.resx">
+      <DependentUpon>frmBuscaI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmBuscar.resx">
       <DependentUpon>frmBuscar.cs</DependentUpon>
     </EmbeddedResource>
@@ -856,6 +871,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmIngresoCie10.resx">
       <DependentUpon>frmIngresoCie10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Procesos\frmMessage.resx">
+      <DependentUpon>frmMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Procesos\frmMntVentas.resx">
       <DependentUpon>frmMntVentas.cs</DependentUpon>
