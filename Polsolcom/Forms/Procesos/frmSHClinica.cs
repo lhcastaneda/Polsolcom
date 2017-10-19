@@ -253,27 +253,30 @@ namespace Polsolcom.Forms.Procesos
             Dictionary<string, string> cesp = General.GetSelectedDictionary(cmbEspecialidad);
             Dictionary<string, string> dventa = General.GetSelectedDictionary(cmbTDoc);
 
-            txtTotal.Text = "0.00";
-
-            for (int i = 0; i < grdDetalle.Rows.Count; i++)
+            if (cesp != null)
             {
-                Dictionary<string, string> item = General.GetDictionary(grdDetalle, i);
+                txtTotal.Text = "0.00";
 
-                if (item["Nrv"] == this.xnrv)
+                for (int i = 0; i < grdDetalle.Rows.Count; i++)
                 {
-                    if (cesp["Descripcion"] == "FARMACIA")
-                    {
-                        item["Subtotal"] = item["Precio"];
-                    }
-                    else
-                    {
-                        item["Subtotal"] = (int.Parse(item["Cantidad"]) * decimal.Parse(item["Precio"])).ToString();
-                    }
+                    Dictionary<string, string> item = General.GetDictionary(grdDetalle, i);
 
-                    txtTotal.Text = (decimal.Parse(txtTotal.Text) + decimal.Parse(item["Subtotal"])).ToString();
-                    txtNeto.Text = dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(this.igv["Descripcion"]), 2).ToString() : "0.00";
-                    txtIGV.Text = dventa["Descripcion"] == "FACTURA" ? (Decimal.Parse(txtTotal.Text) - decimal.Parse(txtNeto.Text)).ToString() : "0.00";
-                    txtSon.Text = General.NumeroTexto(txtTotal.Text);
+                    if (item["Nrv"] == this.xnrv)
+                    {
+                        if (cesp["Descripcion"] == "FARMACIA")
+                        {
+                            item["Subtotal"] = item["Precio"];
+                        }
+                        else
+                        {
+                            item["Subtotal"] = (int.Parse(item["Cantidad"]) * decimal.Parse(item["Precio"])).ToString();
+                        }
+
+                        txtTotal.Text = (decimal.Parse(txtTotal.Text) + decimal.Parse(item["Subtotal"])).ToString();
+                        txtNeto.Text = dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(this.igv["Descripcion"]), 2).ToString() : "0.00";
+                        txtIGV.Text = dventa["Descripcion"] == "FACTURA" ? (Decimal.Parse(txtTotal.Text) - decimal.Parse(txtNeto.Text)).ToString() : "0.00";
+                        txtSon.Text = General.NumeroTexto(txtTotal.Text);
+                    }
                 }
             }
         }

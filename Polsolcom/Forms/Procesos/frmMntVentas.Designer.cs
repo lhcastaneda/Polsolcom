@@ -37,7 +37,6 @@
             this.txtApeMat = new System.Windows.Forms.TextBox();
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.txtIdPaciente = new System.Windows.Forms.TextBox();
-            this.txtFecEmi = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
@@ -61,9 +60,8 @@
             this.txtIdPac = new System.Windows.Forms.TextBox();
             this.txtPaciente = new System.Windows.Forms.TextBox();
             this.txtSexo = new System.Windows.Forms.TextBox();
-            this.txtFecNac = new System.Windows.Forms.TextBox();
             this.txtEdad = new System.Windows.Forms.TextBox();
-            this.txtTot = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -73,7 +71,6 @@
             this.txtEstado = new System.Windows.Forms.TextBox();
             this.cmbOpExt = new System.Windows.Forms.ComboBox();
             this.cmbUsExt = new System.Windows.Forms.ComboBox();
-            this.txtFecExt = new System.Windows.Forms.TextBox();
             this.txtDscto = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -88,12 +85,17 @@
             this.cmbAprDscto = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.grdDet = new System.Windows.Forms.DataGridView();
-            this.cProdSer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPrec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSubTot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cMD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtUsFechMod = new System.Windows.Forms.TextBox();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pagado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dscto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nro_Historia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtUsFecMod = new System.Windows.Forms.TextBox();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.pnlPac = new System.Windows.Forms.Panel();
@@ -114,6 +116,9 @@
             this.label29 = new System.Windows.Forms.Label();
             this.especialidadTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter();
             this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
+            this.txtFecEmi = new System.Windows.Forms.MaskedTextBox();
+            this.txtFecNac = new System.Windows.Forms.MaskedTextBox();
+            this.txtFecExt = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).BeginInit();
@@ -197,13 +202,6 @@
             this.txtIdPaciente.Name = "txtIdPaciente";
             this.txtIdPaciente.Size = new System.Drawing.Size(100, 20);
             this.txtIdPaciente.TabIndex = 7;
-            // 
-            // txtFecEmi
-            // 
-            this.txtFecEmi.Location = new System.Drawing.Point(616, 36);
-            this.txtFecEmi.Name = "txtFecEmi";
-            this.txtFecEmi.Size = new System.Drawing.Size(121, 20);
-            this.txtFecEmi.TabIndex = 8;
             // 
             // label5
             // 
@@ -390,8 +388,9 @@
             // 
             this.txtIdPac.Location = new System.Drawing.Point(508, 35);
             this.txtIdPac.Name = "txtIdPac";
-            this.txtIdPac.Size = new System.Drawing.Size(100, 20);
+            this.txtIdPac.Size = new System.Drawing.Size(107, 20);
             this.txtIdPac.TabIndex = 27;
+            this.txtIdPac.TextChanged += new System.EventHandler(this.txtIdPac_TextChanged);
             // 
             // txtPaciente
             // 
@@ -407,13 +406,6 @@
             this.txtSexo.Size = new System.Drawing.Size(100, 20);
             this.txtSexo.TabIndex = 29;
             // 
-            // txtFecNac
-            // 
-            this.txtFecNac.Location = new System.Drawing.Point(594, 323);
-            this.txtFecNac.Name = "txtFecNac";
-            this.txtFecNac.Size = new System.Drawing.Size(100, 20);
-            this.txtFecNac.TabIndex = 30;
-            // 
             // txtEdad
             // 
             this.txtEdad.Location = new System.Drawing.Point(700, 323);
@@ -421,12 +413,12 @@
             this.txtEdad.Size = new System.Drawing.Size(78, 20);
             this.txtEdad.TabIndex = 31;
             // 
-            // txtTot
+            // txtTotal
             // 
-            this.txtTot.Location = new System.Drawing.Point(784, 323);
-            this.txtTot.Name = "txtTot";
-            this.txtTot.Size = new System.Drawing.Size(100, 20);
-            this.txtTot.TabIndex = 32;
+            this.txtTotal.Location = new System.Drawing.Point(784, 323);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(100, 20);
+            this.txtTotal.TabIndex = 32;
             // 
             // label16
             // 
@@ -506,19 +498,13 @@
             this.cmbUsExt.Size = new System.Drawing.Size(114, 21);
             this.cmbUsExt.TabIndex = 41;
             // 
-            // txtFecExt
-            // 
-            this.txtFecExt.Location = new System.Drawing.Point(736, 374);
-            this.txtFecExt.Name = "txtFecExt";
-            this.txtFecExt.Size = new System.Drawing.Size(70, 20);
-            this.txtFecExt.TabIndex = 42;
-            // 
             // txtDscto
             // 
             this.txtDscto.Location = new System.Drawing.Point(812, 373);
             this.txtDscto.Name = "txtDscto";
             this.txtDscto.Size = new System.Drawing.Size(72, 20);
             this.txtDscto.TabIndex = 43;
+            this.txtDscto.Leave += new System.EventHandler(this.txtDscto_Leave);
             // 
             // label19
             // 
@@ -641,84 +627,121 @@
             // 
             this.grdDet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cProdSer,
-            this.cCant,
-            this.cPrec,
-            this.cSubTot,
-            this.cMD});
+            this.Producto,
+            this.Cantidad,
+            this.Monto,
+            this.Total,
+            this.MD,
+            this.Pagado,
+            this.Dscto,
+            this.Id_Producto,
+            this.Nro_Historia,
+            this.PD});
             this.grdDet.Location = new System.Drawing.Point(346, 401);
+            this.grdDet.MultiSelect = false;
             this.grdDet.Name = "grdDet";
+            this.grdDet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDet.Size = new System.Drawing.Size(538, 182);
             this.grdDet.TabIndex = 57;
             // 
-            // cProdSer
+            // Producto
             // 
-            this.cProdSer.HeaderText = "Producto y/o Servicio";
-            this.cProdSer.Name = "cProdSer";
-            this.cProdSer.Width = 260;
+            this.Producto.HeaderText = "Producto y/o Servicio";
+            this.Producto.Name = "Producto";
+            this.Producto.Width = 260;
             // 
-            // cCant
+            // Cantidad
             // 
-            this.cCant.HeaderText = "Cantidad";
-            this.cCant.Name = "cCant";
-            this.cCant.Width = 60;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 60;
             // 
-            // cPrec
+            // Monto
             // 
-            this.cPrec.HeaderText = "Precio";
-            this.cPrec.Name = "cPrec";
-            this.cPrec.Width = 60;
+            this.Monto.HeaderText = "Precio";
+            this.Monto.Name = "Monto";
+            this.Monto.Width = 60;
             // 
-            // cSubTot
+            // Total
             // 
-            this.cSubTot.HeaderText = "Sub Total";
-            this.cSubTot.Name = "cSubTot";
-            this.cSubTot.Width = 60;
+            this.Total.HeaderText = "Sub Total";
+            this.Total.Name = "Total";
+            this.Total.Width = 60;
             // 
-            // cMD
+            // MD
             // 
-            this.cMD.HeaderText = "MD";
-            this.cMD.Name = "cMD";
-            this.cMD.Width = 60;
+            this.MD.HeaderText = "MD";
+            this.MD.Name = "MD";
+            this.MD.Width = 60;
             // 
-            // txtUsFechMod
+            // Pagado
             // 
-            this.txtUsFechMod.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtUsFechMod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUsFechMod.Location = new System.Drawing.Point(457, 591);
-            this.txtUsFechMod.Name = "txtUsFechMod";
-            this.txtUsFechMod.Size = new System.Drawing.Size(172, 20);
-            this.txtUsFechMod.TabIndex = 62;
+            this.Pagado.HeaderText = "Pagado";
+            this.Pagado.Name = "Pagado";
+            this.Pagado.Visible = false;
+            // 
+            // Dscto
+            // 
+            this.Dscto.HeaderText = "Dscto";
+            this.Dscto.Name = "Dscto";
+            this.Dscto.Visible = false;
+            // 
+            // Id_Producto
+            // 
+            this.Id_Producto.HeaderText = "Id Producto";
+            this.Id_Producto.Name = "Id_Producto";
+            this.Id_Producto.Visible = false;
+            // 
+            // Nro_Historia
+            // 
+            this.Nro_Historia.HeaderText = "Nro Historia";
+            this.Nro_Historia.Name = "Nro_Historia";
+            this.Nro_Historia.Visible = false;
+            // 
+            // PD
+            // 
+            this.PD.HeaderText = "PD";
+            this.PD.Name = "PD";
+            this.PD.Visible = false;
+            // 
+            // txtUsFecMod
+            // 
+            this.txtUsFecMod.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtUsFecMod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUsFecMod.Location = new System.Drawing.Point(457, 591);
+            this.txtUsFecMod.Name = "txtUsFecMod";
+            this.txtUsFecMod.Size = new System.Drawing.Size(172, 20);
+            this.txtUsFecMod.TabIndex = 62;
             // 
             // btnGrabar
             // 
             this.btnGrabar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrabar.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.btnGrabar.Location = new System.Drawing.Point(644, 589);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(112, 23);
             this.btnGrabar.TabIndex = 63;
             this.btnGrabar.Text = "&Grabar";
             this.btnGrabar.UseVisualStyleBackColor = true;
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.btnEliminar.Location = new System.Drawing.Point(762, 588);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(112, 23);
             this.btnEliminar.TabIndex = 64;
             this.btnEliminar.Text = "E&liminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // pnlPac
             // 
             this.pnlPac.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.pnlPac.Controls.Add(this.txtFecEmi);
             this.pnlPac.Controls.Add(this.optPanel);
             this.pnlPac.Controls.Add(this.lstVentas);
             this.pnlPac.Controls.Add(this.lstPacientes);
-            this.pnlPac.Controls.Add(this.txtFecEmi);
             this.pnlPac.Controls.Add(this.label5);
             this.pnlPac.Controls.Add(this.label4);
             this.pnlPac.Controls.Add(this.txtNFinal);
@@ -759,6 +782,7 @@
             this.rb0.TabStop = true;
             this.rb0.Text = "Anulado";
             this.rb0.UseVisualStyleBackColor = false;
+            this.rb0.CheckedChanged += new System.EventHandler(this.rb0_CheckedChanged);
             // 
             // rb3
             // 
@@ -770,6 +794,7 @@
             this.rb3.TabIndex = 31;
             this.rb3.Text = "Observación";
             this.rb3.UseVisualStyleBackColor = false;
+            this.rb3.CheckedChanged += new System.EventHandler(this.rb3_CheckedChanged);
             // 
             // rb1
             // 
@@ -781,6 +806,7 @@
             this.rb1.TabIndex = 29;
             this.rb1.Text = "Descuento";
             this.rb1.UseVisualStyleBackColor = false;
+            this.rb1.CheckedChanged += new System.EventHandler(this.rb1_CheckedChanged);
             // 
             // rb2
             // 
@@ -792,6 +818,7 @@
             this.rb2.TabIndex = 30;
             this.rb2.Text = "Extornado";
             this.rb2.UseVisualStyleBackColor = false;
+            this.rb2.CheckedChanged += new System.EventHandler(this.rb2_CheckedChanged);
             // 
             // lstVentas
             // 
@@ -842,6 +869,7 @@
             this.lstPacientes.TabIndex = 23;
             this.lstPacientes.UseCompatibleStateImageBehavior = false;
             this.lstPacientes.View = System.Windows.Forms.View.Details;
+            this.lstPacientes.SelectedIndexChanged += new System.EventHandler(this.lstPacientes_SelectedIndexChanged_1);
             // 
             // columnHeader1
             // 
@@ -879,17 +907,47 @@
             // 
             this.docVentaTableAdapter.ClearBeforeFill = true;
             // 
+            // txtFecEmi
+            // 
+            this.txtFecEmi.Location = new System.Drawing.Point(618, 35);
+            this.txtFecEmi.Mask = "00/00/0000";
+            this.txtFecEmi.Name = "txtFecEmi";
+            this.txtFecEmi.Size = new System.Drawing.Size(120, 20);
+            this.txtFecEmi.TabIndex = 33;
+            this.txtFecEmi.ValidatingType = typeof(System.DateTime);
+            this.txtFecEmi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFecEmi_KeyDown);
+            // 
+            // txtFecNac
+            // 
+            this.txtFecNac.Location = new System.Drawing.Point(594, 323);
+            this.txtFecNac.Mask = "00/00/0000";
+            this.txtFecNac.Name = "txtFecNac";
+            this.txtFecNac.Size = new System.Drawing.Size(102, 20);
+            this.txtFecNac.TabIndex = 68;
+            this.txtFecNac.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtFecExt
+            // 
+            this.txtFecExt.Location = new System.Drawing.Point(735, 373);
+            this.txtFecExt.Mask = "00/00/0000";
+            this.txtFecExt.Name = "txtFecExt";
+            this.txtFecExt.Size = new System.Drawing.Size(72, 20);
+            this.txtFecExt.TabIndex = 69;
+            this.txtFecExt.ValidatingType = typeof(System.DateTime);
+            // 
             // frmMntVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 635);
             this.ControlBox = false;
+            this.Controls.Add(this.txtFecExt);
+            this.Controls.Add(this.txtFecNac);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.txtIdPaciente);
             this.Controls.Add(this.btnGrabar);
-            this.Controls.Add(this.txtUsFechMod);
+            this.Controls.Add(this.txtUsFecMod);
             this.Controls.Add(this.grdDet);
             this.Controls.Add(this.txtObservacion);
             this.Controls.Add(this.label28);
@@ -905,7 +963,6 @@
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.txtDscto);
-            this.Controls.Add(this.txtFecExt);
             this.Controls.Add(this.cmbUsExt);
             this.Controls.Add(this.cmbOpExt);
             this.Controls.Add(this.txtEstado);
@@ -915,9 +972,8 @@
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.txtTot);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.txtEdad);
-            this.Controls.Add(this.txtFecNac);
             this.Controls.Add(this.txtSexo);
             this.Controls.Add(this.txtPaciente);
             this.Controls.Add(this.label15);
@@ -962,7 +1018,6 @@
         private System.Windows.Forms.TextBox txtApeMat;
         private System.Windows.Forms.TextBox txtNombres;
         private System.Windows.Forms.TextBox txtIdPaciente;
-        private System.Windows.Forms.TextBox txtFecEmi;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbEspecialidad;
@@ -982,9 +1037,8 @@
         private System.Windows.Forms.TextBox txtIdPac;
         private System.Windows.Forms.TextBox txtPaciente;
         private System.Windows.Forms.TextBox txtSexo;
-        private System.Windows.Forms.TextBox txtFecNac;
         private System.Windows.Forms.TextBox txtEdad;
-        private System.Windows.Forms.TextBox txtTot;
+        private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
@@ -994,7 +1048,6 @@
         private System.Windows.Forms.TextBox txtEstado;
         private System.Windows.Forms.ComboBox cmbOpExt;
         private System.Windows.Forms.ComboBox cmbUsExt;
-        private System.Windows.Forms.TextBox txtFecExt;
         private System.Windows.Forms.TextBox txtDscto;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
@@ -1009,12 +1062,7 @@
         private System.Windows.Forms.ComboBox cmbAprDscto;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.DataGridView grdDet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cProdSer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCant;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPrec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSubTot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cMD;
-        private System.Windows.Forms.TextBox txtUsFechMod;
+        private System.Windows.Forms.TextBox txtUsFecMod;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Panel pnlPac;
@@ -1039,5 +1087,18 @@
         private System.Windows.Forms.RadioButton rb1;
         private System.Windows.Forms.RadioButton rb0;
         private System.Windows.Forms.Panel optPanel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pagado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dscto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Historia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PD;
+        private System.Windows.Forms.MaskedTextBox txtFecEmi;
+        private System.Windows.Forms.MaskedTextBox txtFecNac;
+        private System.Windows.Forms.MaskedTextBox txtFecExt;
     }
 }

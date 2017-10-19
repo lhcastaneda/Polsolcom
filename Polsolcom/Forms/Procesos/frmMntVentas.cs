@@ -3,20 +3,19 @@ using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Modelos;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Polsolcom.Forms
 {
     public partial class frmMntVentas : Form
     {
-        List<Dictionary<string, string>> vcab = new List<Dictionary<string, string>>();
-        List<Dictionary<string, string>> npac = new List<Dictionary<string, string>>();
+        List<Dictionary<string, string>> vcabs = new List<Dictionary<string, string>>();
+        Dictionary<string, string> vcab = new Dictionary<string, string>();
+        List<Dictionary<string, string>> npacs = new List<Dictionary<string, string>>();
+        Dictionary<string, string> npac = new Dictionary<string, string>();
+
         public frmMntVentas()
         {
             InitializeComponent();
@@ -36,6 +35,7 @@ namespace Polsolcom.Forms
             string nf = txtNFinal.Text;
 
             General.setAll<TextBox, string>(this, "Text", "");
+            General.setAll<MaskedTextBox, string>(this, "Text", "");
             General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
 
             txtFecEmi.Text = txtFecNac.Text = txtFecExt.Text = General.emptyDate;
@@ -62,11 +62,11 @@ namespace Polsolcom.Forms
             string mt = txtApeMat.Text;
             string nm = txtNombres.Text;
 
-            if ((pt.Length + mt.Length + nm.Length) > 0)
+            if ((pt.Length + mt.Length + nm.Length + ip.Length) > 0)
             {
                 string sql = General.DevuelveQueryPaciente(pt, mt, nm, "", ip, "", 2, 0);
-                this.npac = General.GetDictionaryList(sql);
-                General.FillListView(lstPacientes, this.npac, new[] {"Paciente", "Id_Paciente" });
+                this.npacs = General.GetDictionaryList(sql);
+                General.FillListView(lstPacientes, this.npacs, new[] {"Paciente", "Id_Paciente" });
             }
         }
 
@@ -74,16 +74,16 @@ namespace Polsolcom.Forms
         {
             T xp = lp;
             string ip = xp is string ? xp.ToString() : "";
-            string fi = txtFecEmi.Text;
-            string ff = DateTime.Parse(txtFecEmi.Text).AddDays(1).ToShortDateString();
+            string fi = txtFecEmi.Text == General.emptyDate ? "" : txtFecEmi.Text;
+            string ff = txtFecEmi.Text == General.emptyDate ? "" : DateTime.Parse(txtFecEmi.Text).AddDays(1).ToShortDateString();
             string dv = cmbTipDoc.SelectedIndex == -1 ? "" : cmbTipDoc.SelectedValue.ToString();
             string sr = txtSerie.Text;
             string ni = txtNInicial.Text;
             string nf = txtNFinal.Text;
             string es = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
-            ni = ni.Length == 0 ? nf : ni;
+            ni = (ni == General.emptyDate ? nf : ni);
 
-            if(fi.Length == 0 && ip.Length == 0)
+            if (fi.Length == 0 && ip.Length == 0)
             {
                 MessageBox.Show("Ingrese fecha de emision o seleccione paciente como minimo ...", "Advertencia");
                 txtFecEmi.Focus();
@@ -99,14 +99,14 @@ namespace Polsolcom.Forms
 
             lstVentas.Items.Clear();
 
-            string sql = "Select D.Descripcion DVen,T.Serie+'-'+T.Nro_Ticket NDoc,Fecha_Emision,C.Descripcion Especialidad,Id_Paciente," + 
-                "Digitador+Space(11) Digitador,Anulado,ForPago,Descuento,Moneda,Convenio,Nro_Historia " + 
-                "From Tickets T Inner Join Consultorios C On T.Id_Consultorio=C.Id_Consultorio " + 
-                "Inner Join (Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo " + 
-                "Where Descripcion='DOC_VENTA'))D On T.Dventa=D.Id_Tipo " + 
+            string sql = "Select D.Descripcion DVen,T.Serie+'-'+T.Nro_Ticket NDoc,Fecha_Emision,C.Descripcion Especialidad,Id_Paciente," +
+                "Digitador+Space(11) Digitador,Anulado,ForPago,Descuento,Moneda,Convenio,Nro_Historia " +
+                "From Tickets T Inner Join Consultorios C On T.Id_Consultorio=C.Id_Consultorio " +
+                "Inner Join (Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo " +
+                "Where Descripcion='DOC_VENTA'))D On T.Dventa=D.Id_Tipo " +
                 "Where ";
 
-            sql += (txtFecEmi.Text.Length == 0? "": "T.Fecha_Emision Between '" + fi + "' And '" + ff + "' ");
+            sql += (txtFecEmi.Text == General.emptyDate ? "" : "T.Fecha_Emision Between '" + fi + "' And '" + ff + "' ");
 
             if (cmbTipDoc.SelectedIndex > -1)
             {
@@ -120,7 +120,7 @@ namespace Polsolcom.Forms
 
             if (nf.Length > 0)
             {
-                sql += sql.Contains("Like") || sql.Contains("And") ? "And Cast(T.Nro_Ticket As Int) Between '" + ni + "' And '" + nf  + "' " : "Cast(T.Nro_Ticket As Int) Between '" + ni + "' And '" + nf + "' ";
+                sql += sql.Contains("Like") || sql.Contains("And") ? "And Cast(T.Nro_Ticket As Int) Between '" + ni + "' And '" + nf + "' " : "Cast(T.Nro_Ticket As Int) Between '" + ni + "' And '" + nf + "' ";
             }
 
             if (cmbEspecialidad.SelectedIndex > -1)
@@ -135,14 +135,14 @@ namespace Polsolcom.Forms
 
             sql += "order by 3, 2";
 
-            this.vcab = General.GetDictionaryList(sql);
+            this.vcabs = General.GetDictionaryList(sql);
 
-            for (int i = 0; i < vcab.Count; i++)
+            for (int i = 0; i < vcabs.Count; i++)
             {
-                vcab[i]["Digitador"] = General.TradUser(vcab[i]["Digitador"]);
+                vcabs[i]["Digitador"] = General.TradUser(vcabs[i]["Digitador"]);
             }
 
-            General.FillListView(lstVentas, vcab, new[] { "DVen", "NDoc", "Fecha_Emision", "Especialidad" });
+            General.FillListView(lstVentas, vcabs, new[] { "DVen", "NDoc", "Fecha_Emision", "Especialidad" });
 
             rb0.Checked = true;
             optPanel.Enabled = btnEliminar.Enabled = false;
@@ -169,10 +169,10 @@ namespace Polsolcom.Forms
                 txtDscto.Enabled = !lm;
                 //STORE lm TO .grddet.column5.readonly
                 txtDscto.Text = "0.00";
-                /*
-                SELECT vdet
-                REPLACE vdet.md WITH 1 ALL
-                 */
+                for (int i = 0; i < grdDet.Rows.Count; ++i)
+                {
+                    grdDet.Rows[i].Cells["MD"].Value = "1";
+                }
             }
 
             if (rb2.Checked)
@@ -220,7 +220,7 @@ namespace Polsolcom.Forms
             cmbTipDoc.SelectedIndex = -1;
 
             this.especialidadTableAdapter.Fill(this.consultoriosDS.Especialidad, Operativo.id_oper);
-            cmbTipDoc.SelectedIndex = -1;
+            cmbEspecialidad.SelectedIndex = -1;
 
             string sql = "Select Key_Pass Usuario,Id_Us From sysaccusers";
             List<Dictionary<string, string>> nusr = General.GetDictionaryList(sql);
@@ -266,64 +266,365 @@ namespace Polsolcom.Forms
         private void lstVentas_SelectedIndexChanged(object sender, EventArgs e)
         {
             int i = General.GetSelectedIndex(lstVentas);
+            this.vcab = this.vcabs[i];
             this.pcl();
-            this.pfp(this.vcab[i]["Id_Paciente"]);
+            this.pfp(this.vcab["Id_Paciente"]);
 
-            int j = this.npac.FindIndex(x => x["Id_Paciente"] == this.vcab[i]["Id_Paciente"]);
-            txtIdPaciente.Text = this.npac[j]["Id_Paciente"];
-            txtPaciente.Text = this.npac[j]["Ape_Paterno"] + " " + this.npac[j]["Ape_Materno"] + " " + this.npac[j]["Nombre"];
-            txtSexo.Text = this.npac[j]["Sexo"] == "M" ? "MASCULINO" : "FEMENINO";
-            txtFecNac.Text = this.npac[j]["Fecha_Nac"];
-            txtEdad.Text = this.npac[j]["Edad"];
-            txtCajero.Text = this.vcab[i]["Digitador"];
-            cmbFPago.Text = this.vcab[i]["ForPago"];
-            cmbMoneda.Text = this.vcab[i]["Moneda"];
+            int j = this.npacs.FindIndex(x => x["Id_Paciente"] == this.vcab["Id_Paciente"]);
+            txtIdPaciente.Text = this.npacs[j]["Id_Paciente"];
+            txtPaciente.Text = this.npacs[j]["Ape_Paterno"] + " " + this.npacs[j]["Ape_Materno"] + " " + this.npacs[j]["Nombre"];
+            txtSexo.Text = this.npacs[j]["Sexo"] == "M" ? "MASCULINO" : "FEMENINO";
+            txtFecNac.Text = this.npacs[j]["Fecha_Nac"];
+            txtEdad.Text = this.npacs[j]["Edad"];
+            txtCajero.Text = this.vcab["Digitador"];
+            cmbFPago.Text = this.vcab["ForPago"];
+            cmbMoneda.Text = this.vcab["Moneda"];
 
-            if (this.vcab[i]["Descuento"].Substring(0, 1) == "A" && this.vcab[i]["Anulado"].Length == 1)
+            if (this.vcab["Descuento"].Substring(0, 1) == "A" && this.vcab["Anulado"].Length == 1)
             {
                 //.cmbmotanul.rowsource = 'Allt(MotAnul.Descripcion),Id_Tipo'
-                cmbMotAnul.SelectedValue = this.vcab[i]["Descuento"].Substring(29, 1);
-                txtObservacion.Text = this.vcab[i]["Descuento"].Substring(30, 40);
+                cmbMotAnul.SelectedValue = this.vcab["Descuento"].Substring(29, 1);
+                txtObservacion.Text = General.SafeSubstring(this.vcab["Descuento"], 30, 40);
             }
 
-            if (this.vcab[i]["Descuento"].Substring(0, 1) == "D")
+            if (this.vcab["Descuento"].Substring(0, 1) == "D")
             {
-                cmbAprDscto.SelectedValue = this.vcab[i]["Descuento"].Substring(29, 9);
-                txtDscto.Text = this.vcab[i]["Descuento"].Substring(38, 8);
-                txtObservacion.Text = this.vcab[i]["Descuento"].Substring(46, 24);
+                cmbAprDscto.SelectedValue = this.vcab["Descuento"].Substring(29, 9);
+                txtDscto.Text = this.vcab["Descuento"].Substring(38, 8);
+                txtObservacion.Text = this.vcab["Descuento"].Substring(46, 24);
             }
 
-            if (this.vcab[i]["Descuento"].Substring(0, 1) == "E" && this.vcab[i]["Anulado"].Length == 10)
+            if (this.vcab["Descuento"].Substring(0, 1) == "E" && this.vcab["Anulado"].Length == 10)
             {
-                txtFecExt.Text = this.vcab[i]["Anulado"];
-                cmbOpExt.SelectedValue = this.vcab[i]["Descuento"].Substring(29, 3);
-                cmbUsExt.SelectedValue = this.vcab[i]["Descuento"].Substring(32, 9);
+                txtFecExt.Text = this.vcab["Anulado"];
+                cmbOpExt.SelectedValue = this.vcab["Descuento"].Substring(29, 3);
+                cmbUsExt.SelectedValue = this.vcab["Descuento"].Substring(32, 9);
                 //.cmbmotanul.rowsource = 'Allt(MotExt.Descripcion),Id_Tipo'
-                cmbMotAnul.SelectedValue = this.vcab[i]["Descuento"].Substring(41, 1);
-                txtObservacion.Text = this.vcab[i]["Descuento"].Substring(42, 28);
+                cmbMotAnul.SelectedValue = this.vcab["Descuento"].Substring(41, 1);
+                txtObservacion.Text = this.vcab["Descuento"].Substring(42, 28);
             }
 
-            if (this.vcab[i]["Descuento"].Substring(0, 1) == "O")
+            if (this.vcab["Descuento"].Substring(0, 1) == "O")
             {
-                txtObservacion.Text = this.vcab[i]["Descuento"].Substring(29, 41);
+                txtObservacion.Text = this.vcab["Descuento"].Substring(29, 41);
             }
 
-            txtEstado.Text = (this.vcab[i]["Anulado"] == "" && this.vcab[i]["Descuento"] == "" ? "VENDIDO" : (this.vcab[i]["Anulado"].Length == 10 && this.vcab[i]["Descuento"].Substring(0, 1) == "E" ? "EXTORNO" : (this.vcab[i]["Anulado"] == "S" && this.vcab[i]["Anulado"].Substring(0, 1) == "A" ? "ANULADO" : "EDITADO")));
-            txtUsFechMod.Text = (this.vcab[i]["Descuento"].Length > 0? General.TradUser(this.vcab[i]["Descuento"].Substring(1, 9)) + " - " + this.vcab[i]["Descuento"].Substring(10, 19): "");
+            txtEstado.Text = (this.vcab["Anulado"] == "" && this.vcab["Descuento"] == "" ? "VENDIDO" : (this.vcab["Anulado"].Length == 10 && this.vcab["Descuento"].Substring(0, 1) == "E" ? "EXTORNO" : (this.vcab["Anulado"] == "S" && this.vcab["Anulado"].Substring(0, 1) == "A" ? "ANULADO" : "EDITADO")));
+            txtUsFecMod.Text = (this.vcab["Descuento"].Length > 0? General.TradUser(this.vcab["Descuento"].Substring(1, 9)) + " - " + this.vcab["Descuento"].Substring(10, 19): "");
 
-            string nh = this.vcab[i]["Nro_Historia"];
+            string nh = this.vcab["Nro_Historia"];
 
             grdDet.Rows.Clear();
 
-            string sql = "Select P.Descripcion Producto,Cantidad,D.Monto,D.Monto*Cantidad Total,0 MD,Pagado,Dscto,D.Id_Producto,'+'Nro_Historia,0.00 PD From Detalles D Inner Join Productos P On D.Id_Producto=P.Id_Producto Where Nro_Historia='" + nh + "'";
-            List<Dictionary<string, string>> vdet = General.GetDictionaryList(sql);
-            //Llenamos grilla
-            //.grddet.recordsource = 'vdet'
-            //SUM vdet.total TO .txttotal.value
+            string sql = "Select P.Descripcion Producto,Cantidad,D.Monto,D.Monto*Cantidad Total,0 MD,Pagado,Dscto,D.Id_Producto,Nro_Historia,0.00 PD From Detalles D Inner Join Productos P On D.Id_Producto=P.Id_Producto Where Nro_Historia='" + nh + "'";
+            List<Dictionary<string, string>> vdets = General.GetDictionaryList(sql);
+            General.FillDataGridView(grdDet, vdets);
+            txtTotal.Text = vdets.Sum(x => decimal.Parse(x["Total"])).ToString();
 
             int c = Conexion.ExecuteScalar<int>("Select Count(*)C From Cab_Cie10 Where Nro_Historia='" + nh + "'");
             optPanel.Enabled = c == 0;
             btnEliminar.Enabled = c == 0 && (Usuario.tipo == "A" || Usuario.tipo == "O");
+        }
+
+        private void txtIdPac_TextChanged(object sender, EventArgs e)
+        {
+            this.pfp<string>("");
+        }
+
+        private void lstPacientes_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            int i = General.GetSelectedIndex(lstPacientes);
+
+            if (i > -1)
+            {
+                this.npac = this.npacs[i];
+                this.pfv<string>(this.npac["Id_Paciente"]);
+                txtIdPaciente.Text = this.npac["Id_Paciente"];
+            }
+        }
+
+        private void txtFecEmi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                txtFecEmi.Text = DateTime.Today.ToShortDateString();
+            }
+        }
+
+        private void txtDscto_Leave(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Desea aplicar descuento a los productos seleccionados ... ?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                decimal mm = General.GetDictionaryList(grdDet).FindAll(x => x["MD"] == "1").Sum(x => decimal.Parse(x["Monto"]));
+                if (mm - decimal.Parse(txtDscto.Text) < 1)
+                {
+                    General.msg("Descuento no debe generar negativos, corregir proceso ...", "Advertencia", true);
+                    return;
+                }
+
+                int rg = 0;
+                decimal lm = 0;
+                for (int i = 0; i < grdDet.Rows.Count; ++i)
+                {
+                    if (grdDet.Rows[i].Cells["MD"].Value.ToString() == "1")
+                    {
+                        grdDet.Rows[i].Cells["PD"].Value = decimal.Parse(grdDet.Rows[i].Cells["Total"].Value.ToString()) / mm;
+                        grdDet.Rows[i].Cells["Monto"].Value = decimal.Parse(grdDet.Rows[i].Cells["Monto"].Value.ToString()) - (decimal.Parse(grdDet.Rows[i].Cells["PD"].Value.ToString()) * decimal.Parse(txtDscto.Text)) / decimal.Parse(grdDet.Rows[i].Cells["Cantidad"].Value.ToString());
+                        decimal xtotal = decimal.Parse(grdDet.Rows[i].Cells["Monto"].Value.ToString()) * decimal.Parse(grdDet.Rows[i].Cells["Cantidad"].Value.ToString());
+                        grdDet.Rows[i].Cells["Total"].Value = xtotal;
+                        lm += xtotal;
+                        rg = i;
+                    }
+                }
+
+                decimal df = mm - (lm - decimal.Parse(txtDscto.Text));
+
+                df = (int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString()) > 1 ? df / int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString()) : df);
+                grdDet.Rows[rg].Cells["Monto"].Value = (df > 0? decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) + df: (df < 0? decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) - df: grdDet.Rows[rg].Cells["Monto"].Value));
+                grdDet.Rows[rg].Cells["Total"].Value = decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) * int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString());
+
+                txtTotal.Text = General.GetDictionaryList(grdDet).Sum(x => decimal.Parse(x["Monto"]) * int.Parse(x["Cantidad"])).ToString();
+                cmbAprDscto.Enabled = true;
+                txtDscto.Enabled = false;
+            }
+        }
+
+        private void btnGrabar_Click(object sender, EventArgs e)
+        {
+            string nh = this.vcab["Nro_Historia"];
+            string us = Usuario.id_us;
+            string ob = txtObservacion.Text;
+            string sql = "";
+            string op = "";
+
+            if (MessageBox.Show("Esta seguro de guardar los cambios ... ?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (rb0.Checked)
+                {
+                    if (cmbMotAnul.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Faltan datos para realizar la anulacion ...", "Advertencia");
+                        return;
+                    }
+
+                    string ma = cmbMotAnul.SelectedValue.ToString();
+                    sql = "Update Tickets Set Anulado='S',Descuento='A'+'" + us + "'+Space(9-Len('" + us + "'))+Convert(Varchar(10),GetDate(),103)+' '+Convert(Varchar(10),GetDate(),108)+'" + ma + "'+'" + ob + "' Where Nro_Historia='" + nh + "'";
+                    op = "1";
+                }
+
+                if (rb1.Checked)
+                {
+                    if (txtDscto.Text.Length == 0 || cmbAprDscto.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Faltan datos para realizar descuento ...", "Advertencia");
+                        return;
+                    }
+
+                    string ad = cmbAprDscto.SelectedValue.ToString();
+                    string ds = decimal.Parse(txtDscto.Text).ToString();
+
+                    for (int i = 0; i < grdDet.Rows.Count; ++i)
+                    {
+                        string ip = grdDet.Rows[i].Cells["Id_Producto"].Value.ToString();
+                        string mn = grdDet.Rows[i].Cells["Monto"].Value.ToString();
+                        string sqlx = "Update Detalles Set Monto='" + mn + "' Where Nro_Historia='" + nh + "' And Id_Producto='" + ip + "'";
+                        Conexion.ExecuteNonQuery(sqlx);
+                    }
+
+                    sql = "Update Tickets Set Descuento='D'+'" + us + "'+Space(9-Len('" + us + "'))+Convert(Varchar(10),GetDate(),103)+' '+" + "Convert(Varchar(10),GetDate(),108)+'" + ad + "'+Space(9-Len('" + ad + "'))+'" + ds + "'+Space(8-Len('" + ds + "'))+'" + ob + "' " + "Where Nro_Historia='" + nh + "'";
+                    string ms = "DESCUENTO DE S/. " + ds + " AL DOC. DE VENTA TIPO " + this.vcab["DVen"] + " CON NRO. " + this.vcab["NDoc"] + " YA FUE REALIZADO ... VERIFICAR";
+                    op = "2";
+                    //RUN net SEND * &ms
+                }
+
+                if (rb2.Checked)
+                {
+                    if (cmbOpExt.SelectedIndex == -1 || cmbUsExt.SelectedIndex == -1 || txtFecExt.Text == General.emptyDate || cmbMotAnul.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("Faltan datos para realizar extorno ...", "Advertencia");
+                        return;
+                    }
+
+                    string oe = cmbOpExt.SelectedValue.ToString();
+                    string ue = cmbUsExt.SelectedValue.ToString();
+                    string fe = txtFecExt.Text;
+                    string me = cmbMotAnul.SelectedValue.ToString();
+                    sql = "Update Tickets Set Descuento='E'+'" + us + "'+Space(9-Len('" + us + "'))+Convert(Varchar(10),GetDate(),103)+' '+Convert(Varchar(10),GetDate(),108)+'" + oe + "'+'" + ue + "'+Space(9-Len('" + ue + "'))+'" + me + "'+'" + ob + "',Anulado='" + fe + "' Where Nro_Historia='" + nh + "'";
+                    op = "3";
+                }
+
+                if (rb3.Checked)
+                {
+                    if (txtObservacion.Text.Length == 0)
+                    {
+                        MessageBox.Show("Ingrese la observacion a guardar ...", "Advertencia");
+                        return;
+                    }
+
+                    sql = "Update Tickets Set Descuento='O'+'" + us + "'+Space(9-Len('" + us + "'))+Convert(Varchar(10),GetDate(),103)+' '+" + "Convert(Varchar(10),GetDate(),108)+'" + ob + "' " + "Where Nro_Historia='" + nh + "'";
+                }
+
+                Conexion.ExecuteNonQuery(sql);
+                MessageBox.Show("Operación ejecutada con éxito");
+                op = "4";
+            }
+
+            this.phb(true, op);
+            this.pfv<string>("");
+            int j = this.vcabs.FindIndex(x => x["Nro_Historia"] == nh);
+            lstVentas.Items[j].Selected = true;
+            lstVentas_SelectedIndexChanged(lstVentas, new EventArgs());
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            string ms = this.vcabs[0]["NDoc"];
+            string nh = "'" + this.vcabs[0]["Nro_Historia"];
+
+            for (int i = 0; i < this.vcabs.Count; ++i)
+            {
+                ms += ", " + this.vcabs[i]["NDoc"];
+                nh += ", " + this.vcabs[i]["Nro_Historia"];
+            }
+            nh += "'";
+
+            string sql = "Select Case When Exists(Select * From Tickets Where Nro_Historia In(" + nh + ") And Fecha_Emision>=" + "Convert(Varchar(10),GetDate(),103)) Then '1' Else '0' End TI,Case When Exists(Select * From Cab_Cie10 " + "Where Nro_Historia In(" + nh + ")) Then '1' Else '0' End CI,Case When Exists(Select * From Tickets " + "Where Nro_Historia In(" + nh + ") And Anulado<>'') Then '1' Else '0' End AE";
+            Dictionary<string, string> result = General.GetDictionary(sql);
+
+            string xr = result["TI"] + result["CI"] + result["AE"];
+            if (xr != "100")
+            {
+                MessageBox.Show("No se puede eliminar el conjunto de resultados obtenidos, por contener:\nventas de fechas anteriores, anulados o extornos, atenciones realizadas ...", "Advertencia");
+                return;
+            }
+
+            if (MessageBox.Show("Esta seguro de eliminar estos documentos de venta:\n" + ms, "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string sqlx = "Delete From Detalles Where Nro_Historia In(" + nh + ")";
+                Conexion.ExecuteNonQuery(sqlx);
+
+                string sqly = "Delete From Tickets Where Nro_Historia In(" + nh + ")";
+                Conexion.ExecuteNonQuery(sqly);
+                MessageBox.Show("Operación ejecutada con éxito");
+
+                this.pfv<string>("");
+                lstPacientes.Items.Clear();
+            }
+        }
+
+        private void rb0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb0.Checked)
+            {
+                if (this.vcab["Fecha_Emision"] == DateTime.Today.ToShortDateString())
+                {
+                    if (this.vcab["Anulado"] == "")
+                    {
+                        this.phb(false, "1");
+                        cmbMotAnul.Focus();
+                    }
+
+                    if (this.vcab["Anulado"] == "S")
+                    {
+                        if (MessageBox.Show("Desea quitar la anulación de este registro de venta ... ?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            string nh = this.vcab["Nro_Historia"];
+                            string us = Usuario.id_us;
+                            string sql = "Update Tickets Set Anulado='',Descuento='A'+'" + us + "'+Space(9-Len('" + us + "'))+Convert(Varchar(10)," + "GetDate(),103)+' '+Convert(Varchar(10),GetDate(),108) Where Nro_Historia='" + nh + "'";
+                            Conexion.ExecuteNonQuery(sql);
+                            MessageBox.Show("Operación ejecutada con éxito");
+                            this.pfv<string>("");
+                            int i = this.vcabs.FindIndex(x => x["Nro_Historia"] == nh);
+                            lstVentas.Items[i].Selected = true;
+                            lstVentas_SelectedIndexChanged(lstVentas, new EventArgs());
+                        }
+                        rb0.Checked = false;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Solo se pueden anular o desanular ventas del dia ...", "Advertencia");
+                    rb0.Checked = false;
+                }
+            }
+        }
+
+        private void rb1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb1.Checked)
+            {
+                if (DateTime.Parse(this.vcab["Fecha_Emision"]).ToShortDateString() == DateTime.Today.ToShortDateString() && this.vcab["Anulado"] == "")
+                {
+                    this.phb(false, "2");
+                    //.grddet.column5.setfocus
+                }
+                else
+                {
+                    MessageBox.Show("Solo se puede hacer descuento a ventas del dia ...", "Advertencia");
+                    rb1.Checked = false;
+                }
+            }
+        }
+
+        private void rb2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb2.Checked)
+            {
+                if (DateTime.Parse(this.vcab["Fecha_Emision"]).ToShortDateString() == DateTime.Today.ToShortDateString() && (txtEstado.Text == "VENDIDO" || txtEstado.Text == "EDITADO"))
+                {
+                    this.phb(false, "3");
+                    cmbOpExt.Focus();
+                    return;
+                }
+
+                if (txtEstado.Text == "EXTORNO")
+                {
+                    if (txtFecExt.Text == DateTime.Today.ToShortDateString())
+                    {
+                        if (MessageBox.Show("Desea quitar la condición de extornado ... ?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            string nh = this.vcab["Nro_Historia"];
+                            string us = Usuario.id_us;
+                            string sql = "Update Tickets Set Anulado='',Descuento='E'+'" + us + "'+Space(9-Len('" + us + "'))+Convert(Varchar(10)," + "GetDate(),103)+' '+Convert(Varchar(10),GetDate(),108) Where Nro_Historia='" + nh + "'";
+                            Conexion.ExecuteNonQuery(sql);
+                            MessageBox.Show("Operación ejecutada con éxito");
+                            this.pfv<string>("");
+                            int i = this.vcabs.FindIndex(x => x["Nro_Historia"] == nh);
+                            lstVentas.Items[i].Selected = true;
+                            lstVentas_SelectedIndexChanged(lstVentas, new EventArgs());
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Extornos de fechas anteriores no pueden ser editados ...", "Advertencia");
+                    }
+
+                    rb2.Checked = false;
+                    return;
+                }
+
+                MessageBox.Show("Solo se puede extornar ventas de fechas anteriores ...", "Advertencia");
+                rb2.Checked = false;
+            }
+        }
+
+        private void rb3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb3.Checked)
+            {
+                if (DateTime.Parse(this.vcab["Fecha_Emision"]).ToShortDateString() == DateTime.Today.ToShortDateString() && this.vcab["Anulado"] == "" && this.vcab["Descuento"].Substring(0, 1) != "D")
+                {
+                    this.phb(false, "4");
+                    txtObservacion.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Solo se puede hacer observaciones a ventas del dia, libre de descuento ...", "Advertencia");
+                    rb3.Checked = false;
+                }
+            }
         }
     }
 }

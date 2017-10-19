@@ -482,8 +482,8 @@ namespace Polsolcom.Dominio.Helpers
 
             vSQL = "SELECT Key_Pass AS Usuario " +
                     "FROM sysaccusers " +
-                    "WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable + "' " +
-                    "OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable + "' ";
+                    "WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable.Replace("'", "''") + "' " +
+                    "OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable.Replace("'", "''") + "' ";
 
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString))
             {
@@ -1289,6 +1289,19 @@ namespace Polsolcom.Dominio.Helpers
             return ok;
         }
 
+        public static void FillDataGridView(DataGridView dataGridView, List<Dictionary<string, string>> items)
+        {
+            foreach (Dictionary<string, string> item in items)
+            {
+                List<string> array = new List<string>();
+                foreach (KeyValuePair<string, string> entry in item)
+                {
+                    array.Add(entry.Value.ToString());
+                }
+                dataGridView.Rows.Add(array.ToArray());
+            }
+        }
+
         public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields, Dictionary<string, string> filters = null)
         {
             listview.Items.Clear();
@@ -1666,6 +1679,18 @@ namespace Polsolcom.Dominio.Helpers
         {
             string sql = "Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From " + "TablaTipo Where LTrim(RTrim(Descripcion)) Like '%IGV%' And LTrim(RTrim(Id_Tabla))='0') And Val_Abr='1' Order By 2";
             return General.GetDictionary(sql);
+        }
+
+        public static string SafeSubstring(string text, int startIndex, int length)
+        {
+            if (startIndex + length <= text.Length)
+            {
+                return text.Substring(startIndex, length);
+            }
+            else
+            {
+                return text.Substring(startIndex);
+            }
         }
     }
 }
