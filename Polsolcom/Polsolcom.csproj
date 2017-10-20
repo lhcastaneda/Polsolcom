@@ -266,7 +266,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RotationDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Data\TablaTipoDS1.Designer.cs">
+    <Compile Include="Dominio\Data\TablaTipoDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>
@@ -1147,6 +1147,7 @@
     <None Include="Dominio\Data\TablaTipoDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TablaTipoDS.Designer.cs</LastGenOutput>
     </None>
     <None Include="Dominio\Data\TablaTipoDS.xss">
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>

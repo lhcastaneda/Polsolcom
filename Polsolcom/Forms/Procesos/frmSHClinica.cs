@@ -272,6 +272,9 @@ namespace Polsolcom.Forms.Procesos
                             item["Subtotal"] = (int.Parse(item["Cantidad"]) * decimal.Parse(item["Precio"])).ToString();
                         }
 
+                        grdDetalle.Rows[i].Cells["Subtotal"].Value = item["Subtotal"];
+
+
                         txtTotal.Text = (decimal.Parse(txtTotal.Text) + decimal.Parse(item["Subtotal"])).ToString();
                         txtNeto.Text = dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(this.igv["Descripcion"]), 2).ToString() : "0.00";
                         txtIGV.Text = dventa["Descripcion"] == "FACTURA" ? (Decimal.Parse(txtTotal.Text) - decimal.Parse(txtNeto.Text)).ToString() : "0.00";
@@ -538,7 +541,6 @@ namespace Polsolcom.Forms.Procesos
                     frmMessage.lblMessage.Text = txtEmail.Text;
                     break;
             }
-            frmMessage.Show();
         }
 
         public void tsg()
@@ -703,6 +705,8 @@ namespace Polsolcom.Forms.Procesos
 
         private void frmSHClinica_Load(object sender, EventArgs e)
         {
+            frmMessage.Show();
+
             this.igv = General.GetIGV();
             // TODO: This line of code loads data into the 'institucionesDS.InstitucionLite' table. You can move, or remove it, as needed.
             this.institucionLiteTableAdapter.Fill(this.institucionesDS.InstitucionLite);
@@ -1814,32 +1818,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void grdDetalle_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            int i = grdDetalle.CurrentCell.RowIndex;
-            int j = grdDetalle.CurrentCell.ColumnIndex;
-            string columnName = grdDetalle.Columns[j].Name;
-
-            switch (columnName)
-            {
-                case "Cantidad":
-                    TextBox textBox = (TextBox)grdDetalle.EditingControl;
-
-                    if (textBox.Enabled)
-                    {
-                        if (int.Parse(textBox.Text) < 1)
-                        {
-                            textBox.Text = "1";
-                        }
-
-                        if (int.Parse(textBox.Text) > 9)
-                        {
-                            if (MessageBox.Show("La cantidad ingresada de " + textBox.Text + ", es correcta? ... ?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
-                            {
-                                return;
-                            }
-                        }
-                    }
-                    break;
-            }
+            this.ctv();
         }
 
         private void grdDetalle_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1885,7 +1864,6 @@ namespace Polsolcom.Forms.Procesos
                     grdDetalle.Rows.RemoveAt(i);
                 }
 
-                this.ctv();
             }
         }
 
@@ -1932,6 +1910,43 @@ namespace Polsolcom.Forms.Procesos
         private void txtDNI_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void grdDetalle_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            int i = grdDetalle.CurrentCell.RowIndex;
+            int j = grdDetalle.CurrentCell.ColumnIndex;
+            string columnName = grdDetalle.Columns[j].Name;
+
+            switch (columnName)
+            {
+                case "Cantidad":
+
+                    if (!grdDetalle.CurrentCell.ReadOnly)
+                    {
+                        if (int.Parse(grdDetalle.CurrentCell.Value.ToString()) < 1)
+                        {
+                            grdDetalle.CurrentCell.Value = "1";
+                        }
+
+                        if (int.Parse(grdDetalle.CurrentCell.Value.ToString()) > 9)
+                        {
+                            if (MessageBox.Show("La cantidad ingresada de " + grdDetalle.CurrentCell.Value.ToString() + ", es correcta? ... ?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
+                            {
+                                e.Cancel = true;
+                                //grdDetalle.EndEdit();
+                            }
+                        }
+                    }
+                    break;
+            }
+
+
+        }
+
+        private void frmSHClinica_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmMessage.Close();
         }
     }
 }

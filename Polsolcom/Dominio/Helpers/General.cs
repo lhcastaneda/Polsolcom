@@ -1289,14 +1289,21 @@ namespace Polsolcom.Dominio.Helpers
             return ok;
         }
 
-        public static void FillDataGridView(DataGridView dataGridView, List<Dictionary<string, string>> items)
+        public static void FillDataGridView(DataGridView dataGridView, List<Dictionary<string, string>> items, string[] boolColumns = null)
         {
             foreach (Dictionary<string, string> item in items)
             {
-                List<string> array = new List<string>();
+                List<object> array = new List<object>();
                 foreach (KeyValuePair<string, string> entry in item)
                 {
-                    array.Add(entry.Value.ToString());
+                    if (boolColumns != null && boolColumns.Contains(entry.Key))
+                    {
+                        array.Add(entry.Value.ToString() == "1");
+                    }
+                    else
+                    {
+                        array.Add(entry.Value);
+                    }
                 }
                 dataGridView.Rows.Add(array.ToArray());
             }

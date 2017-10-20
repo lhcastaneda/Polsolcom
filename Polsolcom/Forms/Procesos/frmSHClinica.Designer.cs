@@ -1142,6 +1142,7 @@ namespace Polsolcom.Forms.Procesos
             this.grdDetalle.TabIndex = 2;
             this.grdDetalle.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellEndEdit);
             this.grdDetalle.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellLeave);
+            this.grdDetalle.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.grdDetalle_CellValidating);
             this.grdDetalle.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetalle_EditingControlShowing);
             // 
             // Nrv
@@ -1252,6 +1253,7 @@ namespace Polsolcom.Forms.Procesos
             this.Name = "frmSHClinica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Proceso de Ventas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSHClinica_FormClosing);
             this.Load += new System.EventHandler(this.frmSHClinica_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSHClinica_KeyDown);
             this.groupBox1.ResumeLayout(false);

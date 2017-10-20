@@ -66,10 +66,14 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.cmbFPago = new System.Windows.Forms.ComboBox();
+            this.formaPagoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbMoneda = new System.Windows.Forms.ComboBox();
+            this.tipoMonedaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtCajero = new System.Windows.Forms.TextBox();
             this.txtEstado = new System.Windows.Forms.TextBox();
             this.cmbOpExt = new System.Windows.Forms.ComboBox();
+            this.operativoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.operativos = new Polsolcom.Dominio.Data.Operativos();
             this.cmbUsExt = new System.Windows.Forms.ComboBox();
             this.txtDscto = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -81,6 +85,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.cmbMotAnul = new System.Windows.Forms.ComboBox();
+            this.motivoAnulacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label27 = new System.Windows.Forms.Label();
             this.cmbAprDscto = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -89,7 +94,7 @@
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MD = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Pagado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dscto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,6 +104,7 @@
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.pnlPac = new System.Windows.Forms.Panel();
+            this.txtFecEmi = new System.Windows.Forms.MaskedTextBox();
             this.optPanel = new System.Windows.Forms.Panel();
             this.rb0 = new System.Windows.Forms.RadioButton();
             this.rb3 = new System.Windows.Forms.RadioButton();
@@ -116,13 +122,21 @@
             this.label29 = new System.Windows.Forms.Label();
             this.especialidadTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter();
             this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
-            this.txtFecEmi = new System.Windows.Forms.MaskedTextBox();
             this.txtFecNac = new System.Windows.Forms.MaskedTextBox();
             this.txtFecExt = new System.Windows.Forms.MaskedTextBox();
+            this.formaPagoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.FormaPagoTableAdapter();
+            this.tipoMonedaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TipoMonedaTableAdapter();
+            this.operativoTableAdapter = new Polsolcom.Dominio.Data.OperativosTableAdapters.OperativoTableAdapter();
+            this.motivoAnulacionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.MotivoAnulacionTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.formaPagoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoMonedaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operativoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operativos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.motivoAnulacionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDet)).BeginInit();
             this.pnlPac.SuspendLayout();
             this.optPanel.SuspendLayout();
@@ -198,6 +212,7 @@
             // 
             // txtIdPaciente
             // 
+            this.txtIdPaciente.Enabled = false;
             this.txtIdPaciente.Location = new System.Drawing.Point(23, 323);
             this.txtIdPaciente.Name = "txtIdPaciente";
             this.txtIdPaciente.Size = new System.Drawing.Size(100, 20);
@@ -394,6 +409,7 @@
             // 
             // txtPaciente
             // 
+            this.txtPaciente.Enabled = false;
             this.txtPaciente.Location = new System.Drawing.Point(129, 323);
             this.txtPaciente.Name = "txtPaciente";
             this.txtPaciente.Size = new System.Drawing.Size(351, 20);
@@ -401,6 +417,7 @@
             // 
             // txtSexo
             // 
+            this.txtSexo.Enabled = false;
             this.txtSexo.Location = new System.Drawing.Point(488, 323);
             this.txtSexo.Name = "txtSexo";
             this.txtSexo.Size = new System.Drawing.Size(100, 20);
@@ -408,6 +425,7 @@
             // 
             // txtEdad
             // 
+            this.txtEdad.Enabled = false;
             this.txtEdad.Location = new System.Drawing.Point(700, 323);
             this.txtEdad.Name = "txtEdad";
             this.txtEdad.Size = new System.Drawing.Size(78, 20);
@@ -415,6 +433,7 @@
             // 
             // txtTotal
             // 
+            this.txtTotal.Enabled = false;
             this.txtTotal.Location = new System.Drawing.Point(784, 323);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(100, 20);
@@ -452,22 +471,41 @@
             // 
             // cmbFPago
             // 
+            this.cmbFPago.DataSource = this.formaPagoBindingSource;
+            this.cmbFPago.DisplayMember = "Descripcion";
+            this.cmbFPago.Enabled = false;
             this.cmbFPago.FormattingEnabled = true;
             this.cmbFPago.Location = new System.Drawing.Point(23, 373);
             this.cmbFPago.Name = "cmbFPago";
             this.cmbFPago.Size = new System.Drawing.Size(121, 21);
             this.cmbFPago.TabIndex = 36;
+            this.cmbFPago.ValueMember = "Id_Tipo";
+            // 
+            // formaPagoBindingSource
+            // 
+            this.formaPagoBindingSource.DataMember = "FormaPago";
+            this.formaPagoBindingSource.DataSource = this.tablaTipoDS;
             // 
             // cmbMoneda
             // 
+            this.cmbMoneda.DataSource = this.tipoMonedaBindingSource;
+            this.cmbMoneda.DisplayMember = "Descripcion";
+            this.cmbMoneda.Enabled = false;
             this.cmbMoneda.FormattingEnabled = true;
             this.cmbMoneda.Location = new System.Drawing.Point(150, 373);
             this.cmbMoneda.Name = "cmbMoneda";
             this.cmbMoneda.Size = new System.Drawing.Size(121, 21);
             this.cmbMoneda.TabIndex = 37;
+            this.cmbMoneda.ValueMember = "Id_Tipo";
+            // 
+            // tipoMonedaBindingSource
+            // 
+            this.tipoMonedaBindingSource.DataMember = "TipoMoneda";
+            this.tipoMonedaBindingSource.DataSource = this.tablaTipoDS;
             // 
             // txtCajero
             // 
+            this.txtCajero.Enabled = false;
             this.txtCajero.Location = new System.Drawing.Point(277, 373);
             this.txtCajero.Name = "txtCajero";
             this.txtCajero.Size = new System.Drawing.Size(100, 20);
@@ -484,14 +522,29 @@
             // 
             // cmbOpExt
             // 
+            this.cmbOpExt.DataSource = this.operativoBindingSource;
+            this.cmbOpExt.DisplayMember = "Descripcion";
+            this.cmbOpExt.Enabled = false;
             this.cmbOpExt.FormattingEnabled = true;
             this.cmbOpExt.Location = new System.Drawing.Point(489, 373);
             this.cmbOpExt.Name = "cmbOpExt";
             this.cmbOpExt.Size = new System.Drawing.Size(121, 21);
             this.cmbOpExt.TabIndex = 40;
+            this.cmbOpExt.ValueMember = "Id_Oper";
+            // 
+            // operativoBindingSource
+            // 
+            this.operativoBindingSource.DataMember = "Operativo";
+            this.operativoBindingSource.DataSource = this.operativos;
+            // 
+            // operativos
+            // 
+            this.operativos.DataSetName = "Operativos";
+            this.operativos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // cmbUsExt
             // 
+            this.cmbUsExt.Enabled = false;
             this.cmbUsExt.FormattingEnabled = true;
             this.cmbUsExt.Location = new System.Drawing.Point(616, 374);
             this.cmbUsExt.Name = "cmbUsExt";
@@ -500,10 +553,12 @@
             // 
             // txtDscto
             // 
+            this.txtDscto.Enabled = false;
             this.txtDscto.Location = new System.Drawing.Point(812, 373);
             this.txtDscto.Name = "txtDscto";
             this.txtDscto.Size = new System.Drawing.Size(72, 20);
             this.txtDscto.TabIndex = 43;
+            this.txtDscto.TextChanged += new System.EventHandler(this.txtDscto_TextChanged);
             this.txtDscto.Leave += new System.EventHandler(this.txtDscto_Leave);
             // 
             // label19
@@ -589,11 +644,20 @@
             // 
             // cmbMotAnul
             // 
+            this.cmbMotAnul.DataSource = this.motivoAnulacionBindingSource;
+            this.cmbMotAnul.DisplayMember = "Descripcion";
+            this.cmbMotAnul.Enabled = false;
             this.cmbMotAnul.FormattingEnabled = true;
             this.cmbMotAnul.Location = new System.Drawing.Point(23, 423);
             this.cmbMotAnul.Name = "cmbMotAnul";
             this.cmbMotAnul.Size = new System.Drawing.Size(310, 21);
             this.cmbMotAnul.TabIndex = 52;
+            this.cmbMotAnul.ValueMember = "Id_Tipo";
+            // 
+            // motivoAnulacionBindingSource
+            // 
+            this.motivoAnulacionBindingSource.DataMember = "MotivoAnulacion";
+            this.motivoAnulacionBindingSource.DataSource = this.tablaTipoDS;
             // 
             // label27
             // 
@@ -607,6 +671,7 @@
             // 
             // cmbAprDscto
             // 
+            this.cmbAprDscto.Enabled = false;
             this.cmbAprDscto.FormattingEnabled = true;
             this.cmbAprDscto.Location = new System.Drawing.Point(23, 477);
             this.cmbAprDscto.Name = "cmbAprDscto";
@@ -625,6 +690,10 @@
             // 
             // grdDet
             // 
+            this.grdDet.AllowUserToAddRows = false;
+            this.grdDet.AllowUserToDeleteRows = false;
+            this.grdDet.AllowUserToResizeColumns = false;
+            this.grdDet.AllowUserToResizeRows = false;
             this.grdDet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Producto,
@@ -648,60 +717,72 @@
             // 
             this.Producto.HeaderText = "Producto y/o Servicio";
             this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
             this.Producto.Width = 260;
             // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
             this.Cantidad.Width = 60;
             // 
             // Monto
             // 
             this.Monto.HeaderText = "Precio";
             this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
             this.Monto.Width = 60;
             // 
             // Total
             // 
             this.Total.HeaderText = "Sub Total";
             this.Total.Name = "Total";
-            this.Total.Width = 60;
+            this.Total.ReadOnly = true;
+            this.Total.Width = 80;
             // 
             // MD
             // 
             this.MD.HeaderText = "MD";
             this.MD.Name = "MD";
-            this.MD.Width = 60;
+            this.MD.ReadOnly = true;
+            this.MD.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.MD.Width = 30;
             // 
             // Pagado
             // 
             this.Pagado.HeaderText = "Pagado";
             this.Pagado.Name = "Pagado";
+            this.Pagado.ReadOnly = true;
             this.Pagado.Visible = false;
             // 
             // Dscto
             // 
             this.Dscto.HeaderText = "Dscto";
             this.Dscto.Name = "Dscto";
+            this.Dscto.ReadOnly = true;
             this.Dscto.Visible = false;
             // 
             // Id_Producto
             // 
             this.Id_Producto.HeaderText = "Id Producto";
             this.Id_Producto.Name = "Id_Producto";
+            this.Id_Producto.ReadOnly = true;
             this.Id_Producto.Visible = false;
             // 
             // Nro_Historia
             // 
             this.Nro_Historia.HeaderText = "Nro Historia";
             this.Nro_Historia.Name = "Nro_Historia";
+            this.Nro_Historia.ReadOnly = true;
             this.Nro_Historia.Visible = false;
             // 
             // PD
             // 
             this.PD.HeaderText = "PD";
             this.PD.Name = "PD";
+            this.PD.ReadOnly = true;
             this.PD.Visible = false;
             // 
             // txtUsFecMod
@@ -715,6 +796,7 @@
             // 
             // btnGrabar
             // 
+            this.btnGrabar.Enabled = false;
             this.btnGrabar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGrabar.Location = new System.Drawing.Point(644, 589);
             this.btnGrabar.Name = "btnGrabar";
@@ -726,6 +808,7 @@
             // 
             // btnEliminar
             // 
+            this.btnEliminar.Enabled = false;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Location = new System.Drawing.Point(762, 588);
             this.btnEliminar.Name = "btnEliminar";
@@ -758,6 +841,16 @@
             this.pnlPac.Name = "pnlPac";
             this.pnlPac.Size = new System.Drawing.Size(900, 299);
             this.pnlPac.TabIndex = 66;
+            // 
+            // txtFecEmi
+            // 
+            this.txtFecEmi.Location = new System.Drawing.Point(618, 35);
+            this.txtFecEmi.Mask = "00/00/0000";
+            this.txtFecEmi.Name = "txtFecEmi";
+            this.txtFecEmi.Size = new System.Drawing.Size(120, 20);
+            this.txtFecEmi.TabIndex = 33;
+            this.txtFecEmi.ValidatingType = typeof(System.DateTime);
+            this.txtFecEmi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFecEmi_KeyDown);
             // 
             // optPanel
             // 
@@ -882,6 +975,7 @@
             // 
             // txtObservacion
             // 
+            this.txtObservacion.Enabled = false;
             this.txtObservacion.Location = new System.Drawing.Point(23, 529);
             this.txtObservacion.Multiline = true;
             this.txtObservacion.Name = "txtObservacion";
@@ -907,18 +1001,9 @@
             // 
             this.docVentaTableAdapter.ClearBeforeFill = true;
             // 
-            // txtFecEmi
-            // 
-            this.txtFecEmi.Location = new System.Drawing.Point(618, 35);
-            this.txtFecEmi.Mask = "00/00/0000";
-            this.txtFecEmi.Name = "txtFecEmi";
-            this.txtFecEmi.Size = new System.Drawing.Size(120, 20);
-            this.txtFecEmi.TabIndex = 33;
-            this.txtFecEmi.ValidatingType = typeof(System.DateTime);
-            this.txtFecEmi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFecEmi_KeyDown);
-            // 
             // txtFecNac
             // 
+            this.txtFecNac.Enabled = false;
             this.txtFecNac.Location = new System.Drawing.Point(594, 323);
             this.txtFecNac.Mask = "00/00/0000";
             this.txtFecNac.Name = "txtFecNac";
@@ -928,12 +1013,29 @@
             // 
             // txtFecExt
             // 
+            this.txtFecExt.Enabled = false;
             this.txtFecExt.Location = new System.Drawing.Point(735, 373);
             this.txtFecExt.Mask = "00/00/0000";
             this.txtFecExt.Name = "txtFecExt";
             this.txtFecExt.Size = new System.Drawing.Size(72, 20);
             this.txtFecExt.TabIndex = 69;
             this.txtFecExt.ValidatingType = typeof(System.DateTime);
+            // 
+            // formaPagoTableAdapter
+            // 
+            this.formaPagoTableAdapter.ClearBeforeFill = true;
+            // 
+            // tipoMonedaTableAdapter
+            // 
+            this.tipoMonedaTableAdapter.ClearBeforeFill = true;
+            // 
+            // operativoTableAdapter
+            // 
+            this.operativoTableAdapter.ClearBeforeFill = true;
+            // 
+            // motivoAnulacionTableAdapter
+            // 
+            this.motivoAnulacionTableAdapter.ClearBeforeFill = true;
             // 
             // frmMntVentas
             // 
@@ -999,6 +1101,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.formaPagoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoMonedaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operativoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operativos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.motivoAnulacionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDet)).EndInit();
             this.pnlPac.ResumeLayout(false);
             this.pnlPac.PerformLayout();
@@ -1087,18 +1194,27 @@
         private System.Windows.Forms.RadioButton rb1;
         private System.Windows.Forms.RadioButton rb0;
         private System.Windows.Forms.Panel optPanel;
+        private System.Windows.Forms.MaskedTextBox txtFecEmi;
+        private System.Windows.Forms.MaskedTextBox txtFecNac;
+        private System.Windows.Forms.MaskedTextBox txtFecExt;
+        private System.Windows.Forms.BindingSource formaPagoBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.FormaPagoTableAdapter formaPagoTableAdapter;
+        private System.Windows.Forms.BindingSource tipoMonedaBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.TipoMonedaTableAdapter tipoMonedaTableAdapter;
+        private Dominio.Data.Operativos operativos;
+        private System.Windows.Forms.BindingSource operativoBindingSource;
+        private Dominio.Data.OperativosTableAdapters.OperativoTableAdapter operativoTableAdapter;
+        private System.Windows.Forms.BindingSource motivoAnulacionBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.MotivoAnulacionTableAdapter motivoAnulacionTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MD;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn MD;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pagado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dscto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id_Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Historia;
         private System.Windows.Forms.DataGridViewTextBoxColumn PD;
-        private System.Windows.Forms.MaskedTextBox txtFecEmi;
-        private System.Windows.Forms.MaskedTextBox txtFecNac;
-        private System.Windows.Forms.MaskedTextBox txtFecExt;
     }
 }

@@ -15,6 +15,7 @@ namespace Polsolcom.Forms
         Dictionary<string, string> vcab = new Dictionary<string, string>();
         List<Dictionary<string, string>> npacs = new List<Dictionary<string, string>>();
         Dictionary<string, string> npac = new Dictionary<string, string>();
+        List<Dictionary<string, string>> nusr = new List<Dictionary<string, string>>();
 
         public frmMntVentas()
         {
@@ -115,7 +116,7 @@ namespace Polsolcom.Forms
 
             if (sr.Length > 0)
             {
-                sql += sql.Contains("Like") || sql.Contains("And") ? "And T.Serie Like '" + sr + "' " : "And T.Serie Like '" + sr + "' ";
+                sql += sql.Contains("Like") || sql.Contains("And") ? "And T.Serie Like '" + sr + "' " : "T.Serie Like '" + sr + "' ";
             }
 
             if (nf.Length > 0)
@@ -125,12 +126,12 @@ namespace Polsolcom.Forms
 
             if (cmbEspecialidad.SelectedIndex > -1)
             {
-                sql += sql.Contains("Like") || sql.Contains("And") ? "And T.Id_Consultorio Like '" + es + "' " : "And T.Id_Consultorio Like '" + es + "' ";
+                sql += sql.Contains("Like") || sql.Contains("And") ? "And T.Id_Consultorio Like '" + es + "' " : "T.Id_Consultorio Like '" + es + "' ";
             }
 
             if (ip.Length > 0)
             {
-                sql += sql.Contains("Like") || sql.Contains("And") ? "And T.Id_Paciente Like '" + ip + "' " : "And T.Id_Paciente Like '" + ip + "' ";
+                sql += sql.Contains("Like") || sql.Contains("And") ? "And T.Id_Paciente Like '" + ip + "' " : "T.Id_Paciente Like '" + ip + "' ";
             }
 
             sql += "order by 3, 2";
@@ -154,10 +155,6 @@ namespace Polsolcom.Forms
             txtApePat.Enabled = txtApeMat.Enabled = txtNombres.Enabled = txtIdPac.Enabled = txtFecEmi.Enabled = cmbEspecialidad.Enabled = cmbTipDoc.Enabled = txtSerie.Enabled = txtNInicial.Enabled = txtNFinal.Enabled = optPanel.Enabled = lstPacientes.Enabled = lstVentas.Enabled = lm;
             btnEliminar.Enabled = cmbAprDscto.Enabled = false;
             txtObservacion.Enabled = btnGrabar.Enabled = !lm;
-            /*
-            STORE IIF(op=1, 39, IIF(op=2, 24, IIF(op=3, 28, 41))) TO .txtobservacion.maxlength
-            STORE IIF(op=1 .OR. op=3, 'Allt(Mot'+IIF(op=1, 'Anul', 'Ext')+'.Descripcion),Id_Tipo', '') TO .cmbmotanul.rowsource
-            */
 
             if (rb0.Checked)
             {
@@ -167,11 +164,11 @@ namespace Polsolcom.Forms
             if (rb1.Checked)
             {
                 txtDscto.Enabled = !lm;
-                //STORE lm TO .grddet.column5.readonly
+                grdDet.Columns["MD"].ReadOnly = lm;
                 txtDscto.Text = "0.00";
                 for (int i = 0; i < grdDet.Rows.Count; ++i)
                 {
-                    grdDet.Rows[i].Cells["MD"].Value = "1";
+                    grdDet.Rows[i].Cells["MD"].Value = true;
                 }
             }
 
@@ -179,7 +176,7 @@ namespace Polsolcom.Forms
             {
                 cmbOpExt.Enabled = cmbUsExt.Enabled = txtFecExt.Enabled = cmbMotAnul.Enabled = !lm;
                 txtFecExt.Text = DateTime.Today.ToShortDateString();
-                cmbOpExt.Text = Operativo.id_oper;
+                cmbOpExt.SelectedValue = Operativo.id_oper;
             }
 
         }
@@ -215,6 +212,18 @@ namespace Polsolcom.Forms
 
         private void frmMntVentas_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'tablaTipoDS.MotivoAnulacion' table. You can move, or remove it, as needed.
+            this.motivoAnulacionTableAdapter.Fill(this.tablaTipoDS.MotivoAnulacion);
+            cmbMotAnul.SelectedIndex = -1;
+            // TODO: This line of code loads data into the 'operativos.Operativo' table. You can move, or remove it, as needed.
+            this.operativoTableAdapter.Fill(this.operativos.Operativo);
+            cmbOpExt.SelectedIndex = -1;
+            // TODO: This line of code loads data into the 'tablaTipoDS.TipoMoneda' table. You can move, or remove it, as needed.
+            this.tipoMonedaTableAdapter.Fill(this.tablaTipoDS.TipoMoneda);
+            cmbMoneda.SelectedIndex = -1;
+            // TODO: This line of code loads data into the 'tablaTipoDS.FormaPago' table. You can move, or remove it, as needed.
+            this.formaPagoTableAdapter.Fill(this.tablaTipoDS.FormaPago);
+            cmbFPago.SelectedIndex = -1;
             // TODO: This line of code loads data into the 'tablaTipoDS.DocVenta' table. You can move, or remove it, as needed.
             this.docVentaTableAdapter.Fill(this.tablaTipoDS.DocVenta);
             cmbTipDoc.SelectedIndex = -1;
@@ -223,14 +232,16 @@ namespace Polsolcom.Forms
             cmbEspecialidad.SelectedIndex = -1;
 
             string sql = "Select Key_Pass Usuario,Id_Us From sysaccusers";
-            List<Dictionary<string, string>> nusr = General.GetDictionaryList(sql);
-
+            this.nusr = General.GetDictionaryList(sql);
             for (int i = 0; i < nusr.Count; i++)
             {
                 nusr[i]["Usuario"] = General.TradUser(nusr[i]["Usuario"]);
             }
-
-            nusr.OrderBy(x => x["Usuario"]);
+            nusr.Sort((x,y) => x["Usuario"].CompareTo(y["Usuario"]));
+            General.FillComboBox(cmbUsExt, nusr, "Id_Us", "Usuario");
+            General.FillComboBox(cmbAprDscto, nusr, "Id_Us", "Usuario");
+            cmbUsExt.SelectedIndex = -1;
+            cmbAprDscto.SelectedIndex = -1;
 
             string sql2 = "Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Personal,Id_Personal " + 
                 "From Personal Where Dscto='S' Union All " + 
@@ -265,65 +276,72 @@ namespace Polsolcom.Forms
 
         private void lstVentas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int i = General.GetSelectedIndex(lstVentas);
-            this.vcab = this.vcabs[i];
-            this.pcl();
-            this.pfp(this.vcab["Id_Paciente"]);
+            int i = General.GetSelectedIndex(lstVentas, false);
 
-            int j = this.npacs.FindIndex(x => x["Id_Paciente"] == this.vcab["Id_Paciente"]);
-            txtIdPaciente.Text = this.npacs[j]["Id_Paciente"];
-            txtPaciente.Text = this.npacs[j]["Ape_Paterno"] + " " + this.npacs[j]["Ape_Materno"] + " " + this.npacs[j]["Nombre"];
-            txtSexo.Text = this.npacs[j]["Sexo"] == "M" ? "MASCULINO" : "FEMENINO";
-            txtFecNac.Text = this.npacs[j]["Fecha_Nac"];
-            txtEdad.Text = this.npacs[j]["Edad"];
-            txtCajero.Text = this.vcab["Digitador"];
-            cmbFPago.Text = this.vcab["ForPago"];
-            cmbMoneda.Text = this.vcab["Moneda"];
-
-            if (this.vcab["Descuento"].Substring(0, 1) == "A" && this.vcab["Anulado"].Length == 1)
+            if (i > -1)
             {
-                //.cmbmotanul.rowsource = 'Allt(MotAnul.Descripcion),Id_Tipo'
-                cmbMotAnul.SelectedValue = this.vcab["Descuento"].Substring(29, 1);
-                txtObservacion.Text = General.SafeSubstring(this.vcab["Descuento"], 30, 40);
+                this.vcab = this.vcabs[i];
+                this.pcl();
+                this.pfp(this.vcab["Id_Paciente"]);
+
+                int j = this.npacs.FindIndex(x => x["Id_Paciente"] == this.vcab["Id_Paciente"]);
+
+                if (j > -1)
+                {
+                    txtIdPaciente.Text = this.npacs[j]["Id_Paciente"];
+                    txtPaciente.Text = this.npacs[j]["Ape_Paterno"] + " " + this.npacs[j]["Ape_Materno"] + " " + this.npacs[j]["Nombre"];
+                    txtSexo.Text = this.npacs[j]["Sexo"] == "M" ? "MASCULINO" : "FEMENINO";
+                    txtFecNac.Text = this.npacs[j]["Fecha_Nac"];
+                    txtEdad.Text = this.npacs[j]["Edad"];
+                    txtCajero.Text = this.vcab["Digitador"];
+                    cmbFPago.SelectedValue = this.vcab["ForPago"];
+                    cmbMoneda.SelectedValue = this.vcab["Moneda"];
+                }
+
+                if (General.SafeSubstring(this.vcab["Descuento"], 0, 1) == "A" && this.vcab["Anulado"].Length == 1)
+                {
+                    //.cmbmotanul.rowsource = 'Allt(MotAnul.Descripcion),Id_Tipo'
+                    cmbMotAnul.SelectedValue = General.SafeSubstring(this.vcab["Descuento"], 29, 1);
+                    txtObservacion.Text = General.SafeSubstring(this.vcab["Descuento"], 30, 40);
+                }
+
+                if (General.SafeSubstring(this.vcab["Descuento"], 0, 1) == "D")
+                {
+                    cmbAprDscto.SelectedIndex = this.nusr.FindIndex(x => x["Id_Us"] == General.SafeSubstring(this.vcab["Descuento"], 29, 9));
+                    txtDscto.Text = General.SafeSubstring(this.vcab["Descuento"], 38, 8);
+                    txtObservacion.Text = General.SafeSubstring(this.vcab["Descuento"], 46, 24);
+                }
+
+                if (General.SafeSubstring(this.vcab["Descuento"], 0, 1) == "E" && this.vcab["Anulado"].Length == 10)
+                {
+                    txtFecExt.Text = this.vcab["Anulado"];
+                    cmbOpExt.SelectedValue = General.SafeSubstring(this.vcab["Descuento"], 29, 3);
+                    cmbUsExt.SelectedIndex = this.nusr.FindIndex(x => x["Id_Us"] == General.SafeSubstring(this.vcab["Descuento"], 32, 9));
+                    cmbMotAnul.SelectedValue = General.SafeSubstring(this.vcab["Descuento"], 41, 1);
+                    txtObservacion.Text = General.SafeSubstring(this.vcab["Descuento"], 42, 28);
+                }
+
+                if (General.SafeSubstring(this.vcab["Descuento"], 0, 1) == "O")
+                {
+                    txtObservacion.Text = General.SafeSubstring(this.vcab["Descuento"], 29, 41);
+                }
+
+                txtEstado.Text = (this.vcab["Anulado"] == "" && this.vcab["Descuento"] == "" ? "VENDIDO" : (this.vcab["Anulado"].Length == 10 && General.SafeSubstring(this.vcab["Descuento"], 0, 1) == "E" ? "EXTORNO" : (this.vcab["Anulado"] == "S" && this.vcab["Anulado"].Substring(0, 1) == "A" ? "ANULADO" : "EDITADO")));
+                txtUsFecMod.Text = (this.vcab["Descuento"].Length > 0 ? General.TradUser(General.SafeSubstring(this.vcab["Descuento"], 1, 9)) + " - " + General.SafeSubstring(this.vcab["Descuento"], 10, 19) : "");
+
+                string nh = this.vcab["Nro_Historia"];
+
+                grdDet.Rows.Clear();
+
+                string sql = "Select P.Descripcion Producto,Cantidad,D.Monto,D.Monto*Cantidad Total,0 MD,Pagado,Dscto,D.Id_Producto,Nro_Historia,0.00 PD From Detalles D Inner Join Productos P On D.Id_Producto=P.Id_Producto Where Nro_Historia='" + nh + "'";
+                List<Dictionary<string, string>> vdets = General.GetDictionaryList(sql);
+                General.FillDataGridView(grdDet, vdets, new[] { "MD" });
+                txtTotal.Text = vdets.Sum(x => decimal.Parse(x["Total"])).ToString();
+
+                int c = Conexion.ExecuteScalar<int>("Select Count(*)C From Cab_Cie10 Where Nro_Historia='" + nh + "'");
+                optPanel.Enabled = c == 0;
+                btnEliminar.Enabled = c == 0 && (Usuario.tipo == "A" || Usuario.tipo == "O");
             }
-
-            if (this.vcab["Descuento"].Substring(0, 1) == "D")
-            {
-                cmbAprDscto.SelectedValue = this.vcab["Descuento"].Substring(29, 9);
-                txtDscto.Text = this.vcab["Descuento"].Substring(38, 8);
-                txtObservacion.Text = this.vcab["Descuento"].Substring(46, 24);
-            }
-
-            if (this.vcab["Descuento"].Substring(0, 1) == "E" && this.vcab["Anulado"].Length == 10)
-            {
-                txtFecExt.Text = this.vcab["Anulado"];
-                cmbOpExt.SelectedValue = this.vcab["Descuento"].Substring(29, 3);
-                cmbUsExt.SelectedValue = this.vcab["Descuento"].Substring(32, 9);
-                //.cmbmotanul.rowsource = 'Allt(MotExt.Descripcion),Id_Tipo'
-                cmbMotAnul.SelectedValue = this.vcab["Descuento"].Substring(41, 1);
-                txtObservacion.Text = this.vcab["Descuento"].Substring(42, 28);
-            }
-
-            if (this.vcab["Descuento"].Substring(0, 1) == "O")
-            {
-                txtObservacion.Text = this.vcab["Descuento"].Substring(29, 41);
-            }
-
-            txtEstado.Text = (this.vcab["Anulado"] == "" && this.vcab["Descuento"] == "" ? "VENDIDO" : (this.vcab["Anulado"].Length == 10 && this.vcab["Descuento"].Substring(0, 1) == "E" ? "EXTORNO" : (this.vcab["Anulado"] == "S" && this.vcab["Anulado"].Substring(0, 1) == "A" ? "ANULADO" : "EDITADO")));
-            txtUsFecMod.Text = (this.vcab["Descuento"].Length > 0? General.TradUser(this.vcab["Descuento"].Substring(1, 9)) + " - " + this.vcab["Descuento"].Substring(10, 19): "");
-
-            string nh = this.vcab["Nro_Historia"];
-
-            grdDet.Rows.Clear();
-
-            string sql = "Select P.Descripcion Producto,Cantidad,D.Monto,D.Monto*Cantidad Total,0 MD,Pagado,Dscto,D.Id_Producto,Nro_Historia,0.00 PD From Detalles D Inner Join Productos P On D.Id_Producto=P.Id_Producto Where Nro_Historia='" + nh + "'";
-            List<Dictionary<string, string>> vdets = General.GetDictionaryList(sql);
-            General.FillDataGridView(grdDet, vdets);
-            txtTotal.Text = vdets.Sum(x => decimal.Parse(x["Total"])).ToString();
-
-            int c = Conexion.ExecuteScalar<int>("Select Count(*)C From Cab_Cie10 Where Nro_Historia='" + nh + "'");
-            optPanel.Enabled = c == 0;
-            btnEliminar.Enabled = c == 0 && (Usuario.tipo == "A" || Usuario.tipo == "O");
         }
 
         private void txtIdPac_TextChanged(object sender, EventArgs e)
@@ -353,39 +371,43 @@ namespace Polsolcom.Forms
 
         private void txtDscto_Leave(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desea aplicar descuento a los productos seleccionados ... ?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (this.DialogResult != DialogResult.Cancel)
             {
-                decimal mm = General.GetDictionaryList(grdDet).FindAll(x => x["MD"] == "1").Sum(x => decimal.Parse(x["Monto"]));
-                if (mm - decimal.Parse(txtDscto.Text) < 1)
+                if (MessageBox.Show("Desea aplicar descuento a los productos seleccionados ... ?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    General.msg("Descuento no debe generar negativos, corregir proceso ...", "Advertencia", true);
-                    return;
-                }
-
-                int rg = 0;
-                decimal lm = 0;
-                for (int i = 0; i < grdDet.Rows.Count; ++i)
-                {
-                    if (grdDet.Rows[i].Cells["MD"].Value.ToString() == "1")
+                    decimal mm = General.GetDictionaryList(grdDet).FindAll(x => x["MD"] == "True").Sum(x => decimal.Parse(x["Monto"]));
+                    if (mm - decimal.Parse(txtDscto.Text) < 1)
                     {
-                        grdDet.Rows[i].Cells["PD"].Value = decimal.Parse(grdDet.Rows[i].Cells["Total"].Value.ToString()) / mm;
-                        grdDet.Rows[i].Cells["Monto"].Value = decimal.Parse(grdDet.Rows[i].Cells["Monto"].Value.ToString()) - (decimal.Parse(grdDet.Rows[i].Cells["PD"].Value.ToString()) * decimal.Parse(txtDscto.Text)) / decimal.Parse(grdDet.Rows[i].Cells["Cantidad"].Value.ToString());
-                        decimal xtotal = decimal.Parse(grdDet.Rows[i].Cells["Monto"].Value.ToString()) * decimal.Parse(grdDet.Rows[i].Cells["Cantidad"].Value.ToString());
-                        grdDet.Rows[i].Cells["Total"].Value = xtotal;
-                        lm += xtotal;
-                        rg = i;
+                        General.msg("Descuento no debe generar negativos, corregir proceso ...", "Advertencia", true);
+                        return;
                     }
+
+                    int rg = 0;
+                    decimal lm = 0;
+                    for (int i = 0; i < grdDet.Rows.Count; ++i)
+                    {
+                        if (grdDet.Rows[i].Cells["MD"].Value.ToString() == "True")
+                        {
+                            decimal xd = decimal.Parse(grdDet.Rows[i].Cells["Total"].Value.ToString()) / mm;
+                            grdDet.Rows[i].Cells["PD"].Value = xd;
+                            grdDet.Rows[i].Cells["Monto"].Value = decimal.Parse(grdDet.Rows[i].Cells["Monto"].Value.ToString()) - (decimal.Parse(grdDet.Rows[i].Cells["PD"].Value.ToString()) * decimal.Parse(txtDscto.Text)) / decimal.Parse(grdDet.Rows[i].Cells["Cantidad"].Value.ToString());
+                            decimal xtotal = decimal.Parse(grdDet.Rows[i].Cells["Monto"].Value.ToString()) * decimal.Parse(grdDet.Rows[i].Cells["Cantidad"].Value.ToString());
+                            grdDet.Rows[i].Cells["Total"].Value = xtotal;
+                            lm += xtotal;
+                            rg = i;
+                        }
+                    }
+
+                    decimal df = mm - (lm - decimal.Parse(txtDscto.Text));
+
+                    df = (int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString()) > 1 ? df / int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString()) : df);
+                    grdDet.Rows[rg].Cells["Monto"].Value = (df > 0 ? decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) + df : (df < 0 ? decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) - df : grdDet.Rows[rg].Cells["Monto"].Value));
+                    grdDet.Rows[rg].Cells["Total"].Value = decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) * int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString());
+
+                    txtTotal.Text = General.GetDictionaryList(grdDet).Sum(x => decimal.Parse(x["Monto"]) * int.Parse(x["Cantidad"])).ToString();
+                    cmbAprDscto.Enabled = true;
+                    txtDscto.Enabled = false;
                 }
-
-                decimal df = mm - (lm - decimal.Parse(txtDscto.Text));
-
-                df = (int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString()) > 1 ? df / int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString()) : df);
-                grdDet.Rows[rg].Cells["Monto"].Value = (df > 0? decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) + df: (df < 0? decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) - df: grdDet.Rows[rg].Cells["Monto"].Value));
-                grdDet.Rows[rg].Cells["Total"].Value = decimal.Parse(grdDet.Rows[rg].Cells["Monto"].Value.ToString()) * int.Parse(grdDet.Rows[rg].Cells["Cantidad"].Value.ToString());
-
-                txtTotal.Text = General.GetDictionaryList(grdDet).Sum(x => decimal.Parse(x["Monto"]) * int.Parse(x["Cantidad"])).ToString();
-                cmbAprDscto.Enabled = true;
-                txtDscto.Enabled = false;
             }
         }
 
@@ -420,7 +442,7 @@ namespace Polsolcom.Forms
                         return;
                     }
 
-                    string ad = cmbAprDscto.SelectedValue.ToString();
+                    string ad = this.nusr[cmbAprDscto.SelectedIndex]["Id_Us"];
                     string ds = decimal.Parse(txtDscto.Text).ToString();
 
                     for (int i = 0; i < grdDet.Rows.Count; ++i)
@@ -446,7 +468,7 @@ namespace Polsolcom.Forms
                     }
 
                     string oe = cmbOpExt.SelectedValue.ToString();
-                    string ue = cmbUsExt.SelectedValue.ToString();
+                    string ue = this.nusr[cmbUsExt.SelectedIndex]["Id_Us"];
                     string fe = txtFecExt.Text;
                     string me = cmbMotAnul.SelectedValue.ToString();
                     sql = "Update Tickets Set Descuento='E'+'" + us + "'+Space(9-Len('" + us + "'))+Convert(Varchar(10),GetDate(),103)+' '+Convert(Varchar(10),GetDate(),108)+'" + oe + "'+'" + ue + "'+Space(9-Len('" + ue + "'))+'" + me + "'+'" + ob + "',Anulado='" + fe + "' Where Nro_Historia='" + nh + "'";
@@ -557,7 +579,6 @@ namespace Polsolcom.Forms
                 if (DateTime.Parse(this.vcab["Fecha_Emision"]).ToShortDateString() == DateTime.Today.ToShortDateString() && this.vcab["Anulado"] == "")
                 {
                     this.phb(false, "2");
-                    //.grddet.column5.setfocus
                 }
                 else
                 {
@@ -614,7 +635,7 @@ namespace Polsolcom.Forms
         {
             if (rb3.Checked)
             {
-                if (DateTime.Parse(this.vcab["Fecha_Emision"]).ToShortDateString() == DateTime.Today.ToShortDateString() && this.vcab["Anulado"] == "" && this.vcab["Descuento"].Substring(0, 1) != "D")
+                if (DateTime.Parse(this.vcab["Fecha_Emision"]).ToShortDateString() == DateTime.Today.ToShortDateString() && this.vcab["Anulado"] == "" && General.SafeSubstring(this.vcab["Descuento"], 0, 1) != "D")
                 {
                     this.phb(false, "4");
                     txtObservacion.Focus();
@@ -625,6 +646,11 @@ namespace Polsolcom.Forms
                     rb3.Checked = false;
                 }
             }
+        }
+
+        private void txtDscto_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
