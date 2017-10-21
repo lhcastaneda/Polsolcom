@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.ListViewItem;
+using System.IO;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -103,6 +104,8 @@ namespace Polsolcom.Dominio.Helpers
     public static class General
     {
         public static string emptyDate = "  /  /";
+        public static string emptyDateTime = "  /  /       :";
+        public static string dateTimeFormat = "dd/MM/yyyy hh:mm tt";
         public static ToolTip ttMensaje = new ToolTip();
         public static Label lblLabel = new Label();
         public static List<TipoUsuario> lstTipoUsuario = new List<TipoUsuario>();
@@ -385,39 +388,27 @@ namespace Polsolcom.Dominio.Helpers
             return sValor;
         }
 
-        public static bool TieneDocVenta(string idUsuario, string DVenta)
+        public static Dictionary<string, string> rdvo(string pu, string pd)
         {
-            bool bExisteDoc = false;
-            string vSQL = "SELECT T.DVenta,T.Serie,S.Autoriz " +
+            string sql = "SELECT T.DVenta,T.Serie,S.Autoriz " +
                           "FROM Talon T INNER JOIN Serie S " +
                           "ON T.Id_Oper = S.Id_Oper " +
                           "AND T.DVenta = S.Id_TDoc " +
                           "AND T.Serie = S.Serie " +
                           "WHERE CONVERT(VARCHAR(10),Fecha,103) = ( SELECT CONVERT(VARCHAR(10), GETDATE(), 103) FROM dual) " +
-                          "AND Usuario = '" + idUsuario.Trim() + "' " +
+                          "AND Usuario = '" + pu.Trim() + "' " +
                           "AND NCon <> '' ";
-            if (DVenta.Trim() == "")
-                vSQL = vSQL + "AND TDef = '' ";
+            if (pd.Trim() == "")
+                sql = sql + "AND TDef = '' ";
             else
-                vSQL = vSQL + "AND DVenta = '" + DVenta.Trim() + "'";
+                sql = sql + "AND DVenta = '" + pd.Trim() + "'";
 
-            using (SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN))
-            {
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                            bExisteDoc = true;
-                    }
-                    dr.Close();
-                }
-            }
+            Dictionary<string, string> rdvopen = General.GetDictionary(sql);
 
-            if (bExisteDoc == false)
+            if (rdvopen == null)
                 MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 
-            return bExisteDoc;
+            return rdvopen;
         }
 
         public static void ReseteaSesion()
@@ -491,8 +482,8 @@ namespace Polsolcom.Dominio.Helpers
 
             vSQL = "SELECT Key_Pass AS Usuario " +
                     "FROM sysaccusers " +
-                    "WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable + "' " +
-                    "OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable + "' ";
+                    "WHERE LTRIM(RTRIM(Id_Us)) = '" + sVariable.Replace("'", "''") + "' " +
+                    "OR LTRIM(RTRIM(Key_Pass)) = '" + sVariable.Replace("'", "''") + "' ";
 
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["CNN"].ConnectionString))
             {
@@ -1131,15 +1122,15 @@ namespace Polsolcom.Dominio.Helpers
                     return "";
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.ape_pat+' '+P.Ape_Mat+' '+P.Nombres,P.Ubigeo,P.DNI,Id_Old,'','' " +
+                        "P.*, ISNULL(P.Ape_Pat, '') +' '+P.Ape_Mat+' '+P.Nombres As Paciente,U.Id_Old, '' As Direccion, U.Distrito As FullDireccion " +
                         "FROM DNI..Padron P INNER JOIN DNI..Ubigeo2005 U " +
                         "ON P.Ubigeo=U.Ubigeo WHERE 1 = 1 ";
 
                 if (sApPaterno != "")
-                    sVSQL = sVSQL + "AND Ape_Pat = '" + sApPaterno + "' ";
+                    sVSQL = sVSQL + "AND Ape_Pat LIKE '" + sApPaterno + "%' ";
 
                 if (sApMaterno != "")
-                    sVSQL = sVSQL + "AND Ape_Mat = '" + sApMaterno + "' ";
+                    sVSQL = sVSQL + "AND Ape_Mat LIKE '" + sApMaterno + "%' ";
 
                 if (sNombres != "")
                     sVSQL = sVSQL + "AND Nombres LIKE '" + sNombres + "%' ";
@@ -1151,7 +1142,7 @@ namespace Polsolcom.Dominio.Helpers
             }
             else
             {
-                if (sDNI.Length < 8 && sIdPaciente.Length < 4 && sNroHistoria.Length == 0)
+                /*if (sDNI.Length < 8 && sIdPaciente.Length < 4 && sNroHistoria.Length == 0)
                 {
                     if (sApPaterno == "")
                         sApPaterno = "A";
@@ -1161,13 +1152,13 @@ namespace Polsolcom.Dominio.Helpers
 
                     if (sNombres == "")
                         sNombres = "A";
-                }
+                }*/
 
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
-                        "P.Ape_Paterno, P.Ape_Materno, P.Nombre, P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente, P.Id_Paciente, P.DNI, P.Id_Distrito, P.Asegurado, P.Nro_Historia, P.Fecha_Nac, P.Edad, P.Sexo ";
+                        "P.Ape_Paterno, P.Ape_Materno, P.Nombre, P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente, P.Id_Paciente, P.DNI, P.Id_Distrito, P.Asegurado, P.Nro_Historia, P.Fecha_Nac, P.Edad, P.Sexo, P.Telefono, P.ODoc, P.E_Mail ";
 
                 if (Num1 == 2)
-                    sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito ";
+                    sVSQL = sVSQL + ",CASE WHEN U.Distrito IS NULL THEN '' ELSE U.Distrito END AS Distrito, P.Direccion, CASE WHEN U.Distrito IS NULL THEN P.Direccion ELSE P.Direccion + ' - ' + U.Distrito END As FullDireccion ";
 
                 sVSQL = sVSQL + " FROM Pacientes P ";
 
@@ -1298,6 +1289,26 @@ namespace Polsolcom.Dominio.Helpers
             return ok;
         }
 
+        public static void FillDataGridView(DataGridView dataGridView, List<Dictionary<string, string>> items, string[] boolColumns = null)
+        {
+            foreach (Dictionary<string, string> item in items)
+            {
+                List<object> array = new List<object>();
+                foreach (KeyValuePair<string, string> entry in item)
+                {
+                    if (boolColumns != null && boolColumns.Contains(entry.Key))
+                    {
+                        array.Add(entry.Value.ToString() == "1");
+                    }
+                    else
+                    {
+                        array.Add(entry.Value);
+                    }
+                }
+                dataGridView.Rows.Add(array.ToArray());
+            }
+        }
+
         public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields, Dictionary<string, string> filters = null)
         {
             listview.Items.Clear();
@@ -1350,12 +1361,12 @@ namespace Polsolcom.Dominio.Helpers
         {
             foreach (ListViewItem item in listView.SelectedItems)
             {
-                return ConvertToDictionary(item);
+                return General.ConvertToDictionary(item);
             }
 
             if (listView.Items.Count > 0 && returnFirst)
             {
-                return ConvertToDictionary(listView.Items[0]);
+                return General.ConvertToDictionary(listView.Items[0]);
             }
             else
             {
@@ -1412,7 +1423,7 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        public static void setAll<A, B>(Control control, string property, B value)
+        public static void setAll<A, B>(Control control, string property, B value, bool recursive = true)
         {
             foreach (Control subControl in control.Controls)
             {
@@ -1421,6 +1432,11 @@ namespace Polsolcom.Dominio.Helpers
                     Type t = subControl.GetType();
                     PropertyInfo p = t.GetProperty(property);
                     p.SetValue(subControl, value);
+                }
+
+                if (recursive && (subControl is Panel || subControl is GroupBox))
+                {
+                    General.setAll<A, B>(subControl, property, value);
                 }
             }
         }
@@ -1451,7 +1467,7 @@ namespace Polsolcom.Dominio.Helpers
             string ms = (nt == "Productos" ? vc + " de " : "Especialidad de ") + (nt == "Productos" ? ne : vc) + (st == "ACTIVADO" ? " " : " no ") + "vendan, ha sido " + st + ".";
 
 
-            return msg(ms, 0);
+            return msg(ms, "", false);
 
         }
 
@@ -1468,26 +1484,221 @@ namespace Polsolcom.Dominio.Helpers
             return (np.Length > 0 ? (db == 1 ? "Exec " + np + " " : "Select " + np + "(") : (db == 1 ? "" : ")"));
         }
 
-        public static bool msg(string ms, int mm, string bw = "", string tw = "")
+        public static bool msg(string ms, string tw = "", bool mm = true)
         {
+            if (mm)
+            {
+                MessageBox.Show(ms, tw);
+            }
             return true;
             //Envia un mensaje a todos o algun usuario en la red local
             //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
         }
 
-        public static int getYearUntilNow(string date)
-        {
-            DateTime bday = DateTime.Parse(date);
-            DateTime now = DateTime.Today;
-            int age = now.Year - bday.Year;
-            if (bday > now.AddYears(-age))
-            {
-                age--;
-            }
+       
 
+        public static void valObj(TextBox obj, string txt)
+        {
+            if (obj.Text.Length == 0)
+            {
+                if (txt.Contains("paterno") || txt.Contains("materno"))
+                {
+                    if (MessageBox.Show("Falta " + txt + " ... desea guardar asi ... ?\npara ello de Click en 'Si' y vuelva a guardar ... ", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        obj.Text = ".";
+                        return;
+                    }
+                }
+
+                MessageBox.Show("Dato necesario, ingrese " + txt + " ...", "Advertencia");
+                obj.Focus();
+                return;
+            }
+        }
+
+        public static int getYearsUntilNow(DateTime date)
+        {
+            DateTime now = DateTime.Today;
+            int age = now.Year - date.Year;
+            if (date > now.AddYears(-age)) age--;
             return age;
         }
 
+        public static int getYearsUntilNow(string date)
+        {
+            DateTime datetime = new DateTime();
+            bool valid = DateTime.TryParse(date, out datetime);
+
+            if (!valid)
+            {
+                throw new Exception("Fecha inválida");
+            }
+
+            return General.getYearsUntilNow(datetime);
+        }
+
+        /// <summary>
+        /// Obtiene la cantidad de días desde una fecha hasta hoy
+        /// </summary>
+        /// <param name="date">Fecha de inicio</param>
+        /// <returns>Cantidad de días</returns>
+        public static int getDaysUntilNow(DateTime date)
+        {
+            DateTime now = DateTime.Today;
+            return (int)(now - date).TotalDays;
+        }
+
+        public static int getDaysUntilNow(string date)
+        {
+            DateTime datetime = new DateTime();
+            bool valid = DateTime.TryParse(date, out datetime);
+
+            if (!valid)
+            {
+                throw new Exception("Fecha inválida");
+            }
+
+            return General.getDaysUntilNow(datetime);
+        }
+
+        public static string cnum(string lp)
+        {
+            int num = 0;
+            bool result = int.TryParse(lp, out num);
+
+            return result ? num.ToString() : lp;
+        }
+
+        public static void matxt(string ie, string cval)
+        {
+            string sql = "Select descripcion,val_abr From tablatipo Where descripcion Like '%" + ie + "%'";
+            Dictionary<string, string> vsr = General.GetDictionary(sql);
+
+            if (vsr != null)
+            {
+                string fp = vsr["Descripcion"];
+                string cs = vsr["Val_Abr"];
+                cval = (cs == "TAB" ? cval : cval.Replace("\t", cs));
+                string fa = DateTime.Today.ToShortDateString();
+
+                int c = Conexion.ExecuteScalar<int>("Select Count(*)As c From Tickets Where Id_Consultorio='" + ie + "' And Fecha_Emision>='" + fa + "'");
+
+                if (c == 1)
+                {
+                    File.Delete(fp);
+                }
+
+                if (!File.Exists(fp))
+                {
+                    File.WriteAllText(@fp, cval);
+                }
+            }
+        }
+
+        public static Dictionary<string, string> GetDictionary(ComboBox combobox, int index)
+        {
+            if (combobox.Items.Count > 0 && index > -1)
+            {
+                DataRowView vrow = (DataRowView)combobox.Items[index];
+                DataRow row = vrow.Row;
+                return row.Table.Columns
+                  .Cast<DataColumn>()
+                  .ToDictionary(c => c.ColumnName, c => row[c].ToString());
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static Dictionary<string, string> GetDictionary(DataGridView dataGridView, int index)
+        {
+            Dictionary<string, string> item = new Dictionary<string, string>();
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                item[column.Name] = dataGridView.Rows[index].Cells[column.Name].Value.ToString();
+            }
+            return item;
+        }
+
+        public static Dictionary<string, string> GetSelectedDictionary(ComboBox combobox)
+        {
+            int index = combobox.SelectedIndex;
+            return General.GetDictionary(combobox, index);
+        }
+
+        public static Dictionary<string, string> GetSelectedDictionary(DataGridView dataGridView)
+        {
+            int index = dataGridView.CurrentCell.RowIndex;
+            return General.GetDictionary(dataGridView, index);
+        }
+
+        public static List<Dictionary<string, string>> GetDictionaryList(ComboBox combobox)
+        {
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+
+            for (int i = 0; i < combobox.Items.Count; i++)
+            {
+                list.Add(General.GetDictionary(combobox, i));
+            }
+
+            return list;
+        }
+
+        public static List<Dictionary<string, string>> GetDictionaryList(DataGridView dataGridView)
+        {
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                list.Add(General.GetDictionary(dataGridView, i));
+            }
+
+            return list;
+        }
+
+        //https://stackoverflow.com/questions/3025361/c-sharp-datetime-to-yyyymmddhhmmss-format
+        public static string FormatDate(DateTime dateTime)
+        {
+            return String.Format("{0:MM/dd/yyyy}", dateTime);
+        }
+
+        public static string FormatDateTime(DateTime dateTime)
+        {
+            string sdate = String.Format("{0:G}", dateTime);
+            return sdate.Replace(".", "");
+        }
+
+        public static void RemoveAll(DataGridView dataGridView, Predicate<Dictionary<string, string>> predicate)
+        {
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                Dictionary<string, string> item = General.GetDictionary(dataGridView, i);
+                if (predicate(item))
+                {
+                    dataGridView.Rows.RemoveAt(i);
+                    i--; // this just got messy. But you see my point.
+                }
+            }
+        }
+
+        public static Dictionary<string, string> GetIGV()
+        {
+            string sql = "Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From " + "TablaTipo Where LTrim(RTrim(Descripcion)) Like '%IGV%' And LTrim(RTrim(Id_Tabla))='0') And Val_Abr='1' Order By 2";
+            return General.GetDictionary(sql);
+        }
+
+        public static string SafeSubstring(string text, int startIndex, int length)
+        {
+            if (startIndex + length <= text.Length)
+            {
+                return text.Substring(startIndex, length);
+            }
+            else
+            {
+                return text.Substring(startIndex);
+            }
+        }
     }
 }
 	

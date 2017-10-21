@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="TablaTipoDS" targetNamespace="http://tempuri.org/TablaTipoDS.xsd" xmlns:mstns="http://tempuri.org/TablaTipoDS.xsd" xmlns="http://tempuri.org/TablaTipoDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="TablaTipoDS" targetNamespace="http://tempuri.org/TablaTipo2.xsd" xmlns:mstns="http://tempuri.org/TablaTipo2.xsd" xmlns="http://tempuri.org/TablaTipo2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -21,7 +21,7 @@
                   </DbCommand>
                 </DeleteCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = 'TIPO_COLEGIATURA') AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) ORDER BY Descripcion</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -63,7 +63,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                   </DbCommand>
                 </DeleteCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = 'ESTADO_REGISTRO') AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) ORDER BY Descripcion</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -105,7 +105,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                   </DbCommand>
                 </DeleteCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'MODALIDAD_CONTRATACION') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -147,7 +147,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                   </DbCommand>
                 </DeleteCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'ESTADO_CIVIL') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -189,7 +189,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                   </DbCommand>
                 </DeleteCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'GRADO_INSTRUCCION') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -231,7 +231,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                   </DbCommand>
                 </DeleteCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'AREA_TRABAJO') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -273,7 +273,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                   </DbCommand>
                 </DeleteCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'PROFESION') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -315,7 +315,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                   </DbCommand>
                 </DeleteCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'CARGO') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -339,6 +339,516 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             <Mappings>
               <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
               <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TipoProductoTableAdapter" GeneratorDataComponentClassName="TipoProductoTableAdapter" Name="TipoProducto" UserDataComponentName="TipoProductoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="Polsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = 'TIPO_PRODUCTO') AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Id_Tipo] = @Id_Tipo, [Descripcion] = @Descripcion, [Id_Tabla] = @Id_Tabla WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TipoSubProductoTableAdapter" GeneratorDataComponentClassName="TipoSubProductoTableAdapter" Name="TipoSubProducto" UserDataComponentName="TipoSubProductoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = 'TIPO_SUBPRODUCTO') AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Id_Tipo] = @Id_Tipo, [Descripcion] = @Descripcion, [Id_Tabla] = @Id_Tabla WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DocVentaTableAdapter" GeneratorDataComponentClassName="DocVentaTableAdapter" Name="DocVenta" UserDataComponentName="DocVentaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = 'DOC_VENTA') AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Id_Tipo] = @Id_Tipo, [Descripcion] = @Descripcion, [Id_Tabla] = @Id_Tabla WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TurnoTableAdapter" GeneratorDataComponentClassName="TurnoTableAdapter" Name="Turno" UserDataComponentName="TurnoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = 'TURNOS') AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Id_Tipo] = @Id_Tipo, [Descripcion] = @Descripcion, [Id_Tabla] = @Id_Tabla WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DocIdentidadTableAdapter" GeneratorDataComponentClassName="DocIdentidadTableAdapter" Name="DocIdentidad" UserDataComponentName="DocIdentidadTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = 'DOC_IDENTIDAD') AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Id_Tipo] = @Id_Tipo, [Descripcion] = @Descripcion, [Id_Tabla] = @Id_Tabla WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TipoInstitucionTableAdapter" GeneratorDataComponentClassName="TipoInstitucionTableAdapter" Name="TipoInstitucion" UserDataComponentName="TipoInstitucionTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="Polsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Descripcion, Id_Tipo, Id_Tabla
+FROM         TablaTipo
+WHERE     (Id_Tabla IN
+                          (SELECT     Id_Tipo
+                            FROM          TablaTipo AS TablaTipo_1
+                            WHERE      (Descripcion = 'TIPO_INSTITUCION') AND (Id_Tabla = '0')))
+ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ParentescoTableAdapter" GeneratorDataComponentClassName="ParentescoTableAdapter" Name="Parentesco" UserDataComponentName="ParentescoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'PARENTESCO') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NivelEstudiosTableAdapter" GeneratorDataComponentClassName="NivelEstudiosTableAdapter" Name="NivelEstudios" UserDataComponentName="NivelEstudiosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'NIVEL_ESTUDIOS') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GeneroTableAdapter" GeneratorDataComponentClassName="GeneroTableAdapter" Name="Genero" UserDataComponentName="GeneroTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'GENERO') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FormaPagoTableAdapter" GeneratorDataComponentClassName="FormaPagoTableAdapter" Name="FormaPago" UserDataComponentName="FormaPagoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'FORMA_PAGO') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TipoMonedaTableAdapter" GeneratorDataComponentClassName="TipoMonedaTableAdapter" Name="TipoMoneda" UserDataComponentName="TipoMonedaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'TIPO_MONEDA') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
+              <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MotivoAnulacionTableAdapter" GeneratorDataComponentClassName="MotivoAnulacionTableAdapter" Name="MotivoAnulacion" UserDataComponentName="MotivoAnulacionTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.TablaTipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [TablaTipo] WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'MOTIVO_ANULACION') AND (Id_Tabla = '0'))) ORDER BY Descripcion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
+SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Descripcion" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Descripcion" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Id_Tabla" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Id_Tabla" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="Id_Tipo" DataSetColumn="Id_Tipo" />
               <Mapping SourceColumn="Id_Tabla" DataSetColumn="Id_Tabla" />
             </Mappings>
             <Sources />
@@ -378,7 +888,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="EstadoRegistro" msprop:Generator_TableClassName="EstadoRegistroDataTable" msprop:Generator_TableVarName="tableEstadoRegistro" msprop:Generator_RowChangedName="EstadoRegistroRowChanged" msprop:Generator_TablePropName="EstadoRegistro" msprop:Generator_RowDeletingName="EstadoRegistroRowDeleting" msprop:Generator_RowChangingName="EstadoRegistroRowChanging" msprop:Generator_RowEvHandlerName="EstadoRegistroRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadoRegistroRowDeleted" msprop:Generator_RowClassName="EstadoRegistroRow" msprop:Generator_UserTableName="EstadoRegistro" msprop:Generator_RowEvArgName="EstadoRegistroRowChangeEvent">
+        <xs:element name="EstadoRegistro" msprop:Generator_TableClassName="EstadoRegistroDataTable" msprop:Generator_TableVarName="tableEstadoRegistro" msprop:Generator_TablePropName="EstadoRegistro" msprop:Generator_RowDeletingName="EstadoRegistroRowDeleting" msprop:Generator_RowChangingName="EstadoRegistroRowChanging" msprop:Generator_RowEvHandlerName="EstadoRegistroRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadoRegistroRowDeleted" msprop:Generator_UserTableName="EstadoRegistro" msprop:Generator_RowChangedName="EstadoRegistroRowChanged" msprop:Generator_RowEvArgName="EstadoRegistroRowChangeEvent" msprop:Generator_RowClassName="EstadoRegistroRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
@@ -567,6 +1077,330 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="TipoProducto" msprop:Generator_TableClassName="TipoProductoDataTable" msprop:Generator_TableVarName="tableTipoProducto" msprop:Generator_RowChangedName="TipoProductoRowChanged" msprop:Generator_TablePropName="TipoProducto" msprop:Generator_RowDeletingName="TipoProductoRowDeleting" msprop:Generator_RowChangingName="TipoProductoRowChanging" msprop:Generator_RowEvHandlerName="TipoProductoRowChangeEventHandler" msprop:Generator_RowDeletedName="TipoProductoRowDeleted" msprop:Generator_RowClassName="TipoProductoRow" msprop:Generator_UserTableName="TipoProducto" msprop:Generator_RowEvArgName="TipoProductoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TipoSubProducto" msprop:Generator_TableClassName="TipoSubProductoDataTable" msprop:Generator_TableVarName="tableTipoSubProducto" msprop:Generator_RowChangedName="TipoSubProductoRowChanged" msprop:Generator_TablePropName="TipoSubProducto" msprop:Generator_RowDeletingName="TipoSubProductoRowDeleting" msprop:Generator_RowChangingName="TipoSubProductoRowChanging" msprop:Generator_RowEvHandlerName="TipoSubProductoRowChangeEventHandler" msprop:Generator_RowDeletedName="TipoSubProductoRowDeleted" msprop:Generator_RowClassName="TipoSubProductoRow" msprop:Generator_UserTableName="TipoSubProducto" msprop:Generator_RowEvArgName="TipoSubProductoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DocVenta" msprop:Generator_TableClassName="DocVentaDataTable" msprop:Generator_TableVarName="tableDocVenta" msprop:Generator_TablePropName="DocVenta" msprop:Generator_RowDeletingName="DocVentaRowDeleting" msprop:Generator_RowChangingName="DocVentaRowChanging" msprop:Generator_RowEvHandlerName="DocVentaRowChangeEventHandler" msprop:Generator_RowDeletedName="DocVentaRowDeleted" msprop:Generator_UserTableName="DocVenta" msprop:Generator_RowChangedName="DocVentaRowChanged" msprop:Generator_RowEvArgName="DocVentaRowChangeEvent" msprop:Generator_RowClassName="DocVentaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Turno" msprop:Generator_TableClassName="TurnoDataTable" msprop:Generator_TableVarName="tableTurno" msprop:Generator_TablePropName="Turno" msprop:Generator_RowDeletingName="TurnoRowDeleting" msprop:Generator_RowChangingName="TurnoRowChanging" msprop:Generator_RowEvHandlerName="TurnoRowChangeEventHandler" msprop:Generator_RowDeletedName="TurnoRowDeleted" msprop:Generator_UserTableName="Turno" msprop:Generator_RowChangedName="TurnoRowChanged" msprop:Generator_RowEvArgName="TurnoRowChangeEvent" msprop:Generator_RowClassName="TurnoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DocIdentidad" msprop:Generator_TableClassName="DocIdentidadDataTable" msprop:Generator_TableVarName="tableDocIdentidad" msprop:Generator_TablePropName="DocIdentidad" msprop:Generator_RowDeletingName="DocIdentidadRowDeleting" msprop:Generator_RowChangingName="DocIdentidadRowChanging" msprop:Generator_RowEvHandlerName="DocIdentidadRowChangeEventHandler" msprop:Generator_RowDeletedName="DocIdentidadRowDeleted" msprop:Generator_UserTableName="DocIdentidad" msprop:Generator_RowChangedName="DocIdentidadRowChanged" msprop:Generator_RowEvArgName="DocIdentidadRowChangeEvent" msprop:Generator_RowClassName="DocIdentidadRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TipoInstitucion" msprop:Generator_TableClassName="TipoInstitucionDataTable" msprop:Generator_TableVarName="tableTipoInstitucion" msprop:Generator_RowChangedName="TipoInstitucionRowChanged" msprop:Generator_TablePropName="TipoInstitucion" msprop:Generator_RowDeletingName="TipoInstitucionRowDeleting" msprop:Generator_RowChangingName="TipoInstitucionRowChanging" msprop:Generator_RowEvHandlerName="TipoInstitucionRowChangeEventHandler" msprop:Generator_RowDeletedName="TipoInstitucionRowDeleted" msprop:Generator_RowClassName="TipoInstitucionRow" msprop:Generator_UserTableName="TipoInstitucion" msprop:Generator_RowEvArgName="TipoInstitucionRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Parentesco" msprop:Generator_TableClassName="ParentescoDataTable" msprop:Generator_TableVarName="tableParentesco" msprop:Generator_TablePropName="Parentesco" msprop:Generator_RowDeletingName="ParentescoRowDeleting" msprop:Generator_RowChangingName="ParentescoRowChanging" msprop:Generator_RowEvHandlerName="ParentescoRowChangeEventHandler" msprop:Generator_RowDeletedName="ParentescoRowDeleted" msprop:Generator_UserTableName="Parentesco" msprop:Generator_RowChangedName="ParentescoRowChanged" msprop:Generator_RowEvArgName="ParentescoRowChangeEvent" msprop:Generator_RowClassName="ParentescoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NivelEstudios" msprop:Generator_TableClassName="NivelEstudiosDataTable" msprop:Generator_TableVarName="tableNivelEstudios" msprop:Generator_TablePropName="NivelEstudios" msprop:Generator_RowDeletingName="NivelEstudiosRowDeleting" msprop:Generator_RowChangingName="NivelEstudiosRowChanging" msprop:Generator_RowEvHandlerName="NivelEstudiosRowChangeEventHandler" msprop:Generator_RowDeletedName="NivelEstudiosRowDeleted" msprop:Generator_UserTableName="NivelEstudios" msprop:Generator_RowChangedName="NivelEstudiosRowChanged" msprop:Generator_RowEvArgName="NivelEstudiosRowChangeEvent" msprop:Generator_RowClassName="NivelEstudiosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Genero" msprop:Generator_TableClassName="GeneroDataTable" msprop:Generator_TableVarName="tableGenero" msprop:Generator_RowChangedName="GeneroRowChanged" msprop:Generator_TablePropName="Genero" msprop:Generator_RowDeletingName="GeneroRowDeleting" msprop:Generator_RowChangingName="GeneroRowChanging" msprop:Generator_RowEvHandlerName="GeneroRowChangeEventHandler" msprop:Generator_RowDeletedName="GeneroRowDeleted" msprop:Generator_RowClassName="GeneroRow" msprop:Generator_UserTableName="Genero" msprop:Generator_RowEvArgName="GeneroRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FormaPago" msprop:Generator_TableClassName="FormaPagoDataTable" msprop:Generator_TableVarName="tableFormaPago" msprop:Generator_TablePropName="FormaPago" msprop:Generator_RowDeletingName="FormaPagoRowDeleting" msprop:Generator_RowChangingName="FormaPagoRowChanging" msprop:Generator_RowEvHandlerName="FormaPagoRowChangeEventHandler" msprop:Generator_RowDeletedName="FormaPagoRowDeleted" msprop:Generator_UserTableName="FormaPago" msprop:Generator_RowChangedName="FormaPagoRowChanged" msprop:Generator_RowEvArgName="FormaPagoRowChangeEvent" msprop:Generator_RowClassName="FormaPagoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TipoMoneda" msprop:Generator_TableClassName="TipoMonedaDataTable" msprop:Generator_TableVarName="tableTipoMoneda" msprop:Generator_TablePropName="TipoMoneda" msprop:Generator_RowDeletingName="TipoMonedaRowDeleting" msprop:Generator_RowChangingName="TipoMonedaRowChanging" msprop:Generator_RowEvHandlerName="TipoMonedaRowChangeEventHandler" msprop:Generator_RowDeletedName="TipoMonedaRowDeleted" msprop:Generator_UserTableName="TipoMoneda" msprop:Generator_RowChangedName="TipoMonedaRowChanged" msprop:Generator_RowEvArgName="TipoMonedaRowChangeEvent" msprop:Generator_RowClassName="TipoMonedaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MotivoAnulacion" msprop:Generator_TableClassName="MotivoAnulacionDataTable" msprop:Generator_TableVarName="tableMotivoAnulacion" msprop:Generator_TablePropName="MotivoAnulacion" msprop:Generator_RowDeletingName="MotivoAnulacionRowDeleting" msprop:Generator_RowChangingName="MotivoAnulacionRowChanging" msprop:Generator_RowEvHandlerName="MotivoAnulacionRowChangeEventHandler" msprop:Generator_RowDeletedName="MotivoAnulacionRowDeleted" msprop:Generator_UserTableName="MotivoAnulacion" msprop:Generator_RowChangedName="MotivoAnulacionRowChanged" msprop:Generator_RowEvArgName="MotivoAnulacionRowChangeEvent" msprop:Generator_RowClassName="MotivoAnulacionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tipo" msprop:Generator_ColumnVarNameInTable="columnId_Tipo" msprop:Generator_ColumnPropNameInRow="Id_Tipo" msprop:Generator_ColumnPropNameInTable="Id_TipoColumn" msprop:Generator_UserColumnName="Id_Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Tabla" msprop:Generator_ColumnVarNameInTable="columnId_Tabla" msprop:Generator_ColumnPropNameInRow="Id_Tabla" msprop:Generator_ColumnPropNameInTable="Id_TablaColumn" msprop:Generator_UserColumnName="Id_Tabla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -606,6 +1440,66 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
     </xs:unique>
     <xs:unique name="Cargo_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Cargo" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="TipoProducto_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TipoProducto" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="TipoSubProducto_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TipoSubProducto" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="DocVenta_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DocVenta" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="Turno_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Turno" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="DocIdentidad_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DocIdentidad" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="TipoInstitucion_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TipoInstitucion" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="Parentesco_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Parentesco" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="NivelEstudios_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:NivelEstudios" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="Genero_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Genero" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="FormaPago_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FormaPago" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="TipoMoneda_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TipoMoneda" />
+      <xs:field xpath="mstns:Id_Tipo" />
+      <xs:field xpath="mstns:Id_Tabla" />
+    </xs:unique>
+    <xs:unique name="MotivoAnulacion_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MotivoAnulacion" />
       <xs:field xpath="mstns:Id_Tipo" />
       <xs:field xpath="mstns:Id_Tabla" />
     </xs:unique>

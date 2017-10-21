@@ -29,8 +29,6 @@ namespace Polsolcom.Forms
         {
             General.setAll<TextBox, string>(this, "Text", "");
             General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
-            General.setAll<TextBox, string>(pnlEspec, "Text", "");
-            General.setAll<ComboBox, int>(pnlEspec, "SelectedIndex", -1);
             //this.Refresh();
         }
 

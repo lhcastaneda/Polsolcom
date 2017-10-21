@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.txtDoc = new System.Windows.Forms.TextBox();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.pnlBuscar = new System.Windows.Forms.Panel();
             this.lstInstitucion = new System.Windows.Forms.ListView();
@@ -84,8 +86,6 @@
             this.txtNomRazSocial = new System.Windows.Forms.TextBox();
             this.txtIdInst = new System.Windows.Forms.TextBox();
             this.cmbTIns = new System.Windows.Forms.ComboBox();
-            this.tipoInstitucionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tipoInstitucionDS = new Polsolcom.Dominio.Data.TipoInstitucionDS();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -101,10 +101,11 @@
             this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
             this.cargosTableAdapter = new Polsolcom.Dominio.Data.CargoDSTableAdapters.CargosTableAdapter();
-            this.tipoInstitucionTableAdapter = new Polsolcom.Dominio.Data.TipoInstitucionDSTableAdapters.TipoInstitucionTableAdapter();
-            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
-            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
+            this.tipoInstitucionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tipoInstitucionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TipoInstitucionTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             this.pnlBuscar.SuspendLayout();
             this.cntInstitucion.SuspendLayout();
             this.cntUbigeo.SuspendLayout();
@@ -120,10 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDoc
@@ -146,6 +144,16 @@
             this.cmbEstado.TabIndex = 1;
             this.cmbEstado.ValueMember = "Id_Tipo";
             this.cmbEstado.SelectionChangeCommitted += new System.EventHandler(this.cmbEstado_SelectionChangeCommitted);
+            // 
+            // estadoRegistroBindingSource
+            // 
+            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
+            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // tablaTipoDS
+            // 
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtBuscar
             // 
@@ -647,7 +655,7 @@
             // 
             // cmbTIns
             // 
-            this.cmbTIns.DataSource = this.tipoInstitucionBindingSource;
+            this.cmbTIns.DataSource = this.tipoInstitucionBindingSource1;
             this.cmbTIns.DisplayMember = "Descripcion";
             this.cmbTIns.Enabled = false;
             this.cmbTIns.FormattingEnabled = true;
@@ -656,16 +664,6 @@
             this.cmbTIns.Size = new System.Drawing.Size(137, 21);
             this.cmbTIns.TabIndex = 3;
             this.cmbTIns.ValueMember = "Id_Tipo";
-            // 
-            // tipoInstitucionBindingSource
-            // 
-            this.tipoInstitucionBindingSource.DataMember = "TipoInstitucion";
-            this.tipoInstitucionBindingSource.DataSource = this.tipoInstitucionDS;
-            // 
-            // tipoInstitucionDS
-            // 
-            this.tipoInstitucionDS.DataSetName = "TipoInstitucionDS";
-            this.tipoInstitucionDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label3
             // 
@@ -793,23 +791,18 @@
             // 
             this.cargosTableAdapter.ClearBeforeFill = true;
             // 
-            // tipoInstitucionTableAdapter
-            // 
-            this.tipoInstitucionTableAdapter.ClearBeforeFill = true;
-            // 
-            // tablaTipoDS
-            // 
-            this.tablaTipoDS.DataSetName = "TablaTipoDS";
-            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // estadoRegistroBindingSource
-            // 
-            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
-            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
-            // 
             // estadoRegistroTableAdapter
             // 
             this.estadoRegistroTableAdapter.ClearBeforeFill = true;
+            // 
+            // tipoInstitucionBindingSource1
+            // 
+            this.tipoInstitucionBindingSource1.DataMember = "TipoInstitucion";
+            this.tipoInstitucionBindingSource1.DataSource = this.tablaTipoDS;
+            // 
+            // tipoInstitucionTableAdapter1
+            // 
+            this.tipoInstitucionTableAdapter.ClearBeforeFill = true;
             // 
             // frmInstitucion
             // 
@@ -831,6 +824,8 @@
             this.Text = "Registro de Empresas e Instituciones";
             this.Load += new System.EventHandler(this.frmInstitucion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInstitucion_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             this.pnlBuscar.ResumeLayout(false);
             this.pnlBuscar.PerformLayout();
             this.cntInstitucion.ResumeLayout(false);
@@ -849,10 +844,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cargoDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.representanteDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoInstitucionBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -929,12 +921,11 @@
         private Dominio.Data.CargoDS cargoDS;
         private System.Windows.Forms.BindingSource cargosBindingSource;
         private Dominio.Data.CargoDSTableAdapters.CargosTableAdapter cargosTableAdapter;
-        private Dominio.Data.TipoInstitucionDS tipoInstitucionDS;
-        private System.Windows.Forms.BindingSource tipoInstitucionBindingSource;
-        private Dominio.Data.TipoInstitucionDSTableAdapters.TipoInstitucionTableAdapter tipoInstitucionTableAdapter;
         private System.Windows.Forms.MaskedTextBox txtRuc;
         private Dominio.Data.TablaTipoDS tablaTipoDS;
         private System.Windows.Forms.BindingSource estadoRegistroBindingSource;
         private Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter estadoRegistroTableAdapter;
+        private System.Windows.Forms.BindingSource tipoInstitucionBindingSource1;
+        private Dominio.Data.TablaTipoDSTableAdapters.TipoInstitucionTableAdapter tipoInstitucionTableAdapter;
     }
 }

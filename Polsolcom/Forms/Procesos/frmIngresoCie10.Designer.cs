@@ -45,8 +45,8 @@
             this.txtNroDoc = new System.Windows.Forms.TextBox();
             this.txtSerie = new System.Windows.Forms.TextBox();
             this.cmbDVenta = new System.Windows.Forms.ComboBox();
-            this.tablaTipoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tipoDocumento = new Polsolcom.Dominio.Data.TipoDocumento();
+            this.docVentaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -92,8 +92,6 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtDigitador = new System.Windows.Forms.TextBox();
             this.cmbTurno = new System.Windows.Forms.ComboBox();
-            this.tablaTipoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.turnosDS = new Polsolcom.Dominio.Data.TurnosDS();
             this.label27 = new System.Windows.Forms.Label();
             this.txtCuenta = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -169,7 +167,6 @@
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
-            this.tablaTipoTableAdapter = new Polsolcom.Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter();
             this.chkIdem = new System.Windows.Forms.CheckBox();
             this.txtTi = new System.Windows.Forms.TextBox();
             this.chkCompleto = new System.Windows.Forms.CheckBox();
@@ -180,26 +177,26 @@
             this.cie10DS = new Polsolcom.Dominio.Data.Cie10DS();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tablaTipoTableAdapter1 = new Polsolcom.Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter();
             this.txtFechaAten = new System.Windows.Forms.MaskedTextBox();
             this.txtFechaIngreso = new System.Windows.Forms.MaskedTextBox();
             this.busesTableAdapter = new Polsolcom.Dominio.Data.BusesDSTableAdapters.BusesTableAdapter();
             this.tmpEspecialistaTableAdapter = new Polsolcom.Dominio.Data.tmpEspecialistaDSTableAdapters.tmpEspecialistaTableAdapter();
             this.cIE10TableAdapter = new Polsolcom.Dominio.Data.Cie10DSTableAdapters.CIE10TableAdapter();
+            this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
+            this.turnoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.turnoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TurnoTableAdapter();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             this.tabConsultar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.busesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.busesDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).BeginInit();
             this.grpFiliacion.SuspendLayout();
             this.grpEnfermedad.SuspendLayout();
             this.grpAntecedentes.SuspendLayout();
@@ -209,6 +206,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cIE10BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cie10DSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cie10DS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabIngresoConsulta
@@ -354,7 +352,7 @@
             // 
             // cmbDVenta
             // 
-            this.cmbDVenta.DataSource = this.tablaTipoBindingSource;
+            this.cmbDVenta.DataSource = this.docVentaBindingSource;
             this.cmbDVenta.DisplayMember = "Descripcion";
             this.cmbDVenta.FormattingEnabled = true;
             this.cmbDVenta.Location = new System.Drawing.Point(293, 27);
@@ -363,15 +361,15 @@
             this.cmbDVenta.TabIndex = 8;
             this.cmbDVenta.ValueMember = "Id_Tipo";
             // 
-            // tablaTipoBindingSource
+            // docVentaBindingSource
             // 
-            this.tablaTipoBindingSource.DataMember = "TablaTipo";
-            this.tablaTipoBindingSource.DataSource = this.tipoDocumento;
+            this.docVentaBindingSource.DataMember = "DocVenta";
+            this.docVentaBindingSource.DataSource = this.tablaTipoDS;
             // 
-            // tipoDocumento
+            // tablaTipoDS
             // 
-            this.tipoDocumento.DataSetName = "TipoDocumento";
-            this.tipoDocumento.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label6
             // 
@@ -735,7 +733,7 @@
             // 
             // cmbTurno
             // 
-            this.cmbTurno.DataSource = this.tablaTipoBindingSource1;
+            this.cmbTurno.DataSource = this.turnoBindingSource;
             this.cmbTurno.DisplayMember = "Descripcion";
             this.cmbTurno.FormattingEnabled = true;
             this.cmbTurno.Location = new System.Drawing.Point(224, 199);
@@ -744,16 +742,6 @@
             this.cmbTurno.TabIndex = 21;
             this.cmbTurno.ValueMember = "Id_Tipo";
             this.cmbTurno.Leave += new System.EventHandler(this.cmbTurno_Leave);
-            // 
-            // tablaTipoBindingSource1
-            // 
-            this.tablaTipoBindingSource1.DataMember = "TablaTipo";
-            this.tablaTipoBindingSource1.DataSource = this.turnosDS;
-            // 
-            // turnosDS
-            // 
-            this.turnosDS.DataSetName = "TurnosDS";
-            this.turnosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label27
             // 
@@ -1427,10 +1415,6 @@
             // 
             this.consultoriosTableAdapter.ClearBeforeFill = true;
             // 
-            // tablaTipoTableAdapter
-            // 
-            this.tablaTipoTableAdapter.ClearBeforeFill = true;
-            // 
             // chkIdem
             // 
             this.chkIdem.Appearance = System.Windows.Forms.Appearance.Button;
@@ -1519,10 +1503,6 @@
             this.Column3.Name = "Column3";
             this.Column3.Width = 350;
             // 
-            // tablaTipoTableAdapter1
-            // 
-            this.tablaTipoTableAdapter1.ClearBeforeFill = true;
-            // 
             // txtFechaAten
             // 
             this.txtFechaAten.Location = new System.Drawing.Point(9, 200);
@@ -1554,6 +1534,19 @@
             // cIE10TableAdapter
             // 
             this.cIE10TableAdapter.ClearBeforeFill = true;
+            // 
+            // docVentaTableAdapter
+            // 
+            this.docVentaTableAdapter.ClearBeforeFill = true;
+            // 
+            // turnoBindingSource
+            // 
+            this.turnoBindingSource.DataMember = "Turno";
+            this.turnoBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // turnoTableAdapter
+            // 
+            this.turnoTableAdapter.ClearBeforeFill = true;
             // 
             // frmIngresoCie10
             // 
@@ -1601,8 +1594,8 @@
             this.tabIngresar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoDocumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             this.tabConsultar.ResumeLayout(false);
             this.tabConsultar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tmpEspecialistaBindingSource)).EndInit();
@@ -1610,8 +1603,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.busesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.busesDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turnosDS)).EndInit();
             this.grpFiliacion.ResumeLayout(false);
             this.grpFiliacion.PerformLayout();
             this.grpEnfermedad.ResumeLayout(false);
@@ -1625,6 +1616,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cIE10BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cie10DSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cie10DS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1725,9 +1717,6 @@
         private System.Windows.Forms.BindingSource consultoriosBindingSource;
         private Dominio.Data.ConsultoriosDS consultoriosDS;
         private Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter consultoriosTableAdapter;
-        private Dominio.Data.TipoDocumento tipoDocumento;
-        private System.Windows.Forms.BindingSource tablaTipoBindingSource;
-        private Dominio.Data.TipoDocumentoTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter;
         private System.Windows.Forms.CheckBox chkFiltro;
         private System.Windows.Forms.ComboBox cmbEspecialidad;
         private System.Windows.Forms.ListView lstTickets0;
@@ -1766,9 +1755,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.DataGridView dgvDetCie10;
-        private Dominio.Data.TurnosDS turnosDS;
-        private System.Windows.Forms.BindingSource tablaTipoBindingSource1;
-        private Dominio.Data.TurnosDSTableAdapters.TablaTipoTableAdapter tablaTipoTableAdapter1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MaskedTextBox txtFechaEmi;
         private System.Windows.Forms.MaskedTextBox txtFechaAten;
@@ -1789,5 +1775,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private Dominio.Data.TablaTipoDS tablaTipoDS;
+        private System.Windows.Forms.BindingSource docVentaBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter docVentaTableAdapter;
+        private System.Windows.Forms.BindingSource turnoBindingSource;
+        private Dominio.Data.TablaTipoDSTableAdapters.TurnoTableAdapter turnoTableAdapter;
     }
 }

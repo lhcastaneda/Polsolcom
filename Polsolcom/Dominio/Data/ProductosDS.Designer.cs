@@ -20,17 +20,17 @@ namespace Polsolcom.Dominio.Data {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("TurnosDS")]
+    [global::System.Xml.Serialization.XmlRootAttribute("ProductosDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class TurnosDS : global::System.Data.DataSet {
+    public partial class ProductosDS : global::System.Data.DataSet {
         
-        private TablaTipoDataTable tableTablaTipo;
+        private ProductosDataTable tableProductos;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public TurnosDS() {
+        public ProductosDS() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Polsolcom.Dominio.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected TurnosDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected ProductosDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Polsolcom.Dominio.Data {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["TablaTipo"] != null)) {
-                    base.Tables.Add(new TablaTipoDataTable(ds.Tables["TablaTipo"]));
+                if ((ds.Tables["Productos"] != null)) {
+                    base.Tables.Add(new ProductosDataTable(ds.Tables["Productos"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Polsolcom.Dominio.Data {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TablaTipoDataTable TablaTipo {
+        public ProductosDataTable Productos {
             get {
-                return this.tableTablaTipo;
+                return this.tableProductos;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Polsolcom.Dominio.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            TurnosDS cln = ((TurnosDS)(base.Clone()));
+            ProductosDS cln = ((ProductosDS)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Polsolcom.Dominio.Data {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["TablaTipo"] != null)) {
-                    base.Tables.Add(new TablaTipoDataTable(ds.Tables["TablaTipo"]));
+                if ((ds.Tables["Productos"] != null)) {
+                    base.Tables.Add(new ProductosDataTable(ds.Tables["Productos"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Polsolcom.Dominio.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableTablaTipo = ((TablaTipoDataTable)(base.Tables["TablaTipo"]));
+            this.tableProductos = ((ProductosDataTable)(base.Tables["Productos"]));
             if ((initTable == true)) {
-                if ((this.tableTablaTipo != null)) {
-                    this.tableTablaTipo.InitVars();
+                if ((this.tableProductos != null)) {
+                    this.tableProductos.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Polsolcom.Dominio.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "TurnosDS";
+            this.DataSetName = "ProductosDS";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/TurnosDS.xsd";
+            this.Namespace = "http://tempuri.org/ProductosDS.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTablaTipo = new TablaTipoDataTable();
-            base.Tables.Add(this.tableTablaTipo);
+            this.tableProductos = new ProductosDataTable();
+            base.Tables.Add(this.tableProductos);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTablaTipo() {
+        private bool ShouldSerializeProductos() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Polsolcom.Dominio.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            TurnosDS ds = new TurnosDS();
+            ProductosDS ds = new ProductosDS();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,31 +270,31 @@ namespace Polsolcom.Dominio.Data {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void TablaTipoRowChangeEventHandler(object sender, TablaTipoRowChangeEvent e);
+        public delegate void ProductosRowChangeEventHandler(object sender, ProductosRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TablaTipoDataTable : global::System.Data.TypedTableBase<TablaTipoRow> {
+        public partial class ProductosDataTable : global::System.Data.TypedTableBase<ProductosRow> {
             
-            private global::System.Data.DataColumn columnId_Tabla;
-            
-            private global::System.Data.DataColumn columnId_Tipo;
+            private global::System.Data.DataColumn columnId_Producto;
             
             private global::System.Data.DataColumn columnDescripcion;
             
-            private global::System.Data.DataColumn columnVal_Abr;
+            private global::System.Data.DataColumn columnMonto;
             
-            private global::System.Data.DataColumn columnUs_Mod;
+            private global::System.Data.DataColumn columnTipo;
             
-            private global::System.Data.DataColumn columnFec_Mod;
+            private global::System.Data.DataColumn columnEstado;
+            
+            private global::System.Data.DataColumn columnTPEsp;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TablaTipoDataTable() {
-                this.TableName = "TablaTipo";
+            public ProductosDataTable() {
+                this.TableName = "Productos";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -302,7 +302,7 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TablaTipoDataTable(global::System.Data.DataTable table) {
+            internal ProductosDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -319,24 +319,16 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected TablaTipoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ProductosDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Id_TablaColumn {
+            public global::System.Data.DataColumn Id_ProductoColumn {
                 get {
-                    return this.columnId_Tabla;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Id_TipoColumn {
-                get {
-                    return this.columnId_Tipo;
+                    return this.columnId_Producto;
                 }
             }
             
@@ -350,25 +342,33 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Val_AbrColumn {
+            public global::System.Data.DataColumn MontoColumn {
                 get {
-                    return this.columnVal_Abr;
+                    return this.columnMonto;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Us_ModColumn {
+            public global::System.Data.DataColumn TipoColumn {
                 get {
-                    return this.columnUs_Mod;
+                    return this.columnTipo;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Fec_ModColumn {
+            public global::System.Data.DataColumn EstadoColumn {
                 get {
-                    return this.columnFec_Mod;
+                    return this.columnEstado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TPEspColumn {
+                get {
+                    return this.columnTPEsp;
                 }
             }
             
@@ -383,58 +383,57 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TablaTipoRow this[int index] {
+            public ProductosRow this[int index] {
                 get {
-                    return ((TablaTipoRow)(this.Rows[index]));
+                    return ((ProductosRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TablaTipoRowChangeEventHandler TablaTipoRowChanging;
+            public event ProductosRowChangeEventHandler ProductosRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TablaTipoRowChangeEventHandler TablaTipoRowChanged;
+            public event ProductosRowChangeEventHandler ProductosRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TablaTipoRowChangeEventHandler TablaTipoRowDeleting;
+            public event ProductosRowChangeEventHandler ProductosRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TablaTipoRowChangeEventHandler TablaTipoRowDeleted;
+            public event ProductosRowChangeEventHandler ProductosRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTablaTipoRow(TablaTipoRow row) {
+            public void AddProductosRow(ProductosRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TablaTipoRow AddTablaTipoRow(string Id_Tabla, string Id_Tipo, string Descripcion, string Val_Abr, string Us_Mod, System.DateTime Fec_Mod) {
-                TablaTipoRow rowTablaTipoRow = ((TablaTipoRow)(this.NewRow()));
+            public ProductosRow AddProductosRow(string Id_Producto, string Descripcion, float Monto, string Tipo, string Estado, string TPEsp) {
+                ProductosRow rowProductosRow = ((ProductosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id_Tabla,
-                        Id_Tipo,
+                        Id_Producto,
                         Descripcion,
-                        Val_Abr,
-                        Us_Mod,
-                        Fec_Mod};
-                rowTablaTipoRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTablaTipoRow);
-                return rowTablaTipoRow;
+                        Monto,
+                        Tipo,
+                        Estado,
+                        TPEsp};
+                rowProductosRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowProductosRow);
+                return rowProductosRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TablaTipoRow FindById_TablaId_Tipo(string Id_Tabla, string Id_Tipo) {
-                return ((TablaTipoRow)(this.Rows.Find(new object[] {
-                            Id_Tabla,
-                            Id_Tipo})));
+            public ProductosRow FindById_Producto(string Id_Producto) {
+                return ((ProductosRow)(this.Rows.Find(new object[] {
+                            Id_Producto})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                TablaTipoDataTable cln = ((TablaTipoDataTable)(base.Clone()));
+                ProductosDataTable cln = ((ProductosDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -442,75 +441,75 @@ namespace Polsolcom.Dominio.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new TablaTipoDataTable();
+                return new ProductosDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnId_Tabla = base.Columns["Id_Tabla"];
-                this.columnId_Tipo = base.Columns["Id_Tipo"];
+                this.columnId_Producto = base.Columns["Id_Producto"];
                 this.columnDescripcion = base.Columns["Descripcion"];
-                this.columnVal_Abr = base.Columns["Val_Abr"];
-                this.columnUs_Mod = base.Columns["Us_Mod"];
-                this.columnFec_Mod = base.Columns["Fec_Mod"];
+                this.columnMonto = base.Columns["Monto"];
+                this.columnTipo = base.Columns["Tipo"];
+                this.columnEstado = base.Columns["Estado"];
+                this.columnTPEsp = base.Columns["TPEsp"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnId_Tabla = new global::System.Data.DataColumn("Id_Tabla", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId_Tabla);
-                this.columnId_Tipo = new global::System.Data.DataColumn("Id_Tipo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId_Tipo);
+                this.columnId_Producto = new global::System.Data.DataColumn("Id_Producto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId_Producto);
                 this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcion);
-                this.columnVal_Abr = new global::System.Data.DataColumn("Val_Abr", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVal_Abr);
-                this.columnUs_Mod = new global::System.Data.DataColumn("Us_Mod", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUs_Mod);
-                this.columnFec_Mod = new global::System.Data.DataColumn("Fec_Mod", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFec_Mod);
+                this.columnMonto = new global::System.Data.DataColumn("Monto", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMonto);
+                this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipo);
+                this.columnEstado = new global::System.Data.DataColumn("Estado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEstado);
+                this.columnTPEsp = new global::System.Data.DataColumn("TPEsp", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTPEsp);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId_Tabla,
-                                this.columnId_Tipo}, true));
-                this.columnId_Tabla.AllowDBNull = false;
-                this.columnId_Tabla.MaxLength = 2;
-                this.columnId_Tipo.AllowDBNull = false;
-                this.columnId_Tipo.MaxLength = 3;
+                                this.columnId_Producto}, true));
+                this.columnId_Producto.AllowDBNull = false;
+                this.columnId_Producto.Unique = true;
+                this.columnId_Producto.MaxLength = 9;
                 this.columnDescripcion.AllowDBNull = false;
-                this.columnDescripcion.MaxLength = 150;
-                this.columnVal_Abr.AllowDBNull = false;
-                this.columnVal_Abr.MaxLength = 4;
-                this.columnUs_Mod.AllowDBNull = false;
-                this.columnUs_Mod.MaxLength = 9;
-                this.columnFec_Mod.AllowDBNull = false;
+                this.columnDescripcion.MaxLength = 100;
+                this.columnMonto.AllowDBNull = false;
+                this.columnTipo.AllowDBNull = false;
+                this.columnTipo.MaxLength = 2;
+                this.columnEstado.AllowDBNull = false;
+                this.columnEstado.MaxLength = 1;
+                this.columnTPEsp.AllowDBNull = false;
+                this.columnTPEsp.MaxLength = 1;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TablaTipoRow NewTablaTipoRow() {
-                return ((TablaTipoRow)(this.NewRow()));
+            public ProductosRow NewProductosRow() {
+                return ((ProductosRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TablaTipoRow(builder);
+                return new ProductosRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(TablaTipoRow);
+                return typeof(ProductosRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.TablaTipoRowChanged != null)) {
-                    this.TablaTipoRowChanged(this, new TablaTipoRowChangeEvent(((TablaTipoRow)(e.Row)), e.Action));
+                if ((this.ProductosRowChanged != null)) {
+                    this.ProductosRowChanged(this, new ProductosRowChangeEvent(((ProductosRow)(e.Row)), e.Action));
                 }
             }
             
@@ -518,8 +517,8 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.TablaTipoRowChanging != null)) {
-                    this.TablaTipoRowChanging(this, new TablaTipoRowChangeEvent(((TablaTipoRow)(e.Row)), e.Action));
+                if ((this.ProductosRowChanging != null)) {
+                    this.ProductosRowChanging(this, new ProductosRowChangeEvent(((ProductosRow)(e.Row)), e.Action));
                 }
             }
             
@@ -527,8 +526,8 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.TablaTipoRowDeleted != null)) {
-                    this.TablaTipoRowDeleted(this, new TablaTipoRowChangeEvent(((TablaTipoRow)(e.Row)), e.Action));
+                if ((this.ProductosRowDeleted != null)) {
+                    this.ProductosRowDeleted(this, new ProductosRowChangeEvent(((ProductosRow)(e.Row)), e.Action));
                 }
             }
             
@@ -536,14 +535,14 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.TablaTipoRowDeleting != null)) {
-                    this.TablaTipoRowDeleting(this, new TablaTipoRowChangeEvent(((TablaTipoRow)(e.Row)), e.Action));
+                if ((this.ProductosRowDeleting != null)) {
+                    this.ProductosRowDeleting(this, new ProductosRowChangeEvent(((ProductosRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTablaTipoRow(TablaTipoRow row) {
+            public void RemoveProductosRow(ProductosRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -552,7 +551,7 @@ namespace Polsolcom.Dominio.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TurnosDS ds = new TurnosDS();
+                ProductosDS ds = new ProductosDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -570,7 +569,7 @@ namespace Polsolcom.Dominio.Data {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TablaTipoDataTable";
+                attribute2.FixedValue = "ProductosDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -614,36 +613,25 @@ namespace Polsolcom.Dominio.Data {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class TablaTipoRow : global::System.Data.DataRow {
+        public partial class ProductosRow : global::System.Data.DataRow {
             
-            private TablaTipoDataTable tableTablaTipo;
+            private ProductosDataTable tableProductos;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TablaTipoRow(global::System.Data.DataRowBuilder rb) : 
+            internal ProductosRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTablaTipo = ((TablaTipoDataTable)(this.Table));
+                this.tableProductos = ((ProductosDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Id_Tabla {
+            public string Id_Producto {
                 get {
-                    return ((string)(this[this.tableTablaTipo.Id_TablaColumn]));
+                    return ((string)(this[this.tableProductos.Id_ProductoColumn]));
                 }
                 set {
-                    this[this.tableTablaTipo.Id_TablaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Id_Tipo {
-                get {
-                    return ((string)(this[this.tableTablaTipo.Id_TipoColumn]));
-                }
-                set {
-                    this[this.tableTablaTipo.Id_TipoColumn] = value;
+                    this[this.tableProductos.Id_ProductoColumn] = value;
                 }
             }
             
@@ -651,43 +639,54 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Descripcion {
                 get {
-                    return ((string)(this[this.tableTablaTipo.DescripcionColumn]));
+                    return ((string)(this[this.tableProductos.DescripcionColumn]));
                 }
                 set {
-                    this[this.tableTablaTipo.DescripcionColumn] = value;
+                    this[this.tableProductos.DescripcionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Val_Abr {
+            public float Monto {
                 get {
-                    return ((string)(this[this.tableTablaTipo.Val_AbrColumn]));
+                    return ((float)(this[this.tableProductos.MontoColumn]));
                 }
                 set {
-                    this[this.tableTablaTipo.Val_AbrColumn] = value;
+                    this[this.tableProductos.MontoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Us_Mod {
+            public string Tipo {
                 get {
-                    return ((string)(this[this.tableTablaTipo.Us_ModColumn]));
+                    return ((string)(this[this.tableProductos.TipoColumn]));
                 }
                 set {
-                    this[this.tableTablaTipo.Us_ModColumn] = value;
+                    this[this.tableProductos.TipoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Fec_Mod {
+            public string Estado {
                 get {
-                    return ((global::System.DateTime)(this[this.tableTablaTipo.Fec_ModColumn]));
+                    return ((string)(this[this.tableProductos.EstadoColumn]));
                 }
                 set {
-                    this[this.tableTablaTipo.Fec_ModColumn] = value;
+                    this[this.tableProductos.EstadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TPEsp {
+                get {
+                    return ((string)(this[this.tableProductos.TPEspColumn]));
+                }
+                set {
+                    this[this.tableProductos.TPEspColumn] = value;
                 }
             }
         }
@@ -696,22 +695,22 @@ namespace Polsolcom.Dominio.Data {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class TablaTipoRowChangeEvent : global::System.EventArgs {
+        public class ProductosRowChangeEvent : global::System.EventArgs {
             
-            private TablaTipoRow eventRow;
+            private ProductosRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TablaTipoRowChangeEvent(TablaTipoRow row, global::System.Data.DataRowAction action) {
+            public ProductosRowChangeEvent(ProductosRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TablaTipoRow Row {
+            public ProductosRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -727,7 +726,7 @@ namespace Polsolcom.Dominio.Data {
         }
     }
 }
-namespace Polsolcom.Dominio.Data.TurnosDSTableAdapters {
+namespace Polsolcom.Dominio.Data.ProductosDSTableAdapters {
     
     
     /// <summary>
@@ -739,7 +738,7 @@ namespace Polsolcom.Dominio.Data.TurnosDSTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TablaTipoTableAdapter : global::System.ComponentModel.Component {
+    public partial class ProductosTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -753,7 +752,7 @@ namespace Polsolcom.Dominio.Data.TurnosDSTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public TablaTipoTableAdapter() {
+        public ProductosTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -850,52 +849,55 @@ namespace Polsolcom.Dominio.Data.TurnosDSTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "TablaTipo";
-            tableMapping.ColumnMappings.Add("Id_Tabla", "Id_Tabla");
-            tableMapping.ColumnMappings.Add("Id_Tipo", "Id_Tipo");
+            tableMapping.DataSetTable = "Productos";
+            tableMapping.ColumnMappings.Add("Id_Producto", "Id_Producto");
             tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
-            tableMapping.ColumnMappings.Add("Val_Abr", "Val_Abr");
-            tableMapping.ColumnMappings.Add("Us_Mod", "Us_Mod");
-            tableMapping.ColumnMappings.Add("Fec_Mod", "Fec_Mod");
+            tableMapping.ColumnMappings.Add("Monto", "Monto");
+            tableMapping.ColumnMappings.Add("Tipo", "Tipo");
+            tableMapping.ColumnMappings.Add("Estado", "Estado");
+            tableMapping.ColumnMappings.Add("TPEsp", "TPEsp");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[TablaTipo] WHERE (([Id_Tabla] = @Original_Id_Tabla) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Val_Abr] = @Original_Val_Abr) AND ([Us_Mod] = @Original_Us_Mod) AND ([Fec_Mod] = @Original_Fec_Mod))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Productos] WHERE (([Id_Producto] = @Original_Id_Producto) AND ([Desc" +
+                "ripcion] = @Original_Descripcion) AND ([Monto] = @Original_Monto) AND ([Tipo] = " +
+                "@Original_Tipo) AND ([Estado] = @Original_Estado) AND ([TPEsp] = @Original_TPEsp" +
+                "))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Producto", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Producto", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Val_Abr", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Val_Abr", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Us_Mod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Us_Mod", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Fec_Mod", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fec_Mod", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Monto", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Monto", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Estado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Estado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TPEsp", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TPEsp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TablaTipo] ([Id_Tabla], [Id_Tipo], [Descripcion], [Val_Abr], [Us_Mod], [Fec_Mod]) VALUES (@Id_Tabla, @Id_Tipo, @Descripcion, @Val_Abr, @Us_Mod, @Fec_Mod);
-SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Productos] ([Id_Producto], [Descripcion], [Monto], [Tipo], [Estado], [TPEsp]) VALUES (@Id_Producto, @Descripcion, @Monto, @Tipo, @Estado, @TPEsp);
+SELECT Id_Producto, Descripcion, Monto, Tipo, Estado, TPEsp FROM Productos WHERE (Id_Producto = @Id_Producto) ORDER BY Descripcion";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Producto", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Producto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Val_Abr", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Val_Abr", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Us_Mod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Us_Mod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fec_Mod", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fec_Mod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Monto", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Monto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tipo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Estado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TPEsp", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TPEsp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[TablaTipo] SET [Id_Tabla] = @Id_Tabla, [Id_Tipo] = @Id_Tipo, [Descripcion] = @Descripcion, [Val_Abr] = @Val_Abr, [Us_Mod] = @Us_Mod, [Fec_Mod] = @Fec_Mod WHERE (([Id_Tabla] = @Original_Id_Tabla) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Val_Abr] = @Original_Val_Abr) AND ([Us_Mod] = @Original_Us_Mod) AND ([Fec_Mod] = @Original_Fec_Mod));
-SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Productos] SET [Id_Producto] = @Id_Producto, [Descripcion] = @Descripcion, [Monto] = @Monto, [Tipo] = @Tipo, [Estado] = @Estado, [TPEsp] = @TPEsp WHERE (([Id_Producto] = @Original_Id_Producto) AND ([Descripcion] = @Original_Descripcion) AND ([Monto] = @Original_Monto) AND ([Tipo] = @Original_Tipo) AND ([Estado] = @Original_Estado) AND ([TPEsp] = @Original_TPEsp));
+SELECT Id_Producto, Descripcion, Monto, Tipo, Estado, TPEsp FROM Productos WHERE (Id_Producto = @Id_Producto) ORDER BY Descripcion";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Producto", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Producto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Val_Abr", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Val_Abr", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Us_Mod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Us_Mod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fec_Mod", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fec_Mod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Monto", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Monto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tipo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Estado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TPEsp", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TPEsp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Producto", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Producto", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Val_Abr", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Val_Abr", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Us_Mod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Us_Mod", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Fec_Mod", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fec_Mod", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Monto", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Monto", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Estado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Estado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TPEsp", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TPEsp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -911,16 +913,24 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from dbo.TablaTipo WHERE Id_Tabla = 7";
+            this._commandCollection[0].CommandText = "Select * From Productos Where Left(Id_Producto,6)=@Especialidad And Estado = \'1\' " +
+                "Order By 2";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Especialidad", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TurnosDS.TablaTipoDataTable dataTable) {
+        public virtual int Fill(ProductosDS.ProductosDataTable dataTable, string Especialidad) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((Especialidad == null)) {
+                throw new global::System.ArgumentNullException("Especialidad");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Especialidad));
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -932,9 +942,15 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TurnosDS.TablaTipoDataTable GetData() {
+        public virtual ProductosDS.ProductosDataTable GetData(string Especialidad) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            TurnosDS.TablaTipoDataTable dataTable = new TurnosDS.TablaTipoDataTable();
+            if ((Especialidad == null)) {
+                throw new global::System.ArgumentNullException("Especialidad");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Especialidad));
+            }
+            ProductosDS.ProductosDataTable dataTable = new ProductosDS.ProductosDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -942,15 +958,15 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TurnosDS.TablaTipoDataTable dataTable) {
+        public virtual int Update(ProductosDS.ProductosDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TurnosDS dataSet) {
-            return this.Adapter.Update(dataSet, "TablaTipo");
+        public virtual int Update(ProductosDS dataSet) {
+            return this.Adapter.Update(dataSet, "Productos");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -967,201 +983,6 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id_Tabla, string Original_Id_Tipo, string Original_Descripcion, string Original_Val_Abr, string Original_Us_Mod, System.DateTime Original_Fec_Mod) {
-            if ((Original_Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tabla");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Id_Tabla));
-            }
-            if ((Original_Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tipo");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Id_Tipo));
-            }
-            if ((Original_Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Original_Descripcion");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Descripcion));
-            }
-            if ((Original_Val_Abr == null)) {
-                throw new global::System.ArgumentNullException("Original_Val_Abr");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Val_Abr));
-            }
-            if ((Original_Us_Mod == null)) {
-                throw new global::System.ArgumentNullException("Original_Us_Mod");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Us_Mod));
-            }
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_Fec_Mod));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Id_Tabla, string Id_Tipo, string Descripcion, string Val_Abr, string Us_Mod, System.DateTime Fec_Mod) {
-            if ((Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Id_Tabla");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Id_Tabla));
-            }
-            if ((Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Id_Tipo");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Id_Tipo));
-            }
-            if ((Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Descripcion");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Descripcion));
-            }
-            if ((Val_Abr == null)) {
-                throw new global::System.ArgumentNullException("Val_Abr");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Val_Abr));
-            }
-            if ((Us_Mod == null)) {
-                throw new global::System.ArgumentNullException("Us_Mod");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Us_Mod));
-            }
-            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(Fec_Mod));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Id_Tabla, string Id_Tipo, string Descripcion, string Val_Abr, string Us_Mod, System.DateTime Fec_Mod, string Original_Id_Tabla, string Original_Id_Tipo, string Original_Descripcion, string Original_Val_Abr, string Original_Us_Mod, System.DateTime Original_Fec_Mod) {
-            if ((Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Id_Tabla");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Id_Tabla));
-            }
-            if ((Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Id_Tipo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Id_Tipo));
-            }
-            if ((Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Descripcion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Descripcion));
-            }
-            if ((Val_Abr == null)) {
-                throw new global::System.ArgumentNullException("Val_Abr");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Val_Abr));
-            }
-            if ((Us_Mod == null)) {
-                throw new global::System.ArgumentNullException("Us_Mod");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Us_Mod));
-            }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(Fec_Mod));
-            if ((Original_Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tabla");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Id_Tabla));
-            }
-            if ((Original_Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tipo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Id_Tipo));
-            }
-            if ((Original_Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Original_Descripcion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Descripcion));
-            }
-            if ((Original_Val_Abr == null)) {
-                throw new global::System.ArgumentNullException("Original_Val_Abr");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Val_Abr));
-            }
-            if ((Original_Us_Mod == null)) {
-                throw new global::System.ArgumentNullException("Original_Us_Mod");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Us_Mod));
-            }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_Fec_Mod));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Descripcion, string Val_Abr, string Us_Mod, System.DateTime Fec_Mod, string Original_Id_Tabla, string Original_Id_Tipo, string Original_Descripcion, string Original_Val_Abr, string Original_Us_Mod, System.DateTime Original_Fec_Mod) {
-            return this.Update(Original_Id_Tabla, Original_Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod, Original_Id_Tabla, Original_Id_Tipo, Original_Descripcion, Original_Val_Abr, Original_Us_Mod, Original_Fec_Mod);
-        }
     }
     
     /// <summary>
@@ -1176,7 +997,7 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         
         private UpdateOrderOption _updateOrder;
         
-        private TablaTipoTableAdapter _tablaTipoTableAdapter;
+        private ProductosTableAdapter _productosTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -1198,12 +1019,12 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public TablaTipoTableAdapter TablaTipoTableAdapter {
+        public ProductosTableAdapter ProductosTableAdapter {
             get {
-                return this._tablaTipoTableAdapter;
+                return this._productosTableAdapter;
             }
             set {
-                this._tablaTipoTableAdapter = value;
+                this._productosTableAdapter = value;
             }
         }
         
@@ -1226,9 +1047,9 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tablaTipoTableAdapter != null) 
-                            && (this._tablaTipoTableAdapter.Connection != null))) {
-                    return this._tablaTipoTableAdapter.Connection;
+                if (((this._productosTableAdapter != null) 
+                            && (this._productosTableAdapter.Connection != null))) {
+                    return this._productosTableAdapter.Connection;
                 }
                 return null;
             }
@@ -1243,7 +1064,7 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tablaTipoTableAdapter != null)) {
+                if ((this._productosTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -1255,14 +1076,14 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(TurnosDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(ProductosDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tablaTipoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TablaTipo.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._productosTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Productos.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tablaTipoTableAdapter.Update(updatedRows));
+                    result = (result + this._productosTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -1274,13 +1095,13 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(TurnosDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(ProductosDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tablaTipoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TablaTipo.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._productosTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Productos.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tablaTipoTableAdapter.Update(addedRows));
+                    result = (result + this._productosTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -1292,13 +1113,13 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(TurnosDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(ProductosDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tablaTipoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TablaTipo.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._productosTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Productos.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tablaTipoTableAdapter.Update(deletedRows));
+                    result = (result + this._productosTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -1334,15 +1155,15 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(TurnosDS dataSet) {
+        public virtual int UpdateAll(ProductosDS dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._tablaTipoTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tablaTipoTableAdapter.Connection) == false))) {
+            if (((this._productosTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._productosTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -1378,13 +1199,13 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tablaTipoTableAdapter != null)) {
-                    revertConnections.Add(this._tablaTipoTableAdapter, this._tablaTipoTableAdapter.Connection);
-                    this._tablaTipoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tablaTipoTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tablaTipoTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tablaTipoTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tablaTipoTableAdapter.Adapter);
+                if ((this._productosTableAdapter != null)) {
+                    revertConnections.Add(this._productosTableAdapter, this._productosTableAdapter.Connection);
+                    this._productosTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._productosTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._productosTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._productosTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._productosTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -1445,9 +1266,9 @@ SELECT Id_Tabla, Id_Tipo, Descripcion, Val_Abr, Us_Mod, Fec_Mod FROM TablaTipo W
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._tablaTipoTableAdapter != null)) {
-                    this._tablaTipoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tablaTipoTableAdapter]));
-                    this._tablaTipoTableAdapter.Transaction = null;
+                if ((this._productosTableAdapter != null)) {
+                    this._productosTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._productosTableAdapter]));
+                    this._productosTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

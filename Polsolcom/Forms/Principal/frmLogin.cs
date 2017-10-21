@@ -357,7 +357,7 @@ RegresaTalon:
                 }
                 else 
                 {
-                    MessageBox.Show( "Contraseña: " + txtClave.Text.Trim() + " incorrectos" + (char)13 + "Quedan " + (3-nroVeces) + " intentos.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1 );
+                    MessageBox.Show( "Contraseña incorrecta. " + (char)13 + "Quedan " + (3-nroVeces) + " intentos.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1 );
                     txtClave.Focus();
                     nroVeces = nroVeces + 1;
                     if ( nroVeces > 3 )

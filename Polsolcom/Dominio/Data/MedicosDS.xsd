@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MedicosDS" targetNamespace="http://tempuri.org/MedicosDS.xsd" xmlns:mstns="http://tempuri.org/MedicosDS.xsd" xmlns="http://tempuri.org/MedicosDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PolsolcomConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PolsolcomConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Polsolcom.Properties.Settings.GlobalReference.Default.PolsolcomConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MedicosTableAdapter" GeneratorDataComponentClassName="MedicosTableAdapter" Name="Medicos" UserDataComponentName="MedicosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.Personal" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select Ape_Paterno+' '+Ape_Materno+', '+Nombres Medico,Id_Personal From Personal Where TNCol&lt;&gt;'' Union Select Descripcion,Id_Tipo From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion='VAR_EXTRAS' And Id_Tabla='0') Order By 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Medico" DataSetColumn="Medico" />
+              <Mapping SourceColumn="Id_Personal" DataSetColumn="Id_Personal" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MedicosDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MedicosDS" msprop:Generator_UserDSName="MedicosDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Medicos" msprop:Generator_TableClassName="MedicosDataTable" msprop:Generator_TableVarName="tableMedicos" msprop:Generator_TablePropName="Medicos" msprop:Generator_RowDeletingName="MedicosRowDeleting" msprop:Generator_RowChangingName="MedicosRowChanging" msprop:Generator_RowEvHandlerName="MedicosRowChangeEventHandler" msprop:Generator_RowDeletedName="MedicosRowDeleted" msprop:Generator_UserTableName="Medicos" msprop:Generator_RowChangedName="MedicosRowChanged" msprop:Generator_RowEvArgName="MedicosRowChangeEvent" msprop:Generator_RowClassName="MedicosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Medico" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMedico" msprop:Generator_ColumnPropNameInRow="Medico" msprop:Generator_ColumnPropNameInTable="MedicoColumn" msprop:Generator_UserColumnName="Medico" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Personal" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnId_Personal" msprop:Generator_ColumnPropNameInRow="Id_Personal" msprop:Generator_ColumnPropNameInTable="Id_PersonalColumn" msprop:Generator_UserColumnName="Id_Personal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

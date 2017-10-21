@@ -20,17 +20,17 @@ namespace Polsolcom.Dominio.Data {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("TipoInstitucionDS")]
+    [global::System.Xml.Serialization.XmlRootAttribute("GrupoSanguineo")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class TipoInstitucionDS : global::System.Data.DataSet {
+    public partial class GrupoSanguineo : global::System.Data.DataSet {
         
-        private TipoInstitucionDataTable tableTipoInstitucion;
+        private GrupoSanguineoDataTable tableGrupoSanguineo;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public TipoInstitucionDS() {
+        public GrupoSanguineo() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Polsolcom.Dominio.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected TipoInstitucionDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected GrupoSanguineo(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Polsolcom.Dominio.Data {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["TipoInstitucion"] != null)) {
-                    base.Tables.Add(new TipoInstitucionDataTable(ds.Tables["TipoInstitucion"]));
+                if ((ds.Tables["GrupoSanguineo"] != null)) {
+                    base.Tables.Add(new GrupoSanguineoDataTable(ds.Tables["GrupoSanguineo"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Polsolcom.Dominio.Data {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TipoInstitucionDataTable TipoInstitucion {
+        public GrupoSanguineoDataTable _GrupoSanguineo {
             get {
-                return this.tableTipoInstitucion;
+                return this.tableGrupoSanguineo;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Polsolcom.Dominio.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            TipoInstitucionDS cln = ((TipoInstitucionDS)(base.Clone()));
+            GrupoSanguineo cln = ((GrupoSanguineo)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Polsolcom.Dominio.Data {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["TipoInstitucion"] != null)) {
-                    base.Tables.Add(new TipoInstitucionDataTable(ds.Tables["TipoInstitucion"]));
+                if ((ds.Tables["GrupoSanguineo"] != null)) {
+                    base.Tables.Add(new GrupoSanguineoDataTable(ds.Tables["GrupoSanguineo"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Polsolcom.Dominio.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableTipoInstitucion = ((TipoInstitucionDataTable)(base.Tables["TipoInstitucion"]));
+            this.tableGrupoSanguineo = ((GrupoSanguineoDataTable)(base.Tables["GrupoSanguineo"]));
             if ((initTable == true)) {
-                if ((this.tableTipoInstitucion != null)) {
-                    this.tableTipoInstitucion.InitVars();
+                if ((this.tableGrupoSanguineo != null)) {
+                    this.tableGrupoSanguineo.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Polsolcom.Dominio.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "TipoInstitucionDS";
+            this.DataSetName = "GrupoSanguineo";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/TipoInstitucionDS.xsd";
+            this.Namespace = "http://tempuri.org/GrupoSanguineo.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTipoInstitucion = new TipoInstitucionDataTable();
-            base.Tables.Add(this.tableTipoInstitucion);
+            this.tableGrupoSanguineo = new GrupoSanguineoDataTable();
+            base.Tables.Add(this.tableGrupoSanguineo);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTipoInstitucion() {
+        private bool ShouldSerialize_GrupoSanguineo() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Polsolcom.Dominio.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            TipoInstitucionDS ds = new TipoInstitucionDS();
+            GrupoSanguineo ds = new GrupoSanguineo();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,25 +270,21 @@ namespace Polsolcom.Dominio.Data {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void TipoInstitucionRowChangeEventHandler(object sender, TipoInstitucionRowChangeEvent e);
+        public delegate void GrupoSanguineoRowChangeEventHandler(object sender, GrupoSanguineoRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TipoInstitucionDataTable : global::System.Data.TypedTableBase<TipoInstitucionRow> {
+        public partial class GrupoSanguineoDataTable : global::System.Data.TypedTableBase<GrupoSanguineoRow> {
             
-            private global::System.Data.DataColumn columnDescripcion;
-            
-            private global::System.Data.DataColumn columnId_Tipo;
-            
-            private global::System.Data.DataColumn columnId_Tabla;
+            private global::System.Data.DataColumn columnGS;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TipoInstitucionDataTable() {
-                this.TableName = "TipoInstitucion";
+            public GrupoSanguineoDataTable() {
+                this.TableName = "GrupoSanguineo";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -296,7 +292,7 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TipoInstitucionDataTable(global::System.Data.DataTable table) {
+            internal GrupoSanguineoDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -313,32 +309,16 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected TipoInstitucionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected GrupoSanguineoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DescripcionColumn {
+            public global::System.Data.DataColumn GSColumn {
                 get {
-                    return this.columnDescripcion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Id_TipoColumn {
-                get {
-                    return this.columnId_Tipo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Id_TablaColumn {
-                get {
-                    return this.columnId_Tabla;
+                    return this.columnGS;
                 }
             }
             
@@ -353,55 +333,45 @@ namespace Polsolcom.Dominio.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TipoInstitucionRow this[int index] {
+            public GrupoSanguineoRow this[int index] {
                 get {
-                    return ((TipoInstitucionRow)(this.Rows[index]));
+                    return ((GrupoSanguineoRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TipoInstitucionRowChangeEventHandler TipoInstitucionRowChanging;
+            public event GrupoSanguineoRowChangeEventHandler GrupoSanguineoRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TipoInstitucionRowChangeEventHandler TipoInstitucionRowChanged;
+            public event GrupoSanguineoRowChangeEventHandler GrupoSanguineoRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TipoInstitucionRowChangeEventHandler TipoInstitucionRowDeleting;
+            public event GrupoSanguineoRowChangeEventHandler GrupoSanguineoRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TipoInstitucionRowChangeEventHandler TipoInstitucionRowDeleted;
+            public event GrupoSanguineoRowChangeEventHandler GrupoSanguineoRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTipoInstitucionRow(TipoInstitucionRow row) {
+            public void AddGrupoSanguineoRow(GrupoSanguineoRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TipoInstitucionRow AddTipoInstitucionRow(string Descripcion, string Id_Tipo, string Id_Tabla) {
-                TipoInstitucionRow rowTipoInstitucionRow = ((TipoInstitucionRow)(this.NewRow()));
+            public GrupoSanguineoRow AddGrupoSanguineoRow(string GS) {
+                GrupoSanguineoRow rowGrupoSanguineoRow = ((GrupoSanguineoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Descripcion,
-                        Id_Tipo,
-                        Id_Tabla};
-                rowTipoInstitucionRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTipoInstitucionRow);
-                return rowTipoInstitucionRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TipoInstitucionRow FindById_TipoId_Tabla(string Id_Tipo, string Id_Tabla) {
-                return ((TipoInstitucionRow)(this.Rows.Find(new object[] {
-                            Id_Tipo,
-                            Id_Tabla})));
+                        GS};
+                rowGrupoSanguineoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGrupoSanguineoRow);
+                return rowGrupoSanguineoRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                TipoInstitucionDataTable cln = ((TipoInstitucionDataTable)(base.Clone()));
+                GrupoSanguineoDataTable cln = ((GrupoSanguineoDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -409,61 +379,50 @@ namespace Polsolcom.Dominio.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new TipoInstitucionDataTable();
+                return new GrupoSanguineoDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnDescripcion = base.Columns["Descripcion"];
-                this.columnId_Tipo = base.Columns["Id_Tipo"];
-                this.columnId_Tabla = base.Columns["Id_Tabla"];
+                this.columnGS = base.Columns["GS"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcion);
-                this.columnId_Tipo = new global::System.Data.DataColumn("Id_Tipo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId_Tipo);
-                this.columnId_Tabla = new global::System.Data.DataColumn("Id_Tabla", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId_Tabla);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId_Tipo,
-                                this.columnId_Tabla}, true));
-                this.columnDescripcion.AllowDBNull = false;
-                this.columnDescripcion.MaxLength = 150;
-                this.columnId_Tipo.AllowDBNull = false;
-                this.columnId_Tipo.MaxLength = 3;
-                this.columnId_Tabla.AllowDBNull = false;
-                this.columnId_Tabla.MaxLength = 2;
+                this.columnGS = new global::System.Data.DataColumn("GS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGS);
+                this.columnGS.ReadOnly = true;
+                this.columnGS.MaxLength = 3;
+                this.ExtendedProperties.Add("Generator_TablePropName", "_GrupoSanguineo");
+                this.ExtendedProperties.Add("Generator_UserTableName", "GrupoSanguineo");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TipoInstitucionRow NewTipoInstitucionRow() {
-                return ((TipoInstitucionRow)(this.NewRow()));
+            public GrupoSanguineoRow NewGrupoSanguineoRow() {
+                return ((GrupoSanguineoRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TipoInstitucionRow(builder);
+                return new GrupoSanguineoRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(TipoInstitucionRow);
+                return typeof(GrupoSanguineoRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.TipoInstitucionRowChanged != null)) {
-                    this.TipoInstitucionRowChanged(this, new TipoInstitucionRowChangeEvent(((TipoInstitucionRow)(e.Row)), e.Action));
+                if ((this.GrupoSanguineoRowChanged != null)) {
+                    this.GrupoSanguineoRowChanged(this, new GrupoSanguineoRowChangeEvent(((GrupoSanguineoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -471,8 +430,8 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.TipoInstitucionRowChanging != null)) {
-                    this.TipoInstitucionRowChanging(this, new TipoInstitucionRowChangeEvent(((TipoInstitucionRow)(e.Row)), e.Action));
+                if ((this.GrupoSanguineoRowChanging != null)) {
+                    this.GrupoSanguineoRowChanging(this, new GrupoSanguineoRowChangeEvent(((GrupoSanguineoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -480,8 +439,8 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.TipoInstitucionRowDeleted != null)) {
-                    this.TipoInstitucionRowDeleted(this, new TipoInstitucionRowChangeEvent(((TipoInstitucionRow)(e.Row)), e.Action));
+                if ((this.GrupoSanguineoRowDeleted != null)) {
+                    this.GrupoSanguineoRowDeleted(this, new GrupoSanguineoRowChangeEvent(((GrupoSanguineoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -489,14 +448,14 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.TipoInstitucionRowDeleting != null)) {
-                    this.TipoInstitucionRowDeleting(this, new TipoInstitucionRowChangeEvent(((TipoInstitucionRow)(e.Row)), e.Action));
+                if ((this.GrupoSanguineoRowDeleting != null)) {
+                    this.GrupoSanguineoRowDeleting(this, new GrupoSanguineoRowChangeEvent(((GrupoSanguineoRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTipoInstitucionRow(TipoInstitucionRow row) {
+            public void RemoveGrupoSanguineoRow(GrupoSanguineoRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -505,7 +464,7 @@ namespace Polsolcom.Dominio.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TipoInstitucionDS ds = new TipoInstitucionDS();
+                GrupoSanguineo ds = new GrupoSanguineo();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -523,7 +482,7 @@ namespace Polsolcom.Dominio.Data {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TipoInstitucionDataTable";
+                attribute2.FixedValue = "GrupoSanguineoDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -567,48 +526,43 @@ namespace Polsolcom.Dominio.Data {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class TipoInstitucionRow : global::System.Data.DataRow {
+        public partial class GrupoSanguineoRow : global::System.Data.DataRow {
             
-            private TipoInstitucionDataTable tableTipoInstitucion;
+            private GrupoSanguineoDataTable tableGrupoSanguineo;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TipoInstitucionRow(global::System.Data.DataRowBuilder rb) : 
+            internal GrupoSanguineoRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTipoInstitucion = ((TipoInstitucionDataTable)(this.Table));
+                this.tableGrupoSanguineo = ((GrupoSanguineoDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Descripcion {
+            public string GS {
                 get {
-                    return ((string)(this[this.tableTipoInstitucion.DescripcionColumn]));
+                    try {
+                        return ((string)(this[this.tableGrupoSanguineo.GSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GS\' in table \'GrupoSanguineo\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableTipoInstitucion.DescripcionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Id_Tipo {
-                get {
-                    return ((string)(this[this.tableTipoInstitucion.Id_TipoColumn]));
-                }
-                set {
-                    this[this.tableTipoInstitucion.Id_TipoColumn] = value;
+                    this[this.tableGrupoSanguineo.GSColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Id_Tabla {
-                get {
-                    return ((string)(this[this.tableTipoInstitucion.Id_TablaColumn]));
-                }
-                set {
-                    this[this.tableTipoInstitucion.Id_TablaColumn] = value;
-                }
+            public bool IsGSNull() {
+                return this.IsNull(this.tableGrupoSanguineo.GSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetGSNull() {
+                this[this.tableGrupoSanguineo.GSColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -616,22 +570,22 @@ namespace Polsolcom.Dominio.Data {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class TipoInstitucionRowChangeEvent : global::System.EventArgs {
+        public class GrupoSanguineoRowChangeEvent : global::System.EventArgs {
             
-            private TipoInstitucionRow eventRow;
+            private GrupoSanguineoRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TipoInstitucionRowChangeEvent(TipoInstitucionRow row, global::System.Data.DataRowAction action) {
+            public GrupoSanguineoRowChangeEvent(GrupoSanguineoRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TipoInstitucionRow Row {
+            public GrupoSanguineoRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -647,7 +601,7 @@ namespace Polsolcom.Dominio.Data {
         }
     }
 }
-namespace Polsolcom.Dominio.Data.TipoInstitucionDSTableAdapters {
+namespace Polsolcom.Dominio.Data.GrupoSanguineoTableAdapters {
     
     
     /// <summary>
@@ -659,7 +613,7 @@ namespace Polsolcom.Dominio.Data.TipoInstitucionDSTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TipoInstitucionTableAdapter : global::System.ComponentModel.Component {
+    public partial class GrupoSanguineoTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -673,7 +627,7 @@ namespace Polsolcom.Dominio.Data.TipoInstitucionDSTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public TipoInstitucionTableAdapter() {
+        public GrupoSanguineoTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -770,30 +724,9 @@ namespace Polsolcom.Dominio.Data.TipoInstitucionDSTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "TipoInstitucion";
-            tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
-            tableMapping.ColumnMappings.Add("Id_Tipo", "Id_Tipo");
-            tableMapping.ColumnMappings.Add("Id_Tabla", "Id_Tabla");
+            tableMapping.DataSetTable = "GrupoSanguineo";
+            tableMapping.ColumnMappings.Add("GS", "GS");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [TablaTipo] WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_T" +
-                "ipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [TablaTipo] SET [Descripcion] = @Descripcion, [Id_Tipo] = @Id_Tipo, [Id_Tabla] = @Id_Tabla WHERE (([Descripcion] = @Original_Descripcion) AND ([Id_Tipo] = @Original_Id_Tipo) AND ([Id_Tabla] = @Original_Id_Tabla));
-SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -809,13 +742,9 @@ SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT     Descripcion, Id_Tipo, Id_Tabla
-FROM         TablaTipo
-WHERE     (Id_Tabla IN
-                          (SELECT     Id_Tipo
-                            FROM          TablaTipo AS TablaTipo_1
-                            WHERE      (Descripcion = 'TIPO_INSTITUCION') AND (Id_Tabla = '0')))
-ORDER BY Descripcion";
+            this._commandCollection[0].CommandText = "select \'A+\' As GS union\r\nselect \'A-\' As GS union\r\nselect \'B+\' As GS union\r\nselect" +
+                " \'B-\' As GS union\r\nselect \'O+\' As GS union\r\nselect \'O-\' As GS union\r\nselect \'AB+" +
+                "\' As GS union\r\nselect \'AB-\' As GS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -823,7 +752,7 @@ ORDER BY Descripcion";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TipoInstitucionDS.TipoInstitucionDataTable dataTable) {
+        public virtual int Fill(GrupoSanguineo.GrupoSanguineoDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -836,144 +765,11 @@ ORDER BY Descripcion";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TipoInstitucionDS.TipoInstitucionDataTable GetData() {
+        public virtual GrupoSanguineo.GrupoSanguineoDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            TipoInstitucionDS.TipoInstitucionDataTable dataTable = new TipoInstitucionDS.TipoInstitucionDataTable();
+            GrupoSanguineo.GrupoSanguineoDataTable dataTable = new GrupoSanguineo.GrupoSanguineoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TipoInstitucionDS.TipoInstitucionDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TipoInstitucionDS dataSet) {
-            return this.Adapter.Update(dataSet, "TipoInstitucion");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Descripcion, string Original_Id_Tipo, string Original_Id_Tabla) {
-            if ((Original_Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Original_Descripcion");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Descripcion));
-            }
-            if ((Original_Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tipo");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Id_Tipo));
-            }
-            if ((Original_Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tabla");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Id_Tabla));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Descripcion, string Id_Tipo, string Id_Tabla, string Original_Descripcion, string Original_Id_Tipo, string Original_Id_Tabla) {
-            if ((Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Descripcion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Descripcion));
-            }
-            if ((Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Id_Tipo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Id_Tipo));
-            }
-            if ((Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Id_Tabla");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Id_Tabla));
-            }
-            if ((Original_Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Original_Descripcion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Descripcion));
-            }
-            if ((Original_Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tipo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Id_Tipo));
-            }
-            if ((Original_Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tabla");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Id_Tabla));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Descripcion, string Original_Descripcion, string Original_Id_Tipo, string Original_Id_Tabla) {
-            return this.Update(Descripcion, Original_Id_Tipo, Original_Id_Tabla, Original_Descripcion, Original_Id_Tipo, Original_Id_Tabla);
         }
     }
     
@@ -989,8 +785,6 @@ ORDER BY Descripcion";
         
         private UpdateOrderOption _updateOrder;
         
-        private TipoInstitucionTableAdapter _tipoInstitucionTableAdapter;
-        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -1003,20 +797,6 @@ ORDER BY Descripcion";
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public TipoInstitucionTableAdapter TipoInstitucionTableAdapter {
-            get {
-                return this._tipoInstitucionTableAdapter;
-            }
-            set {
-                this._tipoInstitucionTableAdapter = value;
             }
         }
         
@@ -1039,10 +819,6 @@ ORDER BY Descripcion";
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tipoInstitucionTableAdapter != null) 
-                            && (this._tipoInstitucionTableAdapter.Connection != null))) {
-                    return this._tipoInstitucionTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -1056,9 +832,6 @@ ORDER BY Descripcion";
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tipoInstitucionTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -1068,17 +841,8 @@ ORDER BY Descripcion";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(TipoInstitucionDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(GrupoSanguineo dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tipoInstitucionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TipoInstitucion.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tipoInstitucionTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -1087,16 +851,8 @@ ORDER BY Descripcion";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(TipoInstitucionDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(GrupoSanguineo dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tipoInstitucionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TipoInstitucion.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tipoInstitucionTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -1105,16 +861,8 @@ ORDER BY Descripcion";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(TipoInstitucionDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(GrupoSanguineo dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tipoInstitucionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TipoInstitucion.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tipoInstitucionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -1147,17 +895,12 @@ ORDER BY Descripcion";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(TipoInstitucionDS dataSet) {
+        public virtual int UpdateAll(GrupoSanguineo dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
-            }
-            if (((this._tipoInstitucionTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tipoInstitucionTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
@@ -1191,15 +934,6 @@ ORDER BY Descripcion";
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tipoInstitucionTableAdapter != null)) {
-                    revertConnections.Add(this._tipoInstitucionTableAdapter, this._tipoInstitucionTableAdapter.Connection);
-                    this._tipoInstitucionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tipoInstitucionTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tipoInstitucionTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tipoInstitucionTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tipoInstitucionTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -1257,10 +991,6 @@ ORDER BY Descripcion";
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._tipoInstitucionTableAdapter != null)) {
-                    this._tipoInstitucionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tipoInstitucionTableAdapter]));
-                    this._tipoInstitucionTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

@@ -363,10 +363,10 @@ namespace Polsolcom.Forms
             Conexion.CMD.CommandText = getSQL();
             using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
             {
-                using (EstadisticaPacientes ds = new EstadisticaPacientes())
+                using (ReportsDS ds = new ReportsDS())
                 {
                     ds.Clear();
-                    da.Fill(ds, "EstadisticaPacientes");
+                    da.Fill(ds, "EstPac");
                     rpt.SetDataSource(ds);
                 }
             }
