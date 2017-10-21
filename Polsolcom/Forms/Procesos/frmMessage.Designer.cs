@@ -37,9 +37,9 @@
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.Location = new System.Drawing.Point(6, 4);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(158, 55);
+            this.lblMessage.Size = new System.Drawing.Size(66, 55);
             this.lblMessage.TabIndex = 0;
-            this.lblMessage.Text = "label1";
+            this.lblMessage.Text = "...";
             // 
             // frmMessage
             // 

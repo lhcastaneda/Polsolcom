@@ -220,7 +220,7 @@ namespace Polsolcom.Forms.Procesos
             {
                 if (!this.hab(0)) return false;
                 btnBuscar.Enabled = true;
-                txtFechaEmision.Text = DateTime.Today.ToString(General.dateTimeFormat);
+                txtFechaEmision.Text = DateTime.Now.ToString(General.dateTimeFormat);
                 cmbEspecialidad.Focus();
             }
 
@@ -579,13 +579,13 @@ namespace Polsolcom.Forms.Procesos
             sql = "Update Pacientes Set ";
             sql += (txtNombre.Text != pacient["Nombre"] ? "Nombre='" + txtNombre.Text + "'" : "");
             sql += (sql.Contains("=") ? "," : "");
-            sql += (txtApePaterno.Text != pacient["Ape_paterno"] ? "Ape_Paterno='" + txtApePaterno.Text + "'" : "");
+            sql += (txtApePaterno.Text != pacient["Ape_Paterno"] ? "Ape_Paterno='" + txtApePaterno.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtApeMaterno.Text != pacient["Ape_materno"] ? "Ape_Materno='" + txtApeMaterno.Text + "'" : "");
+            sql += (txtApeMaterno.Text != pacient["Ape_Materno"] ? "Ape_Materno='" + txtApeMaterno.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtDNI.Text != pacient["Dni"] ? "DNI='" + txtDNI.Text + "'" : "");
+            sql += (txtDNI.Text != pacient["DNI"] ? "DNI='" + txtDNI.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtODoc.Text != pacient["Odoc"] ? "ODoc='" + txtODoc.Text + "'" : "");
+            sql += (txtODoc.Text != pacient["ODoc"] ? "ODoc='" + txtODoc.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
             sql += (txtFechaNac.Text != pacient["Fecha_Nac"] && txtFechaNac.Text.Length > 0 ? "Fecha_Nac='" + txtFechaNac.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
@@ -601,8 +601,9 @@ namespace Polsolcom.Forms.Procesos
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
             sql += (cmbDistrito.SelectedValue.ToString() != pacient["Id_Distrito"] ? "Id_Distrito='" + cmbDistrito.SelectedValue.ToString() + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtEmail.Text != pacient["E_mail"] ? "E_Mail='" + txtEmail.Text + "'" : "");
-            sql += (sql.Substring(sql.Length - 1) == "," ? sql.Substring(0, sql.Length - 1) : sql) + (sql.Contains("=") ? " Where Id_Paciente='" + ip + "'" : "");
+            sql += (txtEmail.Text != pacient["E_Mail"] ? "E_Mail='" + txtEmail.Text + "'" : "");
+
+            sql = (sql.Substring(sql.Length - 1) == "," ? sql.Substring(0, sql.Length - 1) : sql) + (sql.Contains("=") ? " Where Id_Paciente='" + ip + "'" : "");
 
             if (sql.Contains("Where"))
             {
@@ -1834,6 +1835,8 @@ namespace Polsolcom.Forms.Procesos
                 {
                     combo.SelectionChangeCommitted -= new EventHandler(cmbProducto_SelectionChangeCommitted);
                     combo.SelectionChangeCommitted += new EventHandler(cmbProducto_SelectionChangeCommitted);
+                    combo.Click -= new EventHandler(cmbProducto_Enter);
+                    combo.Click += new EventHandler(cmbProducto_Enter);
                 }
             }
         }
@@ -1865,6 +1868,11 @@ namespace Polsolcom.Forms.Procesos
                 }
 
             }
+        }
+
+        private void cmbProducto_Enter(System.Object sender, System.EventArgs e)
+        {
+            (sender as ComboBox).DroppedDown = true;
         }
 
         private void grdDetalle_CellLeave(object sender, DataGridViewCellEventArgs e)

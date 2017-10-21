@@ -90,13 +90,13 @@ namespace Polsolcom.Forms.Procesos
 
 		private void txtDNI_TextChanged( object sender, EventArgs e )
 		{
-            if (txtDNI.Text.Length > 8)
+            if(txtDNI.Text.Length > 0)
             {
                 this.bpa();
             }
         }
 
-		private void txtDNI_KeyPress( object sender, KeyPressEventArgs e )
+        private void txtDNI_KeyPress( object sender, KeyPressEventArgs e )
 		{
 			if( !Char.IsDigit(e.KeyChar) && e.KeyChar != 8 )
 				e.Handled = true;
@@ -173,6 +173,14 @@ namespace Polsolcom.Forms.Procesos
         {
             int index = General.GetSelectedIndex(lstBuscar);
             this.bpac = this.bpacs[index];
+        }
+
+        private void txtDNI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtDNI_TextChanged(txtDNI, new EventArgs());
+            }
         }
     }
 }

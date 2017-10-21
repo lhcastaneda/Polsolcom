@@ -72,6 +72,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtDNI.Size = new System.Drawing.Size(96, 20);
             this.txtDNI.TabIndex = 5;
             this.txtDNI.TextChanged += new System.EventHandler(this.txtDNI_TextChanged);
+            this.txtDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDNI_KeyDown);
             // 
             // lblIdPaciente
             // 
