@@ -306,12 +306,10 @@ namespace Polsolcom.Forms.Procesos
 
         private void frmResultado_FormClosed(object sender, FormClosedEventArgs e)
         {
-            List<Dictionary<string, string>> detalles = ((frmResultado)sender).items;
+            int cp = ((frmResultado)sender).cp;
             //
             txtNroTicket.Text = "";
             txtNroTicket.Focus();
-
-            int cp = detalles.FindAll(x => x["Nro_Historia"] == this.nh && x["Pagado"].Length > 0).Count;
 
             if (this.iu == 0 && cp == 0)
             {
@@ -616,10 +614,10 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnVerifica_Click(object sender, EventArgs e)
         {
-            string xbs = cmbBus.SelectedValue != null ? cmbBus.SelectedValue.ToString() : "";
-            string xtr = cmbTurno.SelectedValue != null ? cmbTurno.SelectedValue.ToString().Substring(0, 1) : "";
+            string xbs = cmbBus.SelectedIndex == -1 ? "": cmbBus.SelectedValue.ToString();
+            string xtr = cmbTurno.SelectedIndex == -1 ? "": cmbTurno.SelectedValue.ToString().Substring(0, 1);
             string xfa = txtFechaAten.Text;
-            string xcm = cmbMedico.SelectedValue.ToString();
+            string xcm = cmbMedico.SelectedIndex == -1? "": cmbMedico.SelectedValue.ToString();
 
             if (xbs.Length == 0 || xtr.Length == 0 || xfa.Length == 0 || xcm.Length == 0)
             {
@@ -639,8 +637,12 @@ namespace Polsolcom.Forms.Procesos
 
         private void frmVerificaCie_FormClosed(object sender, FormClosedEventArgs e)
         {
-            txtNroTicket.Text = ((frmVerificaCie)sender).nroTicket;
-            this.processKeyDown();
+            if (((frmVerificaCie)sender).DialogResult == DialogResult.OK)
+            {
+                txtNroTicket.Text = ((frmVerificaCie)sender).nroTicket;
+                this.processKeyDown();
+            }
+
             this.Show();
         }
 
@@ -756,7 +758,7 @@ namespace Polsolcom.Forms.Procesos
             string ob = txtObservacion.Text;
             double df = (DateTime.Today - this.hi).TotalSeconds;
 
-            General.RemoveAll(grdDetCie10, x => x["cNrHistoria"].Length == 0 || (x["cCie10"].Length + x["cProcedimiento"].Length) == 0);
+            General.RemoveAll(grdDetCie10, x => x["cNroHistoria"].Length == 0 || (x["cCie10"].Length + x["cProcedimiento"].Length) == 0);
             int dn = grdDetCie10.Rows.Count;
             //
             if (dn == 0 && this.ptc(bs, 1) != "LABORATORIO" && General.vtrls(Especialidad.esp) == 0)
@@ -845,6 +847,8 @@ namespace Polsolcom.Forms.Procesos
                     string sql4 = "Insert Into tratmed Values('" + this.nh + "', '" + item["id_med"] + "', '" + item["cant"] + "', '" + item["dosis"] + "', '" + item["dias"] + "')";
                     Conexion.ExecuteNonQuery(sql4);
                 }
+
+                MessageBox.Show("Operación ejecutada correctamente", "Mensaje");
             }
 
             this.hi = DateTime.Now;
@@ -879,7 +883,7 @@ namespace Polsolcom.Forms.Procesos
                 string es = txtEspecialidad.Text;
                 string ib = cmbBus.SelectedValue.ToString();
 
-                string sql = "'Select Count(*) As C From Buses B Inner Join Consultorios C On C.Id_Consultorio=B.Id_Esp Where C.Descripcion = '" + es + "' And Id_Bus = '" + ib + "'";
+                string sql = "Select Count(*) As C From Buses B Inner Join Consultorios C On C.Id_Consultorio=B.Id_Esp Where C.Descripcion = '" + es + "' And Id_Bus = '" + ib + "'";
                 int c = Conexion.ExecuteScalar<int>(sql);
 
                 if (c == 0)

@@ -462,5 +462,10 @@ RegresaTalon:
                 txtClave.Text = "";
             }
         }
+
+        private void frmLogin_Shown(object sender, EventArgs e)
+        {
+            cmbUsuario.Focus();
+        }
     }
 }

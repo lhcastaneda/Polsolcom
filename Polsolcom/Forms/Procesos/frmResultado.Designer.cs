@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dgvProductos = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.grdProductos = new System.Windows.Forms.DataGridView();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.cmbParticular = new System.Windows.Forms.ComboBox();
@@ -43,43 +41,49 @@
             this.txtResultado = new System.Windows.Forms.TextBox();
             this.txtConclusion = new System.Windows.Forms.TextBox();
             this.plantillasTableAdapter = new Polsolcom.Dominio.Data.PlantillasDSTableAdapters.PlantillasTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
+            this.dNroHistoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dIdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dPagado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dResultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dConclusion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dM = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantillasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantillasDS)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvProductos
+            // grdProductos
             // 
-            this.dgvProductos.AllowUserToAddRows = false;
-            this.dgvProductos.AllowUserToDeleteRows = false;
-            this.dgvProductos.AllowUserToOrderColumns = true;
-            this.dgvProductos.AllowUserToResizeColumns = false;
-            this.dgvProductos.AllowUserToResizeRows = false;
-            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-            this.dgvProductos.Location = new System.Drawing.Point(4, 2);
-            this.dgvProductos.Name = "dgvProductos";
-            this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvProductos.Size = new System.Drawing.Size(312, 73);
-            this.dgvProductos.TabIndex = 0;
-            this.dgvProductos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellEnter);
-            this.dgvProductos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductos_EditingControlShowing);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Producto y/o servicio";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "*";
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column2.Width = 50;
+            this.grdProductos.AllowUserToAddRows = false;
+            this.grdProductos.AllowUserToDeleteRows = false;
+            this.grdProductos.AllowUserToOrderColumns = true;
+            this.grdProductos.AllowUserToResizeColumns = false;
+            this.grdProductos.AllowUserToResizeRows = false;
+            this.grdProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dNroHistoria,
+            this.dIdProducto,
+            this.dProducto,
+            this.dCantidad,
+            this.dPrecio,
+            this.dTotal,
+            this.dPagado,
+            this.dDescuento,
+            this.dResultado,
+            this.dConclusion,
+            this.dM});
+            this.grdProductos.Location = new System.Drawing.Point(4, 2);
+            this.grdProductos.Name = "grdProductos";
+            this.grdProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdProductos.Size = new System.Drawing.Size(312, 73);
+            this.grdProductos.TabIndex = 0;
+            this.grdProductos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductos_CellEnter);
+            this.grdProductos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductos_EditingControlShowing);
             // 
             // btnGrabar
             // 
@@ -184,6 +188,84 @@
             // 
             this.plantillasTableAdapter.ClearBeforeFill = true;
             // 
+            // dNroHistoria
+            // 
+            this.dNroHistoria.HeaderText = "Nro Historia";
+            this.dNroHistoria.Name = "dNroHistoria";
+            this.dNroHistoria.ReadOnly = true;
+            this.dNroHistoria.Visible = false;
+            // 
+            // dIdProducto
+            // 
+            this.dIdProducto.HeaderText = "Id Producto";
+            this.dIdProducto.Name = "dIdProducto";
+            this.dIdProducto.ReadOnly = true;
+            this.dIdProducto.Visible = false;
+            // 
+            // dProducto
+            // 
+            this.dProducto.HeaderText = "Producto y/o servicio";
+            this.dProducto.Name = "dProducto";
+            this.dProducto.ReadOnly = true;
+            this.dProducto.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dProducto.Width = 200;
+            // 
+            // dCantidad
+            // 
+            this.dCantidad.HeaderText = "Cantidad";
+            this.dCantidad.Name = "dCantidad";
+            this.dCantidad.ReadOnly = true;
+            this.dCantidad.Visible = false;
+            // 
+            // dPrecio
+            // 
+            this.dPrecio.HeaderText = "Precio";
+            this.dPrecio.Name = "dPrecio";
+            this.dPrecio.ReadOnly = true;
+            this.dPrecio.Visible = false;
+            // 
+            // dTotal
+            // 
+            this.dTotal.HeaderText = "Total";
+            this.dTotal.Name = "dTotal";
+            this.dTotal.ReadOnly = true;
+            this.dTotal.Visible = false;
+            // 
+            // dPagado
+            // 
+            this.dPagado.HeaderText = "Pagado";
+            this.dPagado.Name = "dPagado";
+            this.dPagado.ReadOnly = true;
+            this.dPagado.Visible = false;
+            // 
+            // dDescuento
+            // 
+            this.dDescuento.HeaderText = "Descuento";
+            this.dDescuento.Name = "dDescuento";
+            this.dDescuento.ReadOnly = true;
+            this.dDescuento.Visible = false;
+            // 
+            // dResultado
+            // 
+            this.dResultado.HeaderText = "Resultado";
+            this.dResultado.Name = "dResultado";
+            this.dResultado.ReadOnly = true;
+            this.dResultado.Visible = false;
+            // 
+            // dConclusion
+            // 
+            this.dConclusion.HeaderText = "Conclusión";
+            this.dConclusion.Name = "dConclusion";
+            this.dConclusion.ReadOnly = true;
+            this.dConclusion.Visible = false;
+            // 
+            // dM
+            // 
+            this.dM.HeaderText = "*";
+            this.dM.Name = "dM";
+            this.dM.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dM.Width = 50;
+            // 
             // frmResultado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -198,12 +280,12 @@
             this.Controls.Add(this.cmbParticular);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnGrabar);
-            this.Controls.Add(this.dgvProductos);
+            this.Controls.Add(this.grdProductos);
             this.KeyPreview = true;
             this.Name = "frmResultado";
             this.Text = "Ingreso de Resultados...";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmResultado_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantillasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantillasDS)).EndInit();
             this.ResumeLayout(false);
@@ -213,7 +295,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvProductos;
+        private System.Windows.Forms.DataGridView grdProductos;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.ComboBox cmbParticular;
@@ -222,10 +304,19 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtResultado;
         private System.Windows.Forms.TextBox txtConclusion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column2;
         private System.Windows.Forms.BindingSource plantillasBindingSource;
         private Dominio.Data.PlantillasDS plantillasDS;
         private Dominio.Data.PlantillasDSTableAdapters.PlantillasTableAdapter plantillasTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dNroHistoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dIdProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dPrecio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dPagado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dResultado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dConclusion;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dM;
     }
 }

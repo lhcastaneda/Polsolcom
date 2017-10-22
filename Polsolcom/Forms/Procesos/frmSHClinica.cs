@@ -1385,10 +1385,10 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
+            if (!(this.lastKey == Keys.None || this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
             {
                 this.cad = txtNombre.Text;
-                txtNombre.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
+                txtNombre.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
                 txtNombre.Select();
             }
 
@@ -1402,10 +1402,10 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtApePaterno_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
+            if (!(this.lastKey == Keys.None || this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
             {
                 this.cad = txtApePaterno.Text;
-                txtApePaterno.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
+                txtApePaterno.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
                 txtApePaterno.Select();
             }
 
@@ -1419,10 +1419,10 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtApeMaterno_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
+            if (!(this.lastKey == Keys.None || this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
             {
                 this.cad = txtApeMaterno.Text;
-                txtApeMaterno.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
+                txtApeMaterno.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
                 txtApeMaterno.Select();
             }
 

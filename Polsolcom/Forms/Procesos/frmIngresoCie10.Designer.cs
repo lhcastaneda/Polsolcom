@@ -180,6 +180,10 @@
             this.txtTi = new System.Windows.Forms.TextBox();
             this.chkCompleto = new System.Windows.Forms.CheckBox();
             this.grdDetCie10 = new System.Windows.Forms.DataGridView();
+            this.cNroHistoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cCie10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cProcedimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtFechaAten = new System.Windows.Forms.MaskedTextBox();
             this.txtFechaIngreso = new System.Windows.Forms.MaskedTextBox();
             this.busesTableAdapter = new Polsolcom.Dominio.Data.BusesDSTableAdapters.BusesTableAdapter();
@@ -187,10 +191,6 @@
             this.cIE10TableAdapter = new Polsolcom.Dominio.Data.Cie10DSTableAdapters.CIE10TableAdapter();
             this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
             this.turnoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TurnoTableAdapter();
-            this.cNroHistoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCie10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cProcedimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
@@ -463,6 +463,7 @@
             // columnHeader29
             // 
             this.columnHeader29.Text = "Paciente";
+            this.columnHeader29.Width = 140;
             // 
             // lstTickets1
             // 
@@ -1567,6 +1568,34 @@
             this.grdDetCie10.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetCie10_EditingControlShowing);
             this.grdDetCie10.Validated += new System.EventHandler(this.grdDetCie10_Validated);
             // 
+            // cNroHistoria
+            // 
+            this.cNroHistoria.HeaderText = "NroH istoria";
+            this.cNroHistoria.Name = "cNroHistoria";
+            this.cNroHistoria.Visible = false;
+            // 
+            // cCie10
+            // 
+            this.cCie10.DataSource = this.cIE10BindingSource;
+            this.cCie10.DisplayMember = "CIE10";
+            this.cCie10.HeaderText = "Cie10";
+            this.cCie10.Name = "cCie10";
+            this.cCie10.ValueMember = "CIE10";
+            this.cCie10.Width = 90;
+            // 
+            // cDescripcion
+            // 
+            this.cDescripcion.HeaderText = "Descripción del diagnóstico";
+            this.cDescripcion.Name = "cDescripcion";
+            this.cDescripcion.ReadOnly = true;
+            this.cDescripcion.Width = 370;
+            // 
+            // cProcedimiento
+            // 
+            this.cProcedimiento.HeaderText = "Procedimientos, exámenes aux, inervenciones...";
+            this.cProcedimiento.Name = "cProcedimiento";
+            this.cProcedimiento.Width = 370;
+            // 
             // txtFechaAten
             // 
             this.txtFechaAten.Location = new System.Drawing.Point(9, 200);
@@ -1606,34 +1635,6 @@
             // turnoTableAdapter
             // 
             this.turnoTableAdapter.ClearBeforeFill = true;
-            // 
-            // cNroHistoria
-            // 
-            this.cNroHistoria.HeaderText = "NroH istoria";
-            this.cNroHistoria.Name = "cNroHistoria";
-            this.cNroHistoria.Visible = false;
-            // 
-            // cCie10
-            // 
-            this.cCie10.DataSource = this.cIE10BindingSource;
-            this.cCie10.DisplayMember = "CIE10";
-            this.cCie10.HeaderText = "Cie10";
-            this.cCie10.Name = "cCie10";
-            this.cCie10.ValueMember = "CIE10";
-            this.cCie10.Width = 90;
-            // 
-            // cDescripcion
-            // 
-            this.cDescripcion.HeaderText = "Descripción del diagnóstico";
-            this.cDescripcion.Name = "cDescripcion";
-            this.cDescripcion.ReadOnly = true;
-            this.cDescripcion.Width = 370;
-            // 
-            // cProcedimiento
-            // 
-            this.cProcedimiento.HeaderText = "Procedimientos, exámenes aux, inervenciones...";
-            this.cProcedimiento.Name = "cProcedimiento";
-            this.cProcedimiento.Width = 370;
             // 
             // frmIngresoCie10
             // 
