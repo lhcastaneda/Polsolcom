@@ -238,7 +238,7 @@ namespace Polsolcom.Forms.Procesos
             txtTelefono.Text = this.bpac["Telefono"];
             txtDireccion.Text = this.bpac["Direccion"];
             txtAsegurado.Text = this.bpac["Asegurado"];
-            cmbDepartamento.SelectedValue = this.bpac["Id_Distrito"].Length > 0? this.bpac["Id_Distrito"].Substring(0, 2): "";
+            cmbDepartamento.SelectedValue = this.bpac["Id_Distrito"].Length > 0 ? this.bpac["Id_Distrito"].Substring(0, 2) : "";
             cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
             cmbProvincia.SelectedValue = this.bpac["Id_Distrito"].Length > 0 ? this.bpac["Id_Distrito"].Substring(0, 4) : "";
             cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
@@ -1009,9 +1009,15 @@ namespace Polsolcom.Forms.Procesos
                     txtApePaterno.Text = this.bpac["Ape_Pat"];
                     txtApeMaterno.Text = this.bpac["Ape_Mat"];
                     txtDNI.Text = this.bpac["DNI"];
-                    //La fecha es un número, por lo tanto es indescifrable
-                    //txtFechaNac.Text = DateTime.Parse(this.bpac["Fec_Nac"]).ToShortDateString();
-                    //txtEdad.Text = General.getYearsUntilNow(this.bpac["Fec_Nac"]).ToString();
+
+                    DateTime fechaNac = new DateTime();
+                    bool result = DateTime.TryParseExact(this.bpac["Fec_Nac"], "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out fechaNac);
+                    if (result)
+                    {
+                        txtFechaNac.Text = fechaNac.ToShortDateString();
+                        txtEdad.Text = General.getYearsUntilNow(fechaNac).ToString();
+                    }
+
                     txtDireccion.Focus();
                 }
 
@@ -1090,7 +1096,9 @@ namespace Polsolcom.Forms.Procesos
             {
                 Dictionary<string, string> cesp = General.GetSelectedDictionary(cmbEspecialidad);
 
-                Id.ReadOnly = Cantidad.ReadOnly = false;
+                grdDetalle.ReadOnly = false;
+                Id.ReadOnly = false;
+                Cantidad.ReadOnly = false;
                 Precio.ReadOnly = cesp["Descripcion"] != "FARMACIA";
                 grdDetalle.Rows.Add(new string[] { this.xnrv, "", "", "", "0", "0", "0" });
                 btnQuitar.Enabled = true;
@@ -1385,13 +1393,6 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.None || this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
-            {
-                this.cad = txtNombre.Text;
-                txtNombre.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
-                txtNombre.Select();
-            }
-
             if (this.lastKey == Keys.F12)
             {
                 frmMessage.lblMessage.Focus();
@@ -1402,13 +1403,6 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtApePaterno_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.None || this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
-            {
-                this.cad = txtApePaterno.Text;
-                txtApePaterno.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
-                txtApePaterno.Select();
-            }
-
             if (this.lastKey == Keys.F12)
             {
                 frmMessage.lblMessage.Focus();
@@ -1419,13 +1413,6 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtApeMaterno_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.None || this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
-            {
-                this.cad = txtApeMaterno.Text;
-                txtApeMaterno.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
-                txtApeMaterno.Select();
-            }
-
             if (this.lastKey == Keys.F12)
             {
                 frmMessage.lblMessage.Focus();
@@ -1917,7 +1904,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtDNI_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void grdDetalle_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -1955,6 +1942,21 @@ namespace Polsolcom.Forms.Procesos
         private void frmSHClinica_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmMessage.Close();
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void txtApePaterno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void txtApeMaterno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
     }
 }
