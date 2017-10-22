@@ -90,6 +90,7 @@
             this.Controls.Add(this.btnAfCajaProd);
             this.KeyPreview = true;
             this.Name = "frmModulos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Módulos";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmModulos_KeyDown);
             this.ResumeLayout(false);

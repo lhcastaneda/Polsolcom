@@ -1674,6 +1674,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmIngresoCie10";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingreso y Consulta de Atenciones Realizadas (epicrisis, diagnóstico, tratamiento," +
     " etc.)";
             this.Load += new System.EventHandler(this.frmIngresoCie10_Load);

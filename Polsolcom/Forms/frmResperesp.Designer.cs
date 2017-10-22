@@ -359,6 +359,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmResperEsp";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Resumen de Especialistas";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmResperEsp_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gdvProd)).EndInit();

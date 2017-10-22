@@ -1251,6 +1251,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmPersonal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro del Personal";
             this.Load += new System.EventHandler(this.frmPersonal_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPersonal_KeyDown);

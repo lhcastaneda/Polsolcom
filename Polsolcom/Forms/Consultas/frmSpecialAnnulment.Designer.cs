@@ -184,6 +184,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmSpecialAnnulment";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Anulacion Especial";
             ((System.ComponentModel.ISupportInitialize)(this.GridSpecialAnn)).EndInit();
             this.ResumeLayout(false);

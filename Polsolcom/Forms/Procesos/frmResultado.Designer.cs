@@ -30,17 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grdProductos = new System.Windows.Forms.DataGridView();
-            this.btnGrabar = new System.Windows.Forms.Button();
-            this.btnImprimir = new System.Windows.Forms.Button();
-            this.cmbParticular = new System.Windows.Forms.ComboBox();
-            this.plantillasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.plantillasDS = new Polsolcom.Dominio.Data.PlantillasDS();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtResultado = new System.Windows.Forms.TextBox();
-            this.txtConclusion = new System.Windows.Forms.TextBox();
-            this.plantillasTableAdapter = new Polsolcom.Dominio.Data.PlantillasDSTableAdapters.PlantillasTableAdapter();
             this.dNroHistoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dIdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +41,17 @@
             this.dResultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dConclusion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dM = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnGrabar = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.cmbParticular = new System.Windows.Forms.ComboBox();
+            this.plantillasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.plantillasDS = new Polsolcom.Dominio.Data.PlantillasDS();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtResultado = new System.Windows.Forms.TextBox();
+            this.txtConclusion = new System.Windows.Forms.TextBox();
+            this.plantillasTableAdapter = new Polsolcom.Dominio.Data.PlantillasDSTableAdapters.PlantillasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.grdProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantillasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantillasDS)).BeginInit();
@@ -84,6 +84,84 @@
             this.grdProductos.TabIndex = 0;
             this.grdProductos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProductos_CellEnter);
             this.grdProductos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductos_EditingControlShowing);
+            // 
+            // dNroHistoria
+            // 
+            this.dNroHistoria.HeaderText = "Nro Historia";
+            this.dNroHistoria.Name = "dNroHistoria";
+            this.dNroHistoria.ReadOnly = true;
+            this.dNroHistoria.Visible = false;
+            // 
+            // dIdProducto
+            // 
+            this.dIdProducto.HeaderText = "Id Producto";
+            this.dIdProducto.Name = "dIdProducto";
+            this.dIdProducto.ReadOnly = true;
+            this.dIdProducto.Visible = false;
+            // 
+            // dProducto
+            // 
+            this.dProducto.HeaderText = "Producto y/o servicio";
+            this.dProducto.Name = "dProducto";
+            this.dProducto.ReadOnly = true;
+            this.dProducto.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dProducto.Width = 200;
+            // 
+            // dCantidad
+            // 
+            this.dCantidad.HeaderText = "Cantidad";
+            this.dCantidad.Name = "dCantidad";
+            this.dCantidad.ReadOnly = true;
+            this.dCantidad.Visible = false;
+            // 
+            // dPrecio
+            // 
+            this.dPrecio.HeaderText = "Precio";
+            this.dPrecio.Name = "dPrecio";
+            this.dPrecio.ReadOnly = true;
+            this.dPrecio.Visible = false;
+            // 
+            // dTotal
+            // 
+            this.dTotal.HeaderText = "Total";
+            this.dTotal.Name = "dTotal";
+            this.dTotal.ReadOnly = true;
+            this.dTotal.Visible = false;
+            // 
+            // dPagado
+            // 
+            this.dPagado.HeaderText = "Pagado";
+            this.dPagado.Name = "dPagado";
+            this.dPagado.ReadOnly = true;
+            this.dPagado.Visible = false;
+            // 
+            // dDescuento
+            // 
+            this.dDescuento.HeaderText = "Descuento";
+            this.dDescuento.Name = "dDescuento";
+            this.dDescuento.ReadOnly = true;
+            this.dDescuento.Visible = false;
+            // 
+            // dResultado
+            // 
+            this.dResultado.HeaderText = "Resultado";
+            this.dResultado.Name = "dResultado";
+            this.dResultado.ReadOnly = true;
+            this.dResultado.Visible = false;
+            // 
+            // dConclusion
+            // 
+            this.dConclusion.HeaderText = "Conclusión";
+            this.dConclusion.Name = "dConclusion";
+            this.dConclusion.ReadOnly = true;
+            this.dConclusion.Visible = false;
+            // 
+            // dM
+            // 
+            this.dM.HeaderText = "*";
+            this.dM.Name = "dM";
+            this.dM.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dM.Width = 50;
             // 
             // btnGrabar
             // 
@@ -188,84 +266,6 @@
             // 
             this.plantillasTableAdapter.ClearBeforeFill = true;
             // 
-            // dNroHistoria
-            // 
-            this.dNroHistoria.HeaderText = "Nro Historia";
-            this.dNroHistoria.Name = "dNroHistoria";
-            this.dNroHistoria.ReadOnly = true;
-            this.dNroHistoria.Visible = false;
-            // 
-            // dIdProducto
-            // 
-            this.dIdProducto.HeaderText = "Id Producto";
-            this.dIdProducto.Name = "dIdProducto";
-            this.dIdProducto.ReadOnly = true;
-            this.dIdProducto.Visible = false;
-            // 
-            // dProducto
-            // 
-            this.dProducto.HeaderText = "Producto y/o servicio";
-            this.dProducto.Name = "dProducto";
-            this.dProducto.ReadOnly = true;
-            this.dProducto.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dProducto.Width = 200;
-            // 
-            // dCantidad
-            // 
-            this.dCantidad.HeaderText = "Cantidad";
-            this.dCantidad.Name = "dCantidad";
-            this.dCantidad.ReadOnly = true;
-            this.dCantidad.Visible = false;
-            // 
-            // dPrecio
-            // 
-            this.dPrecio.HeaderText = "Precio";
-            this.dPrecio.Name = "dPrecio";
-            this.dPrecio.ReadOnly = true;
-            this.dPrecio.Visible = false;
-            // 
-            // dTotal
-            // 
-            this.dTotal.HeaderText = "Total";
-            this.dTotal.Name = "dTotal";
-            this.dTotal.ReadOnly = true;
-            this.dTotal.Visible = false;
-            // 
-            // dPagado
-            // 
-            this.dPagado.HeaderText = "Pagado";
-            this.dPagado.Name = "dPagado";
-            this.dPagado.ReadOnly = true;
-            this.dPagado.Visible = false;
-            // 
-            // dDescuento
-            // 
-            this.dDescuento.HeaderText = "Descuento";
-            this.dDescuento.Name = "dDescuento";
-            this.dDescuento.ReadOnly = true;
-            this.dDescuento.Visible = false;
-            // 
-            // dResultado
-            // 
-            this.dResultado.HeaderText = "Resultado";
-            this.dResultado.Name = "dResultado";
-            this.dResultado.ReadOnly = true;
-            this.dResultado.Visible = false;
-            // 
-            // dConclusion
-            // 
-            this.dConclusion.HeaderText = "Conclusión";
-            this.dConclusion.Name = "dConclusion";
-            this.dConclusion.ReadOnly = true;
-            this.dConclusion.Visible = false;
-            // 
-            // dM
-            // 
-            this.dM.HeaderText = "*";
-            this.dM.Name = "dM";
-            this.dM.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dM.Width = 50;
-            // 
             // frmResultado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,6 +283,7 @@
             this.Controls.Add(this.grdProductos);
             this.KeyPreview = true;
             this.Name = "frmResultado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingreso de Resultados...";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmResultado_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdProductos)).EndInit();

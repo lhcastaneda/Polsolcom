@@ -77,6 +77,7 @@
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pnlDatosFam = new System.Windows.Forms.Panel();
+            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
             this.txtFechaNac = new System.Windows.Forms.MaskedTextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.txtEdad = new System.Windows.Forms.TextBox();
@@ -141,7 +142,6 @@
             this.nivelEstudiosTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.NivelEstudiosTableAdapter();
             this.generoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.GeneroTableAdapter();
             this.grupoSanguineoTableAdapter = new Polsolcom.Dominio.Data.GrupoSanguineoTableAdapters.GrupoSanguineoTableAdapter();
-            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
             this.tabPersonal.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grupoSanguineoBindingSource)).BeginInit();
@@ -654,6 +654,15 @@
             this.pnlDatosFam.Name = "pnlDatosFam";
             this.pnlDatosFam.Size = new System.Drawing.Size(800, 52);
             this.pnlDatosFam.TabIndex = 0;
+            // 
+            // txtDNI
+            // 
+            this.txtDNI.Location = new System.Drawing.Point(536, 21);
+            this.txtDNI.Mask = "99999999";
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(100, 20);
+            this.txtDNI.TabIndex = 33;
+            this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtFechaNac
             // 
@@ -1233,15 +1242,6 @@
             // 
             this.grupoSanguineoTableAdapter.ClearBeforeFill = true;
             // 
-            // txtDNI
-            // 
-            this.txtDNI.Location = new System.Drawing.Point(536, 21);
-            this.txtDNI.Mask = "99999999";
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(100, 20);
-            this.txtDNI.TabIndex = 33;
-            this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // frmPersonalDet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1251,6 +1251,7 @@
             this.Controls.Add(this.tabPersonal);
             this.KeyPreview = true;
             this.Name = "frmPersonalDet";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datos Adicionales del Personal";
             this.Load += new System.EventHandler(this.frmPersonalDet_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPersonalDet_KeyDown);

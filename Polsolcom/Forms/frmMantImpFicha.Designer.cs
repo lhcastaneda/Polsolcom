@@ -297,6 +297,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "frmMantImpFicha";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Direcciona Impresión de Fichas";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMantImpFicha_KeyDown);
             this.panel1.ResumeLayout(false);

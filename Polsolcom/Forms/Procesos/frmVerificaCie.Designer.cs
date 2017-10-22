@@ -203,6 +203,7 @@
             this.Controls.Add(this.lstMostrarDatos);
             this.KeyPreview = true;
             this.Name = "frmVerificaCie";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Verificación de historias procesadas";
             this.Load += new System.EventHandler(this.frmVerificaCie_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmVerificaCie_KeyDown);

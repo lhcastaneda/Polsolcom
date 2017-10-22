@@ -247,6 +247,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.pnlDatos);
             this.Name = "frmPlantillas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administracón de Plantillas";
             this.pnlDatos.ResumeLayout(false);
             this.pnlDatos.PerformLayout();

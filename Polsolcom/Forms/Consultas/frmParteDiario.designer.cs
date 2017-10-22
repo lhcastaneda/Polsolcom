@@ -234,6 +234,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmParteDiario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Parte Diario y Consolidados";
             this.Load += new System.EventHandler(this.frmParteDiario_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmParteDiario_KeyDown);

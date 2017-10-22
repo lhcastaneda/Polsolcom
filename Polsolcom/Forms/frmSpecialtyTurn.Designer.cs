@@ -95,6 +95,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmSpecialtyTurn";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Especialidad y Turnos";
             ((System.ComponentModel.ISupportInitialize)(this.GridSpecialtyTurn)).EndInit();
             this.ResumeLayout(false);

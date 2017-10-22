@@ -90,6 +90,7 @@
             this.Controls.Add(this.txtInicio);
             this.KeyPreview = true;
             this.Name = "frmExecute";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ejecuta";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmExecute_KeyDown);
             this.ResumeLayout(false);

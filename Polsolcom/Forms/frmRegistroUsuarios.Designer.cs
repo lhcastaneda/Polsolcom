@@ -37,21 +37,21 @@
             this.txtDirec = new System.Windows.Forms.TextBox();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.pnlUsuarios = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtCel = new System.Windows.Forms.TextBox();
-            this.txtLogin = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtClave = new System.Windows.Forms.TextBox();
-            this.cmbTipUser = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbAreaTrab = new System.Windows.Forms.ComboBox();
-            this.cmbEstado = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.txtCreation = new System.Windows.Forms.TextBox();
             this.txtLastUpd = new System.Windows.Forms.TextBox();
+            this.txtCreation = new System.Windows.Forms.TextBox();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.cmbAreaTrab = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbTipUser = new System.Windows.Forms.ComboBox();
+            this.txtClave = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtCel = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -156,119 +156,16 @@
             this.pnlUsuarios.Size = new System.Drawing.Size(394, 334);
             this.pnlUsuarios.TabIndex = 8;
             // 
-            // label3
+            // txtLastUpd
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label3.Location = new System.Drawing.Point(15, 129);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Login";
-            // 
-            // txtCel
-            // 
-            this.txtCel.Location = new System.Drawing.Point(201, 88);
-            this.txtCel.Name = "txtCel";
-            this.txtCel.Size = new System.Drawing.Size(177, 20);
-            this.txtCel.TabIndex = 9;
-            // 
-            // txtLogin
-            // 
-            this.txtLogin.Location = new System.Drawing.Point(18, 145);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(109, 20);
-            this.txtLogin.TabIndex = 10;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label4.Location = new System.Drawing.Point(130, 129);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Password";
-            // 
-            // txtClave
-            // 
-            this.txtClave.Location = new System.Drawing.Point(133, 145);
-            this.txtClave.Name = "txtClave";
-            this.txtClave.Size = new System.Drawing.Size(109, 20);
-            this.txtClave.TabIndex = 12;
-            // 
-            // cmbTipUser
-            // 
-            this.cmbTipUser.FormattingEnabled = true;
-            this.cmbTipUser.Location = new System.Drawing.Point(248, 145);
-            this.cmbTipUser.Name = "cmbTipUser";
-            this.cmbTipUser.Size = new System.Drawing.Size(130, 21);
-            this.cmbTipUser.TabIndex = 13;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label5.Location = new System.Drawing.Point(245, 129);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Tipo";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label6.Location = new System.Drawing.Point(18, 172);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Área de Trabajo";
-            // 
-            // cmbAreaTrab
-            // 
-            this.cmbAreaTrab.FormattingEnabled = true;
-            this.cmbAreaTrab.Location = new System.Drawing.Point(18, 189);
-            this.cmbAreaTrab.Name = "cmbAreaTrab";
-            this.cmbAreaTrab.Size = new System.Drawing.Size(224, 21);
-            this.cmbAreaTrab.TabIndex = 16;
-            // 
-            // cmbEstado
-            // 
-            this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Location = new System.Drawing.Point(248, 189);
-            this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(127, 21);
-            this.cmbEstado.TabIndex = 17;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label7.Location = new System.Drawing.Point(251, 173);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Estado";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(18, 220);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Descripción";
-            // 
-            // txtObservacion
-            // 
-            this.txtObservacion.Location = new System.Drawing.Point(18, 237);
-            this.txtObservacion.Multiline = true;
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObservacion.Size = new System.Drawing.Size(357, 61);
-            this.txtObservacion.TabIndex = 20;
+            this.txtLastUpd.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtLastUpd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLastUpd.Location = new System.Drawing.Point(201, 305);
+            this.txtLastUpd.Name = "txtLastUpd";
+            this.txtLastUpd.Size = new System.Drawing.Size(174, 20);
+            this.txtLastUpd.TabIndex = 22;
+            this.txtLastUpd.Text = "Last Update";
+            this.txtLastUpd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCreation
             // 
@@ -281,16 +178,119 @@
             this.txtCreation.Text = "Creation";
             this.txtCreation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtLastUpd
+            // txtObservacion
             // 
-            this.txtLastUpd.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtLastUpd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLastUpd.Location = new System.Drawing.Point(201, 305);
-            this.txtLastUpd.Name = "txtLastUpd";
-            this.txtLastUpd.Size = new System.Drawing.Size(174, 20);
-            this.txtLastUpd.TabIndex = 22;
-            this.txtLastUpd.Text = "Last Update";
-            this.txtLastUpd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtObservacion.Location = new System.Drawing.Point(18, 237);
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtObservacion.Size = new System.Drawing.Size(357, 61);
+            this.txtObservacion.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label8.Location = new System.Drawing.Point(18, 220);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Descripción";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label7.Location = new System.Drawing.Point(251, 173);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Estado";
+            // 
+            // cmbEstado
+            // 
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Location = new System.Drawing.Point(248, 189);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(127, 21);
+            this.cmbEstado.TabIndex = 17;
+            // 
+            // cmbAreaTrab
+            // 
+            this.cmbAreaTrab.FormattingEnabled = true;
+            this.cmbAreaTrab.Location = new System.Drawing.Point(18, 189);
+            this.cmbAreaTrab.Name = "cmbAreaTrab";
+            this.cmbAreaTrab.Size = new System.Drawing.Size(224, 21);
+            this.cmbAreaTrab.TabIndex = 16;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label6.Location = new System.Drawing.Point(18, 172);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Área de Trabajo";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label5.Location = new System.Drawing.Point(245, 129);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Tipo";
+            // 
+            // cmbTipUser
+            // 
+            this.cmbTipUser.FormattingEnabled = true;
+            this.cmbTipUser.Location = new System.Drawing.Point(248, 145);
+            this.cmbTipUser.Name = "cmbTipUser";
+            this.cmbTipUser.Size = new System.Drawing.Size(130, 21);
+            this.cmbTipUser.TabIndex = 13;
+            // 
+            // txtClave
+            // 
+            this.txtClave.Location = new System.Drawing.Point(133, 145);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.Size = new System.Drawing.Size(109, 20);
+            this.txtClave.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label4.Location = new System.Drawing.Point(130, 129);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Password";
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(18, 145);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(109, 20);
+            this.txtLogin.TabIndex = 10;
+            // 
+            // txtCel
+            // 
+            this.txtCel.Location = new System.Drawing.Point(201, 88);
+            this.txtCel.Name = "txtCel";
+            this.txtCel.Size = new System.Drawing.Size(177, 20);
+            this.txtCel.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label3.Location = new System.Drawing.Point(15, 129);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Login";
             // 
             // btnNuevo
             // 
@@ -410,6 +410,7 @@
             this.MinimizeBox = false;
             this.Name = "frmRegistroUsuarios";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Usuarios";
             this.pnlUsuarios.ResumeLayout(false);
             this.pnlUsuarios.PerformLayout();

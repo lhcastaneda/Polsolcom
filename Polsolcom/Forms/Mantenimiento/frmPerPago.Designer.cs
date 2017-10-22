@@ -264,6 +264,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmPerPago";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Periodos de Pago";
             this.Load += new System.EventHandler(this.frmPerPago_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPerPago_KeyDown);

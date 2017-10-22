@@ -194,6 +194,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "frmGenPaySalSpecialist";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Planilla de Pago para Especialistas";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmGenPaySalSpecialist_KeyDown);
             this.groupBox1.ResumeLayout(false);

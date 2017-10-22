@@ -51,6 +51,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.Name = "frmMessage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMessage";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMessage_KeyDown);
             this.ResumeLayout(false);

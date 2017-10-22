@@ -38,7 +38,11 @@
             this.txtCMP = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbMedico = new System.Windows.Forms.ComboBox();
+            this.medicosProduccionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.medicosDS = new Polsolcom.Dominio.Data.MedicosDS();
             this.cmbConsultorio = new System.Windows.Forms.ComboBox();
+            this.especialidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCant = new System.Windows.Forms.TextBox();
@@ -68,18 +72,14 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
-            this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
-            this.especialidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.especialidadTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter();
-            this.medicosDS = new Polsolcom.Dominio.Data.MedicosDS();
-            this.medicosProduccionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.medicosProduccionTableAdapter = new Polsolcom.Dominio.Data.MedicosDSTableAdapters.MedicosProduccionTableAdapter();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvProduccion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicosProduccionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvProduccion)).BeginInit();
             this.SuspendLayout();
             // 
             // chkIngData
@@ -173,6 +173,16 @@
             this.cmbMedico.TabIndex = 9;
             this.cmbMedico.ValueMember = "Id_Personal";
             // 
+            // medicosProduccionBindingSource
+            // 
+            this.medicosProduccionBindingSource.DataMember = "MedicosProduccion";
+            this.medicosProduccionBindingSource.DataSource = this.medicosDS;
+            // 
+            // medicosDS
+            // 
+            this.medicosDS.DataSetName = "MedicosDS";
+            this.medicosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // cmbConsultorio
             // 
             this.cmbConsultorio.DataSource = this.especialidadBindingSource;
@@ -183,6 +193,16 @@
             this.cmbConsultorio.Size = new System.Drawing.Size(252, 21);
             this.cmbConsultorio.TabIndex = 10;
             this.cmbConsultorio.ValueMember = "Id_Consultorio";
+            // 
+            // especialidadBindingSource
+            // 
+            this.especialidadBindingSource.DataMember = "Especialidad";
+            this.especialidadBindingSource.DataSource = this.consultoriosDS;
+            // 
+            // consultoriosDS
+            // 
+            this.consultoriosDS.DataSetName = "ConsultoriosDS";
+            this.consultoriosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label4
             // 
@@ -434,29 +454,9 @@
             this.btnBorrar.Text = "&Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
             // 
-            // consultoriosDS
-            // 
-            this.consultoriosDS.DataSetName = "ConsultoriosDS";
-            this.consultoriosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // especialidadBindingSource
-            // 
-            this.especialidadBindingSource.DataMember = "Especialidad";
-            this.especialidadBindingSource.DataSource = this.consultoriosDS;
-            // 
             // especialidadTableAdapter
             // 
             this.especialidadTableAdapter.ClearBeforeFill = true;
-            // 
-            // medicosDS
-            // 
-            this.medicosDS.DataSetName = "MedicosDS";
-            this.medicosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // medicosProduccionBindingSource
-            // 
-            this.medicosProduccionBindingSource.DataMember = "MedicosProduccion";
-            this.medicosProduccionBindingSource.DataSource = this.medicosDS;
             // 
             // medicosProduccionTableAdapter
             // 
@@ -496,15 +496,16 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dtpFechActual);
             this.Name = "frmProduccionMedicos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Producción de Especialistas";
             this.Load += new System.EventHandler(this.frmProduccionMedicos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gdvProduccion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicosProduccionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gdvProduccion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
