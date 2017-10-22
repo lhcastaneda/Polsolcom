@@ -72,13 +72,13 @@
             this.txtLastUpDate = new System.Windows.Forms.TextBox();
             this.txtCreacion = new System.Windows.Forms.TextBox();
             this.pnlEspec = new System.Windows.Forms.Panel();
+            this.txtRNE = new System.Windows.Forms.MaskedTextBox();
+            this.txtNCol = new System.Windows.Forms.MaskedTextBox();
             this.busesByIdEspTableAdapter = new Polsolcom.Dominio.Data.BusesDSTableAdapters.BusesByIdEspTableAdapter();
             this.personalTableAdapter = new Polsolcom.Dominio.Data.PersonalDSTableAdapters.PersonalTableAdapter();
             this.especialidadTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter();
             this.tipoColegiaturaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TipoColegiaturaTableAdapter();
             this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
-            this.txtNCol = new System.Windows.Forms.MaskedTextBox();
-            this.txtRNE = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personalBindingSource)).BeginInit();
@@ -513,6 +513,24 @@
             this.pnlEspec.Size = new System.Drawing.Size(472, 261);
             this.pnlEspec.TabIndex = 41;
             // 
+            // txtRNE
+            // 
+            this.txtRNE.Enabled = false;
+            this.txtRNE.Location = new System.Drawing.Point(239, 66);
+            this.txtRNE.Mask = "999999";
+            this.txtRNE.Name = "txtRNE";
+            this.txtRNE.Size = new System.Drawing.Size(80, 20);
+            this.txtRNE.TabIndex = 42;
+            // 
+            // txtNCol
+            // 
+            this.txtNCol.Enabled = false;
+            this.txtNCol.Location = new System.Drawing.Point(153, 66);
+            this.txtNCol.Mask = "999999";
+            this.txtNCol.Name = "txtNCol";
+            this.txtNCol.Size = new System.Drawing.Size(80, 20);
+            this.txtNCol.TabIndex = 41;
+            // 
             // busesByIdEspTableAdapter
             // 
             this.busesByIdEspTableAdapter.ClearBeforeFill = true;
@@ -532,24 +550,6 @@
             // estadoRegistroTableAdapter
             // 
             this.estadoRegistroTableAdapter.ClearBeforeFill = true;
-            // 
-            // txtNCol
-            // 
-            this.txtNCol.Enabled = false;
-            this.txtNCol.Location = new System.Drawing.Point(153, 66);
-            this.txtNCol.Mask = "999999";
-            this.txtNCol.Name = "txtNCol";
-            this.txtNCol.Size = new System.Drawing.Size(80, 20);
-            this.txtNCol.TabIndex = 41;
-            // 
-            // txtRNE
-            // 
-            this.txtRNE.Enabled = false;
-            this.txtRNE.Location = new System.Drawing.Point(239, 66);
-            this.txtRNE.Mask = "999999";
-            this.txtRNE.Name = "txtRNE";
-            this.txtRNE.Size = new System.Drawing.Size(80, 20);
-            this.txtRNE.TabIndex = 42;
             // 
             // frmEspecialistas
             // 
@@ -576,6 +576,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "frmEspecialistas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Especialistas por Consultorio";
             this.Load += new System.EventHandler(this.frmEspecialistas_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEspecialistas_KeyDown);

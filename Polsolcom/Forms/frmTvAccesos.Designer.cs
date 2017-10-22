@@ -270,7 +270,7 @@
             this.MinimizeBox = false;
             this.Name = "frmTvAccesos";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento de Accesos al Menú del Sistema";
             this.TopMost = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmTvAccesos_KeyDown);

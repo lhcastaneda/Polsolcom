@@ -276,6 +276,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "frmCie10";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultar Cie10";
             this.Load += new System.EventHandler(this.frmCie10_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCie10_KeyDown);

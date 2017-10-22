@@ -372,6 +372,7 @@
             this.Controls.Add(this.label1);
             this.KeyPreview = true;
             this.Name = "frmhorario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingreso y Mantenimiento de Horarios";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmhorario_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gdvEspec)).EndInit();

@@ -54,11 +54,15 @@ namespace Polsolcom.Forms
             // 
             // fGrid
             // 
+            this.fGrid.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.fGrid.Header.Height = 19;
             this.fGrid.Location = new System.Drawing.Point(6, 202);
             this.fGrid.Name = "fGrid";
             this.fGrid.ReadOnly = true;
             this.fGrid.Size = new System.Drawing.Size(323, 176);
             this.fGrid.TabIndex = 0;
+            this.fGrid.TreeCol = null;
+            this.fGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
             this.fGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fGrid_KeyDown);
             // 
             // lblCantidad
@@ -306,7 +310,7 @@ namespace Polsolcom.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmGenEtareo";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Estadistica - Genero y Grupo Etareo";
             this.Load += new System.EventHandler(this.frmGenEtareo_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmGenEtareo_KeyDown);

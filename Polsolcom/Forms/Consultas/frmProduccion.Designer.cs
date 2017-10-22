@@ -72,11 +72,15 @@
             // 
             // fGrid
             // 
+            this.fGrid.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.fGrid.Header.Height = 19;
             this.fGrid.Location = new System.Drawing.Point(6, 110);
             this.fGrid.Name = "fGrid";
             this.fGrid.ReadOnly = true;
             this.fGrid.Size = new System.Drawing.Size(805, 250);
             this.fGrid.TabIndex = 0;
+            this.fGrid.TreeCol = null;
+            this.fGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
             // 
             // label1
             // 
@@ -392,6 +396,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmProduccion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte Detallado de los Cajeros";
             this.Load += new System.EventHandler(this.frmProduccion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmProduccion_KeyDown);

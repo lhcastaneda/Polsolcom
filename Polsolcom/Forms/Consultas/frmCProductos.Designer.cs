@@ -39,8 +39,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
-            this.tipoProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tipoProductoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
+            this.tipoProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtIdProd = new System.Windows.Forms.TextBox();
             this.txtPrec = new System.Windows.Forms.TextBox();
             this.txtProd = new System.Windows.Forms.TextBox();
@@ -51,18 +52,18 @@
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.tipoProductoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TipoProductoTableAdapter();
-            this.tipoProductoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // fGrid
             // 
             this.fGrid.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.fGrid.Header.Height = 19;
             this.fGrid.Location = new System.Drawing.Point(6, 140);
             this.fGrid.Name = "fGrid";
             this.fGrid.ReadOnly = true;
@@ -160,15 +161,20 @@
             this.cmbTipo.ValueMember = "Id_Tipo";
             this.cmbTipo.SelectedValueChanged += new System.EventHandler(this.cmbTipo_SelectedValueChanged);
             // 
-            // tipoProductoBindingSource
+            // tipoProductoBindingSource1
             // 
-            this.tipoProductoBindingSource.DataMember = "TipoProducto";
-            this.tipoProductoBindingSource.DataSource = this.tablaTipoDS;
+            this.tipoProductoBindingSource1.DataMember = "TipoProducto";
+            this.tipoProductoBindingSource1.DataSource = this.tablaTipoDS;
             // 
             // tablaTipoDS
             // 
             this.tablaTipoDS.DataSetName = "TablaTipoDS";
             this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tipoProductoBindingSource
+            // 
+            this.tipoProductoBindingSource.DataMember = "TipoProducto";
+            this.tipoProductoBindingSource.DataSource = this.tablaTipoDS;
             // 
             // txtIdProd
             // 
@@ -258,11 +264,6 @@
             // 
             this.tipoProductoTableAdapter.ClearBeforeFill = true;
             // 
-            // tipoProductoBindingSource1
-            // 
-            this.tipoProductoBindingSource1.DataMember = "TipoProducto";
-            this.tipoProductoBindingSource1.DataSource = this.tablaTipoDS;
-            // 
             // frmCProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,15 +289,16 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmCProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tarifario - POLICLÍNICO \"SOLIDARIO DE COMAS\"";
             this.Load += new System.EventHandler(this.frmTarProducts_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCProductos_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.fGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoProductoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

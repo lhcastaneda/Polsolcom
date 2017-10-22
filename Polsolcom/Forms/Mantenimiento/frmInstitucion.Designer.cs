@@ -86,6 +86,7 @@
             this.txtNomRazSocial = new System.Windows.Forms.TextBox();
             this.txtIdInst = new System.Windows.Forms.TextBox();
             this.cmbTIns = new System.Windows.Forms.ComboBox();
+            this.tipoInstitucionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -102,7 +103,6 @@
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
             this.cargosTableAdapter = new Polsolcom.Dominio.Data.CargoDSTableAdapters.CargosTableAdapter();
             this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
-            this.tipoInstitucionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tipoInstitucionTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TipoInstitucionTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
@@ -665,6 +665,11 @@
             this.cmbTIns.TabIndex = 3;
             this.cmbTIns.ValueMember = "Id_Tipo";
             // 
+            // tipoInstitucionBindingSource1
+            // 
+            this.tipoInstitucionBindingSource1.DataMember = "TipoInstitucion";
+            this.tipoInstitucionBindingSource1.DataSource = this.tablaTipoDS;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -795,12 +800,7 @@
             // 
             this.estadoRegistroTableAdapter.ClearBeforeFill = true;
             // 
-            // tipoInstitucionBindingSource1
-            // 
-            this.tipoInstitucionBindingSource1.DataMember = "TipoInstitucion";
-            this.tipoInstitucionBindingSource1.DataSource = this.tablaTipoDS;
-            // 
-            // tipoInstitucionTableAdapter1
+            // tipoInstitucionTableAdapter
             // 
             this.tipoInstitucionTableAdapter.ClearBeforeFill = true;
             // 
@@ -821,6 +821,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmInstitucion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Empresas e Instituciones";
             this.Load += new System.EventHandler(this.frmInstitucion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInstitucion_KeyDown);

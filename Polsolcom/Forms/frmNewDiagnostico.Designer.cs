@@ -31,18 +31,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lstTickets = new System.Windows.Forms.ListBox();
             this.pnlOdontologo = new System.Windows.Forms.Panel();
+            this.dtpFech = new System.Windows.Forms.DateTimePicker();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtOtroDiag = new System.Windows.Forms.TextBox();
+            this.cmbDiag = new System.Windows.Forms.ComboBox();
+            this.chkOtros = new System.Windows.Forms.CheckBox();
+            this.chkCIE10 = new System.Windows.Forms.CheckBox();
+            this.cmbOdontologo = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbOdontologo = new System.Windows.Forms.ComboBox();
-            this.chkCIE10 = new System.Windows.Forms.CheckBox();
-            this.chkOtros = new System.Windows.Forms.CheckBox();
-            this.cmbDiag = new System.Windows.Forms.ComboBox();
-            this.txtOtroDiag = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.dtpFech = new System.Windows.Forms.DateTimePicker();
             this.pnlOdontologo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +84,100 @@
             this.pnlOdontologo.Size = new System.Drawing.Size(497, 198);
             this.pnlOdontologo.TabIndex = 2;
             // 
+            // dtpFech
+            // 
+            this.dtpFech.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFech.Location = new System.Drawing.Point(126, 113);
+            this.dtpFech.Name = "dtpFech";
+            this.dtpFech.Size = new System.Drawing.Size(106, 20);
+            this.dtpFech.TabIndex = 10;
+            // 
+            // txtObservacion
+            // 
+            this.txtObservacion.Location = new System.Drawing.Point(126, 148);
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtObservacion.Size = new System.Drawing.Size(352, 33);
+            this.txtObservacion.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(16, 151);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Observación";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(16, 118);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Fecha";
+            // 
+            // txtOtroDiag
+            // 
+            this.txtOtroDiag.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtOtroDiag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtOtroDiag.Location = new System.Drawing.Point(126, 82);
+            this.txtOtroDiag.Name = "txtOtroDiag";
+            this.txtOtroDiag.Size = new System.Drawing.Size(352, 20);
+            this.txtOtroDiag.TabIndex = 5;
+            // 
+            // cmbDiag
+            // 
+            this.cmbDiag.FormattingEnabled = true;
+            this.cmbDiag.Location = new System.Drawing.Point(126, 45);
+            this.cmbDiag.Name = "cmbDiag";
+            this.cmbDiag.Size = new System.Drawing.Size(352, 21);
+            this.cmbDiag.TabIndex = 4;
+            // 
+            // chkOtros
+            // 
+            this.chkOtros.AutoSize = true;
+            this.chkOtros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkOtros.Location = new System.Drawing.Point(16, 82);
+            this.chkOtros.Name = "chkOtros";
+            this.chkOtros.Size = new System.Drawing.Size(56, 17);
+            this.chkOtros.TabIndex = 3;
+            this.chkOtros.Text = "Otros";
+            this.chkOtros.UseVisualStyleBackColor = true;
+            // 
+            // chkCIE10
+            // 
+            this.chkCIE10.AutoSize = true;
+            this.chkCIE10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCIE10.Location = new System.Drawing.Point(16, 45);
+            this.chkCIE10.Name = "chkCIE10";
+            this.chkCIE10.Size = new System.Drawing.Size(60, 17);
+            this.chkCIE10.TabIndex = 2;
+            this.chkCIE10.Text = "CIE10";
+            this.chkCIE10.UseVisualStyleBackColor = true;
+            // 
+            // cmbOdontologo
+            // 
+            this.cmbOdontologo.FormattingEnabled = true;
+            this.cmbOdontologo.Location = new System.Drawing.Point(126, 11);
+            this.cmbOdontologo.Name = "cmbOdontologo";
+            this.cmbOdontologo.Size = new System.Drawing.Size(352, 21);
+            this.cmbOdontologo.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Odontólogo";
+            // 
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,100 +198,6 @@
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Odontólogo";
-            // 
-            // cmbOdontologo
-            // 
-            this.cmbOdontologo.FormattingEnabled = true;
-            this.cmbOdontologo.Location = new System.Drawing.Point(126, 11);
-            this.cmbOdontologo.Name = "cmbOdontologo";
-            this.cmbOdontologo.Size = new System.Drawing.Size(352, 21);
-            this.cmbOdontologo.TabIndex = 1;
-            // 
-            // chkCIE10
-            // 
-            this.chkCIE10.AutoSize = true;
-            this.chkCIE10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkCIE10.Location = new System.Drawing.Point(16, 45);
-            this.chkCIE10.Name = "chkCIE10";
-            this.chkCIE10.Size = new System.Drawing.Size(60, 17);
-            this.chkCIE10.TabIndex = 2;
-            this.chkCIE10.Text = "CIE10";
-            this.chkCIE10.UseVisualStyleBackColor = true;
-            // 
-            // chkOtros
-            // 
-            this.chkOtros.AutoSize = true;
-            this.chkOtros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkOtros.Location = new System.Drawing.Point(16, 82);
-            this.chkOtros.Name = "chkOtros";
-            this.chkOtros.Size = new System.Drawing.Size(56, 17);
-            this.chkOtros.TabIndex = 3;
-            this.chkOtros.Text = "Otros";
-            this.chkOtros.UseVisualStyleBackColor = true;
-            // 
-            // cmbDiag
-            // 
-            this.cmbDiag.FormattingEnabled = true;
-            this.cmbDiag.Location = new System.Drawing.Point(126, 45);
-            this.cmbDiag.Name = "cmbDiag";
-            this.cmbDiag.Size = new System.Drawing.Size(352, 21);
-            this.cmbDiag.TabIndex = 4;
-            // 
-            // txtOtroDiag
-            // 
-            this.txtOtroDiag.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtOtroDiag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOtroDiag.Location = new System.Drawing.Point(126, 82);
-            this.txtOtroDiag.Name = "txtOtroDiag";
-            this.txtOtroDiag.Size = new System.Drawing.Size(352, 20);
-            this.txtOtroDiag.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 118);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Fecha";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 151);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Observación";
-            // 
-            // txtObservacion
-            // 
-            this.txtObservacion.Location = new System.Drawing.Point(126, 148);
-            this.txtObservacion.Multiline = true;
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObservacion.Size = new System.Drawing.Size(352, 33);
-            this.txtObservacion.TabIndex = 9;
-            // 
-            // dtpFech
-            // 
-            this.dtpFech.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFech.Location = new System.Drawing.Point(126, 113);
-            this.dtpFech.Name = "dtpFech";
-            this.dtpFech.Size = new System.Drawing.Size(106, 20);
-            this.dtpFech.TabIndex = 10;
-            // 
             // frmNewDiagnostico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,6 +210,7 @@
             this.Controls.Add(this.lstTickets);
             this.Controls.Add(this.label1);
             this.Name = "frmNewDiagnostico";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Diagnóstico";
             this.pnlOdontologo.ResumeLayout(false);
             this.pnlOdontologo.PerformLayout();

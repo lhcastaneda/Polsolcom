@@ -1094,6 +1094,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmMntVentas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Depuración de Documentos de Venta";
             this.Load += new System.EventHandler(this.frmMntVentas_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMntVentas_KeyDown);

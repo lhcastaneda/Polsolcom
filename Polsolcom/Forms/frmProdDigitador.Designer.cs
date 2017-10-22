@@ -498,6 +498,7 @@
             this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.btnEjecutar);
             this.Name = "frmProdDigitador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Producción de Digitadores";
             ((System.ComponentModel.ISupportInitialize)(this.gdvCaja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvProc)).EndInit();

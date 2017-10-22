@@ -327,6 +327,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGrabar);
             this.Name = "frmProgTrans";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Programación de Transportistas";
             ((System.ComponentModel.ISupportInitialize)(this.gdvProgram)).EndInit();
             this.ResumeLayout(false);

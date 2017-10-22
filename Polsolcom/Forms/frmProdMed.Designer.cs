@@ -45,15 +45,15 @@
             this.dtpFinal = new System.Windows.Forms.DateTimePicker();
             this.txtProc = new System.Windows.Forms.TextBox();
             this.pnlOpc = new System.Windows.Forms.Panel();
-            this.txtSOP = new System.Windows.Forms.TextBox();
-            this.cmEspecialistas = new System.Windows.Forms.ComboBox();
-            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
+            this.chkNuevo = new System.Windows.Forms.CheckBox();
+            this.chkActual = new System.Windows.Forms.CheckBox();
+            this.lstColegiatura = new System.Windows.Forms.ListBox();
             this.cmbTurn = new System.Windows.Forms.ComboBox();
+            this.cmbEspecialidades = new System.Windows.Forms.ComboBox();
+            this.cmEspecialistas = new System.Windows.Forms.ComboBox();
+            this.txtSOP = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lstColegiatura = new System.Windows.Forms.ListBox();
-            this.chkActual = new System.Windows.Forms.CheckBox();
-            this.chkNuevo = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlOpc.SuspendLayout();
@@ -239,20 +239,42 @@
             this.pnlOpc.Size = new System.Drawing.Size(423, 286);
             this.pnlOpc.TabIndex = 17;
             // 
-            // txtSOP
+            // chkNuevo
             // 
-            this.txtSOP.Location = new System.Drawing.Point(335, 76);
-            this.txtSOP.Name = "txtSOP";
-            this.txtSOP.Size = new System.Drawing.Size(100, 20);
-            this.txtSOP.TabIndex = 18;
+            this.chkNuevo.AutoSize = true;
+            this.chkNuevo.Location = new System.Drawing.Point(309, 228);
+            this.chkNuevo.Name = "chkNuevo";
+            this.chkNuevo.Size = new System.Drawing.Size(99, 17);
+            this.chkNuevo.TabIndex = 19;
+            this.chkNuevo.Text = "Reporte &Nuevo";
+            this.chkNuevo.UseVisualStyleBackColor = true;
             // 
-            // cmEspecialistas
+            // chkActual
             // 
-            this.cmEspecialistas.FormattingEnabled = true;
-            this.cmEspecialistas.Location = new System.Drawing.Point(13, 26);
-            this.cmEspecialistas.Name = "cmEspecialistas";
-            this.cmEspecialistas.Size = new System.Drawing.Size(386, 21);
-            this.cmEspecialistas.TabIndex = 14;
+            this.chkActual.AutoSize = true;
+            this.chkActual.Location = new System.Drawing.Point(309, 205);
+            this.chkActual.Name = "chkActual";
+            this.chkActual.Size = new System.Drawing.Size(97, 17);
+            this.chkActual.TabIndex = 18;
+            this.chkActual.Text = "Reporte &Actual";
+            this.chkActual.UseVisualStyleBackColor = true;
+            // 
+            // lstColegiatura
+            // 
+            this.lstColegiatura.FormattingEnabled = true;
+            this.lstColegiatura.Location = new System.Drawing.Point(13, 177);
+            this.lstColegiatura.Name = "lstColegiatura";
+            this.lstColegiatura.ScrollAlwaysVisible = true;
+            this.lstColegiatura.Size = new System.Drawing.Size(290, 95);
+            this.lstColegiatura.TabIndex = 17;
+            // 
+            // cmbTurn
+            // 
+            this.cmbTurn.FormattingEnabled = true;
+            this.cmbTurn.Location = new System.Drawing.Point(13, 126);
+            this.cmbTurn.Name = "cmbTurn";
+            this.cmbTurn.Size = new System.Drawing.Size(386, 21);
+            this.cmbTurn.TabIndex = 16;
             // 
             // cmbEspecialidades
             // 
@@ -263,13 +285,20 @@
             this.cmbEspecialidades.TabIndex = 15;
             this.cmbEspecialidades.SelectedIndexChanged += new System.EventHandler(this.cmbEspecialidades_SelectedIndexChanged);
             // 
-            // cmbTurn
+            // cmEspecialistas
             // 
-            this.cmbTurn.FormattingEnabled = true;
-            this.cmbTurn.Location = new System.Drawing.Point(13, 126);
-            this.cmbTurn.Name = "cmbTurn";
-            this.cmbTurn.Size = new System.Drawing.Size(386, 21);
-            this.cmbTurn.TabIndex = 16;
+            this.cmEspecialistas.FormattingEnabled = true;
+            this.cmEspecialistas.Location = new System.Drawing.Point(13, 26);
+            this.cmEspecialistas.Name = "cmEspecialistas";
+            this.cmEspecialistas.Size = new System.Drawing.Size(386, 21);
+            this.cmEspecialistas.TabIndex = 14;
+            // 
+            // txtSOP
+            // 
+            this.txtSOP.Location = new System.Drawing.Point(335, 76);
+            this.txtSOP.Name = "txtSOP";
+            this.txtSOP.Size = new System.Drawing.Size(100, 20);
+            this.txtSOP.TabIndex = 18;
             // 
             // label2
             // 
@@ -290,35 +319,6 @@
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 20;
             this.label3.Text = "SOP";
-            // 
-            // lstColegiatura
-            // 
-            this.lstColegiatura.FormattingEnabled = true;
-            this.lstColegiatura.Location = new System.Drawing.Point(13, 177);
-            this.lstColegiatura.Name = "lstColegiatura";
-            this.lstColegiatura.ScrollAlwaysVisible = true;
-            this.lstColegiatura.Size = new System.Drawing.Size(290, 95);
-            this.lstColegiatura.TabIndex = 17;
-            // 
-            // chkActual
-            // 
-            this.chkActual.AutoSize = true;
-            this.chkActual.Location = new System.Drawing.Point(309, 205);
-            this.chkActual.Name = "chkActual";
-            this.chkActual.Size = new System.Drawing.Size(97, 17);
-            this.chkActual.TabIndex = 18;
-            this.chkActual.Text = "Reporte &Actual";
-            this.chkActual.UseVisualStyleBackColor = true;
-            // 
-            // chkNuevo
-            // 
-            this.chkNuevo.AutoSize = true;
-            this.chkNuevo.Location = new System.Drawing.Point(309, 228);
-            this.chkNuevo.Name = "chkNuevo";
-            this.chkNuevo.Size = new System.Drawing.Size(99, 17);
-            this.chkNuevo.TabIndex = 19;
-            this.chkNuevo.Text = "Reporte &Nuevo";
-            this.chkNuevo.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -364,6 +364,7 @@
             this.Controls.Add(this.btnProc);
             this.Controls.Add(this.btnConsultas);
             this.Name = "frmProdMed";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Producción por Médico";
             this.pnlOpc.ResumeLayout(false);
             this.pnlOpc.PerformLayout();

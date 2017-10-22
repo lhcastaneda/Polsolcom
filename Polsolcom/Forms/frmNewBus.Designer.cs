@@ -34,6 +34,8 @@
             this.txtCreation = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbRotacion = new System.Windows.Forms.ComboBox();
             this.rotationBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -56,19 +58,17 @@
             this.rotationTableAdapter = new Polsolcom.Dominio.Data.RotationDSTableAdapters.RotationTableAdapter();
             this.modalidadTableAdapter = new Polsolcom.Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter();
             this.institucionTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter();
-            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
-            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotationDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionesDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -130,6 +130,16 @@
             this.cmbEstado.Size = new System.Drawing.Size(121, 21);
             this.cmbEstado.TabIndex = 11;
             this.cmbEstado.ValueMember = "Id_Tipo";
+            // 
+            // estadoRegistroBindingSource
+            // 
+            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
+            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // tablaTipoDS
+            // 
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label6
             // 
@@ -310,16 +320,6 @@
             // 
             this.institucionTableAdapter.ClearBeforeFill = true;
             // 
-            // tablaTipoDS
-            // 
-            this.tablaTipoDS.DataSetName = "TablaTipoDS";
-            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // estadoRegistroBindingSource
-            // 
-            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
-            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
-            // 
             // estadoRegistroTableAdapter
             // 
             this.estadoRegistroTableAdapter.ClearBeforeFill = true;
@@ -336,6 +336,7 @@
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
             this.Name = "frmNewBus";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultorios / Buses";
             this.Load += new System.EventHandler(this.frmNewBus_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNewBus_KeyDown);
@@ -343,14 +344,14 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotationDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.institucionesDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
