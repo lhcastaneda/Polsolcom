@@ -1393,6 +1393,25 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
+        public static int GetSelectedIndex(DataGridView dataGridView, bool returnFirst = true)
+        {
+            DataGridViewCell currentCell = dataGridView.CurrentCell;
+
+            if (currentCell != null)
+            {
+                return currentCell.RowIndex;
+            }
+
+            if (dataGridView.Rows.Count > 0 && returnFirst)
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public static void AdjustComboBoxWidth(ComboBox comboBox)
         {
             int maxWidth = 0, temp = 0;

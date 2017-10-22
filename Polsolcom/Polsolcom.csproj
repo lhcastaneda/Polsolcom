@@ -197,6 +197,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InstitucionesDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\MedicosDS.cs">
+      <DependentUpon>MedicosDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\MedicosDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

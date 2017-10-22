@@ -26,11 +26,11 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MedicosProduccionTableAdapter" GeneratorDataComponentClassName="MedicosProduccionTableAdapter" Name="MedicosProduccion" UserDataComponentName="MedicosProduccionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectName="DesPolsolcom.dbo.Personal" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>Select (Ape_Paterno+' '+Ape_Materno+', '+Nombres)Medico,Id_Personal,Id_Esp,SubString(TNCol,2,7)CMP From Personal P Inner Join MedBus MB On P.Id_Personal=MB.CMP Inner Join Buses B On MB.Id_Bus=B.Id_Bus Group By Ape_Paterno,Ape_Materno,Nombres,Id_Personal,Id_Esp,SubString(TNCol,2,7) Order By Ape_Paterno,Ape_Materno,Nombres
-</CommandText>
+                    <CommandText>Select MAX(Ape_Paterno+' '+Ape_Materno+', '+Nombres)Medico,Id_Personal,MAX(Id_Esp) As Id_Esp,MAX(SubString(TNCol,2,7))CMP From Personal P Inner Join MedBus MB On P.Id_Personal=MB.CMP Inner Join Buses B On MB.Id_Bus=B.Id_Bus 
+Group By Id_Personal Order By 1</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -89,7 +89,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Id_Esp" msprop:Generator_ColumnVarNameInTable="columnId_Esp" msprop:Generator_ColumnPropNameInRow="Id_Esp" msprop:Generator_ColumnPropNameInTable="Id_EspColumn" msprop:Generator_UserColumnName="Id_Esp">
+              <xs:element name="Id_Esp" msprop:Generator_ColumnVarNameInTable="columnId_Esp" msprop:Generator_ColumnPropNameInRow="Id_Esp" msprop:Generator_ColumnPropNameInTable="Id_EspColumn" msprop:Generator_UserColumnName="Id_Esp" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="6" />

@@ -749,7 +749,6 @@ namespace Polsolcom.Dominio.Data {
                 this.columnId_Personal.AllowDBNull = false;
                 this.columnId_Personal.Unique = true;
                 this.columnId_Personal.MaxLength = 9;
-                this.columnId_Esp.AllowDBNull = false;
                 this.columnId_Esp.MaxLength = 6;
                 this.columnCMP.ReadOnly = true;
                 this.columnCMP.MaxLength = 7;
@@ -995,7 +994,12 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Id_Esp {
                 get {
-                    return ((string)(this[this.tableMedicosProduccion.Id_EspColumn]));
+                    try {
+                        return ((string)(this[this.tableMedicosProduccion.Id_EspColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Id_Esp\' in table \'MedicosProduccion\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableMedicosProduccion.Id_EspColumn] = value;
@@ -1028,6 +1032,18 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMedicoNull() {
                 this[this.tableMedicosProduccion.MedicoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsId_EspNull() {
+                return this.IsNull(this.tableMedicosProduccion.Id_EspColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetId_EspNull() {
+                this[this.tableMedicosProduccion.Id_EspColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1427,8 +1443,8 @@ namespace Polsolcom.Dominio.Data.MedicosDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Select (Ape_Paterno+' '+Ape_Materno+', '+Nombres)Medico,Id_Personal,Id_Esp,SubString(TNCol,2,7)CMP From Personal P Inner Join MedBus MB On P.Id_Personal=MB.CMP Inner Join Buses B On MB.Id_Bus=B.Id_Bus Group By Ape_Paterno,Ape_Materno,Nombres,Id_Personal,Id_Esp,SubString(TNCol,2,7) Order By Ape_Paterno,Ape_Materno,Nombres
-";
+            this._commandCollection[0].CommandText = @"Select MAX(Ape_Paterno+' '+Ape_Materno+', '+Nombres)Medico,Id_Personal,MAX(Id_Esp) As Id_Esp,MAX(SubString(TNCol,2,7))CMP From Personal P Inner Join MedBus MB On P.Id_Personal=MB.CMP Inner Join Buses B On MB.Id_Bus=B.Id_Bus 
+Group By Id_Personal Order By 1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
