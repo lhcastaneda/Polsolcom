@@ -53,6 +53,21 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.grdProduccion = new System.Windows.Forms.DataGridView();
+            this.pCorrelativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pFechaSys = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pCMP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pMedico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pIdConsultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pConsultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pIdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pTurno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pObservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -72,21 +87,6 @@
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.txtMonto = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.pCorrelativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pFechaSys = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pCMP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pMedico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pIdConsultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pConsultorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pIdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pTurno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pObservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicosProduccionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicosDS)).BeginInit();
@@ -349,6 +349,95 @@
             this.grdProduccion.Size = new System.Drawing.Size(1043, 237);
             this.grdProduccion.TabIndex = 24;
             // 
+            // pCorrelativo
+            // 
+            this.pCorrelativo.HeaderText = "Correlativo";
+            this.pCorrelativo.Name = "pCorrelativo";
+            this.pCorrelativo.Visible = false;
+            // 
+            // pFecha
+            // 
+            this.pFecha.HeaderText = "Fecha";
+            this.pFecha.Name = "pFecha";
+            this.pFecha.Width = 60;
+            // 
+            // pFechaSys
+            // 
+            this.pFechaSys.HeaderText = "Fecha Sys";
+            this.pFechaSys.Name = "pFechaSys";
+            this.pFechaSys.Visible = false;
+            // 
+            // pUsuario
+            // 
+            this.pUsuario.HeaderText = "Usuario";
+            this.pUsuario.Name = "pUsuario";
+            this.pUsuario.Visible = false;
+            // 
+            // pCMP
+            // 
+            this.pCMP.HeaderText = "CMP";
+            this.pCMP.Name = "pCMP";
+            this.pCMP.Width = 60;
+            // 
+            // pMedico
+            // 
+            this.pMedico.HeaderText = "Medico";
+            this.pMedico.Name = "pMedico";
+            this.pMedico.Width = 180;
+            // 
+            // pIdConsultorio
+            // 
+            this.pIdConsultorio.HeaderText = "Id Consultorio";
+            this.pIdConsultorio.Name = "pIdConsultorio";
+            this.pIdConsultorio.Visible = false;
+            // 
+            // pConsultorio
+            // 
+            this.pConsultorio.HeaderText = "Consultorio";
+            this.pConsultorio.Name = "pConsultorio";
+            this.pConsultorio.Width = 180;
+            // 
+            // pIdProducto
+            // 
+            this.pIdProducto.HeaderText = "Id Producto";
+            this.pIdProducto.Name = "pIdProducto";
+            this.pIdProducto.Visible = false;
+            // 
+            // pProducto
+            // 
+            this.pProducto.HeaderText = "Producto";
+            this.pProducto.Name = "pProducto";
+            this.pProducto.Width = 180;
+            // 
+            // pCantidad
+            // 
+            this.pCantidad.HeaderText = "Cantidad";
+            this.pCantidad.Name = "pCantidad";
+            this.pCantidad.Width = 60;
+            // 
+            // pPrecio
+            // 
+            this.pPrecio.HeaderText = "Precio";
+            this.pPrecio.Name = "pPrecio";
+            this.pPrecio.Width = 60;
+            // 
+            // pMonto
+            // 
+            this.pMonto.HeaderText = "Monto";
+            this.pMonto.Name = "pMonto";
+            this.pMonto.Width = 60;
+            // 
+            // pTurno
+            // 
+            this.pTurno.HeaderText = "Turno";
+            this.pTurno.Name = "pTurno";
+            this.pTurno.Width = 60;
+            // 
+            // pObservacion
+            // 
+            this.pObservacion.HeaderText = "Observación";
+            this.pObservacion.Name = "pObservacion";
+            // 
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -510,95 +599,6 @@
             this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrecio.Leave += new System.EventHandler(this.txtPrecio_Leave);
             // 
-            // pCorrelativo
-            // 
-            this.pCorrelativo.HeaderText = "Correlativo";
-            this.pCorrelativo.Name = "pCorrelativo";
-            this.pCorrelativo.Visible = false;
-            // 
-            // pFecha
-            // 
-            this.pFecha.HeaderText = "Fecha";
-            this.pFecha.Name = "pFecha";
-            this.pFecha.Width = 60;
-            // 
-            // pFechaSys
-            // 
-            this.pFechaSys.HeaderText = "Fecha Sys";
-            this.pFechaSys.Name = "pFechaSys";
-            this.pFechaSys.Visible = false;
-            // 
-            // pUsuario
-            // 
-            this.pUsuario.HeaderText = "Usuario";
-            this.pUsuario.Name = "pUsuario";
-            this.pUsuario.Visible = false;
-            // 
-            // pCMP
-            // 
-            this.pCMP.HeaderText = "CMP";
-            this.pCMP.Name = "pCMP";
-            this.pCMP.Width = 60;
-            // 
-            // pMedico
-            // 
-            this.pMedico.HeaderText = "Medico";
-            this.pMedico.Name = "pMedico";
-            this.pMedico.Width = 180;
-            // 
-            // pIdConsultorio
-            // 
-            this.pIdConsultorio.HeaderText = "Id Consultorio";
-            this.pIdConsultorio.Name = "pIdConsultorio";
-            this.pIdConsultorio.Visible = false;
-            // 
-            // pConsultorio
-            // 
-            this.pConsultorio.HeaderText = "Consultorio";
-            this.pConsultorio.Name = "pConsultorio";
-            this.pConsultorio.Width = 180;
-            // 
-            // pIdProducto
-            // 
-            this.pIdProducto.HeaderText = "Id Producto";
-            this.pIdProducto.Name = "pIdProducto";
-            this.pIdProducto.Visible = false;
-            // 
-            // pProducto
-            // 
-            this.pProducto.HeaderText = "Producto";
-            this.pProducto.Name = "pProducto";
-            this.pProducto.Width = 180;
-            // 
-            // pCantidad
-            // 
-            this.pCantidad.HeaderText = "Cantidad";
-            this.pCantidad.Name = "pCantidad";
-            this.pCantidad.Width = 60;
-            // 
-            // pPrecio
-            // 
-            this.pPrecio.HeaderText = "Precio";
-            this.pPrecio.Name = "pPrecio";
-            this.pPrecio.Width = 60;
-            // 
-            // pMonto
-            // 
-            this.pMonto.HeaderText = "Monto";
-            this.pMonto.Name = "pMonto";
-            this.pMonto.Width = 60;
-            // 
-            // pTurno
-            // 
-            this.pTurno.HeaderText = "Turno";
-            this.pTurno.Name = "pTurno";
-            this.pTurno.Width = 60;
-            // 
-            // pObservacion
-            // 
-            this.pObservacion.HeaderText = "Observación";
-            this.pObservacion.Name = "pObservacion";
-            // 
             // frmProduccionMedicos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -636,6 +636,7 @@
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
             this.Name = "frmProduccionMedicos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Producción de Especialistas";
             this.Load += new System.EventHandler(this.frmProduccionMedicos_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmProduccionMedicos_KeyDown);
