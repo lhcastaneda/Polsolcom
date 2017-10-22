@@ -572,10 +572,10 @@
     <Compile Include="Forms\Consultas\frmProduccion.Designer.cs">
       <DependentUpon>frmProduccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmProduccionMedicos.cs">
+    <Compile Include="Forms\Procesos\frmProduccionMedicos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmProduccionMedicos.Designer.cs">
+    <Compile Include="Forms\Procesos\frmProduccionMedicos.Designer.cs">
       <DependentUpon>frmProduccionMedicos.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmProductos.cs">
@@ -926,7 +926,7 @@
     <EmbeddedResource Include="Forms\Consultas\frmProduccion.resx">
       <DependentUpon>frmProduccion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmProduccionMedicos.resx">
+    <EmbeddedResource Include="Forms\Procesos\frmProduccionMedicos.resx">
       <DependentUpon>frmProduccionMedicos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmProductos.resx">

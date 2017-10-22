@@ -1565,6 +1565,7 @@
             this.grdDetCie10.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.grdDetCie10_CellBeginEdit);
             this.grdDetCie10.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetCie10_CellClick);
             this.grdDetCie10.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetCie10_CellEndEdit);
+            this.grdDetCie10.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetCie10_CellEnter);
             this.grdDetCie10.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetCie10_EditingControlShowing);
             this.grdDetCie10.Validated += new System.EventHandler(this.grdDetCie10_Validated);
             // 

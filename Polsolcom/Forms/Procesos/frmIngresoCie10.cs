@@ -1147,8 +1147,6 @@ namespace Polsolcom.Forms.Procesos
                 {
                     combo.SelectionChangeCommitted -= new EventHandler(cCie10_SelectionChangeCommitted);
                     combo.SelectionChangeCommitted += new EventHandler(cCie10_SelectionChangeCommitted);
-                    combo.Click -= new EventHandler(cCie10_Enter);
-                    combo.Click += new EventHandler(cCie10_Enter);
                 }
             }
         }
@@ -1165,9 +1163,17 @@ namespace Polsolcom.Forms.Procesos
             grdDetCie10.CurrentCell.Selected = true;
         }
 
-        private void cCie10_Enter(System.Object sender, System.EventArgs e)
+        private void grdDetCie10_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            (sender as ComboBox).DroppedDown = true;
+            bool validClick = (e.RowIndex != -1 && e.ColumnIndex != -1); //Make sure the clicked row/column is valid.
+            var datagridview = sender as DataGridView;
+
+            // Check to make sure the cell clicked is the cell containing the combobox 
+            if (datagridview.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn && validClick)
+            {
+                datagridview.BeginEdit(true);
+                ((ComboBox)datagridview.EditingControl).DroppedDown = true;
+            }
         }
     }
 }

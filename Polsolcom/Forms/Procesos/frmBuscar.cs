@@ -182,5 +182,10 @@ namespace Polsolcom.Forms.Procesos
                 txtDNI_TextChanged(txtDNI, new EventArgs());
             }
         }
+
+        private void frmBuscar_Shown(object sender, EventArgs e)
+        {
+            txtDNI.Focus();
+        }
     }
 }
