@@ -1289,7 +1289,7 @@ namespace Polsolcom.Dominio.Helpers
             return ok;
         }
 
-        public static void FillDataGridView(DataGridView dataGridView, List<Dictionary<string, string>> items, string[] boolColumns = null)
+        public static void Fill(DataGridView dataGridView, List<Dictionary<string, string>> items, string[] boolColumns = null)
         {
             dataGridView.Rows.Clear();
 
@@ -1311,7 +1311,7 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields, Dictionary<string, string> filters = null)
+        public static void Fill(ListView listview, List<Dictionary<string, string>> items, string[] fields, Dictionary<string, string> filters = null)
         {
             listview.Items.Clear();
 
@@ -1326,7 +1326,7 @@ namespace Polsolcom.Dominio.Helpers
 
         }
 
-        public static void FillComboBox(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)
+        public static void Fill(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)
         {
             comboBox.Items.Clear();
 

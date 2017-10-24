@@ -210,12 +210,12 @@ namespace Polsolcom.Forms.Procesos
 
                 if (tabIngresoConsulta.SelectedIndex == 0)
                 {
-                    General.FillListView(lstTickets0, this.tickets, fields);
+                    General.Fill(lstTickets0, this.tickets, fields);
                     lstTickets0.Focus();
                 }
                 else
                 {
-                    General.FillListView(lstTickets1, this.tickets, fields);
+                    General.Fill(lstTickets1, this.tickets, fields);
                     lstTickets1.Focus();
                 }
             }
@@ -386,7 +386,7 @@ namespace Polsolcom.Forms.Procesos
                 {
                     this.pac = this.pacs[0];
                 }
-                General.FillListView(lstPacientes, this.pacs, new string[] { "Paciente" });
+                General.Fill(lstPacientes, this.pacs, new string[] { "Paciente" });
             }
 
             if (np == 1)
@@ -411,7 +411,7 @@ namespace Polsolcom.Forms.Procesos
             List<Dictionary<string, string>> detalles = General.GetDictionaryList(sql);
 
             txtTotal.Text = detalles.Sum(x => decimal.Parse(x["SubTotal"])).ToString();
-            General.FillDataGridView(grdDetalle, detalles);
+            General.Fill(grdDetalle, detalles);
             string cabCie10Sql = "Select * From Cab_Cie10 Where Nro_Historia = '" + ticket["Nro_Historia"] + "'";
             Dictionary<string, string> cabCie10 = General.GetDictionary(cabCie10Sql);
 
@@ -474,7 +474,7 @@ namespace Polsolcom.Forms.Procesos
 
                 string tratMedSql = "Select * From tratmed Where nro_reg='" + this.nh + "'";
                 List<Dictionary<string, string>> tmpTratMed = General.GetDictionaryList(tratMedSql);
-                General.FillDataGridView(grdTraMed, tmpTratMed);
+                General.Fill(grdTraMed, tmpTratMed);
                 //General.FillListView(grdTraMed, this.tmpTratMed, new[] {"nro_reg", "id_med", "cant", "dosis", "dias" });
 
                 this.dr += tmpTratMed.Count;

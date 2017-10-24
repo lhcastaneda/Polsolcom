@@ -665,11 +665,11 @@
     <Compile Include="Forms\Mantenimiento\frmPersonal.Designer.cs">
       <DependentUpon>frmPersonal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consultas\frmSpecialAnnulment.cs">
+    <Compile Include="Forms\Procesos\frmAnualt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consultas\frmSpecialAnnulment.Designer.cs">
-      <DependentUpon>frmSpecialAnnulment.cs</DependentUpon>
+    <Compile Include="Forms\Procesos\frmAnualt.Designer.cs">
+      <DependentUpon>frmAnualt.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmEspecialistas.cs">
       <SubType>Form</SubType>
@@ -967,8 +967,8 @@
     <EmbeddedResource Include="Forms\Principal\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consultas\frmSpecialAnnulment.resx">
-      <DependentUpon>frmSpecialAnnulment.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Procesos\frmAnualt.resx">
+      <DependentUpon>frmAnualt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmEspecialistas.resx">
       <DependentUpon>frmEspecialistas.cs</DependentUpon>

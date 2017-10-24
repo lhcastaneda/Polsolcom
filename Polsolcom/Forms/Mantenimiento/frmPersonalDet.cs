@@ -109,21 +109,21 @@ namespace Polsolcom.Forms
         {
             string sql = "Select Training_Center,Date_Ini,Date_End,Speciality,Title_Degree From Est_Personal Where Id_Personal='" + this.id_personal + "'";
             this.estudios = General.GetDictionaryList(sql);
-            General.FillListView(lstEst, this.estudios, new[] { "Training_Center", "Date_Ini", "Date_End", "Speciality", "Title_Degree" });
+            General.Fill(lstEst, this.estudios, new[] { "Training_Center", "Date_Ini", "Date_End", "Speciality", "Title_Degree" });
         }
 
         public void rechargeExp()
         {
             string sql = "Select Name_Entity,End_Position,Date_Ini,Date_End From Exp_Personal Where Id_Personal='" + this.id_personal + "'";
             this.experiencia = General.GetDictionaryList(sql);
-            General.FillListView(lstExp, this.experiencia, new[] { "Name_Entity","End_Position","Date_Ini","Date_End" });
+            General.Fill(lstExp, this.experiencia, new[] { "Name_Entity","End_Position","Date_Ini","Date_End" });
         }
 
         public void rechargeFam()
         {
             string sql = "Select Id_Parent,Ape_Paterno,Ape_Materno,Nombres,DNI,Fecha_Nac From Fam_Personal Where Id_Personal='" + this.id_personal + "'";
             this.familia = General.GetDictionaryList(sql);
-            General.FillListView(lstFam, this.familia, new[] { "Id_Parent", "Ape_Paterno", "Ape_Materno", "Nombres", "DNI", "Fecha_Nac" });
+            General.Fill(lstFam, this.familia, new[] { "Id_Parent", "Ape_Paterno", "Ape_Materno", "Nombres", "DNI", "Fecha_Nac" });
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)

@@ -126,7 +126,7 @@ namespace Polsolcom.Forms
             string sql = "Select * From Consultorios Where SubString(Id_Consultorio,1,3)='" + io + "' Order By 2";
             this.especList = General.GetDictionaryList(sql);
 
-            General.FillListView(lstCons, this.especList, new[] { "Descripcion" });
+            General.Fill(lstCons, this.especList, new[] { "Descripcion" });
         }
 
         public void ubica(string idp)

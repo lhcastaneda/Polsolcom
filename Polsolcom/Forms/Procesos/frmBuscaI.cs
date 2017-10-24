@@ -38,7 +38,7 @@ namespace Polsolcom.Forms.Procesos
             }
 
             this.binsts = General.GetDictionaryList(sql);
-            General.FillListView(lstBuscar, this.binsts, new[] { "Nom_Raz_Soc", "Direccion" });
+            General.Fill(lstBuscar, this.binsts, new[] { "Nom_Raz_Soc", "Direccion" });
         }
 
         private void frmBuscaI_Load(object sender, EventArgs e)

@@ -29,7 +29,7 @@ namespace Polsolcom.Forms
             string sql = "Select * From Institucion Where Nom_Raz_Soc Like '%" + sins + "%' And RUC Like '" + sdoc + "%' And Estado Like '" + lest + "%' Order By Nom_Raz_soc";
             this.InstitucionList = General.GetDictionaryList(sql);
 
-            General.FillListView(lstInstitucion, this.InstitucionList, new[] { "Nom_Raz_Soc", "RUC" });
+            General.Fill(lstInstitucion, this.InstitucionList, new[] { "Nom_Raz_Soc", "RUC" });
 
             if (sopc.Length == 0)
             {
