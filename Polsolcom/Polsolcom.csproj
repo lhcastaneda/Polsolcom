@@ -169,11 +169,6 @@
     <Compile Include="Dominio\Controls\PopupComboBox.designer.cs">
       <DependentUpon>PopupComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Data\CProductosDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CProductosDS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dominio\Data\DepartamentosDS.cs">
       <DependentUpon>DepartamentosDS.xsd</DependentUpon>
     </Compile>
@@ -225,6 +220,11 @@
     </Compile>
     <Compile Include="Dominio\Data\ParteDiario.cs">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\PeriodoPagoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PeriodoPagoDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\PersonalDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -308,6 +308,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptProdMedCon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProdMedCon.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Dominio\Reportes\rptResultado.cs">
       <AutoGen>True</AutoGen>
@@ -407,11 +413,11 @@
     <Compile Include="Forms\frmDentalHistory.Designer.cs">
       <DependentUpon>frmDentalHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmDiseases.cs">
+    <Compile Include="Forms\frmEnfermedades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmDiseases.Designer.cs">
-      <DependentUpon>frmDiseases.cs</DependentUpon>
+    <Compile Include="Forms\frmEnfermedades.Designer.cs">
+      <DependentUpon>frmEnfermedades.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmExecute.cs">
       <SubType>Form</SubType>
@@ -776,6 +782,10 @@
       <DependentUpon>Variables.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Dominio\Reportes\rptProdMedCon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProdMedCon.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dominio\Reportes\rptResultado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptResultado.cs</LastGenOutput>
@@ -833,8 +843,8 @@
     <EmbeddedResource Include="Forms\frmDentalHistory.resx">
       <DependentUpon>frmDentalHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmDiseases.resx">
-      <DependentUpon>frmDiseases.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frmEnfermedades.resx">
+      <DependentUpon>frmEnfermedades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmExecute.resx">
       <DependentUpon>frmExecute.cs</DependentUpon>
@@ -1122,6 +1132,17 @@
     <None Include="Dominio\Data\MedicosDS.xss">
       <DependentUpon>MedicosDS.xsd</DependentUpon>
     </None>
+    <None Include="Dominio\Data\PeriodoPagoDS.xsc">
+      <DependentUpon>PeriodoPagoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\PeriodoPagoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PeriodoPagoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\PeriodoPagoDS.xss">
+      <DependentUpon>PeriodoPagoDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\ProductosDS.xsc">
       <DependentUpon>ProductosDS.xsd</DependentUpon>
     </None>
@@ -1154,17 +1175,6 @@
     </None>
     <None Include="Dominio\Data\TablaTipoDS.xss">
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\CProductosDS.xsc">
-      <DependentUpon>CProductosDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\CProductosDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CProductosDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\CProductosDS.xss">
-      <DependentUpon>CProductosDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\DepartamentosDS.xsc">
       <DependentUpon>DepartamentosDS.xsd</DependentUpon>
