@@ -26,7 +26,9 @@ namespace Polsolcom.Forms
         private void frmRepProdTer_Load(object sender, EventArgs e)
         {
             especialidadTableAdapter.Fill(consultoriosDS.Especialidad, Operativo.id_oper);
-            cmbEspecialidades.SelectedIndex = -1;
+            cmbEspecialidad.SelectedIndex = -1;
+
+
         }
     }
 }

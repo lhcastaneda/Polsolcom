@@ -359,6 +359,18 @@
       <DependentUpon>rptTalon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\Consultas\frmTotUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmTotUser.Designer.cs">
+      <DependentUpon>frmTotUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmVentasCons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmVentasCons.Designer.cs">
+      <DependentUpon>frmVentasCons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Mantenimiento\frmAdmTalon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -819,6 +831,12 @@
     <EmbeddedResource Include="Dominio\Reportes\rptTalon.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTalon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmTotUser.resx">
+      <DependentUpon>frmTotUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmVentasCons.resx">
+      <DependentUpon>frmVentasCons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>
