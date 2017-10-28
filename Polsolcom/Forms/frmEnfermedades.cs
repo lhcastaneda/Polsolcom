@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Polsolcom.Forms
 {
-    public partial class frmDiseases : Form
+    public partial class frmEnfermedades : Form
     {
-        public frmDiseases()
+        public frmEnfermedades()
         {
             InitializeComponent();
         }

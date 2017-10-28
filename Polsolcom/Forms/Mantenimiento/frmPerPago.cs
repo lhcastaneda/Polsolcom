@@ -57,7 +57,7 @@ namespace Polsolcom.Forms
 
             string sql = "Select * From PerPago Where Name_Per Like '%" + lcr + "%' Order By 1";
             this.perPago = General.GetDictionaryList(sql);
-            General.FillListView(lstPeriodos, this.perPago, new[] { "Name_Per", "Id_Per" });
+            General.Fill(lstPeriodos, this.perPago, new[] { "Name_Per", "Id_Per" });
 
             if (txtIdPer.Text.Length == 0 && this.perPago.Count > 0)
             {

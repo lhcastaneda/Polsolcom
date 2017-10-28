@@ -48,7 +48,7 @@ namespace Polsolcom.Forms
             }
 
             this.espbus = this.esbs.FindAll(x => (x["Especialista"].Contains(txtEspecialista.Text) && x["TNCol"].Contains(txtNCP.Text)) && x["Descripcion"].Contains(txtEspecialidad.Text) && x["Bus"].Contains(txtConsultorio.Text) && x["Estado"].Contains(cmbEstList.SelectedIndex != -1 ? cmbEstList.SelectedValue.ToString() : ""));
-            General.FillListView(lstBusMed, this.espbus, new[] { "Especialista", "Bus", "Idmb" });
+            General.Fill(lstBusMed, this.espbus, new[] { "Especialista", "Bus", "Idmb" });
 
             if (lstBusMed.Items.Count > 0)
             {

@@ -1,6 +1,6 @@
 ﻿namespace Polsolcom.Forms
 {
-    partial class frmDiseases
+    partial class frmEnfermedades
     {
         /// <summary>
         /// Required designer variable.

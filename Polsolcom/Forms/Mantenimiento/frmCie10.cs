@@ -32,7 +32,7 @@ namespace Polsolcom.Forms
 
         void LlenarListView(Dictionary<string, string> filters = null)
         {
-            General.FillListView(lstDatos, this.items, new[] { "Descripcion", "CIE10" });
+            General.Fill(lstDatos, this.items, new[] { "Descripcion", "CIE10" });
         }
 
         private void frmCie10_KeyDown(object sender, KeyEventArgs e)
@@ -63,7 +63,7 @@ namespace Polsolcom.Forms
             Dictionary<string, string> filters = new Dictionary<string, string>();
             filters["CIE10"] = txtFilt1.Text;
             filters["Descripcion"] = txtFilt2.Text;
-            General.FillListView(lstDatos, this.items, new[] { "Descripcion", "CIE10" }, filters);
+            General.Fill(lstDatos, this.items, new[] { "Descripcion", "CIE10" }, filters);
         }
 
         private void txtFilt1_TextChanged(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace Polsolcom.Forms
             Dictionary<string, string> filters = new Dictionary<string, string>();
             filters["CIE10"] = txtFilt1.Text;
             filters["Descripcion"] = txtFilt2.Text;
-            General.FillListView(lstDatos, this.items, new[] { "Descripcion", "CIE10" }, filters);
+            General.Fill(lstDatos, this.items, new[] { "Descripcion", "CIE10" }, filters);
         }
 
         private void lstDatos_Click(object sender, EventArgs e)

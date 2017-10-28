@@ -34,7 +34,7 @@ namespace Polsolcom.Forms.Procesos
                 "Where Cast(Convert(Char(10),Fecha_Sys,103)As Datetime) Between '" + nhoy + "' And '" + nhoy + "' " + 
                 "Order By Cast(PM.Correlativo As Int)";
             List<Dictionary<string, string>> items = General.GetDictionaryList(sql);
-            General.FillDataGridView(grdProduccion, items);
+            General.Fill(grdProduccion, items);
             txtFecha.Focus();
         }
 
@@ -325,7 +325,7 @@ namespace Polsolcom.Forms.Procesos
 
             List<Dictionary<string, string>> items = General.GetDictionaryList(sql);
 
-            General.FillDataGridView(grdProduccion, items);
+            General.Fill(grdProduccion, items);
         }
 
         private void txtCantidad_Leave(object sender, EventArgs e)

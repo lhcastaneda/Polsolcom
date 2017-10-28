@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.ListViewItem;
 using System.IO;
+using System.Globalization;
 
 namespace Polsolcom.Dominio.Helpers
 {
@@ -1289,7 +1290,7 @@ namespace Polsolcom.Dominio.Helpers
             return ok;
         }
 
-        public static void FillDataGridView(DataGridView dataGridView, List<Dictionary<string, string>> items, string[] boolColumns = null)
+        public static void Fill(DataGridView dataGridView, List<Dictionary<string, string>> items, string[] boolColumns = null)
         {
             dataGridView.Rows.Clear();
 
@@ -1311,7 +1312,7 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        public static void FillListView(ListView listview, List<Dictionary<string, string>> items, string[] fields, Dictionary<string, string> filters = null)
+        public static void Fill(ListView listview, List<Dictionary<string, string>> items, string[] fields, Dictionary<string, string> filters = null)
         {
             listview.Items.Clear();
 
@@ -1326,7 +1327,7 @@ namespace Polsolcom.Dominio.Helpers
 
         }
 
-        public static void FillComboBox(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)
+        public static void Fill(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)
         {
             comboBox.Items.Clear();
 
@@ -1666,13 +1667,23 @@ namespace Polsolcom.Dominio.Helpers
             return list;
         }
 
-        public static List<Dictionary<string, string>> GetDictionaryList(DataGridView dataGridView)
+        public static List<Dictionary<string, string>> GetDictionaryList(DataGridView dataGridView, bool selected = false)
         {
             List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
 
-            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            if (selected)
             {
-                list.Add(General.GetDictionary(dataGridView, i));
+                foreach(DataGridViewRow row in dataGridView.SelectedRows)
+                {
+                    list.Add(General.GetDictionary(dataGridView, row.Index));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dataGridView.Rows.Count; i++)
+                {
+                    list.Add(General.GetDictionary(dataGridView, i));
+                }
             }
 
             return list;
@@ -1753,6 +1764,12 @@ namespace Polsolcom.Dominio.Helpers
             }
 
             return true;
+        }
+
+        public static string ProPer(string text)
+        {
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            return textInfo.ToTitleCase(text);
         }
 
     }

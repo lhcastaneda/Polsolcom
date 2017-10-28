@@ -41,7 +41,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
             if (this.iu)
             {
-                General.FillListView(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
+                General.Fill(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
 
                 if (this.iu)
                 {
@@ -104,7 +104,7 @@ namespace Polsolcom.Forms.Mantenimiento
                 string sql = General.DevuelveQueryPaciente(pt, mt, nm, di, ip, nh, 2, this.df);
                 this.pacs = General.GetDictionaryList(sql);
 
-                General.FillListView(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
+                General.Fill(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
 
                 if (lstPacientes.Items.Count > 0)
                 {
@@ -524,7 +524,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
                         if (MessageBox.Show("Desea continuar con el proceso ...?", "Paso 1", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
-                            General.FillListView(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
+                            General.Fill(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
                             lstPacientes_SelectedIndexChanged(lstPacientes, new EventArgs());
                             btnAnular.Text = "&Paso 2";
                         }

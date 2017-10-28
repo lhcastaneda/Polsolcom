@@ -31,7 +31,7 @@ namespace Polsolcom.Forms
         {
             string sql = "Select Ape_Paterno + ' ' + Ape_Materno + ', ' + Nombres as Fullname, * From Personal Where Ape_Paterno+' '+Ape_Materno+' '+Nombres Like '%" + sper + "%' And DNI Like '" + sdoc + "%' And Estado Like '" + lest + "%' Order By Ape_Paterno, Ape_Materno, Nombres";
             this.personalList = General.GetDictionaryList(sql);
-            General.FillListView(lstPersonal, this.personalList, new[] { "Fullname", "DNI" });
+            General.Fill(lstPersonal, this.personalList, new[] { "Fullname", "DNI" });
 
             if (lstPersonal.Items.Count > 0)
             {

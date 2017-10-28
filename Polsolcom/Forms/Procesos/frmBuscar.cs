@@ -35,11 +35,11 @@ namespace Polsolcom.Forms.Procesos
                 this.bpacs = General.GetDictionaryList(sql);
                 if (this.odb == 0)
                 {
-                    General.FillListView(lstBuscar, this.bpacs, new[] { "Paciente", "Id_Paciente", "DNI" });
+                    General.Fill(lstBuscar, this.bpacs, new[] { "Paciente", "Id_Paciente", "DNI" });
                 }
                 else
                 {
-                    General.FillListView(lstBuscar, this.bpacs, new[] { "Paciente", "Ubigeo", "DNI" });
+                    General.Fill(lstBuscar, this.bpacs, new[] { "Paciente", "Ubigeo", "DNI" });
                 }
             }
 

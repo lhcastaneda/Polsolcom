@@ -259,10 +259,10 @@ namespace Polsolcom.Forms
             Conexion.CMD.CommandText = this.vSQL;
             using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
             {
-                using (CProductosDS ds = new CProductosDS())
+                using (ReportsDS ds = new ReportsDS())
                 {
                     ds.Clear();
-                    da.Fill(ds, "CProductosDT");
+                    da.Fill(ds, "CProductos");
                     rpt.SetDataSource(ds);
                 }
             }
