@@ -40,18 +40,14 @@ namespace Polsolcom.Forms
 
         private void frmProdMed_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'tablaTipoDS.Turno' table. You can move, or remove it, as needed.
             this.turnoTableAdapter.Fill(this.tablaTipoDS.Turno);
             cmbTurno.SelectedIndex = -1;
-            // TODO: This line of code loads data into the 'periodoPagoDS.PeriodoPago' table. You can move, or remove it, as needed.
             this.periodoPagoTableAdapter.Fill(this.periodoPagoDS.PeriodoPago);
             cmbPerPago.SelectedIndex = -1;
-            // TODO: This line of code loads data into the 'medicosDS.ProduccionXMedico' table. You can move, or remove it, as needed.
             this.produccionXMedicoTableAdapter.Fill(this.medicosDS.ProduccionXMedico);
             cmbCMP.SelectedIndex = -1;
             especialidadTableAdapter.Fill(consultoriosDS.Especialidad, Operativo.id_oper);
             cmbConsultorio.SelectedIndex = -1;
-            //    SELECT * FROM TCol WHERE  NOT INLIST(id_tipo, 'O', 'X') INTO CURSOR dbCol
             string sql = "SELECT Descripcion, Id_Tipo, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT Id_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (Descripcion = 'TIPO_COLEGIATURA') AND (Id_Tabla = '0'))) ORDER BY Descripcion";
             List<Dictionary<string, string>> colegiaturas = General.GetDictionaryList(sql);
             General.Fill(grdColegiatura, colegiaturas);
@@ -108,12 +104,19 @@ namespace Polsolcom.Forms
                 return;
             }
 
-            /*
-             * subtitle = IIF(.cmbconsultorio.listindex>0, 'CONSULTORIO: '+ALLTRIM(dbcons.descripcion), '')
-    SELECT año, mes, fecha_atencion, medico, consultorio, producto, SUM(csop) AS cantidad, SUM(tsop) AS total, "SOP" AS modo, sueldo FROM dbResult WHERE csop>0 GROUP BY año, mes, fecha_atencion, medico, consultorio, producto, sueldo ORDER BY 9, 4, 3, 5, 6 INTO CURSOR PrcSOP
-    SELECT prcsop
-    REPORT FORM rptProdMedPrcSOP.frx PREVIEW
-             */
+            this.subtitle = (cmbConsultorio.SelectedIndex != -1 ? "CONSULTORIO: " + cmbConsultorio.SelectedText : "");
+
+            object result = WaitWindow.Show(WorkerMethodRptProdMedPrcSOP, "Generando el reporte...", new string[] { "SOP" });
+
+            if (result == null)
+            {
+                MessageBox.Show("No se pudo procesar el reporte.");
+                return;
+            }
+
+            frmCRViewer frg = new frmCRViewer(rpt);
+            frg.ShowDialog();
+
         }
 
         private void cmbPerPago_SelectionChangeCommitted(object sender, EventArgs e)
@@ -136,12 +139,18 @@ namespace Polsolcom.Forms
                 return;
             }
 
-            /*
-             *  subtitle = IIF(.cmbconsultorio.listindex>0, 'CONSULTORIO: '+ALLTRIM(dbcons.descripcion), '')
-    SELECT año, mes, fecha_atencion, medico, consultorio, producto, SUM(cprc) AS cantidad, SUM(tprc) AS total, "PROCEDIMIENTO" AS modo, sueldo FROM dbResult WHERE cprc>0 GROUP BY año, mes, fecha_atencion, medico, consultorio, producto, sueldo ORDER BY 9, 4, 3, 5, 6 INTO CURSOR PrcSOP
-    SELECT prcsop
-    REPORT FORM rptProdMedPrcSOP.frx PREVIEW
-             */
+            this.subtitle = (cmbConsultorio.SelectedIndex != -1 ? "CONSULTORIO: " + cmbConsultorio.SelectedText : "");
+
+            object result = WaitWindow.Show(WorkerMethodRptProdMedPrcSOP, "Generando el reporte...", new string[] { "PROCEDIMIENTO" });
+
+            if (result == null)
+            {
+                MessageBox.Show("No se pudo procesar el reporte.");
+                return;
+            }
+
+            frmCRViewer frg = new frmCRViewer(rpt);
+            frg.ShowDialog();
         }
 
         private void btnMarcar_Click(object sender, EventArgs e)
@@ -204,8 +213,6 @@ namespace Polsolcom.Forms
                 }
 
                 Conexion.ExecuteNonQuery(sql);
-
-                //
 
                 string sql2 = "Update ProdMedicos Set Id_Per='" + pp + "' " +
 "From ProdMedicos PM Inner Join Personal M On PM.CMP=M.Id_Personal Inner Join MedBus MB On " +
@@ -313,7 +320,7 @@ namespace Polsolcom.Forms
 "PM.CMP=M.Id_Personal Inner Join Consultorios C On PM.Id_Consultorio=C.Id_Consultorio Inner Join " +
 "(Select Id_Tipo,Descripcion,Valor,Horas From TablaTipo TT Inner Join ValTurno V On TT.Id_Tipo=V.Id_TUrno " +
 "Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion='TURNOS' And Id_Tabla='0'))T On " +
-"PM.Turno=T.Id_Tipo Inner Join (Select Id_Tipo,Descripcion,Monto From TablaTipo TT Inner Join ValCol V On " +
+"PM.Turno=T.Id_Tipo Inner Join (Select Id_Tipo,DescriMpcion,Monto From TablaTipo TT Inner Join ValCol V On " +
 "TT.Id_Tipo=V.TCol Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion='TIPO_COLEGIATURA' And " +
 "Id_Tabla='0'))TC On Left(M.TNCol,1)=TC.Id_Tipo " +
 "Where PM.Fecha_Parte BetWeen '" + fi + "' And '" + ff + "' And Left(M.TNCol,1) In " + cl;
@@ -337,34 +344,29 @@ namespace Polsolcom.Forms
 "+' '+M.Ape_Materno+', '+M.Nombres,C.Descripcion,P.Descripcion,PM.Precio,T.Descripcion,T.Valor,T.Horas," +
 "TC.Descripcion,TC.Monto";
 
-
-                this.vSQL = "SELECT X.año, X.mes, X.fecha_atencion, X.medico, X.consultorio, SUM(X.ccon) AS cantidad, SUM(X.tcon) AS total, X.turno, X.cturno, X.horas, X.colegiatura, X.sueldo from (" + vSQL + ") X WHERE ccon>0 GROUP BY X.año, X.mes, X.fecha_atencion, X.medico, X.consultorio, X.turno, X.cturno, X.horas, X.colegiatura, X.sueldo";
-                this.vSQL = "SELECT Y.año, Y.mes, Y.fecha_atencion, Y.medico, Y.consultorio, SUM(Y.cantidad) AS cantidad, SUM(Y.total) AS total, Y.turno, Y.cturno, Y.horas, Y.colegiatura, SUM(Y.sueldo * Y.cturno) AS sueldo from (" + vSQL + ") Y GROUP BY Y.año, Y.mes, Y.fecha_atencion, Y.medico, Y.consultorio, Y.turno, Y.cturno, Y.horas, Y.colegiatura ORDER BY 4, 3, 8";
-
-                //Procesamos el reporte
                 result = WaitWindow.Show(WorkerMethodRptProdMedCon, "Generando el reporte...");
 
                 int count = int.Parse(result.ToString());
                 General.setAll<Button, bool>(this, "Enabled", count > 0);
                 btnCons.Enabled = true;
-
             }
             else
             {
-                string sql = "Exec ProdEspec '" + fi + "','" + ff + "','" + cm + "','" + ic + "','" + tr + "'";
-                List<Dictionary<string, string>> pgEsp = General.GetDictionaryList(sql);
-                btnMarcar.Enabled = pgEsp.Count > 0;
-                //REPORT FORM rptPagEsp.frx PREVIEW
+
+                this.vSQL = "Exec ProdEspec '" + fi + "','" + ff + "','" + cm + "','" + ic + "','" + tr + "'";
+
+                result = WaitWindow.Show(WorkerMethodRptProdMedCon, "Generando el reporte...");
+
+                int count = int.Parse(result.ToString());
+                btnMarcar.Enabled = count > 0;
             }
 
-            //genera reporte y carga los datos
             if (result == null)
             {
                 MessageBox.Show("No se pudo procesar el reporte.");
                 return;
             }
 
-            //llama al formulario que muestra el reporte
             frmCRViewer frg = new frmCRViewer(rpt);
             frg.ShowDialog();
         }
@@ -376,19 +378,18 @@ namespace Polsolcom.Forms
 
         private void WorkerMethodRptProdMedCon(object sender, WaitWindowEventArgs e)
         {
-            //define la ruta por defecto de la app
             string path = Application.StartupPath;
             path = path.Replace("\\", "/");
             path = path.Replace("/bin/Debug", "");
 
-            //define el reporte dependiendo del tipo de seleccion
             path = path + "/Dominio/Reportes/rptProdMedCon.rpt";
 
-            //carga el reporte
             rpt.Load(path);
 
             int count = 0;
-            Conexion.CMD.CommandText = this.vSQL;
+            string sql = "SELECT X.año, X.mes, X.fecha_atencion, X.medico, X.consultorio, SUM(X.ccon) AS cantidad, SUM(X.tcon) AS total, X.turno, X.cturno, X.horas, X.colegiatura, X.sueldo from (" + this.vSQL + ") X WHERE ccon>0 GROUP BY X.año, X.mes, X.fecha_atencion, X.medico, X.consultorio, X.turno, X.cturno, X.horas, X.colegiatura, X.sueldo";
+            sql = "SELECT Y.año, Y.mes, Y.fecha_atencion, Y.medico, Y.consultorio, SUM(Y.cantidad) AS cantidad, SUM(Y.total) AS total, Y.turno, Y.cturno, Y.horas, Y.colegiatura, SUM(Y.sueldo * Y.cturno) AS sueldo from (" + sql + ") Y GROUP BY Y.año, Y.mes, Y.fecha_atencion, Y.medico, Y.consultorio, Y.turno, Y.cturno, Y.horas, Y.colegiatura ORDER BY 4, 3, 8";
+            Conexion.CMD.CommandText = sql;
             using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
             {
                 using (ReportsDS ds = new ReportsDS())
@@ -400,7 +401,75 @@ namespace Polsolcom.Forms
                 }
             }
 
-            //setea los parametros del reporte Parte de atencion diario
+            rpt.SetParameterValue("periodo", this.periodo);
+            rpt.SetParameterValue("subtitle", this.subtitle);
+
+            e.Result = count.ToString();
+        }
+
+        private void WorkerMethodRptProdMedPrcSOP(object sender, WaitWindowEventArgs e)
+        {
+            string path = Application.StartupPath;
+            path = path.Replace("\\", "/");
+            path = path.Replace("/bin/Debug", "");
+
+            path = path + "/Dominio/Reportes/rptProdMedPrcSOP.rpt";
+
+            rpt.Load(path);
+
+            int count = 0;
+
+            string sql = "";
+            if (e.Arguments[0].ToString() == "PROCEDIMIENTO")
+            {
+                sql = "SELECT X.año, X.mes, X.fecha_atencion, X.medico, X.consultorio, X.producto, SUM(X.cprc) AS cantidad, SUM(X.tprc) AS total, '" + e.Arguments[0].ToString() + "' AS modo, X.sueldo FROM (" + this.vSQL + ") X WHERE X.cprc > 0 GROUP BY X.año, X.mes, X.fecha_atencion, X.medico, X.consultorio, X.producto, X.sueldo ORDER BY 9, 4, 3, 5, 6";
+            }
+            else
+            {
+                sql = "SELECT X.año, X.mes, X.fecha_atencion, X.medico, X.consultorio, X.producto, SUM(X.csop) AS cantidad, SUM(X.tsop) AS total, '" + e.Arguments[0].ToString() + "' AS modo, X.sueldo FROM (" + this.vSQL + ") X WHERE X.csop > 0 GROUP BY X.año, X.mes, X.fecha_atencion, X.medico, X.consultorio, X.producto, X.sueldo ORDER BY 9, 4, 3, 5, 6";
+            }
+
+            Conexion.CMD.CommandText = sql;
+            using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
+            {
+                using (ReportsDS ds = new ReportsDS())
+                {
+                    ds.Clear();
+                    da.Fill(ds, "ProdMedPrcSOP");
+                    count = ds.Tables["ProdMedPrcSOP"].Rows.Count;
+                    rpt.SetDataSource(ds);
+                }
+            }
+
+            rpt.SetParameterValue("periodo", this.periodo);
+            rpt.SetParameterValue("subtitle", this.subtitle);
+
+            e.Result = count.ToString();
+        }
+
+        private void WorkerMethodRptPagEsp(object sender, WaitWindowEventArgs e)
+        {
+            string path = Application.StartupPath;
+            path = path.Replace("\\", "/");
+            path = path.Replace("/bin/Debug", "");
+
+            path = path + "/Dominio/Reportes/rptPagEsp.rpt";
+
+            rpt.Load(path);
+
+            int count = 0;
+            Conexion.CMD.CommandText = this.vSQL;
+            using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
+            {
+                using (ReportsDS ds = new ReportsDS())
+                {
+                    ds.Clear();
+                    da.Fill(ds, "PagEsp");
+                    count = ds.Tables["PagEsp"].Rows.Count;
+                    rpt.SetDataSource(ds);
+                }
+            }
+
             rpt.SetParameterValue("periodo", this.periodo);
             rpt.SetParameterValue("subtitle", this.subtitle);
 

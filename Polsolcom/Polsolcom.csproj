@@ -315,6 +315,12 @@
       <DependentUpon>rptProdMedCon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptProdMedPrcSOP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProdMedPrcSOP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dominio\Reportes\rptResultado.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -785,6 +791,10 @@
     <EmbeddedResource Include="Dominio\Reportes\rptProdMedCon.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptProdMedCon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptProdMedPrcSOP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProdMedPrcSOP.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Dominio\Reportes\rptResultado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
