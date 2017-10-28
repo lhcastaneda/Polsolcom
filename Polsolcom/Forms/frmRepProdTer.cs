@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Polsolcom.Dominio.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,12 @@ namespace Polsolcom.Forms
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmRepProdTer_Load(object sender, EventArgs e)
+        {
+            especialidadTableAdapter.Fill(consultoriosDS.Especialidad, Operativo.id_oper);
+            cmbEspecialidades.SelectedIndex = -1;
         }
     }
 }

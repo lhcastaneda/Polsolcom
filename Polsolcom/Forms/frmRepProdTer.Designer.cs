@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRepProdTer));
             this.label1 = new System.Windows.Forms.Label();
-            this.chkProc = new System.Windows.Forms.CheckBox();
-            this.chkNoProc = new System.Windows.Forms.CheckBox();
-            this.chkPagados = new System.Windows.Forms.CheckBox();
-            this.chkTodos = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbPerPago = new System.Windows.Forms.ComboBox();
             this.chkFechas = new System.Windows.Forms.CheckBox();
@@ -85,15 +82,22 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.pnlTipReport = new System.Windows.Forms.Panel();
-            this.chkReportResFech = new System.Windows.Forms.CheckBox();
-            this.chkReportResProd = new System.Windows.Forms.CheckBox();
-            this.chkReportDetallado = new System.Windows.Forms.CheckBox();
             this.pnlCondConsul = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.rbProcesados = new System.Windows.Forms.RadioButton();
+            this.rbNoProcesados = new System.Windows.Forms.RadioButton();
+            this.rbPagados = new System.Windows.Forms.RadioButton();
+            this.rbTodos = new System.Windows.Forms.RadioButton();
+            this.rbRecibos = new System.Windows.Forms.RadioButton();
+            this.rbProductos = new System.Windows.Forms.RadioButton();
+            this.rbFechas = new System.Windows.Forms.RadioButton();
+            this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
+            this.especialidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.especialidadTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.gdvAtencion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvProd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvTurn)).BeginInit();
@@ -105,6 +109,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -118,48 +124,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Condición de Consulta";
             // 
-            // chkProc
-            // 
-            this.chkProc.AutoSize = true;
-            this.chkProc.Checked = true;
-            this.chkProc.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkProc.Location = new System.Drawing.Point(10, 4);
-            this.chkProc.Name = "chkProc";
-            this.chkProc.Size = new System.Drawing.Size(92, 17);
-            this.chkProc.TabIndex = 0;
-            this.chkProc.Text = "Pro&cesados";
-            this.chkProc.UseVisualStyleBackColor = true;
-            // 
-            // chkNoProc
-            // 
-            this.chkNoProc.AutoSize = true;
-            this.chkNoProc.Location = new System.Drawing.Point(10, 27);
-            this.chkNoProc.Name = "chkNoProc";
-            this.chkNoProc.Size = new System.Drawing.Size(112, 17);
-            this.chkNoProc.TabIndex = 1;
-            this.chkNoProc.Text = "&No Procesados";
-            this.chkNoProc.UseVisualStyleBackColor = true;
-            // 
-            // chkPagados
-            // 
-            this.chkPagados.AutoSize = true;
-            this.chkPagados.Location = new System.Drawing.Point(132, 4);
-            this.chkPagados.Name = "chkPagados";
-            this.chkPagados.Size = new System.Drawing.Size(75, 17);
-            this.chkPagados.TabIndex = 2;
-            this.chkPagados.Text = "&Pagados";
-            this.chkPagados.UseVisualStyleBackColor = true;
-            // 
-            // chkTodos
-            // 
-            this.chkTodos.AutoSize = true;
-            this.chkTodos.Location = new System.Drawing.Point(132, 23);
-            this.chkTodos.Name = "chkTodos";
-            this.chkTodos.Size = new System.Drawing.Size(61, 17);
-            this.chkTodos.TabIndex = 3;
-            this.chkTodos.Text = "To&dos";
-            this.chkTodos.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -169,7 +133,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Preiódo de Pago";
+            this.label2.Text = "Periodo de Pago";
             // 
             // cmbPerPago
             // 
@@ -255,12 +219,15 @@
             // 
             // cmbEspecialidades
             // 
+            this.cmbEspecialidades.DataSource = this.especialidadBindingSource;
+            this.cmbEspecialidades.DisplayMember = "Descripcion";
             this.cmbEspecialidades.Enabled = false;
             this.cmbEspecialidades.FormattingEnabled = true;
             this.cmbEspecialidades.Location = new System.Drawing.Point(12, 364);
             this.cmbEspecialidades.Name = "cmbEspecialidades";
             this.cmbEspecialidades.Size = new System.Drawing.Size(235, 21);
             this.cmbEspecialidades.TabIndex = 14;
+            this.cmbEspecialidades.ValueMember = "Id_Consultorio";
             // 
             // chkConsult
             // 
@@ -613,53 +580,21 @@
             // 
             // pnlTipReport
             // 
-            this.pnlTipReport.Controls.Add(this.chkReportResFech);
-            this.pnlTipReport.Controls.Add(this.chkReportResProd);
-            this.pnlTipReport.Controls.Add(this.chkReportDetallado);
+            this.pnlTipReport.Controls.Add(this.rbFechas);
+            this.pnlTipReport.Controls.Add(this.rbProductos);
+            this.pnlTipReport.Controls.Add(this.rbRecibos);
             this.pnlTipReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlTipReport.Location = new System.Drawing.Point(269, 438);
             this.pnlTipReport.Name = "pnlTipReport";
             this.pnlTipReport.Size = new System.Drawing.Size(200, 150);
             this.pnlTipReport.TabIndex = 34;
             // 
-            // chkReportResFech
-            // 
-            this.chkReportResFech.AutoSize = true;
-            this.chkReportResFech.Location = new System.Drawing.Point(11, 95);
-            this.chkReportResFech.Name = "chkReportResFech";
-            this.chkReportResFech.Size = new System.Drawing.Size(165, 17);
-            this.chkReportResFech.TabIndex = 2;
-            this.chkReportResFech.Text = "Reporte resumido por Fechas";
-            this.chkReportResFech.UseVisualStyleBackColor = true;
-            // 
-            // chkReportResProd
-            // 
-            this.chkReportResProd.AutoSize = true;
-            this.chkReportResProd.Location = new System.Drawing.Point(11, 57);
-            this.chkReportResProd.Name = "chkReportResProd";
-            this.chkReportResProd.Size = new System.Drawing.Size(178, 17);
-            this.chkReportResProd.TabIndex = 1;
-            this.chkReportResProd.Text = "Reporte resumido por Productos";
-            this.chkReportResProd.UseVisualStyleBackColor = true;
-            // 
-            // chkReportDetallado
-            // 
-            this.chkReportDetallado.AutoSize = true;
-            this.chkReportDetallado.Checked = true;
-            this.chkReportDetallado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReportDetallado.Location = new System.Drawing.Point(11, 16);
-            this.chkReportDetallado.Name = "chkReportDetallado";
-            this.chkReportDetallado.Size = new System.Drawing.Size(170, 17);
-            this.chkReportDetallado.TabIndex = 0;
-            this.chkReportDetallado.Text = "Reporte detallado por Recibos";
-            this.chkReportDetallado.UseVisualStyleBackColor = true;
-            // 
             // pnlCondConsul
             // 
-            this.pnlCondConsul.Controls.Add(this.chkProc);
-            this.pnlCondConsul.Controls.Add(this.chkPagados);
-            this.pnlCondConsul.Controls.Add(this.chkNoProc);
-            this.pnlCondConsul.Controls.Add(this.chkTodos);
+            this.pnlCondConsul.Controls.Add(this.rbTodos);
+            this.pnlCondConsul.Controls.Add(this.rbPagados);
+            this.pnlCondConsul.Controls.Add(this.rbNoProcesados);
+            this.pnlCondConsul.Controls.Add(this.rbProcesados);
             this.pnlCondConsul.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlCondConsul.Location = new System.Drawing.Point(12, 37);
             this.pnlCondConsul.Name = "pnlCondConsul";
@@ -719,6 +654,94 @@
             this.pictureBox5.TabIndex = 40;
             this.pictureBox5.TabStop = false;
             // 
+            // rbProcesados
+            // 
+            this.rbProcesados.AutoSize = true;
+            this.rbProcesados.Checked = true;
+            this.rbProcesados.Location = new System.Drawing.Point(8, 9);
+            this.rbProcesados.Name = "rbProcesados";
+            this.rbProcesados.Size = new System.Drawing.Size(91, 17);
+            this.rbProcesados.TabIndex = 0;
+            this.rbProcesados.TabStop = true;
+            this.rbProcesados.Text = "Procesados";
+            this.rbProcesados.UseVisualStyleBackColor = true;
+            // 
+            // rbNoProcesados
+            // 
+            this.rbNoProcesados.AutoSize = true;
+            this.rbNoProcesados.Location = new System.Drawing.Point(9, 31);
+            this.rbNoProcesados.Name = "rbNoProcesados";
+            this.rbNoProcesados.Size = new System.Drawing.Size(110, 17);
+            this.rbNoProcesados.TabIndex = 1;
+            this.rbNoProcesados.Text = "No procesados";
+            this.rbNoProcesados.UseVisualStyleBackColor = true;
+            // 
+            // rbPagados
+            // 
+            this.rbPagados.AutoSize = true;
+            this.rbPagados.Location = new System.Drawing.Point(128, 9);
+            this.rbPagados.Name = "rbPagados";
+            this.rbPagados.Size = new System.Drawing.Size(74, 17);
+            this.rbPagados.TabIndex = 2;
+            this.rbPagados.Text = "Pagados";
+            this.rbPagados.UseVisualStyleBackColor = true;
+            // 
+            // rbTodos
+            // 
+            this.rbTodos.AutoSize = true;
+            this.rbTodos.Location = new System.Drawing.Point(129, 32);
+            this.rbTodos.Name = "rbTodos";
+            this.rbTodos.Size = new System.Drawing.Size(60, 17);
+            this.rbTodos.TabIndex = 3;
+            this.rbTodos.Text = "Todos";
+            this.rbTodos.UseVisualStyleBackColor = true;
+            // 
+            // rbRecibos
+            // 
+            this.rbRecibos.AutoSize = true;
+            this.rbRecibos.Checked = true;
+            this.rbRecibos.Location = new System.Drawing.Point(10, 23);
+            this.rbRecibos.Name = "rbRecibos";
+            this.rbRecibos.Size = new System.Drawing.Size(169, 17);
+            this.rbRecibos.TabIndex = 41;
+            this.rbRecibos.TabStop = true;
+            this.rbRecibos.Text = "Reporte detallado por Recibos";
+            this.rbRecibos.UseVisualStyleBackColor = true;
+            // 
+            // rbProductos
+            // 
+            this.rbProductos.AutoSize = true;
+            this.rbProductos.Location = new System.Drawing.Point(10, 66);
+            this.rbProductos.Name = "rbProductos";
+            this.rbProductos.Size = new System.Drawing.Size(177, 17);
+            this.rbProductos.TabIndex = 42;
+            this.rbProductos.Text = "Reporte resumido por Productos";
+            this.rbProductos.UseVisualStyleBackColor = true;
+            // 
+            // rbFechas
+            // 
+            this.rbFechas.AutoSize = true;
+            this.rbFechas.Location = new System.Drawing.Point(10, 109);
+            this.rbFechas.Name = "rbFechas";
+            this.rbFechas.Size = new System.Drawing.Size(164, 17);
+            this.rbFechas.TabIndex = 43;
+            this.rbFechas.Text = "Reporte resumido por Fechas";
+            this.rbFechas.UseVisualStyleBackColor = true;
+            // 
+            // consultoriosDS
+            // 
+            this.consultoriosDS.DataSetName = "ConsultoriosDS";
+            this.consultoriosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // especialidadBindingSource
+            // 
+            this.especialidadBindingSource.DataMember = "Especialidad";
+            this.especialidadBindingSource.DataSource = this.consultoriosDS;
+            // 
+            // especialidadTableAdapter
+            // 
+            this.especialidadTableAdapter.ClearBeforeFill = true;
+            // 
             // frmRepProdTer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -764,6 +787,7 @@
             this.Name = "frmRepProdTer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Producción de Terceros por Consultorio";
+            this.Load += new System.EventHandler(this.frmRepProdTer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gdvAtencion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvProd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvTurn)).EndInit();
@@ -778,6 +802,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultoriosDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.especialidadBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -786,10 +812,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox chkTodos;
-        private System.Windows.Forms.CheckBox chkPagados;
-        private System.Windows.Forms.CheckBox chkNoProc;
-        private System.Windows.Forms.CheckBox chkProc;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbPerPago;
         private System.Windows.Forms.CheckBox chkFechas;
@@ -841,14 +863,21 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel pnlTipReport;
-        private System.Windows.Forms.CheckBox chkReportResFech;
-        private System.Windows.Forms.CheckBox chkReportResProd;
-        private System.Windows.Forms.CheckBox chkReportDetallado;
         private System.Windows.Forms.Panel pnlCondConsul;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.RadioButton rbFechas;
+        private System.Windows.Forms.RadioButton rbProductos;
+        private System.Windows.Forms.RadioButton rbRecibos;
+        private System.Windows.Forms.RadioButton rbTodos;
+        private System.Windows.Forms.RadioButton rbPagados;
+        private System.Windows.Forms.RadioButton rbNoProcesados;
+        private System.Windows.Forms.RadioButton rbProcesados;
+        private System.Windows.Forms.BindingSource especialidadBindingSource;
+        private Dominio.Data.ConsultoriosDS consultoriosDS;
+        private Dominio.Data.ConsultoriosDSTableAdapters.EspecialidadTableAdapter especialidadTableAdapter;
     }
 }
