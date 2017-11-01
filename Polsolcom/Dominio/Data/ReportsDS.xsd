@@ -126,6 +126,21 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="TotUser" msprop:Generator_TableClassName="TotUserDataTable" msprop:Generator_TableVarName="tableTotUser" msprop:Generator_TablePropName="TotUser" msprop:Generator_RowDeletingName="TotUserRowDeleting" msprop:Generator_RowChangingName="TotUserRowChanging" msprop:Generator_RowEvHandlerName="TotUserRowChangeEventHandler" msprop:Generator_RowDeletedName="TotUserRowDeleted" msprop:Generator_UserTableName="TotUser" msprop:Generator_RowChangedName="TotUserRowChanged" msprop:Generator_RowEvArgName="TotUserRowChangeEvent" msprop:Generator_RowClassName="TotUserRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Digitador" msprop:Generator_ColumnVarNameInTable="columnDigitador" msprop:Generator_ColumnPropNameInRow="Digitador" msprop:Generator_ColumnPropNameInTable="DigitadorColumn" msprop:Generator_UserColumnName="Digitador" type="xs:string" minOccurs="0" />
+              <xs:element name="TkVend" msprop:Generator_ColumnVarNameInTable="columnTkVend" msprop:Generator_ColumnPropNameInRow="TkVend" msprop:Generator_ColumnPropNameInTable="TkVendColumn" msprop:Generator_UserColumnName="TkVend" type="xs:int" minOccurs="0" />
+              <xs:element name="TkAnul" msprop:Generator_ColumnVarNameInTable="columnTkAnul" msprop:Generator_ColumnPropNameInRow="TkAnul" msprop:Generator_ColumnPropNameInTable="TkAnulColumn" msprop:Generator_UserColumnName="TkAnul" type="xs:int" minOccurs="0" />
+              <xs:element name="Extorno" msprop:Generator_ColumnVarNameInTable="columnExtorno" msprop:Generator_ColumnPropNameInRow="Extorno" msprop:Generator_ColumnPropNameInTable="ExtornoColumn" msprop:Generator_UserColumnName="Extorno" type="xs:int" minOccurs="0" />
+              <xs:element name="Cantidad" msprop:Generator_ColumnVarNameInTable="columnCantidad" msprop:Generator_ColumnPropNameInRow="Cantidad" msprop:Generator_ColumnPropNameInTable="CantidadColumn" msprop:Generator_UserColumnName="Cantidad" type="xs:int" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Id_Oper" msprop:Generator_ColumnVarNameInTable="columnId_Oper" msprop:Generator_ColumnPropNameInRow="Id_Oper" msprop:Generator_ColumnPropNameInTable="Id_OperColumn" msprop:Generator_UserColumnName="Id_Oper" type="xs:string" minOccurs="0" />
+              <xs:element name="Obs" msprop:Generator_ColumnVarNameInTable="columnObs" msprop:Generator_ColumnPropNameInRow="Obs" msprop:Generator_ColumnPropNameInTable="ObsColumn" msprop:Generator_UserColumnName="Obs" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

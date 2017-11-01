@@ -18,7 +18,6 @@ namespace Polsolcom.Forms
 {
     public partial class frmRepProdTer : Form
     {
-        string vSQL = "";
         DataSet dt = new DataSet();
         ReportDocument rpt = new ReportDocument();
         //

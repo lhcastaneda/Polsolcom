@@ -382,6 +382,12 @@
       <DependentUpon>rptTalon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptTotUser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTotUser.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\Consultas\frmTotUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -866,6 +872,10 @@
     <EmbeddedResource Include="Dominio\Reportes\rptTalon.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTalon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptTotUser.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTotUser.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmTotUser.resx">
       <DependentUpon>frmTotUser.cs</DependentUpon>
