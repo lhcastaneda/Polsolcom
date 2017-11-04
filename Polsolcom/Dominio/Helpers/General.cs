@@ -1340,6 +1340,19 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
+        public static void Fill(ComboBox comboBox, List<string> items)
+        {
+            comboBox.Items.Clear();
+
+            foreach (string item in items)
+            {
+                ComboboxItem comboBoxItem = new ComboboxItem();
+                comboBoxItem.Text = item;
+                comboBoxItem.Value = item;
+                comboBox.Items.Add(comboBoxItem);
+            }
+        }
+
         public static ListViewItem GetSelectedItem(ListView listView)
         {
             foreach (ListViewItem item in listView.SelectedItems)
@@ -1638,7 +1651,7 @@ namespace Polsolcom.Dominio.Helpers
             Dictionary<string, string> item = new Dictionary<string, string>();
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
-                item[column.Name] = dataGridView.Rows[index].Cells[column.Name].Value.ToString();
+                item[column.DataPropertyName] = dataGridView.Rows[index].Cells[column.Name].Value.ToString();
             }
             return item;
         }
@@ -1770,6 +1783,17 @@ namespace Polsolcom.Dominio.Helpers
         {
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
             return textInfo.ToTitleCase(text);
+        }
+
+        public static bool CompFechas(DateTime fi, DateTime ff)
+        {
+            if (ff.CompareTo(fi) < 0)
+            {
+                MessageBox.Show("Fecha final no puede ser menor a la inicial ...\ncorregir los datos ...", "Advertencia");
+                return false;
+            }
+
+            return true;
         }
 
     }

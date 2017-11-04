@@ -69,27 +69,27 @@
             this.txtNomFile.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNomFile.Location = new System.Drawing.Point(131, 47);
             this.txtNomFile.Name = "txtNomFile";
-            this.txtNomFile.Size = new System.Drawing.Size(209, 20);
+            this.txtNomFile.Size = new System.Drawing.Size(317, 20);
             this.txtNomFile.TabIndex = 4;
             this.txtNomFile.Leave += new System.EventHandler(this.txtNomFile_Leave);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(346, 50);
+            this.label4.Location = new System.Drawing.Point(455, 50);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Tipo de Archivo";
+            this.label4.Text = "Tipo";
             // 
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Items.AddRange(new object[] {
             "XLSX"});
-            this.cmbTipo.Location = new System.Drawing.Point(449, 47);
+            this.cmbTipo.Location = new System.Drawing.Point(496, 47);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipo.Size = new System.Drawing.Size(74, 21);
             this.cmbTipo.TabIndex = 6;
             // 
             // btnOpen

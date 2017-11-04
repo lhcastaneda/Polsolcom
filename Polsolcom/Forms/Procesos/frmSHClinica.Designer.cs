@@ -122,21 +122,21 @@ namespace Polsolcom.Forms.Procesos
             this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
             this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
             this.grdDetalle = new System.Windows.Forms.DataGridView();
-            this.Nrv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productosDS = new Polsolcom.Dominio.Data.ProductosDS();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.institucionTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter();
             this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
             this.medicosTableAdapter = new Polsolcom.Dominio.Data.MedicosDSTableAdapters.MedicosTableAdapter();
             this.institucionLiteTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionLiteTableAdapter();
             this.consultoriosSHClinicaTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter();
             this.productosTableAdapter = new Polsolcom.Dominio.Data.ProductosDSTableAdapters.ProductosTableAdapter();
+            this.Nrv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
@@ -1162,23 +1162,6 @@ namespace Polsolcom.Forms.Procesos
             this.grdDetalle.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.grdDetalle_CellValidating);
             this.grdDetalle.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetalle_EditingControlShowing);
             // 
-            // Nrv
-            // 
-            this.Nrv.HeaderText = "NRV";
-            this.Nrv.Name = "Nrv";
-            this.Nrv.ReadOnly = true;
-            this.Nrv.Visible = false;
-            // 
-            // Id
-            // 
-            this.Id.DataSource = this.productosBindingSource;
-            this.Id.DisplayMember = "Descripcion";
-            this.Id.HeaderText = "Descripción del producto o servicio";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.ValueMember = "Id_Producto";
-            this.Id.Width = 350;
-            // 
             // productosBindingSource
             // 
             this.productosBindingSource.DataMember = "Productos";
@@ -1188,45 +1171,6 @@ namespace Polsolcom.Forms.Procesos
             // 
             this.productosDS.DataSetName = "ProductosDS";
             this.productosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Visible = false;
-            // 
-            // Tipo
-            // 
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            this.Tipo.ReadOnly = true;
-            this.Tipo.Visible = false;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cant.";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 70;
-            // 
-            // Precio
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            this.Precio.Width = 70;
-            // 
-            // SubTotal
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.SubTotal.DefaultCellStyle = dataGridViewCellStyle2;
-            this.SubTotal.HeaderText = "SubTotal";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 70;
             // 
             // institucionTableAdapter
             // 
@@ -1251,6 +1195,69 @@ namespace Polsolcom.Forms.Procesos
             // productosTableAdapter
             // 
             this.productosTableAdapter.ClearBeforeFill = true;
+            // 
+            // Nrv
+            // 
+            this.Nrv.DataPropertyName = "Nrv";
+            this.Nrv.HeaderText = "NRV";
+            this.Nrv.Name = "Nrv";
+            this.Nrv.ReadOnly = true;
+            this.Nrv.Visible = false;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.DataSource = this.productosBindingSource;
+            this.Id.DisplayMember = "Descripcion";
+            this.Id.HeaderText = "Descripción del producto o servicio";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.ValueMember = "Id_Producto";
+            this.Id.Width = 350;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Visible = false;
+            // 
+            // Tipo
+            // 
+            this.Tipo.DataPropertyName = "Tipo";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            this.Tipo.Visible = false;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.HeaderText = "Cant.";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 70;
+            // 
+            // Precio
+            // 
+            this.Precio.DataPropertyName = "Precio";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Width = 70;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.DataPropertyName = "SubTotal";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.SubTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            this.SubTotal.HeaderText = "SubTotal";
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 70;
             // 
             // frmSHClinica
             // 

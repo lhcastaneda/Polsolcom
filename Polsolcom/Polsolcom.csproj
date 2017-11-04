@@ -388,6 +388,12 @@
       <DependentUpon>rptTotUser.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptTotVenEsp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTotVenEsp.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\Consultas\frmTotUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -616,10 +622,10 @@
     <Compile Include="Forms\frmProdDigitador.Designer.cs">
       <DependentUpon>frmProdDigitador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmProdMed.cs">
+    <Compile Include="Forms\Consultas\frmProdMed.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmProdMed.Designer.cs">
+    <Compile Include="Forms\Consultas\frmProdMed.Designer.cs">
       <DependentUpon>frmProdMed.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Consultas\frmProduccion.cs">
@@ -652,10 +658,10 @@
     <Compile Include="Forms\frmRegistroUsuarios.Designer.cs">
       <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmRepProdTer.cs">
+    <Compile Include="Forms\Consultas\frmRepProdTer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmRepProdTer.Designer.cs">
+    <Compile Include="Forms\Consultas\frmRepProdTer.Designer.cs">
       <DependentUpon>frmRepProdTer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmResperEsp.cs">
@@ -877,6 +883,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTotUser.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptTotVenEsp.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTotVenEsp.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmTotUser.resx">
       <DependentUpon>frmTotUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -1006,7 +1016,7 @@
     <EmbeddedResource Include="Forms\frmProdDigitador.resx">
       <DependentUpon>frmProdDigitador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmProdMed.resx">
+    <EmbeddedResource Include="Forms\Consultas\frmProdMed.resx">
       <DependentUpon>frmProdMed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmProduccion.resx">
@@ -1024,7 +1034,7 @@
     <EmbeddedResource Include="Forms\frmRegistroUsuarios.resx">
       <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmRepProdTer.resx">
+    <EmbeddedResource Include="Forms\Consultas\frmRepProdTer.resx">
       <DependentUpon>frmRepProdTer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmResperEsp.resx">

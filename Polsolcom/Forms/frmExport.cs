@@ -50,7 +50,7 @@ namespace Polsolcom.Forms
                 }
             }
 
-            return (bool)WaitWindow.Show(WorkerMethod, "Generando el reporte...");
+            return (bool)WaitWindow.Show(WorkerMethod, "Generando el archivo...");
         }
 
         private void WorkerMethod(object sender, WaitWindowEventArgs e)
