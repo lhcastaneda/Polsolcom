@@ -424,10 +424,6 @@ namespace Polsolcom.Forms.Consultas
 
             frmCRViewer frg = new frmCRViewer(rpt);
             frg.ShowDialog();
-            /*
-             *  SELECT vencons
- cmos = 'N'
- REPORT FORM tot_ven_esp.frx PREVIEW NOWAIT*/
         }
 
         private void cmbOperativo_KeyDown(object sender, KeyEventArgs e)

@@ -314,6 +314,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptFrecEnf.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFrecEnf.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dominio\Reportes\rptRepTerDet.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -466,10 +472,10 @@
     <Compile Include="Forms\frmDentalHistory.Designer.cs">
       <DependentUpon>frmDentalHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmEnfermedades.cs">
+    <Compile Include="Forms\Consultas\frmEnfermedades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmEnfermedades.Designer.cs">
+    <Compile Include="Forms\Consultas\frmEnfermedades.Designer.cs">
       <DependentUpon>frmEnfermedades.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmExecute.cs">
@@ -835,6 +841,10 @@
       <DependentUpon>Variables.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Dominio\Reportes\rptFrecEnf.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFrecEnf.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dominio\Reportes\rptRepTerDet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptRepTerDet.cs</LastGenOutput>
@@ -926,7 +936,7 @@
     <EmbeddedResource Include="Forms\frmDentalHistory.resx">
       <DependentUpon>frmDentalHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmEnfermedades.resx">
+    <EmbeddedResource Include="Forms\Consultas\frmEnfermedades.resx">
       <DependentUpon>frmEnfermedades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmExecute.resx">
