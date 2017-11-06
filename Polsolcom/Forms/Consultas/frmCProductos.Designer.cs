@@ -68,7 +68,7 @@
             this.fGrid.Name = "fGrid";
             this.fGrid.ReadOnly = true;
             this.fGrid.Size = new System.Drawing.Size(570, 176);
-            this.fGrid.TabIndex = 0;
+            this.fGrid.TabIndex = 13;
             this.fGrid.TreeCol = null;
             this.fGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
             // 
@@ -124,7 +124,7 @@
             this.label3.Location = new System.Drawing.Point(245, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 5;
             this.label3.Text = "ID Producto";
             // 
             // label4
@@ -135,7 +135,7 @@
             this.label4.Location = new System.Drawing.Point(423, 91);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 5;
+            this.label4.TabIndex = 9;
             this.label4.Text = "Precio";
             // 
             // label5
@@ -146,7 +146,7 @@
             this.label5.Location = new System.Drawing.Point(10, 117);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(126, 13);
-            this.label5.TabIndex = 6;
+            this.label5.TabIndex = 7;
             this.label5.Text = "Nombre del Producto";
             // 
             // cmbTipo
@@ -157,7 +157,7 @@
             this.cmbTipo.Location = new System.Drawing.Point(120, 88);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(121, 21);
-            this.cmbTipo.TabIndex = 7;
+            this.cmbTipo.TabIndex = 4;
             this.cmbTipo.ValueMember = "Id_Tipo";
             this.cmbTipo.SelectedValueChanged += new System.EventHandler(this.cmbTipo_SelectedValueChanged);
             // 
@@ -182,7 +182,7 @@
             this.txtIdProd.Location = new System.Drawing.Point(324, 89);
             this.txtIdProd.Name = "txtIdProd";
             this.txtIdProd.Size = new System.Drawing.Size(81, 20);
-            this.txtIdProd.TabIndex = 8;
+            this.txtIdProd.TabIndex = 6;
             this.txtIdProd.TextChanged += new System.EventHandler(this.txtIdProd_TextChanged);
             // 
             // txtPrec
@@ -191,7 +191,7 @@
             this.txtPrec.Location = new System.Drawing.Point(474, 88);
             this.txtPrec.Name = "txtPrec";
             this.txtPrec.Size = new System.Drawing.Size(100, 20);
-            this.txtPrec.TabIndex = 9;
+            this.txtPrec.TabIndex = 10;
             this.txtPrec.TextChanged += new System.EventHandler(this.txtPrec_TextChanged);
             // 
             // txtProd
@@ -200,7 +200,7 @@
             this.txtProd.Location = new System.Drawing.Point(147, 116);
             this.txtProd.Name = "txtProd";
             this.txtProd.Size = new System.Drawing.Size(256, 20);
-            this.txtProd.TabIndex = 10;
+            this.txtProd.TabIndex = 8;
             // 
             // btnImprimir
             // 
@@ -209,7 +209,7 @@
             this.btnImprimir.Location = new System.Drawing.Point(450, 20);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(100, 34);
-            this.btnImprimir.TabIndex = 11;
+            this.btnImprimir.TabIndex = 15;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = true;
@@ -231,7 +231,7 @@
             this.label6.Location = new System.Drawing.Point(430, 116);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
-            this.label6.TabIndex = 13;
+            this.label6.TabIndex = 11;
             this.label6.Text = "Suma";
             // 
             // label8
@@ -243,7 +243,7 @@
             this.label8.Location = new System.Drawing.Point(18, 324);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(536, 13);
-            this.label8.TabIndex = 17;
+            this.label8.TabIndex = 14;
             this.label8.Text = "[F2] = Limpiar criterios [F9] = Imprimir tarifario [F11] = Sumar precios [F12] = " +
     "Limpiar precios sumados [ESC] = Salir";
             // 
@@ -258,7 +258,7 @@
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.ReadOnly = true;
             this.txtObservacion.Size = new System.Drawing.Size(395, 49);
-            this.txtObservacion.TabIndex = 18;
+            this.txtObservacion.TabIndex = 2;
             // 
             // tipoProductoTableAdapter
             // 
