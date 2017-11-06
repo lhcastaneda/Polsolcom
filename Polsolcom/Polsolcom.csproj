@@ -359,6 +359,12 @@
       <DependentUpon>rptTalon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\Consultas\frmPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmPaciente.Designer.cs">
+      <DependentUpon>frmPaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Consultas\frmTotUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -370,6 +376,12 @@
     </Compile>
     <Compile Include="Forms\Consultas\frmVentasCons.Designer.cs">
       <DependentUpon>frmVentasCons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmVenxPac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmVenxPac.Designer.cs">
+      <DependentUpon>frmVenxPac.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmAdmTalon.cs">
       <SubType>Form</SubType>
@@ -431,9 +443,7 @@
     <Compile Include="Forms\frmDentalHistory.Designer.cs">
       <DependentUpon>frmDentalHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmEnfermedades.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\frmEnfermedades.cs" />
     <Compile Include="Forms\frmEnfermedades.Designer.cs">
       <DependentUpon>frmEnfermedades.cs</DependentUpon>
     </Compile>
@@ -587,9 +597,7 @@
     <Compile Include="Forms\frmProdDigitador.Designer.cs">
       <DependentUpon>frmProdDigitador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmProdMed.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\frmProdMed.cs" />
     <Compile Include="Forms\frmProdMed.Designer.cs">
       <DependentUpon>frmProdMed.cs</DependentUpon>
     </Compile>
@@ -623,9 +631,7 @@
     <Compile Include="Forms\frmRegistroUsuarios.Designer.cs">
       <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmRepProdTer.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\frmRepProdTer.cs" />
     <Compile Include="Forms\frmRepProdTer.Designer.cs">
       <DependentUpon>frmRepProdTer.cs</DependentUpon>
     </Compile>
@@ -832,11 +838,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTalon.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmPaciente.resx">
+      <DependentUpon>frmPaciente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmTotUser.resx">
       <DependentUpon>frmTotUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmVentasCons.resx">
       <DependentUpon>frmVentasCons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmVenxPac.resx">
+      <DependentUpon>frmVenxPac.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>

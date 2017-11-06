@@ -1204,7 +1204,7 @@ namespace Polsolcom.Dominio.Helpers
             obj.GetType().GetProperty(propName).SetValue(obj, value, null);
         }
 
-        public static List<Dictionary<string, string>> GetDictionaryList(string sql)
+        public static List<Dictionary<string, string>> GetDictionaryList(string sql, bool toUpperKey = false)
         {
             List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
 
@@ -1219,7 +1219,14 @@ namespace Polsolcom.Dominio.Helpers
                             Dictionary<string, string> item = new Dictionary<string, string>();
                             for (int i = 0; i < dr.FieldCount; i++)
                             {
-                                item.Add(dr.GetName(i), dr.GetValue(i).ToString());
+                                string key = dr.GetName(i);
+
+                                if (toUpperKey)
+                                {
+                                    key = dr.GetName(i).ToUpper();
+                                }
+
+                                item.Add(key, dr.GetValue(i).ToString());
                             }
 
                             list.Add(item);
@@ -1336,6 +1343,19 @@ namespace Polsolcom.Dominio.Helpers
                 ComboboxItem comboBoxItem = new ComboboxItem();
                 comboBoxItem.Text = item[displayMember];
                 comboBoxItem.Value = item[valueMember];
+                comboBox.Items.Add(comboBoxItem);
+            }
+        }
+
+        public static void Fill(ComboBox comboBox, List<string> items)
+        {
+            comboBox.Items.Clear();
+
+            foreach (string item in items)
+            {
+                ComboboxItem comboBoxItem = new ComboboxItem();
+                comboBoxItem.Text = item;
+                comboBoxItem.Value = item;
                 comboBox.Items.Add(comboBoxItem);
             }
         }
@@ -1517,7 +1537,7 @@ namespace Polsolcom.Dominio.Helpers
             //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
         }
 
-       
+
 
         public static void valObj(TextBox obj, string txt)
         {
@@ -1638,7 +1658,7 @@ namespace Polsolcom.Dominio.Helpers
             Dictionary<string, string> item = new Dictionary<string, string>();
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
-                item[column.Name] = dataGridView.Rows[index].Cells[column.Name].Value.ToString();
+                item[column.DataPropertyName] = dataGridView.Rows[index].Cells[column.Name].Value.ToString();
             }
             return item;
         }
@@ -1673,7 +1693,7 @@ namespace Polsolcom.Dominio.Helpers
 
             if (selected)
             {
-                foreach(DataGridViewRow row in dataGridView.SelectedRows)
+                foreach (DataGridViewRow row in dataGridView.SelectedRows)
                 {
                     list.Add(General.GetDictionary(dataGridView, row.Index));
                 }
@@ -1772,6 +1792,47 @@ namespace Polsolcom.Dominio.Helpers
             return textInfo.ToTitleCase(text);
         }
 
+        public static bool CompFechas(DateTime fi, DateTime ff)
+        {
+            if (ff.CompareTo(fi) < 0)
+            {
+                MessageBox.Show("Fecha final no puede ser menor a la inicial ...\ncorregir los datos ...", "Advertencia");
+                return false;
+            }
+
+            return true;
+        }
+
+        public static DataTable GetDataTable(List<Dictionary<string, string>> items)
+        {
+            if (items.Count > 0)
+            {
+                DataTable dataTable = new DataTable();
+
+                foreach (KeyValuePair<string, string> entry in items[0])
+                {
+                    dataTable.Columns.Add(entry.Key);
+                }
+
+                foreach (Dictionary<string, string> item in items)
+                {
+                    var row = dataTable.NewRow();
+
+                    foreach (KeyValuePair<string, string> entry in item)
+                    {
+                        row[entry.Key] = entry.Value;
+                    }
+
+                    dataTable.Rows.Add(row);
+                }
+
+                return dataTable;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
 	
