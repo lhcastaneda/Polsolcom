@@ -45,20 +45,9 @@
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.optAtenciones = new System.Windows.Forms.RadioButton();
-            this.optVentas = new System.Windows.Forms.RadioButton();
+            this.rbAtenciones = new System.Windows.Forms.RadioButton();
+            this.rbVentas = new System.Windows.Forms.RadioButton();
             this.grdHead = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdDetaTicket = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,12 +66,28 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtIte = new System.Windows.Forms.TextBox();
+            this.txtItem = new System.Windows.Forms.TextBox();
             this.txtTkAnul = new System.Windows.Forms.TextBox();
             this.txtProd = new System.Windows.Forms.TextBox();
             this.txtAten = new System.Windows.Forms.TextBox();
-            this.txtTotal = new System.Windows.Forms.TextBox();
-            this.txtTkVe = new System.Windows.Forms.TextBox();
+            this.txtTot = new System.Windows.Forms.TextBox();
+            this.txtTkVen = new System.Windows.Forms.TextBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHead)).BeginInit();
@@ -120,6 +125,7 @@
             this.btnConsulta.Text = "&Consulta";
             this.btnConsulta.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnConsulta.UseVisualStyleBackColor = true;
+            this.btnConsulta.Click += new System.EventHandler(this.btnConsulta_Click);
             // 
             // btnBPac
             // 
@@ -130,11 +136,13 @@
             this.btnBPac.Text = "&Paciente";
             this.btnBPac.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBPac.UseVisualStyleBackColor = true;
+            this.btnBPac.Click += new System.EventHandler(this.btnBPac_Click);
             // 
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(458, 37);
             this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.ReadOnly = true;
             this.txtTelefono.Size = new System.Drawing.Size(100, 20);
             this.txtTelefono.TabIndex = 9;
             // 
@@ -142,6 +150,7 @@
             // 
             this.txtDireccion.Location = new System.Drawing.Point(63, 38);
             this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.ReadOnly = true;
             this.txtDireccion.Size = new System.Drawing.Size(307, 20);
             this.txtDireccion.TabIndex = 7;
             // 
@@ -149,6 +158,7 @@
             // 
             this.txtDni.Location = new System.Drawing.Point(457, 8);
             this.txtDni.Name = "txtDni";
+            this.txtDni.ReadOnly = true;
             this.txtDni.Size = new System.Drawing.Size(100, 20);
             this.txtDni.TabIndex = 5;
             // 
@@ -156,6 +166,7 @@
             // 
             this.txtEdad.Location = new System.Drawing.Point(323, 11);
             this.txtEdad.Name = "txtEdad";
+            this.txtEdad.ReadOnly = true;
             this.txtEdad.Size = new System.Drawing.Size(47, 20);
             this.txtEdad.TabIndex = 3;
             // 
@@ -163,6 +174,7 @@
             // 
             this.txtPaciente.Location = new System.Drawing.Point(63, 11);
             this.txtPaciente.Name = "txtPaciente";
+            this.txtPaciente.ReadOnly = true;
             this.txtPaciente.Size = new System.Drawing.Size(215, 20);
             this.txtPaciente.TabIndex = 1;
             // 
@@ -220,6 +232,7 @@
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // btnExportar
             // 
@@ -230,6 +243,7 @@
             this.btnExportar.Text = "E&xportar";
             this.btnExportar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnSalir
             // 
@@ -240,44 +254,49 @@
             this.btnSalir.Text = "&Salir";
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.optAtenciones);
-            this.panel2.Controls.Add(this.optVentas);
+            this.panel2.Controls.Add(this.rbAtenciones);
+            this.panel2.Controls.Add(this.rbVentas);
             this.panel2.Location = new System.Drawing.Point(0, 445);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(155, 48);
             this.panel2.TabIndex = 6;
             // 
-            // optAtenciones
+            // rbAtenciones
             // 
-            this.optAtenciones.AutoSize = true;
-            this.optAtenciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optAtenciones.ForeColor = System.Drawing.Color.DarkBlue;
-            this.optAtenciones.Location = new System.Drawing.Point(3, 25);
-            this.optAtenciones.Name = "optAtenciones";
-            this.optAtenciones.Size = new System.Drawing.Size(150, 17);
-            this.optAtenciones.TabIndex = 1;
-            this.optAtenciones.Text = "Redord de &atenciones";
-            this.optAtenciones.UseVisualStyleBackColor = true;
+            this.rbAtenciones.AutoSize = true;
+            this.rbAtenciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbAtenciones.ForeColor = System.Drawing.Color.DarkBlue;
+            this.rbAtenciones.Location = new System.Drawing.Point(3, 25);
+            this.rbAtenciones.Name = "rbAtenciones";
+            this.rbAtenciones.Size = new System.Drawing.Size(150, 17);
+            this.rbAtenciones.TabIndex = 1;
+            this.rbAtenciones.Text = "Redord de &atenciones";
+            this.rbAtenciones.UseVisualStyleBackColor = true;
             // 
-            // optVentas
+            // rbVentas
             // 
-            this.optVentas.AutoSize = true;
-            this.optVentas.Checked = true;
-            this.optVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optVentas.ForeColor = System.Drawing.Color.DarkBlue;
-            this.optVentas.Location = new System.Drawing.Point(3, 3);
-            this.optVentas.Name = "optVentas";
-            this.optVentas.Size = new System.Drawing.Size(126, 17);
-            this.optVentas.TabIndex = 0;
-            this.optVentas.TabStop = true;
-            this.optVentas.Text = "Record de &ventas";
-            this.optVentas.UseVisualStyleBackColor = true;
+            this.rbVentas.AutoSize = true;
+            this.rbVentas.Checked = true;
+            this.rbVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbVentas.ForeColor = System.Drawing.Color.DarkBlue;
+            this.rbVentas.Location = new System.Drawing.Point(3, 3);
+            this.rbVentas.Name = "rbVentas";
+            this.rbVentas.Size = new System.Drawing.Size(126, 17);
+            this.rbVentas.TabIndex = 0;
+            this.rbVentas.TabStop = true;
+            this.rbVentas.Text = "Record de &ventas";
+            this.rbVentas.UseVisualStyleBackColor = true;
             // 
             // grdHead
             // 
+            this.grdHead.AllowUserToAddRows = false;
+            this.grdHead.AllowUserToDeleteRows = false;
+            this.grdHead.AllowUserToResizeColumns = false;
+            this.grdHead.AllowUserToResizeRows = false;
             this.grdHead.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.grdHead.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdHead.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -291,79 +310,28 @@
             this.Column4,
             this.Column5,
             this.Column6,
-            this.Column7});
+            this.Column7,
+            this.Column8,
+            this.Column9,
+            this.Column10,
+            this.Column11,
+            this.Column12});
             this.grdHead.Location = new System.Drawing.Point(0, 70);
+            this.grdHead.MultiSelect = false;
             this.grdHead.Name = "grdHead";
+            this.grdHead.RowHeadersVisible = false;
+            this.grdHead.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdHead.Size = new System.Drawing.Size(740, 203);
             this.grdHead.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Operativo";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "N°Recibo";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Emision";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 50;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Items";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "TotalS/.";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 50;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Atencion";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 50;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Consultorio";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "CMP";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 40;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Médico";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 130;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Bus";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 50;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Anulado";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 50;
+            this.grdHead.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdHead_CellEndEdit);
+            this.grdHead.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdHead_CellEnter);
             // 
             // grdDetaTicket
             // 
+            this.grdDetaTicket.AllowUserToAddRows = false;
+            this.grdDetaTicket.AllowUserToDeleteRows = false;
+            this.grdDetaTicket.AllowUserToResizeColumns = false;
+            this.grdDetaTicket.AllowUserToResizeRows = false;
             this.grdDetaTicket.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.grdDetaTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDetaTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -372,7 +340,10 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
             this.grdDetaTicket.Location = new System.Drawing.Point(0, 295);
+            this.grdDetaTicket.MultiSelect = false;
             this.grdDetaTicket.Name = "grdDetaTicket";
+            this.grdDetaTicket.RowHeadersVisible = false;
+            this.grdDetaTicket.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDetaTicket.Size = new System.Drawing.Size(294, 141);
             this.grdDetaTicket.TabIndex = 3;
             // 
@@ -401,6 +372,10 @@
             // 
             // grdDetaHisto
             // 
+            this.grdDetaHisto.AllowUserToAddRows = false;
+            this.grdDetaHisto.AllowUserToDeleteRows = false;
+            this.grdDetaHisto.AllowUserToResizeColumns = false;
+            this.grdDetaHisto.AllowUserToResizeRows = false;
             this.grdDetaHisto.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.grdDetaHisto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDetaHisto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -408,7 +383,10 @@
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn11});
             this.grdDetaHisto.Location = new System.Drawing.Point(301, 295);
+            this.grdDetaHisto.MultiSelect = false;
             this.grdDetaHisto.Name = "grdDetaHisto";
+            this.grdDetaHisto.RowHeadersVisible = false;
+            this.grdDetaHisto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDetaHisto.Size = new System.Drawing.Size(438, 141);
             this.grdDetaHisto.TabIndex = 5;
             // 
@@ -460,12 +438,12 @@
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.txtIte);
+            this.panel3.Controls.Add(this.txtItem);
             this.panel3.Controls.Add(this.txtTkAnul);
             this.panel3.Controls.Add(this.txtProd);
             this.panel3.Controls.Add(this.txtAten);
-            this.panel3.Controls.Add(this.txtTotal);
-            this.panel3.Controls.Add(this.txtTkVe);
+            this.panel3.Controls.Add(this.txtTot);
+            this.panel3.Controls.Add(this.txtTkVen);
             this.panel3.Location = new System.Drawing.Point(388, 443);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(351, 50);
@@ -537,17 +515,19 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "TkVend.";
             // 
-            // txtIte
+            // txtItem
             // 
-            this.txtIte.Location = new System.Drawing.Point(118, 24);
-            this.txtIte.Name = "txtIte";
-            this.txtIte.Size = new System.Drawing.Size(53, 20);
-            this.txtIte.TabIndex = 5;
+            this.txtItem.Location = new System.Drawing.Point(118, 24);
+            this.txtItem.Name = "txtItem";
+            this.txtItem.ReadOnly = true;
+            this.txtItem.Size = new System.Drawing.Size(53, 20);
+            this.txtItem.TabIndex = 5;
             // 
             // txtTkAnul
             // 
             this.txtTkAnul.Location = new System.Drawing.Point(62, 24);
             this.txtTkAnul.Name = "txtTkAnul";
+            this.txtTkAnul.ReadOnly = true;
             this.txtTkAnul.Size = new System.Drawing.Size(53, 20);
             this.txtTkAnul.TabIndex = 3;
             // 
@@ -555,6 +535,7 @@
             // 
             this.txtProd.Location = new System.Drawing.Point(176, 24);
             this.txtProd.Name = "txtProd";
+            this.txtProd.ReadOnly = true;
             this.txtProd.Size = new System.Drawing.Size(53, 20);
             this.txtProd.TabIndex = 7;
             // 
@@ -562,22 +543,137 @@
             // 
             this.txtAten.Location = new System.Drawing.Point(290, 24);
             this.txtAten.Name = "txtAten";
+            this.txtAten.ReadOnly = true;
             this.txtAten.Size = new System.Drawing.Size(53, 20);
             this.txtAten.TabIndex = 11;
             // 
-            // txtTotal
+            // txtTot
             // 
-            this.txtTotal.Location = new System.Drawing.Point(233, 24);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(53, 20);
-            this.txtTotal.TabIndex = 9;
+            this.txtTot.Location = new System.Drawing.Point(233, 24);
+            this.txtTot.Name = "txtTot";
+            this.txtTot.ReadOnly = true;
+            this.txtTot.Size = new System.Drawing.Size(53, 20);
+            this.txtTot.TabIndex = 9;
             // 
-            // txtTkVe
+            // txtTkVen
             // 
-            this.txtTkVe.Location = new System.Drawing.Point(6, 24);
-            this.txtTkVe.Name = "txtTkVe";
-            this.txtTkVe.Size = new System.Drawing.Size(53, 20);
-            this.txtTkVe.TabIndex = 1;
+            this.txtTkVen.Location = new System.Drawing.Point(6, 24);
+            this.txtTkVen.Name = "txtTkVen";
+            this.txtTkVen.ReadOnly = true;
+            this.txtTkVen.Size = new System.Drawing.Size(53, 20);
+            this.txtTkVen.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Operativo";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Operativo";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Ticket";
+            this.dataGridViewTextBoxColumn4.HeaderText = "N°Recibo";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Fecha_Emision";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Emision";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 50;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Nro";
+            this.Column1.HeaderText = "Items";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Total";
+            this.dataGridViewTextBoxColumn6.HeaderText = "TotalS/.";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 50;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Fecha_Atencion";
+            this.Column2.HeaderText = "Atencion";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 50;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "Consultorio";
+            this.Column3.HeaderText = "Consultorio";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "CMP";
+            this.Column4.HeaderText = "CMP";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 40;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "Medico";
+            this.Column5.HeaderText = "Médico";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 130;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "Bus";
+            this.Column6.HeaderText = "Bus";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 50;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "Anulado";
+            this.Column7.HeaderText = "Anulado";
+            this.Column7.Name = "Column7";
+            this.Column7.Visible = false;
+            this.Column7.Width = 50;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "BAnulado";
+            this.Column8.HeaderText = "Anu.";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 50;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "Nro_Historia";
+            this.Column9.HeaderText = "Nro_Historia";
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "Pagado";
+            this.Column10.HeaderText = "Pagado";
+            this.Column10.Name = "Column10";
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "Id_Paciente";
+            this.Column11.HeaderText = "ID Paciente";
+            this.Column11.Name = "Column11";
+            this.Column11.Visible = false;
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "Cant";
+            this.Column12.HeaderText = "Cant";
+            this.Column12.Name = "Column12";
+            this.Column12.Visible = false;
             // 
             // frmVenxPac
             // 
@@ -598,6 +694,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmVenxPac";
             this.Text = "Record de Ventas y Atenciones por Paciente";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmVenxPac_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -631,20 +728,9 @@
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.RadioButton optAtenciones;
-        private System.Windows.Forms.RadioButton optVentas;
+        private System.Windows.Forms.RadioButton rbAtenciones;
+        private System.Windows.Forms.RadioButton rbVentas;
         private System.Windows.Forms.DataGridView grdHead;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridView grdDetaTicket;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -657,17 +743,33 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtIte;
+        private System.Windows.Forms.TextBox txtItem;
         private System.Windows.Forms.TextBox txtTkAnul;
         private System.Windows.Forms.TextBox txtProd;
         private System.Windows.Forms.TextBox txtAten;
-        private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.TextBox txtTkVe;
+        private System.Windows.Forms.TextBox txtTot;
+        private System.Windows.Forms.TextBox txtTkVen;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
     }
 }
