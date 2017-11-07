@@ -217,11 +217,11 @@ namespace Polsolcom.Forms.Consultas
 
                     if (xgr == 1)
                     {
-                        General.Fill(grdVenCons, this.venCons, new string[] { "Consultorio", "Tickets", "Cantidad", "Total", "Fecha" });
+                        General.Fill(grdVenCons, this.venCons, new string[] { "Fecha", "Consultorio", "Tickets", "Cantidad", "Total" });
                     }
                     else
                     {
-                        General.Fill(grdVenCons, this.venCons, new string[] { "Consultorio", "Tickets", "Cantidad", "Total" });
+                        General.Fill(grdVenCons, this.venCons, new string[] { "Consultorio", "Consultorio", "Tickets", "Cantidad", "Total" });
                     }
 
                     break;
