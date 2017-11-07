@@ -40,6 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.modalidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.modalidadDS = new Polsolcom.Dominio.Data.ModalidadDS();
@@ -71,15 +73,13 @@
             this.panelEspecialidad = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.modalidadTableAdapter = new Polsolcom.Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter();
-            this.tablaTipoDS = new Polsolcom.Dominio.Data.TablaTipoDS();
-            this.estadoRegistroBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).BeginInit();
             this.panelEspecialidad.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // chkEstado
@@ -97,6 +97,7 @@
             // 
             // cmbEst
             // 
+            this.cmbEst.DisplayMember = "Id_Tipo";
             this.cmbEst.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEst.Enabled = false;
             this.cmbEst.FormattingEnabled = true;
@@ -196,6 +197,16 @@
             this.cmbEstado.Size = new System.Drawing.Size(121, 21);
             this.cmbEstado.TabIndex = 12;
             this.cmbEstado.ValueMember = "Id_Tipo";
+            // 
+            // estadoRegistroBindingSource
+            // 
+            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
+            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
+            // 
+            // tablaTipoDS
+            // 
+            this.tablaTipoDS.DataSetName = "TablaTipoDS";
+            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // cmbTipo
             // 
@@ -474,16 +485,6 @@
             // 
             this.modalidadTableAdapter.ClearBeforeFill = true;
             // 
-            // tablaTipoDS
-            // 
-            this.tablaTipoDS.DataSetName = "TablaTipoDS";
-            this.tablaTipoDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // estadoRegistroBindingSource
-            // 
-            this.estadoRegistroBindingSource.DataMember = "EstadoRegistro";
-            this.estadoRegistroBindingSource.DataSource = this.tablaTipoDS;
-            // 
             // estadoRegistroTableAdapter
             // 
             this.estadoRegistroTableAdapter.ClearBeforeFill = true;
@@ -509,17 +510,18 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "frmConsultorios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Especialidades y Consultorios";
             this.Load += new System.EventHandler(this.frmConsultorios_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConsultorios_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modalidadDS)).EndInit();
             this.panelEspecialidad.ResumeLayout(false);
             this.panelEspecialidad.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

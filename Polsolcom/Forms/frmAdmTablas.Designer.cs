@@ -87,7 +87,7 @@
             this.Controls.Add(this.btnContinuar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmAdmTablas";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Otras tablas del sistema";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmAdmTablas_Load);

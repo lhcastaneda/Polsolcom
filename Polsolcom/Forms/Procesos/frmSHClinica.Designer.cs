@@ -30,6 +30,8 @@ namespace Polsolcom.Forms.Procesos
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSHClinica));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblDigitador = new System.Windows.Forms.Label();
             this.lblSerie = new System.Windows.Forms.Label();
@@ -190,6 +192,7 @@ namespace Polsolcom.Forms.Procesos
             this.lblDigitador.Size = new System.Drawing.Size(78, 16);
             this.lblDigitador.TabIndex = 13;
             this.lblDigitador.Text = "...";
+            this.lblDigitador.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSerie
             // 
@@ -198,6 +201,7 @@ namespace Polsolcom.Forms.Procesos
             this.lblSerie.Size = new System.Drawing.Size(35, 16);
             this.lblSerie.TabIndex = 11;
             this.lblSerie.Text = "...";
+            this.lblSerie.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
@@ -541,6 +545,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtEdad.ReadOnly = true;
             this.txtEdad.Size = new System.Drawing.Size(38, 20);
             this.txtEdad.TabIndex = 17;
+            this.txtEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEdad.DoubleClick += new System.EventHandler(this.txtEdad_DoubleClick);
             this.txtEdad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEdad_KeyDown);
             this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
@@ -553,6 +558,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtDNI.ReadOnly = true;
             this.txtDNI.Size = new System.Drawing.Size(66, 20);
             this.txtDNI.TabIndex = 7;
+            this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDNI.DoubleClick += new System.EventHandler(this.txtDNI_DoubleClick);
             this.txtDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDNI_KeyDown);
             this.txtDNI.Leave += new System.EventHandler(this.txtDNI_Leave);
@@ -672,6 +678,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(295, 20);
             this.txtEmail.TabIndex = 32;
+            this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             this.txtEmail.DoubleClick += new System.EventHandler(this.txtEmail_DoubleClick);
             this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
@@ -719,6 +726,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtODoc.ReadOnly = true;
             this.txtODoc.Size = new System.Drawing.Size(122, 20);
             this.txtODoc.TabIndex = 28;
+            this.txtODoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtODoc.DoubleClick += new System.EventHandler(this.txtODoc_DoubleClick);
             this.txtODoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtODoc_KeyDown);
             // 
@@ -730,6 +738,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtTelefono.ReadOnly = true;
             this.txtTelefono.Size = new System.Drawing.Size(164, 20);
             this.txtTelefono.TabIndex = 27;
+            this.txtTelefono.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTelefono.DoubleClick += new System.EventHandler(this.txtTelefono_DoubleClick);
             this.txtTelefono.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTelefono_KeyDown);
             // 
@@ -947,7 +956,9 @@ namespace Polsolcom.Forms.Procesos
             this.txtApeMaterno.ReadOnly = true;
             this.txtApeMaterno.Size = new System.Drawing.Size(125, 20);
             this.txtApeMaterno.TabIndex = 10;
+            this.txtApeMaterno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtApeMaterno.TextChanged += new System.EventHandler(this.txtApeMaterno_TextChanged);
+            this.txtApeMaterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApeMaterno_KeyPress);
             // 
             // txtApePaterno
             // 
@@ -957,7 +968,9 @@ namespace Polsolcom.Forms.Procesos
             this.txtApePaterno.ReadOnly = true;
             this.txtApePaterno.Size = new System.Drawing.Size(122, 20);
             this.txtApePaterno.TabIndex = 9;
+            this.txtApePaterno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtApePaterno.TextChanged += new System.EventHandler(this.txtApePaterno_TextChanged);
+            this.txtApePaterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApePaterno_KeyPress);
             // 
             // txtNombre
             // 
@@ -967,7 +980,9 @@ namespace Polsolcom.Forms.Procesos
             this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(132, 20);
             this.txtNombre.TabIndex = 8;
+            this.txtNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // txtIdPaciente
             // 
@@ -977,6 +992,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtIdPaciente.ReadOnly = true;
             this.txtIdPaciente.Size = new System.Drawing.Size(74, 20);
             this.txtIdPaciente.TabIndex = 6;
+            this.txtIdPaciente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label14
             // 
@@ -1141,6 +1157,7 @@ namespace Polsolcom.Forms.Procesos
             this.grdDetalle.Size = new System.Drawing.Size(590, 119);
             this.grdDetalle.TabIndex = 2;
             this.grdDetalle.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellEndEdit);
+            this.grdDetalle.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellEnter);
             this.grdDetalle.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellLeave);
             this.grdDetalle.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.grdDetalle_CellValidating);
             this.grdDetalle.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetalle_EditingControlShowing);
@@ -1195,6 +1212,8 @@ namespace Polsolcom.Forms.Procesos
             // 
             // Precio
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle1;
             this.Precio.HeaderText = "Precio";
             this.Precio.Name = "Precio";
             this.Precio.ReadOnly = true;
@@ -1202,6 +1221,8 @@ namespace Polsolcom.Forms.Procesos
             // 
             // SubTotal
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.SubTotal.DefaultCellStyle = dataGridViewCellStyle2;
             this.SubTotal.HeaderText = "SubTotal";
             this.SubTotal.Name = "SubTotal";
             this.SubTotal.ReadOnly = true;
@@ -1251,7 +1272,7 @@ namespace Polsolcom.Forms.Procesos
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmSHClinica";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proceso de Ventas";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSHClinica_FormClosing);
             this.Load += new System.EventHandler(this.frmSHClinica_Load);

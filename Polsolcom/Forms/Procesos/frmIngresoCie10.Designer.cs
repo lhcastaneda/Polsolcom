@@ -41,8 +41,8 @@
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.consultoriosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultoriosDS = new Polsolcom.Dominio.Data.ConsultoriosDS();
-            this.chkFiltro = new System.Windows.Forms.CheckBox();
-            this.txtNroDoc = new System.Windows.Forms.TextBox();
+            this.chkOpFil = new System.Windows.Forms.CheckBox();
+            this.txtNroTicket = new System.Windows.Forms.TextBox();
             this.txtSerie = new System.Windows.Forms.TextBox();
             this.cmbDVenta = new System.Windows.Forms.ComboBox();
             this.docVentaBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -92,21 +92,27 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtDigitador = new System.Windows.Forms.TextBox();
             this.cmbTurno = new System.Windows.Forms.ComboBox();
+            this.turnoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label27 = new System.Windows.Forms.Label();
             this.txtCuenta = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.grpFiliacion = new System.Windows.Forms.GroupBox();
+            this.grdDetalle = new System.Windows.Forms.DataGridView();
+            this.dNroHistoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dIdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dPagado = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dResultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dConclusion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtFechaEmiFil = new System.Windows.Forms.MaskedTextBox();
             this.txtFechaNac = new System.Windows.Forms.MaskedTextBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtCajero = new System.Windows.Forms.TextBox();
-            this.grdDetalle = new System.Windows.Forms.ListView();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnVerifica = new System.Windows.Forms.Button();
@@ -124,6 +130,9 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.cIE10BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cie10DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cie10DS = new Polsolcom.Dominio.Data.Cie10DS();
             this.grpEnfermedad = new System.Windows.Forms.GroupBox();
             this.txtEnAcRel = new System.Windows.Forms.TextBox();
             this.txtEnAcCur = new System.Windows.Forms.TextBox();
@@ -158,32 +167,29 @@
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.groupBoxTraMed = new System.Windows.Forms.GroupBox();
-            this.grdTraMed = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.grdTraMed = new System.Windows.Forms.DataGridView();
+            this.tMedicamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tPresentacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tDosis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.consultoriosTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter();
             this.chkIdem = new System.Windows.Forms.CheckBox();
             this.txtTi = new System.Windows.Forms.TextBox();
             this.chkCompleto = new System.Windows.Forms.CheckBox();
-            this.dgvDetCie10 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cIE10BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cie10DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cie10DS = new Polsolcom.Dominio.Data.Cie10DS();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdDetCie10 = new System.Windows.Forms.DataGridView();
+            this.cNroHistoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cCie10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cProcedimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtFechaAten = new System.Windows.Forms.MaskedTextBox();
             this.txtFechaIngreso = new System.Windows.Forms.MaskedTextBox();
             this.busesTableAdapter = new Polsolcom.Dominio.Data.BusesDSTableAdapters.BusesTableAdapter();
             this.tmpEspecialistaTableAdapter = new Polsolcom.Dominio.Data.tmpEspecialistaDSTableAdapters.tmpEspecialistaTableAdapter();
             this.cIE10TableAdapter = new Polsolcom.Dominio.Data.Cie10DSTableAdapters.CIE10TableAdapter();
             this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
-            this.turnoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.turnoTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.TurnoTableAdapter();
             this.tabIngresoConsulta.SuspendLayout();
             this.tabIngresar.SuspendLayout();
@@ -197,16 +203,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.busesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.busesDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnoBindingSource)).BeginInit();
             this.grpFiliacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cIE10BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cie10DSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cie10DS)).BeginInit();
             this.grpEnfermedad.SuspendLayout();
             this.grpAntecedentes.SuspendLayout();
             this.grpExClinico.SuspendLayout();
             this.groupBoxTraMed.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cIE10BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cie10DSBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cie10DS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turnoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdTraMed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetCie10)).BeginInit();
             this.SuspendLayout();
             // 
             // tabIngresoConsulta
@@ -226,8 +234,8 @@
             this.tabIngresar.Controls.Add(this.txtFechaEmi);
             this.tabIngresar.Controls.Add(this.lstTickets0);
             this.tabIngresar.Controls.Add(this.cmbEspecialidad);
-            this.tabIngresar.Controls.Add(this.chkFiltro);
-            this.tabIngresar.Controls.Add(this.txtNroDoc);
+            this.tabIngresar.Controls.Add(this.chkOpFil);
+            this.tabIngresar.Controls.Add(this.txtNroTicket);
             this.tabIngresar.Controls.Add(this.txtSerie);
             this.tabIngresar.Controls.Add(this.cmbDVenta);
             this.tabIngresar.Controls.Add(this.label6);
@@ -270,10 +278,11 @@
             this.columnHeader3,
             this.columnHeader4});
             this.lstTickets0.FullRowSelect = true;
-            this.lstTickets0.Location = new System.Drawing.Point(158, 63);
+            this.lstTickets0.HideSelection = false;
+            this.lstTickets0.Location = new System.Drawing.Point(131, 63);
             this.lstTickets0.MultiSelect = false;
             this.lstTickets0.Name = "lstTickets0";
-            this.lstTickets0.Size = new System.Drawing.Size(262, 82);
+            this.lstTickets0.Size = new System.Drawing.Size(289, 82);
             this.lstTickets0.TabIndex = 17;
             this.lstTickets0.UseCompatibleStateImageBehavior = false;
             this.lstTickets0.View = System.Windows.Forms.View.Details;
@@ -319,34 +328,33 @@
             this.consultoriosDS.DataSetName = "ConsultoriosDS";
             this.consultoriosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // chkFiltro
+            // chkOpFil
             // 
-            this.chkFiltro.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkFiltro.AutoSize = true;
-            this.chkFiltro.Location = new System.Drawing.Point(50, 99);
-            this.chkFiltro.Name = "chkFiltro";
-            this.chkFiltro.Size = new System.Drawing.Size(71, 23);
-            this.chkFiltro.TabIndex = 15;
-            this.chkFiltro.Text = "Aplicar filtro";
-            this.chkFiltro.UseVisualStyleBackColor = true;
-            this.chkFiltro.CheckedChanged += new System.EventHandler(this.chkFiltro_CheckedChanged);
+            this.chkOpFil.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkOpFil.AutoSize = true;
+            this.chkOpFil.Location = new System.Drawing.Point(50, 99);
+            this.chkOpFil.Name = "chkOpFil";
+            this.chkOpFil.Size = new System.Drawing.Size(71, 23);
+            this.chkOpFil.TabIndex = 15;
+            this.chkOpFil.Text = "Aplicar filtro";
+            this.chkOpFil.UseVisualStyleBackColor = true;
+            this.chkOpFil.CheckedChanged += new System.EventHandler(this.chkFiltro_CheckedChanged);
             // 
-            // txtNroDoc
+            // txtNroTicket
             // 
-            this.txtNroDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNroDoc.Location = new System.Drawing.Point(62, 63);
-            this.txtNroDoc.Name = "txtNroDoc";
-            this.txtNroDoc.Size = new System.Drawing.Size(88, 20);
-            this.txtNroDoc.TabIndex = 11;
-            this.txtNroDoc.TextChanged += new System.EventHandler(this.txtNroDoc_TextChanged);
-            this.txtNroDoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroDoc_KeyDown);
+            this.txtNroTicket.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNroTicket.Location = new System.Drawing.Point(53, 63);
+            this.txtNroTicket.Name = "txtNroTicket";
+            this.txtNroTicket.Size = new System.Drawing.Size(74, 20);
+            this.txtNroTicket.TabIndex = 11;
+            this.txtNroTicket.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroDoc_KeyDown);
             // 
             // txtSerie
             // 
             this.txtSerie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSerie.Location = new System.Drawing.Point(8, 63);
             this.txtSerie.Name = "txtSerie";
-            this.txtSerie.Size = new System.Drawing.Size(44, 20);
+            this.txtSerie.Size = new System.Drawing.Size(42, 20);
             this.txtSerie.TabIndex = 10;
             this.txtSerie.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerie_KeyDown);
             // 
@@ -455,6 +463,7 @@
             // columnHeader29
             // 
             this.columnHeader29.Text = "Paciente";
+            this.columnHeader29.Width = 140;
             // 
             // lstTickets1
             // 
@@ -743,6 +752,11 @@
             this.cmbTurno.ValueMember = "Id_Tipo";
             this.cmbTurno.Leave += new System.EventHandler(this.cmbTurno_Leave);
             // 
+            // turnoBindingSource
+            // 
+            this.turnoBindingSource.DataMember = "Turno";
+            this.turnoBindingSource.DataSource = this.tablaTipoDS;
+            // 
             // label27
             // 
             this.label27.AutoSize = true;
@@ -774,11 +788,11 @@
             // 
             // grpFiliacion
             // 
+            this.grpFiliacion.Controls.Add(this.grdDetalle);
             this.grpFiliacion.Controls.Add(this.txtFechaEmiFil);
             this.grpFiliacion.Controls.Add(this.txtFechaNac);
             this.grpFiliacion.Controls.Add(this.txtTotal);
             this.grpFiliacion.Controls.Add(this.txtCajero);
-            this.grpFiliacion.Controls.Add(this.grdDetalle);
             this.grpFiliacion.Controls.Add(this.label10);
             this.grpFiliacion.Controls.Add(this.label9);
             this.grpFiliacion.Controls.Add(this.btnVerifica);
@@ -803,15 +817,121 @@
             this.grpFiliacion.TabStop = false;
             this.grpFiliacion.Text = "1. FILIACIÓN:";
             // 
+            // grdDetalle
+            // 
+            this.grdDetalle.AllowUserToAddRows = false;
+            this.grdDetalle.AllowUserToDeleteRows = false;
+            this.grdDetalle.AllowUserToResizeColumns = false;
+            this.grdDetalle.AllowUserToResizeRows = false;
+            this.grdDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dNroHistoria,
+            this.dIdProducto,
+            this.dProducto,
+            this.dCantidad,
+            this.dPrecio,
+            this.dTotal,
+            this.dPagado,
+            this.dDescuento,
+            this.dResultado,
+            this.dConclusion,
+            this.dM});
+            this.grdDetalle.Location = new System.Drawing.Point(14, 146);
+            this.grdDetalle.MultiSelect = false;
+            this.grdDetalle.Name = "grdDetalle";
+            this.grdDetalle.RowHeadersVisible = false;
+            this.grdDetalle.Size = new System.Drawing.Size(404, 91);
+            this.grdDetalle.TabIndex = 63;
+            this.grdDetalle.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetalle_EditingControlShowing);
+            // 
+            // dNroHistoria
+            // 
+            this.dNroHistoria.HeaderText = "Nro Historia";
+            this.dNroHistoria.Name = "dNroHistoria";
+            this.dNroHistoria.ReadOnly = true;
+            this.dNroHistoria.Visible = false;
+            // 
+            // dIdProducto
+            // 
+            this.dIdProducto.HeaderText = "Id Producto";
+            this.dIdProducto.Name = "dIdProducto";
+            this.dIdProducto.ReadOnly = true;
+            this.dIdProducto.Visible = false;
+            // 
+            // dProducto
+            // 
+            this.dProducto.HeaderText = "Producto y/o servicio";
+            this.dProducto.Name = "dProducto";
+            this.dProducto.ReadOnly = true;
+            this.dProducto.Width = 150;
+            // 
+            // dCantidad
+            // 
+            this.dCantidad.HeaderText = "Cnt.";
+            this.dCantidad.Name = "dCantidad";
+            this.dCantidad.ReadOnly = true;
+            this.dCantidad.Width = 50;
+            // 
+            // dPrecio
+            // 
+            this.dPrecio.HeaderText = "Prc.";
+            this.dPrecio.Name = "dPrecio";
+            this.dPrecio.ReadOnly = true;
+            this.dPrecio.Width = 50;
+            // 
+            // dTotal
+            // 
+            this.dTotal.HeaderText = "S.Total";
+            this.dTotal.Name = "dTotal";
+            this.dTotal.ReadOnly = true;
+            this.dTotal.Width = 50;
+            // 
+            // dPagado
+            // 
+            this.dPagado.HeaderText = "Con.";
+            this.dPagado.Items.AddRange(new object[] {
+            "",
+            "R"});
+            this.dPagado.Name = "dPagado";
+            this.dPagado.ReadOnly = true;
+            this.dPagado.Width = 50;
+            // 
+            // dDescuento
+            // 
+            this.dDescuento.HeaderText = "Dto.";
+            this.dDescuento.Name = "dDescuento";
+            this.dDescuento.ReadOnly = true;
+            this.dDescuento.Width = 50;
+            // 
+            // dResultado
+            // 
+            this.dResultado.HeaderText = "Resultado";
+            this.dResultado.Name = "dResultado";
+            this.dResultado.ReadOnly = true;
+            this.dResultado.Visible = false;
+            // 
+            // dConclusion
+            // 
+            this.dConclusion.HeaderText = "Conclusión";
+            this.dConclusion.Name = "dConclusion";
+            this.dConclusion.ReadOnly = true;
+            this.dConclusion.Visible = false;
+            // 
+            // dM
+            // 
+            this.dM.HeaderText = "M";
+            this.dM.Name = "dM";
+            this.dM.ReadOnly = true;
+            this.dM.Visible = false;
+            // 
             // txtFechaEmiFil
             // 
             this.txtFechaEmiFil.Location = new System.Drawing.Point(306, 120);
-            this.txtFechaEmiFil.Mask = "00/00/0000 00:00 AM";
+            this.txtFechaEmiFil.Mask = "00/00/0000 90:00 aa";
             this.txtFechaEmiFil.Name = "txtFechaEmiFil";
             this.txtFechaEmiFil.ReadOnly = true;
             this.txtFechaEmiFil.Size = new System.Drawing.Size(112, 20);
             this.txtFechaEmiFil.TabIndex = 62;
-            this.txtFechaEmiFil.ValidatingType = typeof(System.DateTime);
             // 
             // txtFechaNac
             // 
@@ -838,54 +958,6 @@
             this.txtCajero.ReadOnly = true;
             this.txtCajero.Size = new System.Drawing.Size(214, 20);
             this.txtCajero.TabIndex = 55;
-            // 
-            // grdDetalle
-            // 
-            this.grdDetalle.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15,
-            this.columnHeader16});
-            this.grdDetalle.FullRowSelect = true;
-            this.grdDetalle.Location = new System.Drawing.Point(15, 145);
-            this.grdDetalle.MultiSelect = false;
-            this.grdDetalle.Name = "grdDetalle";
-            this.grdDetalle.Size = new System.Drawing.Size(405, 98);
-            this.grdDetalle.TabIndex = 54;
-            this.grdDetalle.UseCompatibleStateImageBehavior = false;
-            this.grdDetalle.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Producto y/o Servicio";
-            this.columnHeader11.Width = 150;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Cant.";
-            this.columnHeader12.Width = 50;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Prec.";
-            this.columnHeader13.Width = 50;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "S.Total";
-            this.columnHeader14.Width = 50;
-            // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "Con.";
-            this.columnHeader15.Width = 50;
-            // 
-            // columnHeader16
-            // 
-            this.columnHeader16.Text = "Dto.";
-            this.columnHeader16.Width = 50;
             // 
             // label10
             // 
@@ -917,6 +989,7 @@
             // 
             // btnBCie10
             // 
+            this.btnBCie10.Enabled = false;
             this.btnBCie10.Location = new System.Drawing.Point(256, 271);
             this.btnBCie10.Name = "btnBCie10";
             this.btnBCie10.Size = new System.Drawing.Size(75, 23);
@@ -938,6 +1011,7 @@
             // 
             // btnQuitar
             // 
+            this.btnQuitar.Enabled = false;
             this.btnQuitar.Location = new System.Drawing.Point(102, 271);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(75, 23);
@@ -948,6 +1022,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Enabled = false;
             this.btnAgregar.Location = new System.Drawing.Point(24, 271);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
@@ -1040,6 +1115,21 @@
             this.label20.Size = new System.Drawing.Size(172, 13);
             this.label20.TabIndex = 33;
             this.label20.Text = "Apellidos y Nombres (ID Pacientes)";
+            // 
+            // cIE10BindingSource
+            // 
+            this.cIE10BindingSource.DataMember = "CIE10";
+            this.cIE10BindingSource.DataSource = this.cie10DSBindingSource;
+            // 
+            // cie10DSBindingSource
+            // 
+            this.cie10DSBindingSource.DataSource = this.cie10DS;
+            this.cie10DSBindingSource.Position = 0;
+            // 
+            // cie10DS
+            // 
+            this.cie10DS.DataSetName = "Cie10DS";
+            this.cie10DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // grpEnfermedad
             // 
@@ -1351,47 +1441,54 @@
             // 
             // grdTraMed
             // 
-            this.grdTraMed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9});
-            this.grdTraMed.FullRowSelect = true;
-            this.grdTraMed.Location = new System.Drawing.Point(10, 15);
+            this.grdTraMed.AllowUserToAddRows = false;
+            this.grdTraMed.AllowUserToDeleteRows = false;
+            this.grdTraMed.AllowUserToResizeColumns = false;
+            this.grdTraMed.AllowUserToResizeRows = false;
+            this.grdTraMed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdTraMed.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tMedicamento,
+            this.tPresentacion,
+            this.tCantidad,
+            this.tDosis,
+            this.tDias});
+            this.grdTraMed.Location = new System.Drawing.Point(5, 15);
             this.grdTraMed.MultiSelect = false;
             this.grdTraMed.Name = "grdTraMed";
-            this.grdTraMed.Size = new System.Drawing.Size(483, 82);
-            this.grdTraMed.TabIndex = 18;
-            this.grdTraMed.UseCompatibleStateImageBehavior = false;
-            this.grdTraMed.View = System.Windows.Forms.View.Details;
-            this.grdTraMed.SelectedIndexChanged += new System.EventHandler(this.grdTraMed_SelectedIndexChanged);
+            this.grdTraMed.RowHeadersVisible = false;
+            this.grdTraMed.Size = new System.Drawing.Size(496, 80);
+            this.grdTraMed.TabIndex = 61;
+            this.grdTraMed.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdTraMed_EditingControlShowing);
             this.grdTraMed.Enter += new System.EventHandler(this.grdTraMed_Enter);
             // 
-            // columnHeader5
+            // tMedicamento
             // 
-            this.columnHeader5.Text = "Nombre de medicamento";
-            this.columnHeader5.Width = 140;
+            this.tMedicamento.HeaderText = "Nombre de medicamento";
+            this.tMedicamento.Name = "tMedicamento";
+            this.tMedicamento.Width = 180;
             // 
-            // columnHeader6
+            // tPresentacion
             // 
-            this.columnHeader6.Text = "Presentación";
-            this.columnHeader6.Width = 140;
+            this.tPresentacion.HeaderText = "Presentación";
+            this.tPresentacion.Name = "tPresentacion";
             // 
-            // columnHeader7
+            // tCantidad
             // 
-            this.columnHeader7.Text = "Cantidad";
-            this.columnHeader7.Width = 50;
+            this.tCantidad.HeaderText = "Cant.";
+            this.tCantidad.Name = "tCantidad";
+            this.tCantidad.Width = 50;
             // 
-            // columnHeader8
+            // tDosis
             // 
-            this.columnHeader8.Text = "Dosis";
-            this.columnHeader8.Width = 100;
+            this.tDosis.HeaderText = "Dósis";
+            this.tDosis.Name = "tDosis";
+            this.tDosis.Width = 110;
             // 
-            // columnHeader9
+            // tDias
             // 
-            this.columnHeader9.Text = "Días";
-            this.columnHeader9.Width = 50;
+            this.tDias.HeaderText = "Días";
+            this.tDias.Name = "tDias";
+            this.tDias.Width = 50;
             // 
             // label41
             // 
@@ -1447,61 +1544,58 @@
             this.chkCompleto.Text = "Completo";
             this.chkCompleto.UseVisualStyleBackColor = true;
             // 
-            // dgvDetCie10
+            // grdDetCie10
             // 
-            this.dgvDetCie10.AllowUserToAddRows = false;
-            this.dgvDetCie10.AllowUserToDeleteRows = false;
-            this.dgvDetCie10.AllowUserToResizeColumns = false;
-            this.dgvDetCie10.AllowUserToResizeRows = false;
-            this.dgvDetCie10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetCie10.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dgvDetCie10.Location = new System.Drawing.Point(10, 560);
-            this.dgvDetCie10.MultiSelect = false;
-            this.dgvDetCie10.Name = "dgvDetCie10";
-            this.dgvDetCie10.Size = new System.Drawing.Size(845, 81);
-            this.dgvDetCie10.TabIndex = 58;
-            this.dgvDetCie10.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvDetCie10_EditingControlShowing);
-            this.dgvDetCie10.Validated += new System.EventHandler(this.dgvDetCie10_Validated);
+            this.grdDetCie10.AllowUserToAddRows = false;
+            this.grdDetCie10.AllowUserToDeleteRows = false;
+            this.grdDetCie10.AllowUserToResizeColumns = false;
+            this.grdDetCie10.AllowUserToResizeRows = false;
+            this.grdDetCie10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdDetCie10.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cNroHistoria,
+            this.cCie10,
+            this.cDescripcion,
+            this.cProcedimiento});
+            this.grdDetCie10.Location = new System.Drawing.Point(10, 560);
+            this.grdDetCie10.MultiSelect = false;
+            this.grdDetCie10.Name = "grdDetCie10";
+            this.grdDetCie10.RowHeadersVisible = false;
+            this.grdDetCie10.Size = new System.Drawing.Size(845, 81);
+            this.grdDetCie10.TabIndex = 58;
+            this.grdDetCie10.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.grdDetCie10_CellBeginEdit);
+            this.grdDetCie10.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetCie10_CellClick);
+            this.grdDetCie10.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetCie10_CellEndEdit);
+            this.grdDetCie10.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetCie10_CellEnter);
+            this.grdDetCie10.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetCie10_EditingControlShowing);
+            this.grdDetCie10.Validated += new System.EventHandler(this.grdDetCie10_Validated);
             // 
-            // Column1
+            // cNroHistoria
             // 
-            this.Column1.DataSource = this.cIE10BindingSource;
-            this.Column1.DisplayMember = "CIE10";
-            this.Column1.HeaderText = "Cie10";
-            this.Column1.Name = "Column1";
-            this.Column1.ValueMember = "CIE10";
-            this.Column1.Width = 70;
+            this.cNroHistoria.HeaderText = "NroH istoria";
+            this.cNroHistoria.Name = "cNroHistoria";
+            this.cNroHistoria.Visible = false;
             // 
-            // cIE10BindingSource
+            // cCie10
             // 
-            this.cIE10BindingSource.DataMember = "CIE10";
-            this.cIE10BindingSource.DataSource = this.cie10DSBindingSource;
+            this.cCie10.DataSource = this.cIE10BindingSource;
+            this.cCie10.DisplayMember = "CIE10";
+            this.cCie10.HeaderText = "Cie10";
+            this.cCie10.Name = "cCie10";
+            this.cCie10.ValueMember = "CIE10";
+            this.cCie10.Width = 90;
             // 
-            // cie10DSBindingSource
+            // cDescripcion
             // 
-            this.cie10DSBindingSource.DataSource = this.cie10DS;
-            this.cie10DSBindingSource.Position = 0;
+            this.cDescripcion.HeaderText = "Descripción del diagnóstico";
+            this.cDescripcion.Name = "cDescripcion";
+            this.cDescripcion.ReadOnly = true;
+            this.cDescripcion.Width = 370;
             // 
-            // cie10DS
+            // cProcedimiento
             // 
-            this.cie10DS.DataSetName = "Cie10DS";
-            this.cie10DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Descripción del diagnóstico";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 350;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Procedimientos, exámenes aux, inervenciones...";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 350;
+            this.cProcedimiento.HeaderText = "Procedimientos, exámenes aux, inervenciones...";
+            this.cProcedimiento.Name = "cProcedimiento";
+            this.cProcedimiento.Width = 370;
             // 
             // txtFechaAten
             // 
@@ -1517,7 +1611,7 @@
             // txtFechaIngreso
             // 
             this.txtFechaIngreso.Location = new System.Drawing.Point(314, 288);
-            this.txtFechaIngreso.Mask = "00/00/0000 00:00 AM";
+            this.txtFechaIngreso.Mask = "00/00/0000 90:00 aa";
             this.txtFechaIngreso.Name = "txtFechaIngreso";
             this.txtFechaIngreso.ReadOnly = true;
             this.txtFechaIngreso.Size = new System.Drawing.Size(115, 20);
@@ -1539,11 +1633,6 @@
             // 
             this.docVentaTableAdapter.ClearBeforeFill = true;
             // 
-            // turnoBindingSource
-            // 
-            this.turnoBindingSource.DataMember = "Turno";
-            this.turnoBindingSource.DataSource = this.tablaTipoDS;
-            // 
             // turnoTableAdapter
             // 
             this.turnoTableAdapter.ClearBeforeFill = true;
@@ -1556,7 +1645,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.txtFechaIngreso);
             this.Controls.Add(this.txtFechaAten);
-            this.Controls.Add(this.dgvDetCie10);
+            this.Controls.Add(this.grdDetCie10);
             this.Controls.Add(this.chkCompleto);
             this.Controls.Add(this.txtTi);
             this.Controls.Add(this.chkIdem);
@@ -1585,6 +1674,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmIngresoCie10";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingreso y Consulta de Atenciones Realizadas (epicrisis, diagnóstico, tratamiento," +
     " etc.)";
             this.Load += new System.EventHandler(this.frmIngresoCie10_Load);
@@ -1603,8 +1693,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.busesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.busesDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnoBindingSource)).EndInit();
             this.grpFiliacion.ResumeLayout(false);
             this.grpFiliacion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cIE10BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cie10DSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cie10DS)).EndInit();
             this.grpEnfermedad.ResumeLayout(false);
             this.grpEnfermedad.PerformLayout();
             this.grpAntecedentes.ResumeLayout(false);
@@ -1612,11 +1707,8 @@
             this.grpExClinico.ResumeLayout(false);
             this.grpExClinico.PerformLayout();
             this.groupBoxTraMed.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetCie10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cIE10BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cie10DSBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cie10DS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turnoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdTraMed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetCie10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1626,7 +1718,7 @@
 
         private System.Windows.Forms.TabControl tabIngresoConsulta;
         private System.Windows.Forms.TabPage tabIngresar;
-        private System.Windows.Forms.TextBox txtNroDoc;
+        private System.Windows.Forms.TextBox txtNroTicket;
         private System.Windows.Forms.TextBox txtSerie;
         private System.Windows.Forms.ComboBox cmbDVenta;
         private System.Windows.Forms.ComboBox cmbMedico;
@@ -1717,7 +1809,7 @@
         private System.Windows.Forms.BindingSource consultoriosBindingSource;
         private Dominio.Data.ConsultoriosDS consultoriosDS;
         private Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosTableAdapter consultoriosTableAdapter;
-        private System.Windows.Forms.CheckBox chkFiltro;
+        private System.Windows.Forms.CheckBox chkOpFil;
         private System.Windows.Forms.ComboBox cmbEspecialidad;
         private System.Windows.Forms.ListView lstTickets0;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -1728,13 +1820,6 @@
         private System.Windows.Forms.TextBox txtTi;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.TextBox txtCajero;
-        private System.Windows.Forms.ListView grdDetalle;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.ColumnHeader columnHeader15;
-        private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ListView lstTickets1;
         private System.Windows.Forms.ColumnHeader columnHeader17;
         private System.Windows.Forms.ColumnHeader columnHeader18;
@@ -1749,12 +1834,7 @@
         private System.Windows.Forms.ListView lstPacientes;
         private System.Windows.Forms.ColumnHeader columnHeader29;
         private System.Windows.Forms.CheckBox chkCompleto;
-        private System.Windows.Forms.ListView grdTraMed;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.DataGridView dgvDetCie10;
+        private System.Windows.Forms.DataGridView grdDetCie10;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MaskedTextBox txtFechaEmi;
         private System.Windows.Forms.MaskedTextBox txtFechaAten;
@@ -1771,14 +1851,32 @@
         private System.Windows.Forms.BindingSource cie10DSBindingSource;
         private System.Windows.Forms.BindingSource cIE10BindingSource;
         private Dominio.Data.Cie10DSTableAdapters.CIE10TableAdapter cIE10TableAdapter;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private Dominio.Data.TablaTipoDS tablaTipoDS;
         private System.Windows.Forms.BindingSource docVentaBindingSource;
         private Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter docVentaTableAdapter;
         private System.Windows.Forms.BindingSource turnoBindingSource;
         private Dominio.Data.TablaTipoDSTableAdapters.TurnoTableAdapter turnoTableAdapter;
+        private System.Windows.Forms.DataGridView grdTraMed;
+        private System.Windows.Forms.DataGridView grdDetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tMedicamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tPresentacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tDosis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tDias;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dNroHistoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dIdProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dPrecio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dTotal;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dPagado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dResultado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dConclusion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cNroHistoria;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cCie10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cProcedimiento;
     }
 }

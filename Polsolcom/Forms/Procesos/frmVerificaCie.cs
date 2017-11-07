@@ -31,6 +31,7 @@ namespace Polsolcom.Forms.Procesos
         {
             int index = General.GetSelectedIndex(lstMostrarDatos);
             this.nroTicket = this.items[index]["Nro_Ticket"];
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -50,6 +51,7 @@ namespace Polsolcom.Forms.Procesos
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.nroTicket = "";
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -57,9 +59,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.nroTicket = "";
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
+                btnCancelar_Click(btnCancelar, new EventArgs());
             }
         }
 
@@ -69,6 +69,7 @@ namespace Polsolcom.Forms.Procesos
             {
                 int index = General.GetSelectedIndex(lstMostrarDatos);
                 this.nroTicket = this.items[index]["Nro_Ticket"];
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }

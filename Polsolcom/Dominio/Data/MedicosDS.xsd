@@ -24,6 +24,26 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MedicosProduccionTableAdapter" GeneratorDataComponentClassName="MedicosProduccionTableAdapter" Name="MedicosProduccion" UserDataComponentName="MedicosProduccionTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PolsolcomConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select (Ape_Paterno+' '+Ape_Materno+', '+Nombres)Medico,Id_Personal,Id_Esp,SubString(TNCol,2,7)CMP From Personal P Inner Join MedBus MB On P.Id_Personal=MB.CMP Inner Join Buses B On MB.Id_Bus=B.Id_Bus Group By Ape_Paterno,Ape_Materno,Nombres,Id_Personal,Id_Esp,SubString(TNCol,2,7) Order By Ape_Paterno,Ape_Materno,Nombres
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Medico" DataSetColumn="Medico" />
+              <Mapping SourceColumn="Id_Personal" DataSetColumn="Id_Personal" />
+              <Mapping SourceColumn="Id_Esp" DataSetColumn="Id_Esp" />
+              <Mapping SourceColumn="CMP" DataSetColumn="CMP" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -32,7 +52,7 @@
   <xs:element name="MedicosDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MedicosDS" msprop:Generator_UserDSName="MedicosDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Medicos" msprop:Generator_TableClassName="MedicosDataTable" msprop:Generator_TableVarName="tableMedicos" msprop:Generator_TablePropName="Medicos" msprop:Generator_RowDeletingName="MedicosRowDeleting" msprop:Generator_RowChangingName="MedicosRowChanging" msprop:Generator_RowEvHandlerName="MedicosRowChangeEventHandler" msprop:Generator_RowDeletedName="MedicosRowDeleted" msprop:Generator_UserTableName="Medicos" msprop:Generator_RowChangedName="MedicosRowChanged" msprop:Generator_RowEvArgName="MedicosRowChangeEvent" msprop:Generator_RowClassName="MedicosRow">
+        <xs:element name="Medicos" msprop:Generator_TableClassName="MedicosDataTable" msprop:Generator_TableVarName="tableMedicos" msprop:Generator_RowChangedName="MedicosRowChanged" msprop:Generator_TablePropName="Medicos" msprop:Generator_RowDeletingName="MedicosRowDeleting" msprop:Generator_RowChangingName="MedicosRowChanging" msprop:Generator_RowEvHandlerName="MedicosRowChangeEventHandler" msprop:Generator_RowDeletedName="MedicosRowDeleted" msprop:Generator_RowClassName="MedicosRow" msprop:Generator_UserTableName="Medicos" msprop:Generator_RowEvArgName="MedicosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Medico" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMedico" msprop:Generator_ColumnPropNameInRow="Medico" msprop:Generator_ColumnPropNameInTable="MedicoColumn" msprop:Generator_UserColumnName="Medico" minOccurs="0">
@@ -52,7 +72,45 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="MedicosProduccion" msprop:Generator_TableClassName="MedicosProduccionDataTable" msprop:Generator_TableVarName="tableMedicosProduccion" msprop:Generator_TablePropName="MedicosProduccion" msprop:Generator_RowDeletingName="MedicosProduccionRowDeleting" msprop:Generator_RowChangingName="MedicosProduccionRowChanging" msprop:Generator_RowEvHandlerName="MedicosProduccionRowChangeEventHandler" msprop:Generator_RowDeletedName="MedicosProduccionRowDeleted" msprop:Generator_UserTableName="MedicosProduccion" msprop:Generator_RowChangedName="MedicosProduccionRowChanged" msprop:Generator_RowEvArgName="MedicosProduccionRowChangeEvent" msprop:Generator_RowClassName="MedicosProduccionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Medico" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMedico" msprop:Generator_ColumnPropNameInRow="Medico" msprop:Generator_ColumnPropNameInTable="MedicoColumn" msprop:Generator_UserColumnName="Medico" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Personal" msprop:Generator_ColumnVarNameInTable="columnId_Personal" msprop:Generator_ColumnPropNameInRow="Id_Personal" msprop:Generator_ColumnPropNameInTable="Id_PersonalColumn" msprop:Generator_UserColumnName="Id_Personal">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id_Esp" msprop:Generator_ColumnVarNameInTable="columnId_Esp" msprop:Generator_ColumnPropNameInRow="Id_Esp" msprop:Generator_ColumnPropNameInTable="Id_EspColumn" msprop:Generator_UserColumnName="Id_Esp">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CMP" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCMP" msprop:Generator_ColumnPropNameInRow="CMP" msprop:Generator_ColumnPropNameInTable="CMPColumn" msprop:Generator_UserColumnName="CMP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MedicosProduccion" />
+      <xs:field xpath="mstns:Id_Personal" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

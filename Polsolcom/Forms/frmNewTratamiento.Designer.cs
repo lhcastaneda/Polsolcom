@@ -42,18 +42,18 @@
             this.cmbSelecProd = new System.Windows.Forms.ComboBox();
             this.cmbSelecTicket = new System.Windows.Forms.ComboBox();
             this.pnlProd = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.txtCant = new System.Windows.Forms.TextBox();
-            this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.cmbProd = new System.Windows.Forms.ComboBox();
-            this.cmbOdontologo = new System.Windows.Forms.ComboBox();
             this.dtpFechAten = new System.Windows.Forms.DateTimePicker();
+            this.cmbOdontologo = new System.Windows.Forms.ComboBox();
+            this.cmbProd = new System.Windows.Forms.ComboBox();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.txtCant = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gdvDetalles)).BeginInit();
@@ -192,92 +192,21 @@
             this.pnlProd.Size = new System.Drawing.Size(481, 165);
             this.pnlProd.TabIndex = 9;
             // 
-            // label4
+            // dtpFechAten
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Producto";
+            this.dtpFechAten.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechAten.Location = new System.Drawing.Point(135, 93);
+            this.dtpFechAten.Name = "dtpFechAten";
+            this.dtpFechAten.Size = new System.Drawing.Size(102, 20);
+            this.dtpFechAten.TabIndex = 11;
             // 
-            // label5
+            // cmbOdontologo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(14, 43);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Precio Unitario";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(14, 69);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Odontólogo";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(14, 99);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 13);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Fecha de Atención";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(14, 122);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 13);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Observación";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(262, 43);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 13);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Cantidad";
-            // 
-            // txtPrecio
-            // 
-            this.txtPrecio.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPrecio.Location = new System.Drawing.Point(135, 40);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(121, 20);
-            this.txtPrecio.TabIndex = 6;
-            // 
-            // txtCant
-            // 
-            this.txtCant.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtCant.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCant.Location = new System.Drawing.Point(334, 40);
-            this.txtCant.Name = "txtCant";
-            this.txtCant.Size = new System.Drawing.Size(124, 20);
-            this.txtCant.TabIndex = 7;
-            // 
-            // txtObservacion
-            // 
-            this.txtObservacion.Location = new System.Drawing.Point(135, 119);
-            this.txtObservacion.Multiline = true;
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObservacion.Size = new System.Drawing.Size(323, 31);
-            this.txtObservacion.TabIndex = 8;
+            this.cmbOdontologo.FormattingEnabled = true;
+            this.cmbOdontologo.Location = new System.Drawing.Point(135, 66);
+            this.cmbOdontologo.Name = "cmbOdontologo";
+            this.cmbOdontologo.Size = new System.Drawing.Size(323, 21);
+            this.cmbOdontologo.TabIndex = 10;
             // 
             // cmbProd
             // 
@@ -289,21 +218,92 @@
             this.cmbProd.Size = new System.Drawing.Size(323, 21);
             this.cmbProd.TabIndex = 9;
             // 
-            // cmbOdontologo
+            // txtObservacion
             // 
-            this.cmbOdontologo.FormattingEnabled = true;
-            this.cmbOdontologo.Location = new System.Drawing.Point(135, 66);
-            this.cmbOdontologo.Name = "cmbOdontologo";
-            this.cmbOdontologo.Size = new System.Drawing.Size(323, 21);
-            this.cmbOdontologo.TabIndex = 10;
+            this.txtObservacion.Location = new System.Drawing.Point(135, 119);
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtObservacion.Size = new System.Drawing.Size(323, 31);
+            this.txtObservacion.TabIndex = 8;
             // 
-            // dtpFechAten
+            // txtCant
             // 
-            this.dtpFechAten.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechAten.Location = new System.Drawing.Point(135, 93);
-            this.dtpFechAten.Name = "dtpFechAten";
-            this.dtpFechAten.Size = new System.Drawing.Size(102, 20);
-            this.dtpFechAten.TabIndex = 11;
+            this.txtCant.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtCant.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCant.Location = new System.Drawing.Point(334, 40);
+            this.txtCant.Name = "txtCant";
+            this.txtCant.Size = new System.Drawing.Size(124, 20);
+            this.txtCant.TabIndex = 7;
+            // 
+            // txtPrecio
+            // 
+            this.txtPrecio.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrecio.Location = new System.Drawing.Point(135, 40);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(121, 20);
+            this.txtPrecio.TabIndex = 6;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(262, 43);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(57, 13);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Cantidad";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(14, 122);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Observación";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(14, 99);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Fecha de Atención";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(14, 69);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Odontólogo";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(14, 43);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Precio Unitario";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(14, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Producto";
             // 
             // btnAceptar
             // 
@@ -342,6 +342,7 @@
             this.Controls.Add(this.cmbPieza);
             this.Controls.Add(this.label1);
             this.Name = "frmNewTratamiento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Tratamiento";
             ((System.ComponentModel.ISupportInitialize)(this.gdvDetalles)).EndInit();
             this.pnlProd.ResumeLayout(false);

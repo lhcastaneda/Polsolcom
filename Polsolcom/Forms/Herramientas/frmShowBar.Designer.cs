@@ -265,7 +265,7 @@ namespace Polsolcom.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmShowBar";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Elemento de Menu";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmShowBar_Load);

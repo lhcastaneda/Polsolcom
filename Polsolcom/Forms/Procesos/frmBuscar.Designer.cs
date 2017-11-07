@@ -72,6 +72,7 @@ namespace Polsolcom.Forms.Procesos
             this.txtDNI.Size = new System.Drawing.Size(96, 20);
             this.txtDNI.TabIndex = 5;
             this.txtDNI.TextChanged += new System.EventHandler(this.txtDNI_TextChanged);
+            this.txtDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDNI_KeyDown);
             // 
             // lblIdPaciente
             // 
@@ -228,9 +229,10 @@ namespace Polsolcom.Forms.Procesos
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmBuscar";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Busqueda de Pacientes - ";
             this.Load += new System.EventHandler(this.frmBuscar_Load);
+            this.Shown += new System.EventHandler(this.frmBuscar_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBuscar_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

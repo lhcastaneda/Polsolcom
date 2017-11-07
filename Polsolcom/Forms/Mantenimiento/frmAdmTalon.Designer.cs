@@ -410,6 +410,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "frmAdmTalon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administracion de Talonarios de Documentos de Ventas";
             this.Load += new System.EventHandler(this.frmAdmTalon_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmAdmTalon_KeyDown);

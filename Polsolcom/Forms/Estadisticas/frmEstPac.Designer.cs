@@ -60,9 +60,12 @@
             // 
             // fGrid
             // 
+            this.fGrid.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.fGrid.Header.Height = ((int)(resources.GetObject("fGrid.Header.Height")));
             resources.ApplyResources(this.fGrid, "fGrid");
             this.fGrid.Name = "fGrid";
             this.fGrid.ReadOnly = true;
+            this.fGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
             // 
             // label3
             // 

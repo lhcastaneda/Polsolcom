@@ -823,6 +823,7 @@
             this.Controls.Add(this.pnlDatos);
             this.KeyPreview = true;
             this.Name = "frmSeekPac";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Búsqueda de Pacientes ....";
             this.Load += new System.EventHandler(this.frmSeekPac_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSeekPac_KeyDown);

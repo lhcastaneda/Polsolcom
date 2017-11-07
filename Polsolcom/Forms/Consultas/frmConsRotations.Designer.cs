@@ -268,6 +268,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmConsRotations";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultar Rotaciones Aplicadas";
             this.Load += new System.EventHandler(this.frmConsRotations_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmConsRotations_KeyDown);

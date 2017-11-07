@@ -175,17 +175,17 @@ namespace Polsolcom.Forms.Procesos
                 nr = tick[i]["Nro_Historia"];
 
                 string ne = tick[i]["Id_Consultorio"];
-                string sql3 = "Select * From Productos Where Left(Id_Producto,6)='" + ne + "' And Estado='1'";
+                string sql3 = "Select N From Productos Where Left(Id_Producto,6)='" + ne + "' And Estado='1'";
                 //Llenamos productos
                 this.productosTableAdapter.Fill(this.productosDS.Productos, ne);
                 List<Dictionary<string, string>> productos = General.GetDictionaryList(sql3);
 
-                string sql4 = "Select * From Detalles Where Nro_Historia='" + nr + "'";
+                string sql4 = "Select Nro_Historia, Id_Producto, CONVERT(DECIMAL(10,2), Monto) as Monto, Cantidad, Pagado, CONVERT(DECIMAL(10,2), Dscto) as Dscto, Resultado, Conclusion From Detalles Where Nro_Historia='" + nr + "'";
                 List<Dictionary<string, string>> cdet = General.GetDictionaryList(sql4);
                 foreach (Dictionary<string, string> idet in cdet)
                 {
                     Dictionary<string, string> producto = productos.Find(x => x["Id_Producto"] == idet["Id_Producto"]);
-                    grdDetalle.Rows.Add(new[] { idet["Nro_Historia"], producto["Id_Producto"], producto["Descripcion"], producto["Tipo"], idet["Cantidad"], idet["Monto"], (int.Parse(idet["Cantidad"]) * decimal.Parse(idet["Monto"])).ToString() });
+                    grdDetalle.Rows.Add(new[] { idet["Nro_Historia"], producto["Id_Producto"], producto["Descripcion"], producto["Tipo"], idet["Cantidad"], idet["Monto"], (int.Parse(idet["Cantidad"]) * decimal.Parse(idet["Monto"])).ToString("N2") });
                 }
 
                 string ic = tick[i]["Id_Bus"];
@@ -203,6 +203,7 @@ namespace Polsolcom.Forms.Procesos
             {
                 General.setAll<TextBox, string>(groupBoxMain, "Text", "");
                 General.setAll<MaskedTextBox, string>(groupBoxMain, "Text", "");
+                General.setAll<ComboBox, int>(groupBoxMain, "SelectedIndex", -1);
             }
 
             return true;
@@ -220,7 +221,7 @@ namespace Polsolcom.Forms.Procesos
             {
                 if (!this.hab(0)) return false;
                 btnBuscar.Enabled = true;
-                txtFechaEmision.Text = DateTime.Today.ToString(General.dateTimeFormat);
+                txtFechaEmision.Text = DateTime.Now.ToString(General.dateTimeFormat);
                 cmbEspecialidad.Focus();
             }
 
@@ -238,7 +239,7 @@ namespace Polsolcom.Forms.Procesos
             txtTelefono.Text = this.bpac["Telefono"];
             txtDireccion.Text = this.bpac["Direccion"];
             txtAsegurado.Text = this.bpac["Asegurado"];
-            cmbDepartamento.SelectedValue = this.bpac["Id_Distrito"].Length > 0? this.bpac["Id_Distrito"].Substring(0, 2): "";
+            cmbDepartamento.SelectedValue = this.bpac["Id_Distrito"].Length > 0 ? this.bpac["Id_Distrito"].Substring(0, 2) : "";
             cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
             cmbProvincia.SelectedValue = this.bpac["Id_Distrito"].Length > 0 ? this.bpac["Id_Distrito"].Substring(0, 4) : "";
             cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
@@ -265,19 +266,19 @@ namespace Polsolcom.Forms.Procesos
                     {
                         if (cesp["Descripcion"] == "FARMACIA")
                         {
-                            item["Subtotal"] = item["Precio"];
+                            item["Subtotal"] = decimal.Parse(item["Precio"]).ToString("N2");
                         }
                         else
                         {
-                            item["Subtotal"] = (int.Parse(item["Cantidad"]) * decimal.Parse(item["Precio"])).ToString();
+                            item["Subtotal"] = (int.Parse(item["Cantidad"]) * decimal.Parse(item["Precio"])).ToString("N2");
                         }
 
                         grdDetalle.Rows[i].Cells["Subtotal"].Value = item["Subtotal"];
 
 
-                        txtTotal.Text = (decimal.Parse(txtTotal.Text) + decimal.Parse(item["Subtotal"])).ToString();
-                        txtNeto.Text = dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(this.igv["Descripcion"]), 2).ToString() : "0.00";
-                        txtIGV.Text = dventa["Descripcion"] == "FACTURA" ? (Decimal.Parse(txtTotal.Text) - decimal.Parse(txtNeto.Text)).ToString() : "0.00";
+                        txtTotal.Text = (decimal.Parse(txtTotal.Text) + decimal.Parse(item["Subtotal"])).ToString("N2");
+                        txtNeto.Text = dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(this.igv["Descripcion"]), 2).ToString("N2") : "0.00";
+                        txtIGV.Text = dventa["Descripcion"] == "FACTURA" ? (Decimal.Parse(txtTotal.Text) - decimal.Parse(txtNeto.Text)).ToString("N2") : "0.00";
                         txtSon.Text = General.NumeroTexto(txtTotal.Text);
                     }
                 }
@@ -579,13 +580,13 @@ namespace Polsolcom.Forms.Procesos
             sql = "Update Pacientes Set ";
             sql += (txtNombre.Text != pacient["Nombre"] ? "Nombre='" + txtNombre.Text + "'" : "");
             sql += (sql.Contains("=") ? "," : "");
-            sql += (txtApePaterno.Text != pacient["Ape_paterno"] ? "Ape_Paterno='" + txtApePaterno.Text + "'" : "");
+            sql += (txtApePaterno.Text != pacient["Ape_Paterno"] ? "Ape_Paterno='" + txtApePaterno.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtApeMaterno.Text != pacient["Ape_materno"] ? "Ape_Materno='" + txtApeMaterno.Text + "'" : "");
+            sql += (txtApeMaterno.Text != pacient["Ape_Materno"] ? "Ape_Materno='" + txtApeMaterno.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtDNI.Text != pacient["Dni"] ? "DNI='" + txtDNI.Text + "'" : "");
+            sql += (txtDNI.Text != pacient["DNI"] ? "DNI='" + txtDNI.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtODoc.Text != pacient["Odoc"] ? "ODoc='" + txtODoc.Text + "'" : "");
+            sql += (txtODoc.Text != pacient["ODoc"] ? "ODoc='" + txtODoc.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
             sql += (txtFechaNac.Text != pacient["Fecha_Nac"] && txtFechaNac.Text.Length > 0 ? "Fecha_Nac='" + txtFechaNac.Text + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
@@ -601,8 +602,9 @@ namespace Polsolcom.Forms.Procesos
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
             sql += (cmbDistrito.SelectedValue.ToString() != pacient["Id_Distrito"] ? "Id_Distrito='" + cmbDistrito.SelectedValue.ToString() + "'" : "");
             sql += (sql.Substring(sql.Length - 1) == "," ? "" : (sql.Contains("=") ? "," : ""));
-            sql += (txtEmail.Text != pacient["E_mail"] ? "E_Mail='" + txtEmail.Text + "'" : "");
-            sql += (sql.Substring(sql.Length - 1) == "," ? sql.Substring(0, sql.Length - 1) : sql) + (sql.Contains("=") ? " Where Id_Paciente='" + ip + "'" : "");
+            sql += (txtEmail.Text != pacient["E_Mail"] ? "E_Mail='" + txtEmail.Text + "'" : "");
+
+            sql = (sql.Substring(sql.Length - 1) == "," ? sql.Substring(0, sql.Length - 1) : sql) + (sql.Contains("=") ? " Where Id_Paciente='" + ip + "'" : "");
 
             if (sql.Contains("Where"))
             {
@@ -1008,9 +1010,15 @@ namespace Polsolcom.Forms.Procesos
                     txtApePaterno.Text = this.bpac["Ape_Pat"];
                     txtApeMaterno.Text = this.bpac["Ape_Mat"];
                     txtDNI.Text = this.bpac["DNI"];
-                    //La fecha es un número, por lo tanto es indescifrable
-                    //txtFechaNac.Text = DateTime.Parse(this.bpac["Fec_Nac"]).ToShortDateString();
-                    //txtEdad.Text = General.getYearsUntilNow(this.bpac["Fec_Nac"]).ToString();
+
+                    DateTime fechaNac = new DateTime();
+                    bool result = DateTime.TryParseExact(this.bpac["Fec_Nac"], "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out fechaNac);
+                    if (result)
+                    {
+                        txtFechaNac.Text = fechaNac.ToShortDateString();
+                        txtEdad.Text = General.getYearsUntilNow(fechaNac).ToString();
+                    }
+
                     txtDireccion.Focus();
                 }
 
@@ -1089,9 +1097,11 @@ namespace Polsolcom.Forms.Procesos
             {
                 Dictionary<string, string> cesp = General.GetSelectedDictionary(cmbEspecialidad);
 
-                Id.ReadOnly = Cantidad.ReadOnly = false;
+                grdDetalle.ReadOnly = false;
+                Id.ReadOnly = false;
+                Cantidad.ReadOnly = false;
                 Precio.ReadOnly = cesp["Descripcion"] != "FARMACIA";
-                grdDetalle.Rows.Add(new string[] { this.xnrv, "", "", "", "0", "0", "0" });
+                grdDetalle.Rows.Add(new string[] { this.xnrv, "", "", "", "0", "0.00", "0.00" });
                 btnQuitar.Enabled = true;
             }
         }
@@ -1384,13 +1394,6 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
-            {
-                this.cad = txtNombre.Text;
-                txtNombre.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
-                txtNombre.Select();
-            }
-
             if (this.lastKey == Keys.F12)
             {
                 frmMessage.lblMessage.Focus();
@@ -1401,13 +1404,6 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtApePaterno_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
-            {
-                this.cad = txtApePaterno.Text;
-                txtApePaterno.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
-                txtApePaterno.Select();
-            }
-
             if (this.lastKey == Keys.F12)
             {
                 frmMessage.lblMessage.Focus();
@@ -1418,13 +1414,6 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtApeMaterno_TextChanged(object sender, EventArgs e)
         {
-            if (!(this.lastKey == Keys.Delete || this.lastKey == Keys.Insert || this.lastKey == Keys.F1 || this.lastKey == Keys.Space || char.IsLetter((char)this.lastKey) || this.lastKey == Keys.Back))
-            {
-                this.cad = txtApeMaterno.Text;
-                txtApeMaterno.Text = cad.Length < 1 ? "" : cad.Substring(0, cad.Length - 1);
-                txtApeMaterno.Select();
-            }
-
             if (this.lastKey == Keys.F12)
             {
                 frmMessage.lblMessage.Focus();
@@ -1853,8 +1842,8 @@ namespace Polsolcom.Forms.Procesos
                 grdDetalle.Rows[i].Cells["Descripcion"].Value = productos[j]["Descripcion"];
                 grdDetalle.Rows[i].Cells["Tipo"].Value = productos[j]["Tipo"];
                 grdDetalle.Rows[i].Cells["Cantidad"].Value = 1;
-                grdDetalle.Rows[i].Cells["Precio"].Value = productos[j]["Monto"];
-                grdDetalle.Rows[i].Cells["SubTotal"].Value = (int.Parse(grdDetalle.Rows[i].Cells["Cantidad"].Value.ToString()) * decimal.Parse(productos[j]["Monto"])).ToString();
+                grdDetalle.Rows[i].Cells["Precio"].Value = decimal.Parse(productos[j]["Monto"]).ToString("N2");
+                grdDetalle.Rows[i].Cells["SubTotal"].Value = (int.Parse(grdDetalle.Rows[i].Cells["Cantidad"].Value.ToString()) * decimal.Parse(productos[j]["Monto"])).ToString("N2");
 
                 int r = General.GetDictionaryList(grdDetalle).FindAll(x => x["Id"] == productos[j]["Id_Producto"]).Count;
 
@@ -1909,7 +1898,7 @@ namespace Polsolcom.Forms.Procesos
 
         private void txtDNI_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void grdDetalle_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -1947,6 +1936,34 @@ namespace Polsolcom.Forms.Procesos
         private void frmSHClinica_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmMessage.Close();
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void txtApePaterno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void txtApeMaterno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void grdDetalle_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            /*bool validClick = (e.RowIndex != -1 && e.ColumnIndex != -1); //Make sure the clicked row/column is valid.
+            var datagridview = sender as DataGridView;
+
+            // Check to make sure the cell clicked is the cell containing the combobox 
+            if (datagridview.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn && validClick)
+            {
+                datagridview.BeginEdit(true);
+                ((ComboBox)datagridview.EditingControl).DroppedDown = true;
+            }*/
         }
     }
 }

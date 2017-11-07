@@ -184,6 +184,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "frmGenParSalSpecialist";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generador de Parámetros de Pago por Especialista";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmGenParSalSpecialist_KeyDown);
             this.panel1.ResumeLayout(false);

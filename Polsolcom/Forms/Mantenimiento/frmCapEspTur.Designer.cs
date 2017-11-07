@@ -111,6 +111,7 @@
             this.Controls.Add(this.grdSpeciality);
             this.KeyPreview = true;
             this.Name = "frmCapEspTur";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCapEspTur";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCapEspTur_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdSpeciality)).EndInit();

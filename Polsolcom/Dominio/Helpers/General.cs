@@ -1291,6 +1291,8 @@ namespace Polsolcom.Dominio.Helpers
 
         public static void FillDataGridView(DataGridView dataGridView, List<Dictionary<string, string>> items, string[] boolColumns = null)
         {
+            dataGridView.Rows.Clear();
+
             foreach (Dictionary<string, string> item in items)
             {
                 List<object> array = new List<object>();
@@ -1699,6 +1701,41 @@ namespace Polsolcom.Dominio.Helpers
                 return text.Substring(startIndex);
             }
         }
+
+        public static bool vFecha(DateTime pfec, MaskedTextBox pobj)
+        {
+            DateTime sfec = DateTime.Today;
+
+            if (pfec.Month != sfec.Month && pfec.Year != sfec.Year)
+            {
+                if (MessageBox.Show("Dato ingresado no corresponde al mes y año en curso ... desea continuar ?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    pobj.Text = General.emptyDate;
+                    return false;
+                }
+            }
+
+            if (pfec.Month != sfec.Month)
+            {
+                if (MessageBox.Show("Dato ingresado no corresponde al mes en curso...desea continuar ? ", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    pobj.Text = General.emptyDate;
+                    return false;
+                }
+            }
+
+            if (pfec.Year != sfec.Year)
+            {
+                if (MessageBox.Show("Dato ingresado no corresponde al año en curso ... desea continuar ?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    pobj.Text = General.emptyDate;
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
     }
 }
 	

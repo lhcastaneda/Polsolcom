@@ -762,6 +762,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "frmRepProdTer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Producción de Terceros por Consultorio";
             ((System.ComponentModel.ISupportInitialize)(this.gdvAtencion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdvProd)).EndInit();
