@@ -1,9 +1,13 @@
-﻿using Polsolcom.Dominio.Helpers;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Polsolcom.Dominio.Connection;
+using Polsolcom.Dominio.Data;
+using Polsolcom.Dominio.Helpers;
 using Polsolcom.Forms.Mantenimiento;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +20,8 @@ namespace Polsolcom.Forms.Consultas
     {
         string sql = "";
         string id_paciente = "";
+        DataSet dt = new DataSet();
+        ReportDocument rpt = new ReportDocument();
 
         public frmVenxPac()
         {
@@ -110,25 +116,27 @@ namespace Polsolcom.Forms.Consultas
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            /*
-             *  WITH thisform
-    IF EMPTY(.txtpaciente.value)
-       RETURN
-    ENDIF
-    WAIT WINDOW NOWAIT 'Procesando la informacion solicitada ... un momento por favor ...'
-    .prepimpexp(ALLTRIM(.id_paciente))
-    SELECT COUNT(nro_historia) AS tottic FROM dbRep1 GROUP BY nro_historia INTO CURSOR Conteo NOWAIT NOCONSOLE
-    SELECT conteo
-    ntotalrec = RECCOUNT()
-    USE IN conteo
-    SELECT dbrep1
-    IF .optgrupo.value=1
-       REPORT FORM rptVenxPac.frx PREVIEW
-    ELSE
-       REPORT FORM rptAtenxPac.frx PREVIEW
-    ENDIF
- ENDWITH
-             */
+            if (txtPaciente.Text.Length == 0)
+            {
+                return;
+            }
+
+            if (this.preimpexp(this.id_paciente) == 0)
+            {
+                MessageBox.Show("No se hallaron registros ... ", "Aviso al usuario");
+                return;
+            }
+
+            object result = WaitWindow.Show(WorkerMethodRpt, "Generando el reporte...", new string[] { "SOP" });
+
+            if (result == null)
+            {
+                MessageBox.Show("No se pudo procesar el reporte.");
+                return;
+            }
+
+            frmCRViewer frg = new frmCRViewer(rpt);
+            frg.ShowDialog();
         }
 
         private void btnBPac_Click(object sender, EventArgs e)
@@ -203,6 +211,47 @@ namespace Polsolcom.Forms.Consultas
             {
                 MessageBox.Show("La consulta no genero ningun registro ... ", "Aviso al usuario");
             }
+        }
+
+        private void WorkerMethodRpt(object sender, WaitWindowEventArgs e)
+        {
+            string path = Application.StartupPath;
+            path = path.Replace("\\", "/");
+            path = path.Replace("/bin/Debug", "");
+
+            string rptName = "";
+            string table = "";
+            if (rbVentas.Checked)
+            {
+                rptName = "rptVenxPac";
+                table = "VenxPac";
+            }
+            else
+            {
+                rptName = "rptAtenxPac";
+                table = "AtenxPac";
+            }
+
+            path = path + "/Dominio/Reportes/" + rptName + ".rpt";
+
+            rpt.Load(path);
+
+            Conexion.CMD.CommandText = this.sql;
+
+            using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
+            {
+                using (ReportsDS ds = new ReportsDS())
+                {
+                    ds.Clear();
+                    da.Fill(ds, table);
+                    rpt.SetDataSource(ds);
+                }
+            }
+
+            rpt.SetParameterValue("paciente", txtPaciente.Text);
+
+
+            e.Result = true;
         }
     }
 }

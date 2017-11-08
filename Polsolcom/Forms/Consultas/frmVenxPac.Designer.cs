@@ -48,6 +48,22 @@
             this.rbAtenciones = new System.Windows.Forms.RadioButton();
             this.rbVentas = new System.Windows.Forms.RadioButton();
             this.grdHead = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdDetaTicket = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,22 +88,6 @@
             this.txtAten = new System.Windows.Forms.TextBox();
             this.txtTot = new System.Windows.Forms.TextBox();
             this.txtTkVen = new System.Windows.Forms.TextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHead)).BeginInit();
@@ -319,12 +319,141 @@
             this.grdHead.Location = new System.Drawing.Point(0, 70);
             this.grdHead.MultiSelect = false;
             this.grdHead.Name = "grdHead";
+            this.grdHead.ReadOnly = true;
             this.grdHead.RowHeadersVisible = false;
             this.grdHead.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdHead.Size = new System.Drawing.Size(740, 203);
             this.grdHead.TabIndex = 1;
             this.grdHead.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdHead_CellEndEdit);
             this.grdHead.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdHead_CellEnter);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Operativo";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Operativo";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Ticket";
+            this.dataGridViewTextBoxColumn4.HeaderText = "N°Recibo";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Fecha_Emision";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Emision";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 50;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Nro";
+            this.Column1.HeaderText = "Items";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Total";
+            this.dataGridViewTextBoxColumn6.HeaderText = "TotalS/.";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 50;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Fecha_Atencion";
+            this.Column2.HeaderText = "Atencion";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 50;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "Consultorio";
+            this.Column3.HeaderText = "Consultorio";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "CMP";
+            this.Column4.HeaderText = "CMP";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 40;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "Medico";
+            this.Column5.HeaderText = "Médico";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 130;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "Bus";
+            this.Column6.HeaderText = "Bus";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 50;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "Anulado";
+            this.Column7.HeaderText = "Anulado";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
+            this.Column7.Width = 50;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "BAnulado";
+            this.Column8.HeaderText = "Anu.";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 50;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "Nro_Historia";
+            this.Column9.HeaderText = "Nro_Historia";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "Pagado";
+            this.Column10.HeaderText = "Pagado";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "Id_Paciente";
+            this.Column11.HeaderText = "ID Paciente";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Visible = false;
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "Cant";
+            this.Column12.HeaderText = "Cant";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Visible = false;
             // 
             // grdDetaTicket
             // 
@@ -342,6 +471,7 @@
             this.grdDetaTicket.Location = new System.Drawing.Point(0, 295);
             this.grdDetaTicket.MultiSelect = false;
             this.grdDetaTicket.Name = "grdDetaTicket";
+            this.grdDetaTicket.ReadOnly = true;
             this.grdDetaTicket.RowHeadersVisible = false;
             this.grdDetaTicket.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDetaTicket.Size = new System.Drawing.Size(294, 141);
@@ -351,23 +481,27 @@
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "Producto";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Cantidad";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 50;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.HeaderText = "Precio";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Width = 50;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.HeaderText = "TotalS/.";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
             this.dataGridViewTextBoxColumn8.Width = 50;
             // 
             // grdDetaHisto
@@ -385,6 +519,7 @@
             this.grdDetaHisto.Location = new System.Drawing.Point(301, 295);
             this.grdDetaHisto.MultiSelect = false;
             this.grdDetaHisto.Name = "grdDetaHisto";
+            this.grdDetaHisto.ReadOnly = true;
             this.grdDetaHisto.RowHeadersVisible = false;
             this.grdDetaHisto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDetaHisto.Size = new System.Drawing.Size(438, 141);
@@ -394,18 +529,21 @@
             // 
             this.dataGridViewTextBoxColumn10.HeaderText = "CIE10";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
             this.dataGridViewTextBoxColumn10.Width = 50;
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.HeaderText = "Descripción";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
             this.dataGridViewTextBoxColumn9.Width = 200;
             // 
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.HeaderText = "Procedimiento";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
             this.dataGridViewTextBoxColumn11.Width = 150;
             // 
             // label6
@@ -562,118 +700,6 @@
             this.txtTkVen.ReadOnly = true;
             this.txtTkVen.Size = new System.Drawing.Size(53, 20);
             this.txtTkVen.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Operativo";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Operativo";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Ticket";
-            this.dataGridViewTextBoxColumn4.HeaderText = "N°Recibo";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Fecha_Emision";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Emision";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 50;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Nro";
-            this.Column1.HeaderText = "Items";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Total";
-            this.dataGridViewTextBoxColumn6.HeaderText = "TotalS/.";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 50;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "Fecha_Atencion";
-            this.Column2.HeaderText = "Atencion";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 50;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "Consultorio";
-            this.Column3.HeaderText = "Consultorio";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "CMP";
-            this.Column4.HeaderText = "CMP";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 40;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "Medico";
-            this.Column5.HeaderText = "Médico";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 130;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "Bus";
-            this.Column6.HeaderText = "Bus";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 50;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "Anulado";
-            this.Column7.HeaderText = "Anulado";
-            this.Column7.Name = "Column7";
-            this.Column7.Visible = false;
-            this.Column7.Width = 50;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "BAnulado";
-            this.Column8.HeaderText = "Anu.";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 50;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "Nro_Historia";
-            this.Column9.HeaderText = "Nro_Historia";
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "Pagado";
-            this.Column10.HeaderText = "Pagado";
-            this.Column10.Name = "Column10";
-            this.Column10.Visible = false;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "Id_Paciente";
-            this.Column11.HeaderText = "ID Paciente";
-            this.Column11.Name = "Column11";
-            this.Column11.Visible = false;
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "Cant";
-            this.Column12.HeaderText = "Cant";
-            this.Column12.Name = "Column12";
-            this.Column12.Visible = false;
             // 
             // frmVenxPac
             // 

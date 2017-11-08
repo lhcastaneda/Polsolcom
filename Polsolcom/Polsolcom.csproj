@@ -314,6 +314,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptAtenxPac.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAtenxPac.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dominio\Reportes\rptFrecEnf.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -398,6 +404,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptTotVenEsp.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptVenxPac.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptVenxPac.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\Consultas\frmTotUser.cs">
@@ -841,6 +853,14 @@
       <DependentUpon>Variables.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Dominio\Reportes\rptAtenxPac.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAtenxPac.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptVenxPac.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptVenxPac.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmVenxPac.resx">
       <DependentUpon>frmVenxPac.cs</DependentUpon>
     </EmbeddedResource>
@@ -1132,7 +1152,7 @@
     <Compile Include="Forms\Consultas\frmVenxPac.Designer.cs">
       <DependentUpon>frmVenxPac.cs</DependentUpon>
     </Compile>
-     <Compile Include="Forms\Consultas\frmPaciente.cs">
+    <Compile Include="Forms\Consultas\frmPaciente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Consultas\frmPaciente.Designer.cs">
