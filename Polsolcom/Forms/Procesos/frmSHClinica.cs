@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Drawing.Printing;
+using System.Data.SqlClient;
+using Polsolcom.Dominio.Data;
+using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace Polsolcom.Forms.Procesos
 {
@@ -25,6 +29,7 @@ namespace Polsolcom.Forms.Procesos
         Dictionary<string, string> rdvopen = new Dictionary<string, string>();
         Dictionary<string, string> bpac = new Dictionary<string, string>();
         Dictionary<string, string> igv = new Dictionary<string, string>();
+        Dictionary<string, string> cTick = new Dictionary<string, string>();
 
         List<Dictionary<string, string>> items = new List<Dictionary<string, string>>();
         Dictionary<string, string> progT = new Dictionary<string, string>();
@@ -78,6 +83,10 @@ namespace Polsolcom.Forms.Procesos
         private SolidBrush RedBrush = new SolidBrush(Color.Red);
         // Black Color
         private SolidBrush BlackBrush = new SolidBrush(Color.Black);
+
+        DataSet dt = new DataSet();
+        ReportDocument rpt = new ReportDocument();
+        string reportSQL = "";
 
         public frmSHClinica()
         {
@@ -1182,14 +1191,111 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            ReadInvoice = false;
-            DisplayInvoice(); // Print Preview
+            if (txtNroTicket.Text.Length == 0)
+            {
+                return;
+            }
 
-            //ReadInvoice = false;
-            //DisplayDialog(); // Print Dialog
+            string nr = this.xnrv;
+            string iu = Usuario.id_us;
+            string ie = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
 
-            //ReadInvoice = false;
-            //PrintReport(); // Print Invoice
+            if (this.ncr.Length == 0)
+            {
+                string ir = grdDetalle.Rows[0].Cells["Tipo"].Value.ToString();
+                string ip = txtIdPaciente.Text;
+
+                string sql = "Exec Rotate '" + ie + "','" + ip + "','" + ir + "','" + nr + "'";
+                Dictionary<string, string> cn = General.GetDictionary(sql);
+                this.ncr = cn != null ? cn["cn"] : "";
+            }
+
+            string sqlCTick = "Select Ape_Paterno,Ape_Materno,Nombre,DNI,ODoc,Fecha_Nac,Edad,Sexo,P.Direccion,DP.Distrito PDist,Nro_Ticket," +
+"Fecha_Emision,Serie,C.Descripcion Espec,Nom_Raz_Soc,I.Direccion+', '+DI.Distrito IDireccion " +
+"From Tickets T Inner Join Pacientes P On T.Id_Paciente=P.Id_Paciente " +
+"Inner Join Consultorios C On T.Id_Consultorio=C.Id_Consultorio " +
+"Left Join Ubigeo2005 DP On P.Id_Distrito=DP.Id_Old " +
+"Left Join Institucion I On T.Id_Inst=I.TInst+I.Id_Inst " +
+"Left Join Ubigeo2005 DI On I.Id_Distrito=DI.Id_Old " +
+"Where T.Nro_Historia='" + nr + "'";
+            this.cTick = General.GetDictionary(sqlCTick);
+
+            if (MessageBox.Show("Desea imprimir la venta directamente ... ?", "Impresion de Venta", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                ReadInvoice = false;
+                DisplayInvoice(); // Print Preview
+
+                //ReadInvoice = false;
+                //DisplayDialog(); // Print Dialog
+
+                //ReadInvoice = false;
+                //PrintReport(); // Print Invoice
+            }
+            else
+            {
+                this.reportSQL = "select D.Id_Producto AS ipr, P.Descripcion AS npro, D.Cantidad AS cant, D.Monto as cost, " +
+"round(D.Cantidad * D.Monto, 2) AS subt " +
+"from Detalles D " +
+"join Productos P on P.Id_Producto = D.Id_Producto " +
+"where Nro_historia = '" + nr + "'";
+
+                object result = WaitWindow.Show(WorkerMethodRpt, "Generando el reporte...", new string[] { "SOP" });
+
+                if (result == null)
+                {
+                    MessageBox.Show("No se pudo procesar el reporte.");
+                    return;
+                }
+
+                frmCRViewer frg = new frmCRViewer(rpt);
+                frg.ShowDialog();
+            }
+     
+        }
+
+        private void WorkerMethodRpt(object sender, WaitWindowEventArgs e)
+        {
+            string path = Application.StartupPath;
+            path = path.Replace("\\", "/");
+            path = path.Replace("/bin/Debug", "");
+
+            string rptName = "";
+            if (MessageBox.Show("Desea imprimir duplicado ... ?", "Tipo de impresión", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                rptName = "rptHistoriaOpt";
+            }
+            else
+            {
+                rptName = "rptHistoria";
+
+            }
+
+            path = path + "/Dominio/Reportes/" + rptName + ".rpt";
+
+            rpt.Load(path);
+
+            Conexion.CMD.CommandText = this.reportSQL;
+
+            using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
+            {
+                using (ReportsDS ds = new ReportsDS())
+                {
+                    ds.Clear();
+                    da.Fill(ds, "Historia");
+                    rpt.SetDataSource(ds);
+                }
+            }
+            rpt.SetParameterValue("mod_oper", Operativo.mod_oper);
+            rpt.SetParameterValue("operativo", Operativo.descripcion);
+            rpt.SetParameterValue("fecha", txtFechaEmision.Text);
+            rpt.SetParameterValue("edad", txtEdad.Text);
+            rpt.SetParameterValue("espec", this.cTick["Espec"]);
+            rpt.SetParameterValue("paciente", txtApePaterno.Text + " " + txtApeMaterno.Text + ", " + txtNombre.Text);
+            rpt.SetParameterValue("ticket", lblSerie.Text + "-" + txtNroTicket.Text);
+            rpt.SetParameterValue("digitador", lblDigitador.Text);
+            rpt.SetParameterValue("nhp", txtNHP.Text);
+
+            e.Result = true;
         }
 
         private void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2128,7 +2234,7 @@ namespace Polsolcom.Forms.Procesos
             InvSubTitle1 = Operativo.nom_raz_soc;
             InvSubTitle2 = "RUC: " + Operativo.ruc;
             InvSubTitle3 = Operativo.direccion;
-            InvSubTitle4 = "Serie: " + this.rdvopen["Autoriz"];
+            InvSubTitle4 = this.rdvopen == null ? "" : ("Serie: " + this.rdvopen["Autoriz"]);
             InvImage = Application.StartupPath + @"\Images\" + "InvPic.jpg";//Reemplazar por logo
         }
 
@@ -2355,43 +2461,15 @@ namespace Polsolcom.Forms.Procesos
             g.DrawString(thanks, InvoiceFont, BlackBrush, CurrentX, CurrentY);
         }
 
-        Dictionary<string, string> cTick = new Dictionary<string, string>();
         private void ReadInvoiceData()
         {
-            if (txtNroTicket.Text.Length == 0)
-            {
-                return;
-            }
-
-            string nr = this.xnrv;
-            string iu = Usuario.id_us;
-            string ie = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
-
-            if (this.ncr.Length == 0)
-            {
-                string ir = grdDetalle.Rows[0].Cells["Tipo"].Value.ToString();
-                string ip = txtIdPaciente.Text;
-
-                string sql = "Exec Rotate '" + ie + "','" + ip + "','" + ir + "','" + nr + "'";
-                Dictionary<string, string> cn = General.GetDictionary(sql);
-                this.ncr = cn != null ? cn["cn"] : "";
-            }
-
-            string sqlCTick = "Select Ape_Paterno,Ape_Materno,Nombre,DNI,ODoc,Fecha_Nac,Edad,Sexo,P.Direccion,DP.Distrito PDist,Nro_Ticket," +
-"Fecha_Emision,Serie,C.Descripcion Espec,Nom_Raz_Soc,I.Direccion+', '+DI.Distrito IDireccion " +
-"From Tickets T Inner Join Pacientes P On T.Id_Paciente=P.Id_Paciente " +
-"Inner Join Consultorios C On T.Id_Consultorio=C.Id_Consultorio " +
-"Left Join Ubigeo2005 DP On P.Id_Distrito=DP.Id_Old " +
-"Left Join Institucion I On T.Id_Inst=I.TInst+I.Id_Inst " +
-"Left Join Ubigeo2005 DI On I.Id_Distrito=DI.Id_Old " +
-"Where T.Nro_Historia='" + nr + "'";
-            this.cTick = General.GetDictionary(sqlCTick);
-
             //string sqlImpF = "Select * From ImpFicha Where Left(Id_Producto,6)='" + ie + "' And Estado='1' And Us_Imp='" + iu + "'";
             //Dictionary<string, string> impF = General.GetDictionary(sqlImpF);
 
             string sqlProgT = "Exec ACanTransP";
             this.progT = General.GetDictionary(sqlProgT);
+
+
         }
 
        
