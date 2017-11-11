@@ -29,15 +29,18 @@ namespace Polsolcom.Forms.Procesos
         public void bpa()
         {
             string sql = General.DevuelveQueryPaciente(txtApePaterno.Text, txtApeMaterno.Text, txtNombres.Text, txtDNI.Text, "", "", 2, this.odb);
-            this.bpacs = General.GetDictionaryList(sql);
 
-            if (this.odb == 0)
+            if (sql.Length > 0)
             {
-                General.FillListView(lstBuscar, this.bpacs, new[] { "Paciente", "Id_Paciente", "DNI" });
-            }
-            else
-            {
-                General.FillListView(lstBuscar, this.bpacs, new[] { "Paciente", "Ubigeo", "DNI" });
+                this.bpacs = General.GetDictionaryList(sql);
+                if (this.odb == 0)
+                {
+                    General.Fill(lstBuscar, this.bpacs, new[] { "Paciente", "Id_Paciente", "DNI" });
+                }
+                else
+                {
+                    General.Fill(lstBuscar, this.bpacs, new[] { "Paciente", "Ubigeo", "DNI" });
+                }
             }
 
             btnAceptar.Enabled = true;
@@ -53,7 +56,9 @@ namespace Polsolcom.Forms.Procesos
             {
                 btnAceptar.Enabled = false;
             }
-		}
+
+            txtDNI.Focus();
+        }
 
 		private void frmBuscar_KeyDown( object sender, KeyEventArgs e )
 		{

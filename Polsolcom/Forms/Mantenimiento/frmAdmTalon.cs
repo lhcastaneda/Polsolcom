@@ -59,7 +59,7 @@ namespace Polsolcom.Forms
                 this.rangos[i]["Us"] = General.TradUser(this.rangos[i]["Us"]);
             }
 
-            General.FillListView(lstRangos, this.rangos, new[] { "Us", "Fecha", "TDVen", "Serie", "NInicial", "NFinal", "NCon", "Operativo" });
+            General.Fill(lstRangos, this.rangos, new[] { "Us", "Fecha", "TDVen", "Serie", "NInicial", "NFinal", "NCon", "Operativo" });
             //
             if (lstRangos.Items.Count > 0 && this.index > -1)
             {
@@ -289,7 +289,7 @@ namespace Polsolcom.Forms
             }
 
             cmbOperativo.SelectedValue = Operativo.id_oper;
-            General.FillComboBox(cmbUsuario, this.usTal, "Id_Us", "Usuario");
+            General.Fill(cmbUsuario, this.usTal, "Id_Us", "Usuario");
             cmbUsuario.SelectedIndex = -1;
             //
             dtpicFInicial.Value = DateTime.Today;

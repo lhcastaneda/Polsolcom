@@ -39,7 +39,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (this.items.Count > 0)
             {
-                General.FillListView(lstMostrarDatos, this.items, new[] { "Serie", "Nro_Ticket", "Fecha_Atencion", "CMP", "Bus", "Consultorio", "Turno", "Digitador", "Cie10", "Procedimiento", "Nro_Historia", "Diagnostico" });
+                General.Fill(lstMostrarDatos, this.items, new[] { "Serie", "Nro_Ticket", "Fecha_Atencion", "CMP", "Bus", "Consultorio", "Turno", "Digitador", "Cie10", "Procedimiento", "Nro_Historia", "Diagnostico" });
 
                 txtEspecialidad.Text = lstMostrarDatos.Items[0].SubItems["Consultorio"].Text;
                 txtCMP.Text = lstMostrarDatos.Items[0].SubItems["CMP"].Text;

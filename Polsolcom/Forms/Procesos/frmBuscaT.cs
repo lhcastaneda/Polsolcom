@@ -119,7 +119,7 @@ namespace Polsolcom.Forms.Procesos
             sql += "And Left(T.Nro_Historia,3)='" + Operativo.id_oper + "' Order By 2";
 
             this.busts = General.GetDictionaryList(sql);
-            General.FillListView(lstBuscar, this.busts, new[] { "Consultorio", "Paciente", "Ticket", "Id_Paciente", "Fecha_Emision" });
+            General.Fill(lstBuscar, this.busts, new[] { "Consultorio", "Paciente", "Ticket", "Id_Paciente", "Fecha_Emision" });
         }
 
         private void frmBuscaT_KeyDown(object sender, KeyEventArgs e)

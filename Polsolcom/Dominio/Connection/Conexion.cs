@@ -85,6 +85,12 @@ namespace Polsolcom.Dominio.Connection
 
             return default(T);
         }
+
+        public static SqlDataReader GetDataReader(string sql)
+        {
+            SqlCommand cmd = new SqlCommand(sql, CNN);
+            return cmd.ExecuteReader();
+        }
     }
 	
 }

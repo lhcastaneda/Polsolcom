@@ -81,7 +81,7 @@
             this.btnNuevo.Location = new System.Drawing.Point(200, 462);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(60, 35);
-            this.btnNuevo.TabIndex = 0;
+            this.btnNuevo.TabIndex = 8;
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNuevo.UseVisualStyleBackColor = true;
@@ -93,7 +93,7 @@
             this.btnEditar.Location = new System.Drawing.Point(265, 462);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(60, 35);
-            this.btnEditar.TabIndex = 1;
+            this.btnEditar.TabIndex = 9;
             this.btnEditar.Text = "&Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             this.btnCortar.Location = new System.Drawing.Point(330, 462);
             this.btnCortar.Name = "btnCortar";
             this.btnCortar.Size = new System.Drawing.Size(60, 35);
-            this.btnCortar.TabIndex = 2;
+            this.btnCortar.TabIndex = 10;
             this.btnCortar.Text = "&Cortar";
             this.btnCortar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCortar.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(395, 462);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(60, 35);
-            this.btnEliminar.TabIndex = 3;
+            this.btnEliminar.TabIndex = 11;
             this.btnEliminar.Text = "&Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             this.btnRecrear.Location = new System.Drawing.Point(463, 462);
             this.btnRecrear.Name = "btnRecrear";
             this.btnRecrear.Size = new System.Drawing.Size(60, 35);
-            this.btnRecrear.TabIndex = 4;
+            this.btnRecrear.TabIndex = 12;
             this.btnRecrear.Text = "&Recrear";
             this.btnRecrear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRecrear.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@
             this.btnImprimir.Location = new System.Drawing.Point(530, 462);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(60, 35);
-            this.btnImprimir.TabIndex = 5;
+            this.btnImprimir.TabIndex = 0;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = true;
@@ -153,7 +153,7 @@
             this.label6.Location = new System.Drawing.Point(285, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);
-            this.label6.TabIndex = 19;
+            this.label6.TabIndex = 6;
             // 
             // cmbOperativo
             // 
@@ -163,7 +163,7 @@
             this.cmbOperativo.Location = new System.Drawing.Point(6, 16);
             this.cmbOperativo.Name = "cmbOperativo";
             this.cmbOperativo.Size = new System.Drawing.Size(129, 21);
-            this.cmbOperativo.TabIndex = 20;
+            this.cmbOperativo.TabIndex = 0;
             this.cmbOperativo.ValueMember = "Id_Oper";
             // 
             // operativoBindingSource
@@ -182,7 +182,7 @@
             this.cmbUsuario.Location = new System.Drawing.Point(4, 15);
             this.cmbUsuario.Name = "cmbUsuario";
             this.cmbUsuario.Size = new System.Drawing.Size(108, 21);
-            this.cmbUsuario.TabIndex = 21;
+            this.cmbUsuario.TabIndex = 0;
             // 
             // cmbDVenta
             // 
@@ -192,7 +192,7 @@
             this.cmbDVenta.Location = new System.Drawing.Point(8, 20);
             this.cmbDVenta.Name = "cmbDVenta";
             this.cmbDVenta.Size = new System.Drawing.Size(93, 21);
-            this.cmbDVenta.TabIndex = 22;
+            this.cmbDVenta.TabIndex = 1;
             this.cmbDVenta.ValueMember = "Id_Tipo";
             // 
             // docVentaBindingSource
@@ -214,28 +214,30 @@
             this.groupBox1.Location = new System.Drawing.Point(7, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(214, 52);
-            this.groupBox1.TabIndex = 37;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rango de Fecha";
             // 
             // dtpFFinal
             // 
             this.dtpFFinal.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFFinal.Location = new System.Drawing.Point(109, 22);
             this.dtpFFinal.Name = "dtpFFinal";
             this.dtpFFinal.Size = new System.Drawing.Size(98, 20);
-            this.dtpFFinal.TabIndex = 26;
+            this.dtpFFinal.TabIndex = 1;
             this.dtpFFinal.Value = new System.DateTime(2017, 4, 8, 9, 44, 33, 0);
             // 
             // dtpicFInicial
             // 
             this.dtpicFInicial.Checked = false;
+            this.dtpicFInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpicFInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpicFInicial.Location = new System.Drawing.Point(9, 23);
+            this.dtpicFInicial.Location = new System.Drawing.Point(9, 22);
             this.dtpicFInicial.Name = "dtpicFInicial";
             this.dtpicFInicial.Size = new System.Drawing.Size(97, 20);
-            this.dtpicFInicial.TabIndex = 25;
+            this.dtpicFInicial.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -243,7 +245,7 @@
             this.groupBox2.Location = new System.Drawing.Point(8, 69);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(139, 44);
-            this.groupBox2.TabIndex = 38;
+            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Operativo";
             // 
@@ -253,7 +255,7 @@
             this.groupBox3.Location = new System.Drawing.Point(150, 69);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(121, 46);
-            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Usuario";
             // 
@@ -267,7 +269,7 @@
             this.groupBox4.Location = new System.Drawing.Point(274, 67);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(429, 49);
-            this.groupBox4.TabIndex = 0;
+            this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Rango de documento de venta";
             // 
@@ -278,7 +280,7 @@
             this.txtNCon.Name = "txtNCon";
             this.txtNCon.ReadOnly = true;
             this.txtNCon.Size = new System.Drawing.Size(87, 20);
-            this.txtNCon.TabIndex = 46;
+            this.txtNCon.TabIndex = 0;
             this.txtNCon.Text = "0";
             this.txtNCon.Leave += new System.EventHandler(this.txtNCon_Leave);
             // 
@@ -289,7 +291,7 @@
             this.txtNFinal.Name = "txtNFinal";
             this.txtNFinal.ReadOnly = true;
             this.txtNFinal.Size = new System.Drawing.Size(88, 20);
-            this.txtNFinal.TabIndex = 45;
+            this.txtNFinal.TabIndex = 4;
             // 
             // txtNInicial
             // 
@@ -298,7 +300,7 @@
             this.txtNInicial.Name = "txtNInicial";
             this.txtNInicial.ReadOnly = true;
             this.txtNInicial.Size = new System.Drawing.Size(91, 20);
-            this.txtNInicial.TabIndex = 44;
+            this.txtNInicial.TabIndex = 3;
             // 
             // txtSerie
             // 
@@ -307,14 +309,14 @@
             this.txtSerie.Name = "txtSerie";
             this.txtSerie.ReadOnly = true;
             this.txtSerie.Size = new System.Drawing.Size(28, 20);
-            this.txtSerie.TabIndex = 40;
+            this.txtSerie.TabIndex = 2;
             // 
             // btnFiltro
             // 
             this.btnFiltro.Location = new System.Drawing.Point(229, 25);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(75, 23);
-            this.btnFiltro.TabIndex = 43;
+            this.btnFiltro.TabIndex = 1;
             this.btnFiltro.Text = "Filtrar";
             this.btnFiltro.UseVisualStyleBackColor = true;
             this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
@@ -335,7 +337,7 @@
             this.lstRangos.MultiSelect = false;
             this.lstRangos.Name = "lstRangos";
             this.lstRangos.Size = new System.Drawing.Size(770, 328);
-            this.lstRangos.TabIndex = 39;
+            this.lstRangos.TabIndex = 7;
             this.lstRangos.UseCompatibleStateImageBehavior = false;
             this.lstRangos.View = System.Windows.Forms.View.Details;
             this.lstRangos.SelectedIndexChanged += new System.EventHandler(this.lstRangos_SelectedIndexChanged);

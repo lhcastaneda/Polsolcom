@@ -67,7 +67,7 @@ namespace Polsolcom.Forms
             {
                 string sql = General.DevuelveQueryPaciente(pt, mt, nm, "", ip, "", 2, 0);
                 this.npacs = General.GetDictionaryList(sql);
-                General.FillListView(lstPacientes, this.npacs, new[] {"Paciente", "Id_Paciente" });
+                General.Fill(lstPacientes, this.npacs, new[] {"Paciente", "Id_Paciente" });
             }
         }
 
@@ -143,7 +143,7 @@ namespace Polsolcom.Forms
                 vcabs[i]["Digitador"] = General.TradUser(vcabs[i]["Digitador"]);
             }
 
-            General.FillListView(lstVentas, vcabs, new[] { "DVen", "NDoc", "Fecha_Emision", "Especialidad" });
+            General.Fill(lstVentas, vcabs, new[] { "DVen", "NDoc", "Fecha_Emision", "Especialidad" });
 
             rb0.Checked = true;
             optPanel.Enabled = btnEliminar.Enabled = false;
@@ -238,8 +238,8 @@ namespace Polsolcom.Forms
                 nusr[i]["Usuario"] = General.TradUser(nusr[i]["Usuario"]);
             }
             nusr.Sort((x,y) => x["Usuario"].CompareTo(y["Usuario"]));
-            General.FillComboBox(cmbUsExt, nusr, "Id_Us", "Usuario");
-            General.FillComboBox(cmbAprDscto, nusr, "Id_Us", "Usuario");
+            General.Fill(cmbUsExt, nusr, "Id_Us", "Usuario");
+            General.Fill(cmbAprDscto, nusr, "Id_Us", "Usuario");
             cmbUsExt.SelectedIndex = -1;
             cmbAprDscto.SelectedIndex = -1;
 
@@ -335,7 +335,7 @@ namespace Polsolcom.Forms
 
                 string sql = "Select P.Descripcion Producto,Cantidad,D.Monto,D.Monto*Cantidad Total,0 MD,Pagado,Dscto,D.Id_Producto,Nro_Historia,0.00 PD From Detalles D Inner Join Productos P On D.Id_Producto=P.Id_Producto Where Nro_Historia='" + nh + "'";
                 List<Dictionary<string, string>> vdets = General.GetDictionaryList(sql);
-                General.FillDataGridView(grdDet, vdets, new[] { "MD" });
+                General.Fill(grdDet, vdets, new[] { "MD" });
                 txtTotal.Text = vdets.Sum(x => decimal.Parse(x["Total"])).ToString();
 
                 int c = Conexion.ExecuteScalar<int>("Select Count(*)C From Cab_Cie10 Where Nro_Historia='" + nh + "'");

@@ -4,6 +4,13 @@ using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Drawing.Printing;
+using System.Data.SqlClient;
+using Polsolcom.Dominio.Data;
+using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace Polsolcom.Forms.Procesos
 {
@@ -17,17 +24,80 @@ namespace Polsolcom.Forms.Procesos
         string cad = "";
         string xnrv = "";
         int nhp = 0;
-        string nrc = "";
+        string ncr = "";
         string hi = "";
         Dictionary<string, string> rdvopen = new Dictionary<string, string>();
         Dictionary<string, string> bpac = new Dictionary<string, string>();
         Dictionary<string, string> igv = new Dictionary<string, string>();
+        Dictionary<string, string> cTick = new Dictionary<string, string>();
+
+        List<Dictionary<string, string>> items = new List<Dictionary<string, string>>();
+        Dictionary<string, string> progT = new Dictionary<string, string>();
 
         frmMessage frmMessage = new frmMessage();
+        // for PrintDialog, PrintPreviewDialog and PrintDocument:
+        private PrintDialog prnDialog;
+        private PrintPreviewDialog prnPreview;
+        private System.Drawing.Printing.PrintDocument prnDocument;
+
+        // for Invoice Head:
+        private string InvTitle;
+        private string InvSubTitle1;
+        private string InvSubTitle2;
+        private string InvSubTitle3;
+        private string InvSubTitle4;
+        private string InvImage;
+
+        // for Database:
+
+        // for Report:
+        private int i = 0;//ÍNDICE PARA IMPRESIÓN
+        private int CurrentY;
+        private int CurrentX;
+        private int leftMargin;
+        private int rightMargin;
+        private int topMargin;
+        private int bottomMargin;
+        private int InvoiceWidth;
+        private int InvoiceHeight;
+        private bool ReadInvoice;
+        private int SubTotalPosition;
+        private string TotalLabel = "SubTotal";
+
+        // Font and Color:------------------
+        // Title Font
+        private Font InvTitleFont = new Font("Arial", 11, FontStyle.Regular);
+        // Title Font height
+        private int InvTitleHeight;
+        // SubTitle Font
+        private Font InvSubTitleFont = new Font("Arial", 9, FontStyle.Regular);
+        // SubTitle Font height
+        private int InvSubTitleHeight;
+        // Invoice Font
+        private Font InvoiceFont = new Font("Arial", 7, FontStyle.Regular);
+        // Invoice Font height
+        private int InvoiceFontHeight;
+        // Blue Color
+        private SolidBrush BlueBrush = new SolidBrush(Color.Blue);
+        // Red Color
+        private SolidBrush RedBrush = new SolidBrush(Color.Red);
+        // Black Color
+        private SolidBrush BlackBrush = new SolidBrush(Color.Black);
+
+        DataSet dt = new DataSet();
+        ReportDocument rpt = new ReportDocument();
+        string reportSQL = "";
 
         public frmSHClinica()
         {
             InitializeComponent();
+            prnDialog = new PrintDialog();
+            prnPreview = new PrintPreviewDialog();
+            prnDocument = new System.Drawing.Printing.PrintDocument();
+            // The Event of 'PrintPage'
+            prnDocument.DefaultPageSettings.PaperSize = new PaperSize("Ticket", 276, 433);
+            prnDocument.DefaultPageSettings.Margins = new Margins(5, 5, 5, 5);
+            prnDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(prnDocument_PrintPage);
         }
 
         public void adv()
@@ -175,7 +245,7 @@ namespace Polsolcom.Forms.Procesos
                 nr = tick[i]["Nro_Historia"];
 
                 string ne = tick[i]["Id_Consultorio"];
-                string sql3 = "Select N From Productos Where Left(Id_Producto,6)='" + ne + "' And Estado='1'";
+                string sql3 = "Select * From Productos Where Left(Id_Producto,6)='" + ne + "' And Estado='1'";
                 //Llenamos productos
                 this.productosTableAdapter.Fill(this.productosDS.Productos, ne);
                 List<Dictionary<string, string>> productos = General.GetDictionaryList(sql3);
@@ -192,7 +262,7 @@ namespace Polsolcom.Forms.Procesos
 
                 if (ic.Length > 0)
                 {
-                    this.nrc = Conexion.ExecuteScalar<string>("Select Bus From Buses Where Id_Bus='" + ic + "'");
+                    this.ncr = Conexion.ExecuteScalar<string>("Select Bus From Buses Where Id_Bus='" + ic + "'");
                 }
 
                 this.xnrv = tick[i]["Nro_Historia"];
@@ -552,7 +622,6 @@ namespace Polsolcom.Forms.Procesos
                 string df = General.getDaysUntilNow(this.hi).ToString();
                 string sql = "Update Tickets Set tsg='" + df + "' Where Nro_Historia='" + nr + "'";
                 Conexion.ExecuteNonQuery(sql);
-                MessageBox.Show("Operación generada con éxito");
             }
         }
 
@@ -845,6 +914,8 @@ namespace Polsolcom.Forms.Procesos
                     btnNuevo.Text = "&Nuevo Pac";
                     this.deh();
                 }
+
+                MessageBox.Show("Operación generada con éxito");
             }
         }
 
@@ -984,6 +1055,8 @@ namespace Polsolcom.Forms.Procesos
                     btnBuscar.Text = "&Busca Pac";
                     this.deh();
                 }
+
+                MessageBox.Show("Operación generada con éxito");
             }
         }
 
@@ -1118,49 +1191,111 @@ namespace Polsolcom.Forms.Procesos
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            /*string sSQL = "";
-
-            Ubigeo oEspecialidad = (Ubigeo)cmbEspecialidad.SelectedItem;
-
-            if (txtNroTicket.Text.Trim() == "" || int.Parse(txtNroTicket.Text.Trim()) == 0)
-                return;
-
-            if (NROHISTORIA == "")
-                return;
-
-            if (BUS.Trim() == "" || BUS.Trim().Length == 0)
+            if (txtNroTicket.Text.Length == 0)
             {
-                //agregar codigo para identificar BUS
+                return;
             }
 
-            sSQL = "SELECT Ape_Paterno,Ape_Materno,Nombre,DNI,ODoc,Fecha_Nac, " +
-                   "Edad,Sexo,P.Direccion,DP.Distrito PDist, Nro_Ticket, " +
-                   "Fecha_Emision, Serie, C.Descripcion Espec, Nom_Raz_Soc, " +
-                   "I.Direccion + ', ' + DI.Distrito IDireccion " +
-                   "FROM Tickets T INNER JOIN Pacientes P " +
-                   "ON T.Id_Paciente = P.Id_Paciente " +
-                   "INNER JOIN Consultorios C " +
-                     "ON T.Id_Consultorio = C.Id_Consultorio " +
-                   "LEFT JOIN Ubigeo2005 DP " +
-                   "ON P.Id_Distrito = DP.Id_Old " +
-                   "LEFT JOIN Institucion I " +
-                   "ON T.Id_Inst = I.TInst + I.Id_Inst " +
-                   "LEFT JOIN Ubigeo2005 DI " +
-                   "ON I.Id_Distrito = DI.Id_Old " +
-                   "WHERE T.Nro_Historia = '" + NROHISTORIA + "'";
-            using (SqlCommand cmd = new SqlCommand(sSQL, Conexion.CNN))
-            {
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.HasRows)
-                    {
-                        dr.Read();
+            string nr = this.xnrv;
+            string iu = Usuario.id_us;
+            string ie = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
 
-                    }
-                    dr.Close();
+            if (this.ncr.Length == 0)
+            {
+                string ir = grdDetalle.Rows[0].Cells["Tipo"].Value.ToString();
+                string ip = txtIdPaciente.Text;
+
+                string sql = "Exec Rotate '" + ie + "','" + ip + "','" + ir + "','" + nr + "'";
+                Dictionary<string, string> cn = General.GetDictionary(sql);
+                this.ncr = cn != null ? cn["cn"] : "";
+            }
+
+            string sqlCTick = "Select Ape_Paterno,Ape_Materno,Nombre,DNI,ODoc,Fecha_Nac,Edad,Sexo,P.Direccion,DP.Distrito PDist,Nro_Ticket," +
+"Fecha_Emision,Serie,C.Descripcion Espec,Nom_Raz_Soc,I.Direccion+', '+DI.Distrito IDireccion " +
+"From Tickets T Inner Join Pacientes P On T.Id_Paciente=P.Id_Paciente " +
+"Inner Join Consultorios C On T.Id_Consultorio=C.Id_Consultorio " +
+"Left Join Ubigeo2005 DP On P.Id_Distrito=DP.Id_Old " +
+"Left Join Institucion I On T.Id_Inst=I.TInst+I.Id_Inst " +
+"Left Join Ubigeo2005 DI On I.Id_Distrito=DI.Id_Old " +
+"Where T.Nro_Historia='" + nr + "'";
+            this.cTick = General.GetDictionary(sqlCTick);
+
+            if (MessageBox.Show("Desea imprimir la venta directamente ... ?", "Impresion de Venta", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                ReadInvoice = false;
+                DisplayInvoice(); // Print Preview
+
+                //ReadInvoice = false;
+                //DisplayDialog(); // Print Dialog
+
+                //ReadInvoice = false;
+                //PrintReport(); // Print Invoice
+            }
+            else
+            {
+                this.reportSQL = "select D.Id_Producto AS ipr, P.Descripcion AS npro, D.Cantidad AS cant, D.Monto as cost, " +
+"round(D.Cantidad * D.Monto, 2) AS subt " +
+"from Detalles D " +
+"join Productos P on P.Id_Producto = D.Id_Producto " +
+"where Nro_historia = '" + nr + "'";
+
+                object result = WaitWindow.Show(WorkerMethodRpt, "Generando el reporte...", new string[] { "SOP" });
+
+                if (result == null)
+                {
+                    MessageBox.Show("No se pudo procesar el reporte.");
+                    return;
+                }
+
+                frmCRViewer frg = new frmCRViewer(rpt);
+                frg.ShowDialog();
+            }
+     
+        }
+
+        private void WorkerMethodRpt(object sender, WaitWindowEventArgs e)
+        {
+            string path = Application.StartupPath;
+            path = path.Replace("\\", "/");
+            path = path.Replace("/bin/Debug", "");
+
+            string rptName = "";
+            if (MessageBox.Show("Desea imprimir duplicado ... ?", "Tipo de impresión", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                rptName = "rptHistoriaOpt";
+            }
+            else
+            {
+                rptName = "rptHistoria";
+
+            }
+
+            path = path + "/Dominio/Reportes/" + rptName + ".rpt";
+
+            rpt.Load(path);
+
+            Conexion.CMD.CommandText = this.reportSQL;
+
+            using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
+            {
+                using (ReportsDS ds = new ReportsDS())
+                {
+                    ds.Clear();
+                    da.Fill(ds, "Historia");
+                    rpt.SetDataSource(ds);
                 }
             }
-            */
+            rpt.SetParameterValue("mod_oper", Operativo.mod_oper);
+            rpt.SetParameterValue("operativo", Operativo.descripcion);
+            rpt.SetParameterValue("fecha", txtFechaEmision.Text);
+            rpt.SetParameterValue("edad", txtEdad.Text);
+            rpt.SetParameterValue("espec", this.cTick["Espec"]);
+            rpt.SetParameterValue("paciente", txtApePaterno.Text + " " + txtApeMaterno.Text + ", " + txtNombre.Text);
+            rpt.SetParameterValue("ticket", lblSerie.Text + "-" + txtNroTicket.Text);
+            rpt.SetParameterValue("digitador", lblDigitador.Text);
+            rpt.SetParameterValue("nhp", txtNHP.Text);
+
+            e.Result = true;
         }
 
         private void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1965,5 +2100,378 @@ namespace Polsolcom.Forms.Procesos
                 ((ComboBox)datagridview.EditingControl).DroppedDown = true;
             }*/
         }
+
+        private void DisplayDialog()
+        {
+            try
+            {
+                prnDialog.Document = prnDocument;
+                DialogResult ButtonPressed = prnDialog.ShowDialog();
+                // If user Click 'OK', Print Invoice
+                if (ButtonPressed == DialogResult.OK)
+                    prnDocument.Print();
+            }
+            catch (Exception e)
+            { MessageBox.Show(e.ToString()); }
+
+        }
+
+        private void DisplayInvoice()
+        {
+            prnPreview.Document = prnDocument;
+
+            try
+            { prnPreview.ShowDialog(); }
+            catch (Exception e)
+            { MessageBox.Show(e.ToString()); }
+
+        }
+
+        private void PrintReport()
+        {
+            try
+            { prnDocument.Print(); }
+            catch (Exception e)
+            { MessageBox.Show(e.ToString()); }
+
+        }
+
+        // Result of the Event 'PrintPage'
+        private void prnDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            leftMargin = (int)e.MarginBounds.Left;
+            //leftMargin = 10;  //setea 10 puntos
+            rightMargin = (int)e.MarginBounds.Right;
+            topMargin = (int)e.MarginBounds.Top;
+            //topMargin = 10;
+            bottomMargin = (int)e.MarginBounds.Bottom;
+            InvoiceWidth = (int)e.MarginBounds.Width;
+            InvoiceHeight = (int)e.MarginBounds.Height;
+
+            if (!ReadInvoice)
+                ReadInvoiceData();
+
+            SetInvoiceHead(e.Graphics); // Draw Invoice Head
+            SetOrderData(e.Graphics); // Draw Order Data
+            SetInvoiceData(e.Graphics, e); // Draw Invoice Data
+
+            ReadInvoice = true;
+
+        }
+
+        private void SetInvoiceHead(Graphics g)
+        {
+            ReadInvoiceHead();
+
+            CurrentY = topMargin;
+            CurrentX = leftMargin;  //mueve a la derecha
+            int ImageHeight = 0;
+
+            // Draw Invoice image:
+            if (System.IO.File.Exists(InvImage))
+            {
+                Bitmap oInvImage = new Bitmap(InvImage);
+                // Set Image Left to center Image:
+                int xImage = CurrentX + (InvoiceWidth - oInvImage.Width) / 2;
+                ImageHeight = oInvImage.Height; // Get Image Height
+                g.DrawImage(oInvImage, xImage, CurrentY);
+            }
+
+            InvTitleHeight = (int)(InvTitleFont.GetHeight(g));
+            InvSubTitleHeight = (int)(InvSubTitleFont.GetHeight(g));
+
+            // Get Titles Length:
+            int lenInvTitle = (int)g.MeasureString(InvTitle, InvTitleFont).Width;
+            int lenInvSubTitle1 = (int)g.MeasureString(InvSubTitle1, InvSubTitleFont).Width;
+            int lenInvSubTitle2 = (int)g.MeasureString(InvSubTitle2, InvSubTitleFont).Width;
+            int lenInvSubTitle3 = (int)g.MeasureString(InvSubTitle3, InvSubTitleFont).Width;
+            int lenInvSubTitle4 = (int)g.MeasureString(InvSubTitle4, InvSubTitleFont).Width;
+            // Set Titles Left:
+            int xInvTitle = CurrentX + (InvoiceWidth - lenInvTitle) / 2;
+            int xInvSubTitle1 = CurrentX + (InvoiceWidth - lenInvSubTitle1) / 2;
+            int xInvSubTitle2 = CurrentX + (InvoiceWidth - lenInvSubTitle2) / 2;
+            int xInvSubTitle3 = CurrentX + (InvoiceWidth - lenInvSubTitle3) / 2;
+            int xInvSubTitle4 = CurrentX + (InvoiceWidth - lenInvSubTitle4) / 2;
+
+            // Draw Invoice Head:
+            if (InvTitle != "")
+            {
+                CurrentY = CurrentY + ImageHeight;
+                g.DrawString(InvTitle, InvTitleFont, BlueBrush, xInvTitle, CurrentY);
+            }
+            if (InvSubTitle1 != "")
+            {
+                CurrentY = CurrentY + InvTitleHeight;
+                g.DrawString(InvSubTitle1, InvSubTitleFont, BlueBrush, xInvSubTitle1, CurrentY);
+            }
+            if (InvSubTitle2 != "")
+            {
+                CurrentY = CurrentY + InvSubTitleHeight;
+                g.DrawString(InvSubTitle2, InvSubTitleFont, BlueBrush, xInvSubTitle2, CurrentY);
+            }
+            if (InvSubTitle3 != "")
+            {
+                CurrentY = CurrentY + InvSubTitleHeight;
+                g.DrawString(InvSubTitle3, InvSubTitleFont, BlueBrush, xInvSubTitle3, CurrentY);
+            }
+
+            if (InvSubTitle4 != "")
+            {
+                CurrentY = CurrentY + InvSubTitleHeight;
+                g.DrawString(InvSubTitle4, InvSubTitleFont, BlueBrush, xInvSubTitle4, CurrentY);
+            }
+
+            // Draw line:
+            CurrentY = CurrentY + InvSubTitleHeight + 8;
+            g.DrawLine(new Pen(Brushes.Black, 2), CurrentX, CurrentY, rightMargin, CurrentY);
+
+        }
+
+        private void ReadInvoiceHead()
+        {
+            //Titles and Image of invoice:
+            InvTitle = Operativo.descripcion;
+            InvSubTitle1 = Operativo.nom_raz_soc;
+            InvSubTitle2 = "RUC: " + Operativo.ruc;
+            InvSubTitle3 = Operativo.direccion;
+            InvSubTitle4 = this.rdvopen == null ? "" : ("Serie: " + this.rdvopen["Autoriz"]);
+            InvImage = Application.StartupPath + @"\Images\" + "InvPic.jpg";//Reemplazar por logo
+        }
+
+        private void SetOrderData(Graphics g)
+		{// Set Company Name, City, Salesperson, Order ID and Order Date
+			string FieldValue = "";
+			InvoiceFontHeight = (int)(InvoiceFont.GetHeight(g));
+            //Documento:
+            CurrentX = leftMargin;
+            CurrentY = CurrentY + 8;
+            FieldValue = (cmbTDoc.SelectedIndex == -1? "": General.GetSelectedDictionary(cmbTDoc)["Descripcion"] + ": ") + lblSerie.Text + "-" + txtNroTicket.Text;
+            g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+            //NHP:
+            CurrentX = CurrentX + (int)g.MeasureString(FieldValue, InvoiceFont).Width + 20;
+            FieldValue = txtNHP.Text.Length == 0? "": "HC: " + txtNHP.Text;
+            g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+            //F. Emisión/Digitador
+            CurrentX = leftMargin;
+            CurrentY = CurrentY + InvoiceFontHeight;
+            FieldValue = "Fecha: " + txtFechaEmision.Text + " (" + lblDigitador.Text + ")";
+            g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+            //Paciente:
+            CurrentX = leftMargin;
+            CurrentY = CurrentY + InvoiceFontHeight;
+            FieldValue = "Paciente: " + this.cTick["Ape_Paterno"] + " " + this.cTick["Ape_Materno"] + ", " + this.cTick["Nombre"] + " ("+ txtDNI.Text + ")";
+            g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+            //Espec:
+            CurrentX = leftMargin;
+            CurrentY = CurrentY + InvoiceFontHeight;
+            FieldValue = "Especialidad: " + this.cTick["Espec"];
+            g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+
+            //// Set City (Misma línea)
+            //CurrentX = CurrentX + (int)g.MeasureString(FieldValue, InvoiceFont).Width + 16;
+            //FieldValue = "Distrito: " + this.cTick["PDist"];
+            //g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+        		
+            // Draw line:
+            CurrentY = CurrentY + InvoiceFontHeight + 8;
+			g.DrawLine(new Pen(Brushes.Black), leftMargin, CurrentY, rightMargin, CurrentY);
+
+		}
+
+        private void SetInvoiceData(Graphics g, System.Drawing.Printing.PrintPageEventArgs e)
+        {// Set Invoice Table:
+            string FieldValue = "";
+            int CurrentRecord = 0;
+            int RecordsPerPage = 20; // twenty items in a page
+            decimal Amount = 0;
+            bool StopReading = false;
+
+            // Set Table Head:
+            string idLabel = "Id";
+            string productLabel = "Producto";
+            string quantityLabel = "Can";
+            string priceLabel = "Precio";
+            //
+            int IDPosition = leftMargin;
+            CurrentY = CurrentY + InvoiceFontHeight;
+            g.DrawString(idLabel, InvoiceFont, BlueBrush, IDPosition, CurrentY);
+
+            int ProductNamePosition = IDPosition + (int)g.MeasureString(idLabel, InvoiceFont).Width + 42;
+            g.DrawString(productLabel, InvoiceFont, BlueBrush, ProductNamePosition, CurrentY);
+
+            int QuantityPosition = ProductNamePosition + (int)g.MeasureString(productLabel, InvoiceFont).Width + 70;
+            g.DrawString(quantityLabel, InvoiceFont, BlueBrush, QuantityPosition, CurrentY);
+
+            int PricePosition = QuantityPosition + (int)g.MeasureString(quantityLabel, InvoiceFont).Width + 4;
+            g.DrawString(priceLabel, InvoiceFont, BlueBrush, PricePosition, CurrentY);
+
+            SubTotalPosition = PricePosition + (int)g.MeasureString(priceLabel, InvoiceFont).Width + 4;
+            g.DrawString(TotalLabel, InvoiceFont, BlueBrush, SubTotalPosition, CurrentY);
+
+            // Set Invoice Table:
+            CurrentY = CurrentY + InvoiceFontHeight + 8;
+
+            this.items = General.GetDictionaryList(grdDetalle);
+
+            while (CurrentRecord < RecordsPerPage)
+            {
+                Dictionary<string, string> item = General.GetDictionary(grdDetalle, this.i);
+                FieldValue = item["Id"].ToString();
+                g.DrawString(FieldValue, InvoiceFont, BlackBrush, IDPosition, CurrentY);
+
+                FieldValue = item["Descripcion"].ToString();
+                // if Length of (Product Name) > X, Draw X character only
+                int x = 20;
+                if (FieldValue.Length > x)
+                    FieldValue = FieldValue.Remove(x, FieldValue.Length - x);
+                g.DrawString(FieldValue, InvoiceFont, BlackBrush, ProductNamePosition, CurrentY);
+
+                FieldValue = item["Cantidad"].ToString();
+                int xQuantity = QuantityPosition + (int)g.MeasureString(quantityLabel, InvoiceFont).Width;
+                xQuantity = xQuantity - (int)g.MeasureString(FieldValue, InvoiceFont).Width;
+                g.DrawString(FieldValue, InvoiceFont, BlackBrush, xQuantity, CurrentY);
+
+                FieldValue = String.Format("{0:0.00}", item["Precio"]);
+                int xPrice = PricePosition + (int)g.MeasureString(priceLabel, InvoiceFont).Width;
+                xPrice = xPrice - (int)g.MeasureString(FieldValue, InvoiceFont).Width;
+                g.DrawString(FieldValue, InvoiceFont, BlackBrush, xPrice, CurrentY);
+
+                Amount = Convert.ToDecimal(item["SubTotal"]);
+                // Format Extended Price and Align to Right:
+                FieldValue = String.Format("{0:0.00}", Amount);
+                int xSubTotal = SubTotalPosition + (int)g.MeasureString(TotalLabel, InvoiceFont).Width;
+                xSubTotal = xSubTotal - (int)g.MeasureString(FieldValue, InvoiceFont).Width;
+                g.DrawString(FieldValue, InvoiceFont, BlackBrush, xSubTotal, CurrentY);
+
+                CurrentY = CurrentY + InvoiceFontHeight;
+
+                if (++this.i == grdDetalle.Rows.Count)
+                {
+                    StopReading = true;
+                    break;
+                }
+
+                CurrentRecord++;
+            }
+
+            if (CurrentRecord < RecordsPerPage)
+                e.HasMorePages = false;
+            else
+                e.HasMorePages = true;
+
+            if (StopReading)
+            {
+                this.i = 0;
+                SetInvoiceTotal(g);
+            }
+
+            g.Dispose();
+        }
+
+        private void SetInvoiceTotal(Graphics g)
+        {// Set Invoice Total:
+         // Draw line:
+            CurrentY = CurrentY + 8;
+            g.DrawLine(new Pen(Brushes.Black), leftMargin, CurrentY, rightMargin, CurrentY);
+            // Get Right Edge of Invoice:
+            int xRightEdg = SubTotalPosition + (int)g.MeasureString(TotalLabel, InvoiceFont).Width;
+
+            if (decimal.Parse(txtNeto.Text) > 0)
+            {
+                // Write Sub Total:
+                int xSubTotal = SubTotalPosition - (int)g.MeasureString(TotalLabel, InvoiceFont).Width;
+                CurrentY = CurrentY + 8;
+                g.DrawString("Sub.Tot", InvoiceFont, RedBrush, xSubTotal, CurrentY);
+                string NetValue = String.Format("{0:0.00}", txtNeto.Text);
+                int xTotalValue = xRightEdg - (int)g.MeasureString(NetValue, InvoiceFont).Width;
+                g.DrawString(NetValue, InvoiceFont, BlackBrush, xTotalValue, CurrentY);
+            }
+
+            if (decimal.Parse(txtIGV.Text) > 0)
+            {
+                // Write Order Freight:
+                int xOrderFreight = SubTotalPosition - (int)g.MeasureString("IGV", InvoiceFont).Width;
+                CurrentY = CurrentY + InvoiceFontHeight;
+                g.DrawString("IGV", InvoiceFont, RedBrush, xOrderFreight, CurrentY);
+                string IGVValue = String.Format("{0:0.00}", txtIGV.Text);
+                int xFreight = xRightEdg - (int)g.MeasureString(IGVValue, InvoiceFont).Width;
+                g.DrawString(IGVValue, InvoiceFont, BlackBrush, xFreight, CurrentY);
+            }
+
+            // Write Invoice Total:
+            int xInvoiceTotal = SubTotalPosition - (int)g.MeasureString("Total", InvoiceFont).Width;
+            CurrentY = CurrentY + InvoiceFontHeight;
+            g.DrawString("Total", InvoiceFont, RedBrush, xInvoiceTotal, CurrentY);
+            string TotalValue = String.Format("{0:0.00}", txtTotal.Text);
+            int xInvoiceValue = xRightEdg - (int)g.MeasureString(TotalValue, InvoiceFont).Width;
+            g.DrawString(TotalValue, InvoiceFont, BlackBrush, xInvoiceValue, CurrentY);
+
+            string numText = "Son: " + General.NumeroTexto(txtTotal.Text);
+            int x = 0;
+            string line = "";
+            int xline = 0;
+            foreach (string word in numText.Split(' '))
+            {
+                int y = (int)g.MeasureString(word + " ", InvoiceFont).Width;
+                if (x + y > InvoiceWidth)
+                {
+                    CurrentY = CurrentY + (xline == 0 ? 16 : InvoiceFontHeight);
+                    g.DrawString(line, InvoiceFont, BlackBrush, leftMargin, CurrentY);
+                    line = word;
+                    x = y;
+                    xline++;
+                }
+                else
+                {
+                    line += word + " ";
+                    x += y;
+                }
+            }
+
+            if (line.Length > 0)
+            {
+                CurrentY = CurrentY + InvoiceFontHeight;
+                g.DrawString(line, InvoiceFont, BlackBrush, leftMargin, CurrentY);
+            }
+  
+
+            if (txtAutoriza.Text.Length > 0)
+            {
+                string autoriza = "Aut. Dscto.:" + txtAutoriza.Text;
+                CurrentY = CurrentY + InvoiceFontHeight;
+                g.DrawString(autoriza, InvoiceFont, BlackBrush, leftMargin, CurrentY);
+            }
+
+            if (this.ncr.Length > 0)
+            {
+                CurrentY = CurrentY + InvoiceFontHeight;
+                g.DrawString(this.ncr, InvoiceFont, BlackBrush, leftMargin, CurrentY);
+            }
+        
+            if (this.progT != null)
+            {
+                string nfp = "Fecha de Examen: " + this.progT["Fecha_Prog"] + ", Nº de Orden: " + this.progT["Cantidad"];
+                CurrentY = CurrentY + InvoiceFontHeight;
+                g.DrawString(nfp, InvoiceFont, BlackBrush, leftMargin, CurrentY);
+            }
+
+            string thanks = "Gracias por su preferencia";
+            CurrentX = leftMargin + (InvoiceWidth - (int)g.MeasureString(thanks, InvoiceFont).Width) / 2;
+            CurrentY = CurrentY + 16;
+            g.DrawString(thanks, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+        }
+
+        private void ReadInvoiceData()
+        {
+            //string sqlImpF = "Select * From ImpFicha Where Left(Id_Producto,6)='" + ie + "' And Estado='1' And Us_Imp='" + iu + "'";
+            //Dictionary<string, string> impF = General.GetDictionary(sqlImpF);
+
+            string sqlProgT = "Exec ACanTransP";
+            this.progT = General.GetDictionary(sqlProgT);
+
+
+        }
+
+       
     }
 }

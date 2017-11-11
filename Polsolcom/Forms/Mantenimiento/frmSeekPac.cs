@@ -16,7 +16,8 @@ namespace Polsolcom.Forms.Mantenimiento
     public partial class frmSeekPac : Form
     {
         bool iu = false;
-        int df = 0;
+        int df = -1;
+        bool full = true;
 
         List<Dictionary<string, string>> pacs = new List<Dictionary<string, string>>();
         Dictionary<string, string> anul = new Dictionary<string, string>();
@@ -41,7 +42,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
             if (this.iu)
             {
-                General.FillListView(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
+                General.Fill(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
 
                 if (this.iu)
                 {
@@ -104,7 +105,7 @@ namespace Polsolcom.Forms.Mantenimiento
                 string sql = General.DevuelveQueryPaciente(pt, mt, nm, di, ip, nh, 2, this.df);
                 this.pacs = General.GetDictionaryList(sql);
 
-                General.FillListView(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
+                General.Fill(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
 
                 if (lstPacientes.Items.Count > 0)
                 {
@@ -256,12 +257,18 @@ namespace Polsolcom.Forms.Mantenimiento
             this.departamentosTableAdapter.Fill(this.departamentosDS.Departamentos);
             cmbDepartamento.SelectedIndex = -1;
 
-            if (this.df == 1)
+            if (this.df == 0 || this.df == 1)
             {
-                grpIdPac.Visible = false;
-                grpNroPac.Visible = false;
+                this.KeyPreview = false;
                 pnlDatos.Visible = false;
                 this.Height = 257;
+                this.full = false;
+
+                if (this.df == 1)
+                {
+                    grpIdPac.Visible = false;
+                    grpNroPac.Visible = false;
+                }
 
                 General.setAll<Button, bool>(this, "Enabled", false);
                 this.Text = "Mantenimiento del registro de Pacientes";
@@ -290,31 +297,31 @@ namespace Polsolcom.Forms.Mantenimiento
                     }
                     break;
                 case Keys.F5:
-                    if (btnNuevo.Enabled)
+                    if (btnNuevo.Enabled && this.full)
                     {
                         btnNuevo_Click(btnNuevo, new EventArgs());
                     }
                     break;
                 case Keys.F6:
-                    if (btnGrabar.Enabled)
+                    if (btnGrabar.Enabled && this.full)
                     {
                         btnGrabar_Click(btnGrabar, new EventArgs());
                     }
                     break;
                 case Keys.F7:
-                    if (btnCancelar.Enabled)
+                    if (btnCancelar.Enabled && this.full)
                     {
                         btnCancelar_Click(btnCancelar, new EventArgs());
                     }
                     break;
                 case Keys.F8:
-                    if (btnEditar.Enabled)
+                    if (btnEditar.Enabled && this.full)
                     {
                         btnEditar_Click(btnEditar, new EventArgs());
                     }
                     break;
                 case Keys.F9:
-                    if (btnAnular.Enabled)
+                    if (btnAnular.Enabled && this.full)
                     {
                         btnAnular_Click(btnAnular, new EventArgs());
                     }
@@ -325,27 +332,26 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void lstPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int i = General.GetSelectedIndex(lstPacientes);
 
-            if (this.df == 0)
+            if (this.full && lstPacientes.Items.Count > 0)
             {
-                int i = General.GetSelectedIndex(lstPacientes);
+                txtApePaterno.Text = this.df == 0 ? this.pacs[i]["Ape_Paterno"] : this.pacs[i]["Ape_Pat"];
+                txtApeMaterno.Text = this.df == 0 ? this.pacs[i]["Ape_Materno"] : this.pacs[i]["Ape_Mat"];
+                txtNombre.Text = this.pacs[i]["Nombre"];
+                txtSexo.Text = this.pacs[i]["Sexo"];
+                txtDoc.Text = this.pacs[i]["DNI"];
+                txtFechaNac.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? General.emptyDate : this.pacs[i]["Fecha_Nac"];
+                txtEdad.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? this.pacs[i]["Edad"] : General.getYearsUntilNow(this.pacs[i]["Fecha_Nac"]).ToString();
 
-                if (lstPacientes.Items.Count > 0)
+                cmbDepartamento.SelectedValue = this.df == 0 ? this.pacs[i]["Id_Distrito"].Substring(0, 2) : this.pacs[i]["Id_Old"].Substring(0, 2);
+                cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
+                cmbProvincia.SelectedValue = this.df == 0 ? this.pacs[i]["Id_Distrito"].Substring(0, 4) : this.pacs[i]["Id_Old"].Substring(0, 4);
+                cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
+                cmbDistrito.SelectedValue = this.df == 0 ? this.pacs[i]["Id_Distrito"] : this.pacs[i]["Id_Old"];
+
+                if (this.df == 0)
                 {
-                    txtApePaterno.Text = this.pacs[i]["Ape_Paterno"];
-                    txtApeMaterno.Text = this.pacs[i]["Ape_Materno"];
-                    txtNombre.Text = this.pacs[i]["Nombre"];
-                    txtSexo.Text = this.pacs[i]["Sexo"];
-                    txtDoc.Text = this.pacs[i]["DNI"];
-                    txtFechaNac.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? General.emptyDate : this.pacs[i]["Fecha_Nac"];
-                    txtEdad.Text = this.pacs[i]["Fecha_Nac"].Length == 0 ? this.pacs[i]["Edad"] : General.getYearsUntilNow(this.pacs[i]["Fecha_Nac"]).ToString();
-
-                    cmbDepartamento.SelectedValue = this.pacs[i]["Id_Distrito"].Substring(0, 2);
-                    cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
-                    cmbProvincia.SelectedValue = this.pacs[i]["Id_Distrito"].Substring(0, 4);
-                    cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
-                    cmbDistrito.SelectedValue = this.pacs[i]["Id_Distrito"];
-
                     txtIdPaciente.Text = this.pacs[i]["Id_Paciente"];
                     txtDireccion.Text = this.pacs[i]["Direccion"];
                     txtTelefono.Text = this.pacs[i]["Telefono"];
@@ -524,7 +530,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
                         if (MessageBox.Show("Desea continuar con el proceso ...?", "Paso 1", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
-                            General.FillListView(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
+                            General.Fill(lstPacientes, this.pacs, (this.df == 0 ? new[] { "Paciente", "FullDireccion", "DNI", "Telefono" } : new[] { "Paciente", "FullDireccion", "DNI" }));
                             lstPacientes_SelectedIndexChanged(lstPacientes, new EventArgs());
                             btnAnular.Text = "&Paso 2";
                         }
@@ -590,8 +596,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtNom_TextChanged(object sender, EventArgs e)
         {
-            //if (this.df == 0 || txtNom.Text.Length > 0)
-            if (txtNom.Text.Length > 0)
+            if (this.df == 0 || txtNom.Text.Length > 0)
             {
                 this.fil();
             }
@@ -599,8 +604,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtApeMat_TextChanged(object sender, EventArgs e)
         {
-            //if (this.df == 0)
-            if (txtApeMat.Text.Length > 0)
+            if (this.df == 0 || txtApeMat.Text.Length > 0)
             {
                 this.fil();
             }
@@ -608,8 +612,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtApePat_TextChanged(object sender, EventArgs e)
         {
-            //if (this.df == 0)
-            if (txtApePat.Text.Length > 0)
+            if (this.df == 0 || txtApePat.Text.Length > 0)
             {
                 this.fil();
             }
@@ -617,8 +620,7 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtDni_TextChanged(object sender, EventArgs e)
         {
-            //if (this.df == 0 || (this.df == 1 && txtDni.Text.Length == 8))
-            if (txtDni.Text.Length == 8)
+            if (this.df == 0 || (this.df == 1 && txtDni.Text.Length == 8))
             {
                 this.fil();
             }
@@ -628,7 +630,7 @@ namespace Polsolcom.Forms.Mantenimiento
         {
             int i = General.GetSelectedIndex(lstPacientes);
 
-            if (e.KeyCode == Keys.Enter && lstPacientes.Items.Count > 0)
+            if (e.KeyCode == Keys.Enter && this.full == false && lstPacientes.Items.Count > 0)
             {
                 string ip = this.df == 0 ? this.pacs[i]["Id_Paciente"] : this.pacs[i]["DNI"];
 
@@ -639,11 +641,12 @@ namespace Polsolcom.Forms.Mantenimiento
                 else
                 {
                     this.xPac = this.pacs.Find(x => x["DNI"] == ip);
-                    this.Close();
                 }
+
+                this.Close();
             }
 
-            if (e.KeyCode == Keys.Tab && this.df == 1)
+            if (e.KeyCode == Keys.Tab && this.df == 1 && this.full)
             {
                 txtEdad.Focus();
             }
@@ -732,8 +735,8 @@ namespace Polsolcom.Forms.Mantenimiento
 
         private void txtNroHist_TextChanged(object sender, EventArgs e)
         {
-            //if (this.df == 0)
-            if (txtNroHist.Text.Length > 0)
+            if (this.df == 0)
+            //if (txtNroHist.Text.Length > 0)
             {
                 this.fil();
             }

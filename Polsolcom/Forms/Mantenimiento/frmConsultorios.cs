@@ -155,7 +155,7 @@ namespace Polsolcom.Forms
                 this.busList[i]["Us_Mod"] = General.TradUser(this.busList[i]["Us_Mod"]);
             }
 
-            General.FillListView(lstBuses, this.busList, new[] { "Bus", "TBus", "Fec_Mod", "Us_Mod" });
+            General.Fill(lstBuses, this.busList, new[] { "Bus", "TBus", "Fec_Mod", "Us_Mod" });
 
             btnEditar.Enabled = false;
 
@@ -189,7 +189,7 @@ namespace Polsolcom.Forms
                     }
                 }
 
-                General.FillListView(lstTurnos, tmptr, new[] { "c", "m", "t", "n", "a" });
+                General.Fill(lstTurnos, tmptr, new[] { "c", "m", "t", "n", "a" });
 
                 //Deseleccionar todos
                 //General.UnselectListView(lstConsultorios);
@@ -238,7 +238,7 @@ namespace Polsolcom.Forms
             string sql = "Select * From Consultorios Where SubString(Id_Consultorio,1,3)= '" + io + "' And Estado Like '" + st + "%' Order By 2";
 
             this.mntspList = General.GetDictionaryList(sql);
-            General.FillListView(lstConsultorios, this.mntspList, new[] { "Descripcion", "Id_Consultorio" });
+            General.Fill(lstConsultorios, this.mntspList, new[] { "Descripcion", "Id_Consultorio" });
 
             if (typeof(T) == typeof(String))
             {

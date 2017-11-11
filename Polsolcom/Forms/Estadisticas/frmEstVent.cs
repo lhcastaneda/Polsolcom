@@ -130,19 +130,19 @@ namespace Polsolcom.Forms
             switch (mod)
             {
                 case 1:
-                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total decimal(10,2), Fecha DateTime, TCons varchar(25), Operativo varchar(20), Mes varchar(10), Año int);" +
+                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(50), Tickets int, Cantidad int, Total decimal(10,2), Fecha DateTime, TCons varchar(25), Operativo varchar(20), Mes varchar(10), Año int);" +
                         "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";";
                     break;
                 case 2:
-                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20), Mes varchar(10), NMes int, Año int);" +
+                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(50), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20), Mes varchar(10), NMes int, Año int);" +
                         "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";" ;
                     break;
                 case 3:
-                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20), Año int);" +
+                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(50), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20), Año int);" +
                         "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";";
                     break;
                 case 4:
-                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(20), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20));" +
+                    vSQL = "CREATE TABLE #tmpEstVent(Consultorio varchar(50), Tickets int, Cantidad int, Total decimal(10,2), TCons varchar(25), Operativo varchar(20));" +
                         "INSERT INTO #tmpEstVent EXEC TotCons @fini = '" + String.Format("{0:dd/MM/yyyy}", dtpicFInicial.Value) + "', @ffin = '" + String.Format("{0:dd/MM/yyyy}", dtpicFFinal.Value) + "', @idc = '" + String.Join(",", arrayEspecialidades.ToArray()) + "', @mod = " + mod.ToString() + ";";
                     break;
             }

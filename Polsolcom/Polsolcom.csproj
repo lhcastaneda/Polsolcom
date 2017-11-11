@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -89,6 +90,10 @@
       <HintPath>..\packages\Dapper.1.50.2\lib\net45\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -169,11 +174,6 @@
     <Compile Include="Dominio\Controls\PopupComboBox.designer.cs">
       <DependentUpon>PopupComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Data\CProductosDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CProductosDS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dominio\Data\DepartamentosDS.cs">
       <DependentUpon>DepartamentosDS.xsd</DependentUpon>
     </Compile>
@@ -196,6 +196,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InstitucionesDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\MedicosDS.cs">
+      <DependentUpon>MedicosDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\MedicosDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -222,6 +225,11 @@
     </Compile>
     <Compile Include="Dominio\Data\ParteDiario.cs">
       <DependentUpon>ParteDiario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\PeriodoPagoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PeriodoPagoDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\PersonalDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -306,6 +314,60 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParteDiario.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptAtenxPac.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAtenxPac.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptFrecEnf.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFrecEnf.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptHistoriaOpt.cs">
+      <DependentUpon>rptHistoriaOpt.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptHistoria.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptHistoria.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptRepTerDet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptRepTerDet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptProdMedCon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProdMedCon.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptProdMedPrcSOP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProdMedPrcSOP.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptRepTerRes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptRepTerRes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptRepTerResDia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptRepTerResDia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dominio\Reportes\rptResultado.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -344,6 +406,36 @@
       <DependentUpon>rptTalon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dominio\Reportes\rptTotUser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTotUser.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptTotVenEsp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTotVenEsp.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dominio\Reportes\rptVenxPac.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptVenxPac.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmTotUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmTotUser.Designer.cs">
+      <DependentUpon>frmTotUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmVentasCons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmVentasCons.Designer.cs">
+      <DependentUpon>frmVentasCons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Mantenimiento\frmAdmTalon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,11 +472,11 @@
     <Compile Include="Forms\Mantenimiento\frmCapEspTur.Designer.cs">
       <DependentUpon>frmCapEspTur.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consultas\frmConsRotations.cs">
+    <Compile Include="Forms\Consultas\frmConRot.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consultas\frmConsRotations.Designer.cs">
-      <DependentUpon>frmConsRotations.cs</DependentUpon>
+    <Compile Include="Forms\Consultas\frmConRot.Designer.cs">
+      <DependentUpon>frmConRot.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Herramientas\frmCRViewer.cs">
       <SubType>Form</SubType>
@@ -404,11 +496,11 @@
     <Compile Include="Forms\frmDentalHistory.Designer.cs">
       <DependentUpon>frmDentalHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmDiseases.cs">
+    <Compile Include="Forms\Consultas\frmEnfermedades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmDiseases.Designer.cs">
-      <DependentUpon>frmDiseases.cs</DependentUpon>
+    <Compile Include="Forms\Consultas\frmEnfermedades.Designer.cs">
+      <DependentUpon>frmEnfermedades.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmExecute.cs">
       <SubType>Form</SubType>
@@ -560,10 +652,10 @@
     <Compile Include="Forms\frmProdDigitador.Designer.cs">
       <DependentUpon>frmProdDigitador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmProdMed.cs">
+    <Compile Include="Forms\Consultas\frmProdMed.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmProdMed.Designer.cs">
+    <Compile Include="Forms\Consultas\frmProdMed.Designer.cs">
       <DependentUpon>frmProdMed.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Consultas\frmProduccion.cs">
@@ -596,10 +688,10 @@
     <Compile Include="Forms\frmRegistroUsuarios.Designer.cs">
       <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmRepProdTer.cs">
+    <Compile Include="Forms\Consultas\frmRepProdTer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmRepProdTer.Designer.cs">
+    <Compile Include="Forms\Consultas\frmRepProdTer.Designer.cs">
       <DependentUpon>frmRepProdTer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmResperEsp.cs">
@@ -662,11 +754,11 @@
     <Compile Include="Forms\Mantenimiento\frmPersonal.Designer.cs">
       <DependentUpon>frmPersonal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Consultas\frmSpecialAnnulment.cs">
+    <Compile Include="Forms\Procesos\frmAnualt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Consultas\frmSpecialAnnulment.Designer.cs">
-      <DependentUpon>frmSpecialAnnulment.cs</DependentUpon>
+    <Compile Include="Forms\Procesos\frmAnualt.Designer.cs">
+      <DependentUpon>frmAnualt.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mantenimiento\frmEspecialistas.cs">
       <SubType>Form</SubType>
@@ -773,6 +865,52 @@
       <DependentUpon>Variables.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Dominio\Reportes\rptAtenxPac.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAtenxPac.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptHistoriaOpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptHistoriaOpt1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptHistoria.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptHistoria.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptVenxPac.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptVenxPac.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmVenxPac.resx">
+      <DependentUpon>frmVenxPac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmPaciente.resx">
+      <DependentUpon>frmPaciente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptFrecEnf.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFrecEnf.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptRepTerDet.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptRepTerDet.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptProdMedCon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProdMedCon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptProdMedPrcSOP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProdMedPrcSOP.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptRepTerRes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptRepTerRes.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptRepTerResDia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptRepTerResDia.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dominio\Reportes\rptResultado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptResultado.cs</LastGenOutput>
@@ -797,6 +935,20 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTalon.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptTotUser.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTotUser.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dominio\Reportes\rptTotVenEsp.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTotVenEsp.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmTotUser.resx">
+      <DependentUpon>frmTotUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Consultas\frmVentasCons.resx">
+      <DependentUpon>frmVentasCons.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmEstPac.yo.resx">
       <DependentUpon>frmEstPac.cs</DependentUpon>
     </EmbeddedResource>
@@ -818,8 +970,8 @@
     <EmbeddedResource Include="Forms\Mantenimiento\frmCapEspTur.resx">
       <DependentUpon>frmCapEspTur.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consultas\frmConsRotations.resx">
-      <DependentUpon>frmConsRotations.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Consultas\frmConRot.resx">
+      <DependentUpon>frmConRot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Herramientas\frmCRViewer.resx">
       <DependentUpon>frmCRViewer.cs</DependentUpon>
@@ -830,8 +982,8 @@
     <EmbeddedResource Include="Forms\frmDentalHistory.resx">
       <DependentUpon>frmDentalHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmDiseases.resx">
-      <DependentUpon>frmDiseases.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Consultas\frmEnfermedades.resx">
+      <DependentUpon>frmEnfermedades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmExecute.resx">
       <DependentUpon>frmExecute.cs</DependentUpon>
@@ -920,7 +1072,7 @@
     <EmbeddedResource Include="Forms\frmProdDigitador.resx">
       <DependentUpon>frmProdDigitador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmProdMed.resx">
+    <EmbeddedResource Include="Forms\Consultas\frmProdMed.resx">
       <DependentUpon>frmProdMed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmProduccion.resx">
@@ -938,7 +1090,7 @@
     <EmbeddedResource Include="Forms\frmRegistroUsuarios.resx">
       <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmRepProdTer.resx">
+    <EmbeddedResource Include="Forms\Consultas\frmRepProdTer.resx">
       <DependentUpon>frmRepProdTer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmResperEsp.resx">
@@ -964,8 +1116,8 @@
     <EmbeddedResource Include="Forms\Principal\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Consultas\frmSpecialAnnulment.resx">
-      <DependentUpon>frmSpecialAnnulment.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Procesos\frmAnualt.resx">
+      <DependentUpon>frmAnualt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmEspecialistas.resx">
       <DependentUpon>frmEspecialistas.cs</DependentUpon>
@@ -1014,6 +1166,18 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="Forms\Consultas\frmVenxPac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmVenxPac.Designer.cs">
+      <DependentUpon>frmVenxPac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Consultas\frmPaciente.Designer.cs">
+      <DependentUpon>frmPaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -1119,6 +1283,17 @@
     <None Include="Dominio\Data\MedicosDS.xss">
       <DependentUpon>MedicosDS.xsd</DependentUpon>
     </None>
+    <None Include="Dominio\Data\PeriodoPagoDS.xsc">
+      <DependentUpon>PeriodoPagoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dominio\Data\PeriodoPagoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PeriodoPagoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dominio\Data\PeriodoPagoDS.xss">
+      <DependentUpon>PeriodoPagoDS.xsd</DependentUpon>
+    </None>
     <None Include="Dominio\Data\ProductosDS.xsc">
       <DependentUpon>ProductosDS.xsd</DependentUpon>
     </None>
@@ -1151,17 +1326,6 @@
     </None>
     <None Include="Dominio\Data\TablaTipoDS.xss">
       <DependentUpon>TablaTipoDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\CProductosDS.xsc">
-      <DependentUpon>CProductosDS.xsd</DependentUpon>
-    </None>
-    <None Include="Dominio\Data\CProductosDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CProductosDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dominio\Data\CProductosDS.xss">
-      <DependentUpon>CProductosDS.xsd</DependentUpon>
     </None>
     <None Include="Dominio\Data\DepartamentosDS.xsc">
       <DependentUpon>DepartamentosDS.xsd</DependentUpon>
@@ -1447,35 +1611,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

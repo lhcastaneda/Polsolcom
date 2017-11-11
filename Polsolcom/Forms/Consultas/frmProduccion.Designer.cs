@@ -78,7 +78,7 @@
             this.fGrid.Name = "fGrid";
             this.fGrid.ReadOnly = true;
             this.fGrid.Size = new System.Drawing.Size(805, 250);
-            this.fGrid.TabIndex = 0;
+            this.fGrid.TabIndex = 13;
             this.fGrid.TreeCol = null;
             this.fGrid.TreeLines.Color = System.Drawing.SystemColors.WindowText;
             // 
@@ -151,7 +151,7 @@
             this.btnTimer.Location = new System.Drawing.Point(387, 55);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Size = new System.Drawing.Size(45, 33);
-            this.btnTimer.TabIndex = 4;
+            this.btnTimer.TabIndex = 8;
             this.btnTimer.UseVisualStyleBackColor = true;
             this.btnTimer.Visible = false;
             // 
@@ -171,7 +171,7 @@
             this.btnEjecutar.Location = new System.Drawing.Point(712, 4);
             this.btnEjecutar.Name = "btnEjecutar";
             this.btnEjecutar.Size = new System.Drawing.Size(97, 31);
-            this.btnEjecutar.TabIndex = 7;
+            this.btnEjecutar.TabIndex = 10;
             this.btnEjecutar.Text = "&Ejecutar";
             this.btnEjecutar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEjecutar.UseVisualStyleBackColor = true;
@@ -183,7 +183,7 @@
             this.btnImprimir.Location = new System.Drawing.Point(712, 38);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(97, 31);
-            this.btnImprimir.TabIndex = 8;
+            this.btnImprimir.TabIndex = 11;
             this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnImprimir.UseVisualStyleBackColor = true;
@@ -195,7 +195,7 @@
             this.btnSalir.Location = new System.Drawing.Point(712, 71);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(97, 31);
-            this.btnSalir.TabIndex = 9;
+            this.btnSalir.TabIndex = 12;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -208,7 +208,7 @@
             this.dtpFechFinal.Location = new System.Drawing.Point(183, 69);
             this.dtpFechFinal.Name = "dtpFechFinal";
             this.dtpFechFinal.Size = new System.Drawing.Size(156, 20);
-            this.dtpFechFinal.TabIndex = 10;
+            this.dtpFechFinal.TabIndex = 7;
             // 
             // label3
             // 
@@ -218,7 +218,7 @@
             this.label3.Location = new System.Drawing.Point(11, 53);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 13);
-            this.label3.TabIndex = 12;
+            this.label3.TabIndex = 4;
             this.label3.Text = "Seleccione Fecha Inicial:";
             // 
             // label8
@@ -229,7 +229,7 @@
             this.label8.Location = new System.Drawing.Point(513, 368);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(114, 13);
-            this.label8.TabIndex = 18;
+            this.label8.TabIndex = 14;
             this.label8.Text = "Total Vendidos S/.";
             // 
             // label9
@@ -251,7 +251,7 @@
             this.label10.Location = new System.Drawing.Point(513, 422);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(89, 13);
-            this.label10.TabIndex = 20;
+            this.label10.TabIndex = 22;
             this.label10.Text = "Total Final S/,";
             // 
             // txtcVen
@@ -260,7 +260,7 @@
             this.txtcVen.Name = "txtcVen";
             this.txtcVen.ReadOnly = true;
             this.txtcVen.Size = new System.Drawing.Size(91, 20);
-            this.txtcVen.TabIndex = 21;
+            this.txtcVen.TabIndex = 15;
             // 
             // txtcExt
             // 
@@ -268,7 +268,7 @@
             this.txtcExt.Name = "txtcExt";
             this.txtcExt.ReadOnly = true;
             this.txtcExt.Size = new System.Drawing.Size(91, 20);
-            this.txtcExt.TabIndex = 22;
+            this.txtcExt.TabIndex = 20;
             // 
             // txtCant
             // 
@@ -276,7 +276,7 @@
             this.txtCant.Name = "txtCant";
             this.txtCant.ReadOnly = true;
             this.txtCant.Size = new System.Drawing.Size(91, 20);
-            this.txtCant.TabIndex = 23;
+            this.txtCant.TabIndex = 0;
             // 
             // txtsVen
             // 
@@ -284,7 +284,7 @@
             this.txtsVen.Name = "txtsVen";
             this.txtsVen.ReadOnly = true;
             this.txtsVen.Size = new System.Drawing.Size(91, 20);
-            this.txtsVen.TabIndex = 24;
+            this.txtsVen.TabIndex = 18;
             // 
             // txtsExt
             // 
@@ -292,7 +292,7 @@
             this.txtsExt.Name = "txtsExt";
             this.txtsExt.ReadOnly = true;
             this.txtsExt.Size = new System.Drawing.Size(90, 20);
-            this.txtsExt.TabIndex = 25;
+            this.txtsExt.TabIndex = 21;
             // 
             // txtTotal
             // 
@@ -300,7 +300,7 @@
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(90, 20);
-            this.txtTotal.TabIndex = 26;
+            this.txtTotal.TabIndex = 1;
             // 
             // pnlCheck
             // 
@@ -311,7 +311,7 @@
             this.pnlCheck.Location = new System.Drawing.Point(517, 4);
             this.pnlCheck.Name = "pnlCheck";
             this.pnlCheck.Size = new System.Drawing.Size(104, 93);
-            this.pnlCheck.TabIndex = 28;
+            this.pnlCheck.TabIndex = 9;
             // 
             // rbExtorno
             // 
@@ -319,7 +319,7 @@
             this.rbExtorno.Location = new System.Drawing.Point(14, 62);
             this.rbExtorno.Name = "rbExtorno";
             this.rbExtorno.Size = new System.Drawing.Size(74, 19);
-            this.rbExtorno.TabIndex = 32;
+            this.rbExtorno.TabIndex = 2;
             this.rbExtorno.Text = "Extorno";
             this.rbExtorno.UseVisualStyleBackColor = true;
             // 
@@ -329,7 +329,7 @@
             this.rbAnulado.Location = new System.Drawing.Point(13, 37);
             this.rbAnulado.Name = "rbAnulado";
             this.rbAnulado.Size = new System.Drawing.Size(77, 19);
-            this.rbAnulado.TabIndex = 31;
+            this.rbAnulado.TabIndex = 1;
             this.rbAnulado.Text = "Anulado";
             this.rbAnulado.UseVisualStyleBackColor = true;
             // 
@@ -340,7 +340,7 @@
             this.rbVendido.Location = new System.Drawing.Point(13, 12);
             this.rbVendido.Name = "rbVendido";
             this.rbVendido.Size = new System.Drawing.Size(77, 19);
-            this.rbVendido.TabIndex = 30;
+            this.rbVendido.TabIndex = 0;
             this.rbVendido.TabStop = true;
             this.rbVendido.Text = "Vendido";
             this.rbVendido.UseVisualStyleBackColor = true;
@@ -353,7 +353,7 @@
             this.label11.Location = new System.Drawing.Point(180, 53);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(144, 13);
-            this.label11.TabIndex = 29;
+            this.label11.TabIndex = 6;
             this.label11.Text = "Seleccione Fecha Final:";
             // 
             // consultoriosTableAdapter

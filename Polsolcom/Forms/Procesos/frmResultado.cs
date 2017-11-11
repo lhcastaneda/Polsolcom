@@ -44,7 +44,7 @@ namespace Polsolcom.Forms.Procesos
             this.es_ = es;
             this.nh = nh;
 
-            General.FillDataGridView(grdProductos, items, new[] { "dM" });
+            General.Fill(grdProductos, items, new[] { "dM" });
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)

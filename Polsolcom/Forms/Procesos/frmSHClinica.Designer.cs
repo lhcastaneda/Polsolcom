@@ -1164,6 +1164,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // Nrv
             // 
+            this.Nrv.DataPropertyName = "Nrv";
             this.Nrv.HeaderText = "NRV";
             this.Nrv.Name = "Nrv";
             this.Nrv.ReadOnly = true;
@@ -1171,6 +1172,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // Id
             // 
+            this.Id.DataPropertyName = "Id";
             this.Id.DataSource = this.productosBindingSource;
             this.Id.DisplayMember = "Descripcion";
             this.Id.HeaderText = "Descripción del producto o servicio";
@@ -1191,6 +1193,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // Descripcion
             // 
+            this.Descripcion.DataPropertyName = "Descripcion";
             this.Descripcion.HeaderText = "Descripcion";
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
@@ -1198,6 +1201,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // Tipo
             // 
+            this.Tipo.DataPropertyName = "Tipo";
             this.Tipo.HeaderText = "Tipo";
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
@@ -1205,6 +1209,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // Cantidad
             // 
+            this.Cantidad.DataPropertyName = "Cantidad";
             this.Cantidad.HeaderText = "Cant.";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
@@ -1212,6 +1217,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // Precio
             // 
+            this.Precio.DataPropertyName = "Precio";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.Precio.DefaultCellStyle = dataGridViewCellStyle1;
             this.Precio.HeaderText = "Precio";
@@ -1221,6 +1227,7 @@ namespace Polsolcom.Forms.Procesos
             // 
             // SubTotal
             // 
+            this.SubTotal.DataPropertyName = "SubTotal";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.SubTotal.DefaultCellStyle = dataGridViewCellStyle2;
             this.SubTotal.HeaderText = "SubTotal";

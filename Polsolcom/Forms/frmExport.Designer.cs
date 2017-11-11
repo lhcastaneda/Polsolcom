@@ -30,11 +30,11 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtRuta = new System.Windows.Forms.TextBox();
-            this.txtNomArchivo = new System.Windows.Forms.TextBox();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.txtNomFile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cmbTipArchivo = new System.Windows.Forms.ComboBox();
-            this.btnAbrir = new System.Windows.Forms.Button();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.btnOpen = new System.Windows.Forms.Button();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -57,48 +57,52 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Nombre de Archivo";
             // 
-            // txtRuta
+            // txtPath
             // 
-            this.txtRuta.Location = new System.Drawing.Point(131, 12);
-            this.txtRuta.Name = "txtRuta";
-            this.txtRuta.Size = new System.Drawing.Size(439, 20);
-            this.txtRuta.TabIndex = 3;
+            this.txtPath.Location = new System.Drawing.Point(131, 12);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.Size = new System.Drawing.Size(439, 20);
+            this.txtPath.TabIndex = 3;
             // 
-            // txtNomArchivo
+            // txtNomFile
             // 
-            this.txtNomArchivo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNomArchivo.Location = new System.Drawing.Point(131, 47);
-            this.txtNomArchivo.Name = "txtNomArchivo";
-            this.txtNomArchivo.Size = new System.Drawing.Size(209, 20);
-            this.txtNomArchivo.TabIndex = 4;
+            this.txtNomFile.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNomFile.Location = new System.Drawing.Point(131, 47);
+            this.txtNomFile.Name = "txtNomFile";
+            this.txtNomFile.Size = new System.Drawing.Size(317, 20);
+            this.txtNomFile.TabIndex = 4;
+            this.txtNomFile.Leave += new System.EventHandler(this.txtNomFile_Leave);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(346, 50);
+            this.label4.Location = new System.Drawing.Point(455, 50);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Tipo de Archivo";
+            this.label4.Text = "Tipo";
             // 
-            // cmbTipArchivo
+            // cmbTipo
             // 
-            this.cmbTipArchivo.FormattingEnabled = true;
-            this.cmbTipArchivo.Location = new System.Drawing.Point(449, 47);
-            this.cmbTipArchivo.Name = "cmbTipArchivo";
-            this.cmbTipArchivo.Size = new System.Drawing.Size(121, 21);
-            this.cmbTipArchivo.TabIndex = 6;
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Items.AddRange(new object[] {
+            "XLSX"});
+            this.cmbTipo.Location = new System.Drawing.Point(496, 47);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(74, 21);
+            this.cmbTipo.TabIndex = 6;
             // 
-            // btnAbrir
+            // btnOpen
             // 
-            this.btnAbrir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbrir.Location = new System.Drawing.Point(576, 12);
-            this.btnAbrir.Name = "btnAbrir";
-            this.btnAbrir.Size = new System.Drawing.Size(49, 56);
-            this.btnAbrir.TabIndex = 7;
-            this.btnAbrir.Text = "...";
-            this.btnAbrir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAbrir.UseVisualStyleBackColor = true;
+            this.btnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpen.Location = new System.Drawing.Point(576, 12);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(49, 56);
+            this.btnOpen.TabIndex = 7;
+            this.btnOpen.Text = "...";
+            this.btnOpen.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // btnExportar
             // 
@@ -109,6 +113,7 @@
             this.btnExportar.Text = "&Exportar";
             this.btnExportar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnCerrar
             // 
@@ -119,6 +124,7 @@
             this.btnCerrar.Text = "&Cerrar";
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // frmExport
             // 
@@ -128,15 +134,16 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnExportar);
-            this.Controls.Add(this.btnAbrir);
-            this.Controls.Add(this.cmbTipArchivo);
+            this.Controls.Add(this.btnOpen);
+            this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtNomArchivo);
-            this.Controls.Add(this.txtRuta);
+            this.Controls.Add(this.txtNomFile);
+            this.Controls.Add(this.txtPath);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Name = "frmExport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Exportar Datos . . .";
@@ -149,11 +156,11 @@
         #endregion
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtRuta;
-        private System.Windows.Forms.TextBox txtNomArchivo;
+        private System.Windows.Forms.TextBox txtPath;
+        private System.Windows.Forms.TextBox txtNomFile;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbTipArchivo;
-        private System.Windows.Forms.Button btnAbrir;
+        private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnCerrar;
     }
