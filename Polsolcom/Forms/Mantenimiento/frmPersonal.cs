@@ -378,20 +378,20 @@ namespace Polsolcom.Forms
             {
                 this.updbal();
             }
-        }
+		}
 
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            this.habil(true);
-            this.lnew = false;
-            General.setAll<Button, bool>(this, "Enabled", false);
-            btnCancelar.Enabled = true;
-            btnGrabar.Enabled = true;
-            btnNuevo.Enabled = false;
-            txtNombres.Focus();
-        }
+		private void btnEditar_Click(object sender, EventArgs e)
+		     {
+		        this.habil(true);
+		        this.lnew = false;
+			General.setAll<Button, bool>(this, "Enabled", false);
+			btnCancelar.Enabled = true;
+			btnGrabar.Enabled = true;
+		btnNuevo.Enabled = false;
+		txtNombres.Focus();
+		}
 
-        private void picFoto_Click(object sender, EventArgs e)
+		private void picFoto_Click(object sender, EventArgs e)
         {
             //TO DO: Método, subir imagen
         }

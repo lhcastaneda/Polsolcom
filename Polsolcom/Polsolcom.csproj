@@ -1558,6 +1558,7 @@
     <Content Include="Imagenes\down.bmp" />
     <Content Include="Imagenes\Down.ico" />
     <Content Include="Imagenes\down.png" />
+    <None Include="Imagenes\edit %282%29.png" />
     <Content Include="Imagenes\Edit-Document.ico" />
     <Content Include="Imagenes\edit.bmp" />
     <Content Include="Imagenes\edit.ico" />
