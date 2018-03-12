@@ -57,9 +57,9 @@
 			this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
 			this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnSalir.Location = new System.Drawing.Point(531, 63);
+			this.btnSalir.Location = new System.Drawing.Point(538, 56);
 			this.btnSalir.Name = "btnSalir";
-			this.btnSalir.Size = new System.Drawing.Size(59, 44);
+			this.btnSalir.Size = new System.Drawing.Size(60, 44);
 			this.btnSalir.TabIndex = 31;
 			this.btnSalir.Text = "&Salir";
 			this.btnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -71,9 +71,9 @@
 			this.btnUltimo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnUltimo.Image = ((System.Drawing.Image)(resources.GetObject("btnUltimo.Image")));
 			this.btnUltimo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnUltimo.Location = new System.Drawing.Point(530, 23);
+			this.btnUltimo.Location = new System.Drawing.Point(538, 8);
 			this.btnUltimo.Name = "btnUltimo";
-			this.btnUltimo.Size = new System.Drawing.Size(60, 35);
+			this.btnUltimo.Size = new System.Drawing.Size(60, 44);
 			this.btnUltimo.TabIndex = 30;
 			this.btnUltimo.Text = "&Ultimo";
 			this.btnUltimo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -85,9 +85,9 @@
 			this.btnSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnSiguiente.Image = ((System.Drawing.Image)(resources.GetObject("btnSiguiente.Image")));
 			this.btnSiguiente.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnSiguiente.Location = new System.Drawing.Point(470, 23);
+			this.btnSiguiente.Location = new System.Drawing.Point(474, 8);
 			this.btnSiguiente.Name = "btnSiguiente";
-			this.btnSiguiente.Size = new System.Drawing.Size(60, 35);
+			this.btnSiguiente.Size = new System.Drawing.Size(60, 44);
 			this.btnSiguiente.TabIndex = 29;
 			this.btnSiguiente.Text = "&Siguiente";
 			this.btnSiguiente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -99,9 +99,9 @@
 			this.btnAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAnterior.Image = ((System.Drawing.Image)(resources.GetObject("btnAnterior.Image")));
 			this.btnAnterior.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnAnterior.Location = new System.Drawing.Point(410, 23);
+			this.btnAnterior.Location = new System.Drawing.Point(410, 8);
 			this.btnAnterior.Name = "btnAnterior";
-			this.btnAnterior.Size = new System.Drawing.Size(60, 35);
+			this.btnAnterior.Size = new System.Drawing.Size(60, 44);
 			this.btnAnterior.TabIndex = 28;
 			this.btnAnterior.Text = "&Anterior";
 			this.btnAnterior.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -117,9 +117,9 @@
 			this.grpBusqueda.Controls.Add(this.lstDatos);
 			this.grpBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.grpBusqueda.ForeColor = System.Drawing.Color.DarkBlue;
-			this.grpBusqueda.Location = new System.Drawing.Point(9, 122);
+			this.grpBusqueda.Location = new System.Drawing.Point(5, 103);
 			this.grpBusqueda.Name = "grpBusqueda";
-			this.grpBusqueda.Size = new System.Drawing.Size(588, 170);
+			this.grpBusqueda.Size = new System.Drawing.Size(595, 192);
 			this.grpBusqueda.TabIndex = 27;
 			this.grpBusqueda.TabStop = false;
 			this.grpBusqueda.Text = "Ingrese criterios de búsqueda";
@@ -127,7 +127,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(11, 28);
+			this.label2.Location = new System.Drawing.Point(5, 19);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(85, 13);
 			this.label2.TabIndex = 32;
@@ -136,7 +136,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(422, 29);
+			this.label1.Location = new System.Drawing.Point(433, 20);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(54, 13);
 			this.label1.TabIndex = 21;
@@ -146,7 +146,7 @@
 			// 
 			this.txtFilt1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtFilt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtFilt1.Location = new System.Drawing.Point(479, 26);
+			this.txtFilt1.Location = new System.Drawing.Point(489, 17);
 			this.txtFilt1.Name = "txtFilt1";
 			this.txtFilt1.Size = new System.Drawing.Size(100, 20);
 			this.txtFilt1.TabIndex = 20;
@@ -156,9 +156,9 @@
 			// 
 			this.txtFilt2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtFilt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtFilt2.Location = new System.Drawing.Point(102, 25);
+			this.txtFilt2.Location = new System.Drawing.Point(92, 16);
 			this.txtFilt2.Name = "txtFilt2";
-			this.txtFilt2.Size = new System.Drawing.Size(316, 20);
+			this.txtFilt2.Size = new System.Drawing.Size(332, 20);
 			this.txtFilt2.TabIndex = 19;
 			this.txtFilt2.TextChanged += new System.EventHandler(this.txtFilt2_TextChanged);
 			// 
@@ -169,10 +169,10 @@
             this.columnHeader2});
 			this.lstDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstDatos.FullRowSelect = true;
-			this.lstDatos.Location = new System.Drawing.Point(11, 51);
+			this.lstDatos.Location = new System.Drawing.Point(6, 39);
 			this.lstDatos.MultiSelect = false;
 			this.lstDatos.Name = "lstDatos";
-			this.lstDatos.Size = new System.Drawing.Size(569, 111);
+			this.lstDatos.Size = new System.Drawing.Size(584, 149);
 			this.lstDatos.TabIndex = 18;
 			this.lstDatos.UseCompatibleStateImageBehavior = false;
 			this.lstDatos.View = System.Windows.Forms.View.Details;
@@ -195,7 +195,7 @@
 			this.grpDescrip.Controls.Add(this.txtCIE10);
 			this.grpDescrip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.grpDescrip.ForeColor = System.Drawing.Color.DarkBlue;
-			this.grpDescrip.Location = new System.Drawing.Point(10, 11);
+			this.grpDescrip.Location = new System.Drawing.Point(5, -1);
 			this.grpDescrip.Name = "grpDescrip";
 			this.grpDescrip.Size = new System.Drawing.Size(337, 103);
 			this.grpDescrip.TabIndex = 26;
@@ -206,20 +206,20 @@
 			// 
 			this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtDescripcion.Location = new System.Drawing.Point(14, 45);
+			this.txtDescripcion.Location = new System.Drawing.Point(6, 38);
 			this.txtDescripcion.Multiline = true;
 			this.txtDescripcion.Name = "txtDescripcion";
 			this.txtDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.txtDescripcion.Size = new System.Drawing.Size(306, 51);
+			this.txtDescripcion.Size = new System.Drawing.Size(323, 61);
 			this.txtDescripcion.TabIndex = 1;
 			// 
 			// txtCIE10
 			// 
 			this.txtCIE10.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtCIE10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtCIE10.Location = new System.Drawing.Point(13, 22);
+			this.txtCIE10.Location = new System.Drawing.Point(6, 16);
 			this.txtCIE10.Name = "txtCIE10";
-			this.txtCIE10.Size = new System.Drawing.Size(100, 20);
+			this.txtCIE10.Size = new System.Drawing.Size(101, 20);
 			this.txtCIE10.TabIndex = 0;
 			// 
 			// btnInicio
@@ -227,9 +227,9 @@
 			this.btnInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnInicio.Image = ((System.Drawing.Image)(resources.GetObject("btnInicio.Image")));
 			this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnInicio.Location = new System.Drawing.Point(350, 23);
+			this.btnInicio.Location = new System.Drawing.Point(346, 8);
 			this.btnInicio.Name = "btnInicio";
-			this.btnInicio.Size = new System.Drawing.Size(60, 35);
+			this.btnInicio.Size = new System.Drawing.Size(60, 44);
 			this.btnInicio.TabIndex = 25;
 			this.btnInicio.Text = "&Inicio";
 			this.btnInicio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -241,7 +241,7 @@
 			this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
 			this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnEliminar.Location = new System.Drawing.Point(471, 63);
+			this.btnEliminar.Location = new System.Drawing.Point(474, 56);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(60, 44);
 			this.btnEliminar.TabIndex = 34;
@@ -254,7 +254,7 @@
 			this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
 			this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnModificar.Location = new System.Drawing.Point(411, 63);
+			this.btnModificar.Location = new System.Drawing.Point(410, 56);
 			this.btnModificar.Name = "btnModificar";
 			this.btnModificar.Size = new System.Drawing.Size(60, 44);
 			this.btnModificar.TabIndex = 33;
@@ -267,7 +267,7 @@
 			this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
 			this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnNuevo.Location = new System.Drawing.Point(351, 63);
+			this.btnNuevo.Location = new System.Drawing.Point(346, 56);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(60, 44);
 			this.btnNuevo.TabIndex = 32;

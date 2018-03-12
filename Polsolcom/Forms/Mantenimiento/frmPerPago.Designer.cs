@@ -54,9 +54,9 @@
 			// txtBuscar
 			// 
 			this.txtBuscar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.txtBuscar.Location = new System.Drawing.Point(87, 13);
+			this.txtBuscar.Location = new System.Drawing.Point(66, 4);
 			this.txtBuscar.Name = "txtBuscar";
-			this.txtBuscar.Size = new System.Drawing.Size(345, 20);
+			this.txtBuscar.Size = new System.Drawing.Size(364, 20);
 			this.txtBuscar.TabIndex = 0;
 			this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
 			// 
@@ -65,9 +65,9 @@
 			this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
 			this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnNuevo.Location = new System.Drawing.Point(68, 399);
+			this.btnNuevo.Location = new System.Drawing.Point(26, 361);
 			this.btnNuevo.Name = "btnNuevo";
-			this.btnNuevo.Size = new System.Drawing.Size(99, 32);
+			this.btnNuevo.Size = new System.Drawing.Size(90, 44);
 			this.btnNuevo.TabIndex = 2;
 			this.btnNuevo.Text = "&Nuevo";
 			this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -79,9 +79,9 @@
 			this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
 			this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnModificar.Location = new System.Drawing.Point(173, 399);
+			this.btnModificar.Location = new System.Drawing.Point(176, 361);
 			this.btnModificar.Name = "btnModificar";
-			this.btnModificar.Size = new System.Drawing.Size(99, 32);
+			this.btnModificar.Size = new System.Drawing.Size(90, 44);
 			this.btnModificar.TabIndex = 3;
 			this.btnModificar.Text = "&Modificar";
 			this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -92,7 +92,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(12, 13);
+			this.label1.Location = new System.Drawing.Point(2, 6);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(63, 13);
 			this.label1.TabIndex = 4;
@@ -100,7 +100,6 @@
 			// 
 			// panel1
 			// 
-			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.panel1.Controls.Add(this.txtIdPer);
 			this.panel1.Controls.Add(this.label5);
 			this.panel1.Controls.Add(this.txtLastUpDate);
@@ -111,17 +110,17 @@
 			this.panel1.Controls.Add(this.dtpInicioPer);
 			this.panel1.Controls.Add(this.label3);
 			this.panel1.Controls.Add(this.label2);
-			this.panel1.Location = new System.Drawing.Point(12, 266);
+			this.panel1.Location = new System.Drawing.Point(4, 248);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(420, 127);
+			this.panel1.Size = new System.Drawing.Size(423, 110);
 			this.panel1.TabIndex = 5;
 			// 
 			// txtIdPer
 			// 
 			this.txtIdPer.Enabled = false;
-			this.txtIdPer.Location = new System.Drawing.Point(303, 19);
+			this.txtIdPer.Location = new System.Drawing.Point(288, 20);
 			this.txtIdPer.Name = "txtIdPer";
-			this.txtIdPer.Size = new System.Drawing.Size(100, 20);
+			this.txtIdPer.Size = new System.Drawing.Size(130, 20);
 			this.txtIdPer.TabIndex = 9;
 			// 
 			// label5
@@ -129,7 +128,7 @@
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label5.ForeColor = System.Drawing.Color.DarkBlue;
-			this.label5.Location = new System.Drawing.Point(300, 3);
+			this.label5.Location = new System.Drawing.Point(292, 4);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(67, 13);
 			this.label5.TabIndex = 8;
@@ -139,9 +138,9 @@
 			// 
 			this.txtLastUpDate.BackColor = System.Drawing.SystemColors.ActiveBorder;
 			this.txtLastUpDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txtLastUpDate.Location = new System.Drawing.Point(218, 96);
+			this.txtLastUpDate.Location = new System.Drawing.Point(218, 85);
 			this.txtLastUpDate.Name = "txtLastUpDate";
-			this.txtLastUpDate.Size = new System.Drawing.Size(185, 20);
+			this.txtLastUpDate.Size = new System.Drawing.Size(186, 20);
 			this.txtLastUpDate.TabIndex = 7;
 			this.txtLastUpDate.Text = "LastUpDate";
 			this.txtLastUpDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -150,7 +149,7 @@
 			// 
 			this.txtCreation.BackColor = System.Drawing.SystemColors.ActiveBorder;
 			this.txtCreation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txtCreation.Location = new System.Drawing.Point(12, 96);
+			this.txtCreation.Location = new System.Drawing.Point(12, 85);
 			this.txtCreation.Name = "txtCreation";
 			this.txtCreation.Size = new System.Drawing.Size(190, 20);
 			this.txtCreation.TabIndex = 6;
@@ -161,9 +160,9 @@
 			// 
 			this.txtPeriodo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtPeriodo.Enabled = false;
-			this.txtPeriodo.Location = new System.Drawing.Point(12, 69);
+			this.txtPeriodo.Location = new System.Drawing.Point(4, 60);
 			this.txtPeriodo.Name = "txtPeriodo";
-			this.txtPeriodo.Size = new System.Drawing.Size(391, 20);
+			this.txtPeriodo.Size = new System.Drawing.Size(414, 20);
 			this.txtPeriodo.TabIndex = 5;
 			// 
 			// label4
@@ -171,7 +170,7 @@
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label4.ForeColor = System.Drawing.Color.DarkBlue;
-			this.label4.Location = new System.Drawing.Point(12, 52);
+			this.label4.Location = new System.Drawing.Point(5, 44);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(118, 13);
 			this.label4.TabIndex = 4;
@@ -180,18 +179,18 @@
 			// dtpFinalPer
 			// 
 			this.dtpFinalPer.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFinalPer.Location = new System.Drawing.Point(120, 20);
+			this.dtpFinalPer.Location = new System.Drawing.Point(146, 20);
 			this.dtpFinalPer.Name = "dtpFinalPer";
-			this.dtpFinalPer.Size = new System.Drawing.Size(102, 20);
+			this.dtpFinalPer.Size = new System.Drawing.Size(134, 20);
 			this.dtpFinalPer.TabIndex = 3;
 			this.dtpFinalPer.ValueChanged += new System.EventHandler(this.dtpFinalPer_ValueChanged);
 			// 
 			// dtpInicioPer
 			// 
 			this.dtpInicioPer.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpInicioPer.Location = new System.Drawing.Point(12, 20);
+			this.dtpInicioPer.Location = new System.Drawing.Point(4, 20);
 			this.dtpInicioPer.Name = "dtpInicioPer";
-			this.dtpInicioPer.Size = new System.Drawing.Size(102, 20);
+			this.dtpInicioPer.Size = new System.Drawing.Size(134, 20);
 			this.dtpInicioPer.TabIndex = 2;
 			this.dtpInicioPer.ValueChanged += new System.EventHandler(this.dtpInicioPer_ValueChanged);
 			// 
@@ -200,7 +199,7 @@
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.Color.DarkBlue;
-			this.label3.Location = new System.Drawing.Point(120, 4);
+			this.label3.Location = new System.Drawing.Point(149, 4);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(81, 13);
 			this.label3.TabIndex = 1;
@@ -211,7 +210,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.DarkBlue;
-			this.label2.Location = new System.Drawing.Point(12, 4);
+			this.label2.Location = new System.Drawing.Point(8, 4);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(85, 13);
 			this.label2.TabIndex = 0;
@@ -222,9 +221,9 @@
 			this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
 			this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnEliminar.Location = new System.Drawing.Point(278, 399);
+			this.btnEliminar.Location = new System.Drawing.Point(326, 361);
 			this.btnEliminar.Name = "btnEliminar";
-			this.btnEliminar.Size = new System.Drawing.Size(99, 32);
+			this.btnEliminar.Size = new System.Drawing.Size(90, 44);
 			this.btnEliminar.TabIndex = 6;
 			this.btnEliminar.Text = "&Eliminar";
 			this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -237,9 +236,9 @@
             this.columnHeader1,
             this.columnHeader2});
 			this.lstPeriodos.FullRowSelect = true;
-			this.lstPeriodos.Location = new System.Drawing.Point(10, 40);
+			this.lstPeriodos.Location = new System.Drawing.Point(4, 27);
 			this.lstPeriodos.Name = "lstPeriodos";
-			this.lstPeriodos.Size = new System.Drawing.Size(422, 218);
+			this.lstPeriodos.Size = new System.Drawing.Size(424, 218);
 			this.lstPeriodos.TabIndex = 7;
 			this.lstPeriodos.UseCompatibleStateImageBehavior = false;
 			this.lstPeriodos.View = System.Windows.Forms.View.Details;
@@ -259,7 +258,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(440, 437);
+			this.ClientSize = new System.Drawing.Size(432, 407);
 			this.ControlBox = false;
 			this.Controls.Add(this.lstPeriodos);
 			this.Controls.Add(this.btnEliminar);
