@@ -745,5 +745,20 @@ namespace Polsolcom.Forms.Mantenimiento
         private void cmbTDoc_SelectionChangeCommitted(object sender, EventArgs e)
         {
         }
-    }
+
+		private void pnlDatos_Paint( object sender, PaintEventArgs e )
+		{
+
+		}
+
+		private void label26_Click( object sender, EventArgs e )
+		{
+
+		}
+
+		private void cmbTDoc_SelectedIndexChanged( object sender, EventArgs e )
+		{
+
+		}
+	}
 }
