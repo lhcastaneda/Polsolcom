@@ -60,7 +60,7 @@
 			this.btnSalir.Location = new System.Drawing.Point(556, 55);
 			this.btnSalir.Name = "btnSalir";
 			this.btnSalir.Size = new System.Drawing.Size(70, 47);
-			this.btnSalir.TabIndex = 31;
+			this.btnSalir.TabIndex = 11;
 			this.btnSalir.Text = "&Salir";
 			this.btnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btnSalir.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
 			this.btnUltimo.Location = new System.Drawing.Point(556, 6);
 			this.btnUltimo.Name = "btnUltimo";
 			this.btnUltimo.Size = new System.Drawing.Size(70, 47);
-			this.btnUltimo.TabIndex = 30;
+			this.btnUltimo.TabIndex = 7;
 			this.btnUltimo.Text = "&Ultimo";
 			this.btnUltimo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btnUltimo.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
 			this.btnSiguiente.Location = new System.Drawing.Point(486, 6);
 			this.btnSiguiente.Name = "btnSiguiente";
 			this.btnSiguiente.Size = new System.Drawing.Size(70, 47);
-			this.btnSiguiente.TabIndex = 29;
+			this.btnSiguiente.TabIndex = 6;
 			this.btnSiguiente.Text = "&Siguiente";
 			this.btnSiguiente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btnSiguiente.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
 			this.btnAnterior.Location = new System.Drawing.Point(416, 6);
 			this.btnAnterior.Name = "btnAnterior";
 			this.btnAnterior.Size = new System.Drawing.Size(70, 47);
-			this.btnAnterior.TabIndex = 28;
+			this.btnAnterior.TabIndex = 5;
 			this.btnAnterior.Text = "&Anterior";
 			this.btnAnterior.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btnAnterior.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@
 			this.txtFilt1.Location = new System.Drawing.Point(489, 17);
 			this.txtFilt1.Name = "txtFilt1";
 			this.txtFilt1.Size = new System.Drawing.Size(130, 20);
-			this.txtFilt1.TabIndex = 20;
+			this.txtFilt1.TabIndex = 3;
 			this.txtFilt1.TextChanged += new System.EventHandler(this.txtFilt1_TextChanged);
 			// 
 			// txtFilt2
@@ -159,7 +159,7 @@
 			this.txtFilt2.Location = new System.Drawing.Point(92, 16);
 			this.txtFilt2.Name = "txtFilt2";
 			this.txtFilt2.Size = new System.Drawing.Size(336, 20);
-			this.txtFilt2.TabIndex = 19;
+			this.txtFilt2.TabIndex = 2;
 			this.txtFilt2.TextChanged += new System.EventHandler(this.txtFilt2_TextChanged);
 			// 
 			// lstDatos
@@ -175,7 +175,7 @@
 			this.lstDatos.Name = "lstDatos";
 			this.lstDatos.Size = new System.Drawing.Size(616, 149);
 			this.lstDatos.Sorting = System.Windows.Forms.SortOrder.Ascending;
-			this.lstDatos.TabIndex = 18;
+			this.lstDatos.TabIndex = 12;
 			this.lstDatos.UseCompatibleStateImageBehavior = false;
 			this.lstDatos.View = System.Windows.Forms.View.Details;
 			this.lstDatos.Click += new System.EventHandler(this.lstDatos_Click);
@@ -232,7 +232,7 @@
 			this.btnInicio.Location = new System.Drawing.Point(346, 6);
 			this.btnInicio.Name = "btnInicio";
 			this.btnInicio.Size = new System.Drawing.Size(70, 47);
-			this.btnInicio.TabIndex = 25;
+			this.btnInicio.TabIndex = 4;
 			this.btnInicio.Text = "&Inicio";
 			this.btnInicio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btnInicio.UseVisualStyleBackColor = true;
@@ -246,7 +246,7 @@
 			this.btnEliminar.Location = new System.Drawing.Point(486, 55);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(70, 47);
-			this.btnEliminar.TabIndex = 34;
+			this.btnEliminar.TabIndex = 10;
 			this.btnEliminar.Text = "&Eliminar";
 			this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btnEliminar.UseVisualStyleBackColor = true;
@@ -260,7 +260,7 @@
 			this.btnModificar.Location = new System.Drawing.Point(416, 55);
 			this.btnModificar.Name = "btnModificar";
 			this.btnModificar.Size = new System.Drawing.Size(70, 47);
-			this.btnModificar.TabIndex = 33;
+			this.btnModificar.TabIndex = 9;
 			this.btnModificar.Text = "&Modificar";
 			this.btnModificar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btnModificar.UseVisualStyleBackColor = true;
@@ -274,7 +274,7 @@
 			this.btnNuevo.Location = new System.Drawing.Point(346, 55);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(70, 47);
-			this.btnNuevo.TabIndex = 32;
+			this.btnNuevo.TabIndex = 8;
 			this.btnNuevo.Text = "&Nuevo";
 			this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.btnNuevo.UseVisualStyleBackColor = true;

@@ -572,11 +572,11 @@
     <Compile Include="Forms\Herramientas\frmGrafico.Designer.cs">
       <DependentUpon>frmGrafico.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Otros\frmhorario.cs">
+    <Compile Include="Forms\Otros\frmHorario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Otros\frmhorario.Designer.cs">
-      <DependentUpon>frmhorario.cs</DependentUpon>
+    <Compile Include="Forms\Otros\frmHorario.Designer.cs">
+      <DependentUpon>frmHorario.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Otros\frmMantImpFicha.cs">
       <SubType>Form</SubType>
@@ -716,10 +716,10 @@
     <Compile Include="Forms\Otros\frmProgTrans.Designer.cs">
       <DependentUpon>frmProgTrans.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Otros\frmRegistroUsuarios.cs">
+    <Compile Include="Forms\Herramientas\frmRegistroUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Otros\frmRegistroUsuarios.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmRegistroUsuarios.Designer.cs">
       <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Consultas\frmRepProdTer.cs">
@@ -842,10 +842,10 @@
     <Compile Include="Forms\Principal\frmTPCam.Designer.cs">
       <DependentUpon>frmTPCam.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Otros\frmTvAccesos.cs">
+    <Compile Include="Forms\Herramientas\frmTvAccesos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Otros\frmTvAccesos.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmTvAccesos.Designer.cs">
       <DependentUpon>frmTvAccesos.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Herramientas\frmtvMenus.cs">
@@ -1043,8 +1043,8 @@
       <DependentUpon>frmGrafico.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Otros\frmhorario.resx">
-      <DependentUpon>frmhorario.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Otros\frmHorario.resx">
+      <DependentUpon>frmHorario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mantenimiento\frmInstitucion.resx">
       <DependentUpon>frmInstitucion.cs</DependentUpon>
@@ -1121,7 +1121,7 @@
     <EmbeddedResource Include="Forms\Otros\frmProgTrans.resx">
       <DependentUpon>frmProgTrans.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Otros\frmRegistroUsuarios.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmRegistroUsuarios.resx">
       <DependentUpon>frmRegistroUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consultas\frmRepProdTer.resx">
@@ -1177,7 +1177,7 @@
     <EmbeddedResource Include="Forms\Principal\frmTPCam.resx">
       <DependentUpon>frmTPCam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Otros\frmTvAccesos.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmTvAccesos.resx">
       <DependentUpon>frmTvAccesos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Herramientas\frmtvMenus.resx">
