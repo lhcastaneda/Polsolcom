@@ -16,5 +16,10 @@ namespace Polsolcom.Forms
         {
             InitializeComponent();
         }
-    }
+
+		private void btnEjecuta_Click( object sender, EventArgs e )
+		{
+
+		}
+	}
 }

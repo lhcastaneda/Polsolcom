@@ -1709,7 +1709,6 @@ namespace Polsolcom.Dominio.Helpers
             return list;
         }
 
-        //https://stackoverflow.com/questions/3025361/c-sharp-datetime-to-yyyymmddhhmmss-format
         public static string FormatDate(DateTime dateTime)
         {
             return String.Format("{0:MM/dd/yyyy}", dateTime);
