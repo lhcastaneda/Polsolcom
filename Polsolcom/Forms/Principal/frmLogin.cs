@@ -112,7 +112,7 @@ namespace Polsolcom.Forms
                 }
                 
                 string vKey_Pass = cmbUsuario.Text.Trim().Substring(0,Strings.InStr(cmbUsuario.Text, "-", CompareMethod.Text) - 1);
-                vKey_Pass = @General.cryptgr(vKey_Pass, true, 1);
+                //vKey_Pass = @General.cryptgr(vKey_Pass, true, 1);
 
                 //consulta que trae los datos completos del usuario 
 
@@ -129,7 +129,7 @@ namespace Polsolcom.Forms
                 vSQL = vSQL + " WHERE LTrim(RTrim(Descripcion)) = 'CARGO'  ";
                 vSQL = vSQL + " AND LTrim(RTrim(Id_Tabla)) = '0')) C  ";
                 vSQL = vSQL + " ON P.Id_Cargo = C.Id_Tipo ";
-                vSQL = vSQL + " WHERE Key_Pass = '" + @vKey_Pass + "' ";
+                vSQL = vSQL + " WHERE DBO.Cryptgr(Key_Pass,0,1) = '" + vKey_Pass.Trim().ToUpper() + "' ";
 				using( SqlCommand cmd = new SqlCommand(vSQL, Conexion.CNN) )
 				{
 					using( SqlDataReader dr = cmd.ExecuteReader() )
