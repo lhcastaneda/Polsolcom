@@ -1,0 +1,559 @@
+
+
+Select
+O.Descripcion,O.Id_Oper,O.Estado,MO.Descripcio
+n As
+Mod_Oper,O.Id_Distrito,O.Uni_Org,O.Fil_Ubi,I.Nom
+_Raz_Soc,I.RUC,I.Direccion,U.Distrito From
+Operativo O Inner Join (Select Id_Tipo,Descripcion
+From TablaTipo Where Id_Tabla In (Select Id_Tipo
+From TablaTipo Where
+LTrim(RTrim(Descripcion))='MODALIDAD_OPERATI
+VO' And LTrim(RTrim(Id_Tabla))='0'))MO On
+O.Mod_Oper=MO.Id_Tipo Inner Join Institucion I On
+O.Id_Emp=I.TInst+I.Id_Inst Inner Join Ubigeo2005 U
+On I.Id_Distrito=U.Id_Old Order By 2
+
+Select * From Cie10 Order By 1 
+
+Select * From Ubigeo2005 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MODALIDAD_ESPECIALIDAD' And LTrim(RTrim(Id_Tabla))='0') Order By 2      
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='ESTADO_REGISTRO' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TURNOS' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_USUARIO' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_COLEGIATURA' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_INSTITUCION' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_PRODUCTO' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_SUBPRODUCTO' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='DOC_VENTA' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_MONEDA' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='FORMA_PAGO' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='DOC_IDENTIDAD' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='PAGO_ESPECIALISTAS' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='CARGO' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MARCA_PROCESO' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MOTIVO_ANULACION' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MOTIVO_EXTORNACION' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion)) Like '%IGV%' And LTrim(RTrim(Id_Tabla))='0') And Val_Abr='1' Order By 2
+
+SELECT DISTINCT departamento,LEFT(id_old,2) AS id_dpto FROM Ubigeo2005 ubigeo ORDER BY 1          
+
+Select Key_Pass As Usuario,Type As
+Tipo,Nombres+' '+ Ape_Paterno+' '+ Ape_Materno
+As Descripcion From sysaccusers S Inner Join
+Personal P On S.Id_Per=P.Id_Personal Inner Join
+(Select Id_Tipo,Descripcion From TablaTipo Where
+Id_Tabla In (Select Id_Tipo From TablaTipo Where
+LTrim(RTrim(Descripcion))='ESTADO_REGISTRO'))
+E On S.State=E.Id_Tipo Where
+LTrim(RTrim(E.Descripcion))='ACTIVADO'
+
+Select Id_Us,Key_Pass As Usuario,Us_Log As
+Clave,Type As Tipo,Case When Nombres Is Null
+Then 'Root' Else Nombres+' '+ Ape_Paterno+' '+
+Ape_Materno End As Descripcion,S.Id_Area,Case
+When C.Descripcion Is Null Then 'Root' Else
+C.Descripcion End As Cargo From sysaccusers S
+Left Join Personal P On S.Id_Per=P.Id_Personal
+Left Join (Select Id_Tipo,Descripcion From
+TablaTipo Where Id_Tabla In (Select Id_Tipo From
+TablaTipo Where
+LTrim(RTrim(Descripcion))='CARGO' And
+LTrim(RTrim(Id_Tabla))='0'))C On
+P.Id_Cargo=C.Id_Tipo Where Key_Pass=?lu
+
+Select Id_Us,Key_Pass As Usuario,Us_Log As
+Clave,Type As Tipo,Case When Nombres Is Null
+Then 'Root' Else Nombres+' '+ Ape_Paterno+' '+
+Ape_Materno End As Descripcion,S.Id_Area,Case
+When C.Descripcion Is Null Then 'Root' Else
+C.Descripcion End As Cargo From sysaccusers S
+Left Join Personal P On S.Id_Per=P.Id_Personal
+Left Join (Select Id_Tipo,Descripcion From
+TablaTipo Where Id_Tabla In (Select Id_Tipo From
+TablaTipo Where
+LTrim(RTrim(Descripcion))='CARGO' And
+LTrim(RTrim(Id_Tabla))='0'))C On
+P.Id_Cargo=C.Id_Tipo Where Key_Pass=?lu
+
+Select Id_Us,Key_Pass As Usuario,Us_Log As
+Clave,Type As Tipo,Case When Nombres Is Null
+Then 'Root' Else Nombres+' '+ Ape_Paterno+' '+
+Ape_Materno End As Descripcion,S.Id_Area,Case
+When C.Descripcion Is Null Then 'Root' Else
+C.Descripcion End As Cargo From sysaccusers S
+Left Join Personal P On S.Id_Per=P.Id_Personal
+Left Join (Select Id_Tipo,Descripcion From
+TablaTipo Where Id_Tabla In (Select Id_Tipo From
+TablaTipo Where
+LTrim(RTrim(Descripcion))='CARGO' And
+LTrim(RTrim(Id_Tabla))='0'))C On
+P.Id_Cargo=C.Id_Tipo Where Key_Pass=?lu
+
+Select * From Cambio 
+
+Select Serie From (Select Serie From Serie Where
+Fec_Ins In(Select Max(Fec_Ins) From Serie Where
+Id_Oper=?Oper) And Id_Oper=?Oper Union All
+Select Serie From Tickets Where Digitador=?nUser
+And Fecha_Emision=(Select Max(Fecha_Emision)
+From Tickets Where Digitador=?nUser))X Group By
+Serie Order By Count(Serie) Desc
+
+Select PM.*,A.Mnu_Us From PadMenu PM Inner
+Join BarMenu BM On
+PM.Pad_Popup=BM.Bar_Popup Inner Join Accesos
+A On BM.Bar_Number=A.Mnu_Bar And
+BM.Bar_Popup=A.Mnu_Pop Where
+LTrim(RTrim(A.Mnu_Us))=?us Group By
+PM.Pad_Name,PM.Pad_Prompt,PM.Pad_Popup,PM.
+Pad_Order,A.Mnu_Us Order By PM.Pad_Order
+
+Select BM.* From Barmenu BM Inner Join Accesos A On BM.Bar_Popup=A.Mnu_Pop And BM.Bar_Number=A.Mnu_Bar Where LTrim(RTrim(A.Mnu_Us))=?us Order By BM.Bar_Popup,BM.Bar_Order                 
+
+Select Count(*)As C From Frases Where Tipo='D' 
+
+Select Top 1 * From Frases Where Tipo=?lt
+
+Update Frases Set Tipo='X' Where Frase Like ?rf
+
+
+Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Descripcion,Id_Personal,Direccion,Distrito,Telefono,Celular From Personal P Left Join Ubigeo2005 U On P.Id_Distrito=U.Id_Old Order By 1
+
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion='AREA_TRABAJO' And Id_Tabla='0') Union All Select Id_Bus Id_Tipo,Bus Descripcion From Buses Where Bus<>'COMPUTO' Order By 2     
+
+Select Id_Us,Key_Pass Login,Us_Log Passwd,Type
+Tipo,Id_Per,S.Id_Area,S.Obs,State
+Estado,S.Us_Ins,S.Date_Ins,S.Us_Up,S.Date_Up,L
+Trim(RTrim(Ape_Paterno))+' '+
+LTrim(RTrim(Ape_Materno))+' '+
+LTrim(RTrim(Nombres))Descripcion From
+sysaccusers S Inner Join Personal P On
+S.Id_Per=P.Id_Personal Where State Like ?st+ '%'
+Order By Descripcion
+
+Repl All cusr.Tipo With Transys.Trans(cusr.Tipo,.F.,2)
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Id_Us,Key_Pass Login,Us_Log Passwd,Type
+Tipo,Id_Per,S.Id_Area,S.Obs,State
+Estado,S.Us_Ins,S.Date_Ins,S.Us_Up,S.Date_Up,L
+Trim(RTrim(Ape_Paterno))+' '+
+LTrim(RTrim(Ape_Materno))+' '+
+LTrim(RTrim(Nombres))Descripcion From
+sysaccusers S Inner Join Personal P On
+S.Id_Per=P.Id_Personal Where State Like ?st+ '%'
+Order By Descripcion
+
+Repl All cusr.Tipo With Transys.Trans(cusr.Tipo,.F.,2)
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select
+O.Descripcion,O.Id_Oper,O.Estado,MO.Descripcio
+n As
+Mod_Oper,O.Id_Distrito,O.Uni_Org,O.Fil_Ubi,I.Nom
+_Raz_Soc,I.RUC,I.Direccion,U.Distrito From
+Operativo O Inner Join (Select Id_Tipo,Descripcion
+From TablaTipo Where Id_Tabla In (Select Id_Tipo
+From TablaTipo Where
+LTrim(RTrim(Descripcion))='MODALIDAD_OPERATI
+VO' And LTrim(RTrim(Id_Tabla))='0'))MO On
+O.Mod_Oper=MO.Id_Tipo Inner Join Institucion I On
+O.Id_Emp=I.TInst+I.Id_Inst Inner Join Ubigeo2005 U
+On I.Id_Distrito=U.Id_Old Order By 2
+
+Select * From Cie10 Order By 1 
+
+Select * From Ubigeo2005 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MODALIDAD_ESPECIALIDAD' And LTrim(RTrim(Id_Tabla))='0') Order By 2      
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='ESTADO_REGISTRO' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TURNOS' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_USUARIO' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_COLEGIATURA' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_INSTITUCION' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_PRODUCTO' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_SUBPRODUCTO' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='DOC_VENTA' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_MONEDA' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='FORMA_PAGO' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='DOC_IDENTIDAD' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='PAGO_ESPECIALISTAS' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='CARGO' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MARCA_PROCESO' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MOTIVO_ANULACION' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MOTIVO_EXTORNACION' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion)) Like '%IGV%' And LTrim(RTrim(Id_Tabla))='0') And Val_Abr='1' Order By 2
+
+SELECT DISTINCT departamento,LEFT(id_old,2) AS id_dpto FROM Ubigeo2005 ubigeo ORDER BY 1          
+
+Select Key_Pass As Usuario,Type As
+Tipo,Nombres+' '+ Ape_Paterno+' '+ Ape_Materno
+As Descripcion From sysaccusers S Inner Join
+Personal P On S.Id_Per=P.Id_Personal Inner Join
+(Select Id_Tipo,Descripcion From TablaTipo Where
+Id_Tabla In (Select Id_Tipo From TablaTipo Where
+LTrim(RTrim(Descripcion))='ESTADO_REGISTRO'))
+E On S.State=E.Id_Tipo Where
+LTrim(RTrim(E.Descripcion))='ACTIVADO'
+
+Select Id_Us,Key_Pass As Usuario,Us_Log As
+Clave,Type As Tipo,Case When Nombres Is Null
+Then 'Root' Else Nombres+' '+ Ape_Paterno+' '+
+Ape_Materno End As Descripcion,S.Id_Area,Case
+When C.Descripcion Is Null Then 'Root' Else
+C.Descripcion End As Cargo From sysaccusers S
+Left Join Personal P On S.Id_Per=P.Id_Personal
+Left Join (Select Id_Tipo,Descripcion From
+TablaTipo Where Id_Tabla In (Select Id_Tipo From
+TablaTipo Where
+LTrim(RTrim(Descripcion))='CARGO' And
+LTrim(RTrim(Id_Tabla))='0'))C On
+P.Id_Cargo=C.Id_Tipo Where Key_Pass=?lu
+
+Select * From Cambio 
+
+Select Serie From (Select Serie From Serie Where
+Fec_Ins In(Select Max(Fec_Ins) From Serie Where
+Id_Oper=?Oper) And Id_Oper=?Oper Union All
+Select Serie From Tickets Where Digitador=?nUser
+And Fecha_Emision=(Select Max(Fecha_Emision)
+From Tickets Where Digitador=?nUser))X Group By
+Serie Order By Count(Serie) Desc
+
+Select PM.*,A.Mnu_Us From PadMenu PM Inner
+Join BarMenu BM On
+PM.Pad_Popup=BM.Bar_Popup Inner Join Accesos
+A On BM.Bar_Number=A.Mnu_Bar And
+BM.Bar_Popup=A.Mnu_Pop Where
+LTrim(RTrim(A.Mnu_Us))=?us Group By
+PM.Pad_Name,PM.Pad_Prompt,PM.Pad_Popup,PM.
+Pad_Order,A.Mnu_Us Order By PM.Pad_Order
+
+Select BM.* From Barmenu BM Inner Join Accesos A On BM.Bar_Popup=A.Mnu_Pop And BM.Bar_Number=A.Mnu_Bar Where LTrim(RTrim(A.Mnu_Us))=?us Order By BM.Bar_Popup,BM.Bar_Order                 
+
+Select Count(*)As C From Frases Where Tipo='D' 
+
+Select Top 1 * From Frases Where Tipo=?lt
+
+Update Frases Set Tipo='X' Where Frase Like ?rf
+
+Select Count(*)As C From Accesos Where LTrim(RTrim(Mnu_Us))=?iu   
+
+Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Descripcion,Id_Personal,Direccion,Distrito,Telefono,Celular From Personal P Left Join Ubigeo2005 U On P.Id_Distrito=U.Id_Old Order By 1
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion='AREA_TRABAJO' And Id_Tabla='0') Union All Select Id_Bus Id_Tipo,Bus Descripcion From Buses Where Bus<>'COMPUTO' Order By 2     
+
+Select Id_Us,Key_Pass Login,Us_Log Passwd,Type
+Tipo,Id_Per,S.Id_Area,S.Obs,State
+Estado,S.Us_Ins,S.Date_Ins,S.Us_Up,S.Date_Up,L
+Trim(RTrim(Ape_Paterno))+' '+
+LTrim(RTrim(Ape_Materno))+' '+
+LTrim(RTrim(Nombres))Descripcion From
+sysaccusers S Inner Join Personal P On
+S.Id_Per=P.Id_Personal Where State Like ?st+ '%'
+Order By Descripcion
+
+Repl All cusr.Tipo With Transys.Trans(cusr.Tipo,.F.,2)
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Sum(Cast(S As Int))-Sum(Cast(U As Int))As
+R From (Select Case When Id_Tipo=?ts Then Val
+Else 0 End As S,Case When Id_Tipo=?tp Then Val
+Else '0' End As U From (Select
+LTrim(RTrim(Id_Tipo))As
+Id_Tipo,Cast(LTrim(RTrim(Val_Abr))As Int)As Val
+From TablaTipo Where LTrim(RTrim(Id_Tabla)) In
+(Select Id_Tipo From TablaTipo Where
+LTrim(RTrim(Descripcion))='TIPO_USUARIO' And
+LTrim(RTrim(Id_Tabla))='0') And
+LTrim(RTrim(Id_Tipo)) In(?ts,?tp) Union Select
+'S'As Id_Tipo,6 As Val)X)X
+
+Declare @res Varchar(7) Exec MaxValor 'Id_Us','sysaccusers','4',@ret=@res Output Exec GenUniCod @res,@ret=@res Output Set @res=?io+ @res Insert Into sysaccusers Values(@res,?pw,?lg,?tp,?ip,?ia,?ob,?st,?us,?fs,?us,?fs) Select @res Ret    
+
+Select Id_Us,Key_Pass Login,Us_Log Passwd,Type
+Tipo,Id_Per,S.Id_Area,S.Obs,State
+Estado,S.Us_Ins,S.Date_Ins,S.Us_Up,S.Date_Up,L
+Trim(RTrim(Ape_Paterno))+' '+
+LTrim(RTrim(Ape_Materno))+' '+
+LTrim(RTrim(Nombres))Descripcion From
+sysaccusers S Inner Join Personal P On
+S.Id_Per=P.Id_Personal Where State Like ?st+ '%'
+Order By Descripcion
+
+Repl All cusr.Tipo With Transys.Trans(cusr.Tipo,.F.,2)
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select
+O.Descripcion,O.Id_Oper,O.Estado,MO.Descripcio
+n As
+Mod_Oper,O.Id_Distrito,O.Uni_Org,O.Fil_Ubi,I.Nom
+_Raz_Soc,I.RUC,I.Direccion,U.Distrito From
+Operativo O Inner Join (Select Id_Tipo,Descripcion
+From TablaTipo Where Id_Tabla In (Select Id_Tipo
+From TablaTipo Where
+LTrim(RTrim(Descripcion))='MODALIDAD_OPERATI
+VO' And LTrim(RTrim(Id_Tabla))='0'))MO On
+O.Mod_Oper=MO.Id_Tipo Inner Join Institucion I On
+O.Id_Emp=I.TInst+I.Id_Inst Inner Join Ubigeo2005 U
+On I.Id_Distrito=U.Id_Old Order By 2
+
+Select * From Cie10 Order By 1 
+
+Select * From Ubigeo2005 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MODALIDAD_ESPECIALIDAD' And LTrim(RTrim(Id_Tabla))='0') Order By 2      
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='ESTADO_REGISTRO' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TURNOS' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_USUARIO' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_COLEGIATURA' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_INSTITUCION' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_PRODUCTO' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_SUBPRODUCTO' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='DOC_VENTA' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='TIPO_MONEDA' And LTrim(RTrim(Id_Tabla))='0') Order By 2   
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='FORMA_PAGO' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='DOC_IDENTIDAD' And LTrim(RTrim(Id_Tabla))='0') Order By 2  
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='PAGO_ESPECIALISTAS' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='CARGO' And LTrim(RTrim(Id_Tabla))='0') Order By 2 
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MARCA_PROCESO' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MOTIVO_ANULACION' And LTrim(RTrim(Id_Tabla))='0') Order By 2    
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion))='MOTIVO_EXTORNACION' And LTrim(RTrim(Id_Tabla))='0') Order By 2     
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where LTrim(RTrim(Descripcion)) Like '%IGV%' And LTrim(RTrim(Id_Tabla))='0') And Val_Abr='1' Order By 2
+
+SELECT DISTINCT departamento,LEFT(id_old,2) AS id_dpto FROM Ubigeo2005 ubigeo ORDER BY 1          
+
+Select Key_Pass As Usuario,Type As
+Tipo,Nombres+' '+ Ape_Paterno+' '+ Ape_Materno
+As Descripcion From sysaccusers S Inner Join
+Personal P On S.Id_Per=P.Id_Personal Inner Join
+(Select Id_Tipo,Descripcion From TablaTipo Where
+Id_Tabla In (Select Id_Tipo From TablaTipo Where
+LTrim(RTrim(Descripcion))='ESTADO_REGISTRO'))
+E On S.State=E.Id_Tipo Where
+LTrim(RTrim(E.Descripcion))='ACTIVADO'
+
+Select Id_Us,Key_Pass As Usuario,Us_Log As
+Clave,Type As Tipo,Case When Nombres Is Null
+Then 'Root' Else Nombres+' '+ Ape_Paterno+' '+
+Ape_Materno End As Descripcion,S.Id_Area,Case
+When C.Descripcion Is Null Then 'Root' Else
+C.Descripcion End As Cargo From sysaccusers S
+Left Join Personal P On S.Id_Per=P.Id_Personal
+Left Join (Select Id_Tipo,Descripcion From
+TablaTipo Where Id_Tabla In (Select Id_Tipo From
+TablaTipo Where
+LTrim(RTrim(Descripcion))='CARGO' And
+LTrim(RTrim(Id_Tabla))='0'))C On
+P.Id_Cargo=C.Id_Tipo Where Key_Pass=?lu
+
+Select * From Cambio 
+
+Select Serie From (Select Serie From Serie Where
+Fec_Ins In(Select Max(Fec_Ins) From Serie Where
+Id_Oper=?Oper) And Id_Oper=?Oper Union All
+Select Serie From Tickets Where Digitador=?nUser
+And Fecha_Emision=(Select Max(Fecha_Emision)
+From Tickets Where Digitador=?nUser))X Group By
+Serie Order By Count(Serie) Desc
+
+Select PM.*,A.Mnu_Us From PadMenu PM Inner
+Join BarMenu BM On
+PM.Pad_Popup=BM.Bar_Popup Inner Join Accesos
+A On BM.Bar_Number=A.Mnu_Bar And
+BM.Bar_Popup=A.Mnu_Pop Where
+LTrim(RTrim(A.Mnu_Us))=?us Group By
+PM.Pad_Name,PM.Pad_Prompt,PM.Pad_Popup,PM.
+Pad_Order,A.Mnu_Us Order By PM.Pad_Order
+
+Select BM.* From Barmenu BM Inner Join Accesos A On BM.Bar_Popup=A.Mnu_Pop And BM.Bar_Number=A.Mnu_Bar Where LTrim(RTrim(A.Mnu_Us))=?us Order By BM.Bar_Popup,BM.Bar_Order                 
+
+Select Count(*)As C From Frases Where Tipo='D' 
+
+Select Top 1 * From Frases Where Tipo=?lt
+
+Update Frases Set Tipo='X' Where Frase Like ?rf
+
+Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Descripcion,Id_Personal,Direccion,Distrito,Telefono,Celular From Personal P Left Join Ubigeo2005 U On P.Id_Distrito=U.Id_Old Order By 1
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion='AREA_TRABAJO' And Id_Tabla='0') Union All Select Id_Bus Id_Tipo,Bus Descripcion From Buses Where Bus<>'COMPUTO' Order By 2     
+
+Select Id_Us,Key_Pass Login,Us_Log Passwd,Type
+Tipo,Id_Per,S.Id_Area,S.Obs,State
+Estado,S.Us_Ins,S.Date_Ins,S.Us_Up,S.Date_Up,L
+Trim(RTrim(Ape_Paterno))+' '+
+LTrim(RTrim(Ape_Materno))+' '+
+LTrim(RTrim(Nombres))Descripcion From
+sysaccusers S Inner Join Personal P On
+S.Id_Per=P.Id_Personal Where State Like ?st+ '%'
+Order By Descripcion
+
+Repl All cusr.Tipo With Transys.Trans(cusr.Tipo,.F.,2)
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Sum(Cast(S As Int))-Sum(Cast(U As Int))As
+R From (Select Case When Id_Tipo=?ts Then Val
+Else 0 End As S,Case When Id_Tipo=?tp Then Val
+Else '0' End As U From (Select
+LTrim(RTrim(Id_Tipo))As
+Id_Tipo,Cast(LTrim(RTrim(Val_Abr))As Int)As Val
+From TablaTipo Where LTrim(RTrim(Id_Tabla)) In
+(Select Id_Tipo From TablaTipo Where
+LTrim(RTrim(Descripcion))='TIPO_USUARIO' And
+LTrim(RTrim(Id_Tabla))='0') And
+LTrim(RTrim(Id_Tipo)) In(?ts,?tp) Union Select
+'S'As Id_Tipo,6 As Val)X)X
+
+Update sysaccusers Set Us_Log=?pw,Type=?tp,Id_Area=?ia,State=?st,Obs=?ob,Us_Up=?us,Date_Up=?fs Where Id_Us=?iu            
+
+Select Id_Us,Key_Pass Login,Us_Log Passwd,Type
+Tipo,Id_Per,S.Id_Area,S.Obs,State
+Estado,S.Us_Ins,S.Date_Ins,S.Us_Up,S.Date_Up,L
+Trim(RTrim(Ape_Paterno))+' '+
+LTrim(RTrim(Ape_Materno))+' '+
+LTrim(RTrim(Nombres))Descripcion From
+sysaccusers S Inner Join Personal P On
+S.Id_Per=P.Id_Personal Where State Like ?st+ '%'
+Order By Descripcion
+
+Repl All cusr.Tipo With Transys.Trans(cusr.Tipo,.F.,2)
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select LTrim(RTrim(Ape_Paterno))+' '+LTrim(RTrim(Ape_Materno))+' '+LTrim(RTrim(Nombres))Descripcion,Id_Personal,Direccion,Distrito,Telefono,Celular From Personal P Left Join Ubigeo2005 U On P.Id_Distrito=U.Id_Old Order By 1
+
+Select Id_Tipo,Descripcion From TablaTipo Where Id_Tabla In (Select Id_Tipo From TablaTipo Where Descripcion='AREA_TRABAJO' And Id_Tabla='0') Union All Select Id_Bus Id_Tipo,Bus Descripcion From Buses Where Bus<>'COMPUTO' Order By 2     
+
+Select Id_Us,Key_Pass Login,Us_Log Passwd,Type
+Tipo,Id_Per,S.Id_Area,S.Obs,State
+Estado,S.Us_Ins,S.Date_Ins,S.Us_Up,S.Date_Up,L
+Trim(RTrim(Ape_Paterno))+' '+
+LTrim(RTrim(Ape_Materno))+' '+
+LTrim(RTrim(Nombres))Descripcion From
+sysaccusers S Inner Join Personal P On
+S.Id_Per=P.Id_Personal Where State Like ?st+ '%'
+Order By Descripcion
+
+Repl All cusr.Tipo With Transys.Trans(cusr.Tipo,.F.,2)
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Sum(Cast(S As Int))-Sum(Cast(U As Int))As
+R From (Select Case When Id_Tipo=?ts Then Val
+Else 0 End As S,Case When Id_Tipo=?tp Then Val
+Else '0' End As U From (Select
+LTrim(RTrim(Id_Tipo))As
+Id_Tipo,Cast(LTrim(RTrim(Val_Abr))As Int)As Val
+From TablaTipo Where LTrim(RTrim(Id_Tabla)) In
+(Select Id_Tipo From TablaTipo Where
+LTrim(RTrim(Descripcion))='TIPO_USUARIO' And
+LTrim(RTrim(Id_Tabla))='0') And
+LTrim(RTrim(Id_Tipo)) In(?ts,?tp) Union Select
+'S'As Id_Tipo,6 As Val)X)X
+
+Declare @res Varchar(7) Exec MaxValor 'Id_Us','sysaccusers','4',@ret=@res Output Exec GenUniCod @res,@ret=@res Output Set @res=?io+ @res Insert Into sysaccusers Values(@res,?pw,?lg,?tp,?ip,?ia,?ob,?st,?us,?fs,?us,?fs) Select @res Ret    
+
+Select Id_Us,Key_Pass Login,Us_Log Passwd,Type
+Tipo,Id_Per,S.Id_Area,S.Obs,State
+Estado,S.Us_Ins,S.Date_Ins,S.Us_Up,S.Date_Up,L
+Trim(RTrim(Ape_Paterno))+' '+
+LTrim(RTrim(Ape_Materno))+' '+
+LTrim(RTrim(Nombres))Descripcion From
+sysaccusers S Inner Join Personal P On
+S.Id_Per=P.Id_Personal Where State Like ?st+ '%'
+Order By Descripcion
+
+Repl All cusr.Tipo With Transys.Trans(cusr.Tipo,.F.,2)
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
+
+Select Key_Pass As Usuario From sysaccusers Where LTrim(RTrim(Id_Us))=?nus Or LTrim(RTrim(Key_Pass))=?nus    
