@@ -3,21 +3,14 @@ using Polsolcom.Dominio.Connection;
 using Polsolcom.Dominio.Data;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Modelos;
-using Polsolcom.Dominio.Reportes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Polsolcom.Forms
 {
-    public partial class frmAdmTalon : Form
+	public partial class frmAdmTalon : Form
     {
         public List<Dictionary<string, string>> usTal = new List<Dictionary<string, string>>();
         public List<Dictionary<string, string>> rangos = new List<Dictionary<string, string>>();
@@ -31,92 +24,104 @@ namespace Polsolcom.Forms
 
         string getSql(string fi, string ff, string us, string op)
         {
-            string sql = "Select Usuario+Space(11) Us,Fecha,D.Descripcion TDVen,Serie,NInicial,NFinal,NCon," +
-"O.Descripcion Operativo,T.Id_Oper,DVenta,Usuario " +
-"From Talon T Inner Join Operativo O On T.Id_Oper=O.Id_Oper Inner Join (Select Id_Tipo,Descripcion From " +
-"TablaTipo Where Id_Tabla In(Select Id_Tipo From TablaTipo Where Descripcion='DOC_VENTA' And Id_Tabla='0'))D " +
-"On T.DVenta=D.Id_Tipo " +
-"Where Fecha Between '" + fi + "' And '" + ff + "' And T.Id_Oper Like '" + op + "%'";
-            sql += (us.Length > 0 ? "And Usuario Like '" + us + "' " : "");
-            sql += "Order By Cast(Convert(Varchar(10),Fecha,103)As DateTime),2 Asc,1";
+            string SQL = "SELECT Usuario+Space(11) Us,Fecha,D.Descripcion TDVen,Serie,NInicial, " +
+							"NFinal,NCon,O.Descripcion Operativo, T.Id_Oper,DVenta,Usuario " +
+							"FROM Talon T INNER JOIN Operativo O " +
+							"ON T.Id_Oper = O.Id_Oper INNER JOIN " +
+							"( SELECT Id_Tipo, Descripcion " +
+							" FROM TablaTipo " +
+							" WHERE Id_Tabla IN " +
+							" (SELECT Id_Tipo " +
+							"  FROM TablaTipo " +
+							"  WHERE Descripcion = 'DOC_VENTA' " +
+							"  AND Id_Tabla = '0')) D " +
+							"ON T.DVenta = D.Id_Tipo " +
+						"WHERE CONVERT(VARCHAR, Fecha, 103) Between '" + fi + "' AND '" + ff + "' " +
+						"AND T.Id_Oper Like '" + op + "%' ";
+			SQL += (us.Length > 0 ? "AND Usuario = '" + us + "' " : "");
+			SQL += "Order By Cast(Convert(Varchar(10),Fecha,103)As DateTime),2 Asc,1";
 
-            return sql;
+            return SQL;
         }
 
         public void ejecon()
         {
             string fi = dtpicFInicial.Value.ToShortDateString();
             string ff = dtpFFinal.Value.ToShortDateString();
-            string us = cmbUsuario.SelectedIndex == -1 ? "" : this.usTal[cmbUsuario.SelectedIndex]["Id_Us"];
+            string us = cmbUsuario.SelectedIndex == -1 ? "" : usTal[cmbUsuario.SelectedIndex]["Id_Us"];
             string op = cmbOperativo.SelectedIndex == -1 ? "" : cmbOperativo.SelectedValue.ToString();
 
             string sql = getSql(fi, ff, us, op);
+            rangos = General.GetDictionaryList(sql);
 
-            this.rangos = General.GetDictionaryList(sql);
+            for (int i = 0; i < rangos.Count; i++)
+                rangos[i]["Us"] = General.TradUser(rangos[i]["Us"]);
 
-            for (int i = 0; i < this.rangos.Count; i++)
-            {
-                this.rangos[i]["Us"] = General.TradUser(this.rangos[i]["Us"]);
-            }
-
-            General.Fill(lstRangos, this.rangos, new[] { "Us", "Fecha", "TDVen", "Serie", "NInicial", "NFinal", "NCon", "Operativo" });
+            General.Fill(lstRangos, rangos, new[] { "Us", "Fecha", "TDVen", "Serie", "NInicial", "NFinal", "NCon", "Operativo" });
             //
-            if (lstRangos.Items.Count > 0 && this.index > -1)
+            if (lstRangos.Items.Count > 0 && index > -1)
             {
                 lstRangos.Select();
-                lstRangos.EnsureVisible(this.index);
-                lstRangos.Items[this.index].Selected = true;
-                lstRangos.Items[this.index].Focused = true;
-                lstRangos.Items[this.index].EnsureVisible();
+                lstRangos.EnsureVisible(index);
+                lstRangos.Items[index].Selected = true;
+                lstRangos.Items[index].Focused = true;
+                lstRangos.Items[index].EnsureVisible();
             }
         }
 
-        public void guarda(bool lp)
-        {
-            if (cmbUsuario.SelectedIndex == -1)
-            {
-                MessageBox.Show("Seleccione usuario antes de guardar ...", "Aviso al usuario");
-                cmbUsuario.Focus();
-                return;
-            }
+		public void guarda( bool lp )
+		{
+			if( cmbUsuario.SelectedIndex == -1 )
+			{
+				MessageBox.Show("Seleccione usuario antes de guardar ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+				cmbUsuario.Focus();
+				return;
+			}
 
-            if (cmbOperativo.SelectedIndex == -1)
+			if( cmbDVenta.SelectedIndex == -1 )
+			{
+				MessageBox.Show("Seleccione tipo documento antes de guardar ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+				cmbUsuario.Focus();
+				return;
+			}
+
+			if( cmbOperativo.SelectedIndex == -1)
             {
-                MessageBox.Show("Seleccione operativo  antes de guardar ...", "Aviso al usuario");
+                MessageBox.Show("Seleccione operativo  antes de guardar ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 cmbOperativo.Focus();
                 return;
             }
 
             if (txtSerie.Text.Length == 0 || int.Parse(txtSerie.Text) == 0)
             {
-                MessageBox.Show("Ingrese serie antes de guardar ...", "Aviso al usuario");
+                MessageBox.Show("Ingrese serie antes de guardar ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtSerie.Focus();
                 return;
             }
 
             if (txtNInicial.Text.Length == 0 || int.Parse(txtNInicial.Text) == 0)
             {
-                MessageBox.Show("Ingrese numero inicial antes de guardar ...", "Aviso al usuario");
+                MessageBox.Show("Ingrese numero inicial antes de guardar ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtNInicial.Focus();
                 return;
             }
 
             if (txtNFinal.Text.Length == 0 || int.Parse(txtNFinal.Text) == 0)
             {
-                MessageBox.Show("Ingrese numero final antes de guardar ...", "Aviso al usuario");
+                MessageBox.Show("Ingrese numero final antes de guardar ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtNInicial.Focus();
                 return;
             }
 
             if (int.Parse(txtNFinal.Text) < int.Parse(txtNInicial.Text))
             {
-                MessageBox.Show("Numero final no puede ser menor que el inicial ...", "Aviso al usuario");
+                MessageBox.Show("Numero final no puede ser menor que el inicial ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtNFinal.Focus();
                 return;
             }
 
             string fr = DateTime.Today.ToShortDateString();
-            string us = cmbUsuario.SelectedIndex == -1 ? "" : this.usTal[cmbUsuario.SelectedIndex]["Id_Us"];
+            string us = cmbUsuario.SelectedIndex == -1 ? "" : usTal[cmbUsuario.SelectedIndex]["Id_Us"];
             string sr = txtSerie.Text;
             string ni = txtNInicial.Text;
             string nf = txtNFinal.Text;
@@ -129,61 +134,49 @@ namespace Polsolcom.Forms
 
             if (talo != null)
             {
-                MessageBox.Show("El rango de " + ni + " a " + talo["NFinal"] + " serie " + talo["Serie"] + " corresponde a " + General.TradUser(talo["Usuario"]) + " con fecha " + talo["Fecha"] + " modifique Rango", "Error");
+                MessageBox.Show("El rango de " + ni + " a " + talo["NFinal"] + " serie " + talo["Serie"] + " corresponde a " + General.TradUser(talo["Usuario"]) + " con fecha " + talo["Fecha"] + " modifique rango...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
                 if (lp)
-                {
-                    return;
-                }
-                else
-                {
-                    if (MessageBox.Show("Desea reemplazar los valores existentes ...", "Modificando rangos ...", MessageBoxButtons.YesNo) == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-            }
+					return;
+				else
+				{
+                    if (MessageBox.Show("Desea reemplazar los valores existentes ...", "Modificando rangos ...", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+						return;
+				}
+			}
 
             string sql2 = "Select * From Talon Where Cast('" + nf + "' As Int) Between Cast(NInicial As Int) And Cast(NFinal As Int) And Serie='" + sr + "' And DVenta='" + td + "'";
             talo = General.GetDictionary(sql2);
 
             if (talo != null)
             {
-                MessageBox.Show("El rango de " + talo["NInicial"] + " a " + nf + " serie " + talo["Serie"] + " corresponde a " + General.TradUser(talo["Usuario"]) + " con fecha " + talo["Fecha"] + " modifique Rango", "Error");
+                MessageBox.Show("El rango de " + talo["NInicial"] + " a " + nf + " serie " + talo["Serie"] + " corresponde a " + General.TradUser(talo["Usuario"]) + " con fecha " + talo["Fecha"] + " modifique rango", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
                 if (lp)
-                {
-                    return;
-                }
-                else
-                {
-                    if (MessageBox.Show("Desea reemplazar los valores existentes ...", "Modificando rangos ...", MessageBoxButtons.YesNo) == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-            }
+					return;
+				else
+				{
+                    if (MessageBox.Show("Desea reemplazar los valores existentes ...", "Modificando rangos ...", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.No)
+						return;
+				}
+			}
 
             string sql3 = "";
             if (lp)
-            {
                 sql3 = "Insert Into Talon Values ('" + us + "','" + fr + "','" + ni + "','" + nf + "','" + op + "','" + sr + "','" + td + "','" + cn + "', '')";
-            }
             else
-            {
-                sql3 = "Update Talon Set NInicial='" + ni + "',NFinal='" + nf + "',Serie='" + sr + "',NCon='" + cn + "' Where Usuario='" + this.rangos[this.index]["Usuario"] + "' And Fecha='" + DateTime.Parse(this.rangos[this.index]["Fecha"]).ToShortDateString() + "' And Id_Oper='" + this.rangos[this.index]["Id_Oper"] + "' And Serie='" + this.rangos[this.index]["Serie"] + "' And DVenta='" + this.rangos[this.index]["DVenta"] + "'";
-            }
+                sql3 = "Update Talon Set NInicial='" + ni + "',NFinal='" + nf + "',Serie='" + sr + "',NCon='" + cn + "' Where Usuario='" + rangos[index]["Usuario"] + "' And Fecha='" + DateTime.Parse(rangos[index]["Fecha"]).ToShortDateString() + "' And Id_Oper='" + rangos[index]["Id_Oper"] + "' And Serie='" + rangos[index]["Serie"] + "' And DVenta='" + rangos[index]["DVenta"] + "'";
 
             Conexion.ExecuteNonQuery(sql3);
-            MessageBox.Show("Operación completada con éxito");
+            MessageBox.Show("Operación completada con éxito", "Actualizacion Rangos", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
 
         public void limpiar()
         {
-            General.setAll<ComboBox, int>(this, "SelectedIndex", -1);
+            General.setAll<ComboBox, int>( this,"SelectedIndex", -1);
             cmbOperativo.SelectedValue = Operativo.id_oper;
             txtSerie.Text = txtNInicial.Text = txtNFinal.Text = txtNCon.Text = "";
-            this.index = -1;
+            index = -1;
         }
 
         public void setObj(bool lp, bool tp)
@@ -199,8 +192,8 @@ namespace Polsolcom.Forms
             if (lp && tp)
             {
                 btnNuevo.Text = "&Grabar";
-                //General.setAll<ComboBox, bool>(this, "Enabled", !lp);
-                this.limpiar();
+                //General.setAll<ComboBox, bool>( "Enabled", !lp);
+                limpiar();
                 txtNCon.Text = "0";
                 cmbUsuario.Focus();
                 return;
@@ -209,8 +202,8 @@ namespace Polsolcom.Forms
             if (!lp && tp)
             {
                 btnNuevo.Text = "&Nuevo";
-                //General.setAll<ComboBox, bool>(this, "Enabled", lp);
-                this.limpiar();
+                //General.setAll<ComboBox, bool>( "Enabled", lp);
+                limpiar();
                 txtNCon.Text = "0";
                 dtpicFInicial.Focus();
                 return;
@@ -230,7 +223,7 @@ namespace Polsolcom.Forms
                 btnEditar.Text = "&Editar";
                 General.setAll<ComboBox, bool>(this, "Enabled", !lp);
                 txtNCon.Enabled = true;
-                this.limpiar();
+                limpiar();
                 txtNCon.Enabled = false;
                 dtpicFInicial.Focus();
                 return;
@@ -273,37 +266,22 @@ namespace Polsolcom.Forms
 
         private void frmAdmTalon_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'tablaTipoDS.DocVenta' table. You can move, or remove it, as needed.
-            this.docVentaTableAdapter.Fill(this.tablaTipoDS.DocVenta);
+            docVentaTableAdapter.Fill(tablaTipoDS.DocVenta);
             cmbDVenta.SelectedIndex = -1;
-            // TODO: This line of code loads data into the 'operativos.Operativo' table. You can move, or remove it, as needed.
-            this.operativoTableAdapter.Fill(this.operativos.Operativo);
+            operativoTableAdapter.Fill(operativos.Operativo);
             cmbOperativo.SelectedIndex = -1;
-            //
-            string sql = "Select Usuario Id_Us,Usuario+Space(11) Usuario From Talon Group By Usuario Order By 2";
-            this.usTal = General.GetDictionaryList(sql);
 
-            for (int i = 0; i < this.usTal.Count; i++)
-            {
-                this.usTal[i]["Usuario"] = General.TradUser(this.usTal[i]["Usuario"]);
-            }
+			string sql = "Select Usuario Id_Us,Usuario+Space(11) Usuario From Talon Group By Usuario Order By 2";
+            usTal = General.GetDictionaryList(sql);
+
+            for (int i = 0; i < usTal.Count; i++)
+                usTal[i]["Usuario"] = General.TradUser(usTal[i]["Usuario"]);
 
             cmbOperativo.SelectedValue = Operativo.id_oper;
-            General.Fill(cmbUsuario, this.usTal, "Id_Us", "Usuario");
+            General.Fill(cmbUsuario, usTal, "Id_Us", "Usuario");
             cmbUsuario.SelectedIndex = -1;
-            //
             dtpicFInicial.Value = DateTime.Today;
             dtpFFinal.Value = DateTime.Today;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
         }
 
         private void frmAdmTalon_KeyDown(object sender, KeyEventArgs e)
@@ -311,8 +289,8 @@ namespace Polsolcom.Forms
             switch (e.KeyCode)
             {
                 case Keys.Escape:
-                    this.Close();
-                    this.DialogResult = DialogResult.Cancel;
+                    Close();
+                    DialogResult = DialogResult.Cancel;
                     break;
                 case Keys.F5:
                     btnFiltro_Click(btnFiltro, new EventArgs());
@@ -322,24 +300,28 @@ namespace Polsolcom.Forms
 
         private void lstRangos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.index = General.GetSelectedIndex(lstRangos, false);
+            index = General.GetSelectedIndex(lstRangos, false);
 
-            if (this.index > -1)
+            if (index > -1)
             {
-                cmbUsuario.SelectedIndex = this.usTal.FindIndex(x => x["Id_Us"] == this.rangos[this.index]["Usuario"]);
-                cmbOperativo.SelectedValue = this.rangos[this.index]["Id_Oper"];
-                cmbDVenta.SelectedValue = this.rangos[this.index]["DVenta"];
-                txtSerie.Text = this.rangos[this.index]["Serie"];
-                txtNInicial.Text = this.rangos[this.index]["NInicial"];
-                txtNFinal.Text = this.rangos[this.index]["NFinal"];
-                txtNCon.Text = this.rangos[this.index]["NCon"];
-            }
+                cmbUsuario.SelectedIndex = usTal.FindIndex(x => x["Id_Us"] == rangos[index]["Usuario"]);
+                cmbOperativo.SelectedValue = rangos[index]["Id_Oper"];
+                cmbDVenta.SelectedValue = rangos[index]["DVenta"];
+                txtSerie.Text = rangos[index]["Serie"];
+                txtNInicial.Text = rangos[index]["NInicial"];
+                txtNFinal.Text = rangos[index]["NFinal"];
+                txtNCon.Text = rangos[index]["NCon"];
+				btnEditar.Enabled = true;
+				btnCortar.Enabled = true;
+				btnEliminar.Enabled = true;
+				btnImprimir.Enabled = true;
+			}
 
-        }
+		}
 
         private void txtNCon_Leave(object sender, EventArgs e)
         {
-            if (this.DialogResult != DialogResult.Cancel)
+            if (DialogResult != DialogResult.Cancel)
             {
                 int nCon = int.Parse(txtNCon.Text);
                 int nInicial = int.Parse(txtNInicial.Text);
@@ -347,7 +329,7 @@ namespace Polsolcom.Forms
 
                 if (!(nCon > nInicial && nCon < nFinal) && nCon != 0)
                 {
-                    MessageBox.Show("Valor debe estar comprendido entre numero inicial y final ó ser 0 ...", "Error");
+                    MessageBox.Show("Valor debe estar comprendido entre numero inicial y final ó ser 0 ...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     txtNCon.Focus();
                 }
             }
@@ -355,25 +337,21 @@ namespace Polsolcom.Forms
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (this.index == -1)
-            {
-                return;
-            }
+            if (index == -1)
+				return;
 
-            if (btnEditar.Text == "&Editar")
+			if( btnEditar.Text == "&Editar")
             {
-                this.setObj(true, false);
+                setObj(true, false);
                 btnEditar.Enabled = true;
-            }
+			}
             else
             {
-                if (MessageBox.Show("Desea guardar los datos ...?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    this.guarda(false);
-                }
+                if (MessageBox.Show("Desea guardar los datos ...?", "Aviso al usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    guarda(false);
 
-                this.setObj(false, false);
-                this.ejecon();
+                setObj(false, false);
+                ejecon();
             }
         }
 
@@ -381,107 +359,147 @@ namespace Polsolcom.Forms
         {
             if (btnNuevo.Text == "&Nuevo")
             {
-                this.setObj(true, true);
+                setObj(true, true);
                 btnNuevo.Enabled = true;
-            }
-            else
+				lstRangos.Items.Clear();
+			}
+			else
             {
-                if (MessageBox.Show("Desea guardar los datos ...?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    this.guarda(true);
-                }
+                if (MessageBox.Show("Desea guardar los datos ...?", "Aviso al usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    guarda(true);
 
-                this.setObj(false, true);
-                this.ejecon();
+                setObj(false, true);
+                ejecon();
             }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (this.index == -1)
-            {
+            if (index == -1)
                 return;
-            }
 
-            if (MessageBox.Show("Esta seguro de eliminar registro ?: Usuario=" + this.rangos[this.index]["Us"] + ", Fecha=" + this.rangos[this.index]["Fecha"] + ", Doc. Venta=" + this.rangos[this.index]["TDVen"] + ", Serie=" + this.rangos[this.index]["Serie"] + ", NInicial=" + this.rangos[this.index]["NInicial"] + ", NFinal=" + this.rangos[this.index]["NFinal"] + ", Operativo=" + this.rangos[this.index]["Operativo"], "Advertencia", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Esta seguro de eliminar registro... ?" + (char)13 + "Usuario = " + rangos[index]["Us"] + (char)13 + "Fecha = " + rangos[index]["Fecha"] + (char)13 + "Doc. Venta = " + rangos[index]["TDVen"] + (char)13 + "Serie = " + rangos[index]["Serie"] + (char)13 + "NInicial = " + rangos[index]["NInicial"] + " y NFinal = " + rangos[index]["NFinal"] , "Advertencia", MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                string xus = this.rangos[this.index]["Usuario"];
-                string xfe = this.rangos[this.index]["Fecha"];
-                string xio = this.rangos[this.index]["Id_Oper"];
-                string xsr = this.rangos[this.index]["Serie"];
-                string xdv = this.rangos[this.index]["DVenta"];
-                string xni = this.rangos[this.index]["NInicial"];
-                string xnf = this.rangos[this.index]["NFinal"];
+                string xus = rangos[index]["Usuario"];
+                string xfe = rangos[index]["Fecha"];
+                string xio = rangos[index]["Id_Oper"];
+                string xsr = rangos[index]["Serie"];
+                string xdv = rangos[index]["DVenta"];
+                string xni = rangos[index]["NInicial"];
+                string xnf = rangos[index]["NFinal"];
 
                 string sql = "Select Count(*)As C From Tickets Where Fecha_Emision>='" + DateTime.Parse(xfe).ToShortDateString() + "' And Digitador='" + xus + "' And Nro_Ticket Between '" + xni + "' And '" + xnf + "' And Serie='" + xsr + "' And DVenta='" + xdv + "' And Left(Nro_Historia,3)='" + xio + "'";
 
                 int c = Conexion.ExecuteScalar<int>(sql);
 
                 if (c > 0)
-                {
-                    MessageBox.Show("No se puede eliminar este rango, ya se realizaron ventas ...", "Advertencia");
-                }
+                    MessageBox.Show("No se puede eliminar este rango, ya se realizaron ventas ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 else
                 {
                     string sql2 = "Delete From Talon Where Usuario='" + xus + "' And Fecha='" + DateTime.Parse(xfe).ToShortDateString() + "' And Id_Oper='" + xio + "' And Serie='" + xsr + "' And DVenta='" + xdv + "' And NInicial='" + xni + "' And NFinal='" + xnf + "'";
                     Conexion.ExecuteNonQuery(sql2);
-                    MessageBox.Show("Operación ejecutada correctamente");
+                    MessageBox.Show("Operación ejecutada correctamente","Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
             }
-
-            this.limpiar();
-            this.ejecon();
+            limpiar();
+            ejecon();
         }
 
         private void btnCortar_Click(object sender, EventArgs e)
         {
-            if (this.index == -1)
-            {
-                return;
-            }
+            if (index == -1)
+				return;
 
-            if (MessageBox.Show("Esta seguro de realizar el cierre del rango ?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			if( MessageBox.Show("Esta seguro de realizar el cierre del rango ?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                string xu = this.rangos[this.index]["Usuario"];
-                string xd = this.rangos[this.index]["Fecha"];
-                string xo = this.rangos[this.index]["Id_Oper"];
-                string xs = this.rangos[this.index]["Serie"];
-                string xt = this.rangos[this.index]["DVenta"];
-                string xi = this.rangos[this.index]["NInicial"];
-                string xf = this.rangos[this.index]["NFinal"];
+                string xu = rangos[index]["Usuario"];
+                string xd = rangos[index]["Fecha"];
+                string xo = rangos[index]["Id_Oper"];
+                string xs = rangos[index]["Serie"];
+                string xt = rangos[index]["DVenta"];
+                string xi = rangos[index]["NInicial"];
+                string xf = rangos[index]["NFinal"];
 
                 string sql = "Update Talon Set NFinal=NCon,NCon='' Where Usuario='" + xu + "' And Fecha='" + DateTime.Parse(xd).ToShortDateString() + "' And Id_Oper='" + xo + "' And Serie='" + xs + "' " + "And DVenta='" + xt + "' And NInicial='" + xi + "' And NFinal='" + xf + "' And NCon<>'' And NCon<>'0'";
                 Conexion.ExecuteNonQuery(sql);
-                MessageBox.Show("Operación ejecutada correctamente");
-            }
-
-            this.limpiar();
-            this.ejecon();
+				MessageBox.Show("Operación ejecutada correctamente", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+			}
+			limpiar();
+            ejecon();
         }
-
-        private void btnFiltro_Click(object sender, EventArgs e)
-        {
-            this.ejecon();
-        }
-
+		
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             string fi = dtpicFInicial.Value.ToShortDateString();
             string ff = dtpFFinal.Value.ToShortDateString();
-            string us = cmbUsuario.SelectedIndex == -1 ? "" : this.usTal[cmbUsuario.SelectedIndex]["Id_Us"];
+            string us = cmbUsuario.SelectedIndex == -1 ? "" : usTal[cmbUsuario.SelectedIndex]["Id_Us"];
             string op = cmbOperativo.SelectedIndex == -1 ? "" : cmbOperativo.SelectedValue.ToString();
 
             //genera reporte y carga los datos
             object result = WaitWindow.Show(WorkerMethodRPT, "Generando el reporte...", new string[] { fi, ff, us, op});
             if (result == null)
             {
-                MessageBox.Show("No se pudo procesar el reporte.");
-                return;
+                MessageBox.Show("No se pudo procesar el reporte.","Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				return;
             }
 
             //llama al formulario que muestra el reporte
             frmCRViewer frg = new frmCRViewer(rpt);
             frg.ShowDialog();
         }
-    }
+
+		private void btnRecrear_Click( object sender, EventArgs e )
+		{
+
+		}
+
+		private void btnFiltro_Click( object sender, EventArgs e )
+		{
+			index = -1;
+			ejecon();
+			if( lstRangos.Items.Count > 0)
+				btnImprimir.Enabled = true;
+			else
+				btnImprimir.Enabled = false;
+		}
+
+		private void dtpicFInicial_ValueChanged( object sender, EventArgs e )
+		{
+			dtpFFinal.Text = dtpicFInicial.Text;
+			cmbUsuario.SelectedIndex = -1;
+			cmbDVenta.SelectedIndex = -1;
+			txtSerie.Text = "";
+			txtNInicial.Text = "";
+			txtNFinal.Text = "";
+			txtNCon.Text = "";
+		}
+
+		private void dtpFFinal_ValueChanged( object sender, EventArgs e )
+		{
+			cmbUsuario.SelectedIndex = -1;
+			cmbDVenta.SelectedIndex = -1;
+			txtSerie.Text = "";
+			txtNInicial.Text = "";
+			txtNFinal.Text = "";
+			txtNCon.Text = "";
+		}
+
+		private void cmbUsuario_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if( cmbUsuario.SelectedIndex != -1 )
+				cmbDVenta.Focus();
+		}
+
+		private void cmbDVenta_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			if( cmbDVenta.SelectedIndex != -1 )
+			{
+				txtSerie.Text = "";
+				txtNInicial.Text = "";
+				txtNFinal.Text = "";
+				txtNCon.Text = "";
+				txtSerie.Focus();
+			}				
+		}
+	}
 }
