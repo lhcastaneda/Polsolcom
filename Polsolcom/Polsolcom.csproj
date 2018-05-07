@@ -239,6 +239,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MedicosDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\ModalidadDS.cs">
+      <DependentUpon>ModalidadDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\ModalidadDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -302,6 +305,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RepresentanteDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\RotationDS.cs">
+      <DependentUpon>RotationDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\RotationDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -614,10 +620,10 @@
     <Compile Include="Forms\Otros\frmModulos.Designer.cs">
       <DependentUpon>frmModulos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Otros\frmNewBus.cs">
+    <Compile Include="Forms\Mantenimiento\frmNewBus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Otros\frmNewBus.Designer.cs">
+    <Compile Include="Forms\Mantenimiento\frmNewBus.Designer.cs">
       <DependentUpon>frmNewBus.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Otros\frmNewDiagnostico.cs">
@@ -1067,7 +1073,7 @@
     <EmbeddedResource Include="Forms\Otros\frmModulos.resx">
       <DependentUpon>frmModulos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Otros\frmNewBus.resx">
+    <EmbeddedResource Include="Forms\Mantenimiento\frmNewBus.resx">
       <DependentUpon>frmNewBus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Otros\frmNewDiagnostico.resx">

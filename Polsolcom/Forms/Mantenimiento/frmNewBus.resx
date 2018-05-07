@@ -118,39 +118,65 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="estadoRegistroBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>483, 95</value>
+    <value>477, 31</value>
   </metadata>
   <metadata name="tablaTipoDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>372, 95</value>
+    <value>366, 31</value>
   </metadata>
   <metadata name="rotationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>127, 17</value>
+    <value>113, 2</value>
   </metadata>
   <metadata name="rotationDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>3, 2</value>
   </metadata>
   <metadata name="modalidadBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>594, 17</value>
+    <value>580, 2</value>
   </metadata>
   <metadata name="modalidadDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>469, 17</value>
+    <value>455, 2</value>
   </metadata>
   <metadata name="institucionBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
+    <value>11, 31</value>
   </metadata>
   <metadata name="institucionesDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>648, 56</value>
+    <value>761, 1</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnGrabar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3WAAAN1gGQb3mcAAAAAWJL
+        R0QAiAUdSAAAAAd0SU1FB+IDAwg6MbgpSuwAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMDMtMDNUMDg6
+        NTg6NDkrMDE6MDDYSVgDAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTAzLTAzVDA4OjU4OjQ5KzAxOjAw
+        qRTgvwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADqSURBVDhPY3DySrgBxP9B
+        +PCZs//PXL/+/9Tly/937dmFFfuGZvx39EqYwcDAwAjEDFgNAOGDx47iNACs3jthFtgQXAbgcgXcACB2
+        9kqYitMAXK5ANgCkF68B2FyB14CeKXP/z1myGgU3tE74X17TAcfufim4DSADU9GA8MDE/0URxGE3HywG
+        bE8M/v/fgOH/f1ep//+9FP7/dxKD8LHghOBEHAYYMf3/P7ft//+lE/7/n1CGVTMI4zdg04L///dvgOBl
+        E///z/MhzoAtKeH//1jxEoXjQpIwDajvmIKSiPBh//DsQWNAwg0AMsBvrdEkaksAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btnCancelar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFVSURBVDhPrZM9S8NQFIaPi2KKS5euXQr9AZ1Lf0CgCE4W
+        BMdSJ7cW6V9wcenQWerqLApZXKQOguIgoQqGqhVxUERyet7be6/JTQYFDzw0nHOeN18N/Xvtdbu8VSzy
+        cJn43FtwSKR6mOm1/PIrFQ5WiJ9EehbJEAnonawSY0evpwuDa0dMgpAH4VJ2MiG7nQ6fJRZdkv0bAVcC
+        R+tEm2teSnCZ1ev82m6rY1wFQuBonQgPyQxdIMZxrHhpNlUPAQeC1olOl7Iilt4HAyt/T6ccNRp2diRo
+        /ScAAxCWSvwRBFb+HI85LJftPBOAW0DAlRDWavw1mVj5bTTi20JBSZib39Qt7HieDbhvtawc9Xqql8e2
+        hGp98RovpGnSH/t9vvN91Uti5GMh9RpRG/LnMAGumAT/F+xqLV0YYMGcyZVx5vVqNV82ZT6mfVnGkwY4
+        /tXH9PcimgNZ92GvjL7jegAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="rotationTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>301, 17</value>
+    <value>287, 2</value>
   </metadata>
   <metadata name="modalidadTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>885, 1</value>
   </metadata>
   <metadata name="institucionTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>204, 95</value>
+    <value>198, 31</value>
   </metadata>
   <metadata name="estadoRegistroTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>679, 95</value>
+    <value>1055, -1</value>
   </metadata>
 </root>

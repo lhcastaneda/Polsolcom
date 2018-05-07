@@ -19,20 +19,21 @@ namespace Polsolcom.Forms
         public frmConsultorios()
         {
             InitializeComponent();
-
             cmbEst.SelectedIndex = -1;
-
         }
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            if (this.mntspList.Count > 0)
+			if( lstConsultorios.Items.Count == 0 )
+				return;
+
+            if ( mntspList.Count > 0)
             {
                 btnInicio.Enabled = btnAnterior.Enabled = false;
                 btnSiguiente.Enabled = btnFin.Enabled = true;
             }
 
-            this.i = 0;
+			i = 0;
             lstConsultorios.Select();
             lstConsultorios.EnsureVisible(i);
             lstConsultorios.Items[i].Selected = true;
@@ -43,13 +44,16 @@ namespace Polsolcom.Forms
 
         private void btnFin_Click(object sender, EventArgs e)
         {
-            if (this.mntspList.Count > 0)
+			if( lstConsultorios.Items.Count == 0 )
+				return;
+
+			if( mntspList.Count > 0)
             {
                 btnInicio.Enabled = btnAnterior.Enabled = true;
                 btnSiguiente.Enabled = btnFin.Enabled = false;
             }
 
-            this.i = mntspList.Count - 1;
+			i = mntspList.Count - 1;
             lstConsultorios.Select();
             lstConsultorios.EnsureVisible(i);
             lstConsultorios.Items[i].Selected = true;
@@ -60,16 +64,19 @@ namespace Polsolcom.Forms
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            if (this.mntspList.Count > 0)
+			if( lstConsultorios.Items.Count == 0 )
+				return;
+
+			if( mntspList.Count > 0)
             {
-                if (this.i > 0)
+                if ( i > 0)
                 {
-                    this.i--;
-                    lstConsultorios.Items[this.i].Selected = true;
+					i--;
+                    lstConsultorios.Items[i].Selected = true;
 
                     btnAnterior.Enabled = btnInicio.Enabled = btnAnterior.Enabled = true;
 
-                    if (this.i == 0)
+                    if ( i == 0)
                     {
                         btnInicio.Enabled = btnAnterior.Enabled = false;
                         btnSiguiente.Enabled = btnFin.Enabled = true;
@@ -87,16 +94,19 @@ namespace Polsolcom.Forms
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            if (this.mntspList.Count > 0)
+			if( lstConsultorios.Items.Count == 0 )
+				return;
+
+			if( mntspList.Count > 0)
             {
-                if (this.i < this.mntspList.Count - 1)
+                if ( i < mntspList.Count - 1)
                 {
-                    this.i++;
+					i++;
                     lstConsultorios.Items[i].Selected = true;
 
                     btnSiguiente.Enabled = btnInicio.Enabled = btnAnterior.Enabled = true;
 
-                    if (this.i == (this.mntspList.Count - 1))
+                    if ( i == (mntspList.Count - 1))
                     {
                         btnInicio.Enabled = btnAnterior.Enabled = true;
                         btnSiguiente.Enabled = btnFin.Enabled = false;
@@ -117,24 +127,35 @@ namespace Polsolcom.Forms
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
+				DialogResult = DialogResult.Cancel;
+				Close();
             }
         }
 
         public void cet(string md = "")
         {
-            frmCapEspTur frmCapEspTur = new frmCapEspTur(md.Length > 0 ? this.ie: md);
+            frmCapEspTur frmCapEspTur = new frmCapEspTur(md.Length > 0 ? ie : md);
             frmCapEspTur.FormClosed += new FormClosedEventHandler(frmCapEspTur_FormClosed);
             frmCapEspTur.Show();
-            this.Hide();
-
-            this.les<string>(md.Length > 0? this.ie : md);
+			Hide();
+			les(md.Length > 0? ie : md);
         }
+
+		private void LimpiaCampos()
+		{
+			txtDescripcion.Text = "";
+			edtDescripcion.Text = "";
+			txtCreacion.Text = "";
+			txtLastUpdate.Text = "";
+			lstTurnos.Items.Clear();			
+			lstBuses.Items.Clear();
+			cmbTipo.SelectedIndex = -1;
+			cmbEstado.SelectedIndex = -1;
+		}
 
         private void frmCapEspTur_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Show();
+			Show();
         }
 
         public void ctb()
@@ -142,42 +163,40 @@ namespace Polsolcom.Forms
             lstBuses.Items.Clear();
             lstTurnos.Items.Clear();
 
-            this.ie = this.mntspList[this.i]["Id_Consultorio"];
+			ie = mntspList[this.i]["Id_Consultorio"];
             string sp = General.bfc("Space", "11");
 
-            string sql = "Select Id_Bus, Id_Esp, Bus, Alterno, Turno, Estado, TBus, Id_Emp, Fec_Ing, Us_Ing + " + sp + " As Us_Ing,Fec_Mod,Us_Mod + " + sp + " As Us_Mod From Buses Where LTrim(RTrim(Id_Esp))= '" + this.ie + "' Order By Bus";
+            string sql = "Select Id_Bus, Id_Esp, Bus, Alterno, Turno, Estado, TBus, Id_Emp, Fec_Ing, Us_Ing + " + sp + " As Us_Ing,Fec_Mod,Us_Mod + " + sp + " As Us_Mod From Buses Where LTrim(RTrim(Id_Esp))= '" + ie + "' Order By Bus";
 
-            this.busList = General.GetDictionaryList(sql);
+			busList = General.GetDictionaryList(sql);
 
-            for (int i = 0; i < this.busList.Count; i++)
+            for (int i = 0; i < busList.Count; i++)
             {
-                this.busList[i]["Us_Ing"] = General.TradUser(this.busList[i]["Us_Ing"]);
-                this.busList[i]["Us_Mod"] = General.TradUser(this.busList[i]["Us_Mod"]);
+				busList[i]["Us_Ing"] = General.TradUser(busList[i]["Us_Ing"]);
+				busList[i]["Us_Mod"] = General.TradUser(busList[i]["Us_Mod"]);
             }
 
-            General.Fill(lstBuses, this.busList, new[] { "Bus", "TBus", "Fec_Mod", "Us_Mod" });
-
+            General.Fill(lstBuses, busList, new[] { "Bus", "TBus", "Fec_Mod", "Us_Mod" });
             btnEditar.Enabled = false;
+            btnAgregar.Enabled = btnQuitar.Enabled = busList.Count > 0;
 
-            btnAgregar.Enabled = btnQuitar.Enabled = this.busList.Count > 0;
-
-            if (this.mntspList.Count > 0)
+            if ( mntspList.Count > 0)
             {
-                this.ie = this.mntspList[this.i]["Id_Consultorio"];
-                txtDescripcion.Text = this.mntspList[this.i]["Descripcion"];
-                cmbEstado.SelectedValue = this.mntspList[this.i]["Estado"];
-                cmbTipo.SelectedValue = this.mntspList[this.i]["Tipo"];
-                edtDescripcion.Text = this.mntspList[this.i]["Observacion"];
-                txtCreacion.Text = General.TradUser(this.mntspList[this.i]["Us_Ing"]) + " - " + this.mntspList[this.i]["Fec_Ing"];
-                txtLastUpdate.Text = General.TradUser(this.mntspList[this.i]["Us_Mod"]) + " - " + this.mntspList[this.i]["Fec_Mod"];
+				ie = mntspList[i]["Id_Consultorio"];
+                txtDescripcion.Text = mntspList[i]["Descripcion"];
+                cmbEstado.SelectedValue = mntspList[i]["Estado"];
+                cmbTipo.SelectedValue = mntspList[i]["Tipo"];
+                edtDescripcion.Text = mntspList[i]["Observacion"];
+                txtCreacion.Text = General.TradUser(mntspList[i]["Us_Ing"]) + " - " + mntspList[i]["Fec_Ing"];
+                txtLastUpdate.Text = General.TradUser(mntspList[i]["Us_Mod"]) + " - " + mntspList[i]["Fec_Mod"];
                 //
-                string tr = this.mntspList[this.i]["Turno"];
+                string tr = mntspList[i]["Turno"];
                 string mc = tr != null && tr.Length > 0? tr.Substring(0, 1): "";
                 //
                 List<Dictionary<string, string>> tmptr = new List<Dictionary<string, string>>();
-                foreach (Dictionary<string, string> item in this.mntspList)
+                foreach (Dictionary<string, string> item in mntspList )
                 {
-                    if (item["Id_Consultorio"] == this.ie)
+                    if (item["Id_Consultorio"] == ie )
                     {
                         Dictionary<string, string> newItem = new Dictionary<string, string>();
                         newItem["c"] = (mc == "0" && mc != "1" ? "NO CONTINUO" : (mc == "1" && mc != "0" ? "CONTINUO" : ""));
@@ -188,18 +207,14 @@ namespace Polsolcom.Forms
                         tmptr.Add(newItem);
                     }
                 }
-
                 General.Fill(lstTurnos, tmptr, new[] { "c", "m", "t", "n", "a" });
 
                 //Deseleccionar todos
                 //General.UnselectListView(lstConsultorios);
                 //lstConsultorios.Items[this.i].Selected = true;
-
             }
             else
-            {
-                this.hab(false);
-            }
+				hab(false);
         }
 
         public void hab(bool lst)
@@ -211,10 +226,8 @@ namespace Polsolcom.Forms
             btnAgregar.Enabled = btnQuitar.Enabled = btnEditar.Enabled = false;
             chkEstado.Enabled = cmbEst.Enabled = lstConsultorios.Enabled = !lst;
 
-            if (this.iu)
-            {
+            if ( iu )
                 btnModificar.Enabled = lstBuses.Enabled = true;
-            }
             else
             {
                 General.setAll<TextBox, string>(panelEspecialidad, "Text", "");
@@ -224,27 +237,32 @@ namespace Polsolcom.Forms
                 btnNuevo.Enabled = true;
                 cmbEstado.SelectedValue = "1";
             }
-
             txtDescripcion.Focus();
         }
 
         public void les<T>(T ie)
         {
-            string st = cmbEst.SelectedIndex > 0? cmbEst.SelectedValue.ToString(): "";
-            string io = Operativo.id_oper;
+			string st = "";
+			if( cmbEst.SelectedIndex != -1 )
+			{
+				Ubigeo itm = (Ubigeo)cmbEst.SelectedItem;
+				st = itm.IdUbigeo;
+			}
+			else
+				st = cmbEst.SelectedIndex > 0? cmbEst.SelectedValue.ToString(): "";
+
+			string io = Operativo.id_oper;
 
             lstConsultorios.Items.Clear();
-
             string sql = "Select * From Consultorios Where SubString(Id_Consultorio,1,3)= '" + io + "' And Estado Like '" + st + "%' Order By 2";
-
-            this.mntspList = General.GetDictionaryList(sql);
-            General.Fill(lstConsultorios, this.mntspList, new[] { "Descripcion", "Id_Consultorio" });
+			mntspList = General.GetDictionaryList(sql);
+            General.Fill(lstConsultorios, mntspList, new[] { "Descripcion", "Id_Consultorio" });
 
             if (typeof(T) == typeof(String))
             {
-                for (int i = 0; i < this.mntspList.Count; i++)
+                for (int i = 0; i < mntspList.Count; i++)
                 {
-                    if (this.mntspList[i]["Id_Consultorio"] == ie.ToString())
+                    if ( mntspList[i]["Id_Consultorio"] == ie.ToString())
                     {
                         lstConsultorios.Items[i].Selected = true;
                         lstConsultorios.Select();
@@ -252,17 +270,18 @@ namespace Polsolcom.Forms
                 }
             }
             else
-            {
                 btnFin_Click(btnFin, new EventArgs());
-            }
-        }
+
+			lblCantidad.Text = "Cantidad de Registros: " + lstConsultorios.Items.Count.ToString();
+
+		}
 
         public bool viu()
         {
             string ne = txtDescripcion.Text;
             string io = Operativo.id_oper;
 
-            string sql = "Select Sum(C)As C,Sum(T)As T From (Select Count(*)As C,0 As T From Consultorios Where LTrim(RTrim(Descripcion))='" + ne + "' And SubString(Id_Consultorio,1,3) = '" + io + "'" + (this.iu ? " And LTrim(RTrim(Id_Consultorio))<> '" + this.ie + "'" : "") + (this.mntspList[this.i]["Descripcion"] != ne && this.iu ? " Union All Select 0 As C,Count(*)As T From Tickets Where LTrim(RTrim(Id_Consultorio))= '" + this.ie + "'" : "") + ")As X";
+            string sql = "Select Sum(C)As C,Sum(T)As T From (Select Count(*)As C,0 As T From Consultorios Where LTrim(RTrim(Descripcion))='" + ne + "' And SubString(Id_Consultorio,1,3) = '" + io + "'" + (iu ? " And LTrim(RTrim(Id_Consultorio))<> '" + ie + "'" : "") + (mntspList[i]["Descripcion"] != ne && iu ? " Union All Select 0 As C,Count(*)As T From Tickets Where LTrim(RTrim(Id_Consultorio))= '" + ie + "'" : "") + ")As X";
             Dictionary<string, string> res = General.GetDictionary(sql);
 
             int c = int.Parse(res["C"]);
@@ -270,84 +289,90 @@ namespace Polsolcom.Forms
 
             if (c > 0)
             {
-                MessageBox.Show("Nombre de especialidad ya existe, verifique ...", "Advertencia");
+                MessageBox.Show("Nombre de especialidad ya existe, verifique ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 return false;
             }
 
             if (t > 0)
             {
-                ne = this.mntspList[this.i]["Descripcion"];
-                MessageBox.Show("Nombre de especialidad no puede cambiarse ...\nexisten ventas realizadas para " + ne + ".", "Advertencia");
+                ne = mntspList[i]["Descripcion"];
+                MessageBox.Show("Nombre de especialidad no puede cambiarse ...\nexisten ventas realizadas para " + ne + ".", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtDescripcion.Text = ne;
                 return false;
             }
 
             if (txtDescripcion.Text.Length == 0 || cmbEstado.SelectedIndex == -1 || cmbTipo.SelectedIndex == -1)
             {
-                MessageBox.Show("Faltan datos para grabar el registro ...", "Advertencia");
+                MessageBox.Show("Faltan datos para grabar el registro ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 return false;
             }
-
             return true;
         }
 
         private void chkEstado_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkEstado.Checked)
-            {
-                cmbEst.SelectedIndex = -1;
-            }
-            cmbEst.Enabled = !cmbEst.Enabled;
+			if( chkEstado.Checked )
+			{
+				cmbEst.SelectedIndex = -1;
+				cmbEst.Enabled = false;
+			}
+			else
+			{
+				cmbEst.Enabled = true;
+				cmbEst.SelectedIndex = -1;
+				lstConsultorios.Items.Clear();
+				LimpiaCampos();
+				lblCantidad.Text = "Cantidad de Registros: " + lstConsultorios.Items.Count.ToString();
+				return;
+			}
+
+            //cmbEst.Enabled = !cmbEst.Enabled;
             cmbEst_SelectionChangeCommitted(cmbEst, new EventArgs());
+			LimpiaCampos();
         }
 
         private void cmbEst_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            this.les<string>("");
+			les("");
         }
 
         private void lstConsultorios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.i = General.GetSelectedIndex(lstConsultorios);
-            this.ctb();
+			i = General.GetSelectedIndex(lstConsultorios);
+			ctb();
         }
 
         private void lstConsultorios_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2)
-            {
-                this.cet();
-            }
+				cet();
 
             if (e.KeyCode == Keys.F3)
-            {
-                this.cet("C");
-            }
+				cet("C");
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNewBus frmNewBus = new frmNewBus(this.ie, "", null, "Agregar consultorio");
+            frmNewBus frmNewBus = new frmNewBus(ie, "", null, "Agregar consultorio");
             frmNewBus.FormClosed += new FormClosedEventHandler(frmNewBus_FormClosed);
             frmNewBus.Show();
-            this.Hide();
-            //
-            this.ctb();
+			Hide();
+			ctb();
         }
 
         private void frmNewBus_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Show();
+			Show();
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
             int index = General.GetSelectedIndex(lstBuses);
 
-            if (this.ie.Length > 0)
+            if ( ie.Length > 0)
             {
-                string ic = this.busList[index]["Id_Bus"];
-                string nb = this.busList[index]["Bus"];
+                string ic = busList[index]["Id_Bus"];
+                string nb = busList[index]["Bus"];
 
                 string sql = "Select Sum(C)As C From(Select Count(*)As C From Cab_Cie10 Where LTrim(RTrim(Id_Bus))='" + ic + "' Union All Select Count(*)As C From Tickets Where LTrim(RTrim(Id_Bus))='" + ic + "')X";
 
@@ -355,46 +380,42 @@ namespace Polsolcom.Forms
 
                 if (c > 0)
                 {
-                    MessageBox.Show("No puede eliminar el consultorio " + nb + ", por encontrarse en uso ...", "Advertencia");
+                    MessageBox.Show("No puede eliminar el consultorio " + nb + ", por encontrarse en uso ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     return;
                 }
 
-                if (MessageBox.Show("Esta seguro de eliminar el consultorio " + nb + " ... ?", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
-                {
+                if (MessageBox.Show("Esta seguro de eliminar el consultorio " + nb + " ... ?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
                     return;
-                }
 
                 string sql2 = "Delete From Buses Where LTrim(RTrim(Id_Bus)) = '" + ic + "'";
                 Conexion.ExecuteNonQuery(sql2);
-
-                this.ctb();
+				ctb();
             }
             else
             {
-                MessageBox.Show("No hay consultorios a eliminar ...", "Aviso al usuario");
+                MessageBox.Show("No hay consultorios a eliminar ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 btnQuitar.Enabled = btnEditar.Enabled = false;
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
-            if (this.mntspList.Count > 0)
+            if ( mntspList.Count > 0)
             {
                 if (btnModificar.Text == "&Modificar")
                 {
                     btnModificar.Text = "&Grabar";
-                    this.iu = true;
-                    this.hab(true);
-                    btnNuevo.Enabled = false;
+					iu = true;
+					hab(true);
+					btnAgregar.Enabled = true;
                     btnEliminar.Enabled = false;
                     btnQuitar.Enabled = lstBuses.Items.Count > 0;
                 }
                 else
                 {
-                    if (MessageBox.Show("Desea guardar los cambios ... ?", "Mensaje al Usuario", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show("Desea guardar los cambios ... ?", "Mensaje al Usuario", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                     {
-                        if (this.viu())
+                        if ( viu())
                         {
                             string ne = txtDescripcion.Text;
                             string st = cmbEstado.SelectedValue.ToString();
@@ -404,19 +425,17 @@ namespace Polsolcom.Forms
 
                             string sql = "Update consultorios Set descripcion = '" + ne + "', estado = '" + st + "', tipo = '" + tp + "', observacion = '" + ob + "', us_mod = '" + iu + "', fec_mod = GetDate() Where LTrim(RTrim(id_consultorio)) = '" + ie + "'";
                             Conexion.ExecuteNonQuery(sql);
-                            General.chgst("Consultorios", this.ie, st);
+                            General.chgst("Consultorios", ie, st);
                         }
                         else
-                        {
                             return;
-                        }
                     }
 
                     btnModificar.Text = "&Modificar";
                     btnNuevo.Enabled = true;
                     btnEliminar.Enabled = true;
-                    this.hab(false);
-                    this.les<string>(this.ie);
+					hab(false);
+					les(ie);
                     this.iu = false;
                 }
             }
@@ -428,23 +447,23 @@ namespace Polsolcom.Forms
 
             if (lstBuses.Items.Count == 0)
             {
-                MessageBox.Show("No hay consultorios (Buses) a editar ...", "Aviso al usuario");
+                MessageBox.Show("No hay consultorios (Buses) a editar ...", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 btnQuitar.Enabled = btnEditar.Enabled = false;
                 return;
             }
 
             //Cargar formulario
-            frmNewBus frmNewBus = new frmNewBus(this.ie, this.busList[index]["Id_Bus"], this.busList[index], "Editar bus");
+            frmNewBus frmNewBus = new frmNewBus(ie, busList[index]["Id_Bus"], busList[index], "Editar bus");
             frmNewBus.FormClosed += new FormClosedEventHandler(frmNewBus_FormClosed);
             frmNewBus.Show();
-            this.Hide();
-            this.ctb();
+			Hide();
+			ctb();
         }
-
-
+		
         private void lstBuses_Validated(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
+			if( lstBuses.Items.Count != 0 )
+				btnEditar.Enabled = true;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -456,7 +475,7 @@ namespace Polsolcom.Forms
 
                 if (c > 0)
                 {
-                    MessageBox.Show("No puede eliminar el registro ... existen ventas para esta especialidad ...", "Advertencia");
+                    MessageBox.Show("No puede eliminar el registro ... existen ventas para esta especialidad ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     return;
                 }
 
@@ -465,33 +484,39 @@ namespace Polsolcom.Forms
 
                 if (c2 > 0)
                 {
-                    MessageBox.Show("No puede eliminar el registro ... existen consultorios creados ...", "Advertencia");
+                    MessageBox.Show("No puede eliminar el registro ... existen consultorios creados ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     return;
                 }
 
-                if (MessageBox.Show("Esta seguro de eliminar la Especialidad " + txtDescripcion.Text + " ... ?", "Advertencia de eliminación", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show("Esta seguro de eliminar la Especialidad " + txtDescripcion.Text + " ... ?", "Advertencia de eliminación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     string sql3 = "Delete From Consultorios Where LTrim(RTrim(Id_Consultorio)) = '" + ie + "'";
                     Conexion.ExecuteNonQuery(sql3);
-                    this.les<string>("");
+					les("");
                 }
+				LimpiaCampos();
             }
         }
 
         private void frmConsultorios_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'tablaTipoDS.EstadoRegistro' table. You can move, or remove it, as needed.
-            this.estadoRegistroTableAdapter.Fill(this.tablaTipoDS.EstadoRegistro);
-            // TODO: This line of code loads data into the 'modalidadDS.Modalidad' table. You can move, or remove it, as needed.
-            this.modalidadTableAdapter.Fill(this.modalidadDS.Modalidad);
+			string vSQL = "SELECT Descripcion, Id_Tipo AS IdUbigeo " +
+							"FROM tablatipo " +
+							"WHERE id_tabla = 3 " +
+							"ORDER BY 1";
+			General.LlenaComboBox(cmbEst, "SQL", vSQL);
+			estadoRegistroTableAdapter.Fill(tablaTipoDS.EstadoRegistro);
+			modalidadTableAdapter.Fill(modalidadDS.Modalidad);
             cmbEst.SelectedIndex = -1;
-            this.les<string>("");
+			les("");
             btnInicio_Click(btnInicio, new EventArgs());
+			LimpiaCampos();
         }
 
         private void lstBuses_Enter(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
+			if( lstBuses.Items.Count!=0 )
+				btnEditar.Enabled = true;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -502,37 +527,41 @@ namespace Polsolcom.Forms
                 btnNuevo.Tag = "Guardar registro";
                 btnModificar.Enabled = false;
                 btnEliminar.Enabled = false;
-                this.hab(true);
+				hab(true);
             }
             else {
-                if (MessageBox.Show("Desea guardar los datos ... ?", "Mensaje al usuario", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show("Desea guardar los datos ... ?", "Mensaje al usuario", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
-                    if (this.viu())
+                    if ( viu())
                     {
                         string ne = txtDescripcion.Text;
                         string st = cmbEstado.SelectedValue.ToString();
-                        string tp = cmbTipo.SelectedIndex > 0 ? cmbTipo.SelectedValue.ToString() : "";
-                        string ob = txtDescripcion.Text;
+                        //string tp = cmbTipo.SelectedIndex > 0 ? cmbTipo.SelectedValue.ToString() : "";
+						string tp = cmbTipo.SelectedValue.ToString();
+						string ob = edtDescripcion.Text;
                         string iu = Usuario.id_us;
                         string io = Operativo.id_oper;
 
                         string sql = General.exsp("addconsultorio", General.TDB) + "'" + ne + "', '" + st + "', '', '" + tp + "', '" + io + "', '" + ob + "', '" + iu + "'" + General.exsp("", General.TDB);
                         Conexion.ExecuteNonQuery(sql);
                     }
-                    else {
+                    else
                         return;
-                    }
                 }
 
                 this.iu = false;
-
                 btnNuevo.Text = "&Nuevo";
                 btnModificar.Enabled = true;
                 btnEliminar.Enabled = true;
-                this.hab(false);
-                this.les<string>("");
+				hab(false);
+				les("");
             }
 
         }
+
+		private void cmbEst_SelectedIndexChanged( object sender, EventArgs e )
+		{
+			LimpiaCampos();
+		}
 	}
 }
