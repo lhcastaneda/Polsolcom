@@ -1235,6 +1235,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Variables.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Dominio\Data\BusesDS.xsc">
       <DependentUpon>BusesDS.xsd</DependentUpon>
     </None>
