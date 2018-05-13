@@ -1832,6 +1832,44 @@ namespace Polsolcom.Dominio.Helpers
                 return null;
             }
         }
+
+		public static void UpdateVersionApp()
+		{
+			string[] vVer = null;
+			bool NextV = false;
+			var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+			vVer = config.AppSettings.Settings["VERSION"].Value.ToString().Split('.');
+
+			//Cambio menor (variables, constantes, propiedades)
+			vVer[2] = (Convert.ToInt32(vVer[2]) + 1).ToString();
+			if( Convert.ToInt32(vVer[2]) >= 100 )
+			{
+				vVer[2] = "0";
+				NextV = true;
+			}
+
+			//Actualizacion funcionalidad existente (proceso, control, formulario) 
+			if( NextV == true )
+			{
+				vVer[1] = (Convert.ToInt32(vVer[1]) + 1).ToString();
+				if( Convert.ToInt32(vVer[1]) >= 20 )
+				{
+					vVer[1] = "0";
+					NextV = true;
+				}
+				else
+					NextV = false;
+			}
+
+			//Nueva funcionalidad (nuevo proceso, fomulario, control)
+			if( NextV == true )
+				vVer[0] = (Convert.ToInt32(vVer[0]) + 1).ToString();
+
+			config.AppSettings.Settings["VERSION"].Value = vVer[0] + "." + vVer[1] + "." + vVer[2];
+			config.Save(ConfigurationSaveMode.Modified);
+			ConfigurationManager.RefreshSection("appSettings");
+		}
     }
 }
 	

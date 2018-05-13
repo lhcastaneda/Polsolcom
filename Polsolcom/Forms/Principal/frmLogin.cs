@@ -7,6 +7,9 @@ using Microsoft.VisualBasic;
 using Polsolcom.Dominio.Modelos;
 using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
+using System.Reflection;
+using System.Diagnostics;
+using System.Configuration;
 
 namespace Polsolcom.Forms
 {
@@ -26,10 +29,17 @@ namespace Polsolcom.Forms
         
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            try
-            {
-                //abre la conexion a la BD
-                Conexion.CNN = Conexion.ConectaBD();
+			//ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
+			//fileMap.ExeConfigFilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+			//Configuration config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+			//AppSettingsSection appSettings = (AppSettingsSection)config.GetSection("appSettings");
+
+			lblVersion.Text = "Version: 1.1.3";
+			
+			try
+			{
+				//abre la conexion a la BD
+				Conexion.CNN = Conexion.ConectaBD();
                 if ( Conexion.CNN.State != ConnectionState.Open )  
                 {
                     MessageBox.Show("No se pudo realizar la conexion a la BD." + (char)13 + "Contactar al admnistrador de sistemas.", "Ingreso de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);

@@ -2110,10 +2110,18 @@ namespace Polsolcom.Dominio.Data.MedicosDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "Select Ape_Paterno+\' \'+Ape_Materno+\', \'+Nombres Medico,Id_Personal From Personal " +
-                "Where TNCol<>\'\' Union Select Descripcion,Id_Tipo From TablaTipo Where Id_Tabla I" +
-                "n (Select Id_Tipo From TablaTipo Where Descripcion=\'VAR_EXTRAS\' And Id_Tabla=\'0\'" +
-                ") Order By 1";
+            this._commandCollection[0].CommandText = @"SELECT Ape_Paterno+' '+Ape_Materno+', '+Nombres Medico,Id_Personal 
+FROM Personal 
+WHERE TNCol <> '' 
+UNION 
+SELECT Descripcion,Id_Tipo 
+FROM TablaTipo 
+WHERE Id_Tabla In 
+(SELECT Id_Tipo 
+ FROM TablaTipo 
+ WHERE Descripcion = 'VAR_EXTRAS' 
+ AND Id_Tabla = '0') 
+ORDER BY Medico ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2649,18 +2657,6 @@ SELECT P.Ape_Paterno + ' ' + P.Ape_Materno + ' ' + P.Nombres AS Medico, P.Id_Per
             tableMapping.ColumnMappings.Add("Medico", "Medico");
             tableMapping.ColumnMappings.Add("Id_Personal", "Id_Personal");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Personal] WHERE (([Id_Personal] = @Original_Id_Personal))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Personal", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Personal", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Personal] SET [Id_Personal] = @Id_Personal WHERE (([Id_Personal] = @Original_Id_Personal));
-SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + Nombres AS Medico, Id_Personal FROM Personal WHERE (Id_Personal = @Id_Personal) ORDER BY Medico";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Personal", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Personal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Personal", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Personal", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2676,8 +2672,9 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "Select SubString(TNCol,2,7)CMP,Ape_Paterno+\' \'+Ape_Materno+\', \'+Nombres Medico,Id" +
-                "_Personal From Personal Where TNCol<>\'\' Order By 2";
+            this._commandCollection[0].CommandText = "SELECT SubString(TNCol,2,7) CMP,Ape_Paterno+\' \'+Ape_Materno+\', \'+Nombres Medico,I" +
+                "d_Personal \r\nFROM Personal \r\nWHERE TNCol<>\'\' \r\nUNION ALL \r\nSELECT \'*\' CMP,\'*  TO" +
+                "DOS  *\' Medico,\'*\' Id_Personal\r\nORDER BY 2";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2704,103 +2701,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MedicosDS.EspecialistasDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MedicosDS dataSet) {
-            return this.Adapter.Update(dataSet, "Especialistas");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id_Personal) {
-            if ((Original_Id_Personal == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Personal");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Id_Personal));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Id_Personal, string Original_Id_Personal) {
-            if ((Id_Personal == null)) {
-                throw new global::System.ArgumentNullException("Id_Personal");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Id_Personal));
-            }
-            if ((Original_Id_Personal == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Personal");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Original_Id_Personal));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Original_Id_Personal) {
-            return this.Update(Original_Id_Personal, Original_Id_Personal);
-        }
     }
     
     /// <summary>
@@ -2816,8 +2716,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
         private UpdateOrderOption _updateOrder;
         
         private ProduccionXMedicoTableAdapter _produccionXMedicoTableAdapter;
-        
-        private EspecialistasTableAdapter _especialistasTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -2850,20 +2748,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public EspecialistasTableAdapter EspecialistasTableAdapter {
-            get {
-                return this._especialistasTableAdapter;
-            }
-            set {
-                this._especialistasTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -2885,10 +2769,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
                             && (this._produccionXMedicoTableAdapter.Connection != null))) {
                     return this._produccionXMedicoTableAdapter.Connection;
                 }
-                if (((this._especialistasTableAdapter != null) 
-                            && (this._especialistasTableAdapter.Connection != null))) {
-                    return this._especialistasTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -2903,9 +2783,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
             get {
                 int count = 0;
                 if ((this._produccionXMedicoTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._especialistasTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -2928,15 +2805,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._especialistasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Especialistas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._especialistasTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -2955,14 +2823,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._especialistasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Especialistas.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._especialistasTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -2973,14 +2833,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(MedicosDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._especialistasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Especialistas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._especialistasTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._produccionXMedicoTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.ProduccionXMedico.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -3033,11 +2885,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._especialistasTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._especialistasTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -3077,15 +2924,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
                     if (this._produccionXMedicoTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._produccionXMedicoTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._produccionXMedicoTableAdapter.Adapter);
-                    }
-                }
-                if ((this._especialistasTableAdapter != null)) {
-                    revertConnections.Add(this._especialistasTableAdapter, this._especialistasTableAdapter.Connection);
-                    this._especialistasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._especialistasTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._especialistasTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._especialistasTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._especialistasTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -3149,10 +2987,6 @@ SELECT SUBSTRING(TNCol, 2, 7) AS CMP, Ape_Paterno + ' ' + Ape_Materno + ', ' + N
                 if ((this._produccionXMedicoTableAdapter != null)) {
                     this._produccionXMedicoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._produccionXMedicoTableAdapter]));
                     this._produccionXMedicoTableAdapter.Transaction = null;
-                }
-                if ((this._especialistasTableAdapter != null)) {
-                    this._especialistasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._especialistasTableAdapter]));
-                    this._especialistasTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

@@ -6,11 +6,10 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Polsolcom.Dominio.Connection;
 using System.Text.RegularExpressions;
 using Polsolcom.Dominio.Helpers;
-using System.Data.SqlClient;
 
 namespace Polsolcom.Forms
 {
-    public partial class frmExport : Form
+	public partial class frmExport : Form
     {
         const int max_records = 65500;
         string title = "";
@@ -30,9 +29,8 @@ namespace Polsolcom.Forms
 
         public bool exportar()
         {
-            this.nfe = txtPath.Text + txtNomFile.Text + "." + cmbTipo.SelectedItem.ToString();
-
-            if (File.Exists(this.nfe))
+			nfe = txtPath.Text + txtNomFile.Text + "." + cmbTipo.SelectedItem.ToString();
+            if (File.Exists(nfe) )
             {
                 if (MessageBox.Show("El archivo ya existe, desea reemplazarlo ... ?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
@@ -41,69 +39,64 @@ namespace Polsolcom.Forms
                 }
             }
 
-            this.dataTable = Conexion.GetTable(this.sql);
-            if (cmbTipo.SelectedItem.ToString() == "XLSX" && this.dataTable.Rows.Count > max_records)
+			dataTable = Conexion.GetTable(sql);
+            if (cmbTipo.SelectedItem.ToString() == "XLSX" && dataTable.Rows.Count > max_records)
             {
                 if (MessageBox.Show("Cantidad de registros mayor a " + max_records.ToString() + ", desea continuar ...?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
-                {
                     return false;
-                }
             }
-
             return (bool)WaitWindow.Show(WorkerMethod, "Generando el archivo...");
         }
 
         private void WorkerMethod(object sender, WaitWindowEventArgs e)
         {
-            Microsoft.Office.Interop.Excel.Application excel;
-            Microsoft.Office.Interop.Excel.Workbook excelworkBook;
-            Microsoft.Office.Interop.Excel.Worksheet excelSheet;
-            Microsoft.Office.Interop.Excel.Range excelCellrange;
+			Excel.Application excel;
+            Excel.Workbook excelworkBook;
+            Excel.Worksheet excelSheet;
+            Excel.Range excelCellrange;
 
-            try
-            {
-                // Start Excel and get Application object.
-                excel = new Microsoft.Office.Interop.Excel.Application();
-
-                // for making Excel visible
-                excel.Visible = false;
-                excel.DisplayAlerts = false;
-
-                // Creation a new Workbook
-                excelworkBook = excel.Workbooks.Add(Type.Missing);
-
-                // Workk sheet
-                excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelworkBook.ActiveSheet;
-                excelSheet.Name = this.worksheetName;
-
-                excelSheet.Cells[1, 1] = this.title;
+			try
+			{
+				// Start Excel and get Application object.
+				excel = new Excel.Application();
+				// for making Excel visible
+				excel.Visible = false;
+				excel.DisplayAlerts = false;
+				// Creation a new Workbook
+				excelworkBook = excel.Workbooks.Add(Type.Missing);
+				// Workk sheet
+				excelSheet = (Excel.Worksheet)excelworkBook.ActiveSheet;
+				excelSheet.Name = worksheetName;
+				excelSheet.Cells[1, 1] = title.Trim().ToUpper();
                 excelSheet.Cells[1, 2] = "Date : " + DateTime.Now.ToShortDateString();
 
                 // loop through each row and add values to our sheet
                 int rowcount = 2;
-
-                foreach (DataRow datarow in this.dataTable.Rows)
+                foreach (DataRow datarow in dataTable.Rows)
                 {
                     rowcount += 1;
-                    for (int i = 1; i <= this.dataTable.Columns.Count; i++)
-                    {
-                        // on the first iteration we add the column headers
+                    for (int i = 1; i <= dataTable.Columns.Count; i++)
+                    {   // on the first iteration we add the column headers
                         if (rowcount == 3)
                         {
-                            excelSheet.Cells[2, i] = this.dataTable.Columns[i - 1].ColumnName;
+                            excelSheet.Cells[2, i] = dataTable.Columns[i - 1].ColumnName.Trim().ToUpper();
                             excelSheet.Cells.Font.Color = System.Drawing.Color.Black;
                         }
 
-                        excelSheet.Cells[rowcount, i] = datarow[i - 1].ToString();
-
-                        //for alternate rows
+						DateTime dt;
+						if( DateTime.TryParse(datarow[i - 1].ToString(),out dt) )
+							excelSheet.Cells[rowcount, i] = ((DateTime)(datarow[i - 1])).ToString("dd/MM/yyyy").ToString();
+						else
+							excelSheet.Cells[rowcount, i] = datarow[i - 1].ToString();
+                        
+						//for alternate rows
                         if (rowcount > 3)
                         {
-                            if (i == this.dataTable.Columns.Count)
+                            if (i == dataTable.Columns.Count)
                             {
                                 if (rowcount % 2 == 0)
                                 {
-                                    excelCellrange = excelSheet.Range[excelSheet.Cells[rowcount, 1], excelSheet.Cells[rowcount, this.dataTable.Columns.Count]];
+                                    excelCellrange = excelSheet.Range[excelSheet.Cells[rowcount, 1], excelSheet.Cells[rowcount, dataTable.Columns.Count]];
                                     FormattingExcelCells(excelCellrange, "#CCCCFF", System.Drawing.Color.Black, false);
                                 }
 
@@ -113,23 +106,17 @@ namespace Polsolcom.Forms
                 }
 
                 // now we resize the columns
-                excelCellrange = excelSheet.Range[excelSheet.Cells[1, 1], excelSheet.Cells[rowcount, this.dataTable.Columns.Count]];
+                excelCellrange = excelSheet.Range[excelSheet.Cells[1, 1], excelSheet.Cells[rowcount, dataTable.Columns.Count]];
                 excelCellrange.EntireColumn.AutoFit();
-                Microsoft.Office.Interop.Excel.Borders border = excelCellrange.Borders;
-                border.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+				Excel.Borders border = excelCellrange.Borders;
+                border.LineStyle = Excel.XlLineStyle.xlContinuous;
                 border.Weight = 2d;
-
-
-                excelCellrange = excelSheet.Range[excelSheet.Cells[1, 1], excelSheet.Cells[2, this.dataTable.Columns.Count]];
+                excelCellrange = excelSheet.Range[excelSheet.Cells[1, 1], excelSheet.Cells[2, dataTable.Columns.Count]];
                 FormattingExcelCells(excelCellrange, "#000099", System.Drawing.Color.White, true);
-
-
                 //now save the workbook and exit Excel
-
-                excelworkBook.SaveAs(this.nfe); ;
+                excelworkBook.SaveAs(nfe); ;
                 excelworkBook.Close();
                 excel.Quit();
-
                 e.Result = true;
             }
             catch (Exception ex)
@@ -143,51 +130,30 @@ namespace Polsolcom.Forms
                 excelCellrange = null;
                 excelworkBook = null;
             }
-
             e.Result = true;
         }
-
-
-        /// <summary>
-        /// FUNCTION FOR FORMATTING EXCEL CELLS
-        /// </summary>
-        /// <param name="range"></param>
-        /// <param name="HTMLcolorCode"></param>
-        /// <param name="fontColor"></param>
-        /// <param name="IsFontbool"></param>
-        public void FormattingExcelCells(Microsoft.Office.Interop.Excel.Range range, string HTMLcolorCode, System.Drawing.Color fontColor, bool IsFontbool)
+		
+        public void FormattingExcelCells( Excel.Range range, string HTMLcolorCode, System.Drawing.Color fontColor, bool IsFontbool)
         {
             range.Interior.Color = System.Drawing.ColorTranslator.FromHtml(HTMLcolorCode);
             range.Font.Color = System.Drawing.ColorTranslator.ToOle(fontColor);
             if (IsFontbool == true)
-            {
                 range.Font.Bold = IsFontbool;
-            }
         }
 
         public void crearExcel(DataTable dtable, string nfe)
         {
-            ////*** Preparing excel Application
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
             object misValue = System.Reflection.Missing.Value;
-
-            ///*** Opening Excel application
-            //xlApp = new Excel.Application();
-            //xlWorkBook = xlApp.Workbooks.Open(@nfe);
-            //xlWorkSheet = (Excel.Worksheet)(xlWorkBook.ActiveSheet as Excel.Worksheet);
-
-            ///*** Opening Excel application
             xlApp = new Excel.Application();
             xlWorkBook = xlApp.Workbooks.Open(@nfe);
-            xlWorkSheet = (Excel.Worksheet)(xlWorkBook.ActiveSheet as Excel.Worksheet);
+            xlWorkSheet = xlWorkBook.ActiveSheet as Excel.Worksheet;
 
-            ////*** It will always remove the prvious result from the CSV file so that we can get always the updated data
             xlWorkSheet.UsedRange.Select();
             xlWorkSheet.UsedRange.Delete(Excel.XlDeleteShiftDirection.xlShiftUp);
             xlApp.DisplayAlerts = false;
-            //xlWorkBook.Save();
 
             ////*** Generating the column Names here
             string[] colNames = new string[dtable.Columns.Count];
@@ -197,7 +163,6 @@ namespace Polsolcom.Forms
                 colNames[col++] = dc.ColumnName;
 
             char lastColumn = (char)(65 + dtable.Columns.Count - 1);
-
             xlWorkSheet.get_Range("A1", lastColumn + "1").Value2 = colNames;
             xlWorkSheet.get_Range("A1", lastColumn + "1").Font.Bold = true;
             xlWorkSheet.get_Range("A1", lastColumn + "1").VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
@@ -211,22 +176,14 @@ namespace Polsolcom.Forms
                     xlWorkSheet.Cells[i + 2, j + 1] = data;
                 }
             }
-
-
             ///**Saving the csv file without notification.
             xlApp.DisplayAlerts = false;
             xlWorkBook.Save();
-
-            //xlWorkBook.SaveAs("Book1.csv", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();
-
             releaseObject(xlWorkSheet);
             releaseObject(xlWorkBook);
             releaseObject(xlApp);
-
-            ////MessageBox.Show("Excel file created , you can find the file C:\\Users\\MM18100\\Documents\\informations.xls");
         }
 
         private void releaseObject(object obj)
@@ -242,25 +199,21 @@ namespace Polsolcom.Forms
                 MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
             }
             finally
-            {
-                GC.Collect();
-            }
-
+            { GC.Collect(); }
         }
 
         private void frmExport_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
+				DialogResult = DialogResult.Cancel;
+				Close();
             }
         }
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
             string msg = "";
-
             if (txtPath.Text.Length == 0)
             {
                 msg = "Indique la ruta donde se guardara el archivo ...";
@@ -286,17 +239,18 @@ namespace Polsolcom.Forms
                 return;
             }
 
-            if (!this.exportar()) return;
-            MessageBox.Show("Archivo creado con exito ...", "Aviso al usuario");
+            if (!exportar())
+				return;
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+			MessageBox.Show("Archivo creado con exito ...", "Aviso al usuario");
+			DialogResult = DialogResult.OK;
+			Close();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+			DialogResult = DialogResult.Cancel;
+			Close();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -307,7 +261,7 @@ namespace Polsolcom.Forms
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    txtPath.Text = fbd.SelectedPath + "\\";
+                    txtPath.Text = fbd.SelectedPath.Substring(fbd.SelectedPath.Length -1) == "\\" ? fbd.SelectedPath: fbd.SelectedPath + "\\";
                     txtNomFile.Focus();
                 }
             }
@@ -316,7 +270,6 @@ namespace Polsolcom.Forms
         private void txtNomFile_Leave(object sender, EventArgs e)
         {
             bool result = Regex.IsMatch(txtNomFile.Text, @"^[\w\-. ]+$");
-
             if (!result)
             {
                 MessageBox.Show("Hay caracteres no permitidos en el nombre de archivo, corregir", "Aviso al usuario");

@@ -75,6 +75,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.modalidadTableAdapter = new Polsolcom.Dominio.Data.ModalidadDSTableAdapters.ModalidadTableAdapter();
 			this.estadoRegistroTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter();
+			this.lblCantidad = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.estadoRegistroBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.modalidadBindingSource)).BeginInit();
@@ -108,6 +109,7 @@
 			this.cmbEst.Size = new System.Drawing.Size(141, 21);
 			this.cmbEst.TabIndex = 2;
 			this.cmbEst.ValueMember = "Id_Tipo";
+			this.cmbEst.SelectedIndexChanged += new System.EventHandler(this.cmbEst_SelectedIndexChanged);
 			this.cmbEst.SelectionChangeCommitted += new System.EventHandler(this.cmbEst_SelectionChangeCommitted);
 			// 
 			// label2
@@ -122,6 +124,7 @@
 			// 
 			// txtDescripcion
 			// 
+			this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.txtDescripcion.Enabled = false;
 			this.txtDescripcion.Location = new System.Drawing.Point(6, 21);
 			this.txtDescripcion.Name = "txtDescripcion";
@@ -192,6 +195,7 @@
 			// 
 			this.cmbEstado.DataSource = this.estadoRegistroBindingSource;
 			this.cmbEstado.DisplayMember = "Descripcion";
+			this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbEstado.Enabled = false;
 			this.cmbEstado.FormattingEnabled = true;
 			this.cmbEstado.Location = new System.Drawing.Point(6, 60);
@@ -214,6 +218,7 @@
 			// 
 			this.cmbTipo.DataSource = this.modalidadBindingSource;
 			this.cmbTipo.DisplayMember = "Descripcion";
+			this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbTipo.Enabled = false;
 			this.cmbTipo.FormattingEnabled = true;
 			this.cmbTipo.Location = new System.Drawing.Point(144, 60);
@@ -308,7 +313,7 @@
 			this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
 			this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnNuevo.Location = new System.Drawing.Point(298, 454);
+			this.btnNuevo.Location = new System.Drawing.Point(286, 454);
 			this.btnNuevo.Name = "btnNuevo";
 			this.btnNuevo.Size = new System.Drawing.Size(82, 44);
 			this.btnNuevo.TabIndex = 29;
@@ -337,7 +342,7 @@
 			this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
 			this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnEliminar.Location = new System.Drawing.Point(474, 454);
+			this.btnEliminar.Location = new System.Drawing.Point(486, 454);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(82, 44);
 			this.btnEliminar.TabIndex = 31;
@@ -426,6 +431,7 @@
 			// 
 			// edtDescripcion
 			// 
+			this.edtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.edtDescripcion.Location = new System.Drawing.Point(6, 179);
 			this.edtDescripcion.Multiline = true;
 			this.edtDescripcion.Name = "edtDescripcion";
@@ -437,11 +443,12 @@
 			this.lstConsultorios.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader11,
             this.columnHeader12});
+			this.lstConsultorios.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstConsultorios.FullRowSelect = true;
 			this.lstConsultorios.Location = new System.Drawing.Point(5, 31);
 			this.lstConsultorios.MultiSelect = false;
 			this.lstConsultorios.Name = "lstConsultorios";
-			this.lstConsultorios.Size = new System.Drawing.Size(273, 421);
+			this.lstConsultorios.Size = new System.Drawing.Size(273, 408);
 			this.lstConsultorios.TabIndex = 36;
 			this.lstConsultorios.UseCompatibleStateImageBehavior = false;
 			this.lstConsultorios.View = System.Windows.Forms.View.Details;
@@ -451,12 +458,13 @@
 			// columnHeader11
 			// 
 			this.columnHeader11.Text = "Descripción";
-			this.columnHeader11.Width = 194;
+			this.columnHeader11.Width = 190;
 			// 
 			// columnHeader12
 			// 
 			this.columnHeader12.Text = "ID";
-			this.columnHeader12.Width = 65;
+			this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.columnHeader12.Width = 55;
 			// 
 			// panelEspecialidad
 			// 
@@ -498,12 +506,24 @@
 			// 
 			this.estadoRegistroTableAdapter.ClearBeforeFill = true;
 			// 
+			// lblCantidad
+			// 
+			this.lblCantidad.AutoSize = true;
+			this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblCantidad.ForeColor = System.Drawing.Color.Blue;
+			this.lblCantidad.Location = new System.Drawing.Point(4, 440);
+			this.lblCantidad.Name = "lblCantidad";
+			this.lblCantidad.Size = new System.Drawing.Size(117, 13);
+			this.lblCantidad.TabIndex = 39;
+			this.lblCantidad.Text = "Cantidad de Registros: ";
+			// 
 			// frmConsultorios
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(572, 500);
 			this.ControlBox = false;
+			this.Controls.Add(this.lblCantidad);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panelEspecialidad);
 			this.Controls.Add(this.lstConsultorios);
@@ -583,5 +603,6 @@
         private Dominio.Data.TablaTipoDS tablaTipoDS;
         private System.Windows.Forms.BindingSource estadoRegistroBindingSource;
         private Dominio.Data.TablaTipoDSTableAdapters.EstadoRegistroTableAdapter estadoRegistroTableAdapter;
-    }
+		private System.Windows.Forms.Label lblCantidad;
+	}
 }

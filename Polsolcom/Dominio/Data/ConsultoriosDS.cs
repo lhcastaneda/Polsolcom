@@ -9,10 +9,10 @@ namespace Polsolcom.Dominio.Data
 {
 
 
-    public partial class ConsultoriosDS
-    {
-        partial class EspecialidadDataTable
-        {
-        }
-    }
+	public partial class ConsultoriosDS
+	{
+		partial class EspecialidadDataTable
+		{
+		}
+	}
 }

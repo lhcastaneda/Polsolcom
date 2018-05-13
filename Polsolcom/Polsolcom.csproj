@@ -239,6 +239,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MedicosDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\ModalidadDS.cs">
+      <DependentUpon>ModalidadDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\ModalidadDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -302,6 +305,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RepresentanteDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Data\RotationDS.cs">
+      <DependentUpon>RotationDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Data\RotationDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -542,10 +548,10 @@
     <Compile Include="Forms\Otros\frmExecute.Designer.cs">
       <DependentUpon>frmExecute.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Otros\frmExport.cs">
+    <Compile Include="Forms\Herramientas\frmExport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Otros\frmExport.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmExport.Designer.cs">
       <DependentUpon>frmExport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Estadisticas\frmGenEtareo.cs">
@@ -614,10 +620,10 @@
     <Compile Include="Forms\Otros\frmModulos.Designer.cs">
       <DependentUpon>frmModulos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Otros\frmNewBus.cs">
+    <Compile Include="Forms\Mantenimiento\frmNewBus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Otros\frmNewBus.Designer.cs">
+    <Compile Include="Forms\Mantenimiento\frmNewBus.Designer.cs">
       <DependentUpon>frmNewBus.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Otros\frmNewDiagnostico.cs">
@@ -1022,7 +1028,7 @@
     <EmbeddedResource Include="Forms\Otros\frmExecute.resx">
       <DependentUpon>frmExecute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Otros\frmExport.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmGenEtareo.resx">
@@ -1067,7 +1073,7 @@
     <EmbeddedResource Include="Forms\Otros\frmModulos.resx">
       <DependentUpon>frmModulos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Otros\frmNewBus.resx">
+    <EmbeddedResource Include="Forms\Mantenimiento\frmNewBus.resx">
       <DependentUpon>frmNewBus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Otros\frmNewDiagnostico.resx">
@@ -1229,6 +1235,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Variables.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Dominio\Data\BusesDS.xsc">
       <DependentUpon>BusesDS.xsd</DependentUpon>
     </None>
@@ -1648,6 +1655,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -813,7 +813,7 @@ namespace Polsolcom.Dominio.Data.PeriodoPagoDSTableAdapters {
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [PerPago] SET [Name_Per] = @Name_Per, [Id_Per] = @Id_Per, [Date_Ini] = @Date_Ini, [Date_End] = @Date_End WHERE (([Name_Per] = @Original_Name_Per) AND ([Id_Per] = @Original_Id_Per) AND ([Date_Ini] = @Original_Date_Ini) AND ([Date_End] = @Original_Date_End));
-SELECT Name_Per, Id_Per, Date_Ini, Date_End FROM PerPago WHERE (Id_Per = @Id_Per) ORDER BY Date_Ini, Date_End";
+SELECT Name_Per, Id_Per, Date_Ini, Date_End FROM PerPago WHERE (Id_Per = @Id_Per) ORDER BY Date_Ini DESC, Date_End DESC";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name_Per", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name_Per", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Per", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Per", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -838,8 +838,8 @@ SELECT Name_Per, Id_Per, Date_Ini, Date_End FROM PerPago WHERE (Id_Per = @Id_Per
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "Select Name_Per,Id_Per,Date_Ini,Date_End From PerPago Where In_Use=\'\' Order By 3," +
-                "4";
+            this._commandCollection[0].CommandText = "SELECT Name_Per,Id_Per,Date_Ini,Date_End \r\nFROM PerPago \r\nWHERE In_Use=\'\' \r\nORDER" +
+                " BY 3 DESC,4 DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
