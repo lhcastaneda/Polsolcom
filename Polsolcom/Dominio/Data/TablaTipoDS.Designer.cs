@@ -3762,7 +3762,6 @@ namespace Polsolcom.Dominio.Data {
                                 this.columnId_Tabla}, true));
                 this.columnId_Tipo.AllowDBNull = false;
                 this.columnId_Tipo.MaxLength = 3;
-                this.columnDescripcion.AllowDBNull = false;
                 this.columnDescripcion.MaxLength = 150;
                 this.columnId_Tabla.AllowDBNull = false;
                 this.columnId_Tabla.MaxLength = 2;
@@ -4346,7 +4345,6 @@ namespace Polsolcom.Dominio.Data {
                                 this.columnId_Tabla}, true));
                 this.columnId_Tipo.AllowDBNull = false;
                 this.columnId_Tipo.MaxLength = 3;
-                this.columnDescripcion.AllowDBNull = false;
                 this.columnDescripcion.MaxLength = 150;
                 this.columnId_Tabla.AllowDBNull = false;
                 this.columnId_Tabla.MaxLength = 2;
@@ -7565,7 +7563,12 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Descripcion {
                 get {
-                    return ((string)(this[this.tableTipoSubProducto.DescripcionColumn]));
+                    try {
+                        return ((string)(this[this.tableTipoSubProducto.DescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Descripcion\' in table \'TipoSubProducto\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableTipoSubProducto.DescripcionColumn] = value;
@@ -7581,6 +7584,18 @@ namespace Polsolcom.Dominio.Data {
                 set {
                     this[this.tableTipoSubProducto.Id_TablaColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionNull() {
+                return this.IsNull(this.tableTipoSubProducto.DescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionNull() {
+                this[this.tableTipoSubProducto.DescripcionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7661,7 +7676,12 @@ namespace Polsolcom.Dominio.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Descripcion {
                 get {
-                    return ((string)(this[this.tableTurno.DescripcionColumn]));
+                    try {
+                        return ((string)(this[this.tableTurno.DescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Descripcion\' in table \'Turno\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableTurno.DescripcionColumn] = value;
@@ -7677,6 +7697,18 @@ namespace Polsolcom.Dominio.Data {
                 set {
                     this[this.tableTurno.Id_TablaColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionNull() {
+                return this.IsNull(this.tableTurno.DescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionNull() {
+                this[this.tableTurno.DescripcionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11238,25 +11270,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
             tableMapping.ColumnMappings.Add("Id_Tabla", "Id_Tabla");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [TablaTipo] WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion]" +
-                " = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [TablaTipo] SET [Id_Tipo] = @Id_Tipo, [Descripcion] = @Descripcion, [Id_Tabla] = @Id_Tabla WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla));
-SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11272,9 +11285,16 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT I" +
-                "d_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = \'TIPO_SU" +
-                "BPRODUCTO\') AND (LTRIM(RTRIM(Id_Tabla)) = \'0\'))) ORDER BY Descripcion";
+            this._commandCollection[0].CommandText = @"SELECT Id_Tipo, Descripcion, Id_Tabla 
+FROM TablaTipo 
+WHERE (Id_Tabla IN 
+(SELECT Id_Tipo 
+ FROM TablaTipo AS TablaTipo_1 
+ WHERE (LTRIM(RTRIM(Descripcion)) = 'TIPO_SUBPRODUCTO') 
+ AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) 
+UNION ALL 
+SELECT '*','*  TODOS  *','*' 
+ORDER BY Descripcion";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -11300,139 +11320,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             TablaTipoDS.TipoSubProductoDataTable dataTable = new TablaTipoDS.TipoSubProductoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TablaTipoDS.TipoSubProductoDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TablaTipoDS dataSet) {
-            return this.Adapter.Update(dataSet, "TipoSubProducto");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id_Tipo, string Original_Descripcion, string Original_Id_Tabla) {
-            if ((Original_Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tipo");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Id_Tipo));
-            }
-            if ((Original_Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Original_Descripcion");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Descripcion));
-            }
-            if ((Original_Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tabla");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Id_Tabla));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Id_Tipo, string Descripcion, string Id_Tabla, string Original_Id_Tipo, string Original_Descripcion, string Original_Id_Tabla) {
-            if ((Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Id_Tipo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Id_Tipo));
-            }
-            if ((Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Descripcion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Descripcion));
-            }
-            if ((Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Id_Tabla");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Id_Tabla));
-            }
-            if ((Original_Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tipo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Id_Tipo));
-            }
-            if ((Original_Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Original_Descripcion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Descripcion));
-            }
-            if ((Original_Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tabla");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Id_Tabla));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Descripcion, string Original_Id_Tipo, string Original_Descripcion, string Original_Id_Tabla) {
-            return this.Update(Original_Id_Tipo, Descripcion, Original_Id_Tabla, Original_Id_Tipo, Original_Descripcion, Original_Id_Tabla);
         }
     }
     
@@ -11884,25 +11771,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
             tableMapping.ColumnMappings.Add("Id_Tabla", "Id_Tabla");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [TablaTipo] WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion]" +
-                " = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [TablaTipo] SET [Id_Tipo] = @Id_Tipo, [Descripcion] = @Descripcion, [Id_Tabla] = @Id_Tabla WHERE (([Id_Tipo] = @Original_Id_Tipo) AND ([Descripcion] = @Original_Descripcion) AND ([Id_Tabla] = @Original_Id_Tabla));
-SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla) AND (Id_Tipo = @Id_Tipo) ORDER BY Descripcion";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tipo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tipo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Descripcion", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id_Tabla", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id_Tabla", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11918,9 +11786,16 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla IN (SELECT I" +
-                "d_Tipo FROM TablaTipo AS TablaTipo_1 WHERE (LTRIM(RTRIM(Descripcion)) = \'TURNOS\'" +
-                ") AND (LTRIM(RTRIM(Id_Tabla)) = \'0\'))) ORDER BY Descripcion";
+            this._commandCollection[0].CommandText = @"SELECT Id_Tipo, Descripcion, Id_Tabla 
+FROM TablaTipo 
+WHERE (Id_Tabla IN 
+(SELECT Id_Tipo 
+ FROM TablaTipo AS TablaTipo_1 
+ WHERE (LTRIM(RTRIM(Descripcion)) = 'TURNOS') 
+ AND (LTRIM(RTRIM(Id_Tabla)) = '0'))) 
+UNION ALL 
+SELECT '*', '*  TODOS  *','*'
+ORDER BY Descripcion";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -11946,139 +11821,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
             TablaTipoDS.TurnoDataTable dataTable = new TablaTipoDS.TurnoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TablaTipoDS.TurnoDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TablaTipoDS dataSet) {
-            return this.Adapter.Update(dataSet, "Turno");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id_Tipo, string Original_Descripcion, string Original_Id_Tabla) {
-            if ((Original_Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tipo");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Id_Tipo));
-            }
-            if ((Original_Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Original_Descripcion");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Descripcion));
-            }
-            if ((Original_Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tabla");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Id_Tabla));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Id_Tipo, string Descripcion, string Id_Tabla, string Original_Id_Tipo, string Original_Descripcion, string Original_Id_Tabla) {
-            if ((Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Id_Tipo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Id_Tipo));
-            }
-            if ((Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Descripcion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Descripcion));
-            }
-            if ((Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Id_Tabla");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Id_Tabla));
-            }
-            if ((Original_Id_Tipo == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tipo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Id_Tipo));
-            }
-            if ((Original_Descripcion == null)) {
-                throw new global::System.ArgumentNullException("Original_Descripcion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Descripcion));
-            }
-            if ((Original_Id_Tabla == null)) {
-                throw new global::System.ArgumentNullException("Original_Id_Tabla");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Id_Tabla));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Descripcion, string Original_Id_Tipo, string Original_Descripcion, string Original_Id_Tabla) {
-            return this.Update(Original_Id_Tipo, Descripcion, Original_Id_Tabla, Original_Id_Tipo, Original_Descripcion, Original_Id_Tabla);
         }
     }
     
@@ -14815,11 +14557,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
         
         private TipoProductoTableAdapter _tipoProductoTableAdapter;
         
-        private TipoSubProductoTableAdapter _tipoSubProductoTableAdapter;
-        
         private DocVentaTableAdapter _docVentaTableAdapter;
-        
-        private TurnoTableAdapter _turnoTableAdapter;
         
         private DocIdentidadTableAdapter _docIdentidadTableAdapter;
         
@@ -14985,40 +14723,12 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public TipoSubProductoTableAdapter TipoSubProductoTableAdapter {
-            get {
-                return this._tipoSubProductoTableAdapter;
-            }
-            set {
-                this._tipoSubProductoTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
         public DocVentaTableAdapter DocVentaTableAdapter {
             get {
                 return this._docVentaTableAdapter;
             }
             set {
                 this._docVentaTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public TurnoTableAdapter TurnoTableAdapter {
-            get {
-                return this._turnoTableAdapter;
-            }
-            set {
-                this._turnoTableAdapter = value;
             }
         }
         
@@ -15203,17 +14913,9 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                             && (this._tipoProductoTableAdapter.Connection != null))) {
                     return this._tipoProductoTableAdapter.Connection;
                 }
-                if (((this._tipoSubProductoTableAdapter != null) 
-                            && (this._tipoSubProductoTableAdapter.Connection != null))) {
-                    return this._tipoSubProductoTableAdapter.Connection;
-                }
                 if (((this._docVentaTableAdapter != null) 
                             && (this._docVentaTableAdapter.Connection != null))) {
                     return this._docVentaTableAdapter.Connection;
-                }
-                if (((this._turnoTableAdapter != null) 
-                            && (this._turnoTableAdapter.Connection != null))) {
-                    return this._turnoTableAdapter.Connection;
                 }
                 if (((this._docIdentidadTableAdapter != null) 
                             && (this._docIdentidadTableAdapter.Connection != null))) {
@@ -15291,13 +14993,7 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                 if ((this._tipoProductoTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._tipoSubProductoTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._docVentaTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._turnoTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._docIdentidadTableAdapter != null)) {
@@ -15410,15 +15106,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._turnoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Turno.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._turnoTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._motivoAnulacionTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.MotivoAnulacion.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -15509,15 +15196,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tipoSubProductoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TipoSubProducto.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tipoSubProductoTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._modalidadEspecialidadTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.ModalidadEspecialidad.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -15601,14 +15279,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._turnoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Turno.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._turnoTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._motivoAnulacionTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.MotivoAnulacion.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -15689,14 +15359,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tipoSubProductoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TipoSubProducto.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tipoSubProductoTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._modalidadEspecialidadTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.ModalidadEspecialidad.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -15720,14 +15382,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._modalidadEspecialidadTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tipoSubProductoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TipoSubProducto.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tipoSubProductoTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -15808,14 +15462,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._motivoAnulacionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._turnoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Turno.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._turnoTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -15967,18 +15613,8 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._tipoSubProductoTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tipoSubProductoTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._docVentaTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._docVentaTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._turnoTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._turnoTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -16140,15 +15776,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tipoProductoTableAdapter.Adapter);
                     }
                 }
-                if ((this._tipoSubProductoTableAdapter != null)) {
-                    revertConnections.Add(this._tipoSubProductoTableAdapter, this._tipoSubProductoTableAdapter.Connection);
-                    this._tipoSubProductoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tipoSubProductoTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tipoSubProductoTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tipoSubProductoTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tipoSubProductoTableAdapter.Adapter);
-                    }
-                }
                 if ((this._docVentaTableAdapter != null)) {
                     revertConnections.Add(this._docVentaTableAdapter, this._docVentaTableAdapter.Connection);
                     this._docVentaTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -16156,15 +15783,6 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                     if (this._docVentaTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._docVentaTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._docVentaTableAdapter.Adapter);
-                    }
-                }
-                if ((this._turnoTableAdapter != null)) {
-                    revertConnections.Add(this._turnoTableAdapter, this._turnoTableAdapter.Connection);
-                    this._turnoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._turnoTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._turnoTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._turnoTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._turnoTableAdapter.Adapter);
                     }
                 }
                 if ((this._docIdentidadTableAdapter != null)) {
@@ -16342,17 +15960,9 @@ SELECT Id_Tipo, Descripcion, Id_Tabla FROM TablaTipo WHERE (Id_Tabla = @Id_Tabla
                     this._tipoProductoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tipoProductoTableAdapter]));
                     this._tipoProductoTableAdapter.Transaction = null;
                 }
-                if ((this._tipoSubProductoTableAdapter != null)) {
-                    this._tipoSubProductoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tipoSubProductoTableAdapter]));
-                    this._tipoSubProductoTableAdapter.Transaction = null;
-                }
                 if ((this._docVentaTableAdapter != null)) {
                     this._docVentaTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._docVentaTableAdapter]));
                     this._docVentaTableAdapter.Transaction = null;
-                }
-                if ((this._turnoTableAdapter != null)) {
-                    this._turnoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._turnoTableAdapter]));
-                    this._turnoTableAdapter.Transaction = null;
                 }
                 if ((this._docIdentidadTableAdapter != null)) {
                     this._docIdentidadTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._docIdentidadTableAdapter]));

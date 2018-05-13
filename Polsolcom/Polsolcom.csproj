@@ -548,10 +548,10 @@
     <Compile Include="Forms\Otros\frmExecute.Designer.cs">
       <DependentUpon>frmExecute.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Otros\frmExport.cs">
+    <Compile Include="Forms\Herramientas\frmExport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Otros\frmExport.Designer.cs">
+    <Compile Include="Forms\Herramientas\frmExport.Designer.cs">
       <DependentUpon>frmExport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Estadisticas\frmGenEtareo.cs">
@@ -1028,7 +1028,7 @@
     <EmbeddedResource Include="Forms\Otros\frmExecute.resx">
       <DependentUpon>frmExecute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Otros\frmExport.resx">
+    <EmbeddedResource Include="Forms\Herramientas\frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Estadisticas\frmGenEtareo.resx">
