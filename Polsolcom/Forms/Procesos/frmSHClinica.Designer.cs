@@ -124,21 +124,21 @@ namespace Polsolcom.Forms.Procesos
 			this.provinciasTableAdapter = new Polsolcom.Dominio.Data.ProvinciasDSTableAdapters.ProvinciasTableAdapter();
 			this.distritoTableAdapter = new Polsolcom.Dominio.Data.DistritoDSTableAdapters.DistritoTableAdapter();
 			this.grdDetalle = new System.Windows.Forms.DataGridView();
+			this.Nrv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Id = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.productosDS = new Polsolcom.Dominio.Data.ProductosDS();
+			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.institucionTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionTableAdapter();
 			this.docVentaTableAdapter = new Polsolcom.Dominio.Data.TablaTipoDSTableAdapters.DocVentaTableAdapter();
 			this.medicosTableAdapter = new Polsolcom.Dominio.Data.MedicosDSTableAdapters.MedicosTableAdapter();
 			this.institucionLiteTableAdapter = new Polsolcom.Dominio.Data.InstitucionesDSTableAdapters.InstitucionLiteTableAdapter();
 			this.consultoriosSHClinicaTableAdapter = new Polsolcom.Dominio.Data.ConsultoriosDSTableAdapters.ConsultoriosSHClinicaTableAdapter();
 			this.productosTableAdapter = new Polsolcom.Dominio.Data.ProductosDSTableAdapters.ProductosTableAdapter();
-			this.Nrv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Id = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.docVentaBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tablaTipoDS)).BeginInit();
@@ -359,7 +359,7 @@ namespace Polsolcom.Forms.Procesos
 			// txtFechaEmision
 			// 
 			this.txtFechaEmision.Location = new System.Drawing.Point(4, 24);
-			this.txtFechaEmision.Mask = "00/00/0000 90:00 aa";
+			this.txtFechaEmision.Mask = "00/00/0000";
 			this.txtFechaEmision.Name = "txtFechaEmision";
 			this.txtFechaEmision.ReadOnly = true;
 			this.txtFechaEmision.Size = new System.Drawing.Size(91, 20);
@@ -378,7 +378,7 @@ namespace Polsolcom.Forms.Procesos
 			this.groupBox2.Controls.Add(this.btnNuevo);
 			this.groupBox2.Location = new System.Drawing.Point(602, -3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(112, 425);
+			this.groupBox2.Size = new System.Drawing.Size(95, 425);
 			this.groupBox2.TabIndex = 9;
 			this.groupBox2.TabStop = false;
 			// 
@@ -388,9 +388,9 @@ namespace Polsolcom.Forms.Procesos
 			this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
 			this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnImprimir.Location = new System.Drawing.Point(3, 381);
+			this.btnImprimir.Location = new System.Drawing.Point(3, 380);
 			this.btnImprimir.Name = "btnImprimir";
-			this.btnImprimir.Size = new System.Drawing.Size(110, 39);
+			this.btnImprimir.Size = new System.Drawing.Size(90, 40);
 			this.btnImprimir.TabIndex = 6;
 			this.btnImprimir.Text = "&Imprimir Ven";
 			this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -404,9 +404,9 @@ namespace Polsolcom.Forms.Procesos
 			this.btnQuitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnQuitar.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitar.Image")));
 			this.btnQuitar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnQuitar.Location = new System.Drawing.Point(3, 305);
+			this.btnQuitar.Location = new System.Drawing.Point(3, 304);
 			this.btnQuitar.Name = "btnQuitar";
-			this.btnQuitar.Size = new System.Drawing.Size(110, 39);
+			this.btnQuitar.Size = new System.Drawing.Size(90, 40);
 			this.btnQuitar.TabIndex = 5;
 			this.btnQuitar.Text = "&Quitar";
 			this.btnQuitar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -420,9 +420,9 @@ namespace Polsolcom.Forms.Procesos
 			this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
 			this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnAgregar.Location = new System.Drawing.Point(3, 263);
+			this.btnAgregar.Location = new System.Drawing.Point(3, 262);
 			this.btnAgregar.Name = "btnAgregar";
-			this.btnAgregar.Size = new System.Drawing.Size(110, 39);
+			this.btnAgregar.Size = new System.Drawing.Size(90, 40);
 			this.btnAgregar.TabIndex = 4;
 			this.btnAgregar.Text = "&Agregar";
 			this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -438,7 +438,7 @@ namespace Polsolcom.Forms.Procesos
 			this.btnDuplica.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.btnDuplica.Location = new System.Drawing.Point(3, 96);
 			this.btnDuplica.Name = "btnDuplica";
-			this.btnDuplica.Size = new System.Drawing.Size(110, 39);
+			this.btnDuplica.Size = new System.Drawing.Size(90, 40);
 			this.btnDuplica.TabIndex = 2;
 			this.btnDuplica.Text = "&Duplica Ven";
 			this.btnDuplica.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -453,7 +453,7 @@ namespace Polsolcom.Forms.Procesos
 			this.btnBuscat.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.btnBuscat.Location = new System.Drawing.Point(3, 138);
 			this.btnBuscat.Name = "btnBuscat";
-			this.btnBuscat.Size = new System.Drawing.Size(110, 39);
+			this.btnBuscat.Size = new System.Drawing.Size(90, 40);
 			this.btnBuscat.TabIndex = 3;
 			this.btnBuscat.Text = "&Buscar Ven";
 			this.btnBuscat.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -468,7 +468,7 @@ namespace Polsolcom.Forms.Procesos
 			this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.btnBuscar.Location = new System.Drawing.Point(3, 54);
 			this.btnBuscar.Name = "btnBuscar";
-			this.btnBuscar.Size = new System.Drawing.Size(110, 39);
+			this.btnBuscar.Size = new System.Drawing.Size(90, 40);
 			this.btnBuscar.TabIndex = 1;
 			this.btnBuscar.Text = "&Busca Pac";
 			this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -482,7 +482,7 @@ namespace Polsolcom.Forms.Procesos
 			this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.btnNuevo.Location = new System.Drawing.Point(3, 12);
 			this.btnNuevo.Name = "btnNuevo";
-			this.btnNuevo.Size = new System.Drawing.Size(110, 39);
+			this.btnNuevo.Size = new System.Drawing.Size(90, 40);
 			this.btnNuevo.TabIndex = 0;
 			this.btnNuevo.Text = "&Nuevo Pac";
 			this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -568,7 +568,7 @@ namespace Polsolcom.Forms.Procesos
 			// btnInst
 			// 
 			this.btnInst.Enabled = false;
-			this.btnInst.Location = new System.Drawing.Point(187, 151);
+			this.btnInst.Location = new System.Drawing.Point(187, 149);
 			this.btnInst.Name = "btnInst";
 			this.btnInst.Size = new System.Drawing.Size(41, 20);
 			this.btnInst.TabIndex = 35;
@@ -581,7 +581,7 @@ namespace Polsolcom.Forms.Procesos
 			this.chkInst.AutoSize = true;
 			this.chkInst.Enabled = false;
 			this.chkInst.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkInst.Location = new System.Drawing.Point(2, 154);
+			this.chkInst.Location = new System.Drawing.Point(2, 151);
 			this.chkInst.Name = "chkInst";
 			this.chkInst.Size = new System.Drawing.Size(147, 17);
 			this.chkInst.TabIndex = 34;
@@ -1172,40 +1172,6 @@ namespace Polsolcom.Forms.Procesos
 			this.grdDetalle.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.grdDetalle_CellValidating);
 			this.grdDetalle.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdDetalle_EditingControlShowing);
 			// 
-			// productosBindingSource
-			// 
-			this.productosBindingSource.DataMember = "Productos";
-			this.productosBindingSource.DataSource = this.productosDS;
-			// 
-			// productosDS
-			// 
-			this.productosDS.DataSetName = "ProductosDS";
-			this.productosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// institucionTableAdapter
-			// 
-			this.institucionTableAdapter.ClearBeforeFill = true;
-			// 
-			// docVentaTableAdapter
-			// 
-			this.docVentaTableAdapter.ClearBeforeFill = true;
-			// 
-			// medicosTableAdapter
-			// 
-			this.medicosTableAdapter.ClearBeforeFill = true;
-			// 
-			// institucionLiteTableAdapter
-			// 
-			this.institucionLiteTableAdapter.ClearBeforeFill = true;
-			// 
-			// consultoriosSHClinicaTableAdapter
-			// 
-			this.consultoriosSHClinicaTableAdapter.ClearBeforeFill = true;
-			// 
-			// productosTableAdapter
-			// 
-			this.productosTableAdapter.ClearBeforeFill = true;
-			// 
 			// Nrv
 			// 
 			this.Nrv.DataPropertyName = "Nrv";
@@ -1224,6 +1190,16 @@ namespace Polsolcom.Forms.Procesos
 			this.Id.ReadOnly = true;
 			this.Id.ValueMember = "Id_Producto";
 			this.Id.Width = 350;
+			// 
+			// productosBindingSource
+			// 
+			this.productosBindingSource.DataMember = "Productos";
+			this.productosBindingSource.DataSource = this.productosDS;
+			// 
+			// productosDS
+			// 
+			this.productosDS.DataSetName = "ProductosDS";
+			this.productosDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// Descripcion
 			// 
@@ -1271,12 +1247,36 @@ namespace Polsolcom.Forms.Procesos
 			this.SubTotal.ReadOnly = true;
 			this.SubTotal.Width = 70;
 			// 
+			// institucionTableAdapter
+			// 
+			this.institucionTableAdapter.ClearBeforeFill = true;
+			// 
+			// docVentaTableAdapter
+			// 
+			this.docVentaTableAdapter.ClearBeforeFill = true;
+			// 
+			// medicosTableAdapter
+			// 
+			this.medicosTableAdapter.ClearBeforeFill = true;
+			// 
+			// institucionLiteTableAdapter
+			// 
+			this.institucionLiteTableAdapter.ClearBeforeFill = true;
+			// 
+			// consultoriosSHClinicaTableAdapter
+			// 
+			this.consultoriosSHClinicaTableAdapter.ClearBeforeFill = true;
+			// 
+			// productosTableAdapter
+			// 
+			this.productosTableAdapter.ClearBeforeFill = true;
+			// 
 			// frmSHClinica
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.ClientSize = new System.Drawing.Size(718, 425);
+			this.ClientSize = new System.Drawing.Size(699, 424);
 			this.ControlBox = false;
 			this.Controls.Add(this.grdDetalle);
 			this.Controls.Add(this.groupBox1);

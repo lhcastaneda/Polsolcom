@@ -211,7 +211,18 @@ namespace Polsolcom.Dominio.Helpers
             }
         }
 
-        public static void LlenarRegistroVenta(string idUsuario, string DVenta)
+		public static void SetearPosicionForm( Form frm)
+		{
+			int vTop = Screen.PrimaryScreen.WorkingArea.Width;
+			int vHeight = Screen.PrimaryScreen.WorkingArea.Height;
+			int valorX = (vTop - frm.Width)/2;
+			int valorY = (vHeight*3/4 + frm.Height);
+
+			frm.Left = valorX;
+			frm.Top = valorY;
+		}
+
+		public static void LlenarRegistroVenta(string idUsuario, string DVenta)
         {
             string vSQL = "SELECT S.id_oper AS Oper,T.Usuario,T.DVenta,T.Serie,S.Autoriz " +
                           "FROM Talon T INNER JOIN Serie S " +
@@ -406,10 +417,14 @@ namespace Polsolcom.Dominio.Helpers
 
             Dictionary<string, string> rdvopen = General.GetDictionary(sql);
 
-            if (rdvopen == null)
-                MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-
-            return rdvopen;
+			if( rdvopen == null )
+				MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+			else if( rdvopen.Count == 0 )
+			{
+				rdvopen = null;
+				MessageBox.Show("No tiene rango de documentos de venta...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+			}
+			return rdvopen;
         }
 
         public static void ReseteaSesion()
@@ -647,8 +662,7 @@ namespace Polsolcom.Dominio.Helpers
             else
                 return literal = null;
         }
-
-
+		
         private static string Unidades(string numero)
         {
             string[] UNIDADES = { "", "UN ", "DOS ", "TRES ", "CUATRO ", "CINCO ", "SEIS ", "SIETE ", "OCHO ", "NUEVE " };
@@ -1143,18 +1157,6 @@ namespace Polsolcom.Dominio.Helpers
             }
             else
             {
-                /*if (sDNI.Length < 8 && sIdPaciente.Length < 4 && sNroHistoria.Length == 0)
-                {
-                    if (sApPaterno == "")
-                        sApPaterno = "A";
-
-                    if (sApMaterno == "")
-                        sApMaterno = "A";
-
-                    if (sNombres == "")
-                        sNombres = "A";
-                }*/
-
                 sVSQL = "SELECT " + (TDB == 1 ? "Top 50 " : "") +
                         "P.Ape_Paterno, P.Ape_Materno, P.Nombre, P.ape_paterno+' '+P.Ape_Materno+' '+P.Nombre As Paciente, P.Id_Paciente, P.DNI, P.Id_Distrito, P.Asegurado, P.Nro_Historia, P.Fecha_Nac, P.Edad, P.Sexo, P.Telefono, P.ODoc, P.E_Mail ";
 
@@ -1220,23 +1222,17 @@ namespace Polsolcom.Dominio.Helpers
                             for (int i = 0; i < dr.FieldCount; i++)
                             {
                                 string key = dr.GetName(i);
-
                                 if (toUpperKey)
-                                {
                                     key = dr.GetName(i).ToUpper();
-                                }
 
                                 item.Add(key, dr.GetValue(i).ToString());
                             }
-
                             list.Add(item);
                         }
                     }
-
                     dr.Close();
                 }
             }
-
             return list;
         }
 
@@ -1252,18 +1248,14 @@ namespace Polsolcom.Dominio.Helpers
                         {
                             Dictionary<string, string> item = new Dictionary<string, string>();
                             for (int i = 0; i < dr.FieldCount; i++)
-                            {
                                 item.Add(dr.GetName(i), dr.GetValue(i).ToString());
-                            }
 
                             return item;
                         }
                     }
-
                     dr.Close();
                 }
             }
-
             return null;
         }
 
@@ -1277,23 +1269,17 @@ namespace Polsolcom.Dominio.Helpers
                 subItem.Text = item[field];
                 values.Add(subItem);
             }
-
             return new ListViewItem(values.ToArray(), 0);
         }
 
         private static bool getFilter(Dictionary<string, string> item, Dictionary<string, string> filters)
         {
             bool ok = true;
-
             foreach (string key in filters.Keys)
             {
-
                 if (!string.IsNullOrEmpty(key))
-                {
                     ok = ok && item[key].Contains(filters[key]);
-                }
             }
-
             return ok;
         }
 
@@ -1307,13 +1293,9 @@ namespace Polsolcom.Dominio.Helpers
                 foreach (KeyValuePair<string, string> entry in item)
                 {
                     if (boolColumns != null && boolColumns.Contains(entry.Key))
-                    {
                         array.Add(entry.Value.ToString() == "1");
-                    }
                     else
-                    {
                         array.Add(entry.Value);
-                    }
                 }
                 dataGridView.Rows.Add(array.ToArray());
             }
@@ -1324,20 +1306,14 @@ namespace Polsolcom.Dominio.Helpers
             listview.Items.Clear();
 
             if (filters != null)
-            {
                 listview.Items.AddRange(items.Where(i => General.getFilter(i, filters)).Select(c => General.getListViewItem(c, fields)).ToArray());
-            }
             else
-            {
                 listview.Items.AddRange(items.Select(c => General.getListViewItem(c, fields)).ToArray());
-            }
-
         }
 
         public static void Fill(ComboBox comboBox, List<Dictionary<string, string>> items, string valueMember, string displayMember)
         {
             comboBox.Items.Clear();
-
             foreach (Dictionary<string, string> item in items)
             {
                 ComboboxItem comboBoxItem = new ComboboxItem();
@@ -1350,7 +1326,6 @@ namespace Polsolcom.Dominio.Helpers
         public static void Fill(ComboBox comboBox, List<string> items)
         {
             comboBox.Items.Clear();
-
             foreach (string item in items)
             {
                 ComboboxItem comboBoxItem = new ComboboxItem();
@@ -1363,9 +1338,7 @@ namespace Polsolcom.Dominio.Helpers
         public static ListViewItem GetSelectedItem(ListView listView)
         {
             foreach (ListViewItem item in listView.SelectedItems)
-            {
                 return item;
-            }
 
             return null;
         }
@@ -1374,63 +1347,43 @@ namespace Polsolcom.Dominio.Helpers
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             foreach (ListViewSubItem subitem in item.SubItems)
-            {
                 dictionary[subitem.Name] = subitem.Text;
-            }
-            return dictionary;
+
+			return dictionary;
         }
 
         public static Dictionary<string, string> GetSelectedItemAsDictionary(ListView listView, bool returnFirst = true)
         {
             foreach (ListViewItem item in listView.SelectedItems)
-            {
                 return General.ConvertToDictionary(item);
-            }
 
             if (listView.Items.Count > 0 && returnFirst)
-            {
                 return General.ConvertToDictionary(listView.Items[0]);
-            }
             else
-            {
                 return null;
-            }
         }
 
         public static int GetSelectedIndex(ListView listView, bool returnFirst = true)
         {
             foreach (int index in listView.SelectedIndices)
-            {
                 return index;
-            }
 
             if (listView.Items.Count > 0 && returnFirst)
-            {
                 return 0;
-            }
             else
-            {
                 return -1;
-            }
         }
 
         public static int GetSelectedIndex(DataGridView dataGridView, bool returnFirst = true)
         {
             DataGridViewCell currentCell = dataGridView.CurrentCell;
-
             if (currentCell != null)
-            {
                 return currentCell.RowIndex;
-            }
 
             if (dataGridView.Rows.Count > 0 && returnFirst)
-            {
                 return 0;
-            }
             else
-            {
                 return -1;
-            }
         }
 
         public static void AdjustComboBoxWidth(ComboBox comboBox)
@@ -1440,11 +1393,8 @@ namespace Polsolcom.Dominio.Helpers
             {
                 temp = TextRenderer.MeasureText(obj.ToString(), comboBox.Font).Width;
                 if (temp > maxWidth)
-                {
                     maxWidth = temp;
-                }
             }
-
             comboBox.DropDownWidth = maxWidth;
         }
 
@@ -1456,13 +1406,9 @@ namespace Polsolcom.Dominio.Helpers
         public static string bfc(string nf, string lp)
         {
             if (nf == "Space")
-            {
                 return (TDB == 1 ? "Space(" : "Repeat(' ',") + lp + ")";
-            }
             else
-            {
                 return "";
-            }
         }
 
         public static void setAll<A, B>(Control control, string property, B value, bool recursive = true)
@@ -1477,23 +1423,18 @@ namespace Polsolcom.Dominio.Helpers
                 }
 
                 if (recursive && (subControl is Panel || subControl is GroupBox))
-                {
                     General.setAll<A, B>(subControl, property, value);
-                }
             }
         }
 
         public static bool chgst(string nt, string it, string st)
         {
             string ne = "";
-
             string ct = (nt == "Productos" ? "Id_Producto" : "Id_Consultorio");
-
             if (nt == "Productos")
             {
                 string sql = "Select Descripcion From Consultorios Where LTrim(RTrim(Id_Consultorio))='" + it.Substring(0, 6) + "'";
                 Dictionary<string, string> spc = General.GetDictionary(sql);
-
                 ne = spc["Descripcion"];
             }
 
@@ -1508,17 +1449,13 @@ namespace Polsolcom.Dominio.Helpers
             st = (st == "1" ? "ACTIVADO" : (st == "0" ? "DESACTIVADO" : "SEPARADO"));
             string ms = (nt == "Productos" ? vc + " de " : "Especialidad de ") + (nt == "Productos" ? ne : vc) + (st == "ACTIVADO" ? " " : " no ") + "vendan, ha sido " + st + ".";
 
-
             return msg(ms, "", false);
-
         }
 
         public static void UnselectListView(ListView listView)
         {
             for (int i = 0; i < listView.Items.Count; i++)
-            {
                 listView.Items[i].Selected = false;
-            }
         }
 
         public static string exsp(string np, int db)
@@ -1529,15 +1466,12 @@ namespace Polsolcom.Dominio.Helpers
         public static bool msg(string ms, string tw = "", bool mm = true)
         {
             if (mm)
-            {
                 MessageBox.Show(ms, tw);
-            }
-            return true;
+
+			return true;
             //Envia un mensaje a todos o algun usuario en la red local
             //return MessageBox.Show(ms, bw, MessageBoxButtons.YesNoCancel);
         }
-
-
 
         public static void valObj(TextBox obj, string txt)
         {
@@ -1551,7 +1485,6 @@ namespace Polsolcom.Dominio.Helpers
                         return;
                     }
                 }
-
                 MessageBox.Show("Dato necesario, ingrese " + txt + " ...", "Advertencia");
                 obj.Focus();
                 return;
@@ -1572,9 +1505,7 @@ namespace Polsolcom.Dominio.Helpers
             bool valid = DateTime.TryParse(date, out datetime);
 
             if (!valid)
-            {
                 throw new Exception("Fecha inválida");
-            }
 
             return General.getYearsUntilNow(datetime);
         }
@@ -1596,9 +1527,7 @@ namespace Polsolcom.Dominio.Helpers
             bool valid = DateTime.TryParse(date, out datetime);
 
             if (!valid)
-            {
                 throw new Exception("Fecha inválida");
-            }
 
             return General.getDaysUntilNow(datetime);
         }
@@ -1626,14 +1555,10 @@ namespace Polsolcom.Dominio.Helpers
                 int c = Conexion.ExecuteScalar<int>("Select Count(*)As c From Tickets Where Id_Consultorio='" + ie + "' And Fecha_Emision>='" + fa + "'");
 
                 if (c == 1)
-                {
                     File.Delete(fp);
-                }
 
                 if (!File.Exists(fp))
-                {
                     File.WriteAllText(@fp, cval);
-                }
             }
         }
 
@@ -1648,19 +1573,16 @@ namespace Polsolcom.Dominio.Helpers
                   .ToDictionary(c => c.ColumnName, c => row[c].ToString());
             }
             else
-            {
                 return null;
-            }
         }
 
         public static Dictionary<string, string> GetDictionary(DataGridView dataGridView, int index)
         {
             Dictionary<string, string> item = new Dictionary<string, string>();
             foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
                 item[column.DataPropertyName] = dataGridView.Rows[index].Cells[column.Name].Value.ToString();
-            }
-            return item;
+
+			return item;
         }
 
         public static Dictionary<string, string> GetSelectedDictionary(ComboBox combobox)
@@ -1680,9 +1602,7 @@ namespace Polsolcom.Dominio.Helpers
             List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
 
             for (int i = 0; i < combobox.Items.Count; i++)
-            {
                 list.Add(General.GetDictionary(combobox, i));
-            }
 
             return list;
         }
@@ -1694,18 +1614,13 @@ namespace Polsolcom.Dominio.Helpers
             if (selected)
             {
                 foreach (DataGridViewRow row in dataGridView.SelectedRows)
-                {
                     list.Add(General.GetDictionary(dataGridView, row.Index));
-                }
             }
             else
             {
                 for (int i = 0; i < dataGridView.Rows.Count; i++)
-                {
                     list.Add(General.GetDictionary(dataGridView, i));
-                }
             }
-
             return list;
         }
 
@@ -1742,13 +1657,9 @@ namespace Polsolcom.Dominio.Helpers
         public static string SafeSubstring(string text, int startIndex, int length)
         {
             if (startIndex + length <= text.Length)
-            {
                 return text.Substring(startIndex, length);
-            }
             else
-            {
                 return text.Substring(startIndex);
-            }
         }
 
         public static bool vFecha(DateTime pfec, MaskedTextBox pobj)
@@ -1781,7 +1692,6 @@ namespace Polsolcom.Dominio.Helpers
                     return false;
                 }
             }
-
             return true;
         }
 
@@ -1798,7 +1708,6 @@ namespace Polsolcom.Dominio.Helpers
                 MessageBox.Show("Fecha final no puede ser menor a la inicial ...\ncorregir los datos ...", "Advertencia");
                 return false;
             }
-
             return true;
         }
 
@@ -1807,30 +1716,21 @@ namespace Polsolcom.Dominio.Helpers
             if (items.Count > 0)
             {
                 DataTable dataTable = new DataTable();
-
                 foreach (KeyValuePair<string, string> entry in items[0])
-                {
                     dataTable.Columns.Add(entry.Key);
-                }
 
                 foreach (Dictionary<string, string> item in items)
                 {
                     var row = dataTable.NewRow();
-
                     foreach (KeyValuePair<string, string> entry in item)
-                    {
                         row[entry.Key] = entry.Value;
-                    }
 
                     dataTable.Rows.Add(row);
                 }
-
                 return dataTable;
             }
             else
-            {
                 return null;
-            }
         }
 
 		public static void UpdateVersionApp()
@@ -1840,7 +1740,6 @@ namespace Polsolcom.Dominio.Helpers
 			var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
 			vVer = config.AppSettings.Settings["VERSION"].Value.ToString().Split('.');
-
 			//Cambio menor (variables, constantes, propiedades)
 			vVer[2] = (Convert.ToInt32(vVer[2]) + 1).ToString();
 			if( Convert.ToInt32(vVer[2]) >= 100 )

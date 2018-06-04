@@ -141,6 +141,18 @@
         veP0cmlpabFcLv9cUVFxmp6p6PfQqR4FHdgxwkGRs0TyF0Y0ci0ZsmlZAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btnCancelar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAFVSURBVDhPrZM9S8NQFIaPi2KKS5euXQr9AZ1Lf0CgCE4W
+        BMdSJ7cW6V9wcenQWerqLApZXKQOguIgoQqGqhVxUERyet7be6/JTQYFDzw0nHOeN18N/Xvtdbu8VSzy
+        cJn43FtwSKR6mOm1/PIrFQ5WiJ9EehbJEAnonawSY0evpwuDa0dMgpAH4VJ2MiG7nQ6fJRZdkv0bAVcC
+        R+tEm2teSnCZ1ev82m6rY1wFQuBonQgPyQxdIMZxrHhpNlUPAQeC1olOl7Iilt4HAyt/T6ccNRp2diRo
+        /ScAAxCWSvwRBFb+HI85LJftPBOAW0DAlRDWavw1mVj5bTTi20JBSZib39Qt7HieDbhvtawc9Xqql8e2
+        hGp98RovpGnSH/t9vvN91Uti5GMh9RpRG/LnMAGumAT/F+xqLV0YYMGcyZVx5vVqNV82ZT6mfVnGkwY4
+        /tXH9PcimgNZ92GvjL7jegAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="especialidadTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>325, 17</value>
   </metadata>

@@ -170,9 +170,9 @@
 			this.lblVersion.ForeColor = System.Drawing.Color.Navy;
 			this.lblVersion.Location = new System.Drawing.Point(206, 210);
 			this.lblVersion.Name = "lblVersion";
-			this.lblVersion.Size = new System.Drawing.Size(48, 13);
+			this.lblVersion.Size = new System.Drawing.Size(72, 13);
 			this.lblVersion.TabIndex = 8;
-			this.lblVersion.Text = "Version: ";
+			this.lblVersion.Text = "Version: 1.1.4";
 			// 
 			// frmLogin
 			// 

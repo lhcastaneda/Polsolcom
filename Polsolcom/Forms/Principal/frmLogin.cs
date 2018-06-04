@@ -10,6 +10,7 @@ using Polsolcom.Dominio.Connection;
 using System.Reflection;
 using System.Diagnostics;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace Polsolcom.Forms
 {
@@ -33,8 +34,6 @@ namespace Polsolcom.Forms
 			//fileMap.ExeConfigFilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 			//Configuration config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
 			//AppSettingsSection appSettings = (AppSettingsSection)config.GetSection("appSettings");
-
-			lblVersion.Text = "Version: 1.1.3";
 			
 			try
 			{
@@ -201,10 +200,10 @@ Regresa:
 							}
 						}
                     }
-                    
-                    //consulta que trae los datos de las series que son las autorizaciones
-                    //para cada una de las ticketeras de pago
-                    vSQL = "SELECT TOP 1 Serie FROM ";
+
+					//consulta que trae los datos de las series que son las autorizaciones
+					//para cada una de las ticketeras de pago
+					vSQL = "SELECT TOP 1 Serie FROM ";
                     vSQL = vSQL + " (SELECT Serie ";
                     vSQL = vSQL + "  FROM Serie ";
                     vSQL = vSQL + "  WHERE Fec_Ins IN ";
@@ -229,15 +228,30 @@ Regresa:
 							{
 								while( dr.Read() )
 									sSerie = dr.GetValue(0).ToString();
+
+								Talon.serie = sSerie;
 							}
 							dr.Close();
 						}
 					}
 
-                    //usuario tipo admision - caja
-                    if ( Usuario.id_area == "28" )
-                    {   //consulta que trae la fecha maxima del talonario usado por el usuario                     
-                        vSQL = "SELECT CONVERT(varchar, MAX(Fecha), 103) AS Mf ";
+					
+					//usuario tipo admision - caja
+					if( Usuario.id_area == "28" )
+                    {
+						//Define el talonario a usar
+						Dictionary<string, string> rdvopen = General.rdvo(Usuario.id_us, "");
+						if( rdvopen == null )
+						{
+							MessageBox.Show("Debe ingresar rango de documentos de venta.", "Ingreso Rango Documentos Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+							frmTalonario fr = new frmTalonario();
+							fr.ShowDialog();
+							if( fr.DialogResult != DialogResult.OK )
+								MessageBox.Show("No podra realizar ventas porque no ha registrado un rango de documentos de venta.", "Ingreso Rango Documentos Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+						}
+
+						//consulta que trae la fecha maxima del talonario usado por el usuario                     
+						vSQL = "SELECT CONVERT(varchar, MAX(Fecha), 103) AS Mf ";
                         vSQL = vSQL + "FROM Talon ";
                         vSQL = vSQL + "WHERE LTrim(RTrim(Usuario)) = '" + Usuario.id_us + "' ";
                         vSQL = vSQL + "AND Id_Oper = '" + Operativo.id_oper + "' ";

@@ -29,7 +29,7 @@ namespace Polsolcom.Forms
             if ( vNueva == txtAnterior.Text )
             {
                 MessageBox.Show("Contraseña anterior no puede ser igual a la nueva.", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                this.DialogResult = DialogResult.Cancel;
+				DialogResult = DialogResult.Cancel;
                 txtNueva.Focus();
                 return;
             }
@@ -37,7 +37,7 @@ namespace Polsolcom.Forms
             if ( vNueva.Length < 8  )
             {
                 MessageBox.Show("Contraseña debe ser mayor a 8 caracteres.", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                this.DialogResult = DialogResult.Cancel;
+				DialogResult = DialogResult.Cancel;
                 txtNueva.Focus();
                 return;
             }
@@ -45,23 +45,23 @@ namespace Polsolcom.Forms
             if ( vNueva != vConfirma )
             {
                 MessageBox.Show("Error en la confirmacion de contraseña ...", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                this.DialogResult = DialogResult.Cancel;
+				DialogResult = DialogResult.Cancel;
                 txtConfirma.Focus();
                 return;
             }
 
             if ( General.ValidaPass(vNueva) != true )
             {
-                MessageBox.Show("Contraseña debe CONTENER: mayusculas, minusculas y numeros", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                this.DialogResult = DialogResult.Cancel;
+                MessageBox.Show("Contraseña SOLO debe contener mayusculas, minusculas y numeros", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				DialogResult = DialogResult.Cancel;
                 txtNueva.Focus();
                 return;
             }
 
             if ( General.ValidaPass(vConfirma) != true )
             {
-                MessageBox.Show("Contraseña SOLO debe ser Mayusculas, Minusculas y Numeros", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                this.DialogResult = DialogResult.Cancel;
+                MessageBox.Show("Contraseña SOLO debe contener mayusculas, minusculas y numeros", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				DialogResult = DialogResult.Cancel;
                 txtConfirma.Focus();
                 return;
             }
@@ -75,13 +75,13 @@ namespace Polsolcom.Forms
                 Conexion.CMD.CommandText = vSQL;
                 Conexion.CMD.ExecuteNonQuery();
                 MessageBox.Show("Actualizacion satisfactoria.", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+				DialogResult = DialogResult.OK;
+				Close();
             }
             catch ( SqlException ex )
             {
                 MessageBox.Show(ex.Message);
-                this.DialogResult = DialogResult.Cancel;
+				DialogResult = DialogResult.Cancel;
                 return;
             }
         }
@@ -99,8 +99,8 @@ namespace Polsolcom.Forms
 
             if ( e.KeyCode == Keys.Escape )
             {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
+				DialogResult = DialogResult.Cancel;
+				Close();
             }
             
         }
@@ -118,8 +118,8 @@ namespace Polsolcom.Forms
 
             if ( e.KeyCode == Keys.Escape )
             {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
+				DialogResult = DialogResult.Cancel;
+				Close();
             }
         }
 
@@ -127,8 +127,8 @@ namespace Polsolcom.Forms
         {
             if ( e.KeyCode == Keys.Escape )
             {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
+				DialogResult = DialogResult.Cancel;
+				Close();
             }
         }
 

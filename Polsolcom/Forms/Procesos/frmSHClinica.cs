@@ -5,7 +5,6 @@ using Polsolcom.Dominio.Helpers;
 using Polsolcom.Dominio.Connection;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Drawing.Printing;
 using System.Data.SqlClient;
 using Polsolcom.Dominio.Data;
@@ -14,7 +13,7 @@ using CrystalDecisions.CrystalReports.Engine;
 
 namespace Polsolcom.Forms.Procesos
 {
-    public partial class frmSHClinica : Form
+	public partial class frmSHClinica : Form
     {
         public delegate bool CpaDelegate(int spro, bool reload);
         public delegate bool HabDelegate(int xmd);
@@ -22,6 +21,7 @@ namespace Polsolcom.Forms.Procesos
 
         Keys lastKey;
         string cad = "";
+		string NOC = "";
         string xnrv = "";
         int nhp = 0;
         string ncr = "";
@@ -38,7 +38,7 @@ namespace Polsolcom.Forms.Procesos
         // for PrintDialog, PrintPreviewDialog and PrintDocument:
         private PrintDialog prnDialog;
         private PrintPreviewDialog prnPreview;
-        private System.Drawing.Printing.PrintDocument prnDocument;
+        private PrintDocument prnDocument;
 
         // for Invoice Head:
         private string InvTitle;
@@ -47,9 +47,7 @@ namespace Polsolcom.Forms.Procesos
         private string InvSubTitle3;
         private string InvSubTitle4;
         private string InvImage;
-
-        // for Database:
-
+		 
         // for Report:
         private int i = 0;//ÍNDICE PARA IMPRESIÓN
         private int CurrentY;
@@ -93,32 +91,30 @@ namespace Polsolcom.Forms.Procesos
             InitializeComponent();
             prnDialog = new PrintDialog();
             prnPreview = new PrintPreviewDialog();
-            prnDocument = new System.Drawing.Printing.PrintDocument();
+            prnDocument = new PrintDocument();
             // The Event of 'PrintPage'
             prnDocument.DefaultPageSettings.PaperSize = new PaperSize("Ticket", 276, 433);
             prnDocument.DefaultPageSettings.Margins = new Margins(5, 5, 5, 5);
-            prnDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(prnDocument_PrintPage);
+            prnDocument.PrintPage += new PrintPageEventHandler(prnDocument_PrintPage);
         }
 
         public void adv()
         {
             int i = grdDetalle.CurrentCell.RowIndex;
-
             General.RemoveAll(grdDetalle, x => x["Id"].Length == 0);
-
             foreach (Dictionary<string, string> item in General.GetDictionaryList(grdDetalle))
             {
-                if (item["Nrv"] == this.xnrv)
+                if (item["Nrv"] == xnrv )
                 {
-                    string nh = this.xnrv;
+                    string nh = xnrv;
                     string ip = item["Id"];
                     string pr = Decimal.Parse(item["Precio"]).ToString();
                     string can = item["Cantidad"];
                     Conexion.ExecuteNonQuery("Exec AddDetalle '" + nh + "','" + ip + "','" + pr + "','" + can + "'");
                 }
 
-                if (!this.cdv(this.xnrv)) return;
-                this.tsg();
+                if (!cdv(xnrv) ) return;
+				tsg();
             }
 
             DateTime fe = DateTime.Parse(txtFechaEmision.Text);
@@ -141,8 +137,7 @@ namespace Polsolcom.Forms.Procesos
 
         public void arp()
         {
-            string nh = this.xnrv;
-
+            string nh = xnrv;
             string nm = txtNombre.Text;
             string ap = txtApePaterno.Text;
             string am = txtApeMaterno.Text;
@@ -169,17 +164,15 @@ namespace Polsolcom.Forms.Procesos
 
             string sql = "Exec AddPacientes '" + nm + "','" + ap + "','" + am + "','" + di + "','" + fn + "','" + ed + "','" + sx + "','" + tf + "','" + dr + "','" + sg + "','" + iu + "','" + od + "','" + em + "','" + nh + "','" + nd + "','" + fe + "','" + es + "','" + us + "','" + op + "','" + sr + "','" + om + "','" + it + "','" + fp + "','" + dv + "'";
             Conexion.ExecuteNonQuery(sql);
-
             txtIdPaciente.Text = Conexion.ExecuteScalar<string>("Select Id_Paciente From Tickets Where Nro_Historia='" + nh + "'");
-            //this.noc = "NUEVO";
-            this.adv();
-            this.ghp();
+			NOC = "NUEVO";
+			adv();
+			ghp();
         }
 
         public void arv()
         {
-            string nh = this.xnrv;
-
+            string nh = xnrv;
             string nd = txtNroTicket.Text;
             string fe = txtFechaEmision.Text;
             string es = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
@@ -191,23 +184,20 @@ namespace Polsolcom.Forms.Procesos
             string fp = cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString();
             string dv = cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString();
 
-            string sql = "Exec AddTicket '" + nh + "','" + nd + "','" + fe + "','" + es + "','" + ip + "','" + us + "','" + sr + "','" + om + "','" + it + "','" + fp + "','" + dv + "'";
+            string sql = "Exec AddTicket '" + nh + "','" + nd + "','" + fe + "','" + es + "','" + ip + "','" + us + "','" + sr + "','" + om + "','" + it + "','" + fp + "','" + dv + "','" + rdvopen["Autoriz"].Trim() + "'";
             Conexion.ExecuteNonQuery(sql);
-            //this.noc = "CONTINUADOR";
-            this.adv();
+			NOC = "CONTINUADOR";
+			adv();
         }
 
         public bool cdv(string lr)
         {
             string nr = lr;
             grdDetalle.Rows.Clear();
-
             string sql = "";
 
             if (nr != "0")
-            {
                 sql = "Select * From Tickets Where Nro_Historia='" + nr + "'";
-            }
             else
             {
                 string us = Usuario.id_us;
@@ -217,7 +207,6 @@ namespace Polsolcom.Forms.Procesos
             }
 
             List<Dictionary<string, string>> tick = General.GetDictionaryList(sql);
-
             if (tick.Count > 0)
             {
                 int i = tick.Count - 1;
@@ -243,11 +232,10 @@ namespace Polsolcom.Forms.Procesos
                 }
 
                 nr = tick[i]["Nro_Historia"];
-
                 string ne = tick[i]["Id_Consultorio"];
                 string sql3 = "Select * From Productos Where Left(Id_Producto,6)='" + ne + "' And Estado='1'";
-                //Llenamos productos
-                this.productosTableAdapter.Fill(this.productosDS.Productos, ne);
+				//Llenamos productos
+				productosTableAdapter.Fill(productosDS.Productos, ne);
                 List<Dictionary<string, string>> productos = General.GetDictionaryList(sql3);
 
                 string sql4 = "Select Nro_Historia, Id_Producto, CONVERT(DECIMAL(10,2), Monto) as Monto, Cantidad, Pagado, CONVERT(DECIMAL(10,2), Dscto) as Dscto, Resultado, Conclusion From Detalles Where Nro_Historia='" + nr + "'";
@@ -259,15 +247,12 @@ namespace Polsolcom.Forms.Procesos
                 }
 
                 string ic = tick[i]["Id_Bus"];
-
                 if (ic.Length > 0)
-                {
-                    this.ncr = Conexion.ExecuteScalar<string>("Select Bus From Buses Where Id_Bus='" + ic + "'");
-                }
+					ncr = Conexion.ExecuteScalar<string>("Select Bus From Buses Where Id_Bus='" + ic + "'");
 
-                this.xnrv = tick[i]["Nro_Historia"];
-                if (!this.cpa(1, true)) return false;
-                this.ctv();
+				xnrv = tick[i]["Nro_Historia"];
+                if (!cpa(1, true)) return false;
+				ctv();
             }
             else
             {
@@ -275,7 +260,6 @@ namespace Polsolcom.Forms.Procesos
                 General.setAll<MaskedTextBox, string>(groupBoxMain, "Text", "");
                 General.setAll<ComboBox, int>(groupBoxMain, "SelectedIndex", -1);
             }
-
             return true;
         }
 
@@ -284,38 +268,36 @@ namespace Polsolcom.Forms.Procesos
             if (reload)
             {
                 string sql = "Select * From Pacientes Where Id_Paciente='" + txtIdPaciente.Text + "'";
-                this.bpac = General.GetDictionary(sql);
+				bpac = General.GetDictionary(sql);
             }
 
             if (spro == 0)
             {
-                if (!this.hab(0)) return false;
+                if (!hab(0)) return false;
                 btnBuscar.Enabled = true;
                 txtFechaEmision.Text = DateTime.Now.ToString(General.dateTimeFormat);
                 cmbEspecialidad.Focus();
             }
 
-            this.nhp = this.bpac["Nro_Historia"].Length == 0 ? 0 : int.Parse(this.bpac["Nro_Historia"]);
-
-            txtNHP.Text = this.bpac["Nro_Historia"];
-            txtNombre.Text = this.bpac["Nombre"];
-            txtApePaterno.Text = this.bpac["Ape_Paterno"];
-            txtApeMaterno.Text = this.bpac["Ape_Materno"];
-            txtDNI.Text = this.bpac["DNI"];
-            txtODoc.Text = this.bpac["ODoc"];
-            txtFechaNac.Text = this.bpac["Fecha_Nac"].Length == 0 ? General.emptyDate : bpac["Fecha_Nac"];
-            txtEdad.Text = this.bpac["Fecha_Nac"].Length == 0 ? this.bpac["Edad"] : General.getYearsUntilNow(txtFechaNac.Text).ToString();
-            txtSexo.Text = this.bpac["Sexo"];
-            txtTelefono.Text = this.bpac["Telefono"];
-            txtDireccion.Text = this.bpac["Direccion"];
-            txtAsegurado.Text = this.bpac["Asegurado"];
-            cmbDepartamento.SelectedValue = this.bpac["Id_Distrito"].Length > 0 ? this.bpac["Id_Distrito"].Substring(0, 2) : "";
+			nhp = bpac["Nro_Historia"].Length == 0 ? 0 : int.Parse(bpac["Nro_Historia"]);
+            txtNHP.Text = bpac["Nro_Historia"];
+            txtNombre.Text = bpac["Nombre"];
+            txtApePaterno.Text = bpac["Ape_Paterno"];
+            txtApeMaterno.Text = bpac["Ape_Materno"];
+            txtDNI.Text = bpac["DNI"];
+            txtODoc.Text = bpac["ODoc"];
+            txtFechaNac.Text = bpac["Fecha_Nac"].Length == 0 ? General.emptyDate : bpac["Fecha_Nac"];
+            txtEdad.Text = bpac["Fecha_Nac"].Length == 0 ? bpac["Edad"] : General.getYearsUntilNow(txtFechaNac.Text).ToString();
+            txtSexo.Text = bpac["Sexo"];
+            txtTelefono.Text = bpac["Telefono"];
+            txtDireccion.Text = bpac["Direccion"];
+            txtAsegurado.Text = bpac["Asegurado"];
+            cmbDepartamento.SelectedValue = bpac["Id_Distrito"].Length > 0 ? bpac["Id_Distrito"].Substring(0, 2) : "";
             cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
-            cmbProvincia.SelectedValue = this.bpac["Id_Distrito"].Length > 0 ? this.bpac["Id_Distrito"].Substring(0, 4) : "";
+            cmbProvincia.SelectedValue = bpac["Id_Distrito"].Length > 0 ? bpac["Id_Distrito"].Substring(0, 4) : "";
             cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
-            cmbDistrito.SelectedValue = this.bpac["Id_Distrito"];
-            txtEmail.Text = this.bpac["E_Mail"];
-
+            cmbDistrito.SelectedValue = bpac["Id_Distrito"];
+            txtEmail.Text = bpac["E_Mail"];
             return true;
         }
 
@@ -327,27 +309,20 @@ namespace Polsolcom.Forms.Procesos
             if (cesp != null)
             {
                 txtTotal.Text = "0.00";
-
                 for (int i = 0; i < grdDetalle.Rows.Count; i++)
                 {
                     Dictionary<string, string> item = General.GetDictionary(grdDetalle, i);
 
-                    if (item["Nrv"] == this.xnrv)
+                    if (item["Nrv"] == xnrv )
                     {
                         if (cesp["Descripcion"] == "FARMACIA")
-                        {
                             item["Subtotal"] = decimal.Parse(item["Precio"]).ToString("N2");
-                        }
                         else
-                        {
                             item["Subtotal"] = (int.Parse(item["Cantidad"]) * decimal.Parse(item["Precio"])).ToString("N2");
-                        }
 
                         grdDetalle.Rows[i].Cells["Subtotal"].Value = item["Subtotal"];
-
-
                         txtTotal.Text = (decimal.Parse(txtTotal.Text) + decimal.Parse(item["Subtotal"])).ToString("N2");
-                        txtNeto.Text = dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(this.igv["Descripcion"]), 2).ToString("N2") : "0.00";
+                        txtNeto.Text = dventa["Descripcion"] == "FACTURA" ? Math.Round(decimal.Parse(txtTotal.Text) / decimal.Parse(igv["Descripcion"]), 2).ToString("N2") : "0.00";
                         txtIGV.Text = dventa["Descripcion"] == "FACTURA" ? (Decimal.Parse(txtTotal.Text) - decimal.Parse(txtNeto.Text)).ToString("N2") : "0.00";
                         txtSon.Text = General.NumeroTexto(txtTotal.Text);
                     }
@@ -363,7 +338,6 @@ namespace Polsolcom.Forms.Procesos
                 string sql = "Select Nombre,Ape_Paterno,Ape_Materno,DNI From Pacientes Where DNI='" + ldni + "'";
 
                 Dictionary<string, string> doc = General.GetDictionary(sql);
-
                 if (doc != null && doc["DNI"] == ldni)
                 {
                     string dupl = doc["Nombre"] + " " + doc["Ape_Paterno"] + " " + doc["Ape_Materno"];
@@ -372,7 +346,6 @@ namespace Polsolcom.Forms.Procesos
                     return false;
                 }
             }
-
             return true;
         }
 
@@ -382,22 +355,17 @@ namespace Polsolcom.Forms.Procesos
             General.setAll<MaskedTextBox, bool>(groupBoxMain, "ReadOnly", true);
             General.setAll<ComboBox, bool>(groupBoxMain, "Enabled", false);
             General.setAll<Button, bool>(this, "Enabled", true);
-            txtEmail.ReadOnly = true;
 
+			txtEmail.ReadOnly = true;
             chkInst.Enabled = btnInst.Enabled = btnAgregar.Enabled = btnQuitar.Enabled = false;
-
             grdDetalle.ReadOnly = true;
-
             if (txtIdPaciente.Text.Length == 0)
-            {
                 btnDuplica.Enabled = btnImprimir.Enabled = false;
-            }
         }
 
         public bool gdv()
         {
-            this.les();
-
+			les();
             DateTime fe = new DateTime();
             bool result = DateTime.TryParse(txtFechaEmision.Text, out fe);
             string fi = !result ? "" : fe.ToShortDateString();
@@ -411,71 +379,45 @@ namespace Polsolcom.Forms.Procesos
             Dictionary<string, string> talon = General.GetDictionary(sql);
 
             int n = (talon != null ? (int.Parse(talon["NCon"]) == 0 ? int.Parse(talon["NInicial"]) : int.Parse(talon["NCon"]) + 1) : -1);
-
             if (n == -1)
             {
                 General.msg("No tiene rango de documentos de venta", "Advertencia");
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
+				DialogResult = DialogResult.Cancel;
+				Close();
             }
             else
             {
-                if (!this.vdv(sr, n.ToString(), dv)) return false;
+                if (!vdv(sr, n.ToString(), dv)) return false;
                 txtNroTicket.Text = n.ToString();
             }
-
             return true;
         }
 
         public void ghp()
         {
             int c = Conexion.ExecuteScalar<int>("Select Count(Descripcion)C From TablaTipo Where Id_Tabla='28' And Id_Tipo='NH'");
-
             if (c > 0)
             {
                 if (!Operativo.mod_oper.Contains("HOSPITAL"))
                 {
                     if (MessageBox.Show("Desea generar historia clinica del paciente ... ?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.No)
-                    {
                         c = 0;
-                    }
                 }
 
                 if (c > 0)
                 {
-
-
-                    /*foreach (Producto item in this.productos)
-                {
-                     DIMENSION a1(1)
-                     SELECT tipo FROM Productos WHERE id_producto=tmpd.ipr INTO ARRAY a1
-                     IF a1(1)='C'
-                        tp = 'C'
-                        EXIT
-                     ELSE
-                        tp = '*'
-                     ENDIF
-                       }
-                     */
-
-
                     string ip = txtIdPaciente.Text;
                     string uo = Operativo.uni_org;
                     string ii = "01";
                     string nhp = txtNHP.Text;
-
                     string sql = "";
+
                     if (nhp.Length == 0)
-                    {
                         sql = "Exec GenHistPac '" + ip + "'";
-                    }
                     else
-                    {
                         sql = "Update Pacientes Set Nro_Historia='" + nhp + "' Where Id_Paciente='" + ip + "' Select Cast(Nro_Historia As Int)nhp From Pacientes Where Id_Paciente='" + ip + "'";
-                    }
 
                     Dictionary<string, string> res = General.GetDictionary(sql);
-
                     txtNHP.Text = int.Parse(res["nhp"]) > 0 ? res["nhp"] : txtNHP.Text;
                     this.nhp = int.Parse(res["nhp"]);
                 }
@@ -498,30 +440,30 @@ namespace Polsolcom.Forms.Procesos
                     cmbInstitucion.Enabled = /*txtNHP.ReadOnly = */txtEmail.ReadOnly = false;
                     txtFechaEmision.ReadOnly = txtIdPaciente.ReadOnly = txtNroTicket.ReadOnly = txtNeto.ReadOnly = txtIGV.ReadOnly = txtTotal.ReadOnly = true;
 
-                    this.uvt();
-
+					uvt();
                     txtFechaNac.Text = General.emptyDate;
                     txtNeto.Text = txtIGV.Text = txtTotal.Text = "0.00";
 
                     if (General.rdvo(Usuario.id_us, "") == null)
                     {
-                        this.DialogResult = DialogResult.Cancel;
-                        this.Close();
+						DialogResult = DialogResult.Cancel;
+						Close();
                     }
 
-                    if (this.rdvopen != null)
+                    if ( rdvopen != null )
                     {
-                        cmbTDoc.SelectedValue = this.rdvopen["DVenta"];
-                        lblSerie.Text = this.rdvopen["Serie"];
-                    }
-
+						if( rdvopen.Count != 0 )
+						{
+							cmbTDoc.SelectedValue = rdvopen["DVenta"];
+							lblSerie.Text = rdvopen["Serie"];
+						}
+					}
                     lblDigitador.Text = Usuario.usuario;
                     txtEmail.Text = "";
-
                     break;
                 case 1:
 
-                    if (!this.hab(0)) return false;
+                    if (!hab(0)) return false;
                     btnNuevo.Enabled = true;
                     btnNuevo.Text = "&Grabar";
                     txtFechaEmision.Text = DateTime.Now.ToString(General.dateTimeFormat);
@@ -532,18 +474,17 @@ namespace Polsolcom.Forms.Procesos
                     cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
                     cmbDistrito.SelectedValue = Operativo.id_distrito;
 
-                    if (!this.gdv()) return false;
+                    if (!gdv()) return false;
 
                     grdDetalle.Rows.Clear();
                     break;
             }
-
             return true;
         }
 
         public void bus(Dictionary<string, string> xpac, int odb)
         {
-            this.bpac = xpac;
+			bpac = xpac;
         }
 
         public bool hom()
@@ -557,14 +498,12 @@ namespace Polsolcom.Forms.Procesos
             {
                 string sql = "Select Nombre,Ape_Paterno,Ape_Materno,DNI From Pacientes Where Nombre='" + nom + "' And Ape_Paterno='" + apa + "' And Ape_Materno='" + ama + "'";
                 Dictionary<string, string> homon = General.GetDictionary(sql);
-
                 if (homon != null && (homon["Nombre"] + homon["Ape_Paterno"] + homon["Ape_Materno"]) == (nom + apa + ama))
                 {
                     string homo = homon["Nombre"] + " " + homon["Ape_Paterno"] + " " + homon["Ape_Materno"] + " con DNI " + homon["DNI"];
-
                     if (homon["DNI"] == dn && dn.Length > 0)
                     {
-                        MessageBox.Show("Paciente " + homo + " ya esta registrado ... solo realice la busqueda ...", "Advertencia");
+                        MessageBox.Show("Paciente " + homo + " ya esta registrado ... solo realice la busqueda ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                         txtNombre.Focus();
                         return false;
                     }
@@ -572,30 +511,22 @@ namespace Polsolcom.Forms.Procesos
                     {
                         homo = nom + " " + apa + " " + ama;
 
-                        if (MessageBox.Show("Paciente " + homo + " ya esta registrado ... desea ingresarlo como HOMONIMO?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
+                        if (MessageBox.Show("Paciente " + homo + " ya esta registrado ... desea ingresarlo como HOMONIMO?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             txtNombre.Text += " (H)";
-                        }
                         else
-                        {
                             return false;
-                        }
                     }
                 }
                 else
-                {
                     return true;
-                }
             }
-
             return true;
         }
 
         public void les()
         {
-            this.consultoriosSHClinicaTableAdapter.Fill(this.consultoriosDS.ConsultoriosSHClinica, Operativo.id_oper);
+			consultoriosSHClinicaTableAdapter.Fill(consultoriosDS.ConsultoriosSHClinica, Operativo.id_oper);
             cmbEspecialidad.SelectedIndex = -1;
-
         }
 
         public void msg(string op)
@@ -616,10 +547,10 @@ namespace Polsolcom.Forms.Procesos
 
         public void tsg()
         {
-            if (this.hi.Length > 0)
+            if ( hi.Length > 0)
             {
-                string nr = this.xnrv;
-                string df = General.getDaysUntilNow(this.hi).ToString();
+                string nr = xnrv;
+                string df = General.getDaysUntilNow(hi).ToString();
                 string sql = "Update Tickets Set tsg='" + df + "' Where Nro_Historia='" + nr + "'";
                 Conexion.ExecuteNonQuery(sql);
             }
@@ -634,9 +565,7 @@ namespace Polsolcom.Forms.Procesos
                 string sql = "Select Id_Inst From Tickets Where Nro_Historia In(Select Max(Nro_Historia) From Tickets Where Fecha_Emision" + ">='" + xf + "' And Digitador='" + us + "' And Id_Consultorio In(Select Left(Id_producto,6) From ImpFicha Where Estado='1'))";
                 Dictionary<string, string> xemp = General.GetDictionary(sql);
                 if (xemp != null)
-                {
                     cmbInstitucion.SelectedValue = xemp["Id_Inst"];
-                }
             }
         }
 
@@ -677,10 +606,10 @@ namespace Polsolcom.Forms.Procesos
 
             if (sql.Contains("Where"))
             {
-                if (MessageBox.Show("Los datos del paciente han cambiado, desea guardarlos ... ?", "Aviso al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Los datos del paciente han cambiado, desea guardarlos ... ?", "Aviso al usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     Conexion.ExecuteNonQuery(sql);
-                    MessageBox.Show("Operación completada con éxito");
+                    MessageBox.Show("Operación completada con éxito","Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
             }
         }
@@ -696,11 +625,10 @@ namespace Polsolcom.Forms.Procesos
 
             if (st != null)
             {
-                MessageBox.Show("El recibo N° " + st["Serie"] + "-" + st["Nro_Ticket"] + " ya fue emitido por " + General.TradUser(st["Digitador"]) + " con fecha" + "\t" + st["Fecha_Emision"] + ", comuniquese con el administrador del" + "\t" + " sistema ... urgente !!!", "Advertencia");
+                MessageBox.Show("El recibo N° " + st["Serie"] + "-" + st["Nro_Ticket"] + " ya fue emitido por " + General.TradUser(st["Digitador"]) + " con fecha" + "\t" + st["Fecha_Emision"] + ", comuniquese con el administrador del" + "\t" + " sistema ... urgente !!!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtNroTicket.Text = "";
                 return false;
             }
-
             return true;
         }
 
@@ -708,10 +636,9 @@ namespace Polsolcom.Forms.Procesos
         {
             if (txtNroTicket.Text.Length == 0 || cmbEspecialidad.SelectedIndex == -1)
             {
-                MessageBox.Show("Faltan datos para registrar la venta ...", "Advertencia");
+                MessageBox.Show("Faltan datos para registrar la venta ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 return false;
             }
-
             return true;
         }
 
@@ -719,88 +646,97 @@ namespace Polsolcom.Forms.Procesos
         {
             if (txtNombre.Text.Length == 0)
             {
-                MessageBox.Show("Dato necesario, ingrese nombre", "Advertencia");
+                MessageBox.Show("Dato necesario, ingrese nombre", "Advertencia",MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtNombre.Focus();
                 return false;
             }
 
             if (txtApePaterno.Text.Length == 0 && txtApePaterno.Text.Length == 0)
             {
-                MessageBox.Show("Los apellidos son necesarios ... ingrese al menos uno ... ", "Advertencia");
+                MessageBox.Show("Los apellidos son necesarios ... ingrese al menos uno ... ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtApePaterno.Focus();
                 return false;
             }
 
             if (txtApePaterno.Text.Length == 0)
             {
-                if (MessageBox.Show("Falta apellido paterno...desea guardar asi... ?\tpara ello de Click en 'Si' y vuelva a guardar ...", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
-                {
+                if (MessageBox.Show("Falta apellido paterno...desea guardar asi... ?\tpara ello de Click en 'Si' y vuelva a guardar ...", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     txtApePaterno.Focus();
-                }
                 else
-                {
                     txtApePaterno.Text = "";
-                }
-                return false;
+
+				return false;
             }
 
             if (txtApeMaterno.Text.Length == 0)
             {
-                if (MessageBox.Show("Falta apellido materno...desea guardar asi... ?\tpara ello de Click en 'Si' y vuelva a guardar ...", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
-                {
+                if (MessageBox.Show("Falta apellido materno...desea guardar asi... ?\tpara ello de Click en 'Si' y vuelva a guardar ...", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     txtApeMaterno.Focus();
-                }
                 else
-                {
                     txtApeMaterno.Text = "";
-                }
-                return false;
+
+				return false;
             }
 
             if (txtSexo.Text.Length == 0)
             {
-                MessageBox.Show("Dato necesario, ingrese sexo", "Advertencia");
+                MessageBox.Show("Dato necesario, ingrese sexo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtSexo.Focus();
                 return false;
             }
 
             if (txtEdad.Text.Length == 0)
             {
-                MessageBox.Show("Dato necesario, ingrese edad", "Advertencia");
+                MessageBox.Show("Dato necesario, ingrese edad", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 txtEdad.Focus();
                 return false;
             }
-
             return true;
         }
 
         private void frmSHClinica_Load(object sender, EventArgs e)
         {
-            frmMessage.Show();
-
-            this.igv = General.GetIGV();
-            // TODO: This line of code loads data into the 'institucionesDS.InstitucionLite' table. You can move, or remove it, as needed.
-            this.institucionLiteTableAdapter.Fill(this.institucionesDS.InstitucionLite);
+			frmMessage.MdiParent = this.MdiParent;
+			General.SetearPosicionForm(frmMessage);
+			frmMessage.Show();
+			igv = General.GetIGV();
+			institucionLiteTableAdapter.Fill(institucionesDS.InstitucionLite);
             cmbInstitucion.SelectedIndex = -1;
-            // TODO: This line of code loads data into the 'medicosDS.Medicos' table. You can move, or remove it, as needed.
-            this.medicosTableAdapter.Fill(this.medicosDS.Medicos);
+			medicosTableAdapter.Fill(medicosDS.Medicos);
             cmbMedico.SelectedIndex = -1;
-            // TODO: This line of code loads data into the 'tablaTipoDS.DocVenta' table. You can move, or remove it, as needed.
-            this.docVentaTableAdapter.Fill(this.tablaTipoDS.DocVenta);
+			docVentaTableAdapter.Fill(tablaTipoDS.DocVenta);
             cmbTDoc.SelectedIndex = -1;
-            // TODO: This line of code loads data into the 'departamentosDS.Departamentos' table. You can move, or remove it, as needed.
-            this.departamentosTableAdapter.Fill(this.departamentosDS.Departamentos);
+			departamentosTableAdapter.Fill(departamentosDS.Departamentos);
             cmbDepartamento.SelectedIndex = -1;
-
-            this.rdvopen = General.rdvo(Usuario.id_us, "");
+			rdvopen = General.rdvo(Usuario.id_us, "");
 
             //Llenar detalle
-
             grdDetalle.Rows.Clear();
             lblDigitador.Text = Usuario.usuario;
-            lblSerie.Text = this.rdvopen["Serie"];
+			les();
 
-            this.les();
+			if( rdvopen == null || rdvopen.Count == 0 )
+			{
+				if( MessageBox.Show("Desea ingresar rango de documentos de venta...?", "Registro de Talon de Ventas", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes )
+				{
+					frmTalonario fr = new frmTalonario();
+					fr.ShowDialog();
+					if( fr.DialogResult != DialogResult.OK )
+					{
+						MessageBox.Show("No puede realizar ventas porque no tiene un rango de documentos de venta.", "Ingreso Rango Documentos Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+						btnNuevo.Enabled = false;
+						btnBuscar.Enabled = false;
+						return;
+					}
+				}
+				else
+				{
+					btnNuevo.Enabled = false;
+					btnBuscar.Enabled = false;
+					return;
+				}
+			}
+			lblSerie.Text = rdvopen["Serie"];
         }
 
         private string DevuelvePrecioProducto(string idProduct)
@@ -824,21 +760,13 @@ namespace Polsolcom.Forms.Procesos
             EventArgs e = new EventArgs();
 
             if (keyData == Keys.F3)
-            {
                 result = true;
-            }
             else if (keyData == Keys.F4)
-            {
                 result = true;
-            }
             else if (keyData == Keys.F5)
-            {
                 result = true;
-            }
             else if (keyData == Keys.F6)
-            {
                 result = true;
-            }
             else if (keyData == Keys.Insert)
             {
                 btnNuevo_Click(sender, e);
@@ -854,29 +782,34 @@ namespace Polsolcom.Forms.Procesos
         {
             if (btnNuevo.Text == "&Nuevo Pac")
             {
-                this.hi = DateTime.Today.ToShortDateString();
+				hi = DateTime.Today.ToShortDateString();
                 int x = Conexion.ExecuteScalar<int>("SELECT Count(Name) AS C FROM master.dbo.sysdatabases WHERE Name = 'DNI'");
 
                 if (x > 0)
-                    if (MessageBox.Show("Desea realizar busqueda en base de datos general...?", "Busqueda Pacientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
-                    {
-                        if (!this.hab(1)) return;
-                    }
+                    if (MessageBox.Show("Desea realizar busqueda en base de datos general...?", "Busqueda Pacientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        if (!hab(1)) return;
                     else
                     {
                         frmBuscar frmBuscar = new frmBuscar(1);
-                        frmBuscar.CpaCallback += new CpaDelegate(this.cpa);
-                        frmBuscar.HabCallback += new HabDelegate(this.hab);
-                        frmBuscar.BusCallback += new BusDelegate(this.bus);
+                        frmBuscar.CpaCallback += new CpaDelegate(cpa);
+                        frmBuscar.HabCallback += new HabDelegate(hab);
+                        frmBuscar.BusCallback += new BusDelegate(bus);
                         frmBuscar.FormClosed += new FormClosedEventHandler(frmBuscar_FormClosed);
-                        frmBuscar.Show();
-                        this.Hide();
+                        frmBuscar.ShowDialog();
+						if( frmBuscar.DialogResult == DialogResult.Cancel )
+						{
+							hab(0);
+							btnNuevo.Text = "&Nuevo Pac";
+							btnBuscar.Enabled = true;
+							btnBuscat.Enabled = true;
+							btnNuevo.Enabled = true;
+						}
+						//Hide();
                     }
                 else
                 {
-                    if (!this.hab(1)) return;
+                    if (!hab(1)) return;
                 }
-
                 txtDNI.Focus();
             }
             else
@@ -885,37 +818,32 @@ namespace Polsolcom.Forms.Procesos
                 {
                     if (MessageBox.Show("No ha agregado productos, desea hacerlo...?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     {
-                        if (!this.cdv("0")) return;
+                        if (!cdv("0")) return;
                         btnNuevo.Text = "&Nuevo Pac";
-                        this.deh();
+						deh();
                     }
                     else
-                    {
                         txtNombre.Focus();
-                    }
                 }
                 else
                 {
                     if (MessageBox.Show("Desea guardar los cambios...?", "Mensaje al Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        if (!this.exigep()) return;
-                        if (!this.vrv()) return;
-                        if (!this.hom()) return;
-                        if (!this.ddi()) return;
-                        this.arp();
+                        if (!exigep()) return;
+                        if (!vrv()) return;
+                        if (!hom()) return;
+                        if (!ddi()) return;
+						arp();
                         btnDuplica.Enabled = true;
-
                     }
                     else
                     {
-                        if (!this.cdv("0")) return;
+                        if (!cdv("0")) return;
                     }
-
                     btnNuevo.Text = "&Nuevo Pac";
-                    this.deh();
+					deh();
                 }
-
-                MessageBox.Show("Operación generada con éxito");
+                MessageBox.Show("Operación generada con éxito", "Aviso al usuario",MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -928,44 +856,32 @@ namespace Polsolcom.Forms.Procesos
             }
 
             if (e.KeyCode == Keys.Insert && btnNuevo.Enabled && btnNuevo.Text == "&Nuevo Pac")
-            {
                 btnNuevo_Click(btnNuevo, new EventArgs());
-            }
 
             if (e.KeyCode == Keys.F3 && btnBuscar.Enabled && btnBuscar.Text == "&Busca Pac")
-            {
                 btnBuscar_Click(btnBuscar, new EventArgs());
-            }
 
             if (e.KeyCode == Keys.F4 && btnBuscat.Enabled)
-            {
                 btnBuscat_Click(btnBuscat, new EventArgs());
-            }
 
-            if (e.KeyCode == Keys.F5 && this.xnrv != "")
+            if (e.KeyCode == Keys.F5 && xnrv != "")
             {
-                if (!this.cdv(this.xnrv)) return;
+                if (!cdv(xnrv) ) return;
             }
 
             if (e.KeyCode == Keys.F6)
             {
                 if (btnBuscar.Text == "&Grabar")
-                {
                     btnBuscar_Click(btnBuscar, new EventArgs());
-                }
 
                 if (btnNuevo.Text == "&Grabar")
-                {
                     btnNuevo_Click(btnNuevo, new EventArgs());
-                }
             }
 
             if (e.KeyCode == Keys.F6 && btnBuscat.Enabled)
-            {
                 cmbEspecialidad.Focus();
-            }
 
-            this.lastKey = e.KeyCode;
+			lastKey = e.KeyCode;
         }
 
         private void ValidaTextosTicket()
@@ -1008,55 +924,52 @@ namespace Polsolcom.Forms.Procesos
         private void txtDNI_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled == true)
-            {
                 txtDNI.ReadOnly = false;
-            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             if (btnBuscar.Text == "&Busca Pac")
             {
-                this.hi = DateTime.Today.ToShortDateString();
+				hi = DateTime.Today.ToShortDateString();
                 btnBuscar.Text = "&Grabar";
 
                 frmBuscar frmBuscar = new frmBuscar(0);
-                frmBuscar.CpaCallback += new CpaDelegate(this.cpa);
-                frmBuscar.HabCallback += new HabDelegate(this.hab);
-                frmBuscar.BusCallback += new BusDelegate(this.bus);
+                frmBuscar.CpaCallback += new CpaDelegate(cpa);
+                frmBuscar.HabCallback += new HabDelegate(hab);
+                frmBuscar.BusCallback += new BusDelegate(bus);
                 frmBuscar.FormClosed += new FormClosedEventHandler(frmBuscar_FormClosed);
-                frmBuscar.Show();
-                this.Hide();
-            }
+				frmBuscar.ShowDialog();
+				//frmBuscar.Show();
+				//Hide();
+			}
             else
             {
                 if (decimal.Parse(txtTotal.Text) == 0)
                 {
-                    if (MessageBox.Show("No ha agregado productos ... desea hacerlo ?", "Mensaje al usuario", MessageBoxButtons.YesNo) == DialogResult.No)
+                    if (MessageBox.Show("No ha agregado productos ... desea hacerlo ?", "Mensaje al usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     {
-                        if (!this.cdv("0")) return;
+                        if (!cdv("0")) return;
                         btnBuscar.Text = "&Busca Pac";
-                        this.deh();
+						deh();
                     }
                 }
                 else
                 {
-                    if (MessageBox.Show("Desea guardar los cambios ... ?", "Mensaje al usuario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("Desea guardar los cambios ... ?", "Mensaje al usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        if (!this.vrv()) return;
-                        this.vdp();
-                        this.arv();
+                        if (!vrv()) return;
+						vdp();
+						arv();
                     }
                     else
                     {
-                        if (!this.cdv("0")) return;
+                        if (!cdv("0")) return;
                     }
-
                     btnBuscar.Text = "&Busca Pac";
-                    this.deh();
+					deh();
                 }
-
-                MessageBox.Show("Operación generada con éxito");
+                MessageBox.Show("Operación generada con éxito", "Aviso al usuario", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -1065,59 +978,62 @@ namespace Polsolcom.Forms.Procesos
             if (((frmBuscar)sender).DialogResult == DialogResult.OK)
             {
                 if (((frmBuscar)sender).odb == 0)
-                {
-                    txtIdPaciente.Text = this.bpac["Id_Paciente"];
-                }
+                    txtIdPaciente.Text = bpac["Id_Paciente"];
                 else
                 {
                     btnNuevo.Enabled = true;
                     btnNuevo.Text = "&Grabar";
                     txtFechaEmision.Text = DateTime.Now.ToString(General.dateTimeFormat);
-                    cmbDepartamento.SelectedValue = this.bpac["Id_Old"].Length > 0 ? this.bpac["Id_Old"].Substring(0, 2) : "";
+                    cmbDepartamento.SelectedValue = bpac["Id_Old"].Length > 0 ? bpac["Id_Old"].Substring(0, 2) : "";
                     cmbDepartamento_SelectionChangeCommitted(cmbDepartamento, new EventArgs());
-                    cmbProvincia.SelectedValue = this.bpac["Id_Old"].Length > 0 ? this.bpac["Id_Old"].Substring(0, 4) : "";
+                    cmbProvincia.SelectedValue = bpac["Id_Old"].Length > 0 ? bpac["Id_Old"].Substring(0, 4) : "";
                     cmbProvincia_SelectionChangeCommitted(cmbProvincia, new EventArgs());
-                    cmbDistrito.SelectedValue = this.bpac["Id_Old"];
-                    txtSexo.Text = this.bpac["Sexo"] == "1" ? "M" : "F";
-                    txtNombre.Text = this.bpac["Nombres"];
-                    txtApePaterno.Text = this.bpac["Ape_Pat"];
-                    txtApeMaterno.Text = this.bpac["Ape_Mat"];
-                    txtDNI.Text = this.bpac["DNI"];
+                    cmbDistrito.SelectedValue = bpac["Id_Old"];
+                    txtSexo.Text = bpac["Sexo"] == "1" ? "M" : "F";
+                    txtNombre.Text = bpac["Nombres"];
+                    txtApePaterno.Text = bpac["Ape_Pat"];
+                    txtApeMaterno.Text = bpac["Ape_Mat"];
+                    txtDNI.Text = bpac["DNI"];
 
                     DateTime fechaNac = new DateTime();
-                    bool result = DateTime.TryParseExact(this.bpac["Fec_Nac"], "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out fechaNac);
+                    bool result = DateTime.TryParseExact(bpac["Fec_Nac"], "yyyyMMdd", null, System.Globalization.DateTimeStyles.None, out fechaNac);
                     if (result)
                     {
                         txtFechaNac.Text = fechaNac.ToShortDateString();
                         txtEdad.Text = General.getYearsUntilNow(fechaNac).ToString();
                     }
-
                     txtDireccion.Focus();
                 }
-
                 lblDigitador.Text = Usuario.usuario;
-                lblSerie.Text = this.rdvopen["Serie"];
-                grdDetalle.Rows.Clear();
-                this.gdv();
+
+				if( rdvopen != null )
+					if( rdvopen.Count != 0 )
+						lblSerie.Text = rdvopen["Serie"];
+
+				grdDetalle.Rows.Clear();
+				gdv();
             }
             else
-            {
                 btnBuscar.Text = "&Busca Pac";
-            }
 
-            this.Show();
+			Show();
             txtDNI.Focus();
         }
 
         private void btnDuplica_Click(object sender, EventArgs e)
         {
-            grdDetalle.Rows.Clear();
+			if( rdvopen == null )
+			{
+				General.msg("No tiene rango de documentos de venta", "Advertencia");
+				return;
+			}
 
-            this.hi = DateTime.Now.ToString(General.dateTimeFormat);
-
-            txtFechaEmision.Text = this.hi;
+			grdDetalle.Rows.Clear();
+			hi = DateTime.Now.ToString(General.dateTimeFormat);
+            txtFechaEmision.Text = hi;
             lblDigitador.Text = Usuario.usuario;
-            lblSerie.Text = this.rdvopen["Serie"];
+
+			lblSerie.Text = rdvopen["Serie"];
             cmbTDoc.SelectedValue = rdvopen["DVenta"];
             cmbMVen.SelectedIndex = cmbEspecialidad.SelectedIndex = cmbMedico.SelectedIndex = -1;
             txtAutoriza.Text = "";
@@ -1130,9 +1046,8 @@ namespace Polsolcom.Forms.Procesos
 
             txtNeto.Text = txtIGV.Text = txtTotal.Text = "0.00";
             cmbEspecialidad.Focus();
-
-            if (!this.gdv()) return;
-            this.uvt();
+            if (!gdv()) return;
+			uvt();
         }
 
         private void btnBuscat_Click(object sender, EventArgs e)
@@ -1142,20 +1057,20 @@ namespace Polsolcom.Forms.Procesos
 
             frmBuscaT frmBuscaT = new frmBuscaT();
             frmBuscaT.FormClosed += new FormClosedEventHandler(frmBuscat_FormClosed);
-            frmBuscaT.Show();
-            this.Hide();
-        }
+			frmBuscaT.ShowDialog();
+			//frmBuscaT.Show();
+			//Hide();
+		}
 
         private void frmBuscat_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (((frmBuscaT)sender).DialogResult == DialogResult.OK)
             {
                 Dictionary<string, string> bust = ((frmBuscaT)sender).bust;
-                this.cdv(bust["Nro_Historia"]);
+				cdv(bust["Nro_Historia"]);
                 btnDuplica.Enabled = btnImprimir.Enabled = true;
             }
-
-            this.Show();
+			Show();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -1169,12 +1084,11 @@ namespace Polsolcom.Forms.Procesos
             else
             {
                 Dictionary<string, string> cesp = General.GetSelectedDictionary(cmbEspecialidad);
-
                 grdDetalle.ReadOnly = false;
                 Id.ReadOnly = false;
                 Cantidad.ReadOnly = false;
                 Precio.ReadOnly = cesp["Descripcion"] != "FARMACIA";
-                grdDetalle.Rows.Add(new string[] { this.xnrv, "", "", "", "0", "0.00", "0.00" });
+                grdDetalle.Rows.Add(new string[] { xnrv, "", "", "", "0", "0.00", "0.00" });
                 btnQuitar.Enabled = true;
             }
         }
@@ -1185,42 +1099,45 @@ namespace Polsolcom.Forms.Procesos
             {
                 int index = grdDetalle.CurrentCell.RowIndex;
                 grdDetalle.Rows.RemoveAt(index);
-                this.ctv();
+				ctv();
             }
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             if (txtNroTicket.Text.Length == 0)
-            {
                 return;
-            }
 
-            string nr = this.xnrv;
+            string nr = xnrv;
             string iu = Usuario.id_us;
             string ie = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
 
-            if (this.ncr.Length == 0)
+            if ( ncr.Length == 0)
             {
                 string ir = grdDetalle.Rows[0].Cells["Tipo"].Value.ToString();
                 string ip = txtIdPaciente.Text;
 
                 string sql = "Exec Rotate '" + ie + "','" + ip + "','" + ir + "','" + nr + "'";
                 Dictionary<string, string> cn = General.GetDictionary(sql);
-                this.ncr = cn != null ? cn["cn"] : "";
+				ncr = cn != null ? cn["cn"] : "";
             }
 
             string sqlCTick = "Select Ape_Paterno,Ape_Materno,Nombre,DNI,ODoc,Fecha_Nac,Edad,Sexo,P.Direccion,DP.Distrito PDist,Nro_Ticket," +
-"Fecha_Emision,Serie,C.Descripcion Espec,Nom_Raz_Soc,I.Direccion+', '+DI.Distrito IDireccion " +
-"From Tickets T Inner Join Pacientes P On T.Id_Paciente=P.Id_Paciente " +
-"Inner Join Consultorios C On T.Id_Consultorio=C.Id_Consultorio " +
-"Left Join Ubigeo2005 DP On P.Id_Distrito=DP.Id_Old " +
-"Left Join Institucion I On T.Id_Inst=I.TInst+I.Id_Inst " +
-"Left Join Ubigeo2005 DI On I.Id_Distrito=DI.Id_Old " +
-"Where T.Nro_Historia='" + nr + "'";
-            this.cTick = General.GetDictionary(sqlCTick);
+								"Fecha_Emision,Serie,C.Descripcion Espec,Nom_Raz_Soc,I.Direccion+', '+DI.Distrito IDireccion,T.Convenio,P.Id_Paciente " +
+								"From Tickets T Inner Join Pacientes P On T.Id_Paciente=P.Id_Paciente " +
+								"Inner Join Consultorios C On T.Id_Consultorio=C.Id_Consultorio " +
+								"Left Join Ubigeo2005 DP On P.Id_Distrito=DP.Id_Old " +
+								"Left Join Institucion I On T.Id_Inst=I.TInst+I.Id_Inst " +
+								"Left Join Ubigeo2005 DI On I.Id_Distrito=DI.Id_Old " +
+								"Where T.Nro_Historia='" + nr + "'";
+			cTick = General.GetDictionary(sqlCTick);
 
-            if (MessageBox.Show("Desea imprimir la venta directamente ... ?", "Impresion de Venta", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			if( int.Parse(General.TomaValor("SELECT COUNT(*) FROM Tickets WHERE Id_Paciente = '" + cTick["Id_Paciente"] + "'")) > 1 )
+				NOC = "CONTINUADOR";
+			else
+				NOC = "NUEVO";
+
+            if (MessageBox.Show("Desea imprimir la venta directamente ... ?", "Impresion de Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 ReadInvoice = false;
                 DisplayInvoice(); // Print Preview
@@ -1233,24 +1150,22 @@ namespace Polsolcom.Forms.Procesos
             }
             else
             {
-                this.reportSQL = "select D.Id_Producto AS ipr, P.Descripcion AS npro, D.Cantidad AS cant, D.Monto as cost, " +
-"round(D.Cantidad * D.Monto, 2) AS subt " +
-"from Detalles D " +
-"join Productos P on P.Id_Producto = D.Id_Producto " +
-"where Nro_historia = '" + nr + "'";
-
+				reportSQL = "select D.Id_Producto AS ipr, P.Descripcion AS npro, D.Cantidad AS cant, D.Monto as cost, " +
+							"round(D.Cantidad * D.Monto, 2) AS subt " +
+							"from Detalles D " +
+							"join Productos P on P.Id_Producto = D.Id_Producto " +
+							"where Nro_historia = '" + nr + "'";
                 object result = WaitWindow.Show(WorkerMethodRpt, "Generando el reporte...", new string[] { "SOP" });
 
                 if (result == null)
                 {
-                    MessageBox.Show("No se pudo procesar el reporte.");
+                    MessageBox.Show("No se pudo procesar el reporte.", "Impresion de Venta", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
 
                 frmCRViewer frg = new frmCRViewer(rpt);
                 frg.ShowDialog();
             }
-     
         }
 
         private void WorkerMethodRpt(object sender, WaitWindowEventArgs e)
@@ -1260,22 +1175,15 @@ namespace Polsolcom.Forms.Procesos
             path = path.Replace("/bin/Debug", "");
 
             string rptName = "";
-            if (MessageBox.Show("Desea imprimir duplicado ... ?", "Tipo de impresión", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
+            if (MessageBox.Show("Desea imprimir duplicado ... ?", "Tipo de impresión", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 rptName = "rptHistoriaOpt";
-            }
             else
-            {
                 rptName = "rptHistoria";
 
-            }
-
             path = path + "/Dominio/Reportes/" + rptName + ".rpt";
-
             rpt.Load(path);
 
-            Conexion.CMD.CommandText = this.reportSQL;
-
+            Conexion.CMD.CommandText = reportSQL;
             using (SqlDataAdapter da = new SqlDataAdapter(Conexion.CMD))
             {
                 using (ReportsDS ds = new ReportsDS())
@@ -1289,12 +1197,11 @@ namespace Polsolcom.Forms.Procesos
             rpt.SetParameterValue("operativo", Operativo.descripcion);
             rpt.SetParameterValue("fecha", txtFechaEmision.Text);
             rpt.SetParameterValue("edad", txtEdad.Text);
-            rpt.SetParameterValue("espec", this.cTick["Espec"]);
+            rpt.SetParameterValue("espec", cTick["Espec"]);
             rpt.SetParameterValue("paciente", txtApePaterno.Text + " " + txtApeMaterno.Text + ", " + txtNombre.Text);
             rpt.SetParameterValue("ticket", lblSerie.Text + "-" + txtNroTicket.Text);
             rpt.SetParameterValue("digitador", lblDigitador.Text);
             rpt.SetParameterValue("nhp", txtNHP.Text);
-
             e.Result = true;
         }
 
@@ -1306,7 +1213,7 @@ namespace Polsolcom.Forms.Procesos
             {
                 if (!rEMail.IsMatch(txtEmail.Text))
                 {
-                    MessageBox.Show("Ingresar un email valido...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ingresar un email valido...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     txtEmail.SelectAll();
                     e.Cancel = true;
                 }
@@ -1316,30 +1223,24 @@ namespace Polsolcom.Forms.Procesos
         private void txtDireccion_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtDireccion.ReadOnly = false;
-            }
         }
 
         private void txtDireccion_TextChanged(object sender, EventArgs e)
         {
-            if (this.lastKey == Keys.F12)
+            if ( lastKey == Keys.F12)
             {
                 frmMessage.lblMessage.Focus();
-                this.cad = txtDireccion.Text;
+				cad = txtDireccion.Text;
                 txtDireccion.Text = (cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1));
             }
-
-            this.msg("D");
+			msg("D");
         }
-
-
+		
         private void txtDireccion_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtDireccion.ReadOnly = false;
-            }
         }
 
         private void txtNroTicket_DoubleClick(object sender, EventArgs e)
@@ -1358,18 +1259,16 @@ namespace Polsolcom.Forms.Procesos
         private void cmbEspecialidad_SelectionChangeCommitted(object sender, EventArgs e)
         {
             string ie = cmbEspecialidad.SelectedIndex == -1 ? "" : cmbEspecialidad.SelectedValue.ToString();
-
             if (ie.Length > 0 && cmbEspecialidad.Enabled)
             {
                 Dictionary<string, string> cesp = General.GetSelectedDictionary(cmbEspecialidad);
-
                 if (Usuario.tipo == "A" && cesp["Descripcion"] == "FARMACIA")
                 {
                     int c = Conexion.ExecuteScalar<int>("Select ISULL(Max(Cast(Nro_Ticket As Int)), 0) C From Tickets Where Id_Consultorio In (Select Id_Consultorio From " +
-"Consultorios Where Descripcion Like '%FARMACIA%' And Left(Id_Consultorio,3)='" + Operativo.id_oper + "')");
+						"Consultorios Where Descripcion Like '%FARMACIA%' And Left(Id_Consultorio,3)='" + Operativo.id_oper + "')");
 
-                    this.xnrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (c + 1).ToString();
-                    txtNroTicket.Text = this.xnrv.Substring(9, 19);
+					xnrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (c + 1).ToString();
+                    txtNroTicket.Text = xnrv.Substring(9, 19);
                 }
                 else
                 {
@@ -1379,9 +1278,7 @@ namespace Polsolcom.Forms.Procesos
                         return;
                     }
                     else
-                    {
-                        this.xnrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString()) + lblSerie.Text + txtNroTicket.Text;
-                    }
+						xnrv = Operativo.id_oper + DateTime.Parse(txtFechaEmision.Text).ToString("yyyymmdd").Substring(2) + (cmbTDoc.SelectedIndex == -1 ? "" : cmbTDoc.SelectedValue.ToString()) + lblSerie.Text + txtNroTicket.Text;
                 }
 
                 DateTime fe = DateTime.Parse(txtFechaEmision.Text);
@@ -1433,30 +1330,22 @@ namespace Polsolcom.Forms.Procesos
                     else
                     {
                         ms = (ts - cs < 11 ? "Solo quedan " + (ts - cs).ToString() + ms : "");
-
                         if (ms.Contains("Solo"))
-                        {
                             General.msg(ms, "Aviso al usuario");
-                        }
                     }
                 }
 
                 //Limpiamos items
                 grdDetalle.Rows.Clear();
-
-                //Llenamos productos
-                this.productosTableAdapter.Fill(this.productosDS.Productos, ie);
-
+				//Llenamos productos
+				productosTableAdapter.Fill(productosDS.Productos, ie);
                 txtTotal.Text = "0.00";
                 chkInst.Enabled = cesp["Tipo"] == "C";
                 chkInst.Checked = cesp["Tipo"] == "C";
                 btnInst.Enabled = cesp["Tipo"] == "C";
                 cmbInstitucion.Enabled = cesp["Tipo"] == "C";
                 if (cesp["Tipo"] == "C")
-                {
                     cmbInstitucion.SelectedIndex = -1;
-                }
-
             }
         }
 
@@ -1471,7 +1360,6 @@ namespace Polsolcom.Forms.Procesos
                     cmbEspecialidad_SelectionChangeCommitted(cmbEspecialidad, new EventArgs());
                     btnAgregar.Enabled = false;
                     btnQuitar.Enabled = false;
-
                     grdDetalle.Rows.Clear();
                 }
             }
@@ -1483,7 +1371,7 @@ namespace Polsolcom.Forms.Procesos
             {
                 if (Usuario.tipo == "A")
                 {
-                    if (!this.vdv(lblSerie.Text, txtNroTicket.Text/*, (cmbTDoc.SelectedIndex == 1 ? "" : cmbTDoc.SelectedValue.ToString())*/, (cmbMVen.SelectedIndex == 1 ? "" : cmbMVen.SelectedValue.ToString()))) return;
+                    if (!vdv(lblSerie.Text, txtNroTicket.Text/*, (cmbTDoc.SelectedIndex == 1 ? "" : cmbTDoc.SelectedValue.ToString())*/, (cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString()))) return;
                 }
                 else
                 {
@@ -1501,18 +1389,14 @@ namespace Polsolcom.Forms.Procesos
                         int nf = int.Parse(talon["NFinal"]);
 
                         if (na >= ni && na <= nf)
-                        {
                             xn++;
-                        }
                     }
 
                     if (xn > 0)
-                    {
-                        if (!this.vdv(lblSerie.Text, txtNroTicket.Text, cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString())) return;
-                    }
+                        if (!vdv(lblSerie.Text, txtNroTicket.Text, cmbMVen.SelectedIndex == -1 ? "" : cmbMVen.SelectedValue.ToString())) return;
                     else
                     {
-                        MessageBox.Show("N° de documento de venta no pertenece a sus rangos del dia ...", "Advertencia");
+                        MessageBox.Show("N° de documento de venta no pertenece a sus rangos del dia ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                         txtNroTicket.Text = "";
                     }
                 }
@@ -1522,75 +1406,64 @@ namespace Polsolcom.Forms.Procesos
         private void txtFechaEmision_DoubleClick(object sender, EventArgs e)
         {
             if (Usuario.tipo == "A")
-            {
                 txtFechaEmision.ReadOnly = false;
-            }
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            if (this.lastKey == Keys.F12)
-            {
+            if ( lastKey == Keys.F12)
                 frmMessage.lblMessage.Focus();
-            }
 
-            this.msg("P");
+			msg("P");
         }
 
         private void txtApePaterno_TextChanged(object sender, EventArgs e)
         {
-            if (this.lastKey == Keys.F12)
-            {
+            if ( lastKey == Keys.F12)
                 frmMessage.lblMessage.Focus();
-            }
 
-            this.msg("P");
+			msg("P");
         }
 
         private void txtApeMaterno_TextChanged(object sender, EventArgs e)
         {
-            if (this.lastKey == Keys.F12)
-            {
+            if ( lastKey == Keys.F12)
                 frmMessage.lblMessage.Focus();
-            }
 
-            this.msg("P");
+			msg("P");
         }
 
         private void txtDNI_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtDNI.ReadOnly = false;
-            }
         }
 
         private void txtDNI_Leave(object sender, EventArgs e)
         {
             if (txtDNI.ReadOnly == false)
             {
-                if (txtDNI.Text.Length < 8 && this.DialogResult != DialogResult.Cancel)
+				if( txtDNI.Text.Length == 0 )
+					return;
+				else if ((txtDNI.Text.Length > 0 && txtDNI.Text.Length < 8) && DialogResult != DialogResult.Cancel)
                 {
-                    MessageBox.Show("Longitud de DNI no valida ... dato debe contener 8 digitos ... verifique", "Advertencia");
-                    txtDNI.Focus();
-                }
+                    MessageBox.Show("Longitud de DNI no valida ... dato debe contener 8 digitos ... verifique", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+					txtDNI.Focus();
+					return;
+				}
             }
         }
 
         private void txtFechaNac_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtFechaNac.ReadOnly = false;
-            }
         }
 
         private void txtFechaNac_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtFechaNac.ReadOnly = false;
-            }
         }
 
         private void txtFechaNac_Leave(object sender, EventArgs e)
@@ -1600,11 +1473,9 @@ namespace Polsolcom.Forms.Procesos
                 DateTime date = DateTime.Parse(txtFechaNac.Text);
                 if (date.CompareTo(DateTime.Today) > 0 || date.Year < 1900)
                 {
-                    MessageBox.Show("Fecha de nacimiento erronea ... corrija los datos ...", "Advertencia");
-                    txtFechaNac.Focus();
+                    MessageBox.Show("Fecha de nacimiento erronea ... corrija los datos ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
-
                 txtEdad.Text = General.getYearsUntilNow(date).ToString();
             }
         }
@@ -1612,17 +1483,13 @@ namespace Polsolcom.Forms.Procesos
         private void txtEdad_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtEdad.ReadOnly = false;
-            }
         }
 
         private void txtEdad_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtEdad.ReadOnly = false;
-            }
         }
 
         private void txtEdad_Leave(object sender, EventArgs e)
@@ -1632,21 +1499,18 @@ namespace Polsolcom.Forms.Procesos
                 if (txtEdad.Text.Length == 0)
                 {
                     MessageBox.Show("Ingrese la edad del Paciente...", "Advertencia...");
-                    txtEdad.Focus();
                     return;
                 }
 
                 if (int.Parse(txtEdad.Text) < 0)
                 {
-                    MessageBox.Show("Corregir los datos ... la edad no puede ser un número negativo ...", "Advertencia...");
-                    txtEdad.Focus();
+                    MessageBox.Show("Corregir los datos ... la edad no puede ser un número negativo ...", "Advertencia...", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
 
                 if (int.Parse(txtEdad.Text) > 100)
                 {
-                    MessageBox.Show("Verifique los datos ... la edad del paciente es mayor a 100 años?", "Advertencia...");
-                    txtEdad.Focus();
+                    MessageBox.Show("Verifique los datos ... la edad del paciente es mayor a 100 años?", "Advertencia...", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
             }
@@ -1655,17 +1519,13 @@ namespace Polsolcom.Forms.Procesos
         private void txtSexo_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtSexo.ReadOnly = false;
-            }
         }
 
         private void txtSexo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtSexo.ReadOnly = false;
-            }
         }
 
         private void txtSexo_Leave(object sender, EventArgs e)
@@ -1673,45 +1533,37 @@ namespace Polsolcom.Forms.Procesos
             if (txtSexo.ReadOnly == false)
             {
                 string sex = txtSexo.Text;
-
                 if (sex == "" || (sex != "M" && sex != "F"))
                 {
-                    MessageBox.Show("Dato no valido ingrese solo F ó M ...", "Advertencia ...");
-                    txtSexo.Focus();
-                }
+                    MessageBox.Show("Dato no valido ingrese solo F ó M ...", "Advertencia ...", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+					txtSexo.Focus();
+					return;
+				}
             }
         }
 
         private void txtTelefono_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtTelefono.ReadOnly = false;
-            }
         }
 
         private void txtTelefono_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtTelefono.ReadOnly = false;
-            }
         }
 
         private void txtAsegurado_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtAsegurado.ReadOnly = false;
-            }
         }
 
         private void txtAsegurado_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtAsegurado.ReadOnly = false;
-            }
         }
 
         private void txtAsegurado_Leave(object sender, EventArgs e)
@@ -1719,46 +1571,38 @@ namespace Polsolcom.Forms.Procesos
             if (txtAsegurado.ReadOnly == false)
             {
                 string seg = txtAsegurado.Text.ToUpper();
-
                 if (seg != "S" && seg != "")
                 {
-                    MessageBox.Show("Dato no valido ingrese vacio ó S ...", "Advertencia ...");
-                    txtAsegurado.Focus();
-                }
+                    MessageBox.Show("Dato no valido ingrese vacio ó S ...", "Advertencia ...", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+					return;
+				}
             }
         }
 
         private void cmbDistrito_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 cmbDistrito.Enabled = true;
-            }
         }
 
         private void cmbDistrito_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 cmbDistrito.Enabled = true;
-            }
 
             if (cmbDistrito.Enabled && e.KeyCode == Keys.Delete)
-            {
                 cmbDistrito.SelectedIndex = -1;
-            }
         }
 
         private void cmbMedico_SelectionChangeCommitted(object sender, EventArgs e)
         {
             btnAgregar.Enabled = false;
-
             if (cmbEspecialidad.SelectedIndex == -1)
             {
                 cmbMedico.SelectedIndex = -1;
                 cmbEspecialidad.Focus();
 
-                MessageBox.Show("Seleccione especialidad ... para poder realizar la venta", "Advertencia");
+                MessageBox.Show("Seleccione especialidad ... para poder realizar la venta", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 return;
             }
 
@@ -1766,10 +1610,9 @@ namespace Polsolcom.Forms.Procesos
             {
                 cmbMedico.SelectedIndex = -1;
                 cmbEspecialidad.Focus();
-                MessageBox.Show("La Razon Social de la empresa es dato necesario ... para pasar el examen", "Advertencia");
+                MessageBox.Show("La Razon Social de la empresa es dato necesario ... para pasar el examen", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 return;
             }
-
             btnAgregar.Enabled = true;
         }
 
@@ -1782,7 +1625,7 @@ namespace Polsolcom.Forms.Procesos
         {
             if (cmbDepartamento.SelectedIndex != -1)
             {
-                this.provinciasTableAdapter.Fill(this.provinciasDS.Provincias, cmbDepartamento.SelectedValue.ToString());
+				provinciasTableAdapter.Fill(provinciasDS.Provincias, cmbDepartamento.SelectedValue.ToString());
                 cmbProvincia.SelectedIndex = -1;
                 cmbDistrito.SelectedIndex = -1;
             }
@@ -1791,29 +1634,23 @@ namespace Polsolcom.Forms.Procesos
         private void cmbDepartamento_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 cmbDepartamento.Enabled = true;
-            }
         }
 
         private void cmbDepartamento_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 cmbDepartamento.Enabled = true;
-            }
 
             if (cmbDepartamento.Enabled && e.KeyCode == Keys.Delete)
-            {
                 cmbDepartamento.SelectedIndex = -1;
-            }
         }
 
         private void cmbProvincia_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (cmbProvincia.SelectedIndex != -1)
             {
-                this.distritoTableAdapter.Fill(this.distritoDS.Distrito, cmbProvincia.SelectedValue.ToString());
+				distritoTableAdapter.Fill(distritoDS.Distrito, cmbProvincia.SelectedValue.ToString());
                 cmbDistrito.SelectedIndex = -1;
             }
         }
@@ -1821,46 +1658,34 @@ namespace Polsolcom.Forms.Procesos
         private void cmbProvincia_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 cmbProvincia.Enabled = true;
-            }
         }
 
         private void cmbProvincia_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 cmbProvincia.Enabled = true;
-            }
 
             if (cmbProvincia.Enabled && e.KeyCode == Keys.Delete)
-            {
                 cmbProvincia.SelectedIndex = -1;
-            }
         }
 
         private void txtODoc_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtODoc.ReadOnly = false;
-            }
         }
 
         private void txtODoc_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtODoc.ReadOnly = false;
-            }
         }
 
         private void cmbInstitucion_KeyDown(object sender, KeyEventArgs e)
         {
             if (cmbInstitucion.Enabled && e.KeyCode == Keys.Delete)
-            {
                 cmbInstitucion.SelectedIndex = -1;
-            }
         }
 
         private void chkInst_CheckedChanged(object sender, EventArgs e)
@@ -1874,8 +1699,9 @@ namespace Polsolcom.Forms.Procesos
         {
             frmBuscaI frmBuscaI = new frmBuscaI();
             frmBuscaI.FormClosed += new FormClosedEventHandler(frmBuscai_FormClosed);
-            frmBuscaI.Show();
-            this.Hide();
+			frmBuscaI.ShowDialog();
+			//frmBuscaI.Show();
+			//Hide();
         }
 
         private void frmBuscai_FormClosed(object sender, FormClosedEventArgs e)
@@ -1885,17 +1711,14 @@ namespace Polsolcom.Forms.Procesos
                 Dictionary<string, string> binst = ((frmBuscaI)sender).binst;
                 cmbInstitucion.SelectedValue = binst["IdI"];
             }
-
             cmbMedico.Focus();
-            this.Show();
+			Show();
         }
 
         private void txtNHP_DoubleClick(object sender, EventArgs e)
         {
             if (btnBuscar.Text == "&Grabar" && txtNHP.ReadOnly)
-            {
                 txtNHP.ReadOnly = false;
-            }
         }
 
         private void txtNHP_Leave(object sender, EventArgs e)
@@ -1935,14 +1758,12 @@ namespace Polsolcom.Forms.Procesos
             cmbTDoc.SelectedValue = cmbMVen.SelectedValue.ToString() == "2" ? "3" : "";
             cmbTDoc.Enabled = cmbMVen.SelectedValue.ToString() == "2";
             if (cmbMVen.SelectedValue.ToString() == "2")
-            {
                 cmbTDoc_Leave(cmbTDoc, new EventArgs());
-            }
         }
 
         private void grdDetalle_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            this.ctv();
+			ctv();
         }
 
         private void grdDetalle_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1967,10 +1788,8 @@ namespace Polsolcom.Forms.Procesos
             if (grdDetalle.CurrentCell.ReadOnly == false)
             {
                 ComboBox cmbProducto = (ComboBox)grdDetalle.EditingControl;
-
                 int i = grdDetalle.CurrentCell.RowIndex;
                 int j = cmbProducto.SelectedIndex;
-
                 List<Dictionary<string, string>> productos = General.GetDictionaryList((ComboBox)grdDetalle.EditingControl);
 
                 grdDetalle.Rows[i].Cells["Id"].Value = productos[j]["Id_Producto"];
@@ -1981,13 +1800,11 @@ namespace Polsolcom.Forms.Procesos
                 grdDetalle.Rows[i].Cells["SubTotal"].Value = (int.Parse(grdDetalle.Rows[i].Cells["Cantidad"].Value.ToString()) * decimal.Parse(productos[j]["Monto"])).ToString("N2");
 
                 int r = General.GetDictionaryList(grdDetalle).FindAll(x => x["Id"] == productos[j]["Id_Producto"]).Count;
-
                 if (r > 1)
                 {
-                    MessageBox.Show("Producto ya fue agregado, solo incremente la cantidad ...", "Advertencia");
+                    MessageBox.Show("Producto ya fue agregado, solo incremente la cantidad ...", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     grdDetalle.Rows.RemoveAt(i);
                 }
-
             }
         }
 
@@ -1998,42 +1815,30 @@ namespace Polsolcom.Forms.Procesos
             string columnName = grdDetalle.Columns[j].Name;
 
             if (columnName == "Id")
-            {
-                this.ctv();
-            }
+				ctv();
         }
 
         private void txtEmail_DoubleClick(object sender, EventArgs e)
         {
             if (btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtEmail.ReadOnly = false;
-            }
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            if (this.lastKey == Keys.F12)
+            if ( lastKey == Keys.F12)
             {
                 frmMessage.lblMessage.Focus();
-                this.cad = txtEmail.Text;
-                txtEmail.Text = this.cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
+				cad = txtEmail.Text;
+                txtEmail.Text = cad.Length == 1 ? "" : cad.Substring(0, cad.Length - 1);
             }
-
-            this.msg("E");
+			msg("E");
         }
 
         private void txtEmail_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1 && btnNuevo.Enabled == false && btnBuscar.Enabled)
-            {
                 txtEmail.ReadOnly = false;
-            }
-        }
-
-        private void txtDNI_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void grdDetalle_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -2045,37 +1850,31 @@ namespace Polsolcom.Forms.Procesos
             switch (columnName)
             {
                 case "Cantidad":
-
                     if (!grdDetalle.CurrentCell.ReadOnly)
                     {
                         if (int.Parse(grdDetalle.CurrentCell.Value.ToString()) < 1)
-                        {
                             grdDetalle.CurrentCell.Value = "1";
-                        }
 
                         if (int.Parse(grdDetalle.CurrentCell.Value.ToString()) > 9)
                         {
-                            if (MessageBox.Show("La cantidad ingresada de " + grdDetalle.CurrentCell.Value.ToString() + ", es correcta? ... ?", "Advertencia", MessageBoxButtons.YesNo) == DialogResult.No)
-                            {
+                            if (MessageBox.Show("La cantidad ingresada de " + grdDetalle.CurrentCell.Value.ToString() + ", es correcta? ... ?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                                 e.Cancel = true;
                                 //grdDetalle.EndEdit();
-                            }
                         }
                     }
                     break;
             }
-
-
         }
 
         private void frmSHClinica_FormClosing(object sender, FormClosingEventArgs e)
         {
+			NOC = "";
             frmMessage.Close();
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
 
         private void txtApePaterno_KeyPress(object sender, KeyPressEventArgs e)
@@ -2107,7 +1906,6 @@ namespace Polsolcom.Forms.Procesos
             {
                 prnDialog.Document = prnDocument;
                 DialogResult ButtonPressed = prnDialog.ShowDialog();
-                // If user Click 'OK', Print Invoice
                 if (ButtonPressed == DialogResult.OK)
                     prnDocument.Print();
             }
@@ -2119,7 +1917,6 @@ namespace Polsolcom.Forms.Procesos
         private void DisplayInvoice()
         {
             prnPreview.Document = prnDocument;
-
             try
             { prnPreview.ShowDialog(); }
             catch (Exception e)
@@ -2136,14 +1933,11 @@ namespace Polsolcom.Forms.Procesos
 
         }
 
-        // Result of the Event 'PrintPage'
-        private void prnDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void prnDocument_PrintPage(object sender, PrintPageEventArgs e )
         {
             leftMargin = (int)e.MarginBounds.Left;
-            //leftMargin = 10;  //setea 10 puntos
             rightMargin = (int)e.MarginBounds.Right;
             topMargin = (int)e.MarginBounds.Top;
-            //topMargin = 10;
             bottomMargin = (int)e.MarginBounds.Bottom;
             InvoiceWidth = (int)e.MarginBounds.Width;
             InvoiceHeight = (int)e.MarginBounds.Height;
@@ -2154,16 +1948,18 @@ namespace Polsolcom.Forms.Procesos
             SetInvoiceHead(e.Graphics); // Draw Invoice Head
             SetOrderData(e.Graphics); // Draw Order Data
             SetInvoiceData(e.Graphics, e); // Draw Invoice Data
-
             ReadInvoice = true;
 
         }
 
         private void SetInvoiceHead(Graphics g)
         {
-            ReadInvoiceHead();
+			StringFormat strFormat = new StringFormat();
+			strFormat.Alignment = StringAlignment.Center;      // Horizontal Alignment
+			strFormat.LineAlignment = StringAlignment.Center;  // Vertical Alignment
 
-            CurrentY = topMargin;
+			ReadInvoiceHead();
+			CurrentY = topMargin;
             CurrentX = leftMargin;  //mueve a la derecha
             int ImageHeight = 0;
 
@@ -2197,32 +1993,36 @@ namespace Polsolcom.Forms.Procesos
             if (InvTitle != "")
             {
                 CurrentY = CurrentY + ImageHeight;
-                g.DrawString(InvTitle, InvTitleFont, BlueBrush, xInvTitle, CurrentY);
-            }
+				RectangleF Rect = new RectangleF(CurrentX, CurrentY, rightMargin, InvTitleHeight);
+				g.DrawString(InvTitle, InvTitleFont, BlueBrush, Rect, strFormat);
+			}
             if (InvSubTitle1 != "")
             {
                 CurrentY = CurrentY + InvTitleHeight;
-                g.DrawString(InvSubTitle1, InvSubTitleFont, BlueBrush, xInvSubTitle1, CurrentY);
-            }
+				RectangleF Rect = new RectangleF(CurrentX, CurrentY, rightMargin, xInvSubTitle1);
+				g.DrawString(InvSubTitle1, InvSubTitleFont, BlueBrush, Rect, strFormat);
+			}
             if (InvSubTitle2 != "")
             {
                 CurrentY = CurrentY + InvSubTitleHeight;
-                g.DrawString(InvSubTitle2, InvSubTitleFont, BlueBrush, xInvSubTitle2, CurrentY);
-            }
+				RectangleF Rect = new RectangleF(CurrentX, CurrentY, rightMargin, xInvSubTitle1);
+				g.DrawString(InvSubTitle2, InvSubTitleFont, BlueBrush, Rect, strFormat);
+			}
             if (InvSubTitle3 != "")
             {
                 CurrentY = CurrentY + InvSubTitleHeight;
-                g.DrawString(InvSubTitle3, InvSubTitleFont, BlueBrush, xInvSubTitle3, CurrentY);
-            }
+				RectangleF Rect = new RectangleF(CurrentX, CurrentY, rightMargin, xInvSubTitle1*2);
+				g.DrawString(InvSubTitle3, InvSubTitleFont, BlueBrush, Rect, strFormat);
+			}
 
             if (InvSubTitle4 != "")
             {
                 CurrentY = CurrentY + InvSubTitleHeight;
-                g.DrawString(InvSubTitle4, InvSubTitleFont, BlueBrush, xInvSubTitle4, CurrentY);
+				RectangleF Rect = new RectangleF(CurrentX, CurrentY, rightMargin, xInvSubTitle1*3);
+				g.DrawString(InvSubTitle4, InvSubTitleFont, BlueBrush, Rect, strFormat);
             }
-
             // Draw line:
-            CurrentY = CurrentY + InvSubTitleHeight + 8;
+            CurrentY = CurrentY + InvSubTitleHeight + 16;
             g.DrawLine(new Pen(Brushes.Black, 2), CurrentX, CurrentY, rightMargin, CurrentY);
 
         }
@@ -2234,12 +2034,20 @@ namespace Polsolcom.Forms.Procesos
             InvSubTitle1 = Operativo.nom_raz_soc;
             InvSubTitle2 = "RUC: " + Operativo.ruc;
             InvSubTitle3 = Operativo.direccion;
-            InvSubTitle4 = this.rdvopen == null ? "" : ("Serie: " + this.rdvopen["Autoriz"]);
+			if( cTick["Convenio"].Trim() != "" )
+				InvSubTitle4 = "Serie: " + cTick["Convenio"].Trim();
+			else
+				InvSubTitle4 = rdvopen == null ? "" : ("Serie: " + rdvopen["Autoriz"]);
+
             InvImage = Application.StartupPath + @"\Images\" + "InvPic.jpg";//Reemplazar por logo
         }
 
         private void SetOrderData(Graphics g)
-		{// Set Company Name, City, Salesperson, Order ID and Order Date
+		{
+			StringFormat strFormat = new StringFormat();
+			strFormat.Alignment = StringAlignment.Near;      // Horizontal Alignment
+			strFormat.LineAlignment = StringAlignment.Center;  // Vertical Alignment
+
 			string FieldValue = "";
 			InvoiceFontHeight = (int)(InvoiceFont.GetHeight(g));
             //Documento:
@@ -2259,27 +2067,30 @@ namespace Polsolcom.Forms.Procesos
             //Paciente:
             CurrentX = leftMargin;
             CurrentY = CurrentY + InvoiceFontHeight;
-            FieldValue = "Paciente: " + this.cTick["Ape_Paterno"] + " " + this.cTick["Ape_Materno"] + ", " + this.cTick["Nombre"] + " ("+ txtDNI.Text + ")";
-            g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
-            //Espec:
-            CurrentX = leftMargin;
+			FieldValue = "Paciente: " + cTick["Ape_Paterno"] + " " + cTick["Ape_Materno"] + ", " + cTick["Nombre"] + " ("+ NOC + ")";
+			RectangleF Rect = new RectangleF(CurrentX, CurrentY, rightMargin, InvoiceFontHeight*2);
+			//g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+			g.DrawString(FieldValue, InvoiceFont, BlackBrush, Rect, strFormat);
+			//Espec:
+			CurrentX = leftMargin;
             CurrentY = CurrentY + InvoiceFontHeight;
-            FieldValue = "Especialidad: " + this.cTick["Espec"];
-            g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+            FieldValue = "Especialidad: " + cTick["Espec"];
+			RectangleF Rect1 = new RectangleF(CurrentX, CurrentY, rightMargin, InvoiceFontHeight*3);
+			//g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
+			g.DrawString(FieldValue, InvoiceFont, BlackBrush, Rect1, strFormat);
+			//// Set City (Misma línea)
+			//CurrentX = CurrentX + (int)g.MeasureString(FieldValue, InvoiceFont).Width + 16;
+			//FieldValue = "Distrito: " + this.cTick["PDist"];
+			//g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
 
-            //// Set City (Misma línea)
-            //CurrentX = CurrentX + (int)g.MeasureString(FieldValue, InvoiceFont).Width + 16;
-            //FieldValue = "Distrito: " + this.cTick["PDist"];
-            //g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
-        		
-            // Draw line:
-            CurrentY = CurrentY + InvoiceFontHeight + 8;
+			// Draw line:
+			CurrentY = CurrentY + InvoiceFontHeight + 16;
 			g.DrawLine(new Pen(Brushes.Black), leftMargin, CurrentY, rightMargin, CurrentY);
-
 		}
 
         private void SetInvoiceData(Graphics g, System.Drawing.Printing.PrintPageEventArgs e)
-        {// Set Invoice Table:
+        {
+			// Set Invoice Table:
             string FieldValue = "";
             int CurrentRecord = 0;
             int RecordsPerPage = 20; // twenty items in a page
@@ -2310,12 +2121,10 @@ namespace Polsolcom.Forms.Procesos
 
             // Set Invoice Table:
             CurrentY = CurrentY + InvoiceFontHeight + 8;
-
-            this.items = General.GetDictionaryList(grdDetalle);
-
+			items = General.GetDictionaryList(grdDetalle);
             while (CurrentRecord < RecordsPerPage)
             {
-                Dictionary<string, string> item = General.GetDictionary(grdDetalle, this.i);
+                Dictionary<string, string> item = General.GetDictionary(grdDetalle, i);
                 FieldValue = item["Id"].ToString();
                 g.DrawString(FieldValue, InvoiceFont, BlackBrush, IDPosition, CurrentY);
 
@@ -2345,12 +2154,11 @@ namespace Polsolcom.Forms.Procesos
 
                 CurrentY = CurrentY + InvoiceFontHeight;
 
-                if (++this.i == grdDetalle.Rows.Count)
+                if (++i == grdDetalle.Rows.Count)
                 {
                     StopReading = true;
                     break;
                 }
-
                 CurrentRecord++;
             }
 
@@ -2361,16 +2169,16 @@ namespace Polsolcom.Forms.Procesos
 
             if (StopReading)
             {
-                this.i = 0;
+				i = 0;
                 SetInvoiceTotal(g);
             }
-
             g.Dispose();
         }
 
         private void SetInvoiceTotal(Graphics g)
-        {// Set Invoice Total:
-         // Draw line:
+        {
+			// Set Invoice Total:
+			// Draw line:
             CurrentY = CurrentY + 8;
             g.DrawLine(new Pen(Brushes.Black), leftMargin, CurrentY, rightMargin, CurrentY);
             // Get Right Edge of Invoice:
@@ -2430,11 +2238,10 @@ namespace Polsolcom.Forms.Procesos
 
             if (line.Length > 0)
             {
-                CurrentY = CurrentY + InvoiceFontHeight;
+                CurrentY = CurrentY + InvoiceFontHeight+5;
                 g.DrawString(line, InvoiceFont, BlackBrush, leftMargin, CurrentY);
             }
   
-
             if (txtAutoriza.Text.Length > 0)
             {
                 string autoriza = "Aut. Dscto.:" + txtAutoriza.Text;
@@ -2442,19 +2249,18 @@ namespace Polsolcom.Forms.Procesos
                 g.DrawString(autoriza, InvoiceFont, BlackBrush, leftMargin, CurrentY);
             }
 
-            if (this.ncr.Length > 0)
+            if ( ncr.Length > 0)
             {
                 CurrentY = CurrentY + InvoiceFontHeight;
-                g.DrawString(this.ncr, InvoiceFont, BlackBrush, leftMargin, CurrentY);
+                g.DrawString(ncr, InvoiceFont, BlackBrush, leftMargin, CurrentY);
             }
         
-            if (this.progT != null)
+            if ( progT != null)
             {
-                string nfp = "Fecha de Examen: " + this.progT["Fecha_Prog"] + ", Nº de Orden: " + this.progT["Cantidad"];
+                string nfp = "Fecha de Examen: " + progT["Fecha_Prog"] + ", Nº de Orden: " + progT["Cantidad"];
                 CurrentY = CurrentY + InvoiceFontHeight;
                 g.DrawString(nfp, InvoiceFont, BlackBrush, leftMargin, CurrentY);
             }
-
             string thanks = "Gracias por su preferencia";
             CurrentX = leftMargin + (InvoiceWidth - (int)g.MeasureString(thanks, InvoiceFont).Width) / 2;
             CurrentY = CurrentY + 16;
@@ -2465,13 +2271,8 @@ namespace Polsolcom.Forms.Procesos
         {
             //string sqlImpF = "Select * From ImpFicha Where Left(Id_Producto,6)='" + ie + "' And Estado='1' And Us_Imp='" + iu + "'";
             //Dictionary<string, string> impF = General.GetDictionary(sqlImpF);
-
             string sqlProgT = "Exec ACanTransP";
-            this.progT = General.GetDictionary(sqlProgT);
-
-
+			progT = General.GetDictionary(sqlProgT);
         }
-
-       
     }
 }
