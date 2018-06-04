@@ -223,8 +223,9 @@ namespace Polsolcom.Forms
 
             if ( sCantTalon != "0" )
             {
-                MessageBox.Show("Tiene un rango abierto, en esa modalidad y tipo de documento de venta. Cierrelo...", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-            }
+                MessageBox.Show("Tiene un rango abierto, en esa modalidad y tipo de documento de venta." + (char)13 +" Cierrelo, o avise al Administado para que proceda a cerrarlo...", "Ingreso de Talonario", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+				Application.Exit();
+			}
 
             vSQL = "SELECT * ";
             vSQL = vSQL + " FROM Talon ";

@@ -36,10 +36,11 @@ namespace Polsolcom.Forms
 							"  WHERE Descripcion = 'DOC_VENTA' " +
 							"  AND Id_Tabla = '0')) D " +
 							"ON T.DVenta = D.Id_Tipo " +
-						"WHERE CONVERT(VARCHAR, Fecha, 103) Between '" + fi + "' AND '" + ff + "' " +
+						"WHERE Fecha >= CONVERT(SMALLDATETIME,'" + fi + "',103) " +
+						"AND Fecha <= CONVERT(SMALLDATETIME,'" + ff + "',103) " +
 						"AND T.Id_Oper Like '" + op + "%' ";
 			SQL += (us.Length > 0 ? "AND Usuario = '" + us + "' " : "");
-			SQL += "Order By Cast(Convert(Varchar(10),Fecha,103)As DateTime),2 Asc,1";
+			SQL += "Order By 2 Desc,1";
 
             return SQL;
         }
