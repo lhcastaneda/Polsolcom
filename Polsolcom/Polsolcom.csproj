@@ -172,6 +172,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CargoDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Data\Cie10DS.cs">
+      <DependentUpon>Cie10DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\Data\Cie10DS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

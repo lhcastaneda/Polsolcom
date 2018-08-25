@@ -234,7 +234,6 @@ Regresa:
 							dr.Close();
 						}
 					}
-
 					
 					//usuario tipo admision - caja
 					if( Usuario.id_area == "28" )
@@ -247,7 +246,12 @@ Regresa:
 							frmTalonario fr = new frmTalonario();
 							fr.ShowDialog();
 							if( fr.DialogResult != DialogResult.OK )
-								MessageBox.Show("No podra realizar ventas porque no ha registrado un rango de documentos de venta.", "Ingreso Rango Documentos Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+							{							
+								if (MessageBox.Show("No podra realizar ventas porque no ha registrado un rango de documentos de venta." + (char)13 + (char)13 + "Desea continuar...?", "Ingreso Rango Documentos Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes )
+									goto Continuar;
+								else
+									Application.Exit();
+							}
 						}
 
 						//consulta que trae la fecha maxima del talonario usado por el usuario                     
@@ -371,8 +375,9 @@ RegresaTalon:
                         }
                     }
 
-                    //llama al formulario principal
-                    frmMain frmPrincipal = new frmMain();
+Continuar:
+					//llama al formulario principal
+					frmMain frmPrincipal = new frmMain();
                     frmPrincipal.RefToLogin = this;
                     frmPrincipal.Tag = "";
                     //this.Visible = false;
